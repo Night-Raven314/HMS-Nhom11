@@ -64,8 +64,93 @@ VALUES
     ('patient38', 'password123', 'patient38@example.com', '84920000038', 'Nguyen Van Thanh', 'male', 'Ho Chi Minh', '38 Nguyen Trai', 'patient', NULL),
     ('patient39', 'password123', 'patient39@example.com', '84920000039', 'Tran Thi Kim', 'female', 'Ho Chi Minh', '39 Hai Ba Trung', 'patient', NULL);
 
+-- Thêm dữ liệu vật tư ý tế
+    INSERT INTO medicines (item_name, item_price, item_unit)
+    VALUES
+    ('Paracetamol', 2000, 'viên'),
+    ('Aspirin', 3000, 'viên'),
+    ('Amoxicillin', 25000, 'hộp'),
+    ('Vitamin C', 5000, 'viên'),
+    ('Ibuprofen', 1500, 'viên'),
+    ('Efferalgan', 12000, 'hộp'),
+    ('Panadol', 18000, 'hộp'),
+    ('Clarithromycin', 35000, 'hộp'),
+    ('Metformin', 2000, 'viên'),
+    ('Omeprazole', 10000, 'viên'),
+    ('Loratadine', 8000, 'hộp'),
+    ('Ciprofloxacin', 12000, 'viên'),
+    ('Azithromycin', 30000, 'hộp'),
+    ('Cefalexin', 25000, 'hộp'),
+    ('Acetylcysteine', 15000, 'gói'),
+    ('Silymarin', 4000, 'viên'),
+    ('Prednisolone', 12000, 'viên'),
+    ('Hydroxyzine', 20000, 'hộp'),
+    ('Drotaverin', 15000, 'viên'),
+    ('Diclofenac', 5000, 'viên'),
+    ('Fexofenadine', 25000, 'hộp'),
+    ('Ketoconazole', 20000, 'hộp'),
+    ('Cetirizine', 7000, 'hộp'),
+    ('Meloxicam', 2500, 'viên'),
+    ('Esomeprazole', 20000, 'hộp'),
+    ('Trimebutine', 15000, 'hộp'),
+    ('Loperamide', 3000, 'viên'),
+    ('Simvastatin', 10000, 'viên'),
+    ('Spironolactone', 5000, 'viên'),
+    ('Dulcolax', 12000, 'viên'),
+    ('Calcium carbonate', 8000, 'viên'),
+    ('Atorvastatin', 15000, 'hộp'),
+    ('Gabapentin', 18000, 'hộp'),
+    ('Doxycycline', 25000, 'hộp'),
+    ('Fluconazole', 20000, 'hộp'),
+    ('Montelukast', 18000, 'hộp'),
+    ('Folic Acid', 3000, 'viên'),
+    ('Amlodipine', 10000, 'viên'),
+    ('Candesartan', 15000, 'hộp'),
+    ('Losartan', 13000, 'viên'),
+    ('Levofloxacin', 22000, 'viên'),
+    ('Metronidazole', 10000, 'viên'),
+    ('Propranolol', 12000, 'viên'),
+    ('Lansoprazole', 18000, 'hộp'),
+    ('Ranitidine', 8000, 'viên'),
+    ('Terbinafine', 15000, 'viên'),
+    ('Tetracycline', 12000, 'hộp'),
+    ('Domperidone', 5000, 'viên'),
+    ('Bromhexine', 7000, 'hộp'),
+    ('Clotrimazole', 20000, 'hộp'),
+    ('Nystatin', 10000, 'viên');
+    ('Băng gạc vô trùng', 15000, 'gói'),
+    ('Khẩu trang y tế', 50000, 'hộp'),
+    ('Bông y tế', 25000, 'hộp'),
+    ('Nhiệt kế điện tử', 300000, 'cái'),
+    ('Máy đo huyết áp', 500000, 'cái'),
+    ('Bộ dụng cụ tiêm insulin', 150000, 'bộ'),
+    ('Găng tay y tế', 50000, 'hộp'),
+    ('Ống tiêm nhựa', 2000, 'cái'),
+    ('Máy đo đường huyết', 600000, 'cái'),
+    ('Băng keo cá nhân', 10000, 'gói'),
+    ('Bộ truyền dịch', 30000, 'bộ'),
+    ('Bình oxy y tế', 1000000, 'bình'),
+    ('Máy xông mũi họng', 800000, 'cái'),
+    ('Nạng y tế', 250000, 'cái'),
+    ('Xe lăn', 2500000, 'cái'),
+    ('Gạc rửa vết thương', 10000, 'gói'),
+    ('Kim tiêm vô trùng', 1000, 'cái'),
+    ('Bộ test đường huyết', 120000, 'bộ'),
+    ('Mặt nạ oxy', 50000, 'cái'),
+    ('Bộ dụng cụ sơ cứu', 150000, 'bộ'),
+    ('Cân sức khỏe điện tử', 250000, 'cái'),
+    ('Máy đo nồng độ oxy (SpO2)', 450000, 'cái'),
+    ('Máy trợ thở', 1500000, 'cái'),
+    ('Găng tay cao su', 40000, 'hộp'),
+    ('Ống nghe y tế', 300000, 'cái'),
+    ('Bình xịt mũi', 70000, 'chai'),
+    ('Băng thun hỗ trợ khớp', 100000, 'cái'),
+    ('Bông ngoáy tai y tế', 5000, 'gói'),
+    ('Kính bảo hộ y tế', 80000, 'cái'),
+    ('Máy đo nhiệt độ trán', 400000, 'cái');
+
 -- Thêm dữ liệu lịch sử khám bệnh của bệnh nhân
-INSERT INTO fact_med_history (patient_id, blood_press, blood_sugar, weight, temp, med_note)
+INSERT INTO fact_med_hist (patient_id, blood_press, blood_sugar, weight, temp, med_note)
 VALUES
     (21, '115/75', 5.0, 55, 36.0, 'Kiểm tra sức khỏe bình thường. Tất cả các chỉ số đều ổn định.'),
     (39, '120/80', 5.5, 60, 36.5, 'Kiểm tra sức khỏe bình thường.'),
@@ -116,3 +201,58 @@ VALUES
     (39, '120/80', 5.5, 60, 36.5, 'Kiểm tra sức khỏe bình thường.'),
     (37, '115/75', 5.0, 58, 36.2, 'Kiểm tra sức khỏe bình thường. Tất cả các chỉ số đều ổn định.');
 
+-- Thêm dữ liệu khám bệnh với bác sỹ
+INSERT INTO fact_patient_details (doctor_id, patient_id, patient_age, med_hist)
+VALUES
+    (14, 20, 35, 'Huyết áp hơi cao. Theo dõi thường xuyên.'),
+    (10, 21, 21, 'Kiểm tra sức khỏe bình thường.'),
+    (15, 22, 31, 'Mức đường huyết vẫn cao. Điều chỉnh thuốc.'),
+    (13, 23, 35, 'Chẩn đoán tiểu đường. Cần thay đổi lối sống ngay lập tức.'),
+    (13, 24, 42, 'Theo dõi mức đường huyết. Đã điều chỉnh thuốc.'),
+    (12, 25, 40, 'Kiểm tra sức khỏe bình thường. Tất cả các chỉ số đều ổn định.'),
+    (11, 26, 27, 'Huyết áp đã ổn định. Theo dõi thường xuyên.'),
+    (16, 27, 38, 'Chẩn đoán tăng huyết áp. Cần thay đổi lối sống ngay lập tức.'),
+    (19, 28, 29, 'Chẩn đoán tiểu đường. Cần theo dõi sức khỏe cẩn thận.'),
+    (10, 29, 24, 'Kiểm tra sức khỏe bình thường. Không có vấn đề gì.'),
+    (11, 30, 45, 'Kiểm tra cho thấy kết quả bình thường.'),
+    (15, 31, 33, 'Mức đường huyết cao. Đã điều chỉnh thuốc.'),
+    (12, 32, 36, 'Kiểm tra sức khỏe bình thường. Tất cả các chỉ số đều ổn định.'),
+    (13, 33, 32, 'Chẩn đoán tiểu đường. Cần theo dõi sức khỏe cẩn thận.'),
+    (14, 34, 54, 'Huyết áp hơi cao. Theo dõi thường xuyên.'),
+    (19, 35, 26, 'Kiểm tra sức khỏe bình thường. Tất cả các chỉ số đều ổn định.'),
+    (16, 36, 42, 'Mức đường huyết vẫn cao. Điều chỉnh thuốc.'),
+    (11, 37, 37, 'Theo dõi mức đường huyết. Đã điều chỉnh thuốc.'),
+    (18, 38, 44, 'Chẩn đoán tiểu đường. Cần thay đổi lối sống ngay lập tức.'),
+    (19, 39, 48, 'Kiểm tra sức khỏe bình thường. Không có vấn đề gì.');
+
+
+-- Thêm dữ liệu lịch sử cấp thuốc cho bệnh nhân
+INSERT INTO fact_prescriptions (med_hist_id, item_id, amount, price, item_note) VALUES
+    (3, 1, 1, 2000, 'Uống 1 viên buổi sáng sau ăn'),     -- High blood pressure (Paracetamol)
+    (3, 9, 1, 2000, 'Uống 1 viên vào buổi tối'),         -- High blood sugar (Metformin)
+    (4, 3, 2, 25000, 'Uống 1 viên mỗi ngày sau ăn'),     -- Diagnosis of diabetes (Amoxicillin)
+    (4, 10, 1, 10000, 'Uống 1 viên buổi sáng'),           -- Diagnosis of diabetes (Omeprazole)
+    (5, 4, 1, 15000, 'Uống 1 viên sau khi ăn'),           -- Diagnosis of diabetes (Clarithromycin)
+    (8, 2, 1, 3000, 'Uống 1 viên trước khi ngủ'),        -- Diagnosis of cold (Aspirin)
+    (9, 9, 1, 2000, 'Uống 1 viên buổi tối trước khi ngủ'), -- Diagnosis of diabetes (Metformin)
+    (11, 5, 1, 1500, 'Uống 1 viên trước khi ăn'),        -- Regular check-up (Ibuprofen)
+    (12, 6, 2, 12000, 'Uống 1 viên vào buổi tối'),       -- Diagnosis of cold (Efferalgan)
+    (13, 1, 2, 2000, 'Uống 1 viên vào buổi sáng'),       -- High blood pressure (Paracetamol)
+    (14, 10, 1, 10000, 'Uống 1 viên buổi sáng trước ăn'), -- High blood pressure (Omeprazole)
+    (15, 4, 1, 12000, 'Uống 1 viên vào buổi tối'),       -- Diagnosis of high blood pressure (Clarithromycin)
+    (17, 11, 1, 10000, 'Uống 1 viên trước bữa ăn'),      -- Regular check-up (Amlodipine)
+    (18, 10, 1, 2000, 'Uống 1 viên buổi sáng'),          -- Regular check-up (Paracetamol)
+    (21, 5, 1, 15000, 'Uống 1 viên mỗi ngày sau ăn'),    -- Diagnosis of high blood pressure (Ibuprofen)
+    (22, 3, 1, 25000, 'Uống 1 viên mỗi ngày sau ăn'),    -- Diagnosis of high blood pressure (Amoxicillin)
+    (23, 4, 2, 25000, 'Uống 1 viên mỗi ngày sau ăn'),    -- Diagnosis of diabetes (Amoxicillin)
+    (24, 9, 1, 2000, 'Uống 1 viên vào buổi tối'),        -- Diagnosis of diabetes (Metformin)
+    (27, 1, 1, 2000, 'Uống 1 viên buổi sáng sau ăn'),    -- High blood pressure (Paracetamol)
+    (28, 2, 1, 3000, 'Uống 1 viên vào buổi tối'),        -- Diagnosis of cold (Aspirin)
+    (30, 6, 2, 12000, 'Uống 1 viên vào buổi tối'),       -- Diagnosis of cold (Efferalgan)
+    (31, 3, 1, 25000, 'Uống 1 viên mỗi ngày sau ăn'),    -- Diagnosis of diabetes (Amoxicillin)
+    (32, 10, 1, 10000, 'Uống 1 viên buổi sáng'),          -- Diagnosis of diabetes (Omeprazole)
+    (35, 4, 1, 15000, 'Uống 1 viên sau khi ăn'),         -- Diagnosis of diabetes (Clarithromycin)
+    (37, 3, 1, 2000, 'Uống 1 viên buổi sáng sau ăn'),    -- High blood pressure (Paracetamol)
+    (38, 9, 1, 2000, 'Uống 1 viên vào buổi tối'),        -- Diagnosis of diabetes (Metformin)
+    (39, 10, 1, 10000, 'Uống 1 viên buổi sáng'),          -- Diagnosis of high blood pressure (Omeprazole)
+    (40, 5, 1, 1500, 'Uống 1 viên trước khi ăn');         -- Diagnosis of high blood pressure (Ibuprofen)
