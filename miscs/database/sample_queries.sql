@@ -1,6 +1,6 @@
 -- Kiểm tra trùng user_name
 SELECT
-    COUNT(user_name)
+    COUNT(user_name) -- >0 => trùng user_name
 FROM dim_user
 WHERE
     user_name = 'long_patient' -- Điền user_name đang được đăng ký mới để xem hệ thống đã có chưa
@@ -14,7 +14,7 @@ WHERE
     user_name = 'huan_admin'
     AND password = 'password123'
 
--- Kiểm tra trạng thái đăng nhập // Có thể dùng để phát triển tính năng tự động log out
+-- Kiểm tra trạng thái đăng nhập // Có thể dùng làm cơ sở để phát triển tính năng tự động log out
 SELECT
     *
 FROM fact_user_login
@@ -80,3 +80,27 @@ WHERE
     -- usr.full_name = 'Pham Van Cuong'
     -- usr.user_id = 34
     dct.user_id = 14
+
+-- Lấy thông tin của bệnh nhân
+SELECT
+    usr.full_name,
+    usr.email_address,
+    usr.contact_no,
+    usr.address,
+    usr.city,
+    usr.gender,
+    ptn.patient_age,
+    ptn.med_hist
+FROM dim_user usr
+    LEFT JOIN fact_patient_details ptn
+        ON ptn.patient_id = usr.user_id
+WHERE
+    -- usr.full_name = 'Pham Van Cuong'
+    usr.user_id = 34
+
+-- Lấy profile
+SELECT
+    *
+FROM dim_user usr
+WHERE
+    user_id = 14
