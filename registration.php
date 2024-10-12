@@ -56,44 +56,44 @@ return true;
 		<div class="row">
 			<div class="main-login col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
 				<div class="logo margin-top-30">
-				<a href="../index.php"><h2>HMS | Patient Registration</h2></a>
+				<a href="../index.php"><h2>HKL | Đăng kí tài khoản bệnh nhân</h2></a>
 				</div>
 				<!-- start: REGISTER BOX -->
 				<div class="box-register">
 					<form name="registration" id="registration"  method="post" onSubmit="return valid();">
 						<fieldset>
 							<legend>
-								Sign Up
+								Đăng kí
 							</legend>
 							<p>
-								Enter your personal details below:
+								Nhập thông tin cá nhân của bạn bên dưới :
 							</p>
 							<div class="form-group">
-								<input type="text" class="form-control" name="full_name" placeholder="Full Name" required>
+								<input type="text" class="form-control" name="full_name" placeholder="Họ và tên đầy đủ" required>
 							</div>
 							<div class="form-group">
-								<input type="text" class="form-control" name="address" placeholder="Address" required>
+								<input type="text" class="form-control" name="address" placeholder="Địa chỉ" required>
 							</div>
 							<div class="form-group">
-								<input type="text" class="form-control" name="city" placeholder="City" required>
+								<input type="text" class="form-control" name="city" placeholder="Thành phố" required>
 							</div>
 							<div class="form-group">
 								<label class="block">
-									Gender
+									Giới tính
 								</label>
 								<div class="clip-radio radio-primary">
 									<input type="radio" id="rg-female" name="gender" value="female" >
 									<label for="rg-female">
-										Female
+										Nữ giới
 									</label>
 									<input type="radio" id="rg-male" name="gender" value="male">
 									<label for="rg-male">
-										Male
+										Nam giới
 									</label>
 								</div>
 							</div>
 							<p>
-								Enter your account details below:
+								Nhập thông tin tài khoản của bạn bên dưới:
 							</p>
 							<div class="form-group">
 								<span class="input-icon">
@@ -103,38 +103,38 @@ return true;
 							</div>
 							<div class="form-group">
 								<span class="input-icon">
-									<input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+									<input type="password" class="form-control" id="password" name="password" placeholder="Mật khẩu" required>
 									<i class="fa fa-lock"></i> </span>
 							</div>
 							<div class="form-group">
 								<span class="input-icon">
-									<input type="password" class="form-control"  id="password_again" name="password_again" placeholder="Password Again" required>
+									<input type="password" class="form-control"  id="password_again" name="password_again" placeholder="Nhập lại mật khẩu" required>
 									<i class="fa fa-lock"></i> </span>
 							</div>
 							<div class="form-group">
 								<div class="checkbox clip-check check-primary">
 									<input type="checkbox" id="agree" value="agree" checked="true" readonly=" true">
 									<label for="agree">
-										I agree
+										Tôi đồng ý
 									</label>
 								</div>
 							</div>
 							<div class="form-actions">
 								<p>
-									Already have an account?
+									Đã có tài khoản ?
 									<a href="user-login.php">
-										Log-in
+										Đăng nhập
 									</a>
 								</p>
 								<button type="submit" class="btn btn-primary pull-right" id="submit" name="submit">
-									Submit <i class="fa fa-arrow-circle-right"></i>
+									Gửi <i class="fa fa-arrow-circle-right"></i>
 								</button>
 							</div>
 						</fieldset>
 					</form>
 
 					<div class="copyright">
-						&copy; <span class="current-year"></span><span class="text-bold text-uppercase"> HMS</span>. <span>All rights reserved</span>
+						&copy; <span class="current-year"></span><span class="text-bold text-uppercase"> HKL</span>. <span>Mọi thông tin được bảo lưu</span>
 					</div>
 
 				</div>

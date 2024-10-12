@@ -28,7 +28,7 @@ $_SESSION['errmsg']="Invalid username or password";
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Admin-Đăng nhập</title>
+		<title>Admin-Login</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
 		<meta name="apple-mobile-web-app-capable" content="yes">
@@ -57,35 +57,35 @@ $_SESSION['errmsg']="Invalid username or password";
 					<form class="form-login" method="post">
 						<fieldset>
 							<legend>
-								Sign in to your account
+							Đăng nhập vào tài khoản của bạn
 							</legend>
 							<p>
-								Please enter your name and password to log in.<br />
+							Vui lòng nhập tên và mật khẩu để đăng nhập.<br />
 								<span style="color:red;"><?php echo htmlentities($_SESSION['errmsg']); ?><?php echo htmlentities($_SESSION['errmsg']="");?></span>
 							</p>
 							<div class="form-group">
 								<span class="input-icon">
-									<input type="text" class="form-control" name="username" placeholder="Username">
+									<input type="text" class="form-control" name="username" placeholder="Tên người dùng">
 									<i class="fa fa-user"></i> </span>
 							</div>
 							<div class="form-group form-actions">
 								<span class="input-icon">
-									<input type="password" class="form-control password" name="password" placeholder="Password"><i class="fa fa-lock"></i>
+									<input type="password" class="form-control password" name="password" placeholder="Mật khẩu "><i class="fa fa-lock"></i>
 									 </span>
 							</div>
 							<div class="form-actions">
 								
 								<button type="submit" class="btn btn-primary pull-right" name="submit">
-									Login <i class="fa fa-arrow-circle-right"></i>
+									Đăng nhập <i class="fa fa-arrow-circle-right"></i>
 								</button>
 							</div>
-							<a href="../../index.php">Bacto Home Page</a>
+							<a href="../../index.php"> Trở về trang chủ </a>
 							
 						</fieldset>
 					</form>
 
 					<div class="copyright">
-						<span class="text-bold text-uppercase">Hospital Management System</span>
+						<span class="text-bold text-uppercase">Hệ thống quản lý bệnh viện</span>
 					</div>
 			
 				</div>

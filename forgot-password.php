@@ -44,50 +44,49 @@ echo "<script>window.location.href ='forgot-password.php'</script>";
 		<div class="row">
 			<div class="main-login col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
 				<div class="logo margin-top-30">
-				<a href="../index.php"><h2> HMS | Patient Password Recovery</h2></a>
+				<a href="../index.php"><h2> HKL | Phục hồi mật khẩu bệnh nhân </h2></a>
 				</div>
 
 				<div class="box-login">
 					<form class="form-login" method="post">
 						<fieldset>
 							<legend>
-								Patient Password Recovery
+								Phục hồi mật khẩu bệnh nhân
 							</legend>
 							<p>
-								Please enter your Email and password to recover your password.<br />
-					
+								Vui lòng nhập Email và mật khẩu của bạn để khôi phục mật khẩu<br />					
 							</p>
 
 							<div class="form-group form-actions">
 								<span class="input-icon">
-									<input type="text" class="form-control" name="fullname" placeholder="Registred Full Name">
+									<input type="text" class="form-control" name="fullname" placeholder="Họ và tên đã đăng kí">
 									<i class="fa fa-lock"></i>
 									 </span>
 							</div>
 
 							<div class="form-group">
 								<span class="input-icon">
-									<input type="email" class="form-control" name="email" placeholder="Registred Email">
+									<input type="email" class="form-control" name="email" placeholder="Email đã đăng kí">
 									<i class="fa fa-user"></i> </span>
 							</div>
 
 							<div class="form-actions">
 								
 								<button type="submit" class="btn btn-primary pull-right" name="submit">
-									Reset <i class="fa fa-arrow-circle-right"></i>
+									Đặt lại <i class="fa fa-arrow-circle-right"></i>
 								</button>
 							</div>
 							<div class="new-account">
-								Already have an account? 
+								Đã có tài khoản ? 
 								<a href="user-login.php">
-									Log-in
+									Đăng nhập
 								</a>
 							</div>
 						</fieldset>
 					</form>
 
 					<div class="copyright">
-						&copy; <span class="text-bold text-uppercase">  Hospital Management System</span>
+						&copy; <span class="text-bold text-uppercase">  Hệ thống quản lý bệnh viện</span>
 					</div>
 			
 				</div>

@@ -58,44 +58,44 @@ header("location:user-login.php");
         <div class="main-login col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
             <div class="logo margin-top-30">
                 <a href="../index.php">
-                    <h2> HMS | Patient Login</h2>
+                    <h2> HKL | Đăng nhập bệnh nhân </h2>
                 </a>
             </div>
 
             <div class="box-login">
                 <form class="form-login" method="post">
                     <fieldset>
-                        <legend>Sign in to your account</legend>
+                        <legend>Đăng nhập vào tài khoản của bạn</legend>
                         <p>
-                            Please enter your name and password to log in.<br />
+                            Vui lòng nhập tên và mật khẩu để đăng nhập.<br />
                             <span style="color:red;"><?php echo $_SESSION['errmsg']; ?><?php echo $_SESSION['errmsg']="";?></span>
                         </p>
                         <div class="form-group">
                             <span class="input-icon">
-                                <input type="text" class="form-control" name="username" placeholder="Username">
+                                <input type="text" class="form-control" name="username" placeholder="Tên người dùng">
                                 <i class="fa fa-user"></i>
                             </span>
                         </div>
                         <div class="form-group form-actions">
                             <span class="input-icon">
-                                <input type="password" class="form-control password" name="password" placeholder="Password">
+                                <input type="password" class="form-control password" name="password" placeholder="Mật khẩu">
                                 <i class="fa fa-lock"></i>
-                            </span><a href="forgot-password.php">Forgot Password ?</a>
+                            </span><a href="forgot-password.php">Quên mật khẩu ?</a>
                         </div>
                         <div class="form-actions">
                             <button type="submit" class="btn btn-primary pull-right" name="submit">
-                                Login <i class="fa fa-arrow-circle-right"></i>
+                                Đăng nhập <i class="fa fa-arrow-circle-right"></i>
                             </button>
                         </div>
                         <div class="new-account">
-                            Don't have an account yet?
-                            <a href="registration.php">Create an account</a>
+                            Bạn chưa có tài khoản ?
+                            <a href="registration.php">Tạo một tài khoản</a>
                         </div>
                     </fieldset>
                 </form>
 
                 <div class="copyright">
-                    <span class="text-bold text-uppercase">Hospital Management System</span>.
+                    <span class="text-bold text-uppercase">Hệ thống quản lý bệnh viện .</span>.
                 </div>
             </div>
         </div>
