@@ -149,6 +149,55 @@ VALUES
     ('Kính bảo hộ y tế', 80000, 'cái'),
     ('Máy đo nhiệt độ trán', 400000, 'cái');
 
+-- Thêm dữ liệu lịch hẹn khám
+INSERT INTO fact_appointment (doctor_id, patient_id, specialty_id, cons_fee, booking_date, booking_time, city, address, doctor_status, patient_status)
+VALUES
+    (13, 25, 4, 450000, '01/08/2024', '09:30 am', 'Ho Chi Minh', '13 Vo Thi Sau', 1, 1),
+    (16, 28, 7, 480000, '03/08/2024', '11:00 am', 'Ho Chi Minh', '16 Tran Hung Dao', 1, 1),
+    (12, 20, 3, 400000, '05/08/2024', '02:15 pm', 'Ho Chi Minh', '12 Nguyen Trai', 1, 1),
+    (15, 24, 6, 390000, '07/08/2024', '04:45 pm', 'Ho Chi Minh', '15 Le Lai', 1, 1),
+    (18, 32, 9, 410000, '09/08/2024', '08:00 am', 'Ho Chi Minh', '18 Le Duan', 1, 1),
+    (14, 23, 5, 420000, '11/08/2024', '10:00 am', 'Ho Chi Minh', '14 Hai Ba Trung', 1, 1),
+    (17, 30, 8, 460000, '13/08/2024', '01:30 pm', 'Ho Chi Minh', '17 Nguyen Thi Minh Khai', 1, 1),
+    (11, 31, 2, 370000, '15/08/2024', '05:00 pm', 'Ho Chi Minh', '11 Le Van Sy', 1, 1),
+    (10, 21, 1, 350000, '17/08/2024', '06:15 pm', 'Ho Chi Minh', '10 Phan Xich Long', 1, 1),
+    (19, 22, 10, 500000, '19/08/2024', '07:00 am', 'Ho Chi Minh', '19 Dong Khoi', 1, 1),
+    
+    (14, 29, 5, 420000, '21/08/2024', '11:45 am', 'Ho Chi Minh', '14 Hai Ba Trung', 1, 1),
+    (13, 33, 4, 450000, '23/08/2024', '12:30 pm', 'Ho Chi Minh', '13 Vo Thi Sau', 1, 1),
+    (15, 26, 6, 390000, '25/08/2024', '09:00 am', 'Ho Chi Minh', '15 Le Lai', 1, 1),
+    (18, 35, 9, 410000, '27/08/2024', '02:00 pm', 'Ho Chi Minh', '18 Le Duan', 1, 1),
+    (17, 27, 8, 460000, '29/08/2024', '04:30 pm', 'Ho Chi Minh', '17 Nguyen Thi Minh Khai', 1, 1),
+    (12, 36, 3, 400000, '31/08/2024', '03:00 pm', 'Ho Chi Minh', '12 Nguyen Trai', 1, 1),
+    (10, 34, 1, 350000, '02/09/2024', '10:30 am', 'Ho Chi Minh', '10 Phan Xich Long', 1, 1),
+    (11, 28, 2, 370000, '04/09/2024', '02:45 pm', 'Ho Chi Minh', '11 Le Van Sy', 1, 1),
+    (16, 37, 7, 480000, '06/09/2024', '09:30 am', 'Ho Chi Minh', '16 Tran Hung Dao', 1, 1),
+    (19, 38, 10, 500000, '08/09/2024', '01:00 pm', 'Ho Chi Minh', '19 Dong Khoi', 1, 1),
+    
+    (13, 22, 4, 450000, '10/09/2024', '11:15 am', 'Ho Chi Minh', '13 Vo Thi Sau', 1, 1),
+    (12, 24, 3, 400000, '12/09/2024', '05:30 pm', 'Ho Chi Minh', '12 Nguyen Trai', 1, 1),
+    (15, 31, 6, 390000, '14/09/2024', '07:00 am', 'Ho Chi Minh', '15 Le Lai', 1, 1),
+    (16, 21, 7, 480000, '16/09/2024', '08:45 am', 'Ho Chi Minh', '16 Tran Hung Dao', 1, 1),
+    (11, 39, 2, 370000, '18/09/2024', '12:15 pm', 'Ho Chi Minh', '11 Le Van Sy', 1, 1),
+    (10, 35, 1, 350000, '20/09/2024', '02:00 pm', 'Ho Chi Minh', '10 Phan Xich Long', 1, 1),
+    (14, 30, 5, 420000, '22/09/2024', '03:30 pm', 'Ho Chi Minh', '14 Hai Ba Trung', 1, 1),
+    (17, 36, 8, 460000, '24/09/2024', '05:45 pm', 'Ho Chi Minh', '17 Nguyen Thi Minh Khai', 1, 1),
+    (18, 32, 9, 410000, '26/09/2024', '06:15 pm', 'Ho Chi Minh', '18 Le Duan', 1, 1),
+    (19, 23, 10, 500000, '28/09/2024', '07:00 am', 'Ho Chi Minh', '19 Dong Khoi', 1, 1),
+    
+    (16, 38, 7, 480000, '30/09/2024', '09:00 am', 'Ho Chi Minh', '16 Tran Hung Dao', 1, 1),
+    (12, 27, 3, 400000, '02/10/2024', '11:00 am', 'Ho Chi Minh', '12 Nguyen Trai', 1, 1),
+    (15, 28, 6, 390000, '04/10/2024', '02:30 pm', 'Ho Chi Minh', '15 Le Lai', 1, 1),
+    (14, 39, 5, 420000, '06/10/2024', '04:00 pm', 'Ho Chi Minh', '14 Hai Ba Trung', 1, 1),
+    (13, 34, 4, 450000, '08/10/2024', '06:00 pm', 'Ho Chi Minh', '13 Vo Thi Sau', 1, 1),
+    (11, 26, 2, 370000, '10/10/2024', '08:15 am', 'Ho Chi Minh', '11 Le Van Sy', 1, 1),
+    (10, 29, 1, 350000, '11/10/2024', '09:45 am', 'Ho Chi Minh', '10 Phan Xich Long', 1, 1),
+    (18, 37, 9, 410000, '12/10/2024', '11:00 am', 'Ho Chi Minh', '18 Le Duan', 1, 1),
+    (19, 25, 10, 500000, '13/10/2024', '03:45 pm', 'Ho Chi Minh', '19 Dong Khoi', 1, 1),
+    (17, 20, 8, 460000, '14/10/2024', '05:15 pm', 'Ho Chi Minh', '17 Nguyen Thi Minh Khai', 1, 1);
+
+
+
 -- Thêm dữ liệu lịch sử khám bệnh của bệnh nhân
 INSERT INTO fact_med_hist (patient_id, blood_press, blood_sugar, weight, temp, med_note)
 VALUES
