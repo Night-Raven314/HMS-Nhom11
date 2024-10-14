@@ -7,7 +7,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <title>
-    Đăng nhập
+    Quên mật khẩu
   </title>
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
@@ -35,25 +35,22 @@
             <div class="card z-index-0 fadeIn3 fadeInBottom">
               <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                 <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                  <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Đăng nhập</h4>
+                  <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Tìm mật khẩu</h4>
                 </div>
               </div>
               <div class="card-body">
+              <p class="mb-0">Vui lòng nhập email đã đăng ký để lấy lại mật khẩu</p>
                 <form role="form" class="text-start">
                   <div class="input-group input-group-outline my-3">
-                    <label class="form-label">Tên đăng nhập</label>
-                    <input type="user_name" class="form-control">
-                  </div>
-                  <div class="input-group input-group-outline mb-3">
-                    <label class="form-label">Mật khẩu</label>
-                    <input type="password" class="form-control">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control">
                   </div>
                   <div class="text-center">
-                    <button type="button" class="btn bg-gradient-primary w-100 my-4 mb-2">Đăng nhập</button>
+                    <button type="button" class="btn bg-gradient-primary w-100 my-4 mb-2">Lấy lại mật khẩu</button>
                   </div>
                   <p class="mt-4 text-sm text-center">
-                    Quên mật khẩu?
-                    <a href="./forgot-pwd.php" class="text-primary text-gradient font-weight-bold">Tìm mật khẩu</a>
+                    Bạn cần đăng nhập?
+                    <a href="./sign-in.php" class="text-primary text-gradient font-weight-bold">Đăng nhập ngay</a>
                   </p>
                   <p class="mt-4 text-sm text-center">
                     Bạn chưa có tài khoản?
