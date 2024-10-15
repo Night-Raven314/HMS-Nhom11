@@ -1,33 +1,48 @@
-<!doctype html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" href="../assets/css/styles.css">
-<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-</head> 
-<body>
-<div id="web">
-<header>
-<div class="container-fluid header-top bg-white sticky-top">
-        <div class="container-xl">
-            <div class="row m-0 bg-white">
-                <div class="col-lg-3 nav-col align-self-center">
-                    <a href="#">
-                        <img class="max-250" src="assets/image/logo01.png" alt="">
-                    </a>
-                    <a data-bs-toggle="collapse" data-bs-target="#menu" class="float-end pt-1 d-lg-none "><i class="bi  fs-1 cp bi-list"></i></a>
-                </div>
-                <div id="menu" class="col-lg-7 col-md-8 d-none d-lg-block align-self-center  justify-content-center d-flex">
-                    <ul class="fw-bold main-nav">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#services">Tính năng</a></li>
-                        <li><a href="#about_us">Về chúng tôi</a></li>
-                        <li><a href="#blog">Hình ảnh</a></li>
-                        <li><a href="#footer">Liên hệ</a></li>
-                        <li><a href="#logins">Đăng nhập</a></li>
-                    </ul>
-                </div>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,shrink-to-fit=no">
+    <title>HealthCare Hospital</title>
+    <!--     Fonts and icons     -->
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
 
-   
-   
-</header>
+<!-- Nucleo Icons -->
+<link href="./assets/css/nucleo-icons.css" rel="stylesheet" />
+<link href="./assets/css/nucleo-svg.css" rel="stylesheet" />
+
+<!-- Font Awesome Icons -->
+<script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+
+<!-- Material Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+
+<!-- CSS Files -->
+
+
+
+
+    <link rel="stylesheet" href="./assets/css/material_dash.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="./assets/css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <a href="index1.php">Bệnh viện HKL</a>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index1.php">Home</a></li>
+                    <li><a href="#">Tính năng</a></li>
+                    <li><a href="#">Về chúng tôi</a></li>
+                    <li><a href="#">Hình ảnh</a></li>
+                    <li><a href="#">Liên hệ</a></li>
+                    <li><a href="sign-in.php">Đăng nhập</a></li>
+                </ul>
+            </nav>
+            
+        </div>
+        
+    </header>
