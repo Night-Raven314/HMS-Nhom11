@@ -1,5 +1,5 @@
 <?php
-include_once('include/config.php');
+include_once('./assets/include/config.php');
 if(isset($_POST['submit']))
 {
 $fname=$_POST['full_name'];
