@@ -52,8 +52,7 @@
                     <button type="button" class="btn bg-gradient-primary w-100 my-4 mb-2">Đăng nhập</button>
                   </div>
                   <p class="mt-4 text-sm text-center">
-                    Quên mật khẩu?
-                    <a href="./forgot-pwd.php" class="text-primary text-gradient font-weight-bold">Tìm mật khẩu</a>
+                    <a href="./forgot-pwd.php" class="text-primary text-gradient font-weight-bold">Quên mật khẩu</a>
                   </p>
                   <p class="mt-4 text-sm text-center">
                     Bạn chưa có tài khoản?

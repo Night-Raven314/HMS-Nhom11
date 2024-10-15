@@ -60,11 +60,11 @@
                         <li><a href="#about_us">Về chúng tôi</a></li>
                         <li><a href="#blog">Hình ảnh</a></li>
                         <li><a href="#footer">Liên hệ</a></li>
-                        <li><a href="#logins">Đăng nhập</a></li>
+                        <li><a href="sign-in.php">Đăng nhập</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-2 d-none d-lg-block align-self-center text-end ">
-                    <a href="hms/registration.php">
+                    <a href="sign-up.php">
                         <button class="btn btn-primary float-end fs-8 fw-bolder" fdprocessedid="rg3f1m">Đăng kí</button>
                     </a>
                 </div>
