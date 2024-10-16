@@ -30,6 +30,7 @@
 
   <!-- CSS Files -->
   <link id="pagestyle" href="assets/css/material_dash.css" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css">
 
 </head>
 
@@ -85,7 +86,7 @@
   </main>
 
   <!-- Site Details -->
-   
+
   <!-- End Site Details -->
 
   <footer class="footer py-4  ">
