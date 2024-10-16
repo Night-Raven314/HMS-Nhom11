@@ -85,6 +85,8 @@
   </main>
 
   <!-- Site Details -->
+   
+  <!-- End Site Details -->
 
   <footer class="footer py-4  ">
     <div class="container-fluid">
