@@ -17,7 +17,6 @@ header('location:reset-password.php');
 echo "<script>alert('Invalid details. Please try with valid details');</script>";
 echo "<script>window.location.href ='forgot-password.php'</script>";
 
-
 }
 
 }
