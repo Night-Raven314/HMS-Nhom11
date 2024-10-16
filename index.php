@@ -2,23 +2,21 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Home Page</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Fonts -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&amp;display=swap">
-    <!-- icon -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-    <link rel="icon" type="image/x-icon" href="assets/image/HKL logo in a rectangular shape.png">
-    <!-- Preload CSS and JavaScript -->
-    <link rel='stylesheet' href='assets/css/style.css'>
-    <link rel="modulepreload" href="https://www.smarteyeapps.com/build/assets/home-6dd98ea4.js">
-    <link rel="modulepreload" href="https://www.smarteyeapps.com/build/assets/bootstrap.esm-03e0081a.js">
-    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
-    <script type="module" src="https://www.smarteyeapps.com/build/assets/home-6dd98ea4.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Styles -->
+
+    <title>Website Template Demo</title>
+
+    <link rel="icon" href="assets/image/iconWeb.png">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/vendor/animate.css/animate.min.css">
+    <link rel="stylesheet" href="assets/vendor/fontawesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+
     <script>
         window.onscroll = function() {
             var scrollButton = document.getElementById('scroll-top');
@@ -44,33 +42,34 @@
 <body>
 
     <!-- ################# Header #######################--->
-    <div class="container-fluid header-top bg-white sticky-top">
-        <div class="container-xl">
-            <div class="row m-0 bg-white">
-                <div class="col-lg-3 nav-col align-self-center">
-                    <a href="#">
-                        <img class="max-250" src="assets/image/logo01.png" alt="">
-                    </a>
-                    <a data-bs-toggle="collapse" data-bs-target="#menu" class="float-end pt-1 d-lg-none "><i class="bi  fs-1 cp bi-list"></i></a>
+    <header id="menu-jk" style="z-index: 1000; position: fixed; top: 0px; margin-left: 0px; width: 1903px; left: 0px;" class="scroll-to-fixed-fixed">
+
+        <div id="nav-head" class="header-nav">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-2 col-md-3 no-padding col-sm-12 nav-img">
+                        <img src="assets/images/logo.jpg" alt="">
+                        <a data-toggle="collapse" data-target="#menu" href="#menu"><i class="fas d-block d-md-none small-menu fa-bars"></i></a>
+                    </div>
+                    <div id="menu" class="col-lg-8 col-md-9 d-none d-md-block nav-item">
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#services">Services</a></li>
+                            <li><a href="#about_us">About Us</a></li>
+                            <li><a href="#blog">Blog</a></li>
+                            <li><a href="#gallery">Gallery</a></li>
+                            <li><a href="#contact_us">Contact Us</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-2 d-none d-lg-block appoint">
+                        <button class="btn btn-success" fdprocessedid="vrzwv">Book an Appointment</button>
+                    </div>
                 </div>
-                <div id="menu" class="col-lg-7 col-md-8 d-none d-lg-block align-self-center  justify-content-center d-flex">
-                    <ul class="fw-bold main-nav">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#services">Tính năng</a></li>
-                        <li><a href="#about_us">Về chúng tôi</a></li>
-                        <li><a href="#blog">Hình ảnh</a></li>
-                        <li><a href="#footer">Liên hệ</a></li>
-                        <li><a href="#logins">Đăng nhập</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-2 d-none d-lg-block align-self-center text-end ">
-                    <a href="hms/registration.php">
-                        <button class="btn btn-primary float-end fs-8 fw-bolder" fdprocessedid="rg3f1m">Đăng kí</button>
-                    </a>
-                </div>
+
             </div>
         </div>
-    </div>
+    </header>
+    <div style="display: block; width: 1903px; height: 80px; float: none;"></div>
     <!-- ################# Hero Section Starts Here #######################--->
     <section id="slider">
         <div class="container-xl">
@@ -96,59 +95,8 @@
     </section>
 
 
-    <!-- ################# Login Starts Here #######################--->
-    <section id="logins" class="our-blog container-fluid">
-        <div class="container">
-            <div class="inner-title">
+    <!-- ################# # #######################--->
 
-                <h2 style="font-size: 38px;font-family:times new roman; text-align: center; margin-bottom: 20px;"><b>Đăng nhập</b></h2>
-            </div>
-            <div class="col-sm-12 blog-cont">
-                <div class="row no-margin">
-                    <div class="col-sm-4 blog-smk">
-                        <div class="blog-single">
-
-                            <img src="assets/image/user login image.png" height="200px" alt="">
-
-                            <div class="blog-single-det">
-                                <h6>Đăng nhập (user)</h6>
-                                <a href="hms/user-login.php">
-                                    <button class="btn btn-success btn-sm" fdprocessedid="g10ku">Click Here</button>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4 blog-smk">
-                        <div class="blog-single">
-
-                            <img src="assets/image/admin login logo.png" height="200px" alt="">
-
-                            <div class="blog-single-det">
-                                <h6>Đăng nhập (admin)</h6>
-                                <a href="hms/doctor">
-                                    <button class="btn btn-success btn-sm" fdprocessedid="r1iqwl">Click Here</button>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4 blog-smk">
-                        <div class="blog-single">
-
-                            <img src="assets/image/hero section.png" height="200px" alt="">
-
-                            <div class="blog-single-det">
-                                <h6>Đăng nhập (Nội bộ)</h6>
-                                <a href="hms/doctor">
-                                    <button class="btn btn-success btn-sm" fdprocessedid="r1iqwl">Click Here</button>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
     <!-- ################# services #######################--->
     <section id="services" class="key-features department">
         <div class="container">
@@ -293,6 +241,18 @@
         </a>
         <a href="#" style="font-family:'lexend deca'">Lên đầu trang</a>
     </div>
+    <!-- 5S-->
+    <!-- <section id="rate">
+        <div class="raw no-margin">
+            <h2>Rate this item:</h2>
+            <span class="star" onclick="rateStar(0)">&#9733;</span>
+            <span class="star" onclick="rateStar(1)">&#9733;</span>
+            <span class="star" onclick="rateStar(2)">&#9733;</span>
+            <span class="star" onclick="rateStar(3)">&#9733;</span>
+            <span class="star" onclick="rateStar(4)">&#9733;</span>
+        </div>
+    </section> -->
+
     <!-- ################# Footer Starts Here#######################--->
     <footer id="footer" class="footer">
         <div class="container">
@@ -325,6 +285,14 @@
             <b> Hệ thống quản lý bệnh viện | It's Me </b>
         </div>
     </div>
+<!-- script -->
+<script src="assets/js/jquery-3.2.1.min.js"></script>
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/plugins/scroll-nav/js/jquery.easing.min.js"></script>
+<script src="assets/plugins/scroll-nav/js/scrolling-nav.js"></script>
+<script src="assets/plugins/scroll-fixed/jquery-scrolltofixed-min.js"></script>
+<script src="assets/js/script.js"></script>
 
 </body>
 
