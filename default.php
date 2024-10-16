@@ -34,10 +34,13 @@
 </head>
 
 <!-- Side Nav -->
-<body class="g-sidenav-show" style="background-image: url('./assets/image/Hospital_Seamless1.png'); background-size: 400px 400px;">
+
+<body class="g-sidenav-show"
+    style="background-image: url('./assets/image/Hospital_Seamless1.png'); background-size: 400px 400px;">
 
     <aside
-        class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 bg-gradient-dark"  id="sidenav-main">
+        class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 bg-gradient-dark"
+        id="sidenav-main">
 
         <div class="sidenav-header">
             <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
@@ -63,7 +66,8 @@
                     <a class="nav-link text-white active bg-gradient-primary" href="./pages/dashboard.html">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">info</i> <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
+                            <i class="material-icons opacity-10">info</i>
+                            <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
                         </div>
 
                         <span class="nav-link-text ms-1">Function 1</span>
@@ -75,7 +79,8 @@
                     <a class="nav-link text-white" href="./pages/dashboard.html">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">lock</i> <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
+                            <i class="material-icons opacity-10">lock</i>
+                            <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
                         </div>
 
                         <span class="nav-link-text ms-1">Function 2</span>
@@ -87,7 +92,8 @@
                     <a class="nav-link text-white" href="./pages/dashboard.html">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">favorite</i> <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
+                            <i class="material-icons opacity-10">favorite</i>
+                            <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
                         </div>
 
                         <span class="nav-link-text ms-1">Function 3</span>
@@ -99,7 +105,8 @@
                     <a class="nav-link text-white" href="./pages/dashboard.html">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">description</i> <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
+                            <i class="material-icons opacity-10">description</i>
+                            <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
                         </div>
 
                         <span class="nav-link-text ms-1">Function 4</span>
@@ -116,7 +123,8 @@
                     <a class="nav-link text-white" href="./pages/dashboard.html">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">schedule</i> <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
+                            <i class="material-icons opacity-10">schedule</i>
+                            <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
                         </div>
 
                         <span class="nav-link-text ms-1">Function 1</span>
@@ -128,7 +136,8 @@
                     <a class="nav-link text-white" href="./pages/dashboard.html">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">event</i> <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
+                            <i class="material-icons opacity-10">event</i>
+                            <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
                         </div>
 
                         <span class="nav-link-text ms-1">Function 2</span>
@@ -140,7 +149,8 @@
                     <a class="nav-link text-white" href="./pages/dashboard.html">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">login</i> <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
+                            <i class="material-icons opacity-10">login</i>
+                            <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
                         </div>
 
                         <span class="nav-link-text ms-1">Function 3</span>
@@ -152,7 +162,8 @@
                     <a class="nav-link text-white" href="./pages/dashboard.html">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">paid</i> <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
+                            <i class="material-icons opacity-10">paid</i>
+                            <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
                         </div>
 
                         <span class="nav-link-text ms-1">Function 4</span>
@@ -163,7 +174,7 @@
         </div>
 
     </aside>
-<!-- End Side Nav -->
+    <!-- End Side Nav -->
 
     <main class="main-content border-radius-lg ">
         <!-- Navbar -->
@@ -199,14 +210,16 @@
 
                         <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
                             <!-- Right corner user section -->
-                            </li>
-                                <li class="nav-item d-flex align-items-center">
-                                    <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="sign-in.php">Đăng nhập</a>
-                                </li>
-                                <li class="nav-item d-flex align-items-center">
-                                    <a class="btn bg-gradient-primary btn-sm mb-0 me-3" target="_blank" href="sign-up.php">Đăng ký</a>
-                                </li>
-                            </li>
+                        </li>
+                        <li class="nav-item d-flex align-items-center">
+                            <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="sign-in.php">Đăng
+                                nhập</a>
+                        </li>
+                        <li class="nav-item d-flex align-items-center">
+                            <a class="btn bg-gradient-primary btn-sm mb-0 me-3" target="_blank" href="sign-up.php">Đăng
+                                ký</a>
+                        </li>
+                        </li>
 
                         <li class="nav-item d-flex align-items-center">
                     </ul>

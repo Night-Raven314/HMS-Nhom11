@@ -1,42 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php 
-  require('assets/include/config.php');
-  sleep(1);
-  if (isset($_POST)) {
-  $username = (string)$_POST['username'];
+<?php
+require('assets/include/config.php');
+sleep(1);
+if (isset($_POST)) {
+  $username = (string) $_POST['username'];
 
   $result = $connection->query(
-    'SELECT * FROM users WHERE username = "'.strtolower($username).'"'
-    );
+    'SELECT * FROM users WHERE username = "' . strtolower($username) . '"'
+  );
 
   if ($result->num_rows > 0) {
-      echo '<div class="alert alert-danger"><strong>Oops!</strong> Người dùng này đã tồn tại.</div>';
-    } else {
-      echo '<div class="alert alert-success"><strong>Tuyệt!</strong> Tạo tài khoản thôi nào.</div>';
-      }
+    echo '<div class="alert alert-danger"><strong>Oops!</strong> Người dùng này đã tồn tại.</div>';
+  } else {
+    echo '<div class="alert alert-success"><strong>Tuyệt!</strong> Tạo tài khoản thôi nào.</div>';
   }
+}
 ?>
 
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script type="text/javascript">
-  $(document).ready(function() { 
-  $('#user_name').on('blur', function() {
-  $('#result-username').html('<img src="images/loader.gif" />').fadeOut(1000);
+  $(document).ready(function () {
+    $('#user_name').on('blur', function () {
+      $('#result-username').html('<img src="images/loader.gif" />').fadeOut(1000);
 
-  var username = $(this).val(); 
-  var dataString = 'user_name='+username;
+      var username = $(this).val();
+      var dataString = 'user_name=' + username;
 
-  $.ajax({
-  type: "POST",
-  url: "check_username_availablity.php",
-  data: dataString,
-  success: function(data) {
-  $('#result-username').fadeIn(1000).html(data);
-  }
-  });
-  }); 
+      $.ajax({
+        type: "POST",
+        url: "check_username_availablity.php",
+        data: dataString,
+        success: function (data) {
+          $('#result-username').fadeIn(1000).html(data);
+        }
+      });
+    });
   }); 
 </script>
 
@@ -49,7 +49,8 @@
     Đăng ký
   </title>
   <!--     Fonts and icons     -->
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+  <link rel="stylesheet" type="text/css"
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
   <!-- Nucleo Icons -->
   <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
   <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
@@ -67,11 +68,15 @@
 <body class="">
   <main class="main-content  mt-0">
     <section>
-      <div class="page-header min-vh-100" style="background-image: url('./assets/image/Hospital_Seamless1.png'); background-size: 400px 400px;">
+      <div class="page-header min-vh-100"
+        style="background-image: url('./assets/image/Hospital_Seamless1.png'); background-size: 400px 400px;">
         <div class="container">
           <div class="row">
-            <div class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 start-0 text-center justify-content-center flex-column">
-              <div class="position-relative bg-gradient-primary h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center" style="background-image: url('./assets/image/HKL.png'); background-size: cover;">
+            <div
+              class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 start-0 text-center justify-content-center flex-column">
+              <div
+                class="position-relative bg-gradient-primary h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center"
+                style="background-image: url('./assets/image/HKL.png'); background-size: cover;">
               </div>
             </div>
             <div class="col-xl-4 col-lg-5 col-md-7 d-flex flex-column ms-auto me-auto ms-lg-auto me-lg-5">
@@ -101,11 +106,13 @@
                     <div class="form-check form-check-info text-start ps-0">
                       <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
                       <label class="form-check-label" for="flexCheckDefault">
-                        Tôi đồng ý <a href="javascript:;" class="text-dark font-weight-bolder">Điều khoản và Điều kiện</a>
+                        Tôi đồng ý <a href="javascript:;" class="text-dark font-weight-bolder">Điều khoản và Điều
+                          kiện</a>
                       </label>
                     </div>
                     <div class="text-center">
-                      <button type="button" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Đăng ký</button>
+                      <button type="button" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Đăng
+                        ký</button>
                     </div>
                   </form>
                 </div>

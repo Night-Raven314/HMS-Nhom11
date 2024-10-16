@@ -10,7 +10,8 @@
     Đăng nhập
   </title>
   <!--     Fonts and icons     -->
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+  <link rel="stylesheet" type="text/css"
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
   <!-- Nucleo Icons -->
   <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
   <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
@@ -27,7 +28,8 @@
 
 <body class="bg-gray-200">
   <main class="main-content  mt-0">
-    <div class="page-header align-items-start min-vh-100" style="background-image: url('./assets/image/Hospital_Seamless1.png'); background-size: 400px 400px;">
+    <div class="page-header align-items-start min-vh-100"
+      style="background-image: url('./assets/image/Hospital_Seamless1.png'); background-size: 400px 400px;">
       <span class="mask bg-gradient-dark opacity-6"></span>
       <div class="container my-auto">
         <div class="row">
