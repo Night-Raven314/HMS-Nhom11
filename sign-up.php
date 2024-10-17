@@ -1,45 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php
-require('assets/include/config.php');
-sleep(1);
-if (isset($_POST)) {
-  $username = (string) $_POST['username'];
-
-  $result = $connection->query(
-    'SELECT * FROM users WHERE username = "' . strtolower($username) . '"'
-  );
-
-  if ($result->num_rows > 0) {
-    echo '<div class="alert alert-danger"><strong>Oops!</strong> Người dùng này đã tồn tại.</div>';
-  } else {
-    echo '<div class="alert alert-success"><strong>Tuyệt!</strong> Tạo tài khoản thôi nào.</div>';
-  }
-}
-?>
-
-<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-<script type="text/javascript">
-  $(document).ready(function () {
-    $('#user_name').on('blur', function () {
-      $('#result-username').html('<img src="images/loader.gif" />').fadeOut(1000);
-
-      var username = $(this).val();
-      var dataString = 'user_name=' + username;
-
-      $.ajax({
-        type: "POST",
-        url: "check_username_availablity.php",
-        data: dataString,
-        success: function (data) {
-          $('#result-username').fadeIn(1000).html(data);
-        }
-      });
-    });
-  }); 
-</script>
-
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
