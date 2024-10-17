@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 #scroll-top {
   position: fixed;
   right: 15px;
@@ -43,27 +41,28 @@
   opacity:.95;
   top:0;
   left:0;
-  display:none !important;
+  display:none;
   position:fixed;
   background-color:#313131;
-  overflow:auto
+  overflow:auto;
+  z-index: 10000 !important;
+
 }
 
 .container-popup.form{
-  max-width:300px;
-  min-width:250px;
-  padding:10px 50px;
+  max-width:500px;
+  min-width:350px;
   border:2px solid gray;
   border-radius:10px;
   font-family:raleway;
-  background-color:#fff
+  background-color:#fff;
 }
 
 div#popupContact {
-  position:absolute;
-  left:50%;
-  top:17%;
-  margin-left:-202px;
-  font-family:'Raleway',sans-serif
+  max-width:500px;
+  min-width:350px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
->>>>>>> edd96e273815719c007d8202f0ca151f7d3b0922
