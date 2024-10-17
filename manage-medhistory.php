@@ -10,7 +10,7 @@
     <link rel="icon" type="image/png" href="./assets/img/favicon.png">
 
     <title>
-        Lịch hẹn
+        Người dùng
     </title>
 
 
@@ -63,7 +63,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-white active bg-gradient-primary" href="default-Appointmenthistory.php">
+                    <a class="nav-link text-white" href="default-Appointmenthistory.php">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">calendar_month</i>
@@ -76,7 +76,7 @@
 
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="./pages/dashboard.html">
+                    <a class="nav-link text-white active bg-gradient-primary" href="./pages/dashboard.html">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">pending_actions</i>
@@ -184,7 +184,7 @@
             <div class="container-fluid py-1 px-3">
                 <nav aria-label="breadcrumb">
 
-                    <h6 class="font-weight-bolder mb-0">LỊCH SỬ HẸN KHÁM</h6>
+                    <h6 class="font-weight-bolder mb-0">LỊCH SỬ KHÁM BỆNH</h6>
 
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
@@ -226,70 +226,118 @@
         </nav>
 
         <!-- End Navbar -->
-        <div class="container-fluid py-4">
+    <div class="container-fluid py-4">
       <div class="row">
         <div class="col-12">
           <div class="card my-4">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                <h6 class="text-white text-capitalize ps-3">DANH SÁCH LỊCH SỬ HẸN KHÁM</h6>
+                <h6 class="text-white text-capitalize ps-3"> THÔNG TIN BỆNH NHÂN</h6>
               </div>
             </div>
             <div class="card-body px-0 pb-2">
               <div class="table-responsive p-0">
                 <table class="table align-items-center mb-0">
                   <thead>
+                    
+                    
+                  </thead>
+                  <table  class="table table-bordered ">
+                  <tbody >
+                    
+                    
                     <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Bác sĩ</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tên bệnh nhân</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Khoa khám</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Phí tư vấn</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Ngày/giờ hẹn khám</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Ngày tạo cuộc hẹn</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Trạng thái</th>
+                        <th scope=""style="border-top: 2px solid #003D59; border-bottom: 2px solid #003D59;">Họ và tên : </th>
+                        <td style="border:2px solid #003D59;">Nguyễn Văn A</td>
+                        <th scope=""style="border:2px solid #003D59;">Địa chỉ Email : </th>
+                        <td style="border-top: 2px solid #003D59; border-bottom: 2px solid #003D59;">anjan@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <th scope=""style="border-top: 2px solid #003D59; border-bottom: 2px solid #003D59;">Số điện thoại : </th>
+                        <td style="border:2px solid #003D59;">0925009336</td>
+                        <th scope="" style="border:2px solid #003D59;">Địa chỉ : </th>
+                        <td style="border-top: 2px solid #003D59; border-bottom: 2px solid #003D59;">TP.Hồ Chí Minh</td>
+                    </tr>
+                    <tr>
+                        <th scope=""style="border-top: 2px solid #003D59; border-bottom: 2px solid #003D59;">Giới tính : </th>
+                        <td style="border:2px solid #003D59;">Nam</td>
+                        <th scope="" style="border:2px solid #003D59;">Tuổi : </th>
+                        <td style="border-top: 2px solid #003D59; border-bottom: 2px solid #003D59;">20</td>
+                    </tr>
+                    <tr>
+                        <th scope=""style="border-top: 2px solid #003D59; border-bottom: 2px solid #003D59;">Tiền sử bệnh nhân (nếu có) : </th>
+                        <td style="border:2px solid #003D59;">Bình thường</td>
+                        <th scope="" style="border:2px solid #003D59;">Ngày/Giờ hẹn khám : </th>
+                        <td style="border-top: 2px solid #003D59; border-bottom: 2px solid #003D59;">20/10/2024 16:30</td>
+                    </tr>
+                </tbody>
+
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="card my-4">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+              <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                <h6 class="text-white text-capitalize ps-3"> LỊCH SỬ  KHÁM BỆNH</h6>
+              </div>
+            </div>
+            <div class="card-body px-0 pb-2">
+              <div class="table-responsive p-0">
+                <table class="table align-items-center justify-content-center mb-0">
+                  <thead>
+                    <tr>
+                      <th class="center">STT</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Huyết áp</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Trọng lượng</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Lượng đường trong máu</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nhiệt độ cơ thể</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Đơn thuốc</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Ngày truy cập</th>
+                      
                       
                       <th class="text-secondary opacity-7"></th>
                     </tr>
                   </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <div class="d-flex px-2 py-1">
-                                <div class="d-flex flex-column justify-content-center">
-                                    <h6 class="mb-0 text-sm">Bs Nguyễn Văn A</h6>
-                                    
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="d-flex px-2 py-1">
-                                <div class="d-flex flex-column justify-content-center">
-                                    <h6 class="mb-0 text-sm">BN Nguyễn Văn B</h6>
-                                    
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <span class="text-xs font-weight-bold">Khoa tim mạch</span>
-                        </td>
-                        <td>
-                            <p class="text-sm font-weight-bold mb-0">1.600.000 đồng</p>
-                        </td>
-                        <td class="align-middle text-center">
-                            <span class="text-secondary text-xs font-weight-bold">20/10/2024 16:30</span>
-                        </td>
-                        <td class="align-middle text-center">
-                            <span class="text-secondary text-xs font-weight-bold">17/10/2024 </span>
-                        </td>
-                        <td class="align-middle text-center text-sm">
-                            <span class="badge badge-sm bg-gradient-success">Online</span>
-                        </td>
-
-
+                  
+                  <tbody >
                     
+                    
+                    
+                    <tr>
+                        <td class="align-middle text-center">
+                            <span class="text-secondary text-xs font-weight-bold">01</span>
+                        </td>
+                        <td>
+                            <p class="text-sm font-weight-bold mb-0">20</p>
+                        </td>
+                        <td>
+                            <p class="text-sm font-weight-bold mb-0">40</p>
+                        </td>
+                        <td>
+                            <p class="text-sm font-weight-bold mb-0">30</p>
+                        </td>
+                        <td>
+                            <p class="text-sm font-weight-bold mb-0">60</p>
+                        </td>
+                        <td>
+                            <span class="text-xs font-weight-bold">Bình thường</span>
+                        </td>
+
+                        <td>
+                            <span class="text-xs font-weight-bold">20/10/2024 16:30</span>
+                        </td>
+                        
+                        
                     </tr>
                     
-                </tbody>  
+                    
+                </tbody>
+
                 </table>
               </div>
             </div>
@@ -333,7 +381,7 @@
     </div>
   </footer>
     </div>
-
+    
     </main>
 
 

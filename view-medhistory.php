@@ -10,7 +10,7 @@
     <link rel="icon" type="image/png" href="./assets/img/favicon.png">
 
     <title>
-        Lịch hẹn
+        Người dùng
     </title>
 
 
@@ -63,7 +63,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-white active bg-gradient-primary" href="default-Appointmenthistory.php">
+                    <a class="nav-link text-white" href="default-Appointmenthistory.php">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">calendar_month</i>
@@ -76,7 +76,7 @@
 
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="./pages/dashboard.html">
+                    <a class="nav-link text-white active bg-gradient-primary" href="./pages/dashboard.html">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">pending_actions</i>
@@ -184,7 +184,7 @@
             <div class="container-fluid py-1 px-3">
                 <nav aria-label="breadcrumb">
 
-                    <h6 class="font-weight-bolder mb-0">LỊCH SỬ HẸN KHÁM</h6>
+                    <h6 class="font-weight-bolder mb-0">LỊCH SỬ KHÁM BỆNH</h6>
 
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
@@ -232,7 +232,7 @@
           <div class="card my-4">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                <h6 class="text-white text-capitalize ps-3">DANH SÁCH LỊCH SỬ HẸN KHÁM</h6>
+                <h6 class="text-white text-capitalize ps-3">DANH SÁCH LỊCH SỬ  KHÁM BỆNH</h6>
               </div>
             </div>
             <div class="card-body px-0 pb-2">
@@ -240,40 +240,35 @@
                 <table class="table align-items-center mb-0">
                   <thead>
                     <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Bác sĩ</th>
+                      <th class="center">STT</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tên bệnh nhân</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Khoa khám</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Phí tư vấn</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Số điện thoại liên lạc của bệnh nhân</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Giới tính bệnh nhân</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Ngày/giờ hẹn khám</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Ngày tạo cuộc hẹn</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Trạng thái</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Hành động</th>
                       
                       <th class="text-secondary opacity-7"></th>
                     </tr>
                   </thead>
                 <tbody>
                     <tr>
+                        <td class="align-middle text-center">
+                            <span class="text-secondary text-xs font-weight-bold">01</span>
+                        </td>
                         <td>
                             <div class="d-flex px-2 py-1">
                                 <div class="d-flex flex-column justify-content-center">
-                                    <h6 class="mb-0 text-sm">Bs Nguyễn Văn A</h6>
+                                    <h6 class="mb-0 text-sm ">BN Nguyễn Văn B</h6>
                                     
                                 </div>
                             </div>
                         </td>
                         <td>
-                            <div class="d-flex px-2 py-1">
-                                <div class="d-flex flex-column justify-content-center">
-                                    <h6 class="mb-0 text-sm">BN Nguyễn Văn B</h6>
-                                    
-                                </div>
-                            </div>
-                        </td>
+                            <p class="text-sm font-weight-bold mb-0">0925009336</p>
+                        </td> 
                         <td>
-                            <span class="text-xs font-weight-bold">Khoa tim mạch</span>
-                        </td>
-                        <td>
-                            <p class="text-sm font-weight-bold mb-0">1.600.000 đồng</p>
+                            <p class="text-xs font-weight-bold mb-0">Nam</p>
                         </td>
                         <td class="align-middle text-center">
                             <span class="text-secondary text-xs font-weight-bold">20/10/2024 16:30</span>
@@ -281,8 +276,8 @@
                         <td class="align-middle text-center">
                             <span class="text-secondary text-xs font-weight-bold">17/10/2024 </span>
                         </td>
-                        <td class="align-middle text-center text-sm">
-                            <span class="badge badge-sm bg-gradient-success">Online</span>
+                        <td class="align-middle text-center">
+                            <a href="manage-medhistory.php"><i class="fa fa-eye"></i></a>
                         </td>
 
 

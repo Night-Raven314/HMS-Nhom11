@@ -10,7 +10,7 @@
     <link rel="icon" type="image/png" href="./assets/img/favicon.png">
 
     <title>
-        Lịch hẹn
+        Người dùng
     </title>
 
 
@@ -30,6 +30,7 @@
 
     <!-- CSS Files -->
     <link id="pagestyle" href="assets/css/material_dash.css" rel="stylesheet" />
+    <link id="pagestyle" href="assets/css/style.css" rel="stylesheet" />
 
 </head>
 
@@ -58,19 +59,19 @@
             <ul class="navbar-nav">
 
                 <li class="nav-item mt-3">
-                    <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Tính năng chính
+                    <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Divider 1
                     </h6>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-white active bg-gradient-primary" href="default-Appointmenthistory.php">
+                    <a class="nav-link text-white" href="./pages/dashboard.html">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">calendar_month</i>
+                            <i class="material-icons opacity-10">info</i>
                             <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
                         </div>
 
-                        <span class="nav-link-text ms-1">Lịch hẹn kiểm tra</span>
+                        <span class="nav-link-text ms-1">Function 1</span>
                     </a>
                 </li>
 
@@ -79,11 +80,11 @@
                     <a class="nav-link text-white" href="./pages/dashboard.html">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">pending_actions</i>
+                            <i class="material-icons opacity-10">lock</i>
                             <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
                         </div>
 
-                        <span class="nav-link-text ms-1">Hồ sơ sức khoẻ</span>
+                        <span class="nav-link-text ms-1">Function 2</span>
                     </a>
                 </li>
 
@@ -115,19 +116,19 @@
 
 
                 <li class="nav-item mt-3">
-                    <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Divider 2
+                    <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Người dùng
                     </h6>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="./pages/dashboard.html">
+                    <a class="nav-link text-white active bg-gradient-primary" href="./pages/dashboard.html">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">schedule</i>
+                            <i class="material-icons opacity-10">account_circle</i>
                             <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
                         </div>
 
-                        <span class="nav-link-text ms-1">Function 1</span>
+                        <span class="nav-link-text ms-1">Thông tin cá nhân</span>
                     </a>
                 </li>
 
@@ -176,6 +177,8 @@
     </aside>
     <!-- End Side Nav -->
 
+
+
     <main class="main-content border-radius-lg ">
         <!-- Navbar -->
 
@@ -184,7 +187,7 @@
             <div class="container-fluid py-1 px-3">
                 <nav aria-label="breadcrumb">
 
-                    <h6 class="font-weight-bolder mb-0">LỊCH SỬ HẸN KHÁM</h6>
+                    <h6 class="font-weight-bolder mb-0">Thông tin cá nhân</h6>
 
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
@@ -215,8 +218,6 @@
                             <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="sign-in.php">Đăng
                                 xuất</a>
                         </li>
-                        
-                        </li>
 
                         <li class="nav-item d-flex align-items-center">
                     </ul>
@@ -226,127 +227,71 @@
         </nav>
 
         <!-- End Navbar -->
-        <div class="container-fluid py-4">
-      <div class="row">
-        <div class="col-12">
-          <div class="card my-4">
-            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-              <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                <h6 class="text-white text-capitalize ps-3">DANH SÁCH LỊCH SỬ HẸN KHÁM</h6>
-              </div>
-            </div>
-            <div class="card-body px-0 pb-2">
-              <div class="table-responsive p-0">
-                <table class="table align-items-center mb-0">
-                  <thead>
-                    <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Bác sĩ</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tên bệnh nhân</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Khoa khám</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Phí tư vấn</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Ngày/giờ hẹn khám</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Ngày tạo cuộc hẹn</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Trạng thái</th>
-                      
-                      <th class="text-secondary opacity-7"></th>
-                    </tr>
-                  </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <div class="d-flex px-2 py-1">
-                                <div class="d-flex flex-column justify-content-center">
-                                    <h6 class="mb-0 text-sm">Bs Nguyễn Văn A</h6>
-                                    
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="d-flex px-2 py-1">
-                                <div class="d-flex flex-column justify-content-center">
-                                    <h6 class="mb-0 text-sm">BN Nguyễn Văn B</h6>
-                                    
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <span class="text-xs font-weight-bold">Khoa tim mạch</span>
-                        </td>
-                        <td>
-                            <p class="text-sm font-weight-bold mb-0">1.600.000 đồng</p>
-                        </td>
-                        <td class="align-middle text-center">
-                            <span class="text-secondary text-xs font-weight-bold">20/10/2024 16:30</span>
-                        </td>
-                        <td class="align-middle text-center">
-                            <span class="text-secondary text-xs font-weight-bold">17/10/2024 </span>
-                        </td>
-                        <td class="align-middle text-center text-sm">
-                            <span class="badge badge-sm bg-gradient-success">Online</span>
-                        </td>
-
-
-                    
-                    </tr>
-                    
-                </tbody>  
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-       
-<footer class="footer py-4  ">
-    <div class="container-fluid">
-      <div class="row align-items-center justify-content-lg-between">
-        <div class="col-lg-6 mb-lg-0 mb-4">
-          <div class="copyright text-center text-sm text-muted text-lg-start">
-            ©
-            <script>
-              document.write(new Date().getFullYear())
-            </script>,
-            made with <i class="fa fa-heart"></i> by
-            <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Huan, Khoa and Long</a>
-            for Uni 24-25.
-          </div>
-        </div>
-        <div class="col-lg-6">
-          <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank">Creative Tim</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted" target="_blank">About
-                Us</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com/blog" class="nav-link text-muted" target="_blank">Blog</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted"
-                target="_blank">License</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </footer>
-    </div>
 
     </main>
 
+    <div class="container-fluid px-2 px-md-4">
+        <div class="page-header min-height-300 border-radius-xl mt-4"
+            style="background-image: url('https://images.unsplash.com/photo-1531512073830-ba890ca4eba2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');">
+            <span class="mask  bg-gradient-primary  opacity-6"></span>
+        </div>
+        <div class="card card-body mx-3 mx-md-4 mt-n6">
+            <div class="row gx-4 mb-2">
+                <div class="col-auto">
+                    <div class="avatar avatar-xl position-relative">
+                        <img src="assets/image/user login image.png" alt="profile_image"
+                            class="w-100 border-radius-lg shadow-sm">
+                    </div>
+                </div>
+                <div class="col-auto my-auto">
+                    <div class="h-100">
+                        <h5 class="mb-1">
+                            Nguyễn Văn A
+                        </h5>
+                        <p class="mb-0 font-weight-normal text-sm">
+                            Bác sĩ
+                        </p>
+                        <button onclick="div_show()">
+                            <i class="fas fa-user-edit text-secondary text-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Cập nhật"></i>
+                        </button>
+                    </div>
+                    <div class="card-header pb-0 p-3">
+                    </div>
+                    <div class="card-body p-3">
+                        <ul class="list-group">
+                            <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Họ và Tên:</strong> &nbsp; Alec M. Thompson</li>
+                            <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Số điện thoại:</strong>&nbsp; (44) 123 1234 123</li>
+                            <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Email:</strong>&nbsp; alecthompson@mail.com</li>
+                            <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Địa chỉ:</strong> &nbsp; USA</li>
+                            <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Thành phố:</strong> &nbsp; USA</li>
+                            <li class="list-group-item border-0 ps-0 pb-0">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-
-
-
+    <div id="container-popup">
+        <div class="form">
+            <div class="card-body p-3">
+                <ul class="list-group">
+                    <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Họ và Tên:</strong> &nbsp; Alec M. Thompson</li>
+                    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Số điện thoại:</strong>&nbsp; (44) 123 1234 123</li>
+                    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Email:</strong>&nbsp; alecthompson@mail.com</li>
+                    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Địa chỉ:</strong> &nbsp; USA</li>
+                    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Thành phố:</strong> &nbsp; USA</li>
+                    <li class="list-group-item border-0 ps-0 pb-0">
+                </ul>
+            </div>
+        </div>
+    </div>
 
     <!--   Core JS Files   -->
     <script src="./assets/js/core/popper.min.js"></script>
     <script src="./assets/js/core/bootstrap.min.js"></script>
     <script src="./assets/js/plugins/perfect-scrollbar.min.js"></script>
     <script src="./assets/js/plugins/smooth-scrollbar.min.js"></script>
-
 
 
     <script>
@@ -365,6 +310,7 @@
 
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="assets/js/material-dashboard.min.js"></script>
+    <script src="assets/js/popup.js"></script>
 </body>
 
 </html>
