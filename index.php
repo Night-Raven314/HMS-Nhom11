@@ -70,13 +70,33 @@
 
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-                    <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link d-flex align-items-center me-2 active" aria-current="page" href="#about_us">
+                                <i class="fa fa-chart-pie opacity-6 text-dark me-1" aria-hidden="true"></i>
+                                Giới thiệu
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link me-2" href="#services">
+                                <i class="fa fa-plus-square opacity-6 text-dark me-1" aria-hidden="true"></i>
+                                Chuyên khoa
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link me-2" href="#contact">
+                                <i class="fas fa-user-circle opacity-6 text-dark me-1" aria-hidden="true"></i>
+                                Liên hệ
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- <div class="ms-md-auto pe-md-3 d-flex align-items-center">
 
-                    </div>
-                    <ul class="navbar-nav  justify-content-end">
+                    </div> -->
+                    <!-- <ul class="navbar-nav  justify-content-end">
 
                         <li class="nav-item d-flex align-items-center">
-                    </ul>
+                    </ul> -->
 
                     <ul class="navbar-nav  justify-content-end">
 
@@ -115,9 +135,9 @@
                     <p class="pt-4">Giao diện thân thiện người dùng: > Giao diện đơn giản, dễ sử dụng ngay cả với những người không rành công nghệ.</p>
 
                     <p class="pt-4">Hỗ trợ khách hàng 24/7: > Đội ngũ hỗ trợ luôn sẵn sàng giúp đỡ bạn mọi lúc mọi nơi, bất cứ khi nào bạn cần.</p>
-                    <div class="pt-5">
-                        <button class="btn btn-primary shadow-md fw-bold p-3 px-5">Đăng kí lịch khám</button>
-                    </div>
+                    <li class="nav-item d-flex align-items-center">
+                        <a class="btn bg-gradient-primary btn-sm mb-0 me-3" target="_blank" href="sign-up.php">Đăng ký lịch khám</a>
+                    </li>
                 </div>
                 <div class="col-lg-6 py-5 px-5">
                     <img src="assets/image/Areas&Rooms/Hospital waiting room HKL.png" alt="" style="width: 100%; height: auto" ;>
@@ -133,7 +153,7 @@
     <section id="services" class="key-features department">
         <div class="container">
             <div class="inner-title">
-                <h2 style="font-size: 38px;font-family:times new roman; text-align: center; margin-bottom: 20px;">Các tính năng chính của chúng tôi</h2>
+                <h2 style="font-size: 38px;font-family:times new roman; text-align: center; margin-bottom: 20px;">Các chuyên khoa chính</h2>
             </div>
 
             <div class="row">
@@ -220,22 +240,23 @@
                 </div>
 
                 <!-- Khoa Phụ sản -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-key">
-                        <i class="fas fa-baby-carriage"></i>
-                        <h5>Khoa Phụ sản</h5>
-                        <p>Chăm sóc toàn diện cho sức khỏe phụ nữ và dịch vụ sinh sản, bao gồm chăm sóc tiền sản.</p>
+                <div class="d-flex justify-content-center">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="single-key">
+                            <i class="fas fa-baby-carriage" aria-hidden="true"></i>
+                            <h5>Khoa Phụ sản</h5>
+                            <p>Chăm sóc toàn diện cho sức khỏe phụ nữ và dịch vụ sinh sản, bao gồm chăm sóc tiền sản.</p>
+                        </div>
                     </div>
                 </div>
-
             </div>
 
     </section>
     <!-- ################# About us #######################--->
 
-    <section id="about_us" class="about-us">
+    <section id="about_us" class="container-xl about-us">
         <div class="row no-margin">
-            <div class="col-sm-6 image-bg no-padding">
+            <div class="col-lg-6 py-5 px-5">
                 <img src="assets/image/HKL.png" alt="" style="width: 100%; height: auto;">
             </div>
             <div class="col-sm-6 about-content">
@@ -261,52 +282,94 @@
                 <p>
                     Bệnh viện của chúng tôi không chỉ là nơi điều trị; nó còn là nơi học hỏi và phát triển. Chúng tôi cung cấp các chương trình đào tạo và phát triển toàn diện cho nhân viên của mình để đảm bảo họ luôn được trang bị những kiến thức và kỹ năng mới nhất trong lĩnh vực chăm sóc sức khỏe.
                 </p>
+
+
             </div>
         </div>
     </section>
 
 
-    <!-- ################# lich kham #######################--->
-    <a id="scroll-top" href="#" style="right: 15px; bottom: 15px; position: fixed; background: bisque; padding: 15px; display: none; border-radius: 50%; text-align: center;">
-        <i class="fas fa-chevron-up" aria-hidden="true"></i>
+    <section class="container-xl">
+        <div id="contact" class="col-md-6 col-sm-12 map-img">
+            <h2 style="font-family: 'Times New Roman', Times, serif; color: #344767; text-decoration: underline;"><b>Liên hệ</b></h2>
+            <address class="md-margin-bottom-40">
+                123 Đường Bệnh viện, Thành phố, Quốc gia <br>
+                Điện thoại: +123 456 7890 <br>
+                Email: <a href="mailto:info@hospital.com" class="">info@hospital.com</a><br>
+                Thời gian: Thứ Hai - Thứ Sáu: 8:00 AM - 6:00 PM
+            </address>
+        </div>
+    </section>
+
+    <!-- ################# nut len dau trang #######################--->
+    <a id="scroll-top" href="#" style="right: 15px; bottom: 60px; width: 50px; height: 50px; position: fixed; background: #167070; padding: 15px; display: none; border-radius: 50%; text-align: center;">
+        <i class="fas fa-chevron-up" aria-hidden="true" style="color:white;"></i>
     </a>
 
 
 
 
     <!-- ################# Footer Starts Here#######################--->
-    <footer id="footer" class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-sm-12">
-                    <h2 style="color: white; font-family: 'Times New Roman', Times, serif;">Liên kết hữu ích</h2>
-                    <ul class="list-unstyled link-list">
-                        <li><a ui-sref="about" href="#about_us">Về chúng tôi</a><i class="fa fa-angle-right"></i></li>
-                        <li><a ui-sref="portfolio" href="#services">Tính năng</a><i class="fa fa-angle-right"></i></li>
-                        <li><a ui-sref="products" href="#logins">Đăng nhập</a><i class="fa fa-angle-right"></i></li>
-                        <li><a ui-sref="gallery" href="#gallery">Hình ảnh</a><i class="fa fa-angle-right"></i></li>
-                        <!-- <li><a ui-sref="contact" href="#contact">Liên hệ</a><i class="fa fa-angle-right"></i></li> -->
-                    </ul>
+
+    <footer class="footer py-4  ">
+
+
+        <div class="container-fluid">
+            <div class="row align-items-center justify-content-lg-between">
+                <div class="col-lg-6 mb-lg-0 mb-4">
+
+                    <div class="copyright text-center text-sm text-muted text-lg-start">
+                        ©
+                        <script>
+                            document.write(new Date().getFullYear())
+                        </script>,
+                        made with <i class="fa fa-heart"></i> by
+                        <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Huan, Khoa and Long</a>
+                        for Uni 24-25.
+                    </div>
                 </div>
-                <div class="col-md-6 col-sm-12 map-img">
-                    <h2 style="font-family: 'Times New Roman', Times, serif; color: white; text-decoration: underline;"><b>Liên hệ</b></h2>
-                    <address class="md-margin-bottom-40">
-                        123 Đường Bệnh viện, Thành phố, Quốc gia <br>
-                        Điện thoại: +123 456 7890 <br>
-                        Email: <a href="mailto:info@hospital.com" class="">info@hospital.com</a><br>
-                        Thời gian: Thứ Hai - Thứ Sáu: 8:00 AM - 6:00 PM
-                    </address>
+
+                <div class="col-lg-6">
+                    <ul class="nav nav-footer justify-content-center justify-content-lg-end">
+                        <li class="nav-item">
+                            <a href="#about_us" class="nav-link text-muted">Giới thiệu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#services" class="nav-link text-muted">Chuyên khoa</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#contact" class="nav-link text-muted">Liên hệ</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
     </footer>
 
-    <div class="copy" style="text-align: right; font-family: 'Times New Roman', Times, serif;">
-        <div class="container">
-            <b> Hệ thống quản lý bệnh viện | It's Me </b>
-        </div>
-    </div>
-    <!-- script -->
+    <!--   Core JS Files   -->
+    <script src="./assets/js/core/popper.min.js"></script>
+    <script src="./assets/js/core/bootstrap.min.js"></script>
+    <script src="./assets/js/plugins/perfect-scrollbar.min.js"></script>
+    <script src="./assets/js/plugins/smooth-scrollbar.min.js"></script>
+
+
+
+    <script>
+        var win = navigator.platform.indexOf('Win') > -1;
+        if (win && document.querySelector('#sidenav-scrollbar')) {
+            var options = {
+                damping: '0.5'
+            }
+            Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+        }
+    </script>
+
+    <!-- Github buttons -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="assets/js/material-dashboard.min.js"></script>
 
 </body>
 
