@@ -2528,6 +2528,8 @@ progress {
   color: var(--bs-table-hover-color);
 }
 
+
+
 .table-primary {
   --bs-table-color: #000;
   --bs-table-bg: #fbd2e0;
