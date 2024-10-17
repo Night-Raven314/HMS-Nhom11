@@ -254,10 +254,10 @@
     </section>
     <!-- ################# About us #######################--->
 
-    <section id="about_us" class="container-xl about-us">
+    <section id="about_us" class="container">
         <div class="row no-margin">
-            <div class="col-lg-6 py-5 px-5">
-                <img src="assets/image/HKL.png" alt="" style="width: 100%; height: auto;">
+            <div class="col-lg-6 py-5 px-5" style="display: flex; align-items: center; padding: 0; margin: 0; height: 100%;">
+                <img src="assets/image/HKL.png" alt="" style="width: 100%; height: auto; object-fit: cover; display: block; flex-grow: 1;">
             </div>
             <div class="col-sm-6 about-content">
                 <h3 style="font-size: 38px; font-family: times new roman; text-align: center; margin-bottom: 20px;">Về Bệnh viện của Chúng tôi</h3>
@@ -303,7 +303,7 @@
 
     <!-- ################# nut len dau trang #######################--->
     <a id="scroll-top" href="#" style="right: 15px; bottom: 60px; width: 50px; height: 50px; position: fixed; background: #167070; padding: 15px; display: none; border-radius: 50%; text-align: center;">
-        <i class="fas fa-chevron-up" aria-hidden="true" style="color:white;"></i>
+        <i class="fas fa-chevron-up" aria-hidden="true" style="color:white; font-size: 20px; display: inline-block; vertical-align: middle;"></i>
     </a>
 
 
