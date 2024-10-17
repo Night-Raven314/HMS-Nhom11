@@ -58,32 +58,32 @@
             <ul class="navbar-nav">
 
                 <li class="nav-item mt-3">
-                    <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">ĐIỀU HƯỚNG CHÍNH
+                    <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Tính năng chính
                     </h6>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-white active bg-gradient-primary" href="default-Appointmenthistory.php">
+                    <a class="nav-link text-white" href="default-Appointmenthistory.php">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">table_view</i>
+                            <i class="material-icons opacity-10">calendar_month</i>
                             <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
                         </div>
 
-                        <span class="nav-link-text ms-1">LỊCH SỬ HẸN KHÁM</span>
+                        <span class="nav-link-text ms-1">Lịch hẹn kiểm tra</span>
                     </a>
                 </li>
 
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="./pages/dashboard.html">
+                    <a class="nav-link text-white active bg-gradient-primary" href="./pages/dashboard.html">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">lock</i>
+                            <i class="material-icons opacity-10">pending_actions</i>
                             <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
                         </div>
 
-                        <span class="nav-link-text ms-1">Function 2</span>
+                        <span class="nav-link-text ms-1">Hồ sơ sức khoẻ</span>
                     </a>
                 </li>
 
@@ -180,7 +180,7 @@
         <!-- Navbar -->
 
         <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 border-radius-xl shadow-none position-sticky blur shadow-blur mt-4 left-auto top-1 z-index-sticky"
-            id="navbarBlur" data-scroll="true">
+            data-scroll="true">
             <div class="container-fluid py-1 px-3">
                 <nav aria-label="breadcrumb">
 
