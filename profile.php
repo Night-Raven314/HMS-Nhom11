@@ -276,6 +276,11 @@
     <div id="container-popup">
         <div id="popupContact">
             <div class="card">
+                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                    <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                        <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Cập nhật thông tin</h4>
+                    </div>
+                </div>
                 <div class="card-body">
                     <form role="form">
                         <div class="input-group input-group-outline mb-3">
@@ -299,7 +304,7 @@
                             <input type="city" class="form-control">
                         </div>
                         <div class="text-center">
-                            <button type="button" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Lưu</button>
+                            <button type="button" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập nhật</button>
                         </div>
                         <div class="text-center">
                             <button type="button" class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0" onclick="div_hide()">Thoát</button>
