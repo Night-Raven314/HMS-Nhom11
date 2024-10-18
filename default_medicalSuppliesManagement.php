@@ -184,12 +184,15 @@
             <div class="container-fluid py-1 px-3">
                 <nav aria-label="breadcrumb">
 
-                    <h6 class="font-weight-bolder mb-0">Function</h6>
+                    <h6 class="font-weight-bolder mb-0">Vật tư y tế</h6>
 
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-
+                        <div class="input-group input-group-outline">
+                            <label class="form-label">Tìm kiếm</label>
+                            <input type="text" class="form-control">
+                        </div>
                     </div>
                     <ul class="navbar-nav  justify-content-end">
 
@@ -235,12 +238,13 @@
                     <div class="card my-4">
                         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                             <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                                <h6 class="text-white text-capitalize ps-3">Quản lý vật tư y tế</h6>
+                                <h6 class="text-white text-capitalize ps-3">Bảng vật tư y tế</h6>
                             </div>
                         </div>
+
                         <div class="card-body px-0 pb-2">
                             <div class="table-responsive p-0">
-                                <table class="table align-items-center mb-0">
+                                <table id="drugTable" class="table align-items-center mb-0">
                                     <thead>
                                         <tr>
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Tên</th>
@@ -286,15 +290,15 @@
                                             <td>
                                                 <div class="d-flex px-2 py-1">
                                                     <div>
-                                                        <img src="../assets/img/team-2.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                                        <img src="https://www.vinmec.com/static/uploads/20200124_005853_738311_thuoc_aspirin_max_1800x1800_jpg_b69b6a20d3.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                                                     </div>
                                                     <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">Paracetamol</h6>
+                                                        <h6 class="mb-0 text-sm">Aspirin</h6>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td>
-                                                <p class="text-xs font-weight-bold mb-0">2000</p>
+                                                <p class="text-xs font-weight-bold mb-0">3000</p>
                                                 <p class="text-xs text-secondary mb-0">VNĐ</p>
                                             </td>
                                             <td class="align-middle text-center text-sm">
@@ -316,15 +320,45 @@
                                             <td>
                                                 <div class="d-flex px-2 py-1">
                                                     <div>
-                                                        <img src="../assets/img/team-2.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                                        <img src="https://www.vinmec.com/static/uploads/20200411_033146_959639_amoxicillin_la_thuo_max_1800x1800_jpg_38e621a5e3.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                                                     </div>
                                                     <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">Paracetamol</h6>
+                                                        <h6 class="mb-0 text-sm">Amoxicillin</h6>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td>
-                                                <p class="text-xs font-weight-bold mb-0">2000</p>
+                                                <p class="text-xs font-weight-bold mb-0">25000</p>
+                                                <p class="text-xs text-secondary mb-0">VNĐ</p>
+                                            </td>
+                                            <td class="align-middle text-center text-sm">
+                                                <p class="text-xs font-weight-bold mb-0">Hộp</p>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <span class="text-secondary text-xs font-weight-bold">24/04/18</span>
+                                            </td>
+                                            <td class="align-middle">
+                                                <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                                                    Edit
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex px-2 py-1">
+                                                    <div>
+                                                        <img src="../assets/img/team-2.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                                    </div>
+                                                    <div class="d-flex flex-column justify-content-center">
+                                                        <h6 class="mb-0 text-sm">Vitamin C</h6>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <p class="text-xs font-weight-bold mb-0">5000</p>
                                                 <p class="text-xs text-secondary mb-0">VNĐ</p>
                                             </td>
                                             <td class="align-middle text-center text-sm">
@@ -346,45 +380,15 @@
                                             <td>
                                                 <div class="d-flex px-2 py-1">
                                                     <div>
-                                                        <img src="../assets/img/team-2.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                                        <img src="assets/image/medical/ibuprofen.webp" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                                                     </div>
                                                     <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">Paracetamol</h6>
+                                                        <h6 class="mb-0 text-sm">Ibuprofen</h6>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td>
-                                                <p class="text-xs font-weight-bold mb-0">2000</p>
-                                                <p class="text-xs text-secondary mb-0">VNĐ</p>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <p class="text-xs font-weight-bold mb-0">Viên</p>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">24/04/18</span>
-                                            </td>
-                                            <td class="align-middle">
-                                                <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                                    Edit
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-2 py-1">
-                                                    <div>
-                                                        <img src="../assets/img/team-2.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                                    </div>
-                                                    <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">Paracetamol</h6>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">2000</p>
+                                                <p class="text-xs font-weight-bold mb-0">1500</p>
                                                 <p class="text-xs text-secondary mb-0">VNĐ</p>
                                             </td>
                                             <td class="align-middle text-center text-sm">
@@ -410,16 +414,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-6">
-            <div id="table-style-hover_filter" class="dataTables_filter" style="background-color: transparent; padding: 10px; color: #167070;">
-                <label>
-                    <span class="text-white text-capitalize ps-3">
-                        Tìm kiếm:
-                    </span>
-                    <input type="search" class="form-control input-sm" placeholder="" aria-controls="table-style-hover" style="margin-left: 10px; border-radius: 5px; border: 1px solid #167070; padding: 5px; color: #167070; background-color: white;">
-                </label>
-            </div>
-        </div>
+
 
 
 
@@ -470,6 +465,20 @@
     <script src="./assets/js/plugins/perfect-scrollbar.min.js"></script>
     <script src="./assets/js/plugins/smooth-scrollbar.min.js"></script>
 
+    <script>
+        $(document).ready(function() {
+            $('#drugTable').DataTable({
+                "pagingType": "simple_numbers", // Sử dụng phân trang đơn giản
+                "language": {
+                    "search": "Tìm kiếm:",
+                    "paginate": {
+                        "next": "Tiếp",
+                        "previous": "Trước"
+                    }
+                }
+            });
+        });
+    </script>
 
 
     <script>
