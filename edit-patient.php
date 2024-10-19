@@ -10,7 +10,7 @@
     <link rel="icon" type="image/png" href="./assets/img/favicon.png">
 
     <title>
-        Lịch hẹn
+        Người dùng
     </title>
 
 
@@ -58,32 +58,32 @@
             <ul class="navbar-nav">
 
                 <li class="nav-item mt-3">
-                    <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Tính năng chính
+                    <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Divider 1
                     </h6>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-white active bg-gradient-primary" href="default-Appointmenthistory.php">
+                    <a class="nav-link text-white active bg-gradient-primary" href="./pages/dashboard.html">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">calendar_month</i>
+                            <i class="material-icons opacity-10">info</i>
                             <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
                         </div>
 
-                        <span class="nav-link-text ms-1">Lịch hẹn kiểm tra</span>
+                        <span class="nav-link-text ms-1">Function 1</span>
                     </a>
                 </li>
 
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="view-medhistory.php">
+                    <a class="nav-link text-white" href="./pages/dashboard.html">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">pending_actions</i>
+                            <i class="material-icons opacity-10">lock</i>
                             <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
                         </div>
 
-                        <span class="nav-link-text ms-1">Hồ sơ sức khoẻ</span>
+                        <span class="nav-link-text ms-1">Function 2</span>
                     </a>
                 </li>
 
@@ -184,7 +184,7 @@
             <div class="container-fluid py-1 px-3">
                 <nav aria-label="breadcrumb">
 
-                    <h6 class="font-weight-bolder mb-0">LỊCH SỬ HẸN KHÁM</h6>
+                    <h6 class="font-weight-bolder mb-0">ĐĂNG KÍ KHÁM</h6>
 
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
@@ -213,9 +213,12 @@
                         </li>
                         <li class="nav-item d-flex align-items-center">
                             <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="sign-in.php">Đăng
-                                xuất</a>
+                                nhập</a>
                         </li>
-                        
+                        <li class="nav-item d-flex align-items-center">
+                            <a class="btn bg-gradient-primary btn-sm mb-0 me-3" target="_blank" href="sign-up.php">Đăng
+                                ký</a>
+                        </li>
                         </li>
 
                         <li class="nav-item d-flex align-items-center">
@@ -224,115 +227,26 @@
                 </div>
             </div>
         </nav>
-
-        <!-- End Navbar -->
-        <div class="container-fluid py-4">
-      <div class="row">
-        <div class="col-12">
-          <div class="card my-4">
+        <div class="card my-4">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                <h6 class="text-white text-capitalize ps-3">DANH SÁCH LỊCH SỬ HẸN KHÁM</h6>
+                <h6 class="text-white text-capitalize ps-3">CHỈNH SỬA CUỘC HẸN</h6>
               </div>
             </div>
             <div class="card-body px-0 pb-2">
               <div class="table-responsive p-0">
                 <table class="table align-items-center mb-0">
-                  <thead>
-                    <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Bác sĩ</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tên bệnh nhân</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Khoa khám</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Phí tư vấn</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Ngày/giờ hẹn khám</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Ngày tạo cuộc hẹn</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Trạng thái</th>
-                      
-                      <th class="text-secondary opacity-7"></th>
-                    </tr>
-                  </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <div class="d-flex px-2 py-1">
-                                <div class="d-flex flex-column justify-content-center">
-                                    <h6 class="mb-0 text-sm">Bs Nguyễn Văn A</h6>
-                                    
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="d-flex px-2 py-1">
-                                <div class="d-flex flex-column justify-content-center">
-                                    <h6 class="mb-0 text-sm">BN Nguyễn Văn B</h6>
-                                    
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <span class="text-xs font-weight-bold">Khoa tim mạch</span>
-                        </td>
-                        <td>
-                            <p class="text-sm font-weight-bold mb-0">1.600.000 đồng</p>
-                        </td>
-                        <td class="align-middle text-center">
-                            <span class="text-secondary text-xs font-weight-bold">20/10/2024 16:30</span>
-                        </td>
-                        <td class="align-middle text-center">
-                            <span class="text-secondary text-xs font-weight-bold">17/10/2024 </span>
-                        </td>
-                        <td class="align-middle text-center text-sm">
-                            <span class="badge badge-sm bg-gradient-success">Online</span>
-                        </td>
+                  
+                  <tbody>
+                             <div class="modal-dialog modal-lg" role="document"><div class="modal-content"><a href="#" class="close" data-bs-dismiss="modal"><em class="icon ni ni-cross-sm"></em></a><div class="modal-body modal-body-md"><h5 class="modal-title"></h5><form action="#" class="mt-4"><div class="row g-gs"><div class="col-md-6"><div class="form-group"><label class="form-label" for="editName">HỌ VÀ TÊN </label><div class="form-control-wrap"><input type="text" class="form-control" id="editName" placeholder="Name" value="Abu Bin Ishtiyak"></div></div></div><div class="col-md-6"><div class="form-group"><label class="form-label" for="editMobile">SỐ ĐIỆN THOẠI :</label><div class="form-control-wrap"><input type="text" class="form-control" id="editMobile" placeholder="Mobile No." value="+84 925009336"></div></div></div><div class="col-md-6"><div class="form-group"><label class="form-label">NGÀY HẸN KHÁM :</label><div class="form-control-wrap"><div class="form-icon form-icon-right"><em class="icon ni ni-calendar"></em></div><input type="text" class="form-control date-picker" data-date-format="dd-mm-yyyy" placeholder="dd-mm-yyyy" value="18/12/2020"></div></div></div><div class="col-md-6"><div class="form-group"><label class="form-label" for="serial-edit">SỐ SERI</label><div class="form-control-wrap"><input type="text" class="form-control" id="serial-edit" placeholder="Serial No" value="05"></div></div></div><div class="col-md-6"><div class="form-group"><label class="form-label">KHOA KHÁM BỆNH</label><div class="form-control-wrap"><select class="form-select js-select2 select2-hidden-accessible" data-placeholder="Chọn khoa khám" data-select2-id="25" tabindex="-1" aria-hidden="true"><option value="" data-select2-id="27">Select</option><option value="default_option">Khoa tiêu hóa</option><option value="option_select_department">Gây mê</option><option value="option_select_department">Bệnh tim</option><option value="option_select_department">Da liễu</option><option value="option_select_department">X quang chuẩn đoán</option><option value="option_select_department">Thuốc cấp cứu</option><option value="option_select_department">Khoa thần kinh</option><option value="option_select_department">Khoa sản phụ</option><option value="option_select_department">Khoa mắt</option><option value="option_select_department">Khoa nhi</option><option value="option_select_department">Khoa tiết niệu</option><option value="option_select_department">Phẩu thuật</option></select><span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="26" style="width: auto;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-6fdo-container"><span class="select2-selection__rendered" id="select2-6fdo-container" role="textbox" aria-readonly="true"><span class="select2-selection__placeholder">Chọn khoa khám</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span></div></div></div><div class="col-md-6"><div class="form-group"><label class="form-label">BÁC SĨ</label><div class="form-control-wrap"><select class="form-select js-select2 select2-hidden-accessible" data-placeholder="Chọn bác sĩ" data-select2-id="28" tabindex="-1" aria-hidden="true"><option value="" data-select2-id="30">Select</option><option value="option_select_consulant">Joe Larson</option><option value="option_select_consulant">Janet Snyder</option><option value="option_select_consulant">Amelia Grant</option><option value="option_select_consulant">Debra Grant</option><option value="option_select_consulant">Snyder Debra</option></select><span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="29" style="width: auto;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-otf7-container"><span class="select2-selection__rendered" id="select2-otf7-container" role="textbox" aria-readonly="true"><span class="select2-selection__placeholder">Chọn bác sĩ</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span></div></div></div><div class="col-md-6"><div class="form-group"><label class="form-label">Trạng thái</label><div class="form-control-wrap"><select class="form-select js-select2 select2-hidden-accessible" data-placeholder="Select Status" data-select2-id="31" tabindex="-1" aria-hidden="true"><option value="" data-select2-id="33">Select</option><option value="option_select_status">Chấp thuận</option><option value="option_select_status">Chờ</option><option value="option_select_status">Hủy</option></select><span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="32" style="width: auto;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-appe-container"><span class="select2-selection__rendered" id="select2-appe-container" role="textbox" aria-readonly="true"><span class="select2-selection__placeholder">Chọn trạng thái</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span></div></div></div><div class="col-12"><ul class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2"><li><button data-bs-dismiss="modal" class="btn btn-primary">Cập nhật</button></li><li><a href="#" class="link link-light" data-bs-dismiss="modal">Hủy</a></li></ul></div></div></form></div></div></div>
 
-
-                    
-                    </tr>
-                    
-                </tbody>  
+                  </tbody>
                 </table>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-       
-<footer class="footer py-4  ">
-    <div class="container-fluid">
-      <div class="row align-items-center justify-content-lg-between">
-        <div class="col-lg-6 mb-lg-0 mb-4">
-          <div class="copyright text-center text-sm text-muted text-lg-start">
-            ©
-            <script>
-              document.write(new Date().getFullYear())
-            </script>,
-            made with <i class="fa fa-heart"></i> by
-            <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Huan, Khoa and Long</a>
-            for Uni 24-25.
-          </div>
-        </div>
-        <div class="col-lg-6">
-          <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank">Creative Tim</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted" target="_blank">About
-                Us</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com/blog" class="nav-link text-muted" target="_blank">Blog</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted"
-                target="_blank">License</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </footer>
-    </div>
+        <!-- End Navbar -->
+
 
     </main>
 
