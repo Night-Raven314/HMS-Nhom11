@@ -159,14 +159,14 @@
 
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="./pages/dashboard.html">
+                    <a class="nav-link text-white" href="A4-speciality.php">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">paid</i>
+                            <i class="material-icons opacity-10">local_hospital</i>
                             <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
                         </div>
 
-                        <span class="nav-link-text ms-1">Function 4</span>
+                        <span class="nav-link-text ms-1">Quản lý chuyên khoa</span>
                     </a>
                 </li>
 
