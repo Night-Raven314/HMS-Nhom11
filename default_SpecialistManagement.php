@@ -249,11 +249,12 @@
                                 <table id="drugTable" class="table align-items-center mb-0">
                                     <thead>
                                         <tr>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Tên</th>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Giá cả</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Loại</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Ngày nhập</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ngày chỉnh sửa</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Tên chuyên khoa</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Mô tả</th>
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Dịch vụ chính</th>
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Trưởng khoa</th>
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Số điện thoại liên hệ</th>
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Ghi chú</th>
                                             <th class="text-secondary opacity-7"></th>
                                         </tr>
                                     </thead>
@@ -262,25 +263,27 @@
                                             <td>
                                                 <div class="d-flex px-2 py-1">
                                                     <div>
-                                                        <img src="https://hapacol.vn/wp-content/uploads/2023/08/tac-dung-cua-paracetamol.png" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                                        <img src="https://medlatec.vn/media/207/catalog/chuyen-khoa-tim-mach.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                                                     </div>
                                                     <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">Paracetamol</h6>
+                                                        <h6 class="mb-0 text-sm">Khoa tim mạch</h6>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td>
-                                                <p class="text-xs font-weight-bold mb-0">2000</p>
-                                                <p class="text-xs text-secondary mb-0">VNĐ</p>
+                                                <p class="text-xs font-weight-bold mb-0">Chăm sóc chuyên sâu cho các vấn đề tim.</p>
                                             </td>
                                             <td class="align-middle text-center text-sm">
-                                                <p class="text-xs font-weight-bold mb-0">Viên</p>
+                                                <p class="text-xs font-weight-bold mb-0">ECG, Phẫu thuật tim</p>
                                             </td>
                                             <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
+                                                <span class="text-secondary text-xs font-weight-bold">Dr. Nguyễn Văn A</span>
                                             </td>
                                             <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">24/04/18</span>
+                                                <span class="text-secondary text-xs font-weight-bold">0123-456-789</span>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <span class="text-secondary text-xs font-weight-bold">Không có ghi chú</span>
                                             </td>
                                             <td class="align-middle">
                                                 <a href="javascript:;" onclick="div_show()" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
@@ -292,25 +295,27 @@
                                             <td>
                                                 <div class="d-flex px-2 py-1">
                                                     <div>
-                                                        <img src="https://www.vinmec.com/static/uploads/20200124_005853_738311_thuoc_aspirin_max_1800x1800_jpg_b69b6a20d3.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                                        <img src="https://phongkhamthuankieu.vn/wp-content/uploads/2022/05/kham-noi-than-kinh.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                                                     </div>
                                                     <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">Aspirin</h6>
+                                                        <h6 class="mb-0 text-sm">Khoa Thần kinh</h6>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td>
-                                                <p class="text-xs font-weight-bold mb-0">3000</p>
-                                                <p class="text-xs text-secondary mb-0">VNĐ</p>
+                                                <p class="text-xs font-weight-bold mb-0">Chăm sóc cho các rối loạn thần kinh.</p>
                                             </td>
                                             <td class="align-middle text-center text-sm">
-                                                <p class="text-xs font-weight-bold mb-0">Viên</p>
+                                                <p class="text-xs font-weight-bold mb-0">MRI, EEG</p>
                                             </td>
                                             <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
+                                                <span class="text-secondary text-xs font-weight-bold">Dr. Trần Thị B</span>
                                             </td>
                                             <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">24/04/18</span>
+                                                <span class="text-secondary text-xs font-weight-bold">0123-456-788</span>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <span class="text-secondary text-xs font-weight-bold">Thứ Bảy nghỉ làm</span>
                                             </td>
                                             <td class="align-middle">
                                                 <a href="javascript:;" onclick="div_show()" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
@@ -322,25 +327,27 @@
                                             <td>
                                                 <div class="d-flex px-2 py-1">
                                                     <div>
-                                                        <img src="https://www.vinmec.com/static/uploads/20200411_033146_959639_amoxicillin_la_thuo_max_1800x1800_jpg_38e621a5e3.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                                        <img src="https://cantho.phuongchau.com/images/baiviet/nho/a68123cf-3b8c-478e-b0e1-810d11d1c086.jpeg" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                                                     </div>
                                                     <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">Amoxicillin</h6>
+                                                        <h6 class="mb-0 text-sm">Khoa Chấn thương chỉnh hình</h6>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td>
-                                                <p class="text-xs font-weight-bold mb-0">25000</p>
-                                                <p class="text-xs text-secondary mb-0">VNĐ</p>
+                                                <p class="text-xs font-weight-bold mb-0">Dịch vụ chỉnh hình cho sức khỏe xương.</p>
                                             </td>
                                             <td class="align-middle text-center text-sm">
-                                                <p class="text-xs font-weight-bold mb-0">Hộp</p>
+                                                <p class="text-xs font-weight-bold mb-0">Điều trị gãy xương</p>
                                             </td>
                                             <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
+                                                <span class="text-secondary text-xs font-weight-bold">Dr. Lê Văn C</span>
                                             </td>
                                             <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">24/04/18</span>
+                                                <span class="text-secondary text-xs font-weight-bold">0123-456-787</span>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <span class="text-secondary text-xs font-weight-bold">Chỉ có dịch vụ cấp cứu</span>
                                             </td>
                                             <td class="align-middle">
                                                 <a href="javascript:;" onclick="div_show()" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
@@ -352,25 +359,27 @@
                                             <td>
                                                 <div class="d-flex px-2 py-1">
                                                     <div>
-                                                        <img src="https://www.pharmart.vn/images/product/origin/thuoc-vitamin-c-tw3-500mg-dieu-tri-thieu-hut-vitamin-c-65f15f008f538.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                                        <img src="https://honghunghospital.com.vn/wp-content/uploads/2020/05/1.-Khoa-Nhi.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                                                     </div>
                                                     <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">Vitamin C</h6>
+                                                        <h6 class="mb-0 text-sm">Khoa Nhi</h6>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td>
-                                                <p class="text-xs font-weight-bold mb-0">5000</p>
-                                                <p class="text-xs text-secondary mb-0">VNĐ</p>
+                                                <p class="text-xs font-weight-bold mb-0">Chăm sóc cho trẻ sơ sinh và thanh thiếu niên.</p>
                                             </td>
                                             <td class="align-middle text-center text-sm">
-                                                <p class="text-xs font-weight-bold mb-0">Viên</p>
+                                                <p class="text-xs font-weight-bold mb-0">Tiêm chủng</p>
                                             </td>
                                             <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
+                                                <span class="text-secondary text-xs font-weight-bold">Dr. Phạm Thị D</span>
                                             </td>
                                             <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">24/04/18</span>
+                                                <span class="text-secondary text-xs font-weight-bold">0123-456-786</span>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <span class="text-secondary text-xs font-weight-bold">Cần bố trí thêm bác sĩ</span>
                                             </td>
                                             <td class="align-middle">
                                                 <a href="javascript:;" onclick="div_show()" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
@@ -382,25 +391,59 @@
                                             <td>
                                                 <div class="d-flex px-2 py-1">
                                                     <div>
-                                                        <img src="assets/image/medical/ibuprofen.webp" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                                        <img src="https://cdn.benhvienthucuc.vn/wp-content/uploads/2021/05/nguyen-nhan-gay-u-nang-tuyen-giap-4.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                                                     </div>
                                                     <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">Ibuprofen</h6>
+                                                        <h6 class="mb-0 text-sm">Khoa Ung bướu</h6>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td>
-                                                <p class="text-xs font-weight-bold mb-0">1500</p>
-                                                <p class="text-xs text-secondary mb-0">VNĐ</p>
+                                                <p class="text-xs font-weight-bold mb-0">Chăm sóc và điều trị bệnh nhân ung thư.</p>
                                             </td>
                                             <td class="align-middle text-center text-sm">
-                                                <p class="text-xs font-weight-bold mb-0">Viên</p>
+                                                <p class="text-xs font-weight-bold mb-0">Hóa trị</p>
                                             </td>
                                             <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
+                                                <span class="text-secondary text-xs font-weight-bold">Dr. Nguyễn Thị E</span>
                                             </td>
                                             <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">24/04/18</span>
+                                                <span class="text-secondary text-xs font-weight-bold">0123-456-785</span>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <span class="text-secondary text-xs font-weight-bold">Không có ghi chú</span>
+                                            </td>
+                                            <td class="align-middle">
+                                                <a href="javascript:;" onclick="div_show()" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                                                    Edit
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex px-2 py-1">
+                                                    <div>
+                                                        <img src="https://medlatec.vn/media/29997/file/phoi-nam-o-vi-tri-nao-1.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                                    </div>
+                                                    <div class="d-flex flex-column justify-content-center">
+                                                        <h6 class="mb-0 text-sm">Khoa Hô hấp</h6>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <p class="text-xs font-weight-bold mb-0">Chăm sóc cho các bệnh về đường hô hấp.</p>
+                                            </td>
+                                            <td class="align-middle text-center text-sm">
+                                                <p class="text-xs font-weight-bold mb-0">Điều trị hen suyễn</p>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <span class="text-secondary text-xs font-weight-bold">Dr. Lê Thị F</span>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <span class="text-secondary text-xs font-weight-bold">0123-456-789</span>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <span class="text-secondary text-xs font-weight-bold">Đào tạo thêm nhân viên</span>
                                             </td>
                                             <td class="align-middle">
                                                 <a href="javascript:;" onclick="div_show()" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
@@ -420,49 +463,45 @@
 
 
         <!-- Popup Section for Form -->
-        <div id="container-popup" style="display: none;">
+        <div id="container-popup">
             <div id="popupContact">
                 <div class="card">
                     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                         <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                            <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Chỉnh sửa thông tin sản phẩm</h4>
+                            <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Cập nhật thông tin chuyên khoa</h4>
                         </div>
                     </div>
                     <div class="card-body">
                         <form role="form">
+                            <!-- Tên Chuyên Khoa -->
                             <div class="input-group input-group-outline mb-3">
-                                <label class="form-label">Tên thuốc</label>
-                                <input type="text" class="form-control">
+                                <label class="form-label">Tên Chuyên Khoa</label>
+                                <input type="text" class="form-control" placeholder="">
+                            </div
+                                <!-- Tên Chuyên Khoa -->
+                            <div class="input-group input-group-outline mb-3">
+                                <label class="form-label">Mô Tả</label>
+                                <input type="text" class="form-control" placeholder="">
                             </div>
+                            <!-- Dịch Vụ Chính -->
                             <div class="input-group input-group-outline mb-3">
-                                <label class="form-label">Giá</label>
-                                <input type="number" class="form-control">
+                                <label class="form-label">Dịch Vụ Chính</label>
+                                <input type="text" class="form-control" placeholder="">
                             </div>
+                            <!-- Trưởng Khoa -->
                             <div class="input-group input-group-outline mb-3">
-                                <label class="form-label">Đơn vị</label>
-                                <input list="units" class="form-control">
-                                <datalist id="units">
-                                    <option value="Viên">
-                                    <option value="Gói">
-                                    <option value="Hộp">
-                                    <option value="Bộ">
-                                </datalist>
+                                <label class="form-label">Trưởng Khoa</label>
+                                <input type="text" class="form-control" placeholder="">
                             </div>
-
+                            <!-- Số Điện Thoại Liên Hệ -->
                             <div class="input-group input-group-outline mb-3">
-                                <label for="floatingInputDate" style="margin-right: 10px;">Ngày nhập</label>
-                                <input type="date" class="form-control" id="floatingInputDate">
-
+                                <label class="form-label">Số Điện Thoại Liên Hệ</label>
+                                <input type="tel" class="form-control" placeholder="">
                             </div>
-
+                            <!-- Ghi Chú -->
                             <div class="input-group input-group-outline mb-3">
-                                <label for="floatingInputDate" style="margin-right: 10px;">Ngày chỉnh sửa</label>
-                                <input type="date" class="form-control" id="floatingInputDate">
-
-                            </div>
-                            <div class="input-group input-group-outline mb-3">
-                                <label for="floatingInputDate" style="margin-right: 10px;">Hình ảnh sản phẩm</label>
-                                <input type="file" class="form-control">
+                                <label class="form-label">Ghi Chú</label>
+                                <input type="text" class="form-control" placeholder="">
                             </div>
                             <div class="text-center">
                                 <button type="button" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập nhật</button>
@@ -475,6 +514,7 @@
                 </div>
             </div>
         </div>
+
 
     </main>
 

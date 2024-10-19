@@ -228,92 +228,92 @@
 
         <!-- End Navbar -->
 
-    
 
-    <div class="container-fluid px-2 px-md-4 position-relative">
-        <div class="page-header min-height-300 border-radius-xl mt-4"
-            style="background-image: url('https://images.unsplash.com/photo-1531512073830-ba890ca4eba2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');">
-            <span class="mask  bg-gradient-primary  opacity-6"></span>
-        </div>
-        <div class="card card-body mx-3 mx-md-4 mt-n6">
-            <div class="row gx-4 mb-2">
-                <div class="col-auto">
-                    <div class="avatar avatar-xl position-relative">
-                        <img src="assets/image/user login image.png" alt="profile_image"
-                            class="w-100 border-radius-lg shadow-sm">
+
+        <div class="container-fluid px-2 px-md-4 position-relative">
+            <div class="page-header min-height-300 border-radius-xl mt-4"
+                style="background-image: url('https://images.unsplash.com/photo-1531512073830-ba890ca4eba2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');">
+                <span class="mask  bg-gradient-primary  opacity-6"></span>
+            </div>
+            <div class="card card-body mx-3 mx-md-4 mt-n6">
+                <div class="row gx-4 mb-2">
+                    <div class="col-auto">
+                        <div class="avatar avatar-xl position-relative">
+                            <img src="assets/image/user login image.png" alt="profile_image"
+                                class="w-100 border-radius-lg shadow-sm">
+                        </div>
                     </div>
-                </div>
-                <div class="col-auto my-auto">
-                    <div class="h-100">
-                        <h5 class="mb-1">
-                            Nguyễn Văn A
-                        </h5>
-                        <p class="mb-0 font-weight-normal text-sm">
-                            Bác sĩ
-                        </p>
-                        <button onclick="div_show()">
-                            <i class="fas fa-user-edit text-secondary text-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Cập nhật"></i>
-                        </button>
-                    </div>
-                    <div class="card-header pb-0 p-3">
-                    </div>
-                    <div class="card-body p-3">
-                        <ul class="list-group">
-                            <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Họ và Tên:</strong> &nbsp; Nguyen Van A</li>
-                            <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Số điện thoại:</strong>&nbsp; +84123456789</li>
-                            <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Email:</strong>&nbsp; doctor@gmail.com</li>
-                            <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Địa chỉ:</strong> &nbsp; 123 Duong 45</li>
-                            <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Thành phố:</strong> &nbsp; Ho Chi Minh</li>
-                            <li class="list-group-item border-0 ps-0 pb-0">
-                        </ul>
+                    <div class="col-auto my-auto">
+                        <div class="h-100">
+                            <h5 class="mb-1">
+                                Nguyễn Văn A
+                            </h5>
+                            <p class="mb-0 font-weight-normal text-sm">
+                                Bác sĩ
+                            </p>
+                            <button onclick="div_show()">
+                                <i class="fas fa-user-edit text-secondary text-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Cập nhật"></i>
+                            </button>
+                        </div>
+                        <div class="card-header pb-0 p-3">
+                        </div>
+                        <div class="card-body p-3">
+                            <ul class="list-group">
+                                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Họ và Tên:</strong> &nbsp; Nguyen Van A</li>
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Số điện thoại:</strong>&nbsp; +84123456789</li>
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Email:</strong>&nbsp; doctor@gmail.com</li>
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Địa chỉ:</strong> &nbsp; 123 Duong 45</li>
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Thành phố:</strong> &nbsp; Ho Chi Minh</li>
+                                <li class="list-group-item border-0 ps-0 pb-0">
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Popup Section for Form -->
-    <div id="container-popup">
-        <div id="popupContact">
-            <div class="card">
-                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                    <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                        <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Cập nhật thông tin</h4>
+        <!-- Popup Section for Form -->
+        <div id="container-popup">
+            <div id="popupContact">
+                <div class="card">
+                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                        <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                            <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Cập nhật thông tin</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form role="form">
+                            <div class="input-group input-group-outline mb-3">
+                                <label class="form-label">Nguyen Van A</label>
+                                <input type="full_name" class="form-control">
+                            </div>
+                            <div class="input-group input-group-outline mb-3">
+                                <label class="form-label">+84123456789</label>
+                                <input type="contact_no" class="form-control">
+                            </div>
+                            <div class="input-group input-group-outline mb-3">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control">
+                            </div>
+                            <div class="input-group input-group-outline mb-3">
+                                <label class="form-label">Địa chỉ</label>
+                                <input type="address" class="form-control">
+                            </div>
+                            <div class="input-group input-group-outline mb-3">
+                                <label class="form-label">Thành phố</label>
+                                <input type="city" class="form-control">
+                            </div>
+                            <div class="text-center">
+                                <button type="button" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập nhật</button>
+                            </div>
+                            <div class="text-center">
+                                <button type="button" class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0" onclick="div_hide()">Thoát</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
-                <div class="card-body">
-                    <form role="form">
-                        <div class="input-group input-group-outline mb-3">
-                            <label class="form-label">Nguyen Van A</label>
-                            <input type="full_name" class="form-control">
-                        </div>
-                        <div class="input-group input-group-outline mb-3">
-                            <label class="form-label">+84123456789</label>
-                            <input type="contact_no" class="form-control">
-                        </div>
-                        <div class="input-group input-group-outline mb-3">
-                            <label class="form-label">Email</label>
-                            <input type="email" class="form-control">
-                        </div>
-                        <div class="input-group input-group-outline mb-3">
-                            <label class="form-label">Địa chỉ</label>
-                            <input type="address" class="form-control">
-                        </div>
-                        <div class="input-group input-group-outline mb-3">
-                            <label class="form-label">Thành phố</label>
-                            <input type="city" class="form-control">
-                        </div>
-                        <div class="text-center">
-                            <button type="button" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập nhật</button>
-                        </div>
-                        <div class="text-center">
-                            <button type="button" class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0" onclick="div_hide()">Thoát</button>
-                        </div>
-                    </form>
-                </div>
-            </div>    
+            </div>
         </div>
-    </div>
     </main>
 
     <!--   Core JS Files   -->
