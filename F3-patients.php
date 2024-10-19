@@ -10,7 +10,7 @@
     <link rel="icon" type="image/png" href="./assets/img/favicon.png">
 
     <title>
-        Lịch hẹn
+        Quản lý bệnh nhân
     </title>
 
 
@@ -63,7 +63,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-white active bg-gradient-primary" href="default-Appointmenthistory.php">
+                    <a class="nav-link text-white" href="F1-schedule.php">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">calendar_month</i>
@@ -76,7 +76,7 @@
 
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="./pages/dashboard.html">
+                    <a class="nav-link text-white" href="F2-user-medhist.php">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">pending_actions</i>
@@ -89,20 +89,20 @@
 
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="./pages/dashboard.html">
+                    <a class="nav-link text-white active bg-gradient-primary" href="F3-patients.php">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">favorite</i>
+                            <i class="material-icons opacity-10">groups</i>
                             <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
                         </div>
 
-                        <span class="nav-link-text ms-1">Function 3</span>
+                        <span class="nav-link-text ms-1">Danh sách bệnh nhân</span>
                     </a>
                 </li>
 
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="./pages/dashboard.html">
+                    <a class="nav-link text-white" href="">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">description</i>
@@ -115,45 +115,45 @@
 
 
                 <li class="nav-item mt-3">
-                    <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Divider 2
+                    <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Quản trị
                     </h6>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="./pages/dashboard.html">
+                    <a class="nav-link text-white" href="A1-profile.php">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">schedule</i>
+                            <i class="material-icons opacity-10">person</i>
                             <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
                         </div>
 
-                        <span class="nav-link-text ms-1">Function 1</span>
+                        <span class="nav-link-text ms-1">Thông tin cá nhân</span>
                     </a>
                 </li>
 
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="./pages/dashboard.html">
+                    <a class="nav-link text-white" href="A2-admin-user.php">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">event</i>
+                            <i class="material-icons opacity-10">badge</i>
                             <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
                         </div>
 
-                        <span class="nav-link-text ms-1">Function 2</span>
+                        <span class="nav-link-text ms-1">Quản lý người dùng</span>
                     </a>
                 </li>
 
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="./pages/dashboard.html">
+                    <a class="nav-link text-white" href="A3-supply.php">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">login</i>
+                            <i class="material-icons opacity-10">medication</i>
                             <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
                         </div>
 
-                        <span class="nav-link-text ms-1">Function 3</span>
+                        <span class="nav-link-text ms-1">Quản lý vật tư</span>
                     </a>
                 </li>
 
@@ -184,7 +184,7 @@
             <div class="container-fluid py-1 px-3">
                 <nav aria-label="breadcrumb">
 
-                    <h6 class="font-weight-bolder mb-0">LỊCH SỬ HẸN KHÁM</h6>
+                    <h6 class="font-weight-bolder mb-0">QUẢN LÝ BỆNH NHÂN</h6>
 
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
@@ -208,14 +208,12 @@
 
                     <ul class="navbar-nav  justify-content-end">
 
-                        <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+                    <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
                             <!-- Right corner user section -->
-                        </li>
-                        <li class="nav-item d-flex align-items-center">
-                            <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="sign-in.php">Đăng
-                                xuất</a>
-                        </li>
-                        
+                            <li class="nav-item d-flex align-items-center">
+                                <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="sign-in.php">Đăng
+                                    xuất</a>
+                            </li>
                         </li>
 
                         <li class="nav-item d-flex align-items-center">
@@ -232,7 +230,7 @@
           <div class="card my-4">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                <h6 class="text-white text-capitalize ps-3">DANH SÁCH LỊCH SỬ HẸN KHÁM</h6>
+                <h6 class="text-white text-capitalize ps-3">Danh sách bệnh nhân</h6>
               </div>
             </div>
             <div class="card-body px-0 pb-2">
@@ -240,50 +238,44 @@
                 <table class="table align-items-center mb-0">
                   <thead>
                     <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Bác sĩ</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tên bệnh nhân</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Khoa khám</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Phí tư vấn</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Ngày/giờ hẹn khám</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Ngày tạo cuộc hẹn</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Trạng thái</th>
+                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">STT</th>
+                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Họ và Tên</th>
+                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Số điện thoại</th>
+                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Giới tính</th>
+                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Ngày/giờ hẹn khám</th>
+                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Ngày tạo cuộc hẹn</th>
+                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Hành động</th>
                       
                       <th class="text-secondary opacity-7"></th>
                     </tr>
                   </thead>
                 <tbody>
                     <tr>
-                        <td>
-                            <div class="d-flex px-2 py-1">
-                                <div class="d-flex flex-column justify-content-center">
-                                    <h6 class="mb-0 text-sm">Bs Nguyễn Văn A</h6>
-                                    
-                                </div>
+                    <td class="align-middle text-center">
+                        <span class="text-secondary text-xs font-weight-bold">01</span>
+                    </td>
+                    <td class="align-middle text-center">
+                        <div class="d-flex px-2 py-1">
+                            <div class="d-flex flex-column justify-content-center">
+                                <h6 class="mb-0 text-sm">Nguyen Van A</h6>
                             </div>
-                        </td>
-                        <td>
-                            <div class="d-flex px-2 py-1">
-                                <div class="d-flex flex-column justify-content-center">
-                                    <h6 class="mb-0 text-sm">BN Nguyễn Văn B</h6>
-                                    
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <span class="text-xs font-weight-bold">Khoa tim mạch</span>
-                        </td>
-                        <td>
-                            <p class="text-sm font-weight-bold mb-0">1.600.000 đồng</p>
-                        </td>
-                        <td class="align-middle text-center">
-                            <span class="text-secondary text-xs font-weight-bold">20/10/2024 16:30</span>
-                        </td>
-                        <td class="align-middle text-center">
-                            <span class="text-secondary text-xs font-weight-bold">17/10/2024 </span>
-                        </td>
-                        <td class="align-middle text-center text-sm">
-                            <span class="badge badge-sm bg-gradient-success">Online</span>
-                        </td>
+                        </div>
+                    </td>
+                    <td class="align-middle text-center">
+                        <span class="text-secondary text-xs font-weight-bold">0925009336</span>
+                    </td> 
+                    <td class="align-middle text-center">
+                        <span class="text-secondary text-xs font-weight-bold">Nam</span>
+                    </td>
+                    <td class="align-middle text-center">
+                        <span class="text-secondary text-xs font-weight-bold">20/10/2024 16:30</span>
+                    </td>
+                    <td class="align-middle text-center">
+                        <span class="text-secondary text-xs font-weight-bold">17/10/2024 </span>
+                    </td>
+                    <td class="align-middle text-center">
+                        <a href="F2-user-medhist.php"><i class="fa fa-eye"></i></a>
+                    </td>
 
 
                     
