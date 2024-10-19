@@ -213,12 +213,12 @@
 
                     <ul class="navbar-nav  justify-content-end">
 
-                    <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+                        <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
                             <!-- Right corner user section -->
-                            <li class="nav-item d-flex align-items-center">
-                                <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="sign-in.php">Đăng
-                                    xuất</a>
-                            </li>
+                        <li class="nav-item d-flex align-items-center">
+                            <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="sign-in.php">Đăng
+                                xuất</a>
+                        </li>
                         </li>
 
                         <li class="nav-item d-flex align-items-center">
@@ -264,7 +264,7 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td class="align-middle text-center">
+                                            <td>
                                                 <p class="text-xs font-weight-bold mb-0">2000</p>
                                                 <p class="text-xs text-secondary mb-0">VNĐ</p>
                                             </td>
