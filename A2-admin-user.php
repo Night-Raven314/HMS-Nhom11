@@ -160,14 +160,14 @@
 
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="./pages/dashboard.html">
+                    <a class="nav-link text-white" href="A4-speciality.php">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">paid</i>
+                            <i class="material-icons opacity-10">local_hospital</i>
                             <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
                         </div>
 
-                        <span class="nav-link-text ms-1">Function 4</span>
+                        <span class="nav-link-text ms-1">Quản lý chuyên khoa</span>
                     </a>
                 </li>
 
@@ -190,7 +190,10 @@
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-
+                        <div class="input-group input-group-outline">
+                            <label class="form-label">Tìm kiếm</label>
+                            <input type="text" class="form-control">
+                        </div>
                     </div>
                     <ul class="navbar-nav  justify-content-end">
 
@@ -209,12 +212,12 @@
 
                     <ul class="navbar-nav  justify-content-end">
 
-                    <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+                        <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
                             <!-- Right corner user section -->
-                            <li class="nav-item d-flex align-items-center">
-                                <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="sign-in.php">Đăng
-                                    xuất</a>
-                            </li>
+                        <li class="nav-item d-flex align-items-center">
+                            <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="sign-in.php">Đăng
+                                xuất</a>
+                        </li>
                         </li>
 
                         <li class="nav-item d-flex align-items-center">

@@ -160,14 +160,14 @@
 
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="./pages/dashboard.html">
+                    <a class="nav-link text-white" href="A4-speciality.php">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">paid</i>
+                            <i class="material-icons opacity-10">local_hospital</i>
                             <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
                         </div>
 
-                        <span class="nav-link-text ms-1">Function 4</span>
+                        <span class="nav-link-text ms-1">Quản lý chuyên khoa</span>
                     </a>
                 </li>
 
@@ -213,10 +213,10 @@
 
                         <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
                             <!-- Right corner user section -->
-                            <li class="nav-item d-flex align-items-center">
-                                <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="sign-in.php">Đăng
-                                    xuất</a>
-                            </li>
+                        <li class="nav-item d-flex align-items-center">
+                            <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="sign-in.php">Đăng
+                                xuất</a>
+                        </li>
                         </l>
 
                         <li class="nav-item d-flex align-items-center">
@@ -230,7 +230,7 @@
 
 
 
-        <div class="container-fluid px-2 px-md-4 position-relative">
+        <div class="container-fluid px-2 px-md-4">
             <div class="page-header min-height-300 border-radius-xl mt-4"
                 style="background-image: url('https://images.unsplash.com/photo-1531512073830-ba890ca4eba2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');">
                 <span class="mask  bg-gradient-primary  opacity-6"></span>
@@ -243,34 +243,39 @@
                                 class="w-100 border-radius-lg shadow-sm">
                         </div>
                     </div>
-                </div>
-                <div class="col-auto my-auto">
-                    <div class="h-100">
-                        <h5 class="mb-1">
-                            Nguyễn Văn A
-                        </h5>
-                        <p class="mb-0 font-weight-normal text-sm">
-                            Bác sĩ
-                        </p>
+                    <div class="col-auto my-auto">
+                        <div class="h-100">
+                            <h5 class="mb-1">
+                                Nguyen Van A
+                            </h5>
+                            <p class="mb-0 font-weight-normal text-sm">
+                                Bac sy
+                            </p>
+                        </div>
                     </div>
+                    <div class="col-auto" style="margin-left: auto; margin-right: 10px;">
+                    <div class="text-center">
+                        <button type="button" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0"
+                            title="Edit Profile" onclick="div_show()">Cập nhật</button>
+                    </div>
+                </div>
                     <div class="card-header pb-0 p-3">
                     </div>
                     <div class="card-body p-3">
                         <ul class="list-group">
-                            <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Họ và Tên:</strong> &nbsp; Nguyen Van A</li>
-                            <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Số điện thoại:</strong>&nbsp; +84123456789</li>
-                            <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Email:</strong>&nbsp; doctor@gmail.com</li>
-                            <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Địa chỉ:</strong> &nbsp; 123 Duong 45</li>
-                            <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Thành phố:</strong> &nbsp; Ho Chi Minh</li>
+                            <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Số điện
+                                    thoại:</strong>&nbsp; +84123456789</li>
+                            <li class="list-group-item border-0 ps-0 text-sm"><strong
+                                    class="text-dark">Email:</strong>&nbsp; doctor@gmail.com</li>
+                            <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Địa
+                                    chỉ:</strong> &nbsp; 123 Duong 45</li>
+                            <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Thành
+                                    phố:</strong> &nbsp; Ho Chi Minh</li>
                             <li class="list-group-item border-0 ps-0 pb-0">
                         </ul>
                     </div>
                 </div>
-                <div class="col-auto"  style="margin-left: auto; margin-right: 10px;">
-                    <div class="text-center">
-                        <button type="button" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0" title="Edit Profile" onclick="div_show()">Cập nhật</button>
-                    </div>
-                </div>
+                
             </div>
         </div>
 
@@ -306,10 +311,12 @@
                                 <input type="city" class="form-control">
                             </div>
                             <div class="text-center">
-                                <button type="button" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập nhật</button>
+                                <button type="button" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập
+                                    nhật</button>
                             </div>
                             <div class="text-center">
-                                <button type="button" class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0" onclick="div_hide()">Thoát</button>
+                                <button type="button" class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
+                                    onclick="div_hide()">Thoát</button>
                             </div>
                         </form>
                     </div>

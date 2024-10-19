@@ -10,7 +10,7 @@
     <link rel="icon" type="image/png" href="./assets/img/favicon.png">
 
     <title>
-        Người dùng
+        Quản lý chuyên khoa
     </title>
 
 
@@ -60,51 +60,51 @@
             <ul class="navbar-nav">
 
                 <li class="nav-item mt-3">
-                    <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Divider 1
+                    <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Tính năng chính
                     </h6>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-white active bg-gradient-primary" href="./pages/dashboard.html">
+                    <a class="nav-link text-white" href="F1-schedule.php">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">info</i>
+                            <i class="material-icons opacity-10">calendar_month</i>
                             <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
                         </div>
 
-                        <span class="nav-link-text ms-1">Function 1</span>
+                        <span class="nav-link-text ms-1">Lịch hẹn kiểm tra</span>
                     </a>
                 </li>
 
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="./pages/dashboard.html">
+                    <a class="nav-link text-white" href="F2-user-medhist.php">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">lock</i>
+                            <i class="material-icons opacity-10">pending_actions</i>
                             <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
                         </div>
 
-                        <span class="nav-link-text ms-1">Function 2</span>
+                        <span class="nav-link-text ms-1">Hồ sơ sức khoẻ</span>
                     </a>
                 </li>
 
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="./pages/dashboard.html">
+                    <a class="nav-link text-white" href="F3-patients.php">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">favorite</i>
+                            <i class="material-icons opacity-10">groups</i>
                             <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
                         </div>
 
-                        <span class="nav-link-text ms-1">Function 3</span>
+                        <span class="nav-link-text ms-1">Danh sách bệnh nhân</span>
                     </a>
                 </li>
 
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="./pages/dashboard.html">
+                    <a class="nav-link text-white" href="">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">description</i>
@@ -117,58 +117,58 @@
 
 
                 <li class="nav-item mt-3">
-                    <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Divider 2
+                    <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Quản trị
                     </h6>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="./pages/dashboard.html">
+                    <a class="nav-link text-white" href="A1-profile.php">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">schedule</i>
+                            <i class="material-icons opacity-10">person</i>
                             <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
                         </div>
 
-                        <span class="nav-link-text ms-1">Function 1</span>
+                        <span class="nav-link-text ms-1">Thông tin cá nhân</span>
                     </a>
                 </li>
 
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="./pages/dashboard.html">
+                    <a class="nav-link text-white" href="A2-admin-user.php">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">event</i>
+                            <i class="material-icons opacity-10">badge</i>
                             <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
                         </div>
 
-                        <span class="nav-link-text ms-1">Function 2</span>
+                        <span class="nav-link-text ms-1">Quản lý người dùng</span>
                     </a>
                 </li>
 
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="./pages/dashboard.html">
+                    <a class="nav-link text-white" href="A3-supply.php">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">login</i>
+                            <i class="material-icons opacity-10">medication</i>
                             <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
                         </div>
 
-                        <span class="nav-link-text ms-1">Function 3</span>
+                        <span class="nav-link-text ms-1">Quản lý vật tư</span>
                     </a>
                 </li>
 
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="./pages/dashboard.html">
+                    <a class="nav-link text-white active bg-gradient-primary" href="A4-speciality">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">paid</i>
+                            <i class="material-icons opacity-10">local_hospital</i>
                             <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
                         </div>
 
-                        <span class="nav-link-text ms-1">Function 4</span>
+                        <span class="nav-link-text ms-1">Quản lý chuyên khoa</span>
                     </a>
                 </li>
 
@@ -186,7 +186,7 @@
             <div class="container-fluid py-1 px-3">
                 <nav aria-label="breadcrumb">
 
-                    <h6 class="font-weight-bolder mb-0">Vật tư y tế</h6>
+                    <h6 class="font-weight-bolder mb-0">QUẢN LÝ CHUYÊN KHOA</h6>
 
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
@@ -215,14 +215,9 @@
 
                         <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
                             <!-- Right corner user section -->
-                        </li>
                         <li class="nav-item d-flex align-items-center">
                             <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="sign-in.php">Đăng
-                                nhập</a>
-                        </li>
-                        <li class="nav-item d-flex align-items-center">
-                            <a class="btn bg-gradient-primary btn-sm mb-0 me-3" target="_blank" href="sign-up.php">Đăng
-                                ký</a>
+                                xuất</a>
                         </li>
                         </li>
 
@@ -240,7 +235,7 @@
                     <div class="card my-4">
                         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                             <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                                <h6 class="text-white text-capitalize ps-3">Bảng vật tư y tế</h6>
+                                <h6 class="text-white text-capitalize ps-3">Thông tin chuyên khoa</h6>
                             </div>
                         </div>
 
@@ -466,9 +461,9 @@
         <div id="container-popup">
             <div id="popupContact">
                 <div class="card">
-                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                         <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                            <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Cập nhật thông tin chuyên khoa</h4>
+                            <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Cập nhật chuyên khoa</h4>
                         </div>
                     </div>
                     <div class="card-body">
@@ -477,7 +472,7 @@
                             <div class="input-group input-group-outline mb-3">
                                 <label class="form-label">Tên Chuyên Khoa</label>
                                 <input type="text" class="form-control" placeholder="">
-                            </div
+                            </div>
                                 <!-- Tên Chuyên Khoa -->
                             <div class="input-group input-group-outline mb-3">
                                 <label class="form-label">Mô Tả</label>
