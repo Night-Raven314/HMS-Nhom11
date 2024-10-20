@@ -10,7 +10,7 @@
     <link rel="icon" type="image/png" href="./assets/img/favicon.png">
 
     <title>
-        Người dùng
+        Thông tin người dùng
     </title>
 
 
