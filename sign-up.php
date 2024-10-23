@@ -78,9 +78,25 @@
                   </form>
                 </div>
                 <div class="card-footer text-center pt-0 px-lg-2 px-1">
+                  <a class="text-primary text-gradient font-weight-bold">Hoặc sử dụng tài khoản liên kết</a>
+                  <p class="mt-4 text-sm text-center">
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.creative-tim.com/product/material-dashboard" style="height:100px" target="_blank">
+                      <i class="fab fa-google" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.creative-tim.com/product/material-dashboard" class="btn bg-gradient-primary" target="_blank">
+                      <i class="fab fa-facebook" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.creative-tim.com/product/material-dashboard" class="btn bg-gradient-primary" target="_blank">
+                      <i class="fab fa-zalo" aria-hidden="true"></i>
+                    </a>
+                  </p>
                   <p class="mt-4 text-sm text-center">
                     Bạn đã có tài khoản?
                     <a href="./sign-in.php" class="text-primary text-gradient font-weight-bold">Đăng nhập ngay</a>
+                  </p>
+                  <p class="mt-4 text-sm text-center">
+                    Bạn là nhân viên?
+                    <a href="./sign-in.php" class="text-primary text-gradient font-weight-bold">Đăng nhập ở đây</a>
                   </p>
                 </div>
               </div>

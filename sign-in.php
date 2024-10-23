@@ -57,6 +57,10 @@
                     <a href="./forgot-pwd.php" class="text-primary text-gradient font-weight-bold">Quên mật khẩu</a>
                   </p>
                   <p class="mt-4 text-sm text-center">
+                    Bạn là nhân viên?
+                    <a href="./sign-up.php" class="text-primary text-gradient font-weight-bold">Đăng nhập nhân viên</a>
+                  </p>
+                  <p class="mt-4 text-sm text-center">
                     Bạn chưa có tài khoản?
                     <a href="./sign-up.php" class="text-primary text-gradient font-weight-bold">Đăng ký ngay</a>
                   </p>
