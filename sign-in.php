@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php
+include('site_root.php');
+
+include SITE_ROOT . ('/assets/include/config.php');
+?>
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,8 +19,8 @@
   <link rel="stylesheet" type="text/css"
     href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
   <!-- Nucleo Icons -->
-  <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
-  <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+  <link href="SITE_ROOT./assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="SITE_ROOT./assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- Font Awesome Icons -->
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   <!-- Material Icons -->
@@ -41,17 +47,42 @@
                 </div>
               </div>
               <div class="card-body">
-                <form role="form" class="text-start">
+                <form role="form" class="text-start" action = "../assets/include/user_validation/login.php" onsubmit="return validation()" method="POST">
                   <div class="input-group input-group-outline my-3">
                     <label class="form-label">Tên đăng nhập</label>
-                    <input type="user_name" class="form-control">
+                    <input name="user_name" id="user_name" class="form-control">
                   </div>
                   <div class="input-group input-group-outline mb-3">
                     <label class="form-label">Mật khẩu</label>
-                    <input type="password" class="form-control">
+                    <input name="password" id="password" class="form-control">
                   </div>
+                  <div class="input-group input-group-outline mb-3">
+                    <label class="form-label">
+                      <script>
+                        function validation() {
+                          var id = document.f1.user_name.value;
+                          var ps = document.f1.password.value;
+                          if (id.length == "" && ps.length == "") {
+                            alert("User Name and Password fields are empty");
+                            return false;
+                          }
+                          else {
+                            if (id.length == "") {
+                              alert("User Name is empty");
+                              return false;
+                            }
+                            if (ps.length == "") {
+                              alert("Password field is empty");
+                              return false;
+                            }
+                          }
+                        }  
+                      </script>
+                    </label>
+                  </div>
+
                   <div class="text-center">
-                    <button type="button" class="btn bg-gradient-primary w-100 my-4 mb-2">Đăng nhập</button>
+                    <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">Đăng nhập</button>
                   </div>
                   <p class="mt-4 text-sm text-center">
                     <a href="./forgot-pwd.php" class="text-primary text-gradient font-weight-bold">Quên mật khẩu</a>
@@ -86,6 +117,9 @@
       Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
   </script>
+
+  
+
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->

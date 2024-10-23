@@ -1,11 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php
+include('site_root.php');
+
+require_once SITE_ROOT.('\assets\include\config.php');
+require_once SITE_ROOT.('\assets\include\oauth\user.class.php');
+
+if(isset($_GET['code'])){ 
+  $gClient->authenticate($_GET['code']); 
+  $_SESSION['token'] = $gClient->getAccessToken(); 
+  header('Location: ' . filter_var(GOOGLE_REDIRECT_URL, FILTER_SANITIZE_URL)); 
+} 
+
+if(isset($_SESSION['token'])){ 
+  $gClient->setAccessToken($_SESSION['token']); 
+} 
+
+if($gClient->getAccessToken()){ 
+  // Get user profile data from google 
+  $gpUserProfile = $google_oauthV2->userinfo->get(); 
+   
+  // Initialize User class 
+  $user = new User(); 
+   
+  // Getting user profile info 
+  $gpUserData = array(); 
+  $gpUserData['oauth_uid']  = !empty($gpUserProfile['id'])?$gpUserProfile['id']:''; 
+  $gpUserData['first_name'] = !empty($gpUserProfile['given_name'])?$gpUserProfile['given_name']:''; 
+  $gpUserData['last_name']  = !empty($gpUserProfile['family_name'])?$gpUserProfile['family_name']:''; 
+  $gpUserData['email']       = !empty($gpUserProfile['email'])?$gpUserProfile['email']:''; 
+  $gpUserData['gender']       = !empty($gpUserProfile['gender'])?$gpUserProfile['gender']:''; 
+  $gpUserData['locale']       = !empty($gpUserProfile['locale'])?$gpUserProfile['locale']:''; 
+  $gpUserData['picture']       = !empty($gpUserProfile['picture'])?$gpUserProfile['picture']:''; 
+   
+  // Insert or update user data to the database 
+  $gpUserData['oauth_provider'] = 'google'; 
+  $userData = $user->checkUser($gpUserData); 
+   
+  // Storing user data in the session 
+  $_SESSION['userData'] = $userData; 
+   
+  // Render user profile data 
+  if(!empty($userData)){ 
+      $output     = '<h2>Google Account Details</h2>'; 
+      $output .= '<div class="ac-data">'; 
+      $output .= '<img src="'.$userData['picture'].'">'; 
+      $output .= '<p><b>Google ID:</b> '.$userData['oauth_uid'].'</p>'; 
+      $output .= '<p><b>Name:</b> '.$userData['first_name'].' '.$userData['last_name'].'</p>'; 
+      $output .= '<p><b>Email:</b> '.$userData['email'].'</p>'; 
+      $output .= '<p><b>Gender:</b> '.$userData['gender'].'</p>'; 
+      $output .= '<p><b>Locale:</b> '.$userData['locale'].'</p>'; 
+      $output .= '<p><b>Logged in with:</b> Google Account</p>'; 
+      $output .= '<p>Logout from <a href="logout.php">Google</a></p>'; 
+      $output .= '</div>'; 
+  }else{ 
+      $output = '<h3 style="color:red">Some problem occurred, please try again.</h3>'; 
+  } 
+}else{ 
+  // Get login url 
+  $authUrl = $gClient->createAuthUrl(); 
+   
+  // Render google login button 
+  $output = '<a href="'.filter_var($authUrl, FILTER_SANITIZE_URL).'" class="login-btn">Sign in with Google</a>'; 
+} 
+
+?>
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <meta name="referrer" content="no-referrer-when-downgrade">
+  <meta name="Cross-Origin-Opener-Policy" content="same-origin-allow-popups">
+
   <title>
     Đăng ký
   </title>
@@ -80,15 +149,23 @@
                 <div class="card-footer text-center pt-0 px-lg-2 px-1">
                   <a class="text-primary text-gradient font-weight-bold">Hoặc sử dụng tài khoản liên kết</a>
                   <p class="mt-4 text-sm text-center">
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.creative-tim.com/product/material-dashboard" style="height:100px" target="_blank">
-                      <i class="fab fa-google" aria-hidden="true"></i>
-                    </a>
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.creative-tim.com/product/material-dashboard" class="btn bg-gradient-primary" target="_blank">
-                      <i class="fab fa-facebook" aria-hidden="true"></i>
-                    </a>
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.creative-tim.com/product/material-dashboard" class="btn bg-gradient-primary" target="_blank">
-                      <i class="fab fa-zalo" aria-hidden="true"></i>
-                    </a>
+                    <script src="https://accounts.google.com/gsi/client" async></script>
+                  <div id="g_id_onload"
+                    data-client_id="104458844677-uvj7eo80ufvo6cimqoa3jr4s2rldoje2.apps.googleusercontent.com"
+                    data-login_uri="http://localhost/HMS-Nhom11/HMS-Nhom11/" data-auto_prompt="false">
+                  </div>
+                  <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline"
+                    data-text="sign_in_with" data-shape="rectangular" data-logo_alignment="left">
+                  </div>
+                  <a class="btn bg-gradient-primary" data-client_id="104458844677-uvj7eo80ufvo6cimqoa3jr4s2rldoje2.apps.googleusercontent.com"
+                  data-login_uri="http://localhost/HMS-Nhom11/HMS-Nhom11/" data-auto_prompt="false">
+                    <i class="fab fa-facebook" aria-hidden="true"
+                      ></i>
+                  </a>
+                  <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.creative-tim.com/product/material-dashboard"
+                    class="btn bg-gradient-primary" target="_blank">
+                    <i class="fab fa-zalo" aria-hidden="true"></i>
+                  </a>
                   </p>
                   <p class="mt-4 text-sm text-center">
                     Bạn đã có tài khoản?
@@ -124,6 +201,7 @@
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../assets/js/material-dashboard.min.js?v=3.1.0"></script>
+  <script src="https://accounts.google.com/gsi/client" async></script>
 </body>
 
 </html>
