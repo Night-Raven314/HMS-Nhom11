@@ -2,9 +2,39 @@
 <html lang="en">
 
 <?php
-include('site_root.php');
+//error_reporting(0);
+
+define('SITE_ROOT', __DIR__);
 
 include SITE_ROOT . ('/assets/include/config.php');
+
+session_start();
+   $error='';
+   if($_SERVER["REQUEST_METHOD"] == "POST") {
+   
+      // username and password sent from form 
+      $myusername = mysqli_real_escape_string($conn,$_POST['user_name']);
+      $mypassword = mysqli_real_escape_string($conn,$_POST['password']); 
+
+      $sql = "SELECT * FROM dim_user WHERE user_name = '$myusername' and password = '$mypassword'";
+
+      $result = mysqli_query($conn,$sql);      
+      $row = mysqli_num_rows($result);
+      $count = mysqli_num_rows($result);
+
+      if($count == 1) {
+        
+        $row = mysqli_fetch_assoc($result);
+
+         // session_register("myusername");
+         $_SESSION['auth_login_user'] = $myusername;
+         $_SESSION['auth_user_role'] = $row['role'];
+         header('Refresh:0 , url=http://localhost/HMS-Nhom11/redirect.php');
+      } else {
+         $error = "Your Login Name or Password is invalid";
+      }
+   }
+
 ?>
 
 <head>
@@ -47,7 +77,7 @@ include SITE_ROOT . ('/assets/include/config.php');
                 </div>
               </div>
               <div class="card-body">
-                <form role="form" class="text-start" action = "../assets/include/user_validation/login.php" onsubmit="return validation()" method="POST">
+                <form name="auth_form" role="form" class="text-start" onsubmit="return validation()" method="POST">
                   <div class="input-group input-group-outline my-3">
                     <label class="form-label">Tên đăng nhập</label>
                     <input name="user_name" id="user_name" class="form-control">
@@ -58,26 +88,6 @@ include SITE_ROOT . ('/assets/include/config.php');
                   </div>
                   <div class="input-group input-group-outline mb-3">
                     <label class="form-label">
-                      <script>
-                        function validation() {
-                          var id = document.f1.user_name.value;
-                          var ps = document.f1.password.value;
-                          if (id.length == "" && ps.length == "") {
-                            alert("User Name and Password fields are empty");
-                            return false;
-                          }
-                          else {
-                            if (id.length == "") {
-                              alert("User Name is empty");
-                              return false;
-                            }
-                            if (ps.length == "") {
-                              alert("Password field is empty");
-                              return false;
-                            }
-                          }
-                        }  
-                      </script>
                     </label>
                   </div>
 
@@ -118,6 +128,26 @@ include SITE_ROOT . ('/assets/include/config.php');
     }
   </script>
 
+  <script>
+    function validation() {
+      var id = document.auth_form.user_name.value;
+      var ps = document.auth_form.password.value;
+      if (id.length == "" && ps.length == "") {
+        alert("User Name and Password fields are empty");
+        return false;
+      }
+      else {
+        if (id.length == "") {
+          alert("User Name is empty");
+          return false;
+        }
+        if (ps.length == "") {
+          alert("Password field is empty");
+          return false;
+        }
+      }
+    }  
+  </script>
   
 
   <!-- Github buttons -->
