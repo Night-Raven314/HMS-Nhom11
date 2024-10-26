@@ -4,8 +4,8 @@
 <?php
 define('SITE_ROOT', __DIR__);
 
-require_once SITE_ROOT.('\assets\include\config.php');
-require_once SITE_ROOT.('\assets\include\oauth\user.class.php');
+require_once SITE_ROOT . ('\assets\include\config.php');
+require_once SITE_ROOT . ('\assets\include\oauth\user.class.php');
 ?>
 
 <head>
@@ -90,18 +90,14 @@ require_once SITE_ROOT.('\assets\include\oauth\user.class.php');
                 <div class="card-footer text-center pt-0 px-lg-2 px-1">
                   <a class="text-primary text-gradient font-weight-bold">Hoặc sử dụng tài khoản liên kết</a>
                   <p class="mt-4 text-sm text-center">
-                    <script src="https://accounts.google.com/gsi/client" async></script>
-                  <div id="g_id_onload"
+                  <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.creative-tim.com/product/material-dashboard"
+                    class="btn bg-gradient-primary" target="_blank">
+                    <i class="fab fa-google" aria-hidden="true"></i>
+                  </a>
+                  <a class="btn bg-gradient-primary"
                     data-client_id="104458844677-uvj7eo80ufvo6cimqoa3jr4s2rldoje2.apps.googleusercontent.com"
                     data-login_uri="http://localhost/HMS-Nhom11/HMS-Nhom11/" data-auto_prompt="false">
-                  </div>
-                  <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline"
-                    data-text="sign_in_with" data-shape="rectangular" data-logo_alignment="left">
-                  </div>
-                  <a class="btn bg-gradient-primary" data-client_id="104458844677-uvj7eo80ufvo6cimqoa3jr4s2rldoje2.apps.googleusercontent.com"
-                  data-login_uri="http://localhost/HMS-Nhom11/HMS-Nhom11/" data-auto_prompt="false">
-                    <i class="fab fa-facebook" aria-hidden="true"
-                      ></i>
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
                   </a>
                   <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.creative-tim.com/product/material-dashboard"
                     class="btn bg-gradient-primary" target="_blank">

@@ -222,7 +222,7 @@ include ('sess-check.php');
                         <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
                             <!-- Right corner user section -->
                         <li class="nav-item d-flex align-items-center">
-                            <a class="btn btn-outline-primary btn-sm mb-0 me-3" href="../sign-in.php">Đăng xuất</a>
+                            <a class="btn btn-outline-primary btn-sm mb-0 me-3" href="../assets/include/log-out.php">Đăng xuất</a>
                         </li>
                         </li>
 

@@ -3,7 +3,7 @@
 // Start the session
 session_start();
 
-if (!isset($_SESSION['auth_login_user'])) {
+if ((!isset($_SESSION['auth_login_user']) || !isset($_SESSION['auth_login_email'])) && !isset($_SESSION['auth_user_role'])) {
     header('Refresh:0 , url=http://localhost/HMS-Nhom11/sign-in.php');
     die();
 }

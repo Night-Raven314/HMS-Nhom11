@@ -7,33 +7,49 @@
 define('SITE_ROOT', __DIR__);
 
 include SITE_ROOT . ('/assets/include/config.php');
+require_once SITE_ROOT . ('/assets/vendor/google-oauth/vendor/autoload.php');
 
 session_start();
-   $error='';
-   if($_SERVER["REQUEST_METHOD"] == "POST") {
-   
-      // username and password sent from form 
-      $myusername = mysqli_real_escape_string($conn,$_POST['user_name']);
-      $mypassword = mysqli_real_escape_string($conn,$_POST['password']); 
+$error = '';
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-      $sql = "SELECT * FROM dim_user WHERE user_name = '$myusername' and password = '$mypassword'";
+  // username and password sent from form 
+  $myusername = mysqli_real_escape_string($conn, $_POST['user_name']);
+  $mypassword = mysqli_real_escape_string($conn, $_POST['password']);
 
-      $result = mysqli_query($conn,$sql);      
-      $row = mysqli_num_rows($result);
-      $count = mysqli_num_rows($result);
+  $sql = "SELECT * FROM `dim_user` WHERE `user_name` = '$myusername' and `password` = '$mypassword'";
 
-      if($count == 1) {
-        
-        $row = mysqli_fetch_assoc($result);
+  $result = mysqli_query($conn, $sql);
+  $row = mysqli_num_rows($result);
+  $count = mysqli_num_rows($result);
 
-         // session_register("myusername");
-         $_SESSION['auth_login_user'] = $myusername;
-         $_SESSION['auth_user_role'] = $row['role'];
-         header('Refresh:0 , url=http://localhost/HMS-Nhom11/redirect.php');
-      } else {
-         $error = "Your Login Name or Password is invalid";
-      }
-   }
+  if ($count == 1) {
+
+    $row = mysqli_fetch_assoc($result);
+
+    // session_register("myusername");
+    $_SESSION['auth_login_user'] = $myusername;
+    $_SESSION['auth_user_id'] = $row['user_id'];
+    $_SESSION['auth_user_role'] = $row['role'];
+    $_SESSION['auth_login_type'] = 'manual';
+    header('Refresh:0 , url=http://localhost/HMS-Nhom11/redirect.php');
+  } else {
+    $error = "Your Login Name or Password is invalid";
+  }
+}
+
+$client = new Google_Client();
+$client->setClientId(google_app_id);
+$client->setClientSecret(google_app_secret);
+$client->setRedirectUri(google_app_callback_url);
+$client->addScope("email");
+$client->addScope("profile");
+$client->addScope("https://www.googleapis.com/auth/user.addresses.read");
+$client->addScope("https://www.googleapis.com/auth/user.birthday.read");
+$client->addScope("https://www.googleapis.com/auth/user.gender.read");
+$client->addScope("https://www.googleapis.com/auth/user.phonenumbers.read");
+
+$google_url = $client->createAuthUrl();
 
 ?>
 
@@ -49,14 +65,14 @@ session_start();
   <link rel="stylesheet" type="text/css"
     href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
   <!-- Nucleo Icons -->
-  <link href="SITE_ROOT./assets/css/nucleo-icons.css" rel="stylesheet" />
-  <link href="SITE_ROOT./assets/css/nucleo-svg.css" rel="stylesheet" />
+  <link href="assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- Font Awesome Icons -->
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   <!-- Material Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
   <!-- CSS Files -->
-  <link id="pagestyle" href="./assets/css/material_dash.css" rel="stylesheet" />
+  <link id="pagestyle" href="assets/css/material_dash.css" rel="stylesheet" />
   <!-- Nepcha Analytics (nepcha.com) -->
   <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
   <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
@@ -86,14 +102,17 @@ session_start();
                     <label class="form-label">Mật khẩu</label>
                     <input name="password" id="password" class="form-control">
                   </div>
-                  <div class="input-group input-group-outline mb-3">
-                    <label class="form-label">
-                    </label>
-                  </div>
-
                   <div class="text-center">
                     <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">Đăng nhập</button>
                   </div>
+                  <a class="btn bg-gradient-primary" onclick="googleAuthRedirect()">
+                    <i class="fab fa-google" aria-hidden="true"></i>
+                  </a>
+                  <script>
+                    function googleAuthRedirect() {
+                      window.location.href = "<?php echo $google_url ?>";
+                    }
+                  </script>
                   <p class="mt-4 text-sm text-center">
                     <a href="./forgot-pwd.php" class="text-primary text-gradient font-weight-bold">Quên mật khẩu</a>
                   </p>
@@ -114,10 +133,10 @@ session_start();
     </div>
   </main>
   <!--   Core JS Files   -->
-  <script src="../assets/js/core/popper.min.js"></script>
-  <script src="../assets/js/core/bootstrap.min.js"></script>
-  <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
-  <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
+  <script src="assets/js/core/popper.min.js"></script>
+  <script src="assets/js/core/bootstrap.min.js"></script>
+  <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
+  <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -133,27 +152,27 @@ session_start();
       var id = document.auth_form.user_name.value;
       var ps = document.auth_form.password.value;
       if (id.length == "" && ps.length == "") {
-        alert("User Name and Password fields are empty");
+        alert("Vui lòng điền tên đăng nhập và mật khẩu");
         return false;
       }
       else {
         if (id.length == "") {
-          alert("User Name is empty");
+          alert("Tên đăng nhập không được để trống");
           return false;
         }
         if (ps.length == "") {
-          alert("Password field is empty");
+          alert("Mật khẩu không được để trống");
           return false;
         }
       }
     }  
   </script>
-  
+
 
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="../assets/js/material-dashboard.min.js?v=3.1.0"></script>
+  <script src="assets/js/material-dashboard.min.js?v=3.1.0"></script>
 </body>
 
 </html>

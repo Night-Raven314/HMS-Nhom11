@@ -6,7 +6,7 @@
 
 define('google_app_id','104458844677-uvj7eo80ufvo6cimqoa3jr4s2rldoje2.apps.googleusercontent.com');
 define('google_app_secret','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');
-define('google_app_callback_url','http://localhost/LoginGoogle/redirect-google.php');
+define('google_app_callback_url','http://localhost/HMS-Nhom11/assets/include/oauth/g-authenticate.php');
 define('servername','localhost');
 define('username','root');
 define('password','');
