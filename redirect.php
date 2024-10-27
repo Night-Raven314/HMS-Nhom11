@@ -3,25 +3,31 @@
 // Start the session
 session_start();
 
-if ((!isset($_SESSION['auth_login_user']) || !isset($_SESSION['auth_login_email'])) && !isset($_SESSION['auth_user_role'])) {
-    header('Refresh:0 , url=http://localhost/HMS-Nhom11/sign-in.php');
-    die();
-}
+echo("{$_SESSION['auth_login_user']}"."<br />");
+echo("{$_SESSION['auth_login_email']}"."<br />");
+echo("{$_SESSION['auth_user_id']}"."<br />");
+echo("{$_SESSION['auth_user_role']}"."<br />");
+echo("{$_SESSION['auth_login_type']}"."<br />");
 
-if ($_SESSION['auth_user_role'] === 'admin')
-{
+// if (!isset($_SESSION['auth_login_user']) || !isset($_SESSION['auth_login_email'])) {
+//     header('Refresh:0 , url=http://localhost/HMS-Nhom11/assets/include/log-out.php');
+//     die();
+// } else if (!isset($_SESSION['auth_user_role'])) {
+//     header('Refresh:0 , url=http://localhost/HMS-Nhom11/assets/include/log-out.php');
+//     die();
+// }
+
+if ($_SESSION['auth_user_role'] === 'admin') {
     header('Refresh:0 , url=http://localhost/HMS-Nhom11/u-admin/A2-admin-user.php');
     exit();
 }
 
-if ($_SESSION['auth_user_role'] === 'doctor')
-{
+if ($_SESSION['auth_user_role'] === 'doctor') {
     header('Refresh:0 , url=http://localhost/HMS-Nhom11/F2-user-medhist.php');
     exit();
 }
 
-if ($_SESSION['auth_user_role'] === 'patient')
-{
+if ($_SESSION['auth_user_role'] === 'patient') {
     header('Refresh:0 , url=http://localhost/HMS-Nhom11/F1-schedule.php');
     exit();
 }

@@ -29,6 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // session_register("myusername");
     $_SESSION['auth_login_user'] = $myusername;
+    $_SESSION['auth_login_email'] = $row['email_address'];
     $_SESSION['auth_user_id'] = $row['user_id'];
     $_SESSION['auth_user_role'] = $row['role'];
     $_SESSION['auth_login_type'] = 'manual';
@@ -38,6 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 }
 
+// Google oAuth Initialize
 $client = new Google_Client();
 $client->setClientId(google_app_id);
 $client->setClientSecret(google_app_secret);
@@ -50,6 +52,16 @@ $client->addScope("https://www.googleapis.com/auth/user.gender.read");
 $client->addScope("https://www.googleapis.com/auth/user.phonenumbers.read");
 
 $google_url = $client->createAuthUrl();
+
+// Facebook oAuth Initialize
+$params = [
+  'client_id' => facebook_app_id,
+  'redirect_uri' => facebook_app_callback_url,
+  'response_type' => 'code',
+  'scope' => 'email'
+];
+$facebook_url='https://www.facebook.com/dialog/oauth?' . http_build_query($params)
+
 
 ?>
 
@@ -105,14 +117,27 @@ $google_url = $client->createAuthUrl();
                   <div class="text-center">
                     <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">Đăng nhập</button>
                   </div>
-                  <a class="btn bg-gradient-primary" onclick="googleAuthRedirect()">
-                    <i class="fab fa-google" aria-hidden="true"></i>
-                  </a>
-                  <script>
-                    function googleAuthRedirect() {
-                      window.location.href = "<?php echo $google_url ?>";
-                    }
-                  </script>
+                  <div class="text-center">
+                    <p class="mt-4 text-sm text-center">
+                      Hoặc sử dụng tài khoản liên kết
+                    </p>
+                    <a class="btn bg-gradient-primary" onclick="googleAuthRedirect()">
+                      <i class="fab fa-google" aria-hidden="true"></i>
+                    </a>
+                    <script>
+                      function googleAuthRedirect() {
+                        window.location.href = "<?php echo $google_url ?>";
+                      }
+                    </script>
+                    <a class="btn bg-gradient-primary" href="assets/include/oauth/f-authenticate.php">
+                      <i class="fab fa-facebook" aria-hidden="true"></i>
+                    </a>
+                    <script>
+                      function facebookAuthRedirect() {
+                        window.location.href = "<?php echo $facebook_url ?>";
+                      }
+                    </script>
+                  </div>
                   <p class="mt-4 text-sm text-center">
                     <a href="./forgot-pwd.php" class="text-primary text-gradient font-weight-bold">Quên mật khẩu</a>
                   </p>
@@ -166,6 +191,28 @@ $google_url = $client->createAuthUrl();
         }
       }
     }  
+  </script>
+
+  <script>
+    window.fbAsyncInit = function () {
+      FB.init({
+        appId: '{your-app-id}',
+        cookie: true,
+        xfbml: true,
+        version: '{api-version}'
+      });
+
+      FB.AppEvents.logPageView();
+
+    };
+
+    (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) { return; }
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
   </script>
 
 
