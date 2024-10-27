@@ -117,10 +117,10 @@ $facebook_url='https://www.facebook.com/dialog/oauth?' . http_build_query($param
                   <div class="text-center">
                     <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">Đăng nhập</button>
                   </div>
+                  <div class="text-center" style="padding-top: 20px; padding-bottom: 10px;">
+                      <a class="text-primary text-gradient font-weight-bold">Hoặc sử dụng tài khoản liên kết</a>
+                    </div>
                   <div class="text-center">
-                    <p class="mt-4 text-sm text-center">
-                      Hoặc sử dụng tài khoản liên kết
-                    </p>
                     <a class="btn bg-gradient-primary" onclick="googleAuthRedirect()">
                       <i class="fab fa-google" aria-hidden="true"></i>
                     </a>
