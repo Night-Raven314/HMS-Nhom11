@@ -18,7 +18,7 @@ echo("{$_SESSION['auth_login_type']}"."<br />");
 // }
 
 if ($_SESSION['auth_user_role'] === 'admin') {
-    header('Refresh:0 , url=http://localhost/HMS-Nhom11/u-admin/A2-admin-user.php');
+    header('Refresh:0 , url=http://localhost/HMS-Nhom11/role-admin/A2-admin-user.php');
     exit();
 }
 
