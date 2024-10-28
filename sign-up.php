@@ -1,11 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php
+//error_reporting(0);
+
+define('SITE_ROOT', __DIR__);
+
+include SITE_ROOT . ('/assets/include/config.php');
+require_once SITE_ROOT . ('/assets/vendor/google-oauth/vendor/autoload.php');
+
+session_start();
+$error = '';
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+  // username and password sent from form 
+  $myusername = mysqli_real_escape_string($conn, $_POST['user_name']);
+  $mypassword = mysqli_real_escape_string($conn, $_POST['password']);
+
+  $sql = "SELECT * FROM `dim_user` WHERE `user_name` = '$myusername' and `password` = '$mypassword'";
+
+  $result = mysqli_query($conn, $sql);
+  $row = mysqli_num_rows($result);
+  $count = mysqli_num_rows($result);
+
+  if ($count == 1) {
+
+    $row = mysqli_fetch_assoc($result);
+
+    // session_register("myusername");
+    $_SESSION['auth_login_user'] = $myusername;
+    $_SESSION['auth_login_email'] = $row['email_address'];
+    $_SESSION['auth_user_id'] = $row['user_id'];
+    $_SESSION['auth_user_role'] = $row['role'];
+    $_SESSION['auth_login_type'] = 'manual';
+    header('Refresh:0 , url=http://localhost/HMS-Nhom11/redirect.php');
+  } else {
+    $error = "Your Login Name or Password is invalid";
+  }
+}
+
+// Google oAuth Initialize
+$client = new Google_Client();
+$client->setClientId(google_app_id);
+$client->setClientSecret(google_app_secret);
+$client->setRedirectUri(google_app_callback_url);
+$client->addScope("email");
+$client->addScope("profile");
+$client->addScope("https://www.googleapis.com/auth/user.addresses.read");
+$client->addScope("https://www.googleapis.com/auth/user.birthday.read");
+$client->addScope("https://www.googleapis.com/auth/user.gender.read");
+$client->addScope("https://www.googleapis.com/auth/user.phonenumbers.read");
+
+$google_url = $client->createAuthUrl();
+
+// Facebook oAuth Initialize
+$params = [
+  'client_id' => facebook_app_id,
+  'redirect_uri' => facebook_app_callback_url,
+  'response_type' => 'code',
+  'scope' => 'email'
+];
+$facebook_url = 'https://www.facebook.com/dialog/oauth?' . http_build_query($params)
+
+
+  ?>
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <meta name="referrer" content="no-referrer-when-downgrade">
+  <meta name="Cross-Origin-Opener-Policy" content="same-origin-allow-popups">
+
   <title>
     Đăng ký
   </title>
@@ -75,20 +142,30 @@
                       <button type="button" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Đăng
                         ký</button>
                     </div>
+                    <div class="text-center" style="padding-top: 20px; padding-bottom: 10px;">
+                      <a class="text-primary text-gradient font-weight-bold">Hoặc sử dụng tài khoản liên kết</a>
+                    </div>
+                    <div class="text-center">
+                      <a class="btn bg-gradient-primary" onclick="googleAuthRedirect()">
+                        <i class="fab fa-google" aria-hidden="true"></i>
+                      </a>
+                      <script>
+                        function googleAuthRedirect() {
+                          window.location.href = "<?php echo $google_url ?>";
+                        }
+                      </script>
+                      <a class="btn bg-gradient-primary" href="assets/include/oauth/f-authenticate.php">
+                        <i class="fab fa-facebook" aria-hidden="true"></i>
+                      </a>
+                      <script>
+                        function facebookAuthRedirect() {
+                          window.location.href = "<?php echo $facebook_url ?>";
+                        }
+                      </script>
+                    </div>
                   </form>
                 </div>
                 <div class="card-footer text-center pt-0 px-lg-2 px-1">
-                  <a class="text-primary text-gradient font-weight-bold">Hoặc sử dụng tài khoản liên kết</a>
-                  <p class="mt-4 text-sm text-center">
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.creative-tim.com/product/material-dashboard" style="height:100px" target="_blank">
-                      <i class="fab fa-google" aria-hidden="true"></i>
-                    </a>
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.creative-tim.com/product/material-dashboard" class="btn bg-gradient-primary" target="_blank">
-                      <i class="fab fa-facebook" aria-hidden="true"></i>
-                    </a>
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.creative-tim.com/product/material-dashboard" class="btn bg-gradient-primary" target="_blank">
-                      <i class="fab fa-zalo" aria-hidden="true"></i>
-                    </a>
                   </p>
                   <p class="mt-4 text-sm text-center">
                     Bạn đã có tài khoản?
@@ -120,10 +197,34 @@
       Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
   </script>
+
+  <script>
+    window.fbAsyncInit = function () {
+      FB.init({
+        appId: '{your-app-id}',
+        cookie: true,
+        xfbml: true,
+        version: '{api-version}'
+      });
+
+      FB.AppEvents.logPageView();
+
+    };
+
+    (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) { return; }
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../assets/js/material-dashboard.min.js?v=3.1.0"></script>
+  <script src="https://accounts.google.com/gsi/client" async></script>
 </body>
 
 </html>
