@@ -8,6 +8,8 @@ define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT']);
 
 include SITE_ROOT . ('/HMS-Nhom11/assets/include/config.php');
 
+date_default_timezone_set('Asia/Ho_Chi_Minh');
+
 session_start();
 
 // VN-Pay Params
@@ -15,13 +17,24 @@ $vnp_Url = vnpay_payment_url;
 $vnp_Returnurl = vnpay_payment_callback_url;
 $vnp_TmnCode = vnpay_terminal_id;
 $vnp_HashSecret = vnpay_secret_key;
+
+// // Order Informations
+// $vnp_TxnRef = $_POST['order_id']; //Mã đơn hàng trên hệ thống
+// $vnp_OrderInfo = $_POST['order_desc']; // Mô tả nội dung thanh toán, không dấu, không ký tự đặc biệt
+// $vnp_OrderType = 'other'; // Danh mục hàng hoá - Không có doc, mặc định là other
+// $vnp_Amount = $_POST['amount'] * 100; // Giá trị đơn hàng x100 (Ví dụ đơn 10000 thì gửi dữ liệu 1000000)
+// $vnp_Locale = 'vn'; // Set ngôn ngữ
+// $vnp_BankCode = $_POST['bank_code']; // vnp_BankCode=VNPAYQR Thanh toán quét mã QR || vnp_BankCode=VNBANK Thẻ ATM - Tài khoản ngân hàng nội địa || vnp_BankCode=INTCARD Thẻ thanh toán quốc tế
+// $vnp_IpAddr = '127.0.0.1'; //$_SERVER['REMOTE_ADDR'];// IP của KH thực hiện giao dịch - php Lấy tự động
+
 // Order Informations
-$vnp_TxnRef = $_POST['order_id']; //Mã đơn hàng trên hệ thống
-$vnp_OrderInfo = $_POST['order_desc']; // Mô tả nội dung thanh toán, không dấu, không ký tự đặc biệt
-$vnp_OrderType = 'other'; // Danh mục hàng hoá (Nhà thuốc - Dịch vụ Y tế) - https://sandbox.vnpayment.vn/apis/docs/loai-hang-hoa/
-$vnp_Amount = $_POST['amount'] * 100; // Giá trị đơn hàng x100 (Ví dụ đơn 10000 thì gửi dữ liệu 1000000)
+$vnp_TxnRef = isset($_POST["order_id"] ) ? $_POST["order_id"]: ''; //Mã đơn hàng trên hệ thống
+$vnp_OrderInfo = isset($_POST["order_desc"] ) ? $_POST["order_desc"]: ''; // Mô tả nội dung thanh toán, không dấu, không ký tự đặc biệt
+$vnp_OrderType = 'other'; // Danh mục hàng hoá - Không có doc, mặc định là other
+$vnp_Amount_Temp = isset($_POST["amount"] ) ? $_POST["amount"]: '';
+$vnp_Amount = (int)$vnp_Amount_Temp * 100; // Giá trị đơn hàng x100 (Ví dụ đơn 10000 thì gửi dữ liệu 1000000)
 $vnp_Locale = 'vn'; // Set ngôn ngữ
-$vnp_BankCode = $_POST['bank_code']; // vnp_BankCode=VNPAYQR Thanh toán quét mã QR || vnp_BankCode=VNBANK Thẻ ATM - Tài khoản ngân hàng nội địa || vnp_BankCode=INTCARD Thẻ thanh toán quốc tế
+$vnp_BankCode = isset($_POST["bank_code"] ) ? $_POST["bank_code"]: ''; // vnp_BankCode=VNPAYQR Thanh toán quét mã QR || vnp_BankCode=VNBANK Thẻ ATM - Tài khoản ngân hàng nội địa || vnp_BankCode=INTCARD Thẻ thanh toán quốc tế
 $vnp_IpAddr = '127.0.0.1'; //$_SERVER['REMOTE_ADDR'];// IP của KH thực hiện giao dịch - php Lấy tự động
 
 //Add Params of 2.0.1 Version
@@ -114,14 +127,6 @@ $returnData = array(
 );
 
 echo "<script>console.log('$vnp_Url');</script>";
-
-function debug_to_console($data) {
-    $output = $data;
-    if (is_array($output))
-        $output = implode(',', $output);
-
-    echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
-}
 
 ?>
 
