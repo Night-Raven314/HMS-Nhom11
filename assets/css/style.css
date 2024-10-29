@@ -57,7 +57,7 @@
   background-color:#fff;
 }
 
-div#popupContact {
+div#popupFormContainer {
   max-width:500px;
   min-width:350px;
   position: absolute;
@@ -66,4 +66,33 @@ div#popupContact {
   transform: translate(-50%, -50%);
 }
 
+.table-float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+	background-color:#0C9;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+  
+}
 
+.mytable--float{
+	margin-top:22px;
+}
+
+/* Floating button on the right */
+.table-float-btn-container {
+  display: flex;
+  margin-top: -5px;
+  align-self: flex-end !important;
+  z-index: 200;
+}
+
+.table-float-btn {
+  align-self: flex-end !important;
+  margin-left: auto;
+}

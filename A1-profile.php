@@ -280,8 +280,8 @@
         </div>
 
         <!-- Popup Section for Form -->
-        <div id="container-popup">
-            <div id="popupContact">
+        <div id="container-popup" onclick="div_hide()">
+            <div id="popupFormContainer">
                 <div class="card">
                     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                         <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
