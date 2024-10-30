@@ -1,3 +1,10 @@
+<?php
+    session_start();
+    error_reporting(0);
+    include('L-connect.php');
+    
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +18,7 @@
     <link rel="icon" type="image/png" href="./assets/img/favicon.png">
 
     <title>
-        Hồ sơ bệnh nhân
+        Lịch hẹn kiểm tra
     </title>
 
 
@@ -64,7 +71,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="F1-schedule.php">
+                    <a class="nav-link text-white active bg-gradient-primary" href="F1-schedule.php">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">calendar_month</i>
@@ -77,7 +84,7 @@
 
 
                 <li class="nav-item">
-                    <a class="nav-link text-white active bg-gradient-primary" href="F2-user-medhist.php">
+                    <a class="nav-link text-white" href="F2-user-medhist.php">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">pending_actions</i>
@@ -185,7 +192,7 @@
             <div class="container-fluid py-1 px-3">
                 <nav aria-label="breadcrumb">
 
-                    <h6 class="font-weight-bolder mb-0">HỒ SƠ BỆNH NHÂN</h6>
+                    <h6 class="font-weight-bolder mb-0">LỊCH HẸN KIỂM TRA</h6>
 
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
@@ -209,7 +216,7 @@
 
                     <ul class="navbar-nav  justify-content-end">
 
-                        <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+                    <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
                             <!-- Right corner user section -->
                             <li class="nav-item d-flex align-items-center">
                                 <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="sign-in.php">Đăng
@@ -225,112 +232,140 @@
         </nav>
 
         <!-- End Navbar -->
-    <div class="container-fluid py-4">
+        <div class="container-fluid py-4">
       <div class="row">
         <div class="col-12">
           <div class="card my-4">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                <h6 class="text-white text-capitalize ps-3">Thông tin bệnh nhân</h6>
+                <h6 class="text-white text-capitalize ps-3">Danh sách lịch hẹn kiểm tra</h6>
               </div>
             </div>
             <div class="card-body px-0 pb-2">
               <div class="table-responsive p-0">
                 <table class="table align-items-center mb-0">
-                  <table  class="table table-bordered ">
-                    <tbody >
-                        
-                        <tr>
-                            <th scope=""style="border-top: 2px solid #003D59; border-bottom: 2px solid #003D59;">Họ và tên : </th>
-                            <td style="border:2px solid #003D59;">Nguyễn Văn A</td>
-                            <th scope=""style="border:2px solid #003D59;">Địa chỉ Email : </th>
-                            <td style="border-top: 2px solid #003D59; border-bottom: 2px solid #003D59;">anjan@gmail.com</td>
-                        </tr>
-                        <tr>
-                            <th scope=""style="border-top: 2px solid #003D59; border-bottom: 2px solid #003D59;">Số điện thoại : </th>
-                            <td style="border:2px solid #003D59;">0925009336</td>
-                            <th scope="" style="border:2px solid #003D59;">Địa chỉ : </th>
-                            <td style="border-top: 2px solid #003D59; border-bottom: 2px solid #003D59;">TP.Hồ Chí Minh</td>
-                        </tr>
-                        <tr>
-                            <th scope=""style="border-top: 2px solid #003D59; border-bottom: 2px solid #003D59;">Giới tính : </th>
-                            <td style="border:2px solid #003D59;">Nam</td>
-                            <th scope="" style="border:2px solid #003D59;">Tuổi : </th>
-                            <td style="border-top: 2px solid #003D59; border-bottom: 2px solid #003D59;">20</td>
-                        </tr>
-                        <tr>
-                            <th scope=""style="border-top: 2px solid #003D59; border-bottom: 2px solid #003D59;">Tiền sử bệnh nhân (nếu có) : </th>
-                            <td style="border:2px solid #003D59;">Bình thường</td>
-                            <th scope="" style="border:2px solid #003D59;">Ngày/Giờ hẹn khám : </th>
-                            <td style="border-top: 2px solid #003D59; border-bottom: 2px solid #003D59;">20/10/2024 16:30</td>
-                        </tr>
-                    </tbody>
-
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <div class="card my-4">
-            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-              <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                <h6 class="text-white text-capitalize ps-3"> Lịch sử kiểm tra y tế</h6>
-              </div>
-            </div>
-            <div class="card-body px-0 pb-2">
-              <div class="table-responsive p-0">
-                <table class="table align-items-center justify-content-center mb-0">
                   <thead>
                     <tr>
-                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">STT</th>
-                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Huyết áp</th>
-                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Trọng lượng</th>
-                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Lượng đường trong máu</th>
-                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Nhiệt độ cơ thể</th>
-                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Đơn thuốc</th>
-                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Ngày truy cập</th>
-                      
+                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Bác sĩ</th>
+                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Tên bệnh nhân</th>
+                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Khoa khám</th>
+                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Phí tư vấn</th>
+                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Ngày/giờ hẹn khám</th>
+                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Ngày tạo cuộc hẹn</th>
+                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Trạng thái</th>
                       
                       <th class="text-secondary opacity-7"></th>
                     </tr>
                   </thead>
-                  
-                  <tbody >
-                    
-                    
-                    
+                <tbody>
                     <tr>
                         <td class="align-middle text-center">
-                            <span class="text-xs font-weight-bold">01</span>
+                            <div class="d-flex px-2 py-1">
+                                <div class="d-flex flex-column justify-content-center">
+                                    <h6 class="mb-0 text-sm">Nguyễn Văn A</h6>
+                                </div>
+                            </div>
                         </td>
                         <td class="align-middle text-center">
-                            <p class="text-sm font-weight-bold mb-0">20</p>
+                            <div class="d-flex px-2 py-1">
+                                <div class="d-flex flex-column justify-content-center">
+                                    <h6 class="mb-0 text-sm">Nguyen Van B</h6>
+                                </div>
+                            </div>
                         </td>
                         <td class="align-middle text-center">
-                            <p class="text-sm font-weight-bold mb-0">40</p>
+                            <span class="text-xs font-weight-bold mb-0">Khoa tim mạch</span>
                         </td>
                         <td class="align-middle text-center">
-                            <p class="text-sm font-weight-bold mb-0">30</p>
+                            <p class="text-xs font-weight-bold mb-0">500000</p>
+                            <p class="text-xs text-secondary mb-0">VNĐ</p>
                         </td>
                         <td class="align-middle text-center">
-                            <p class="text-sm font-weight-bold mb-0">60</p>
+                            <span class="text-xs font-weight-bold mb-0">20/10/2024 16:30</span>
                         </td>
-                        <td class="align-middle text-center">
-                            <span class="text-xs font-weight-bold">Bình thường</span>
+                        <td class="align-middle text-center text-sm">
+                            <p class="text-xs font-weight-bold mb-0">17/10/2024</p>
                         </td>
-                        <td class="align-middle text-center">
-                            <span class="text-xs font-weight-bold">20/10/2024 16:30</span>
+                        <td class="align-middle text-center text-sm">
+                            <span class="badge badge-sm bg-gradient-success">Online</span>
                         </td>
-                        
-                        
+
+
+                    
                     </tr>
                     
-                    
-                </tbody>
+                </tbody> 
+                <?php 
+                              
+                              $sql = "SELECT  usr.full_name,
+                                              usr.email_address,
+                                              usr.contact_no,
+                                              usr.address,
+                                              usr.city,
+                                              usr.gender,
+                                              usr.created_at,
+                                              ptn.patient_age,
+                                              ptn.med_hist
+                                      FROM dim_user usr
+                                      LEFT JOIN fact_patient_details ptn
+                                      ON ptn.patient_id = usr.user_id
+                                      WHERE
+                                          -- usr.full_name = 'Pham Van Cuong'
+                                          usr.user_id =34; " ; 
+                             $result = $conn->query($sql);
+                              // Kiểm tra và hiển thị dữ liệu
+                              if ($result->num_rows > 0) {
+                                 while($row = $result->fetch_assoc()) {
+                                  
+                                 
+                                  $fullname=$row["full_name"];
+                                  $emailaddress=$row["email_address"];
+                                  $sdt=$row["contact_no"];
+                                  $address=$row["address"];
+                                  $gioitinh=$row["gender"];
+                                  $tuoi=$row["patient_age"];
+                                  $tsb=$row["med_hist"];
+                                  $created_at=$row["created_at"];
+                                  
+                                  echo"<tr>";
+                                  echo" <th>Họ và tên</th>  ";
+                                  echo "<td>$fullname</td>";
+                                  echo" <th>Địa chỉ email</th>  ";
+                                  echo "<td>$emailaddress</td>";
+                                  echo "</tr>";
+                                  echo "<tr>";
+                                  echo" <th>Số điện thoại</th>  ";
+                                  echo "<td>$sdt</td>";
+                                  echo" <th>Địa chỉ</th>  ";
+                                  echo "<td>$address</td>";
+                                  echo "</tr>";
+                                  echo" <th>Giới tính</th>  ";
+                                  echo "<td>$gioitinh</td>";
+                                  echo" <th>Tuổi</th>  ";
+                                  echo "<td>$tuoi</td>";
+                                  echo "</tr>";
+                                  echo" <th>Tiền sử bệnh (nếu có )</th>  ";
+                                  echo "<td>$tsb</td>";
+                                  echo" <th>Ngày/Giờ hẹn khám</th>  ";
+                                  echo "<td>$created_at</td>";
+                                  echo "</td>";
 
+                              } }else {
+                                  echo "Không tìm thấy người dùng.";
+                              }
+                              
+                              
+                              // Đóng kết nối
+                              
+                              
+                              
+                             
+                             
+                          
+              
+                              
+                             
+                      ?>  
                 </table>
               </div>
             </div>
@@ -352,29 +387,11 @@
             for Uni 24-25.
           </div>
         </div>
-        <div class="col-lg-6">
-          <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank">Creative Tim</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted" target="_blank">About
-                Us</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com/blog" class="nav-link text-muted" target="_blank">Blog</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted"
-                target="_blank">License</a>
-            </li>
-          </ul>
-        </div>
       </div>
     </div>
   </footer>
     </div>
-    
+
     </main>
 
 
