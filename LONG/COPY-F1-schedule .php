@@ -1,10 +1,6 @@
 <?php
     session_start();
-<<<<<<< HEAD
     error_reporting(0);
-=======
-     error_reporting(0);
->>>>>>> 842f1effd222f41f406e4214d5f8978ee7b2efa1
     include('../L-connect.php');
     
 
@@ -59,7 +55,7 @@
                 aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/material-dashboard/pages/dashboard "
                 target="_blank">
-                <img src="../assets/image/logo01-sq.png" class="navbar-brand-img h-100" alt="main_logo">
+                <img src="assets/image/logo01-sq.png" class="navbar-brand-img h-100" alt="main_logo">
                 <span class="ms-1 font-weight-bold text-white">HKL Hospital</span>
             </a>
         </div>
@@ -296,13 +292,20 @@
                                   $created_at=$row["created_at"];
                                   
                                   echo"<tr>";
-                                  echo ' <td class="align-middle text-center">
-                                            <h6 class="mb-0 text-sm">' . $dtn . '</h6>
+                                  echo '<td class="align-middle text-center">
+                                            <div class="d-flex px-2 py-1">
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-sm">' . $dtn . '</h6>
+                                                </div>
+                                            </div>
                                         </td>';
-                                        echo ' <td class="align-middle text-center">
-                                        <h6 class="mb-0 text-sm">' . $ptn . '</h6>
-                                    </td>';
-                                  
+                                  echo '<td class="align-middle text-center">
+                                            <div class="d-flex px-2 py-1">
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-sm">' . $ptn . '</h6>
+                                                </div>
+                                            </div>
+                                        </td>';
 
                                  echo ' <td class="align-middle text-center">
                                             <span class="text-xs font-weight-bold mb-0">' . $spn . '</span>
