@@ -1,6 +1,6 @@
 <?php
     session_start();
-    error_reporting(0);
+    // error_reporting(0);
     include('L-connect.php');
     
 
@@ -18,7 +18,7 @@
     <link rel="icon" type="image/png" href="./assets/img/favicon.png">
 
     <title>
-        Quản lý bệnh nhân
+        Lịch hẹn kiểm tra
     </title>
 
 
@@ -71,7 +71,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="F1-schedule.php">
+                    <a class="nav-link text-white active bg-gradient-primary" href="F1-schedule.php">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">calendar_month</i>
@@ -97,7 +97,7 @@
 
 
                 <li class="nav-item">
-                    <a class="nav-link text-white active bg-gradient-primary" href="F3-patients.php">
+                    <a class="nav-link text-white" href="F3-patients.php">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">groups</i>
@@ -192,7 +192,7 @@
             <div class="container-fluid py-1 px-3">
                 <nav aria-label="breadcrumb">
 
-                    <h6 class="font-weight-bolder mb-0">QUẢN LÝ BỆNH NHÂN</h6>
+                    <h6 class="font-weight-bolder mb-0">LỊCH HẸN KIỂM TRA</h6>
 
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
@@ -238,7 +238,7 @@
           <div class="card my-4">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                <h6 class="text-white text-capitalize ps-3">Danh sách bệnh nhân</h6>
+                <h6 class="text-white text-capitalize ps-3">Danh sách lịch hẹn kiểm tra</h6>
               </div>
             </div>
             <div class="card-body px-0 pb-2">
@@ -246,86 +246,75 @@
                 <table class="table align-items-center mb-0">
                   <thead>
                     <tr>
-                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">STT</th>
-                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Họ và Tên</th>
-                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Số điện thoại</th>
-                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Giới tính</th>
+                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Bác sĩ</th>
+                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Tên bệnh nhân</th>
+                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Khoa khám</th>
+                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Phí tư vấn</th>
                       <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Ngày hẹn khám</th>
                       <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Giờ hẹn khám</th>
                       <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Ngày tạo cuộc hẹn</th>
-                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Hành động</th>
+                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Trạng thái</th>
                       
                       <th class="text-secondary opacity-7"></th>
                     </tr>
+                    
+
                   </thead>
-               
+                
                 <?php 
                               
-                              $sql ="SELECT p.full_name AS patient_name,
-                                            p.contact_no ,
-                                            p.gender ,
-                                            a.booking_date ,
-                                            a.booking_time ,
-                                            a.created_at 
-                                        FROM 
-                                            fact_appointment a
-                                        LEFT JOIN 
-                                            dim_user p ON a.patient_id = p.user_id
-                                        WHERE 
-                                            a.doctor_id = 15
-                                        ORDER BY 
-                                            a.booking_date,a.booking_time ASC; " ; 
+                              $sql = "SELECT ptn.full_name AS patient_name,
+                                            dct.full_name AS doctor_name,
+                                            spc.specialty_name,
+                                            app.booking_date,
+                                            app.booking_time,
+                                            app.cons_fee,
+                                            app.created_at
+                                        FROM fact_appointment app
+                                        LEFT JOIN dim_user ptn ON app.patient_id = ptn.user_id
+                                        LEFT JOIN dim_user dct ON app.doctor_id = dct.user_id
+                                        LEFT JOIN dim_specialties spc ON app.specialty_id = spc.specialty_id
+                                        WHERE ptn.user_id = 34
+                                        ORDER BY app.booking_date DESC, app.booking_time DESC; " ; 
                              $result = $conn->query($sql);
                               // Kiểm tra và hiển thị dữ liệu
-                              $i = 0;
                               if ($result->num_rows > 0) {
                                  while($row = $result->fetch_assoc()) {
-                                  $i++;
+                                  
                                  
                                   $fullname=$row["full_name"];
                                   $ptn=$row["patient_name"];
-                                  $sdt=$row["contact_no"];
-                                  $gioitinh=$row["gender"];
+                                  $dtn=$row["doctor_name"];
+                                  $spn=$row["specialty_name"];
                                   $bkd=$row["booking_date"];
                                   $bkt=$row["booking_time"];
-                               
+                                  $cf=$row["cons_fee"];
                                   $created_at=$row["created_at"];
                                   
                                   echo"<tr>";
+                                  echo ' <td class="align-middle text-center">
+                                            <h6 class="mb-0 text-sm">' . $dtn . '</h6>
+                                        </td>';
+                                        echo ' <td class="align-middle text-center">
+                                        <h6 class="mb-0 text-sm">' . $ptn . '</h6>
+                                    </td>';
                                   
-                                 echo ' <td class="align-middle text-center">
-                                            <h6 class="mb-0 text-sm">' . $i . '</h6>
-                                        </td>';
-                                  echo ' <td class="align-middle text-center">
-                                            <h6 class="mb-0 text-sm">' . $ptn . '</h6>
-                                        </td>';
-
-                                 /* echo '<td class="align-middle text-center">
-                                            <div class="d-flex px-2 py-1">
-                                                <div class="d-flex flex-column justify-content-center">
-                                                    <h6 class="mb-0 text-sm">' . $ptn . '</h6>
-                                                </div>
-                                            </div>
-                                        </td>';*/
-
-                                  echo ' <td class="align-middle text-center">
-                                            <span class="text-xs font-weight-bold mb-0">' . $sdt . '</span>
-                                        </td>';
-                                 
 
                                  echo ' <td class="align-middle text-center">
-                                            <span class="text-xs font-weight-bold mb-0">' . $gioitinh . '</span>
+                                            <span class="text-xs font-weight-bold mb-0">' . $spn . '</span>
                                         </td>';
                                  
                                 echo'<td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">'.$bkd.'</p>
-                                       
+                                        <p class="text-xs font-weight-bold mb-0">'.$cf.'</p>
+                                        <p class="text-xs text-secondary mb-0">VNĐ</p>
                                     </td>';
                                  
+                                echo'<td class="align-middle text-center">
+                                        <span class="text-xs font-weight-bold mb-0">'.$bkd.'</span>
+                                    </td>';
                                 echo'<td class="align-middle text-center">
                                         <span class="text-xs font-weight-bold mb-0">'.$bkt.'</span>
                                     </td>';
-                                
                                 echo'<td class="align-middle text-center">
                                         <span class="text-xs font-weight-bold mb-0">'.$created_at.'</span>
                                     </td>';
@@ -351,7 +340,10 @@
               
                               
                              
-                      ?>  
+                      ?> 
+                      <tbody>
+                      
+                    </tbody> 
                 </table>
               </div>
             </div>
@@ -372,24 +364,6 @@
             <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Huan, Khoa and Long</a>
             for Uni 24-25.
           </div>
-        </div>
-        <div class="col-lg-6">
-          <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank">Creative Tim</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted" target="_blank">About
-                Us</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com/blog" class="nav-link text-muted" target="_blank">Blog</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted"
-                target="_blank">License</a>
-            </li>
-          </ul>
         </div>
       </div>
     </div>

@@ -318,7 +318,7 @@
                                         </td>';
                                  
                                 echo'<td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">'.$bkd.'</p>
+                                        <p class="text-xs font-weight-bold mb-0">'.$bkd.''.$bkt.'</p>
                                        
                                     </td>';
                                  

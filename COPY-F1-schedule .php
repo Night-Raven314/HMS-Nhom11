@@ -250,68 +250,32 @@
                       <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Tên bệnh nhân</th>
                       <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Khoa khám</th>
                       <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Phí tư vấn</th>
-                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Ngày/giờ hẹn khám</th>
+                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Ngày hẹn khám</th>
+                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Giờ hẹn khám</th>
                       <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Ngày tạo cuộc hẹn</th>
                       <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Trạng thái</th>
                       
                       <th class="text-secondary opacity-7"></th>
                     </tr>
+                    
+
                   </thead>
-                <tbody>
-                    <tr>
-                        <td class="align-middle text-center">
-                            <div class="d-flex px-2 py-1">
-                                <div class="d-flex flex-column justify-content-center">
-                                    <h6 class="mb-0 text-sm">Nguyễn Văn A</h6>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="align-middle text-center">
-                            <div class="d-flex px-2 py-1">
-                                <div class="d-flex flex-column justify-content-center">
-                                    <h6 class="mb-0 text-sm">Nguyen Van B</h6>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="align-middle text-center">
-                            <span class="text-xs font-weight-bold mb-0">Khoa tim mạch</span>
-                        </td>
-                        <td class="align-middle text-center">
-                            <p class="text-xs font-weight-bold mb-0">500000</p>
-                            <p class="text-xs text-secondary mb-0">VNĐ</p>
-                        </td>
-                        <td class="align-middle text-center">
-                            <span class="text-xs font-weight-bold mb-0">20/10/2024 16:30</span>
-                        </td>
-                        <td class="align-middle text-center text-sm">
-                            <p class="text-xs font-weight-bold mb-0">17/10/2024</p>
-                        </td>
-                        <td class="align-middle text-center text-sm">
-                            <span class="badge badge-sm bg-gradient-success">Online</span>
-                        </td>
-
-
-                    
-                    </tr>
-                    
-                </tbody> 
+                
                 <?php 
                               
-                              $sql = "SELECT  usr.full_name,
-                                              usr.email_address,
-                                              usr.contact_no,
-                                              usr.address,
-                                              usr.city,
-                                              usr.gender,
-                                              usr.created_at,
-                                              ptn.patient_age,
-                                              ptn.med_hist
-                                      FROM dim_user usr
-                                      LEFT JOIN fact_patient_details ptn
-                                      ON ptn.patient_id = usr.user_id
-                                      WHERE
-                                          -- usr.full_name = 'Pham Van Cuong'
-                                          usr.user_id =34; " ; 
+                              $sql = "SELECT ptn.full_name AS patient_name,
+                                            dct.full_name AS doctor_name,
+                                            spc.specialty_name,
+                                            app.booking_date,
+                                            app.booking_time,
+                                            app.cons_fee,
+                                            app.created_at
+                                        FROM fact_appointment app
+                                        LEFT JOIN dim_user ptn ON app.patient_id = ptn.user_id
+                                        LEFT JOIN dim_user dct ON app.doctor_id = dct.user_id
+                                        LEFT JOIN dim_specialties spc ON app.specialty_id = spc.specialty_id
+                                        WHERE ptn.user_id = 34
+                                        ORDER BY app.booking_date DESC, app.booking_time DESC; " ; 
                              $result = $conn->query($sql);
                               // Kiểm tra và hiển thị dữ liệu
                               if ($result->num_rows > 0) {
@@ -319,36 +283,54 @@
                                   
                                  
                                   $fullname=$row["full_name"];
-                                  $emailaddress=$row["email_address"];
-                                  $sdt=$row["contact_no"];
-                                  $address=$row["address"];
-                                  $gioitinh=$row["gender"];
-                                  $tuoi=$row["patient_age"];
-                                  $tsb=$row["med_hist"];
+                                  $ptn=$row["patient_name"];
+                                  $dtn=$row["doctor_name"];
+                                  $spn=$row["specialty_name"];
+                                  $bkd=$row["booking_date"];
+                                  $bkt=$row["booking_time"];
+                                  $cf=$row["cons_fee"];
                                   $created_at=$row["created_at"];
                                   
                                   echo"<tr>";
-                                  echo" <th>Họ và tên</th>  ";
-                                  echo "<td>$fullname</td>";
-                                  echo" <th>Địa chỉ email</th>  ";
-                                  echo "<td>$emailaddress</td>";
+                                  echo '<td class="align-middle text-center">
+                                            <div class="d-flex px-2 py-1">
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-sm">' . $dtn . '</h6>
+                                                </div>
+                                            </div>
+                                        </td>';
+                                  echo '<td class="align-middle text-center">
+                                            <div class="d-flex px-2 py-1">
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-sm">' . $ptn . '</h6>
+                                                </div>
+                                            </div>
+                                        </td>';
+
+                                 echo ' <td class="align-middle text-center">
+                                            <span class="text-xs font-weight-bold mb-0">' . $spn . '</span>
+                                        </td>';
+                                 
+                                echo'<td class="align-middle text-center">
+                                        <p class="text-xs font-weight-bold mb-0">'.$cf.'</p>
+                                        <p class="text-xs text-secondary mb-0">VNĐ</p>
+                                    </td>';
+                                 
+                                echo'<td class="align-middle text-center">
+                                        <span class="text-xs font-weight-bold mb-0">'.$bkd.'</span>
+                                    </td>';
+                                echo'<td class="align-middle text-center">
+                                        <span class="text-xs font-weight-bold mb-0">'.$bkt.'</span>
+                                    </td>';
+                                echo'<td class="align-middle text-center">
+                                        <span class="text-xs font-weight-bold mb-0">'.$created_at.'</span>
+                                    </td>';
+                                
+                                 
+                                  
+                                 
+                                  
                                   echo "</tr>";
-                                  echo "<tr>";
-                                  echo" <th>Số điện thoại</th>  ";
-                                  echo "<td>$sdt</td>";
-                                  echo" <th>Địa chỉ</th>  ";
-                                  echo "<td>$address</td>";
-                                  echo "</tr>";
-                                  echo" <th>Giới tính</th>  ";
-                                  echo "<td>$gioitinh</td>";
-                                  echo" <th>Tuổi</th>  ";
-                                  echo "<td>$tuoi</td>";
-                                  echo "</tr>";
-                                  echo" <th>Tiền sử bệnh (nếu có )</th>  ";
-                                  echo "<td>$tsb</td>";
-                                  echo" <th>Ngày/Giờ hẹn khám</th>  ";
-                                  echo "<td>$created_at</td>";
-                                  echo "</td>";
 
                               } }else {
                                   echo "Không tìm thấy người dùng.";
@@ -365,7 +347,10 @@
               
                               
                              
-                      ?>  
+                      ?> 
+                      <tbody>
+                      
+                    </tbody> 
                 </table>
               </div>
             </div>
