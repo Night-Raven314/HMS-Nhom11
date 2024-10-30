@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 08, 2024 at 05:04 PM
+-- Generation Time: Oct 30, 2024 at 03:37 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -167,7 +167,7 @@ CREATE TABLE `dim_user` (
   `full_name` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
-  `gender` varchar(50) DEFAULT NULL,
+  `gender` varchar(25) DEFAULT NULL,
   `city` varchar(255) DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL,
   `role` varchar(50) DEFAULT NULL,
@@ -217,7 +217,9 @@ INSERT INTO `dim_user` (`user_id`, `user_name`, `password`, `email_address`, `co
 (36, 'patient36', 'password123', 'patient36@example.com', 84920000036, 'Tran Van Hieu', '2024-10-07 05:44:59', NULL, 'male', 'Ho Chi Minh', '36 Nguyen Thi Minh Khai', 'patient', NULL),
 (37, 'patient37', 'password123', 'patient37@example.com', 84920000037, 'Pham Thi An', '2024-10-07 05:44:59', NULL, 'female', 'Ho Chi Minh', '37 Le Van Sy', 'patient', NULL),
 (38, 'patient38', 'password123', 'patient38@example.com', 84920000038, 'Nguyen Van Thanh', '2024-10-07 05:44:59', NULL, 'male', 'Ho Chi Minh', '38 Nguyen Trai', 'patient', NULL),
-(39, 'patient39', 'password123', 'patient39@example.com', 84920000039, 'Tran Thi Kim', '2024-10-07 05:44:59', NULL, 'female', 'Ho Chi Minh', '39 Hai Ba Trung', 'patient', NULL);
+(39, 'patient39', 'password123', 'patient39@example.com', 84920000039, 'Tran Thi Kim', '2024-10-07 05:44:59', NULL, 'female', 'Ho Chi Minh', '39 Hai Ba Trung', 'patient', NULL),
+(40, NULL, NULL, 'huan.nng25@gmail.com', NULL, 'Huan Nguyen', '2024-10-27 11:26:29', NULL, '', NULL, NULL, 'patient', NULL),
+(41, NULL, NULL, '', NULL, 'Ethan Nguyễn', '2024-10-27 11:32:23', NULL, NULL, NULL, NULL, 'patient', NULL);
 
 -- --------------------------------------------------------
 
@@ -228,7 +230,7 @@ INSERT INTO `dim_user` (`user_id`, `user_name`, `password`, `email_address`, `co
 CREATE TABLE `fact_appointment` (
   `appointment_id` int(11) NOT NULL,
   `doctor_id` int(11) DEFAULT NULL,
-  `parient_id` int(11) DEFAULT NULL,
+  `patient_id` int(11) DEFAULT NULL,
   `specialty_id` int(11) DEFAULT NULL,
   `cons_fee` int(11) DEFAULT NULL,
   `booking_date` varchar(255) DEFAULT NULL,
@@ -240,6 +242,52 @@ CREATE TABLE `fact_appointment` (
   `doctor_status` int(11) DEFAULT NULL,
   `patient_status` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `fact_appointment`
+--
+
+INSERT INTO `fact_appointment` (`appointment_id`, `doctor_id`, `patient_id`, `specialty_id`, `cons_fee`, `booking_date`, `booking_time`, `created_at`, `updated_at`, `city`, `address`, `doctor_status`, `patient_status`) VALUES
+(1, 13, 25, 4, 450000, '01/08/2024', '09:30 am', '2024-10-10 15:40:44', NULL, 'Ho Chi Minh', '13 Vo Thi Sau', 1, 1),
+(2, 16, 28, 7, 480000, '03/08/2024', '11:00 am', '2024-10-10 15:40:44', NULL, 'Ho Chi Minh', '16 Tran Hung Dao', 1, 1),
+(3, 12, 20, 3, 400000, '05/08/2024', '02:15 pm', '2024-10-10 15:40:44', NULL, 'Ho Chi Minh', '12 Nguyen Trai', 1, 1),
+(4, 15, 24, 6, 390000, '07/08/2024', '04:45 pm', '2024-10-10 15:40:44', NULL, 'Ho Chi Minh', '15 Le Lai', 1, 1),
+(5, 18, 32, 9, 410000, '09/08/2024', '08:00 am', '2024-10-10 15:40:44', NULL, 'Ho Chi Minh', '18 Le Duan', 1, 1),
+(6, 14, 23, 5, 420000, '11/08/2024', '10:00 am', '2024-10-10 15:40:44', NULL, 'Ho Chi Minh', '14 Hai Ba Trung', 1, 1),
+(7, 17, 30, 8, 460000, '13/08/2024', '01:30 pm', '2024-10-10 15:40:44', NULL, 'Ho Chi Minh', '17 Nguyen Thi Minh Khai', 1, 1),
+(8, 11, 31, 2, 370000, '15/08/2024', '05:00 pm', '2024-10-10 15:40:44', NULL, 'Ho Chi Minh', '11 Le Van Sy', 1, 1),
+(9, 10, 21, 1, 350000, '17/08/2024', '06:15 pm', '2024-10-10 15:40:44', NULL, 'Ho Chi Minh', '10 Phan Xich Long', 1, 1),
+(10, 19, 22, 10, 500000, '19/08/2024', '07:00 am', '2024-10-10 15:40:44', NULL, 'Ho Chi Minh', '19 Dong Khoi', 1, 1),
+(11, 14, 29, 5, 420000, '21/08/2024', '11:45 am', '2024-10-10 15:40:44', NULL, 'Ho Chi Minh', '14 Hai Ba Trung', 1, 1),
+(12, 13, 33, 4, 450000, '23/08/2024', '12:30 pm', '2024-10-10 15:40:44', NULL, 'Ho Chi Minh', '13 Vo Thi Sau', 1, 1),
+(13, 15, 26, 6, 390000, '25/08/2024', '09:00 am', '2024-10-10 15:40:44', NULL, 'Ho Chi Minh', '15 Le Lai', 1, 1),
+(14, 18, 35, 9, 410000, '27/08/2024', '02:00 pm', '2024-10-10 15:40:44', NULL, 'Ho Chi Minh', '18 Le Duan', 1, 1),
+(15, 17, 27, 8, 460000, '29/08/2024', '04:30 pm', '2024-10-10 15:40:44', NULL, 'Ho Chi Minh', '17 Nguyen Thi Minh Khai', 1, 1),
+(16, 12, 36, 3, 400000, '31/08/2024', '03:00 pm', '2024-10-10 15:40:44', NULL, 'Ho Chi Minh', '12 Nguyen Trai', 1, 1),
+(17, 10, 34, 1, 350000, '02/09/2024', '10:30 am', '2024-10-10 15:40:44', NULL, 'Ho Chi Minh', '10 Phan Xich Long', 1, 1),
+(18, 11, 28, 2, 370000, '04/09/2024', '02:45 pm', '2024-10-10 15:40:44', NULL, 'Ho Chi Minh', '11 Le Van Sy', 1, 1),
+(19, 16, 37, 7, 480000, '06/09/2024', '09:30 am', '2024-10-10 15:40:44', NULL, 'Ho Chi Minh', '16 Tran Hung Dao', 1, 1),
+(20, 19, 38, 10, 500000, '08/09/2024', '01:00 pm', '2024-10-10 15:40:44', NULL, 'Ho Chi Minh', '19 Dong Khoi', 1, 1),
+(21, 13, 22, 4, 450000, '10/09/2024', '11:15 am', '2024-10-10 15:40:44', NULL, 'Ho Chi Minh', '13 Vo Thi Sau', 1, 1),
+(22, 12, 24, 3, 400000, '12/09/2024', '05:30 pm', '2024-10-10 15:40:44', NULL, 'Ho Chi Minh', '12 Nguyen Trai', 1, 1),
+(23, 15, 31, 6, 390000, '14/09/2024', '07:00 am', '2024-10-10 15:40:44', NULL, 'Ho Chi Minh', '15 Le Lai', 1, 1),
+(24, 16, 21, 7, 480000, '16/09/2024', '08:45 am', '2024-10-10 15:40:44', NULL, 'Ho Chi Minh', '16 Tran Hung Dao', 1, 1),
+(25, 11, 39, 2, 370000, '18/09/2024', '12:15 pm', '2024-10-10 15:40:44', NULL, 'Ho Chi Minh', '11 Le Van Sy', 1, 1),
+(26, 10, 35, 1, 350000, '20/09/2024', '02:00 pm', '2024-10-10 15:40:44', NULL, 'Ho Chi Minh', '10 Phan Xich Long', 1, 1),
+(27, 14, 30, 5, 420000, '22/09/2024', '03:30 pm', '2024-10-10 15:40:44', NULL, 'Ho Chi Minh', '14 Hai Ba Trung', 1, 1),
+(28, 17, 36, 8, 460000, '24/09/2024', '05:45 pm', '2024-10-10 15:40:44', NULL, 'Ho Chi Minh', '17 Nguyen Thi Minh Khai', 1, 1),
+(29, 18, 32, 9, 410000, '26/09/2024', '06:15 pm', '2024-10-10 15:40:44', NULL, 'Ho Chi Minh', '18 Le Duan', 1, 1),
+(30, 19, 23, 10, 500000, '28/09/2024', '07:00 am', '2024-10-10 15:40:44', NULL, 'Ho Chi Minh', '19 Dong Khoi', 1, 1),
+(31, 16, 38, 7, 480000, '30/09/2024', '09:00 am', '2024-10-10 15:40:44', NULL, 'Ho Chi Minh', '16 Tran Hung Dao', 1, 1),
+(32, 12, 27, 3, 400000, '02/10/2024', '11:00 am', '2024-10-10 15:40:44', NULL, 'Ho Chi Minh', '12 Nguyen Trai', 1, 1),
+(33, 15, 28, 6, 390000, '04/10/2024', '02:30 pm', '2024-10-10 15:40:44', NULL, 'Ho Chi Minh', '15 Le Lai', 1, 1),
+(34, 14, 39, 5, 420000, '06/10/2024', '04:00 pm', '2024-10-10 15:40:44', NULL, 'Ho Chi Minh', '14 Hai Ba Trung', 1, 1),
+(35, 13, 34, 4, 450000, '08/10/2024', '06:00 pm', '2024-10-10 15:40:44', NULL, 'Ho Chi Minh', '13 Vo Thi Sau', 1, 1),
+(36, 11, 26, 2, 370000, '10/10/2024', '08:15 am', '2024-10-10 15:40:44', NULL, 'Ho Chi Minh', '11 Le Van Sy', 1, 1),
+(37, 10, 29, 1, 350000, '11/10/2024', '09:45 am', '2024-10-10 15:40:44', NULL, 'Ho Chi Minh', '10 Phan Xich Long', 1, 1),
+(38, 18, 37, 9, 410000, '12/10/2024', '11:00 am', '2024-10-10 15:40:44', NULL, 'Ho Chi Minh', '18 Le Duan', 1, 1),
+(39, 19, 25, 10, 500000, '13/10/2024', '03:45 pm', '2024-10-10 15:40:44', NULL, 'Ho Chi Minh', '19 Dong Khoi', 1, 1),
+(40, 17, 20, 8, 460000, '14/10/2024', '05:15 pm', '2024-10-10 15:40:44', NULL, 'Ho Chi Minh', '17 Nguyen Thi Minh Khai', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -493,13 +541,13 @@ ALTER TABLE `dim_specialties`
 -- AUTO_INCREMENT for table `dim_user`
 --
 ALTER TABLE `dim_user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `fact_appointment`
 --
 ALTER TABLE `fact_appointment`
-  MODIFY `appointment_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `appointment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `fact_med_hist`

@@ -19,20 +19,52 @@ $vnp_TmnCode = vnpay_terminal_id;
 $vnp_HashSecret = vnpay_secret_key;
 
 // // Order Informations
-// $vnp_TxnRef = $_POST['order_id']; //Mã đơn hàng trên hệ thống
-// $vnp_OrderInfo = $_POST['order_desc']; // Mô tả nội dung thanh toán, không dấu, không ký tự đặc biệt
+// $vnp_TxnRef = $_POST['payment_id']; //Mã đơn hàng trên hệ thống
+// $vnp_OrderInfo = $_POST['payment_desc']; // Mô tả nội dung thanh toán, không dấu, không ký tự đặc biệt
 // $vnp_OrderType = 'other'; // Danh mục hàng hoá - Không có doc, mặc định là other
 // $vnp_Amount = $_POST['amount'] * 100; // Giá trị đơn hàng x100 (Ví dụ đơn 10000 thì gửi dữ liệu 1000000)
 // $vnp_Locale = 'vn'; // Set ngôn ngữ
 // $vnp_BankCode = $_POST['bank_code']; // vnp_BankCode=VNPAYQR Thanh toán quét mã QR || vnp_BankCode=VNBANK Thẻ ATM - Tài khoản ngân hàng nội địa || vnp_BankCode=INTCARD Thẻ thanh toán quốc tế
 // $vnp_IpAddr = '127.0.0.1'; //$_SERVER['REMOTE_ADDR'];// IP của KH thực hiện giao dịch - php Lấy tự động
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    // username and password sent from form 
+    $form_payment_type = mysqli_real_escape_string($conn, $_POST['payment_type']);
+    $form_reference_id = mysqli_real_escape_string($conn, $_POST['reference_id']);
+    $form_payment_amount = mysqli_real_escape_string($conn, $_POST['amount']);
+    $form_payment_desc = mysqli_real_escape_string($conn, $_POST['payment_desc']);
+  
+    $sql = "INSERT INTO `fact_payment` (payment_type, reference_id, amount, payment_desc, payment_status) VALUES ('$form_payment_type', $form_reference_id, $form_payment_amount, '$form_payment_desc', 'pending')";
+    $payment_log = mysqli_query($conn, $sql);
+    $log_payment_id = mysqli_insert_id($conn);
+    echo "<script>console.log('$log_payment_id');</script>";
+  
+    $payment_get = "SELECT * FROM `fact_payment` WHERE `payment_id` = $log_payment_id";
+    $payment_info_get = mysqli_query($conn, $payment_get);
+    $payment_data = mysqli_fetch_assoc($payment_info_get);
+
+    $count = mysqli_num_rows($payment_info_get);
+  
+    if ($count == 1) {
+        // Assign payment data for VN Pay
+        // Custom Order Info
+        $payment_id = $payment_data['payment_id']; // Mã thanh toán
+        $payment_type = $payment_data['payment_type']; // Loại thanh toán appointment || prescription
+        $reference_id = $payment_data['reference_id']; // Tham chiếu mục đích thanh toán
+        $payment_amount = $payment_data['amount']; // Giá trị thanh toán
+        $payment_desc = $payment_data['payment_desc']; // Mô tả thanh toán
+    } else {
+      $error = "Data retrieval failed";
+    }
+  }
+
+$payment_amount_temp = isset($payment_amount ) ? $payment_amount: '';
 // Order Informations
-$vnp_TxnRef = isset($_POST["order_id"] ) ? $_POST["order_id"]: ''; //Mã đơn hàng trên hệ thống
-$vnp_OrderInfo = isset($_POST["order_desc"] ) ? $_POST["order_desc"]: ''; // Mô tả nội dung thanh toán, không dấu, không ký tự đặc biệt
+$vnp_TxnRef = isset($payment_id ) ? $payment_id: ''; //Mã đơn hàng trên hệ thống
+$vnp_OrderInfo = isset($payment_desc ) ? $payment_desc: ''; // Mô tả nội dung thanh toán, không dấu, không ký tự đặc biệt
 $vnp_OrderType = 'other'; // Danh mục hàng hoá - Không có doc, mặc định là other
-$vnp_Amount_Temp = isset($_POST["amount"] ) ? $_POST["amount"]: '';
-$vnp_Amount = (int)$vnp_Amount_Temp * 100; // Giá trị đơn hàng x100 (Ví dụ đơn 10000 thì gửi dữ liệu 1000000)
+$vnp_Amount = (int)$payment_amount_temp * 100; // Giá trị đơn hàng x100 (Ví dụ đơn 10000 thì gửi dữ liệu 1000000)
 $vnp_Locale = 'vn'; // Set ngôn ngữ
 $vnp_BankCode = isset($_POST["bank_code"] ) ? $_POST["bank_code"]: ''; // vnp_BankCode=VNPAYQR Thanh toán quét mã QR || vnp_BankCode=VNBANK Thẻ ATM - Tài khoản ngân hàng nội địa || vnp_BankCode=INTCARD Thẻ thanh toán quốc tế
 $vnp_IpAddr = '127.0.0.1'; //$_SERVER['REMOTE_ADDR'];// IP của KH thực hiện giao dịch - php Lấy tự động
@@ -177,16 +209,20 @@ echo "<script>console.log('$vnp_Url');</script>";
                             <div class="card-body">
                                 <form name="auth_form" role="form" class="text-start" method="POST">
                                     <div class="input-group input-group-outline my-3">
-                                        <label class="form-label">Mã đơn hàng</label>
-                                        <input name="order_id" id="order_id" class="form-control">
-                                    </div>
-                                    <div class="input-group input-group-outline mb-3">
-                                        <label class="form-label">Nội dung</label>
-                                        <input name="order_desc" id="order_desc" class="form-control">
+                                        <label class="form-label">Loại đơn hàng</label>
+                                        <input name="payment_type" id="payment_type" class="form-control">
                                     </div>
                                     <div class="input-group input-group-outline my-3">
                                         <label class="form-label">Giá trị</label>
                                         <input name="amount" id="amount" class="form-control">
+                                    </div>
+                                    <div class="input-group input-group-outline mb-3">
+                                        <label class="form-label">Nội dung</label>
+                                        <input name="payment_desc" id="payment_desc" class="form-control">
+                                    </div>
+                                    <div class="input-group input-group-outline mb-3">
+                                        <label class="form-label">Tham chiếu hệ thống</label>
+                                        <input name="reference_id" id="reference_id" class="form-control">
                                     </div>
                                     <div class="input-group input-group-outline mb-3">
                                         <label class="form-label">Phương thức</label>
