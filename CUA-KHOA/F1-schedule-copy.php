@@ -213,7 +213,7 @@
                                 <!-- Right corner user section -->
                             </li>
                             <li class="nav-item d-flex align-items-center">
-                                <a class="btn btn-primary btn-sm mb-0 me-3" onclick="div_show('register-popup')">Đăng kí</a>
+                                <a href="javascript:void(0);" class="btn btn-primary btn-sm mb-0 me-3" onclick="div_show('register-popup')">Đăng kí</a>
                             </li>
 
 
@@ -252,7 +252,7 @@
                                                 <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Ngày tạo cuộc hẹn</th>
                                                 <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Trạng thái</th>
                                                 <th class="text-secondary opacity-7 text-center">
-                                                    <a class="btn btn-primary btn-sm mb-0 me-3" onclick="div_show('edit-popup')">Edit</a>
+                                                    <a href="javascript:void(0);" class="btn btn-primary btn-sm mb-0 me-3" onclick="div_show('edit-popup')">Edit</a>
                                                 </th>
                                                 <th class=" text-secondary opacity-7">
                                                 </th>

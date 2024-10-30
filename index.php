@@ -104,10 +104,10 @@
                             <!-- Right corner user section -->
                         </li>
                         <li class="nav-item d-flex align-items-center">
-                            <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="sign-in.php">Đăng nhập</a>
+                            <a class="btn btn-outline-primary btn-sm mb-0 me-3" href="sign-in.php">Đăng nhập</a>
                         </li>
                         <li class="nav-item d-flex align-items-center">
-                            <a class="btn bg-gradient-primary btn-sm mb-0 me-3" target="_blank" href="sign-up.php">Đăng ký</a>
+                            <a class="btn bg-gradient-primary btn-sm mb-0 me-3" href="sign-up.php">Đăng ký</a>
                         </li>
                         </li>
 
