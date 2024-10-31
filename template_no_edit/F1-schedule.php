@@ -1,42 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT']);
+
+include('sess-check.php');
+include SITE_ROOT . ('/HMS-Nhom11/assets/include/config.php');
+include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
+?>
 
 <head>
-
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="./assets/img/favicon.png">
-
     <title>
-        Lịch hẹn kiểm tra
+        Default
     </title>
-
-
-    <!--     Fonts and icons     -->
-    <link rel="stylesheet" type="text/css"
-        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
-
-    <!-- Nucleo Icons -->
-    <link href="assets/css/nucleo-icons.css" rel="stylesheet" />
-    <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
-
-    <!-- Font Awesome Icons -->
-    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-
-    <!-- Material Icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
-
-    <!-- CSS Files -->
-    <link id="pagestyle" href="assets/css/material_dash.css" rel="stylesheet" />
-
 </head>
 
 <!-- Side Nav -->
 
 <body class="g-sidenav-show"
-    style="background-image: url('./assets/image/Hospital_Seamless1.png'); background-size: 400px 400px;">
+    style="background-image: url('http://localhost/HMS-Nhom11/assets/image/Hospital_Seamless1.png'); background-size: 400px 400px;">
 
     <aside
         class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 bg-gradient-dark"
@@ -47,7 +26,8 @@
                 aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/material-dashboard/pages/dashboard "
                 target="_blank">
-                <img src="assets/image/logo01-sq.png" class="navbar-brand-img h-100" alt="main_logo">
+                <img src="http://localhost/HMS-Nhom11/assets/image/logo01-sq.png" class="navbar-brand-img h-100"
+                    alt="main_logo">
                 <span class="ms-1 font-weight-bold text-white">HKL Hospital</span>
             </a>
         </div>
@@ -208,12 +188,12 @@
 
                     <ul class="navbar-nav  justify-content-end">
 
-                    <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+                        <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
                             <!-- Right corner user section -->
-                            <li class="nav-item d-flex align-items-center">
-                                <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="sign-in.php">Đăng
-                                    xuất</a>
-                            </li>
+                        <li class="nav-item d-flex align-items-center">
+                            <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="sign-in.php">Đăng
+                                xuất</a>
+                        </li>
                         </li>
 
                         <li class="nav-item d-flex align-items-center">
@@ -225,93 +205,114 @@
 
         <!-- End Navbar -->
         <div class="container-fluid py-4">
-      <div class="row">
-        <div class="col-12">
-          <div class="card my-4">
-            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-              <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                <h6 class="text-white text-capitalize ps-3">Danh sách lịch hẹn kiểm tra</h6>
-              </div>
-            </div>
-            <div class="card-body px-0 pb-2">
-              <div class="table-responsive p-0">
-                <table class="table align-items-center mb-0">
-                  <thead>
-                    <tr>
-                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Bác sĩ</th>
-                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Tên bệnh nhân</th>
-                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Khoa khám</th>
-                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Phí tư vấn</th>
-                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Ngày/giờ hẹn khám</th>
-                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Ngày tạo cuộc hẹn</th>
-                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Trạng thái</th>
-                      
-                      <th class="text-secondary opacity-7"></th>
-                    </tr>
-                  </thead>
-                <tbody>
-                    <tr>
-                        <td class="align-middle text-center">
-                            <div class="d-flex px-2 py-1">
-                                <div class="d-flex flex-column justify-content-center">
-                                    <h6 class="mb-0 text-sm">Nguyễn Văn A</h6>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card my-4">
+                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                            <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                                <h6 class="text-white text-capitalize ps-3" style="float: left;">Danh sách lịch hẹn kiểm
+                                    tra</h6>
+                                <div class="table-float-btn-container">
+                                    <a class="table-float-btn btn btn-outline-primary btn-sm mb-0 me-3"
+                                        style="background: #ffffff" target="_blank" href="sign-in.php">Đăng ký</a>
                                 </div>
                             </div>
-                        </td>
-                        <td class="align-middle text-center">
-                            <div class="d-flex px-2 py-1">
-                                <div class="d-flex flex-column justify-content-center">
-                                    <h6 class="mb-0 text-sm">Nguyen Van B</h6>
-                                </div>
+
+                        </div>
+                        <div class="card-body px-0 pb-2">
+                            <div class="table-responsive p-0">
+                                <table class="table align-items-center mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
+                                                Bác sĩ</th>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
+                                                Tên bệnh nhân</th>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
+                                                Khoa khám</th>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
+                                                Phí tư vấn</th>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
+                                                Ngày/giờ hẹn khám</th>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
+                                                Ngày tạo cuộc hẹn</th>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
+                                                Trạng thái</th>
+
+                                            <th class="text-secondary opacity-7"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="align-middle text-center">
+                                                <div class="d-flex px-2 py-1">
+                                                    <div class="d-flex flex-column justify-content-center">
+                                                        <h6 class="mb-0 text-sm">Nguyễn Văn A</h6>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <div class="d-flex px-2 py-1">
+                                                    <div class="d-flex flex-column justify-content-center">
+                                                        <h6 class="mb-0 text-sm">Nguyen Van B</h6>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <span class="text-xs font-weight-bold mb-0">Khoa tim mạch</span>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <p class="text-xs font-weight-bold mb-0">500000</p>
+                                                <p class="text-xs text-secondary mb-0">VNĐ</p>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <span class="text-xs font-weight-bold mb-0">20/10/2024 16:30</span>
+                                            </td>
+                                            <td class="align-middle text-center text-sm">
+                                                <p class="text-xs font-weight-bold mb-0">17/10/2024</p>
+                                            </td>
+                                            <td class="align-middle text-center text-sm">
+                                                <span class="badge badge-sm bg-gradient-success">Online</span>
+                                            </td>
+
+
+
+                                        </tr>
+
+                                    </tbody>
+                                </table>
                             </div>
-                        </td>
-                        <td class="align-middle text-center">
-                            <span class="text-xs font-weight-bold mb-0">Khoa tim mạch</span>
-                        </td>
-                        <td class="align-middle text-center">
-                            <p class="text-xs font-weight-bold mb-0">500000</p>
-                            <p class="text-xs text-secondary mb-0">VNĐ</p>
-                        </td>
-                        <td class="align-middle text-center">
-                            <span class="text-xs font-weight-bold mb-0">20/10/2024 16:30</span>
-                        </td>
-                        <td class="align-middle text-center text-sm">
-                            <p class="text-xs font-weight-bold mb-0">17/10/2024</p>
-                        </td>
-                        <td class="align-middle text-center text-sm">
-                            <span class="badge badge-sm bg-gradient-success">Online</span>
-                        </td>
-
-
-                    
-                    </tr>
-                    
-                </tbody>  
-                </table>
-              </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
+
+            <footer class="footer py-4  ">
+                <div class="container-fluid">
+                    <div class="row align-items-center justify-content-lg-between">
+                        <div class="col-lg-6 mb-lg-0 mb-4">
+                            <div class="copyright text-center text-sm text-muted text-lg-start">
+                                ©
+                                <script>
+                                    document.write(new Date().getFullYear())
+                                </script>,
+                                made with <i class="fa fa-heart"></i> by
+                                <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Huan,
+                                    Khoa and Long</a>
+                                for Uni 24-25.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </div>
-      </div>
-       
-<footer class="footer py-4  ">
-    <div class="container-fluid">
-      <div class="row align-items-center justify-content-lg-between">
-        <div class="col-lg-6 mb-lg-0 mb-4">
-          <div class="copyright text-center text-sm text-muted text-lg-start">
-            ©
-            <script>
-              document.write(new Date().getFullYear())
-            </script>,
-            made with <i class="fa fa-heart"></i> by
-            <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Huan, Khoa and Long</a>
-            for Uni 24-25.
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
-    </div>
 
     </main>
 
@@ -321,10 +322,10 @@
 
 
     <!--   Core JS Files   -->
-    <script src="./assets/js/core/popper.min.js"></script>
-    <script src="./assets/js/core/bootstrap.min.js"></script>
-    <script src="./assets/js/plugins/perfect-scrollbar.min.js"></script>
-    <script src="./assets/js/plugins/smooth-scrollbar.min.js"></script>
+    <script src="http://localhost/HMS-Nhom11/assets/js/core/popper.min.js"></script>
+    <script src="http://localhost/HMS-Nhom11/assets/js/core/bootstrap.min.js"></script>
+    <script src="http://localhost/HMS-Nhom11/assets/js/plugins/perfect-scrollbar.min.js"></script>
+    <script src="http://localhost/HMS-Nhom11/assets/js/plugins/smooth-scrollbar.min.js"></script>
 
 
 
@@ -343,7 +344,7 @@
 
 
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="assets/js/material-dashboard.min.js"></script>
+    <script src="http://localhost/HMS-Nhom11/assets/js/material-dashboard.min.js"></script>
 </body>
 
 </html>
