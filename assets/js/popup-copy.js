@@ -1,18 +1,31 @@
-// CAI NAY CUA KHOA 
-
 // Function To Display Popup
 function div_show(popupId) {
-  // Ẩn tất cả popup
-  document.getElementById("edit-popup").style.display = "none";
-  document.getElementById("register-popup").style.display = "none";
-  
+  // Mảng chứa các ID của popup mà bạn có thể cần ẩn
+  const popupIds = ["edit-popup", "register-popup", "container-popup"];
 
-  // Hiển thị popup được chỉ định
-  document.getElementById(popupId).style.display = "block";
+  // Duyệt qua tất cả các ID để ẩn popup tương ứng nếu tồn tại trên trang
+  popupIds.forEach((id) => {
+    const popup = document.getElementById(id);
+    if (popup) {
+      popup.style.display = "none"; // Ẩn popup nếu tìm thấy
+    }
+  });
+
+  // Hiển thị popup được chỉ định nếu tồn tại trên trang
+  const targetPopup = document.getElementById(popupId);
+  if (targetPopup) {
+    targetPopup.style.display = "block";
+  } else {
+    console.warn(`Popup with ID '${popupId}' not found on this page.`);
+  }
 }
 
 // Function to Hide Popup
 function div_hide(popupId) {
-  document.getElementById(popupId).style.display = "none";
+  const popup = document.getElementById(popupId);
+  if (popup) {
+    popup.style.display = "none";
+  } else {
+    console.warn(`Popup with ID '${popupId}' not found on this page.`);
+  }
 }
-

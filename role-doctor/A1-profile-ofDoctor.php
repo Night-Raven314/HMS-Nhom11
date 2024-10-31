@@ -49,8 +49,8 @@ $conn->close();
         href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
 
     <!-- Nucleo Icons -->
-    <link href="assets/css/nucleo-icons.css" rel="stylesheet" />
-    <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
+    <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
+    <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
 
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
@@ -78,7 +78,7 @@ $conn->close();
                 aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/material-dashboard/pages/dashboard "
                 target="_blank">
-                <img src="assets/image/logo01-sq.png" class="navbar-brand-img h-100" alt="main_logo">
+                <img src="../assets/image/logo01-sq.png" class="navbar-brand-img h-100" alt="main_logo">
                 <span class="ms-1 font-weight-bold text-white">HKL Hospital</span>
             </a>
         </div>
@@ -94,7 +94,7 @@ $conn->close();
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="F1-schedule.php">
+                    <a class="nav-link text-white" href="../role-doctor/F1-schedule-ofDoctor.php">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">calendar_month</i>
@@ -120,7 +120,7 @@ $conn->close();
 
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="F3-patients.php">
+                    <a class="nav-link text-white" href="../role-doctor/F3-patients-ofDoctor.php">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">groups</i>
@@ -151,7 +151,7 @@ $conn->close();
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-white active bg-gradient-primary" href="A1-profile.php">
+                    <a class="nav-link text-white active bg-gradient-primary" href="../role-doctor/A1-profile-ofDoctor.php">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">person</i>
@@ -283,7 +283,7 @@ $conn->close();
                     <div class="col-auto" style="margin-left: auto; margin-right: 10px;">
                         <div class="text-center">
                             <button type="button" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0"
-                                title="Edit Profile" onclick="div_show()">Cập nhật</button>
+                                title="Edit Profile" onclick="div_show('container-popup')">Cập nhật</button>
                         </div>
                     </div>
                     <div class="card-header pb-0 p-3">
@@ -351,7 +351,7 @@ $conn->close();
         </div> -->
 
         <!-- Popup Section for Form -->
-        <div id="edit-popup" class="popup" style="display: none;" onclick="div_hide('edit-popup')">
+        <div id="container-popup" class="popup" style="display: none;" onclick="div_hide('container-popup')">
             <div id="popupFormContainer" onclick="event.stopPropagation()"> <!-- Ngăn sự kiện click nổi bọt -->
                 <div class="card">
                     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
