@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <?php
 //error_reporting(0);
 
-define('SITE_ROOT', __DIR__);
+define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT']);
 
-include SITE_ROOT . ('/assets/include/config.php');
+include SITE_ROOT . ('/HMS-Nhom11/assets/include/config.php');
+include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
+
 require_once SITE_ROOT . ('/assets/vendor/google-oauth/vendor/autoload.php');
 
 session_start();
