@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION['auth_user_id'] = $row['user_id'];
     $_SESSION['auth_user_role'] = $row['role'];
     $_SESSION['auth_login_type'] = 'manual';
-    header('Refresh:0 , url=http://localhost/HMS-Nhom11/redirect.php');
+    header('Refresh:0 , url=http://localhost/HMS-Nhom11/assets/include/redirect.php');
   } else {
     $error = "Your Login Name or Password is invalid";
   }

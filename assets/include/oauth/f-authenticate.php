@@ -73,7 +73,7 @@ try {
         $_SESSION['auth_user_role'] = $new_row['role'];
         $_SESSION['auth_login_type'] = 'facebook_oauth';
 
-        header('Refresh:0 , url=http://localhost/HMS-Nhom11/redirect.php');
+        header('Refresh:0 , url=http://localhost/HMS-Nhom11/assets/include/redirect.php');
     } else {
         $old_row = mysqli_fetch_assoc($user_info);
 
@@ -83,7 +83,7 @@ try {
         $_SESSION['auth_user_role'] = $old_row['role'];
         $_SESSION['auth_login_type'] = 'facebook_oauth';
 
-        header('Refresh:0 , url=http://localhost/HMS-Nhom11/redirect.php');
+        header('Refresh:0 , url=http://localhost/HMS-Nhom11/assets/include/redirect.php');
     }
 
 } catch (Facebook\Exceptions\FacebookResponseException $e) {

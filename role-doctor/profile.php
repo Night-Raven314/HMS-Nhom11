@@ -1,14 +1,12 @@
-
-<?php
-    session_start();
-    error_reporting(0);
-    include('../L-connect.php');
-    
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
+
+<?php
+define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT']);
+
+include SITE_ROOT . ('/HMS-Nhom11/assets/include/config.php');
+include('sess-check.php');
+?>
 
 <head>
 
@@ -19,7 +17,7 @@
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
 
     <title>
-        Thông tin người dùng
+        Thông tin cá nhân
     </title>
 
 
@@ -73,7 +71,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="F1-schedule.php">
+                    <a class="nav-link text-white" href="schedule.php">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">calendar_month</i>
@@ -86,20 +84,7 @@
 
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="F2-user-medhist.php">
-
-                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">pending_actions</i>
-                            <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
-                        </div>
-
-                        <span class="nav-link-text ms-1">Hồ sơ sức khoẻ</span>
-                    </a>
-                </li>
-
-
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="F3-patients.php">
+                    <a class="nav-link text-white" href="patient.php">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">groups</i>
@@ -110,27 +95,13 @@
                     </a>
                 </li>
 
-
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="">
-
-                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">description</i>
-                            <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
-                        </div>
-
-                        <span class="nav-link-text ms-1">Function 4</span>
-                    </a>
-                </li>
-
-
                 <li class="nav-item mt-3">
                     <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Quản trị
                     </h6>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-white active bg-gradient-primary" href="A1-profile.php">
+                    <a class="nav-link text-white active bg-gradient-primary" href="profile.php">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">person</i>
@@ -138,45 +109,6 @@
                         </div>
 
                         <span class="nav-link-text ms-1">Thông tin cá nhân</span>
-                    </a>
-                </li>
-
-
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="A2-admin-user.php">
-
-                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">badge</i>
-                            <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
-                        </div>
-
-                        <span class="nav-link-text ms-1">Quản lý người dùng</span>
-                    </a>
-                </li>
-
-
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="A3-supply.php">
-
-                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">medication</i>
-                            <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
-                        </div>
-
-                        <span class="nav-link-text ms-1">Quản lý vật tư</span>
-                    </a>
-                </li>
-
-
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="A4-speciality.php">
-
-                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">local_hospital</i>
-                            <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
-                        </div>
-
-                        <span class="nav-link-text ms-1">Quản lý chuyên khoa</span>
                     </a>
                 </li>
 
@@ -223,8 +155,8 @@
                         <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
                             <!-- Right corner user section -->
                         <li class="nav-item d-flex align-items-center">
-                            <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="sign-in.php">Đăng
-                                xuất</a>
+                            <a class="btn btn-outline-primary btn-sm mb-0 me-3"
+                                href="../assets/include/log-out.php">Đăng xuất</a>
                         </li>
                         </l>
 
@@ -252,9 +184,9 @@
                                 class="w-100 border-radius-lg shadow-sm">
                         </div>
                     </div>
-                    <?php 
-                              
-                              $sql ="SELECT full_name, 
+                    <?php
+
+                    $sql = "SELECT full_name, 
                                             role, 
                                             contact_no, 
                                             address,
@@ -263,38 +195,38 @@
                                         FROM 
                                             dim_user
                                         WHERE 
-                                            user_id = 16; " ; 
-                             $result = $conn->query($sql);
-                              // Kiểm tra và hiển thị dữ liệu
-                              if ($result->num_rows > 0) {
-                                $roleMapping = [
-                                    "doctor" => "Bác sĩ",
-                                    "admin" => "Quản trị viên",
-                                    "patient" => "Bệnh nhân"
-                                ];
-                                 while($row = $result->fetch_assoc()) {
-                                    $role = isset($roleMapping[$row["role"]]) ? $roleMapping[$row["role"]] : $row["role"];
-                                 
-                                  $full_name=$row["full_name"];
-                                 
-                                  $sdt=$row["contact_no"];
-                                  $address=$row["address"];
-                                  $emailaddress=$row["email_address"];
-                                  $city=$row["city"];
-                                  
-                                  
-                                  echo"<tr>";
-                                  echo'<div class="col-auto my-auto">
+                                            user_id = $auth_user_id; ";
+                    $result = $conn->query($sql);
+                    // Kiểm tra và hiển thị dữ liệu
+                    if ($result->num_rows > 0) {
+                        $roleMapping = [
+                            "doctor" => "Bác sĩ",
+                            "admin" => "Quản trị viên",
+                            "patient" => "Bệnh nhân"
+                        ];
+                        while ($row = $result->fetch_assoc()) {
+                            $role = isset($roleMapping[$row["role"]]) ? $roleMapping[$row["role"]] : $row["role"];
+
+                            $full_name = $row["full_name"];
+
+                            $sdt = $row["contact_no"];
+                            $address = $row["address"];
+                            $emailaddress = $row["email_address"];
+                            $city = $row["city"];
+
+
+                            echo "<tr>";
+                            echo '<div class="col-auto my-auto">
                                         <div class="h-100">
                                             <h5 class="mb-1">
-                                                '.$full_name.'
+                                                ' . $full_name . '
                                             </h5>
                                             <p class="mb-0 font-weight-normal text-sm">
-                                                '. $role.'
+                                                ' . $role . '
                                             </p>
                                         </div>
                                     </div>';
-                                echo'<div class="col-auto" style="margin-left: auto; margin-right: 10px;">
+                            echo '<div class="col-auto" style="margin-left: auto; margin-right: 10px;">
                                             <div class="text-center">
                                                 <button type="button" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0"
                                                     title="Edit Profile" onclick="div_show()">Cập nhật</button>
@@ -306,29 +238,30 @@
                                                 <ul class="list-group">
                                                
                                   <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Số điện
-                                    thoại:</strong>&nbsp; '.$sdt.'</li>
+                                    thoại:</strong>&nbsp; ' . $sdt . '</li>
                                  <li class="list-group-item border-0 ps-0 text-sm"><strong
-                                    class="text-dark">Email:</strong>&nbsp; '.$emailaddress.'</li>
+                                    class="text-dark">Email:</strong>&nbsp; ' . $emailaddress . '</li>
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Địa
-                                    chỉ:</strong> &nbsp; '.$address.'</li>
+                                    chỉ:</strong> &nbsp; ' . $address . '</li>
 
                                 <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Thành
-                                    phố:</strong> &nbsp; '.$city.'</li>
+                                    phố:</strong> &nbsp; ' . $city . '</li>
                                 <li class="list-group-item border-0 ps-0 pb-0">
                                  </div>';
-                                echo "</tr>";
+                            echo "</tr>";
 
-                              } }else {
-                                  echo "Không tìm thấy người dùng.";
-                              }
-                              
-                              
-                              // Đóng kết nối
-                      ?> 
-                    
-                    
+                        }
+                    } else {
+                        echo "Không tìm thấy người dùng.";
+                    }
+
+
+                    // Đóng kết nối
+                    ?>
+
+
                 </div>
-                
+
             </div>
         </div>
 
@@ -344,11 +277,11 @@
                     <div class="card-body">
                         <form role="form">
 
-                        
-                           <div class="input-group input-group-outline mb-3">
+
+                            <div class="input-group input-group-outline mb-3">
                                 <label class="form-label">Nguyen Van A</label>
                                 <input type="full_name" class="form-control">
-                            </div> 
+                            </div>
                             <div class="input-group input-group-outline mb-3">
                                 <label class="form-label">+84123456789</label>
                                 <input type="contact_no" class="form-control">
@@ -361,7 +294,7 @@
                                 <label class="form-label">Địa chỉ</label>
                                 <input type="address" class="form-control">
                             </div>
-                           <div class="input-group input-group-outline mb-3">
+                            <div class="input-group input-group-outline mb-3">
                                 <label class="form-label">Thành phố</label>
                                 <input type="city" class="form-control">
                             </div>

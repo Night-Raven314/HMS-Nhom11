@@ -1,11 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+
 <?php
-    session_start();
-    error_reporting(0);
-    include('../L-connect.php');
-    
+define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT']);
 
+include SITE_ROOT . ('/HMS-Nhom11/assets/include/config.php');
+include('sess-check.php');
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -130,7 +131,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="A1-profile.php">
+                    <a class="nav-link text-white" href="profile.php">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">person</i>
@@ -143,10 +144,10 @@
 
 
                 <li class="nav-item">
-                    <a class="nav-link text-white active bg-gradient-primary" href="A2-admin-user.php">
+                    <a class="nav-link text-white active bg-gradient-primary" href="guest.php">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">badge</i>
+                            <i class="material-icons opacity-10">manage_accounts</i>
                             <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
                         </div>
 
@@ -156,7 +157,20 @@
 
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="A3-supply.php">
+                    <a class="nav-link text-white" href="employee.php">
+
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="material-icons opacity-10">badge</i>
+                            <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
+                        </div>
+
+                        <span class="nav-link-text ms-1">Quản lý nhân viên</span>
+                    </a>
+                </li>
+
+
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="supply.php">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">medication</i>
@@ -169,7 +183,7 @@
 
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="A4-speciality.php">
+                    <a class="nav-link text-white" href="speciality.php">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">local_hospital</i>
@@ -224,8 +238,8 @@
                         <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
                             <!-- Right corner user section -->
                         <li class="nav-item d-flex align-items-center">
-                            <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="sign-in.php">Đăng
-                                xuất</a>
+                            <a class="btn btn-outline-primary btn-sm mb-0 me-3"
+                                href="../assets/include/log-out.php">Đăng xuất</a>
                         </li>
                         </li>
 
@@ -252,89 +266,104 @@
                                 <table id="drugTable" class="table align-items-center mb-0">
                                     <thead>
                                         <tr>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Họ và Tên</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Vị trí</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Username</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Mật khẩu</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Ngày tạo</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Ngày chỉnh sửa</th>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                Họ và Tên</th>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                Vị trí</th>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                Username</th>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                Email</th>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                Mật khẩu</th>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                Ngày tạo</th>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                Ngày chỉnh sửa</th>
                                             <th class="text-secondary opacity-7"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <?php 
-                              
-                              $sql = "SELECT full_name, role, user_name, email_address, password, created_at, updated_at FROM dim_user " ; 
-                             $result = $conn->query($sql);
-                              // Kiểm tra và hiển thị dữ liệu
-                              if ($result->num_rows > 0) {
-                                $roleMapping = [
-                                    "doctor" => "Bác sĩ",
-                                    "admin" => "Quản trị viên",
-                                    "patient" => "Bệnh nhân"
-                                ];
-                                 while($row = $result->fetch_assoc()) {
-                                    $role = isset($roleMapping[$row["role"]]) ? $roleMapping[$row["role"]] : $row["role"];
-                                  $fullname=$row["full_name"];
-                                //   $role=$row["role"];
-                                  $user_name=$row["user_name"];
-                                  $emailaddress=$row["email_address"];
-                                  $password=$row["password"];
-                                  $created_at=$row["created_at"];
-                                  $updated_at=$row["updated_at"];
-                                  
-                                  echo"<tr>";
-                                  echo'<td class="align-middle text-center">
-                                                        <h6 class="mb-0 text-sm">'.$fullname.'</h6>
+                                        <?php
+
+                                        $sql = "SELECT * FROM `dim_user` WHERE `role` = 'patient' ";
+                                        $result = $conn->query($sql);
+                                        // Kiểm tra và hiển thị dữ liệu
+                                        if ($result->num_rows > 0) {
+                                            $roleMapping = [
+                                                "doctor" => "Bác sĩ",
+                                                "admin" => "Quản trị viên",
+                                                "patient" => "Bệnh nhân"
+                                            ];
+                                            while ($row = $result->fetch_assoc()) {
+                                                $role = isset($roleMapping[$row["role"]]) ? $roleMapping[$row["role"]] : $row["role"];
+                                                $fullname = $row["full_name"];
+                                                //   $role=$row["role"];
+                                                $user_name = $row["user_name"];
+                                                $emailaddress = $row["email_address"];
+                                                $password = $row["password"];
+                                                $created_at = $row["created_at"];
+                                                $updated_at = $row["updated_at"];
+
+                                                echo "<tr>";
+                                                echo '<td class="align-middle text-center">
+                                                        <h6 class="mb-0 text-sm">' . $fullname . '</h6>
                                             </td>
                                             <td class="align-middle text-center text-sm">
-                                                <p class="text-xs font-weight-bold mb-0">'.$role.'</p>
+                                                <p class="text-xs font-weight-bold mb-0">' . $role . '</p>
                                             </td>
                                             <td class="align-middle text-center text-sm">
-                                                <p class="text-xs font-weight-bold mb-0">'.$user_name.'</p>
+                                                <p class="text-xs font-weight-bold mb-0">' . $user_name . '</p>
                                             </td>
                                             <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">'.$emailaddress.'</span>
+                                                <span class="text-secondary text-xs font-weight-bold">' . $emailaddress . '</span>
                                             </td>
                                             <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">'.$password.'</span>
+                                                <span class="text-secondary text-xs font-weight-bold">' . $password . '</span>
                                             </td>
                                             <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">'.$created_at.'</span>
+                                                <span class="text-secondary text-xs font-weight-bold">' . $created_at . '</span>
                                             </td>
                                             <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">'.$updated_at.'</span>
+                                                <span class="text-secondary text-xs font-weight-bold">' . $updated_at . '</span>
                                             </td>
                                             <td class="align-middle" onclick="div_show()">
                                                 <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user" title="Edit user">
                                                     Edit
                                                 </a>
                                             </td>';
-                                  
-                                
-                                 
-                                  
-                                 
-                                  
-                                  echo "</tr>";
 
-                              } }else {
-                                  echo "Không tìm thấy người dùng.";
-                              }
-                              
-                              
-                              // Đóng kết nối
-                              
-                              
-                              
-                             
-                             
-                          
-              
-                              
-                             
-                      ?> 
+
+
+
+
+
+                                                echo "</tr>";
+
+                                            }
+                                        } else {
+                                            echo "Không tìm thấy người dùng.";
+                                        }
+
+
+                                        // Đóng kết nối
+                                        
+
+
+
+
+
+
+
+
+                                        ?>
                                         <!-- <tr>
                                             <td class="align-middle text-center">
                                                         <h6 class="mb-0 text-sm">Nguyen Van A</h6>
@@ -427,91 +456,97 @@
                 </div>
             </div>
         </div>
-       
-<footer class="footer py-4  ">
-    <div class="container-fluid">
-      <div class="row align-items-center justify-content-lg-between">
-        <div class="col-lg-6 mb-lg-0 mb-4">
-          <div class="copyright text-center text-sm text-muted text-lg-start">
-            ©
-            <script>
-              document.write(new Date().getFullYear())
-            </script>,
-            made with <i class="fa fa-heart"></i> by
-            <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Huan, Khoa and Long</a>
-            for Uni 24-25.
-          </div>
-        </div>
-        <div class="col-lg-6">
-          <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank">Creative Tim</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted" target="_blank">About
-                Us</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com/blog" class="nav-link text-muted" target="_blank">Blog</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted"
-                target="_blank">License</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </footer>
-    </div>
 
-    <!-- Popup Section for Form -->
-    <div id="container-popup">
-        <div id="popupContact">
-            <div class="card">
-                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                    <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                        <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Cập nhật thông tin</h4>
+        <footer class="footer py-4  ">
+            <div class="container-fluid">
+                <div class="row align-items-center justify-content-lg-between">
+                    <div class="col-lg-6 mb-lg-0 mb-4">
+                        <div class="copyright text-center text-sm text-muted text-lg-start">
+                            ©
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script>,
+                            made with <i class="fa fa-heart"></i> by
+                            <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Huan, Khoa
+                                and Long</a>
+                            for Uni 24-25.
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <ul class="nav nav-footer justify-content-center justify-content-lg-end">
+                            <li class="nav-item">
+                                <a href="https://www.creative-tim.com" class="nav-link text-muted"
+                                    target="_blank">Creative Tim</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted"
+                                    target="_blank">About
+                                    Us</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://www.creative-tim.com/blog" class="nav-link text-muted"
+                                    target="_blank">Blog</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted"
+                                    target="_blank">License</a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-                <div class="card-body">
-                    <form role="form">
-                        <div class="input-group input-group-outline mb-3">
-                            <label class="form-label">Nguyen Van A</label>
-                            <input type="full_name" class="form-control">
-                        </div>
-                        <div class="input-group input-group-outline mb-3">
-                            <label class="form-label">+84123456789</label>
-                            <input type="contact_no" class="form-control">
-                        </div>
-                        <div class="input-group input-group-outline mb-3">
-                            <label class="form-label">Email</label>
-                            <input type="email" class="form-control">
-                        </div>
-                        <div class="input-group input-group-outline mb-3">
-                            <label class="form-label">Mật khẩu</label>
-                            <input type="email" class="form-control">
-                        </div>
-                        <div class="input-group input-group-outline mb-3">
-                            <label class="form-label">Địa chỉ</label>
-                            <input type="address" class="form-control">
-                        </div>
-                        <div class="input-group input-group-outline mb-3">
-                            <label class="form-label">Thành phố</label>
-                            <input type="city" class="form-control">
-                        </div>
-                        <div class="text-center">
-                            <button type="button" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập nhật</button>
-                        </div>
-                        <div class="text-center">
-                            <button type="button" class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0" onclick="div_hide()">Thoát</button>
-                        </div>
-                    </form>
-                </div>
-            </div>    
+            </div>
+        </footer>
         </div>
-    </div>
-    
+
+        <!-- Popup Section for Form -->
+        <div id="container-popup">
+            <div id="popupContact">
+                <div class="card">
+                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                        <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                            <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Cập nhật thông tin</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form role="form">
+                            <div class="input-group input-group-outline mb-3">
+                                <label class="form-label">Nguyen Van A</label>
+                                <input type="full_name" class="form-control">
+                            </div>
+                            <div class="input-group input-group-outline mb-3">
+                                <label class="form-label">+84123456789</label>
+                                <input type="contact_no" class="form-control">
+                            </div>
+                            <div class="input-group input-group-outline mb-3">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control">
+                            </div>
+                            <div class="input-group input-group-outline mb-3">
+                                <label class="form-label">Mật khẩu</label>
+                                <input type="email" class="form-control">
+                            </div>
+                            <div class="input-group input-group-outline mb-3">
+                                <label class="form-label">Địa chỉ</label>
+                                <input type="address" class="form-control">
+                            </div>
+                            <div class="input-group input-group-outline mb-3">
+                                <label class="form-label">Thành phố</label>
+                                <input type="city" class="form-control">
+                            </div>
+                            <div class="text-center">
+                                <button type="button" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập
+                                    nhật</button>
+                            </div>
+                            <div class="text-center">
+                                <button type="button" class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
+                                    onclick="div_hide()">Thoát</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </main>
 
 

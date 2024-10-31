@@ -8,7 +8,7 @@
    // Start the session
    session_start();
 
-   if(!isset($_SESSION['auth_login_user']) || $_SESSION['auth_user_role']!='admin'){
+   if(!isset($_SESSION['auth_login_user']) || $_SESSION['auth_user_role']!='patient'){
       header('Refresh:0 , url=http://localhost/HMS-Nhom11/sign-in.php');
       die();
    }
