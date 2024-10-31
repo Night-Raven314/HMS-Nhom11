@@ -252,48 +252,81 @@
                                 class="w-100 border-radius-lg shadow-sm">
                         </div>
                     </div>
-                    <div class="col-auto my-auto">
-                        <div class="h-100">
-                            <h5 class="mb-1">
-                                Nguyen Van A
-                            </h5>
-                            <p class="mb-0 font-weight-normal text-sm">
-                                Bac sy
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-auto" style="margin-left: auto; margin-right: 10px;">
-                    <div class="text-center">
-                        <button type="button" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0"
-                            title="Edit Profile" onclick="div_show()">Cập nhật</button>
-                    </div>
-                </div>
-                    <div class="card-header pb-0 p-3">
-                    </div>
-                    <div class="card-body p-3">
-                        <ul class="list-group">
-                            <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Số điện
-                                    thoại:</strong>&nbsp; +84123456789</li>
-                            <li class="list-group-item border-0 ps-0 text-sm"><strong
-                                    class="text-dark">Email:</strong>&nbsp; doctor@gmail.com</li>
-                            <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Địa
-                                    chỉ:</strong> &nbsp; 123 Duong 45</li>
-                            <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Thành
-                                    phố:</strong> &nbsp; Ho Chi Minh</li>
-                            <li class="list-group-item border-0 ps-0 pb-0">
-                        </ul>
-                        <ul class="list-group">
-                            <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Số điện
-                                    thoại:</strong>&nbsp; +84123456789</li>
-                            <li class="list-group-item border-0 ps-0 text-sm"><strong
-                                    class="text-dark">Email:</strong>&nbsp; doctor@gmail.com</li>
-                            <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Địa
-                                    chỉ:</strong> &nbsp; 123 Duong 45</li>
-                            <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Thành
-                                    phố:</strong> &nbsp; Ho Chi Minh</li>
-                            <li class="list-group-item border-0 ps-0 pb-0">
-                        </ul>
-                    </div>
+                    <?php 
+                              
+                              $sql ="SELECT full_name, 
+                                            role, 
+                                            contact_no, 
+                                            address,
+                                            email_address, 
+                                            city 
+                                        FROM 
+                                            dim_user
+                                        WHERE 
+                                            user_id = 16; " ; 
+                             $result = $conn->query($sql);
+                              // Kiểm tra và hiển thị dữ liệu
+                              if ($result->num_rows > 0) {
+                                $roleMapping = [
+                                    "doctor" => "Bác sĩ",
+                                    "admin" => "Quản trị viên",
+                                    "patient" => "Bệnh nhân"
+                                ];
+                                 while($row = $result->fetch_assoc()) {
+                                    $role = isset($roleMapping[$row["role"]]) ? $roleMapping[$row["role"]] : $row["role"];
+                                 
+                                  $full_name=$row["full_name"];
+                                 
+                                  $sdt=$row["contact_no"];
+                                  $address=$row["address"];
+                                  $emailaddress=$row["email_address"];
+                                  $city=$row["city"];
+                                  
+                                  
+                                  echo"<tr>";
+                                  echo'<div class="col-auto my-auto">
+                                        <div class="h-100">
+                                            <h5 class="mb-1">
+                                                '.$full_name.'
+                                            </h5>
+                                            <p class="mb-0 font-weight-normal text-sm">
+                                                '. $role.'
+                                            </p>
+                                        </div>
+                                    </div>';
+                                echo'<div class="col-auto" style="margin-left: auto; margin-right: 10px;">
+                                            <div class="text-center">
+                                                <button type="button" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0"
+                                                    title="Edit Profile" onclick="div_show()">Cập nhật</button>
+                                            </div>
+                                     </div>
+                                            <div class="card-header pb-0 p-3">
+                                            </div>
+                                            <div class="card-body p-3">
+                                                <ul class="list-group">
+                                               
+                                  <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Số điện
+                                    thoại:</strong>&nbsp; '.$sdt.'</li>
+                                 <li class="list-group-item border-0 ps-0 text-sm"><strong
+                                    class="text-dark">Email:</strong>&nbsp; '.$emailaddress.'</li>
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Địa
+                                    chỉ:</strong> &nbsp; '.$address.'</li>
+
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Thành
+                                    phố:</strong> &nbsp; '.$city.'</li>
+                                <li class="list-group-item border-0 ps-0 pb-0">
+                                 </div>';
+                                echo "</tr>";
+
+                              } }else {
+                                  echo "Không tìm thấy người dùng.";
+                              }
+                              
+                              
+                              // Đóng kết nối
+                      ?> 
+                    
+                    
                 </div>
                 
             </div>
@@ -310,10 +343,12 @@
                     </div>
                     <div class="card-body">
                         <form role="form">
-                            <div class="input-group input-group-outline mb-3">
+
+                        
+                           <div class="input-group input-group-outline mb-3">
                                 <label class="form-label">Nguyen Van A</label>
                                 <input type="full_name" class="form-control">
-                            </div>
+                            </div> 
                             <div class="input-group input-group-outline mb-3">
                                 <label class="form-label">+84123456789</label>
                                 <input type="contact_no" class="form-control">
@@ -326,7 +361,7 @@
                                 <label class="form-label">Địa chỉ</label>
                                 <input type="address" class="form-control">
                             </div>
-                            <div class="input-group input-group-outline mb-3">
+                           <div class="input-group input-group-outline mb-3">
                                 <label class="form-label">Thành phố</label>
                                 <input type="city" class="form-control">
                             </div>
