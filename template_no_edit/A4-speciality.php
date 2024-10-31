@@ -1,7 +1,6 @@
 <?php
 define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT']);
 
-include('sess-check.php');
 include SITE_ROOT . ('/HMS-Nhom11/assets/include/config.php');
 include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
 ?>
@@ -525,16 +524,7 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
         </div>
     </footer>
     </div>
-
-
-
-
-    <!--   Core JS Files   -->
-    <script src="./assets/js/core/popper.min.js"></script>
-    <script src="./assets/js/core/bootstrap.min.js"></script>
-    <script src="./assets/js/plugins/perfect-scrollbar.min.js"></script>
-    <script src="./assets/js/plugins/smooth-scrollbar.min.js"></script>
-
+    
     <script>
         $(document).ready(function() {
             $('#drugTable').DataTable({
@@ -550,28 +540,6 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
         });
     </script>
 
-
-    <script>
-        var win = navigator.platform.indexOf('Win') > -1;
-        if (win && document.querySelector('#sidenav-scrollbar')) {
-            var options = {
-                damping: '0.5'
-            }
-            Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
-        }
-    </script>
-
-    <!-- Github buttons -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-
-
-    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="assets/js/material-dashboard.min.js"></script>
-
-
-    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="assets/js/material-dashboard.min.js"></script>
-    <script src="assets/js/popup.js"></script>
-</body>
-
-</html>
+<?php
+    include SITE_ROOT . ('/HMS-Nhom11/assets/include/footer.php');
+    ?>

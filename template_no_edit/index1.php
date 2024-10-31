@@ -47,4 +47,6 @@
 
 
 
-<?php include "./assets/include/footer.php" ?>
+<?php
+    include SITE_ROOT . ('/HMS-Nhom11/assets/include/footer.php');
+    ?>

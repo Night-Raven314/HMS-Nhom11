@@ -1,29 +1,27 @@
-<footer>
-    <div class="footer-content">
-        <div class="footer-logo">
-            <h1><a href="index1.php">HealthCare Hospital</a></h1>
-        </div>
-        <div class="footer-links">
-            <h2>Quick Links</h2>
-            <ul>
-                <li><a href="#">Về chúng tôi</a></li>
-                <li><a href="#">Tính năng</a></li>
-                <li><a href="#">Đăng nhập</a></li>
-                <li><a href="#">Hình ảnh</a></li>
-                
-            </ul>
-        </div>
-        <div class="footer-contact">
-            <h2>Contact Us</h2>
-            <p><i class="fas fa-phone-alt"></i> +1 234 567 890</p>
-            <p><i class="fas fa-envelope"></i> info@healthcarehospital.com</p>
-            <p><i class="fas fa-map-marker-alt"></i> 123 Health St, City, Country</p>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        <p>&copy; 2023 HealthCare Hospital. All rights reserved.</p>
-        <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
-    </div>
-</footer>
+<!--   Core JS Files   -->
+<script src="http://localhost/HMS-Nhom11/assets/js/core/popper.min.js"></script>
+<script src="http://localhost/HMS-Nhom11/assets/js/core/bootstrap.min.js"></script>
+<script src="http://localhost/HMS-Nhom11/assets/js/plugins/perfect-scrollbar.min.js"></script>
+<script src="http://localhost/HMS-Nhom11/assets/js/plugins/smooth-scrollbar.min.js"></script>
+
+
+<script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+        var options = {
+            damping: '0.5'
+        }
+        Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+</script>
+
+<!-- Github buttons -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+<!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+<script src="http://localhost/HMS-Nhom11/assets/js/material-dashboard.min.js"></script>
+<script src="http://localhost/HMS-Nhom11/assets/js/popup.js"></script>
 </body>
+
 </html>

@@ -6,7 +6,7 @@ define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT']);
 include SITE_ROOT . ('/HMS-Nhom11/assets/include/config.php');
 include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
 
-require_once SITE_ROOT . ('/assets/vendor/google-oauth/vendor/autoload.php');
+require_once SITE_ROOT . ('/HMS-Nhom11/assets/vendor/google-oauth/vendor/autoload.php');
 
 session_start();
 $error = '';
@@ -156,11 +156,7 @@ $facebook_url='https://www.facebook.com/dialog/oauth?' . http_build_query($param
       </div>
     </div>
   </main>
-  <!--   Core JS Files   -->
-  <script src="assets/js/core/popper.min.js"></script>
-  <script src="assets/js/core/bootstrap.min.js"></script>
-  <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
-  <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
+
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -214,11 +210,6 @@ $facebook_url='https://www.facebook.com/dialog/oauth?' . http_build_query($param
     }(document, 'script', 'facebook-jssdk'));
   </script>
 
-
-  <!-- Github buttons -->
-  <script async defer src="https://buttons.github.io/buttons.js"></script>
-  <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="assets/js/material-dashboard.min.js?v=3.1.0"></script>
-</body>
-
-</html>
+    <?php
+    include SITE_ROOT . ('/HMS-Nhom11/assets/include/footer.php');
+    ?>
