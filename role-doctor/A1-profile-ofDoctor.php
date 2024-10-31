@@ -94,7 +94,7 @@ $conn->close();
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="F1-schedule.php">
+                    <a class="nav-link text-white" href="../role-doctor/F1-schedule-ofDoctor.php">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">calendar_month</i>
@@ -120,7 +120,7 @@ $conn->close();
 
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="F3-patients.php">
+                    <a class="nav-link text-white" href="../role-doctor/F3-patients-ofDoctor.php">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">groups</i>
@@ -151,7 +151,7 @@ $conn->close();
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-white active bg-gradient-primary" href="A1-profile.php">
+                    <a class="nav-link text-white active bg-gradient-primary" href="../role-doctor/A1-profile-ofDoctor.php">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">person</i>
