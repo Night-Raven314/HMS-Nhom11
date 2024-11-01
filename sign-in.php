@@ -121,7 +121,7 @@ $facebook_url='https://www.facebook.com/dialog/oauth?' . http_build_query($param
                     </div>
                   <div class="text-center">
                     <a class="btn bg-gradient-primary" onclick="googleAuthRedirect()">
-                      <i class="fab fa-google" aria-hidden="true"></i>
+                      <i class="fab fa-google fa-lg" aria-hidden="true"></i>
                     </a>
                     <script>
                       function googleAuthRedirect() {
@@ -129,13 +129,8 @@ $facebook_url='https://www.facebook.com/dialog/oauth?' . http_build_query($param
                       }
                     </script>
                     <a class="btn bg-gradient-primary" href="assets/include/oauth/f-authenticate.php">
-                      <i class="fab fa-facebook" aria-hidden="true"></i>
+                      <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
                     </a>
-                    <script>
-                      function facebookAuthRedirect() {
-                        window.location.href = "<?php echo $facebook_url ?>";
-                      }
-                    </script>
                   </div>
                   <p class="mt-4 text-sm text-center">
                     <a href="./forgot-pwd.php" class="text-primary text-gradient font-weight-bold">Quên mật khẩu</a>

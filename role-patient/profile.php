@@ -71,18 +71,6 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                     </h6>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link text-white active bg-gradient-primary" href="profile.php">
-
-                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">person</i>
-                            <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
-                        </div>
-
-                        <span class="nav-link-text ms-1">Thông tin cá nhân</span>
-                    </a>
-                </li>
-
             </ul>
         </div>
 
@@ -122,16 +110,42 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                     </ul>
 
                     <ul class="navbar-nav  justify-content-end">
-
                         <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
-                            <!-- Right corner user section -->
-                        <li class="nav-item d-flex align-items-center">
-                            <a class="btn btn-outline-primary btn-sm mb-0 me-3"
-                                href="../assets/include/log-out.php">Đăng xuất</a>
-                        </li>
-                        </l>
+                        <li class="nav-item dropdown pe-2 d-flex align-items-center">
+                            <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="../assets/image/user login image.png" alt="profile_image"
+                                    class="border-radius-lg shadow-sm" style="max-width:45px">
+                            </a>
 
-                        <li class="nav-item d-flex align-items-center">
+
+                            <ul class="dropdown-menu dropdown-menu-end px-2 py-3 me-sm-n4"
+                                aria-labelledby="dropdownMenuButton">
+                                <li class="mb-2">
+                                    <a class="dropdown-item border-radius-md" href="profile.php">
+                                        <div class="d-flex py-1">
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <h6 class="text-primary text-gradient font-weight-bold" style="padding-top:10px !important;">
+                                                    Thông tin người dùng
+                                                </h6>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="mb-2">
+                                    <a class="dropdown-item border-radius-md" href="../assets/include/log-out.php">
+                                        <div class="d-flex py-1">
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <h6 class="text-primary text-gradient font-weight-bold" style="padding-top:10px !important;">
+                                                    Đăng xuất
+                                                </h6>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        </li>
                     </ul>
 
                 </div>
