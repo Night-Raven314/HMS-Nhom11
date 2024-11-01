@@ -43,14 +43,14 @@ include '../TEST_Khoa/get_query.php';
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">
+                    <a class="nav-link text-white" href="../TEST_Khoa/work_schedule.php">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">#</i>
+                            <i class="material-icons opacity-10">event</i>
                             <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
                         </div>
 
-                        <span class="nav-link-text ms-1">Function01</span>
+                        <span class="nav-link-text ms-1">Lịch làm</span>
                     </a>
                 </li>
 
@@ -59,7 +59,7 @@ include '../TEST_Khoa/get_query.php';
                     <a class="nav-link text-white active bg-gradient-primary" href="../TEST_Khoa/appointment_form.php">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">groups</i>
+                            <i class="material-icons opacity-10">calendar_today</i>
                             <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
                         </div>
 
@@ -98,7 +98,7 @@ include '../TEST_Khoa/get_query.php';
             <div class="container-fluid py-1 px-3">
                 <nav aria-label="breadcrumb">
 
-                    <h6 class="font-weight-bolder mb-0">ĐĂNG KÍ LỊCH</h6>
+                    <h6 class="font-weight-bolder mb-0">TEST_Khoa</h6>
 
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
@@ -165,7 +165,7 @@ include '../TEST_Khoa/get_query.php';
                                             <div class="input-group input-group-outline mb-3">
                                                 <label class="col-form-label-lg" style="margin-right: 10px;">Chuyên khoa</label>
                                                 <select name="specialty_id" class="form-control" required>
-                                                <option value="" disabled selected>Chọn chuyên khoa</option> <!-- Tùy chọn mặc định -->
+                                                    <option value="" disabled selected>Chọn chuyên khoa</option> <!-- Tùy chọn mặc định -->
                                                     <?php if (!empty($specialties)): ?>
                                                         <?php foreach ($specialties as $specialty): ?>
                                                             <option value="<?= $specialty['specialty_id'] ?>"><?= $specialty['specialty_name'] ?></option>
