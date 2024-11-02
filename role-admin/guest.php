@@ -346,7 +346,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Ngày chỉnh sửa</th>
-                                            <th class="text-secondary opacity-7"></th>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                Thao tác</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -446,8 +448,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                                         </div>
                                                                         <div class="input-group input-group-outline mb-3">
                                                                             <label class="form-label">Email</label>
-                                                                            <input type="email" name="email_address" id="email_address"
-                                                                                class="form-control">
+                                                                            <input type="email" name="email_address"
+                                                                                id="email_address" class="form-control">
                                                                         </div>
                                                                         <div class="input-group input-group-outline mb-3">
                                                                             <!-- <label class="form-label-lg" style="margin-right: 10px;">Giới tính</label> -->
@@ -596,7 +598,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 </div>
                                 <div class="input-group input-group-outline mb-3">
                                     <label class="form-label">Email</label>
-                                    <input type="email" name="email_address" id="email_address" class="form-control" required>
+                                    <input type="email" name="email_address" id="email_address" class="form-control"
+                                        required>
                                 </div>
                                 <div class="input-group input-group-outline mb-3">
                                     <!-- <label class="form-label-lg" style="margin-right: 10px;">Giới tính</label> -->

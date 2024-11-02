@@ -4,6 +4,56 @@ define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT']);
 include('sess-check.php');
 include SITE_ROOT . ('/HMS-Nhom11/assets/include/config.php');
 include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    if (isset($_POST['create']) && $_POST['create'] == 'create') {
+        $post_spc_name = mysqli_real_escape_string($conn, $_POST['spc_name']);
+        $post_spc_desc = mysqli_real_escape_string($conn, $_POST['spc_desc']);
+        $post_spc_note = mysqli_real_escape_string($conn, $_POST['spc_note']);
+
+        $sql = "INSERT INTO `dim_specialties` (`specialty_name`, `description`, `note`) VALUES ('$post_spc_name', '$post_spc_desc', '$post_spc_note')";
+
+        $add = mysqli_query($conn, $sql);
+
+        echo "<script type='text/javascript'>alert('Thêm chuyên khoa thành công');</script>";
+
+        header('Refresh:0 , url=http://localhost/HMS-Nhom11/role-admin/speciality.php');
+    }
+
+    if (isset($_POST['update'])) {
+
+        $post_spc_name = (empty(mysqli_real_escape_string($conn, $_POST['spc_name'])) === true) ? $spc_name : mysqli_real_escape_string($conn, $_POST['spc_name']);
+        $post_spc_desc = (empty(mysqli_real_escape_string($conn, $_POST['spc_desc'])) === true) ? $spc_desc : mysqli_real_escape_string($conn, $_POST['spc_desc']);
+        $post_spc_note = (empty(mysqli_real_escape_string($conn, $_POST['spc_note'])) === true) ? $spc_note : mysqli_real_escape_string($conn, $_POST['spc_note']);
+
+        $post_update_id = $_POST['update']; //Get user ID that need update
+
+        $sql = "UPDATE `dim_specialties` SET
+        `specialty_name` = '$post_user_name',
+        `description` = '$post_full_name',
+        `note` = '$post_email'
+        WHERE specialty_id = $post_update_id";
+
+        $update = mysqli_query($conn, $sql);
+
+        echo "<script type='text/javascript'>alert('Cập nhật chuyên khoa thành công');</script>";
+
+        header('Refresh:0 , url=http://localhost/HMS-Nhom11/role-admin/speciality.php');
+    }
+
+    if (isset($_POST['delete'])) {
+        $post_delete_id = $_POST['delete']; //Get user ID that need delete
+
+        $sql = "DELETE FROM `dim_specialties` WHERE specialty_id = $post_delete_id";
+
+        $delete = mysqli_query($conn, $sql);
+
+        echo "<script type='text/javascript'>alert('Xoá chuyên khoa thành công');</script>";
+
+        header('Refresh:0 , url=http://localhost/HMS-Nhom11/role-admin/speciality.php');
+    }
+}
 ?>
 
 <head>
@@ -205,7 +255,8 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                                     <a class="dropdown-item border-radius-md" href="profile.php">
                                         <div class="d-flex py-1">
                                             <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="text-primary text-gradient font-weight-bold" style="padding-top:10px !important;">
+                                                <h6 class="text-primary text-gradient font-weight-bold"
+                                                    style="padding-top:10px !important;">
                                                     Thông tin người dùng
                                                 </h6>
                                             </div>
@@ -216,7 +267,8 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                                     <a class="dropdown-item border-radius-md" href="../assets/include/log-out.php">
                                         <div class="d-flex py-1">
                                             <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="text-primary text-gradient font-weight-bold" style="padding-top:10px !important;">
+                                                <h6 class="text-primary text-gradient font-weight-bold"
+                                                    style="padding-top:10px !important;">
                                                     Đăng xuất
                                                 </h6>
                                             </div>
@@ -238,337 +290,201 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                     <div class="card my-4">
                         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                             <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                                <h6 class="text-white text-capitalize ps-3">Thông tin chuyên khoa</h6>
+                                <h6 class="text-white text-capitalize ps-3" style="float: left;">Thông tin chuyên khoa
+                                </h6>
+                                <div class="table-float-btn-container">
+                                    <a class="table-float-btn btn btn-outline-primary btn-sm mb-0 me-3"
+                                        style="background: #ffffff" href="#popup_add">Thêm chuyên khoa</a>
+                                </div>
                             </div>
                         </div>
 
                         <div class="card-body px-0 pb-2">
                             <div class="table-responsive p-0">
-                                <table id="drugTable" class="table align-items-center mb-0">
+                                <table id="specialtyTable" class="table align-items-center mb-0">
                                     <thead>
                                         <tr>
                                             <th
-                                                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                ID</th>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Tên chuyên khoa</th>
                                             <th
-                                                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Mô tả</th>
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Dịch vụ chính</th>
-                                            <th
-                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Trưởng khoa</th>
-                                            <th
-                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Số điện thoại liên hệ</th>
-                                            <th
-                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Ghi chú</th>
-                                            <th class="text-secondary opacity-7"></th>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                Ngày tạo</th>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                Ngày chỉnh sửa</th>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                Thao tác</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-2 py-1">
-                                                    <div>
-                                                        <img src="https://medlatec.vn/media/207/catalog/chuyen-khoa-tim-mach.jpg"
-                                                            class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                                    </div>
-                                                    <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">Khoa tim mạch</h6>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">Chăm sóc chuyên sâu cho các vấn
-                                                    đề tim.</p>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <p class="text-xs font-weight-bold mb-0">ECG, Phẫu thuật tim</p>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">Dr. Nguyễn Văn
-                                                    A</span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span
-                                                    class="text-secondary text-xs font-weight-bold">0123-456-789</span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">Không có ghi
-                                                    chú</span>
-                                            </td>
-                                            <td class="align-middle">
-                                                <a href="javascript:;" onclick="div_show()"
-                                                    class="text-secondary font-weight-bold text-xs"
-                                                    data-toggle="tooltip" data-original-title="Edit user">
-                                                    Edit
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-2 py-1">
-                                                    <div>
-                                                        <img src="https://phongkhamthuankieu.vn/wp-content/uploads/2022/05/kham-noi-than-kinh.jpg"
-                                                            class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                                    </div>
-                                                    <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">Khoa Thần kinh</h6>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">Chăm sóc cho các rối loạn thần
-                                                    kinh.</p>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <p class="text-xs font-weight-bold mb-0">MRI, EEG</p>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">Dr. Trần Thị
-                                                    B</span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span
-                                                    class="text-secondary text-xs font-weight-bold">0123-456-788</span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">Thứ Bảy nghỉ
-                                                    làm</span>
-                                            </td>
-                                            <td class="align-middle">
-                                                <a href="javascript:;" onclick="div_show()"
-                                                    class="text-secondary font-weight-bold text-xs"
-                                                    data-toggle="tooltip" data-original-title="Edit user">
-                                                    Edit
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-2 py-1">
-                                                    <div>
-                                                        <img src="https://cantho.phuongchau.com/images/baiviet/nho/a68123cf-3b8c-478e-b0e1-810d11d1c086.jpeg"
-                                                            class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                                    </div>
-                                                    <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">Khoa Chấn thương chỉnh hình</h6>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">Dịch vụ chỉnh hình cho sức khỏe
-                                                    xương.</p>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <p class="text-xs font-weight-bold mb-0">Điều trị gãy xương</p>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">Dr. Lê Văn
-                                                    C</span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span
-                                                    class="text-secondary text-xs font-weight-bold">0123-456-787</span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">Chỉ có dịch vụ cấp
-                                                    cứu</span>
-                                            </td>
-                                            <td class="align-middle">
-                                                <a href="javascript:;" onclick="div_show()"
-                                                    class="text-secondary font-weight-bold text-xs"
-                                                    data-toggle="tooltip" data-original-title="Edit user">
-                                                    Edit
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-2 py-1">
-                                                    <div>
-                                                        <img src="https://honghunghospital.com.vn/wp-content/uploads/2020/05/1.-Khoa-Nhi.jpg"
-                                                            class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                                    </div>
-                                                    <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">Khoa Nhi</h6>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">Chăm sóc cho trẻ sơ sinh và
-                                                    thanh thiếu niên.</p>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <p class="text-xs font-weight-bold mb-0">Tiêm chủng</p>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">Dr. Phạm Thị
-                                                    D</span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span
-                                                    class="text-secondary text-xs font-weight-bold">0123-456-786</span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">Cần bố trí thêm
-                                                    bác sĩ</span>
-                                            </td>
-                                            <td class="align-middle">
-                                                <a href="javascript:;" onclick="div_show()"
-                                                    class="text-secondary font-weight-bold text-xs"
-                                                    data-toggle="tooltip" data-original-title="Edit user">
-                                                    Edit
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-2 py-1">
-                                                    <div>
-                                                        <img src="https://cdn.benhvienthucuc.vn/wp-content/uploads/2021/05/nguyen-nhan-gay-u-nang-tuyen-giap-4.jpg"
-                                                            class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                                    </div>
-                                                    <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">Khoa Ung bướu</h6>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">Chăm sóc và điều trị bệnh nhân
-                                                    ung thư.</p>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <p class="text-xs font-weight-bold mb-0">Hóa trị</p>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">Dr. Nguyễn Thị
-                                                    E</span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span
-                                                    class="text-secondary text-xs font-weight-bold">0123-456-785</span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">Không có ghi
-                                                    chú</span>
-                                            </td>
-                                            <td class="align-middle">
-                                                <a href="javascript:;" onclick="div_show()"
-                                                    class="text-secondary font-weight-bold text-xs"
-                                                    data-toggle="tooltip" data-original-title="Edit user">
-                                                    Edit
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-2 py-1">
-                                                    <div>
-                                                        <img src="https://medlatec.vn/media/29997/file/phoi-nam-o-vi-tri-nao-1.jpg"
-                                                            class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                                    </div>
-                                                    <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">Khoa Hô hấp</h6>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">Chăm sóc cho các bệnh về đường
-                                                    hô hấp.</p>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <p class="text-xs font-weight-bold mb-0">Điều trị hen suyễn</p>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">Dr. Lê Thị
-                                                    F</span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span
-                                                    class="text-secondary text-xs font-weight-bold">0123-456-789</span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">Đào tạo thêm nhân
-                                                    viên</span>
-                                            </td>
-                                            <td class="align-middle">
-                                                <a href="javascript:;" onclick="div_show()"
-                                                    class="text-secondary font-weight-bold text-xs"
-                                                    data-toggle="tooltip" data-original-title="Edit user">
-                                                    Edit
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                        <?php
 
-                            </div>
+                                        //Get data for table
+                                        
+                                        $get_data_query = "SELECT * FROM `dim_specialties`";
+
+                                        $get_data = mysqli_query($conn, $get_data_query);
+
+                                        $count = mysqli_num_rows($get_data);
+                                        // Kiểm tra và hiển thị dữ liệu
+                                        if ($count > 0) {
+                                            while ($row = mysqli_fetch_assoc($get_data)) {
+                                                $spc_id = $row["specialty_id"];
+                                                $spc_name = $row["specialty_name"];
+                                                $spc_desc = $row["description"];
+                                                $spc_note = $row["note"];
+                                                $created_at = $row["created_at"];
+                                                $updated_at = $row["updated_at"];
+                                                ?>
+                                                <tr>
+                                                    <td class="align-middle text-center text-sm">
+                                                        <p class="text-xs font-weight-bold mb-0"><?php echo $spc_id; ?></p>
+                                                    </td>
+                                                    <td class='align-middle text-center'>
+                                                        <div class="d-flex px-2 py-1">
+                                                            <div>
+                                                                <img src="https://medlatec.vn/media/207/catalog/chuyen-khoa-tim-mach.jpg"
+                                                                    class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                                            </div>
+                                                            <div class="d-flex flex-column justify-content-center">
+                                                                <h6 class="mb-0 text-sm"><?php echo $spc_name; ?></h6>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td class='align-middle text-center'>
+                                                        <p class="text-xs font-weight-bold mb-0"><?php echo $spc_desc; ?></p>
+                                                    </td>
+                                                    <td class='align-middle text-center'>
+                                                        <p class="text-xs font-weight-bold mb-0"><?php echo $spc_note; ?></p>
+                                                    </td>
+                                                    <td class='align-middle text-center'>
+                                                        <p class="text-xs font-weight-bold mb-0"><?php echo $created_at; ?></p>
+                                                    </td>
+                                                    <td class='align-middle text-center'>
+                                                        <p class="text-xs font-weight-bold mb-0"><?php echo $updated_at; ?></p>
+                                                    </td>
+                                                    <td class='align-middle text-center'>
+                                                        <a href='#popup_edit-<?php echo $spc_id; ?>'
+                                                            class='text-secondary font-weight-bold text-xs edit-btn'
+                                                            data-original-title='edit' title='Sửa thông tin' data-toggle='modal'
+                                                            data-target='#popup_edit-<?php echo $spc_id; ?>'>Sửa</a>
+                                                    </td>
+                                                </tr>
+
+                                                <!-- Popup for Specialties edit -->
+                                                <div id="popup_edit-<?php echo $spc_id; ?>" class="overlay_flight_traveldil">
+                                                    <div class="card popup-cont">
+                                                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                                                            <div
+                                                                class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                                                                <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">
+                                                                    Cập nhật thông tin chuyên khoa
+                                                                </h4>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-body edit-body">
+                                                            <form name="edit_specialties" role="form" method="POST">
+
+                                                                <div class="input-group input-group-outline mb-3">
+                                                                    <label for="spc_name" class="form-label">Tên chuyên
+                                                                        khoa</label>
+                                                                    <input name="spc_name" id="spc_name" class="form-control"
+                                                                        value="">
+                                                                </div>
+                                                                <div class="input-group input-group-outline mb-3">
+                                                                    <label class="form-label">Mô tả</label>
+                                                                    <input name="spc_desc" id="spc_desc" class="form-control">
+                                                                </div>
+                                                                <div class="input-group input-group-outline mb-3">
+                                                                    <label class="form-label">Ghi chú</label>
+                                                                    <input name="spc_note" id="spc_note" class="form-control" />
+                                                                </div>
+
+                                                                <div class="text-center">
+                                                                    <button type="submit" name="update" value=<?php echo $spc_id; ?>
+                                                                        class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập
+                                                                        nhật</button>
+                                                                </div>
+
+                                                                <div class="text-center">
+                                                                    <button type="submit" name="delete" value=<?php echo $spc_id; ?>
+                                                                        class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Xoá</button>
+
+                                                                </div>
+
+                                                                <div class="text-center" href="#">
+                                                                    <button type="button"
+                                                                        class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
+                                                                        onclick="location.href='http://localhost/HMS-Nhom11/role-admin/speciality.php'">Thoát</button>
+                                                                </div>
+
+                                                        </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                    </div>
+                                    </li>
+                                <?php }
+                                        } ?>
+                            </tbody>
+                            </table>
+
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
 
 
         <!-- Popup Section for Form -->
-        <div id="container-popup">
-            <div id="popupContact">
-                <div class="card">
-                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                        <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                            <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Cập nhật chuyên khoa</h4>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <form role="form">
-                            <!-- Tên Chuyên Khoa -->
-                            <div class="input-group input-group-outline mb-3">
-                                <label class="form-label">Tên Chuyên Khoa</label>
-                                <input type="text" class="form-control" placeholder="">
-                            </div>
-                            <!-- Tên Chuyên Khoa -->
-                            <div class="input-group input-group-outline mb-3">
-                                <label class="form-label">Mô Tả</label>
-                                <input type="text" class="form-control" placeholder="">
-                            </div>
-                            <!-- Dịch Vụ Chính -->
-                            <div class="input-group input-group-outline mb-3">
-                                <label class="form-label">Dịch Vụ Chính</label>
-                                <input type="text" class="form-control" placeholder="">
-                            </div>
-                            <!-- Trưởng Khoa -->
-                            <div class="input-group input-group-outline mb-3">
-                                <label class="form-label">Trưởng Khoa</label>
-                                <input type="text" class="form-control" placeholder="">
-                            </div>
-                            <!-- Số Điện Thoại Liên Hệ -->
-                            <div class="input-group input-group-outline mb-3">
-                                <label class="form-label">Số Điện Thoại Liên Hệ</label>
-                                <input type="tel" class="form-control" placeholder="">
-                            </div>
-                            <!-- Ghi Chú -->
-                            <div class="input-group input-group-outline mb-3">
-                                <label class="form-label">Ghi Chú</label>
-                                <input type="text" class="form-control" placeholder="">
-                            </div>
-                            <div class="text-center">
-                                <button type="button" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập
-                                    nhật</button>
-                            </div>
-                            <div class="text-center">
-                                <button type="button" class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
-                                    onclick="div_hide()">Thoát</button>
-                            </div>
-                        </form>
+        <!-- Popup to create user -->
+        <div id="popup_add" class="overlay_flight_traveldil">
+            <div class="card popup-cont">
+                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                    <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                        <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Thêm chuyên khoa</h4>
                     </div>
                 </div>
+                <div class="card-body">
+                    <form name="new_user" role="form" method="POST">
+                        <div class="input-group input-group-outline mb-3">
+                            <label for="spc_name" class="form-label">Tên chuyên
+                                khoa</label>
+                            <input name="spc_name" id="spc_name" class="form-control" value="">
+                        </div>
+                        <div class="input-group input-group-outline mb-3">
+                            <label class="form-label">Mô tả</label>
+                            <input name="spc_desc" id="spc_desc" class="form-control">
+                        </div>
+                        <div class="input-group input-group-outline mb-3">
+                            <label class="form-label">Ghi chú</label>
+                            <input name="spc_note" id="spc_note" class="form-control" />
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" name="create" value="create"
+                                class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Tạo chuyên khoa</button>
+                        </div>
+                        <div class="text-center" href="#">
+                            <button type="button" class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
+                                onclick="location.href='http://localhost/HMS-Nhom11/role-admin/speciality.php'">Thoát</button>
+                        </div>
+
+                </div>
+                </form>
             </div>
         </div>
-
 
     </main>
 
@@ -613,6 +529,10 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
     </footer>
     </div>
 
+    <!-- Popup Section for Form -->
+
+
+
     <script>
         $(document).ready(function () {
             $('#drugTable').DataTable({
@@ -629,6 +549,6 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
     </script>
 
 
-<?php
+    <?php
     include SITE_ROOT . ('/HMS-Nhom11/assets/include/footer.php');
     ?>
