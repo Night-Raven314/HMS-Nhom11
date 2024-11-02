@@ -68,6 +68,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         header('Refresh:0 , url=http://localhost/HMS-Nhom11/role-admin/employee.php');
     }
+
+
 }
 ?>
 
@@ -234,10 +236,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-                        <div class="input-group input-group-outline">
+                        <form method="GET" action="" class="input-group input-group-outline">
                             <label class="form-label">Tìm kiếm</label>
-                            <input type="text" class="form-control">
-                        </div>
+                            <input type="text" name="query" class="form-control" placeholder="">
+                        </form>
                     </div>
                     <ul class="navbar-nav  justify-content-end">
 
@@ -309,7 +311,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     trên hệ thống</h6>
                                 <div class="table-float-btn-container">
                                     <a class="table-float-btn btn btn-outline-primary btn-sm mb-0 me-3"
-                                        style="background: #ffffff" href="#popup_add" data-target="#popup_add">Thêm nhân viên</a>
+                                        style="background: #ffffff" href="#popup_add" data-target="#popup_add">Thêm nhân
+                                        viên</a>
                                 </div>
                             </div>
                         </div>
@@ -354,8 +357,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <tbody>
                                         <?php
 
+                                        if (isset($_POST['create']) && $_POST['create'] == 'create') {
+                                        }
                                         //Get data for table
-                                        
                                         $get_data_query = "SELECT * FROM `dim_user` WHERE `role` <> 'patient' ";
 
                                         $get_data = mysqli_query($conn, $get_data_query);

@@ -311,7 +311,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     trên hệ thống</h6>
                                 <div class="table-float-btn-container">
                                     <a class="table-float-btn btn btn-outline-primary btn-sm mb-0 me-3"
-                                        style="background: #ffffff" href="#popup_user_add" data-target="#popup_user_add">Thêm người dùng</a>
+                                        style="background: #ffffff" href="#popup_user_add"
+                                        data-target="#popup_user_add">Thêm người dùng</a>
                                 </div>
                             </div>
                         </div>
@@ -643,7 +644,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </footer>
         </div>
-
 
 
     </main>

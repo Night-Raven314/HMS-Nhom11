@@ -22,7 +22,6 @@
 
 <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
 <script src="http://localhost/HMS-Nhom11/assets/js/material-dashboard.min.js"></script>
-<script src="http://localhost/HMS-Nhom11/assets/js/popup.js"></script>
 </body>
 
 </html>

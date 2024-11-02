@@ -4,6 +4,40 @@ define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT']);
 include('sess-check.php');
 include SITE_ROOT . ('/HMS-Nhom11/assets/include/config.php');
 include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['update'])) {
+        $post_full_name = (empty(mysqli_real_escape_string($conn, $_POST['full_name'])) === true) ? $fullname : mysqli_real_escape_string($conn, $_POST['full_name']);
+        $post_user_name = (empty(mysqli_real_escape_string($conn, $_POST['user_name'])) === true) ? $user_name : mysqli_real_escape_string($conn, $_POST['user_name']);
+        $post_email = (empty(mysqli_real_escape_string($conn, $_POST['email_address'])) === true) ? $emailaddress : mysqli_real_escape_string($conn, $_POST['email_address']);
+        $post_contact_no = (empty(mysqli_real_escape_string($conn, $_POST['contact_no'])) === true) ? $phone : mysqli_real_escape_string($conn, $_POST['contact_no']);
+        $post_gender = (empty(mysqli_real_escape_string($conn, $_POST['gender'])) === true) ? $gender : mysqli_real_escape_string($conn, $_POST['gender']);
+        $post_role = (empty(mysqli_real_escape_string($conn, $_POST['role'])) === true) ? $role : mysqli_real_escape_string($conn, $_POST['role']);
+        $post_address = (empty(mysqli_real_escape_string($conn, $_POST['address'])) === true) ? $address : mysqli_real_escape_string($conn, $_POST['address']);
+        $post_city = (empty(mysqli_real_escape_string($conn, $_POST['city'])) === true) ? $city : mysqli_real_escape_string($conn, $_POST['city']);
+        $post_pwd = (empty(mysqli_real_escape_string($conn, $_POST['password'])) === true) ? $password : mysqli_real_escape_string($conn, $_POST['password']);
+
+        $post_update_id = $_POST['update']; //Get user ID that need update
+
+        $sql = "UPDATE `dim_user` SET
+        `user_name` = '$post_user_name',
+        `full_name` = '$post_full_name',
+        `email_address` = '$post_email',
+        `contact_no` = '$post_contact_no',
+        `password` = '$post_pwd',
+        `role` = '$post_role',
+        `gender` = '$post_gender',
+        `address` = '$post_address',
+        `city` = '$post_city' 
+        WHERE user_id = $post_update_id";
+
+        $update = mysqli_query($conn, $sql);
+
+        echo "<script type='text/javascript'>alert('Cập nhật tài khoản thành công');</script>";
+
+        header('Refresh:0 , url=http://localhost/HMS-Nhom11/role-admin/guest.php');
+    }
+}
 ?>
 
 <head>
@@ -251,16 +285,7 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                     </div>
                     <?php
 
-                    $sql = "SELECT full_name, 
-                                            role, 
-                                            contact_no, 
-                                            address,
-                                            email_address, 
-                                            city 
-                                        FROM 
-                                            dim_user
-                                        WHERE 
-                                            user_id = $auth_user_id; ";
+                    $sql = "SELECT * FROM `dim_user` WHERE user_id = $auth_user_id; ";
                     $result = $conn->query($sql);
                     // Kiểm tra và hiển thị dữ liệu
                     if ($result->num_rows > 0) {
@@ -269,53 +294,131 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                             "admin" => "Quản trị viên",
                             "patient" => "Bệnh nhân"
                         ];
-                        while ($row = $result->fetch_assoc()) {
-                            $role = isset($roleMapping[$row["role"]]) ? $roleMapping[$row["role"]] : $row["role"];
 
-                            $full_name = $row["full_name"];
+                        $row = mysqli_fetch_assoc($result);
 
-                            $sdt = $row["contact_no"];
-                            $address = $row["address"];
-                            $emailaddress = $row["email_address"];
-                            $city = $row["city"];
+                        $user_id = $row["user_id"];
+                        $fullname = $row["full_name"];
+                        $role = isset($roleMapping[$row["role"]]) ? $roleMapping[$row["role"]] : $row["role"];
+                        $user_name = $row["user_name"];
+                        $phone = $row["contact_no"];
+                        $emailaddress = $row["email_address"];
+                        $password = $row["	password"];
+                        $created_at = $row["created_at"];
+                        $updated_at = $row["updated_at"];
+                        $gender = $row["gender"];
+                        $address = $row["address"];
+                        $city = $row["city"];
 
+                        ?>
+                        <tr>
+                            <div class="col-auto my-auto">
+                                <div class="h-100">
+                                    <h5 class="mb-1"><?php echo $fullname ?></h5>
+                                    <p class="mb-0 font-weight-normal text-sm"><?php echo $role ?></p>
+                                </div>
+                            </div>
+                            <div class="col-auto" style="margin-left: auto; margin-right: 10px;">
+                                <div class="text-center">
+                                    <button type="button" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0"
+                                        title="Edit Profile" onclick="location.href='#popup_edit'"
+                                        data-target="#popup_edit">Cập nhật</button>
+                                </div>
+                            </div>
+                            <div class="card-header pb-0 p-3">
+                            </div>
+                            <div class="card-body p-3">
+                                <ul class="list-group">
 
-                            echo "<tr>";
-                            echo '<div class="col-auto my-auto">
-                                        <div class="h-100">
-                                            <h5 class="mb-1">
-                                                ' . $full_name . '
-                                            </h5>
-                                            <p class="mb-0 font-weight-normal text-sm">
-                                                ' . $role . '
-                                            </p>
-                                        </div>
-                                    </div>';
-                            echo '<div class="col-auto" style="margin-left: auto; margin-right: 10px;">
+                                    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Số điện
+                                            thoại:</strong>&nbsp;<?php echo $phone ?></li>
+                                    <li class="list-group-item border-0 ps-0 text-sm"><strong
+                                            class="text-dark">Email:</strong>&nbsp;<?php echo $emailaddress ?></li>
+                                    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Địa
+                                            chỉ:</strong>&nbsp;<?php echo $address ?></li>
+
+                                    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Thành
+                                            phố:</strong>&nbsp;<?php echo $city ?></li>
+                                    <li class="list-group-item border-0 ps-0 pb-0">
+                            </div>
+                        </tr>
+
+                        <!-- Popup for User edit -->
+                        <div id="popup_edit" class="overlay_flight_traveldil">
+                            <div class="card popup-cont">
+                                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                                    <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                                        <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">
+                                            Cập nhật tài khoản người dùng
+                                        </h4>
+                                    </div>
+                                </div>
+                                <div class="card-body edit-body">
+                                    <form name="new_user" role="form" method="POST">
+                                        <div class="row"> <!-- Thêm hàng để chia thành 2 bên -->
+                                            <div class="col-md-6"> <!-- Cột bên trái -->
+                                                <div class="input-group input-group-outline mb-3">
+                                                    <label for="full_name" class="form-label">Họ và
+                                                        Tên</label>
+                                                    <input name="full_name" id="full_name" class="form-control" value="">
+                                                </div>
+                                                <div class="input-group input-group-outline mb-3">
+                                                    <label class="form-label">Email</label>
+                                                    <input type="email" name="email_address" id="email_address"
+                                                        class="form-control">
+                                                </div>
+                                                <div class="input-group input-group-outline mb-3">
+                                                    <!-- <label class="form-label-lg" style="margin-right: 10px;">Giới tính</label> -->
+                                                    <select name="gender" id="gender" class="form-control">
+                                                        <option value="" disabled selected>Chọn giới
+                                                            tính</option>
+                                                        <option value="male">Nam</option>
+                                                        <option value="female">Nữ</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6"> <!-- Cột bên phải -->
+                                                <div class="input-group input-group-outline mb-3">
+                                                    <label class="form-label">Tên đăng nhập</label>
+                                                    <input name="user_name" id="user_name" class="form-control" />
+                                                </div>
+                                                <div class="input-group input-group-outline mb-3">
+                                                    <label class="form-label">Mật khẩu</label>
+                                                    <input name="password" id="password" class="form-control" required>
+                                                </div>
+                                                <div class="input-group input-group-outline mb-3">
+                                                    <label class="form-label">Số điện thoại</label>
+                                                    <input name="contact_no" id="contact_no" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="input-group input-group-outline mb-3">
+                                                <label class="form-label">Địa chỉ</label>
+                                                <input name="address" id="address" class="form-control">
+                                            </div>
+                                            <div class="input-group input-group-outline mb-3">
+                                                <label class="form-label">Thành phố</label>
+                                                <input name="city" id="city" class="form-control">
+                                            </div>
+
                                             <div class="text-center">
-                                                <button type="button" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0"
-                                                    title="Edit Profile" href="#popup_update">Cập nhật</button>
+                                                <button type="submit" name="update" value=<?php echo $user_id; ?>
+                                                    class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập
+                                                    nhật</button>
                                             </div>
-                                     </div>
-                                            <div class="card-header pb-0 p-3">
+
+                                            <div class="text-center" href="#">
+                                                <button type="button"
+                                                    class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
+                                                    onclick="location.href='http://localhost/HMS-Nhom11/role-admin/profile.php'">Thoát</button>
                                             </div>
-                                            <div class="card-body p-3">
-                                                <ul class="list-group">
-                                               
-                                  <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Số điện
-                                    thoại:</strong>&nbsp; ' . $sdt . '</li>
-                                 <li class="list-group-item border-0 ps-0 text-sm"><strong
-                                    class="text-dark">Email:</strong>&nbsp; ' . $emailaddress . '</li>
-                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Địa
-                                    chỉ:</strong> &nbsp; ' . $address . '</li>
 
-                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Thành
-                                    phố:</strong> &nbsp; ' . $city . '</li>
-                                <li class="list-group-item border-0 ps-0 pb-0">
-                                 </div>';
-                            echo "</tr>";
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <?php
 
-                        }
                     } else {
                         echo "Không tìm thấy người dùng.";
                     }
@@ -331,67 +434,69 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
         </div>
 
         <!-- Popup Section for Form -->
-        <!-- <div id="container-popup">
-            <div id="container-popup">
-                <div id="popupFormContainer">
-
-                </div>
-            </div>
-        </div> -->
-
-        <!-- <div id="popup_flight_travlDil1" class="overlay_flight_traveldil">
-            <div class="popup_flight_travlDil">
-                <div class="card">
-                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                        <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                            <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Cập nhật thông tin</h4>
-                        </div>
+        <!-- Popup to create user -->
+        <div id="popup_update" class="overlay_flight_traveldil">
+            <div class="card popup-cont">
+                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                    <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                        <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Thêm tài khoản nhân viên</h4>
                     </div>
-                    <div class="card-body">
-                        <form role="form">
-
-
-                            <div class="input-group input-group-outline mb-3">
-                                <label class="form-label">Nguyen Van A</label>
-                                <input type="full_name" class="form-control">
+                </div>
+                <div class="card-body">
+                    <form name="new_user" role="form" method="POST">
+                        <div class="row"> <!-- Thêm hàng để chia thành 2 bên -->
+                            <div class="col-md-6"> <!-- Cột bên trái -->
+                                <div class="input-group input-group-outline mb-3">
+                                    <label class="form-label">Họ và Tên</label>
+                                    <input name="full_name" id="full_name" class="form-control">
+                                </div>
+                                <div class="input-group input-group-outline mb-3">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" name="email_address" id="email_address" class="form-control">
+                                </div>
+                                <div class="input-group input-group-outline mb-3">
+                                    <!-- <label class="form-label-lg" style="margin-right: 10px;">Giới tính</label> -->
+                                    <select name="gender" id="gender" class="form-control">
+                                        <option value="" disabled selected>Chọn giới tính</option>
+                                        <option value="male">Nam</option>
+                                        <option value="female">Nữ</option>
+                                    </select>
+                                </div>
                             </div>
-                            <div class="input-group input-group-outline mb-3">
-                                <label class="form-label">+84123456789</label>
-                                <input type="contact_no" class="form-control">
-                            </div>
-                            <div class="input-group input-group-outline mb-3">
-                                <label class="form-label">Email</label>
-                                <input type="email" class="form-control">
+                            <div class="col-md-6"> <!-- Cột bên phải -->
+                                <div class="input-group input-group-outline mb-3">
+                                    <label class="form-label">Tên đăng nhập</label>
+                                    <input name="user_name" id="user_name" class="form-control">
+                                </div>
+                                <div class="input-group input-group-outline mb-3">
+                                    <label class="form-label">Mật khẩu</label>
+                                    <input name="password" id="password" class="form-control">
+                                </div>
+                                <div class="input-group input-group-outline mb-3">
+                                    <label class="form-label">Số điện thoại</label>
+                                    <input name="contact_no" id="contact_no" class="form-control">
+                                </div>
                             </div>
                             <div class="input-group input-group-outline mb-3">
                                 <label class="form-label">Địa chỉ</label>
-                                <input type="address" class="form-control">
+                                <input name="address" id="address" class="form-control">
                             </div>
                             <div class="input-group input-group-outline mb-3">
                                 <label class="form-label">Thành phố</label>
-                                <input type="city" class="form-control">
+                                <input name="city" id="city" class="form-control">
                             </div>
                             <div class="text-center">
-                                <button type="button" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập
-                                    nhật</button>
+                                <button type="submit" name="update" value="update"
+                                    class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập nhật tài
+                                    khoản</button>
                             </div>
-                            <div class="text-center">
+                            <div class="text-center" href="#">
                                 <button type="button" class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
-                                    onclick="popup_close_1()">Thoát</button>
+                                    onclick="location.href='http://localhost/HMS-Nhom11/role-admin/profile.php'">Thoát</button>
                             </div>
-                            <a class="close_flight_travelDl" href="#">Eject</a>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div> -->
 
-        <div id="popup_update" class="overlay_flight_traveldil">
-            <div class="popup_flight_travlDil">
-                <h2>Fare Rules</h2>
-                <a class="close_flight_travelDl" href="#">&times;</a>
-                <div class="content_flightht_travel_dil">
-                    1st POPUP
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

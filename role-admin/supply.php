@@ -307,7 +307,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         <tr>
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Tên</th>
+                                                Mã vật tư</th>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                Tên vật tư</th>
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Giá cả</th>
@@ -320,7 +323,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 ngày chỉnh sửa</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Thao tác</th>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                Thao tác</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -343,6 +348,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                 $updated_at = $row["updated_at"];
                                                 ?>
                                                 <tr>
+                                                    <td class="align-middle text-center text-sm">
+                                                        <p class="text-xs font-weight-bold mb-0"><?php echo $item_id ?></p>
+                                                    </td>
                                                     <td class="align-middle text-center">
                                                         <div class="d-flex px-2 py-1">
                                                             <div>
