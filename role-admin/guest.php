@@ -36,6 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $post_role = (empty(mysqli_real_escape_string($conn, $_POST['role'])) === true) ? $role : mysqli_real_escape_string($conn, $_POST['role']);
         $post_address = (empty(mysqli_real_escape_string($conn, $_POST['address'])) === true) ? $address : mysqli_real_escape_string($conn, $_POST['address']);
         $post_city = (empty(mysqli_real_escape_string($conn, $_POST['city'])) === true) ? $city : mysqli_real_escape_string($conn, $_POST['city']);
+        $post_pwd = (empty(mysqli_real_escape_string($conn, $_POST['password'])) === true) ? $og_pwd : mysqli_real_escape_string($conn, $_POST['password']);
 
         $post_update_id = $_POST['update']; //Get user ID that need update
 
@@ -44,6 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         `full_name` = '$post_full_name',
         `email_address` = '$post_email',
         `contact_no` = '$post_contact_no',
+        `password` = '$post_pwd',
         `role` = '$post_role',
         `gender` = '$post_gender',
         `address` = '$post_address',
@@ -309,7 +311,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     trên hệ thống</h6>
                                 <div class="table-float-btn-container">
                                     <a class="table-float-btn btn btn-outline-primary btn-sm mb-0 me-3"
-                                        style="background: #ffffff" href="#popup_add">Thêm người dùng</a>
+                                        style="background: #ffffff" href="#popup_user_add" data-target="#popup_user_add">Thêm người dùng</a>
                                 </div>
                             </div>
                         </div>
@@ -380,6 +382,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                     . str_repeat('*', (strlen($row["email_address"]) - 17)) // Apply enough asterisks to cover the middle numbers
                                                     . substr($row["email_address"], -12); // Get the last two digits
                                                 $password = str_repeat('*', (strlen($row["password"])));
+                                                $og_pwd = $created_at = $row["password"];
                                                 $created_at = $row["created_at"];
                                                 $updated_at = $row["updated_at"];
                                                 $gender = $row["gender"];
@@ -415,7 +418,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                 echo "<span class='text-secondary text-xs font-weight-bold'>" . $updated_at . "</span>";
                                                 echo "</td>";
                                                 ?>
-                                                <td>
+                                                <td class='align-middle text-center'>
                                                     <a href='#popup_edit-<?php echo $user_id; ?>'
                                                         class='text-secondary font-weight-bold text-xs edit-btn'
                                                         data-original-title='edit' title='Sửa thông tin' data-toggle='modal'
@@ -469,20 +472,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                                                 class="form-control" />
                                                                         </div>
                                                                         <div class="input-group input-group-outline mb-3">
+                                                                            <label class="form-label">Mật khẩu</label>
+                                                                            <input name="password" id="password"
+                                                                                class="form-control" required>
+                                                                        </div>
+                                                                        <div class="input-group input-group-outline mb-3">
                                                                             <label class="form-label">Số điện thoại</label>
                                                                             <input name="contact_no" id="contact_no"
                                                                                 class="form-control">
-                                                                        </div>
-                                                                        <div class="input-group input-group-outline mb-3">
-                                                                            <!-- <label class="form-label-lg" style="margin-right: 10px;">Giới tính</label> -->
-                                                                            <select name="role" id="role" class="form-control">
-                                                                                <option value="" disabled selected>Chọn vị trí
-                                                                                </option>
-                                                                                <option value="doctor">Bác sỹ</option>
-                                                                                <option value="nurse">Y tá</option>
-                                                                                <option value="reception">Lễ tân</option>
-                                                                                <option value="admin">Quản trị viên</option>
-                                                                            </select>
                                                                         </div>
                                                                     </div>
                                                                     <div class="input-group input-group-outline mb-3">
@@ -538,6 +535,74 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
 
+        <!-- Popup Section for Form -->
+        <!-- Popup to create user -->
+        <div id="popup_user_add" class="overlay_flight_traveldil">
+            <div class="card popup-cont">
+                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                    <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                        <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Thêm tài khoản người dùng</h4>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form name="new_user" role="form" method="POST">
+                        <div class="row"> <!-- Thêm hàng để chia thành 2 bên -->
+                            <div class="col-md-6"> <!-- Cột bên trái -->
+                                <div class="input-group input-group-outline mb-3">
+                                    <label class="form-label">Họ và Tên</label>
+                                    <input name="full_name" id="full_name" class="form-control" required>
+                                </div>
+                                <div class="input-group input-group-outline mb-3">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" name="email_address" id="email_address" class="form-control"
+                                        required>
+                                </div>
+                                <div class="input-group input-group-outline mb-3">
+                                    <!-- <label class="form-label-lg" style="margin-right: 10px;">Giới tính</label> -->
+                                    <select name="gender" id="gender" class="form-control" required>
+                                        <option value="" disabled selected>Chọn giới tính</option>
+                                        <option value="male">Nam</option>
+                                        <option value="female">Nữ</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6"> <!-- Cột bên phải -->
+                                <div class="input-group input-group-outline mb-3">
+                                    <label class="form-label">Tên đăng nhập</label>
+                                    <input name="user_name" id="user_name" class="form-control" required>
+                                </div>
+                                <div class="input-group input-group-outline mb-3">
+                                    <label class="form-label">Mật khẩu</label>
+                                    <input name="password" id="password" class="form-control" required>
+                                </div>
+                                <div class="input-group input-group-outline mb-3">
+                                    <label class="form-label">Số điện thoại</label>
+                                    <input name="contact_no" id="contact_no" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="input-group input-group-outline mb-3">
+                                <label class="form-label">Địa chỉ</label>
+                                <input name="address" id="address" class="form-control" required>
+                            </div>
+                            <div class="input-group input-group-outline mb-3">
+                                <label class="form-label">Thành phố</label>
+                                <input name="city" id="city" class="form-control" required>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" name="create" value="create"
+                                    class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Tạo tài khoản</button>
+                            </div>
+                            <div class="text-center" href="#">
+                                <button type="button" class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
+                                    onclick="location.href='http://localhost/HMS-Nhom11/role-admin/guest.php'">Thoát</button>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
         <footer class="footer py-4  ">
             <div class="container-fluid">
                 <div class="row align-items-center justify-content-lg-between">
@@ -579,79 +644,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </footer>
         </div>
 
-        <!-- Popup Section for Form -->
-        <!-- Popup to create user -->
-        <div id="popup_add" class="overlay_flight_traveldil">
-            <div class="card popup-cont">
-                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                    <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                        <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Thêm tài khoản người dùng</h4>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <form name="new_user" role="form" method="POST">
-                        <div class="row"> <!-- Thêm hàng để chia thành 2 bên -->
-                            <div class="col-md-6"> <!-- Cột bên trái -->
-                                <div class="input-group input-group-outline mb-3">
-                                    <label class="form-label">Họ và Tên</label>
-                                    <input name="full_name" id="full_name" class="form-control" required>
-                                </div>
-                                <div class="input-group input-group-outline mb-3">
-                                    <label class="form-label">Email</label>
-                                    <input type="email" name="email_address" id="email_address" class="form-control"
-                                        required>
-                                </div>
-                                <div class="input-group input-group-outline mb-3">
-                                    <!-- <label class="form-label-lg" style="margin-right: 10px;">Giới tính</label> -->
-                                    <select name="gender" id="gender" class="form-control" required>
-                                        <option value="" disabled selected>Chọn giới tính</option>
-                                        <option value="male">Nam</option>
-                                        <option value="female">Nữ</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6"> <!-- Cột bên phải -->
-                                <div class="input-group input-group-outline mb-3">
-                                    <label class="form-label">Tên đăng nhập</label>
-                                    <input name="user_name" id="user_name" class="form-control" required>
-                                </div>
-                                <div class="input-group input-group-outline mb-3">
-                                    <label class="form-label">Số điện thoại</label>
-                                    <input name="contact_no" id="contact_no" class="form-control" required>
-                                </div>
-                                <div class="input-group input-group-outline mb-3">
-                                    <!-- <label class="form-label-lg" style="margin-right: 10px;">Giới tính</label> -->
-                                    <select name="role" id="role" class="form-control" required>
-                                        <option value="" disabled selected>Chọn vị trí</option>
-                                        <option value="doctor">Bác sỹ</option>
-                                        <option value="nurse">Y tá</option>
-                                        <option value="reception">Lễ tân</option>
-                                        <option value="admin">Quản trị viên</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="input-group input-group-outline mb-3">
-                                <label class="form-label">Địa chỉ</label>
-                                <input name="address" id="address" class="form-control" required>
-                            </div>
-                            <div class="input-group input-group-outline mb-3">
-                                <label class="form-label">Thành phố</label>
-                                <input name="city" id="city" class="form-control" required>
-                            </div>
-                            <div class="text-center">
-                                <button type="submit" name="create" value="create"
-                                    class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Tạo tài khoản</button>
-                            </div>
-                            <div class="text-center" href="#">
-                                <button type="button" class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
-                                    onclick="location.href='http://localhost/HMS-Nhom11/role-admin/guest.php'">Thoát</button>
-                            </div>
 
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
 
     </main>
 

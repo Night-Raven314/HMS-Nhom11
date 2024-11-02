@@ -309,7 +309,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     trên hệ thống</h6>
                                 <div class="table-float-btn-container">
                                     <a class="table-float-btn btn btn-outline-primary btn-sm mb-0 me-3"
-                                        style="background: #ffffff" href="#popup_add">Thêm nhân viên</a>
+                                        style="background: #ffffff" href="#popup_add" data-target="#popup_add">Thêm nhân viên</a>
                                 </div>
                             </div>
                         </div>
@@ -415,7 +415,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                 echo "<span class='text-secondary text-xs font-weight-bold'>" . $updated_at . "</span>";
                                                 echo "</td>";
                                                 ?>
-                                                <td>
+                                                <td class='align-middle text-center'>
                                                     <a href='#popup_edit-<?php echo $user_id; ?>'
                                                         class='text-secondary font-weight-bold text-xs edit-btn'
                                                         data-original-title='edit' title='Sửa thông tin' data-toggle='modal'
