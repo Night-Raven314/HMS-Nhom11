@@ -5,28 +5,28 @@ include('sess-check.php');
 include SITE_ROOT . ('/HMS-Nhom11/assets/include/config.php');
 include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+// if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    if (isset($_POST['booking']) && $_POST['booking'] == 'create') {
-        // $post_full_name = mysqli_real_escape_string($conn, $_POST['full_name']);
-        // $post_user_name = mysqli_real_escape_string($conn, $_POST['user_name']);
-        // $post_email = mysqli_real_escape_string($conn, $_POST['email_address']);
-        // $post_contact_no = mysqli_real_escape_string($conn, $_POST['contact_no']);
-        // $post_gender = mysqli_real_escape_string($conn, $_POST['gender']);
-        // $post_role = mysqli_real_escape_string($conn, $_POST['role']);
-        // $post_address = mysqli_real_escape_string($conn, $_POST['address']);
-        // $post_city = mysqli_real_escape_string($conn, $_POST['city']);
-        // $default_pwd = "P@ss123";
+//     if (isset($_POST['booking']) && $_POST['booking'] == 'create') {
+//         // $post_full_name = mysqli_real_escape_string($conn, $_POST['full_name']);
+//         // $post_user_name = mysqli_real_escape_string($conn, $_POST['user_name']);
+//         // $post_email = mysqli_real_escape_string($conn, $_POST['email_address']);
+//         // $post_contact_no = mysqli_real_escape_string($conn, $_POST['contact_no']);
+//         // $post_gender = mysqli_real_escape_string($conn, $_POST['gender']);
+//         // $post_role = mysqli_real_escape_string($conn, $_POST['role']);
+//         // $post_address = mysqli_real_escape_string($conn, $_POST['address']);
+//         // $post_city = mysqli_real_escape_string($conn, $_POST['city']);
+//         // $default_pwd = "P@ss123";
 
-        // $sql = "INSERT INTO `dim_user` (`user_name`, `full_name`, `password`, `email_address`, `contact_no`, `role`, `gender`, `address`, `city`) VALUES ('$post_user_name', '$post_full_name', '$default_pwd', '$post_email', $post_contact_no, '$post_role', '$post_gender', '$post_address', '$post_city')";
+//         // $sql = "INSERT INTO `dim_user` (`user_name`, `full_name`, `password`, `email_address`, `contact_no`, `role`, `gender`, `address`, `city`) VALUES ('$post_user_name', '$post_full_name', '$default_pwd', '$post_email', $post_contact_no, '$post_role', '$post_gender', '$post_address', '$post_city')";
 
-        // $add = mysqli_query($conn, $sql);
+//         // $add = mysqli_query($conn, $sql);
 
-        echo "<script type='text/javascript'>alert('Đăng ký thành công');</script>";
+//         echo "<script type='text/javascript'>alert('Đăng ký thành công');</script>";
 
-        header('Refresh:0 , url=http://localhost/HMS-Nhom11/role-patient/schedule.php');
-    }
-}
+//         header('Refresh:0 , url=http://localhost/HMS-Nhom11/role-patient/schedule.php');
+//     }
+// }
 ?>
 
 <head>
@@ -239,7 +239,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         LEFT JOIN dim_user ptn ON app.patient_id = ptn.user_id
                                         LEFT JOIN dim_user dct ON app.doctor_id = dct.user_id
                                         LEFT JOIN dim_specialties spc ON app.specialty_id = spc.specialty_id
-                                        WHERE dct.user_id = $auth_user_id
+                                        WHERE ptn.user_id = $auth_user_id
                                         ORDER BY app.booking_date DESC, app.booking_time DESC; ";
                                     $result = $conn->query($sql);
                                     // Kiểm tra và hiển thị dữ liệu
