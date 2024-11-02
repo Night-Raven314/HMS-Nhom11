@@ -4,6 +4,56 @@ define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT']);
 include('sess-check.php');
 include SITE_ROOT . ('/HMS-Nhom11/assets/include/config.php');
 include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    if (isset($_POST['create']) && $_POST['create'] == 'create') {
+        $post_item_name = mysqli_real_escape_string($conn, $_POST['item_name']);
+        $post_item_price = mysqli_real_escape_string($conn, $_POST['price']);
+        $post_item_unit = mysqli_real_escape_string($conn, $_POST['unit']);
+
+        $sql = "INSERT INTO `dim_item` (`item_name`, `item_price`, `item_unit`) VALUES ('$post_item_name', '$post_item_price', '$post_item_unit')";
+
+        $add = mysqli_query($conn, $sql);
+
+        echo "<script type='text/javascript'>alert('Thêm vật tư thành công');</script>";
+
+        header('Refresh:0 , url=http://localhost/HMS-Nhom11/role-admin/supply.php');
+    }
+
+    if (isset($_POST['update'])) {
+
+        $post_item_name = (empty(mysqli_real_escape_string($conn, $_POST['item_name'])) === true) ? $item_name : mysqli_real_escape_string($conn, $_POST['item_name']);
+        $post_item_price = (empty(mysqli_real_escape_string($conn, $_POST['price'])) === true) ? $item_price : mysqli_real_escape_string($conn, $_POST['price']);
+        $post_item_unit = (empty(mysqli_real_escape_string($conn, $_POST['unit'])) === true) ? $item_unit : mysqli_real_escape_string($conn, $_POST['unit']);
+
+        $post_update_id = $_POST['update']; //Get user ID that need update
+
+        $sql = "UPDATE `dim_item` SET
+        `item_name` = '$post_item_name',
+        `item_price` = '$post_item_price',
+        `item_unit` = '$post_item_unit'
+        WHERE item_id = $post_update_id";
+
+        $update = mysqli_query($conn, $sql);
+
+        echo "<script type='text/javascript'>alert('Cập nhật vật tư thành công');</script>";
+
+        header('Refresh:0 , url=http://localhost/HMS-Nhom11/role-admin/supply.php');
+    }
+
+    if (isset($_POST['delete'])) {
+        $post_delete_id = $_POST['delete']; //Get user ID that need delete
+
+        $sql = "DELETE FROM `dim_item` WHERE item_id = $post_delete_id";
+
+        $delete = mysqli_query($conn, $sql);
+
+        echo "<script type='text/javascript'>alert('Xoá vật tư thành công');</script>";
+
+        header('Refresh:0 , url=http://localhost/HMS-Nhom11/role-admin/supply.php');
+    }
+}
 ?>
 
 <head>
@@ -205,7 +255,8 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                                     <a class="dropdown-item border-radius-md" href="profile.php">
                                         <div class="d-flex py-1">
                                             <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="text-primary text-gradient font-weight-bold" style="padding-top:10px !important;">
+                                                <h6 class="text-primary text-gradient font-weight-bold"
+                                                    style="padding-top:10px !important;">
                                                     Thông tin người dùng
                                                 </h6>
                                             </div>
@@ -216,7 +267,8 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                                     <a class="dropdown-item border-radius-md" href="../assets/include/log-out.php">
                                         <div class="d-flex py-1">
                                             <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="text-primary text-gradient font-weight-bold" style="padding-top:10px !important;">
+                                                <h6 class="text-primary text-gradient font-weight-bold"
+                                                    style="padding-top:10px !important;">
                                                     Đăng xuất
                                                 </h6>
                                             </div>
@@ -239,7 +291,12 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                     <div class="card my-4">
                         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                             <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                                <h6 class="text-white text-capitalize ps-3">Bảng vật tư y tế</h6>
+                                <h6 class="text-white text-capitalize ps-3" style="float: left;">Bảng vật tư ý tế
+                                </h6>
+                                <div class="table-float-btn-container">
+                                    <a class="table-float-btn btn btn-outline-primary btn-sm mb-0 me-3"
+                                        style="background: #ffffff" href="#popup_add">Thêm vật tư</a>
+                                </div>
                             </div>
                         </div>
 
@@ -249,10 +306,10 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                                     <thead>
                                         <tr>
                                             <th
-                                                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Tên</th>
                                             <th
-                                                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Giá cả</th>
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
@@ -263,7 +320,7 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 ngày chỉnh sửa</th>
-                                            <th class="text-secondary opacity-7"></th>
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Thao tác</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -284,211 +341,111 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                                                 $item_unit = $row["item_unit"];
                                                 $created_at = $row["created_at"];
                                                 $updated_at = $row["updated_at"];
+                                                ?>
+                                                <tr>
+                                                    <td class="align-middle text-center">
+                                                        <div class="d-flex px-2 py-1">
+                                                            <div>
 
-                                                echo "<tr>";
-                                                echo '<td>
-                                                <div class="d-flex px-2 py-1">
-                                                    <div>
-                                                  
-                                                    </div>
-                                                    <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">' . $item_name . '</h6>
+                                                            </div>
+                                                            <div class="d-flex flex-column justify-content-center">
+                                                                <h6 class="mb-0 text-sm"><?php echo $item_name ?></h6>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td class="align-middle text-center">
+                                                        <p class="text-xs font-weight-bold mb-0"><?php echo number_format(
+                                                            $item_price,
+                                                            0,
+                                                            ',',
+                                                            '.'
+                                                        ) ?></p> <!-- Định dạng tiền tệ -->
+                                                        <p class="text-xs text-secondary mb-0">VNĐ</p>
+                                                    </td>
+                                                    <td class="align-middle text-center text-sm">
+                                                        <p class="text-xs font-weight-bold mb-0"><?php echo $item_unit ?></p>
+                                                    </td>
+                                                    <td class="align-middle text-center">
+                                                        <span
+                                                            class="text-secondary text-xs font-weight-bold"><?php echo $created_at ?></span>
+                                                    </td>
+                                                    <td class="align-middle text-center">
+                                                        <span
+                                                            class="text-secondary text-xs font-weight-bold"><?php echo $updated_at ?></span>
+                                                    </td>
+                                                    <td class='align-middle text-center'>
+                                                        <a href='#popup_edit-<?php echo $item_id; ?>'
+                                                            class='text-secondary font-weight-bold text-xs edit-btn'
+                                                            data-original-title='edit' title='Sửa thông tin' data-toggle='modal'
+                                                            data-target='#popup_edit-<?php echo $item_id; ?>'>Sửa</a>
+                                                    </td>
+                                                </tr>
+
+                                                <div id="popup_edit-<?php echo $item_id; ?>" class="overlay_flight_traveldil">
+                                                    <div class="card popup-cont">
+                                                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                                                            <div
+                                                                class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                                                                <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">
+                                                                    Cập nhật thông tin vật tư
+                                                                </h4>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-body edit-body">
+                                                            <form name="edit_item" role="form" method="POST">
+
+                                                                <div class="input-group input-group-outline mb-3">
+                                                                    <label class="form-label">Tên vật tư</label>
+                                                                    <input name="item_name" id="item_name" class="form-control">
+                                                                </div>
+                                                                <div class="input-group input-group-outline mb-3">
+                                                                    <label class="form-label">Đơn giá</label>
+                                                                    <input type="number" name="price" id="price"
+                                                                        class="form-control">
+                                                                </div>
+                                                                <div class="input-group input-group-outline mb-3">
+                                                                    <!-- <label class="form-label-lg" style="margin-right: 10px;">Giới tính</label> -->
+                                                                    <select name="unit" id="unit" class="form-control">
+                                                                        <option value="" disabled selected>Chọn đơn vị tính
+                                                                        </option>
+                                                                        <option value="viên">Viên</option>
+                                                                        <option value="gói">Gói</option>
+                                                                        <option value="hộp">Hộp</option>
+                                                                        <option value="cái">Cái</option>
+                                                                        <option value="bộ">Bộ</option>
+                                                                    </select>
+                                                                </div>
+
+                                                                <div class="text-center">
+                                                                    <button type="submit" name="update" value=<?php echo $item_id; ?>
+                                                                        class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập
+                                                                        nhật</button>
+                                                                </div>
+
+                                                                <div class="text-center">
+                                                                    <button type="submit" name="delete" value=<?php echo $item_id; ?>
+                                                                        class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Xoá</button>
+
+                                                                </div>
+
+                                                                <div class="text-center">
+                                                                    <button type="button"
+                                                                        class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
+                                                                        onclick="location.href='http://localhost/HMS-Nhom11/role-admin/supply.php'">Thoát</button>
+                                                                </div>
+
+                                                        </div>
+                                                        </form>
                                                     </div>
                                                 </div>
-                                            </td>
-                                            <td>
-                                                <p  class="text-xs font-weight-bold mb-0">' . number_format($item_price, 0, ',', '.') . '</p>   <!-- Định dạng tiền tệ --> 
-                                                 <p class="text-xs text-secondary mb-0">VNĐ</p>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <p class="text-xs font-weight-bold mb-0">' . $item_unit . '</p>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">' . $created_at . '</span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">' . $updated_at . '</span>
-                                            </td>
-                                            <td class="align-middle">
-                                                <a href="javascript:;" onclick="div_show()" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                                    Edit
-                                                </a>
-                                            </td>';
 
-
-
-
-
-                                                echo "</tr>";
-
+                                                <?php
                                             }
                                         } else {
                                             echo "Không tìm thấy người dùng.";
                                         }
-
-
-                                        // Đóng kết nối
-                                        
-
-
-
-
-
-
-
-
                                         ?>
 
-                                        <!-- <tr>
-                                            <td>
-                                                <div class="d-flex px-2 py-1">
-                                                    <div>
-                                                        <img src="https://hapacol.vn/wp-content/uploads/2023/08/tac-dung-cua-paracetamol.png" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                                    </div>
-                                                    <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">Paracetamol</h6>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">2000</p>
-                                                <p class="text-xs text-secondary mb-0">VNĐ</p>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <p class="text-xs font-weight-bold mb-0">Viên</p>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">24/04/18</span>
-                                            </td>
-                                            <td class="align-middle">
-                                                <a href="javascript:;" onclick="div_show()" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                                    Edit
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-2 py-1">
-                                                    <div>
-                                                        <img src="https://www.vinmec.com/static/uploads/20200124_005853_738311_thuoc_aspirin_max_1800x1800_jpg_b69b6a20d3.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                                    </div>
-                                                    <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">Aspirin</h6>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">3000</p>
-                                                <p class="text-xs text-secondary mb-0">VNĐ</p>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <p class="text-xs font-weight-bold mb-0">Viên</p>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">24/04/18</span>
-                                            </td>
-                                            <td class="align-middle">
-                                                <a href="javascript:;" onclick="div_show()" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                                    Edit
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-2 py-1">
-                                                    <div>
-                                                        <img src="https://www.vinmec.com/static/uploads/20200411_033146_959639_amoxicillin_la_thuo_max_1800x1800_jpg_38e621a5e3.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                                    </div>
-                                                    <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">Amoxicillin</h6>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">25000</p>
-                                                <p class="text-xs text-secondary mb-0">VNĐ</p>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <p class="text-xs font-weight-bold mb-0">Hộp</p>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">24/04/18</span>
-                                            </td>
-                                            <td class="align-middle">
-                                                <a href="javascript:;" onclick="div_show()" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                                    Edit
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-2 py-1">
-                                                    <div>
-                                                        <img src="https://www.pharmart.vn/images/product/origin/thuoc-vitamin-c-tw3-500mg-dieu-tri-thieu-hut-vitamin-c-65f15f008f538.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                                    </div>
-                                                    <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">Vitamin C</h6>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">5000</p>
-                                                <p class="text-xs text-secondary mb-0">VNĐ</p>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <p class="text-xs font-weight-bold mb-0">Viên</p>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">24/04/18</span>
-                                            </td>
-                                            <td class="align-middle">
-                                                <a href="javascript:;" onclick="div_show()" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                                    Edit
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-2 py-1">
-                                                    <div>
-                                                        <img src="../assets/image/medical/ibuprofen.webp" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                                    </div>
-                                                    <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">Ibuprofen</h6>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">1500</p>
-                                                <p class="text-xs text-secondary mb-0">VNĐ</p>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <p class="text-xs font-weight-bold mb-0">Viên</p>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">24/04/18</span>
-                                            </td>
-                                            <td class="align-middle">
-                                                <a href="javascript:;" onclick="div_show()" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                                    Edit
-                                                </a>
-                                            </td>
-                                        </tr> -->
                                     </tbody>
                                 </table>
 
@@ -501,62 +458,49 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
 
 
         <!-- Popup Section for Form -->
-        <div id="container-popup" style="display: none;">
-            <div id="popupContact">
-                <div class="card">
-                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                        <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                            <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Chỉnh sửa thông tin sản phẩm
-                            </h4>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <form role="form">
-                            <div class="input-group input-group-outline mb-3">
-                                <label class="form-label">Tên thuốc</label>
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="input-group input-group-outline mb-3">
-                                <label class="form-label">Giá</label>
-                                <input type="number" class="form-control">
-                            </div>
-                            <div class="input-group input-group-outline mb-3">
-                                <label class="form-label">Đơn vị</label>
-                                <input list="units" class="form-control">
-                                <datalist id="units">
-                                    <option value="Viên">
-                                    <option value="Gói">
-                                    <option value="Hộp">
-                                    <option value="Bộ">
-                                </datalist>
-                            </div>
-
-                            <div class="input-group input-group-outline mb-3">
-                                <label for="floatingInputDate" style="margin-right: 10px;">Ngày nhập</label>
-                                <input type="date" class="form-control" id="floatingInputDate">
-
-                            </div>
-
-                            <div class="input-group input-group-outline mb-3">
-                                <label for="floatingInputDate" style="margin-right: 10px;">Ngày chỉnh sửa</label>
-                                <input type="date" class="form-control" id="floatingInputDate">
-
-                            </div>
-                            <div class="input-group input-group-outline mb-3">
-                                <label for="floatingInputDate" style="margin-right: 10px;">Hình ảnh sản phẩm</label>
-                                <input type="file" class="form-control">
-                            </div>
-                            <div class="text-center">
-                                <button type="button" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập
-                                    nhật</button>
-                            </div>
-                            <div class="text-center">
-                                <button type="button" class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
-                                    onclick="div_hide()">Thoát</button>
-                            </div>
-                        </form>
+        <!-- Popup to create user -->
+        <div id="popup_add" class="overlay_flight_traveldil">
+            <div class="card popup-cont">
+                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                    <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                        <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Thêm chuyên khoa</h4>
                     </div>
                 </div>
+                <div class="card-body">
+                    <form name="edit_item" role="form" method="POST">
+
+                        <div class="input-group input-group-outline mb-3">
+                            <label class="form-label">Tên vật tư</label>
+                            <input name="item_name" id="item_name" class="form-control" required>
+                        </div>
+                        <div class="input-group input-group-outline mb-3">
+                            <label class="form-label">Đơn giá</label>
+                            <input type="number" name="price" id="price" class="form-control" required>
+                        </div>
+                        <div class="input-group input-group-outline mb-3">
+                            <!-- <label class="form-label-lg" style="margin-right: 10px;">Giới tính</label> -->
+                            <select name="unit" id="unit" class="form-control" required>
+                                <option value="" disabled selected>Chọn đơn vị tính
+                                </option>
+                                <option value="viên">Viên</option>
+                                <option value="gói">Gói</option>
+                                <option value="hộp">Hộp</option>
+                                <option value="cái">Cái</option>
+                                <option value="bộ">Bộ</option>
+                            </select>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" name="create" value="create"
+                                class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Tạo vật tư</button>
+                        </div>
+                        <div class="text-center" href="#">
+                            <button type="button" class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
+                                onclick="location.href='http://localhost/HMS-Nhom11/role-admin/supply.php'">Thoát</button>
+                        </div>
+
+                </div>
+                </form>
             </div>
         </div>
 
@@ -602,7 +546,7 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
         </div>
     </footer>
     </div>
-    
+
     <script>
         $(document).ready(function () {
             $('#drugTable').DataTable({
@@ -618,6 +562,6 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
         });
     </script>
 
-<?php
+    <?php
     include SITE_ROOT . ('/HMS-Nhom11/assets/include/footer.php');
     ?>

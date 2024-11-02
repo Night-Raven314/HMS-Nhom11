@@ -30,9 +30,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $post_update_id = $_POST['update']; //Get user ID that need update
 
         $sql = "UPDATE `dim_specialties` SET
-        `specialty_name` = '$post_user_name',
-        `description` = '$post_full_name',
-        `note` = '$post_email'
+        `specialty_name` = '$post_spc_name',
+        `description` = '$post_spc_desc',
+        `note` = '$post_spc_note'
         WHERE specialty_id = $post_update_id";
 
         $update = mysqli_query($conn, $sql);
@@ -423,7 +423,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                                                                 </div>
 
-                                                                <div class="text-center" href="#">
+                                                                <div class="text-center">
                                                                     <button type="button"
                                                                         class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
                                                                         onclick="location.href='http://localhost/HMS-Nhom11/role-admin/speciality.php'">Thoát</button>

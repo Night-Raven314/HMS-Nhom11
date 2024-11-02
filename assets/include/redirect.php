@@ -3,12 +3,6 @@
 // Start the session
 session_start();
 
-echo("{$_SESSION['auth_login_user']}"."<br />");
-echo("{$_SESSION['auth_login_email']}"."<br />");
-echo("{$_SESSION['auth_user_id']}"."<br />");
-echo("{$_SESSION['auth_user_role']}"."<br />");
-echo("{$_SESSION['auth_login_type']}"."<br />");
-
 // if (!isset($_SESSION['auth_login_user']) || !isset($_SESSION['auth_login_email'])) {
 //     header('Refresh:0 , url=http://localhost/HMS-Nhom11/assets/include/log-out.php');
 //     die();
