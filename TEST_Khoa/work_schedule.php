@@ -3,7 +3,7 @@ define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT']);
 
 include SITE_ROOT . ('/HMS-Nhom11/assets/include/config.php');
 include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
-
+include '../TEST_Khoa/get_query.php';
 
 ?>
 
@@ -148,25 +148,35 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                         <form role="form">
                             <!-- Doctor's Name -->
                             <div class="input-group input-group-outline mb-3">
-                                <label class="form-label">Tên bác sĩ</label>
-                                <input type="text" class="form-control" placeholder="">
+                                <label class="btn-group-vertical" style="margin-right: 10px;">Tên bác sĩ</label>
+                                <input type="text" name="doctor_name" class="form-control" required list="doctor-list" placeholder="Nhập tên bác sĩ...">
+                                <datalist id="doctor-list">
+                                    <?php if (!empty($get_doctors)): ?>
+                                        <?php foreach ($get_doctors as $doctors): ?>
+                                            <option value="<?= $doctors['full_name'] ?>" data-id="<?= $doctors['user_id'] ?>"></option>
+                                        <?php endforeach; ?>
+                                    <?php else: ?>
+                                        <option disabled>Không có chuyên khoa nào</option>
+                                    <?php endif; ?>
+                                </datalist>
                             </div>
+
 
                             <!-- Appointment Date -->
                             <div class="input-group input-group-outline mb-3">
-                                <label class="col-form-label-lg" style="margin-right: 10px;">Ngày</label>
+                                <label class="btn-group-vertical" style="margin-right: 10px;">Ngày</label>
                                 <input type="date" class="form-control">
                             </div>
 
                             <!-- Start Time -->
                             <div class="input-group input-group-outline mb-3">
-                                <label class="col-form-label-lg" style="margin-right: 10px;">Giờ bắt đầu</label>
+                                <label class="btn-group-vertical" style="margin-right: 10px;">Giờ bắt đầu</label>
                                 <input type="time" class="form-control">
                             </div>
 
                             <!-- End Time -->
                             <div class="input-group input-group-outline mb-3">
-                                <label class="col-form-label-lg" style="margin-right: 10px;">Giờ kết thúc</label>
+                                <label class="btn-group-vertical" style="margin-right: 10px;">Giờ kết thúc</label>
                                 <input type="time" class="form-control">
                             </div>
 
@@ -186,7 +196,22 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
         </div>
         <?php include SITE_ROOT . ('/HMS-Nhom11/assets/include/footer.php'); ?>
         <script src="http://localhost/HMS-Nhom11/assets/js/popup-copy.js"></script>
+        <!-- list gợi í tên bác sĩ -->
+        <script>
+            const input = document.querySelector('input[name="doctor_name"]');
 
+            input.addEventListener('input', function() {
+                const options = document.querySelectorAll('#doctor-list option');
+                options.forEach(option => {
+                    if (option.value === this.value) {
+                        // Lấy user_id từ data-id
+                        const doctorId = option.getAttribute('data-id');
+                        console.log('Doctor ID:', doctorId);
+                        // Bạn có thể lưu doctorId vào một biến hoặc gửi nó cùng với form
+                    }
+                });
+            });
+        </script>
 
 
     </main>

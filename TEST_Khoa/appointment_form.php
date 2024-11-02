@@ -163,7 +163,7 @@ include '../TEST_Khoa/get_query.php';
                                                 <input type="email" name="email" class="form-control" required>
                                             </div>
                                             <div class="input-group input-group-outline mb-3">
-                                                <label class="col-form-label-lg" style="margin-right: 10px;">Chuyên khoa</label>
+                                                <label class="btn-group-vertical" style="margin-right: 10px;">Chuyên khoa</label>
                                                 <select name="specialty_id" class="form-control" required>
                                                     <option value="" disabled selected>Chọn chuyên khoa</option> <!-- Tùy chọn mặc định -->
                                                     <?php if (!empty($specialties)): ?>
@@ -176,7 +176,7 @@ include '../TEST_Khoa/get_query.php';
                                                 </select>
                                             </div>
                                             <div class="input-group input-group-outline mb-3">
-                                                <label class="col-form-label-lg" style="margin-right: 10px;">Bác sĩ</label>
+                                                <label class="btn-group-vertical" style="margin-right: 10px;">Bác sĩ</label>
                                                 <select name="doctor_id" class="form-control" required>
                                                     <option value="" disabled selected>Chọn bác sĩ</option> <!-- Tùy chọn mặc định -->
                                                     <?php if (!empty($get_doctors)): ?>
@@ -196,11 +196,11 @@ include '../TEST_Khoa/get_query.php';
                                                 <input type="number" name="cons_fee" class="form-control" required>
                                             </div>
                                             <div class="input-group input-group-outline mb-3">
-                                                <label class="col-form-label-lg" style="margin-right: 10px;">Ngày hẹn</label>
+                                                <label class="btn-group-vertical" style="margin-right: 10px;">Ngày hẹn</label>
                                                 <input type="date" name="booking_date" class="form-control" required>
                                             </div>
                                             <div class="input-group input-group-outline mb-3">
-                                                <label class="col-form-label-lg" style="margin-right: 10px;">Giờ hẹn</label>
+                                                <label class="btn-group-vertical" style="margin-right: 10px;">Giờ hẹn</label>
                                                 <input type="time" name="booking_time" class="form-control" required>
                                             </div>
                                             <div class="input-group input-group-outline mb-3">
