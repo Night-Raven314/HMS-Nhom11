@@ -184,7 +184,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
                         </div>
 
-                        <span class="nav-link-text ms-1">Quản lý người dùng</span>
+                        <span class="nav-link-text ms-1">Quản lý nhân viên</span>
                     </a>
                 </li>
 
@@ -307,7 +307,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
                                 <h6 class="text-white text-capitalize ps-3" style="float: left;">Thông tin người dùng
                                     trên hệ thống</h6>
-                                <div class="table-float-btn-container">s
+                                <div class="table-float-btn-container">
                                     <a class="table-float-btn btn btn-outline-primary btn-sm mb-0 me-3"
                                         style="background: #ffffff" href="#popup_add">Thêm người dùng</a>
                                 </div>
@@ -446,7 +446,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                                         </div>
                                                                         <div class="input-group input-group-outline mb-3">
                                                                             <label class="form-label">Email</label>
-                                                                            <input name="email_address" id="email_address"
+                                                                            <input type="email" name="email_address" id="email_address"
                                                                                 class="form-control">
                                                                         </div>
                                                                         <div class="input-group input-group-outline mb-3">
@@ -596,7 +596,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 </div>
                                 <div class="input-group input-group-outline mb-3">
                                     <label class="form-label">Email</label>
-                                    <input name="email_address" id="email_address" class="form-control" required>
+                                    <input type="email" name="email_address" id="email_address" class="form-control" required>
                                 </div>
                                 <div class="input-group input-group-outline mb-3">
                                     <!-- <label class="form-label-lg" style="margin-right: 10px;">Giới tính</label> -->

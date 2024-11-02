@@ -136,98 +136,102 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
             </div>
 
             <div class="row">
-                <!-- Khoa Tim mạch -->
+            <?php
+
+                $sql = "SELECT * FROM `dim_specialties`";
+
+                $specialties = mysqli_query($conn, $sql);
+
+                while ($row = mysqli_fetch_assoc($specialties)) {
+                    
+                    $specialties_name = $row["specialty_name"];
+                    $description = $row["description"];
+
+            ?>
                 <div class="col-lg-4 col-md-6">
                     <div class="single-key">
                         <i class="fas fa-heart"></i>
-                        <h5>Khoa Tim mạch</h5>
-                        <p>Chăm sóc chuyên sâu cho các vấn đề liên quan đến tim, bao gồm ECG và phẫu thuật tim.</p>
+                        <h5><?php echo $specialties_name; ?></h5>
+                        <p><?php echo $description; ?></p>
                     </div>
                 </div>
 
+                <?php
+                }?>
+
                 <!-- Khoa Thần kinh -->
-                <div class="col-lg-4 col-md-6">
+                <!-- <div class="col-lg-4 col-md-6">
                     <div class="single-key">
                         <i class="fas fa-brain"></i>
                         <h5>Khoa Thần kinh</h5>
                         <p>Chăm sóc chuyên sâu cho các rối loạn thần kinh, bao gồm dịch vụ MRI và EEG.</p>
                     </div>
-                </div>
+                </div> -->
 
                 <!-- Khoa Chấn thương chỉnh hình -->
-                <div class="col-lg-4 col-md-6">
+                <!-- <div class="col-lg-4 col-md-6">
                     <div class="single-key">
                         <i class="fas fa-bone"></i>
                         <h5>Khoa Chấn thương chỉnh hình</h5>
                         <p>Dịch vụ chỉnh hình toàn diện cho sức khỏe xương, bao gồm điều trị gãy xương.</p>
                     </div>
-                </div>
+                </div> -->
 
                 <!-- Khoa Nhi -->
-                <div class="col-lg-4 col-md-6">
+                <!-- <div class="col-lg-4 col-md-6">
                     <div class="single-key">
                         <i class="fas fa-baby"></i>
                         <h5>Khoa Nhi</h5>
                         <p>Chăm sóc chuyên sâu cho trẻ sơ sinh, trẻ em và thanh thiếu niên, bao gồm tiêm chủng.</p>
                     </div>
-                </div>
+                </div> -->
 
                 <!-- Khoa Ung bướu -->
-                <div class="col-lg-4 col-md-6">
+                <!-- <div class="col-lg-4 col-md-6">
                     <div class="single-key">
                         <i class="fas fa-dna"></i>
                         <h5>Khoa Ung bướu</h5>
                         <p>Chăm sóc và điều trị chuyên sâu cho bệnh nhân ung thư, bao gồm hóa trị.</p>
                     </div>
-                </div>
+                </div> -->
 
                 <!-- Khoa Tai mũi họng -->
-                <div class="col-lg-4 col-md-6">
+                <!-- <div class="col-lg-4 col-md-6">
                     <div class="single-key">
                         <i class="fas fa-head-side-mask"></i>
                         <h5>Khoa Tai mũi họng</h5>
                         <p>Chăm sóc toàn diện cho các vấn đề về tai, mũi và họng, bao gồm phẫu thuật xoang.</p>
                     </div>
-                </div>
+                </div> -->
 
 
                 <!-- Khoa Hô hấp -->
-                <div class="col-lg-4 col-md-6">
+                <!-- <div class="col-lg-4 col-md-6">
                     <div class="single-key">
                         <i class="fas fa-lungs"></i>
                         <h5>Khoa Hô hấp</h5>
                         <p>Chăm sóc chuyên sâu cho các bệnh về đường hô hấp và phổi, bao gồm điều trị hen suyễn.</p>
                     </div>
-                </div>
+                </div> -->
 
                 <!-- Khoa Tiêu hóa -->
-                <div class="col-lg-4 col-md-6">
+                <!-- <div class="col-lg-4 col-md-6">
                     <div class="single-key">
                         <i class="fas fa-stethoscope"></i>
                         <h5>Khoa Tiêu hóa</h5>
-                        <p>Dịch vụ chuyên khoa cho các vấn đề về tiêu hóa, bao gồm nội soi đại tràng.</p>
+                        <p>Điều trị các bệnh đường tiêu hóa như viêm gan, dạ dày, ruột, gan, mật và tuyến tụy.</p>
                     </div>
-                </div>
+                </div> -->
 
                 <!-- Khoa Da liễu -->
-                <div class="col-lg-4 col-md-6">
+                <!-- <div class="col-lg-4 col-md-6">
                     <div class="single-key">
                         <i class="fas fa-syringe"></i>
                         <h5>Khoa Da liễu</h5>
                         <p>Chăm sóc chuyên sâu cho các bệnh về da, bao gồm điều trị mụn.</p>
                     </div>
-                </div>
+                </div> -->
 
-                <!-- Khoa Phụ sản -->
-                <div class="d-flex justify-content-center">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-key">
-                            <i class="fas fa-baby-carriage" aria-hidden="true"></i>
-                            <h5>Khoa Phụ sản</h5>
-                            <p>Chăm sóc toàn diện cho sức khỏe phụ nữ và dịch vụ sinh sản, bao gồm chăm sóc tiền sản.</p>
-                        </div>
-                    </div>
-                </div>
             </div>
 
     </section>

@@ -4,6 +4,29 @@ define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT']);
 include('sess-check.php');
 include SITE_ROOT . ('/HMS-Nhom11/assets/include/config.php');
 include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    if (isset($_POST['booking']) && $_POST['booking'] == 'create') {
+        // $post_full_name = mysqli_real_escape_string($conn, $_POST['full_name']);
+        // $post_user_name = mysqli_real_escape_string($conn, $_POST['user_name']);
+        // $post_email = mysqli_real_escape_string($conn, $_POST['email_address']);
+        // $post_contact_no = mysqli_real_escape_string($conn, $_POST['contact_no']);
+        // $post_gender = mysqli_real_escape_string($conn, $_POST['gender']);
+        // $post_role = mysqli_real_escape_string($conn, $_POST['role']);
+        // $post_address = mysqli_real_escape_string($conn, $_POST['address']);
+        // $post_city = mysqli_real_escape_string($conn, $_POST['city']);
+        // $default_pwd = "P@ss123";
+
+        // $sql = "INSERT INTO `dim_user` (`user_name`, `full_name`, `password`, `email_address`, `contact_no`, `role`, `gender`, `address`, `city`) VALUES ('$post_user_name', '$post_full_name', '$default_pwd', '$post_email', $post_contact_no, '$post_role', '$post_gender', '$post_address', '$post_city')";
+
+        // $add = mysqli_query($conn, $sql);
+
+        echo "<script type='text/javascript'>alert('Đăng ký thành công');</script>";
+
+        header('Refresh:0 , url=http://localhost/HMS-Nhom11/role-patient/schedule.php');
+    }
+}
 ?>
 
 <head>
@@ -123,7 +146,8 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                                     <a class="dropdown-item border-radius-md" href="profile.php">
                                         <div class="d-flex py-1">
                                             <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="text-primary text-gradient font-weight-bold" style="padding-top:10px !important;">
+                                                <h6 class="text-primary text-gradient font-weight-bold"
+                                                    style="padding-top:10px !important;">
                                                     Thông tin người dùng
                                                 </h6>
                                             </div>
@@ -134,7 +158,8 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                                     <a class="dropdown-item border-radius-md" href="../assets/include/log-out.php">
                                         <div class="d-flex py-1">
                                             <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="text-primary text-gradient font-weight-bold" style="padding-top:10px !important;">
+                                                <h6 class="text-primary text-gradient font-weight-bold"
+                                                    style="padding-top:10px !important;">
                                                     Đăng xuất
                                                 </h6>
                                             </div>
@@ -157,7 +182,12 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                     <div class="card my-4">
                         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                             <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                                <h6 class="text-white text-capitalize ps-3">Danh sách lịch hẹn kiểm tra</h6>
+                                <h6 class="text-white text-capitalize ps-3" style="float: left;">Danh sách lịch hẹn kiểm
+                                    tra</h6>
+                                <div class="table-float-btn-container">
+                                    <a class="table-float-btn btn btn-outline-primary btn-sm mb-0 me-3"
+                                        style="background: #ffffff" href="#popup_add">Đăng ký</a>
+                                </div>
                             </div>
                         </div>
                         <div class="card-body px-0 pb-2">
@@ -313,8 +343,109 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
             </footer>
         </div>
 
+        <!-- Popup Section for Form -->
+        <!-- Popup to create user -->
+        <div id="popup_booking" class="overlay_flight_traveldil">
+            <div class="card popup-cont">
+                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                    <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                        <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Đăng ký lịch hẹn</h4>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form role="form" action="#" method="post">
+                        <div class="row"> <!-- Thêm hàng để chia thành 2 bên -->
+                            <div class="col-md-6"> <!-- Cột bên trái -->
+                                <div class="input-group input-group-outline mb-3">
+                                    <label class="form-label">Họ và Tên</label>
+                                    <input type="text" name="full_name" class="form-control" required>
+                                </div>
+                                <div class="input-group input-group-outline mb-3">
+                                    <label class="form-label">Số điện thoại</label>
+                                    <input type="text" name="phone" class="form-control" required>
+                                </div>
+                                <div class="input-group input-group-outline mb-3">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" name="email" class="form-control" required>
+                                </div>
+                                <div class="input-group input-group-outline mb-3">
+                                    <select name="specialty_id" class="form-control" required>
+                                        <option value="" disabled selected>Chọn chuyên khoa</option>
+                                        <!-- Tùy chọn mặc định -->
+                                        <?php if (!empty($specialties)): ?>
+                                            <?php foreach ($specialties as $specialty): ?>
+                                                <option value="<?= $specialty['specialty_id'] ?>">
+                                                    <?= $specialty['specialty_name'] ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        <?php else: ?>
+                                            <option disabled>Không có chuyên khoa nào</option>
+                                        <?php endif; ?>
+                                    </select>
+                                </div>
+                                <div class="input-group input-group-outline mb-3">
+                                    <select name="doctor_id" class="form-control" required>
+                                        <option value="" disabled selected>Chọn bác sĩ</option>
+                                        <!-- Tùy chọn mặc định -->
+                                        <?php if (!empty($get_doctors)): ?>
+                                            <?php foreach ($get_doctors as $doctors): ?>
+                                                <option value="<?= $doctors['user_id'] ?>"><?= $doctors['full_name'] ?></option>
+                                            <?php endforeach; ?>
+                                        <?php else: ?>
+                                            <option disabled>Không có chuyên khoa nào</option>
+                                        <?php endif; ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6"> <!-- Cột bên phải -->
+
+                                <div class="input-group input-group-outline mb-3">
+                                    <label class="form-label">Phí khám</label>
+                                    <input type="number" name="cons_fee" class="form-control" required>
+                                </div>
+                                <div class="input-group input-group-outline mb-3">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class="col-form-label-lg">Ngày hẹn</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="col-form-label-lg">Giờ hẹn</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="date" name="booking_date" class="form-control" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="time" name="booking_time" class="form-control" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-group input-group-outline mb-3">
+                                    <label class="form-label">Thành phố</label>
+                                    <input type="text" name="city" class="form-control" required>
+                                </div>
+                                <div class="input-group input-group-outline mb-3">
+                                    <label class="form-label">Địa chỉ</label>
+                                    <input type="text" name="address" class="form-control" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-check form-check-info text-start ps-0">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Tôi đồng ý <a href="#" class="text-dark font-weight-bolder">Điều khoản và Điều kiện</a>
+                            </label>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" name="delete" value="create" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Đặt
+                                lịch</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
     </main>
 
-<?php
-include SITE_ROOT . ('/HMS-Nhom11/assets/include/footer.php');
-?>
+    <?php
+    include SITE_ROOT . ('/HMS-Nhom11/assets/include/footer.php');
+    ?>
