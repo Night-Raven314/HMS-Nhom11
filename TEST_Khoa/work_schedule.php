@@ -63,20 +63,20 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
 
 
 
-                <li class="nav-item mt-3">
+                <!-- <li class="nav-item mt-3">
                     <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Quản trị
                     </h6>
-                </li>
+                </li> -->
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">
+                    <a class="nav-link text-white" href="../TEST_Khoa/profile_test.php">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">#</i>
+                            <i class="material-icons opacity-10">account_circle</i>
                             <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
                         </div>
 
-                        <span class="nav-link-text ms-1">function03</span>
+                        <span class="nav-link-text ms-1">Thông tin cá nhân</span>
                     </a>
                 </li>
 
@@ -93,7 +93,7 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                 </nav>
                 <ul class="navbar-nav  justify-content-end">
                     <li class="nav-item d-flex align-items-center">
-                        <a class="btn btn-outline-primary btn-sm mb-0 me-3" href="../assets/include/log-out.php">Đăng xuất</a>
+                        <a class="btn btn-outline-primary btn-sm mb-0 me-3" href="../TEST_Khoa/sign-in_test.php">Đăng xuất</a>
                     </li>
                 </ul>
             </div>

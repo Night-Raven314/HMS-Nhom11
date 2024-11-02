@@ -21,7 +21,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $result = mysqli_query($conn, $sql);
   $row = mysqli_num_rows($result);
   $count = mysqli_num_rows($result);
-
   if ($count == 1) {
 
     $row = mysqli_fetch_assoc($result);

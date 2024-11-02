@@ -1,8 +1,15 @@
 <?php
 define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT']);
+session_start(); // Bắt đầu phiên
 
-include('../TEST_Khoa/sess-check_test.php');
+// Kiểm tra nếu người dùng đã đăng nhập
+if (!isset($_SESSION['auth_user_id'])) {
+    // Chuyển hướng người dùng về trang đăng nhập nếu chưa đăng nhập
+    header("Location: ../TEST_Khoa/sign-in_test.php");
+    exit();
+}
 include SITE_ROOT . ('/HMS-Nhom11/assets/include/config.php');
+include('../TEST_Khoa/sess-check_test.php');
 include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
 ?>
 
@@ -42,33 +49,45 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="schedule.php">
+                    <a class="nav-link text-white" href="../TEST_Khoa/work_schedule.php">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">calendar_month</i>
+                            <i class="material-icons opacity-10">event</i>
                             <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
                         </div>
 
-                        <span class="nav-link-text ms-1">Lịch hẹn kiểm tra</span>
+                        <span class="nav-link-text ms-1">Lịch làm</span>
                     </a>
                 </li>
 
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="patient.php">
+                    <a class="nav-link text-white " href="../TEST_Khoa/appointment_form.php">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">groups</i>
+                            <i class="material-icons opacity-10">calendar_today</i>
                             <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
                         </div>
 
-                        <span class="nav-link-text ms-1">Danh sách bệnh nhân</span>
+                        <span class="nav-link-text ms-1">Đặt lịch khám</span>
                     </a>
                 </li>
 
-                <li class="nav-item mt-3">
+                <!-- <li class="nav-item mt-3">
                     <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Quản trị
                     </h6>
+                </li> -->
+
+                <li class="nav-item">
+                    <a class="nav-link text-white active bg-gradient-primary" href="../TEST_Khoa/profile_test.php">
+
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="material-icons opacity-10">account_circle</i>
+                            <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
+                        </div>
+
+                        <span class="nav-link-text ms-1">Thông tin cá nhân</span>
+                    </a>
                 </li>
 
             </ul>
@@ -87,7 +106,7 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
             <div class="container-fluid py-1 px-3">
                 <nav aria-label="breadcrumb">
 
-                    <h6 class="font-weight-bolder mb-0">Thông tin cá nhân</h6>
+                    <h6 class="font-weight-bolder mb-0">TEST_Khoa</h6>
 
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
@@ -133,7 +152,7 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                                     </a>
                                 </li>
                                 <li class="mb-2">
-                                    <a class="dropdown-item border-radius-md" href="../assets/include/log-out.php">
+                                    <a class="dropdown-item border-radius-md" href="../TEST_Khoa/sign-in_test.php">
                                         <div class="d-flex py-1">
                                             <div class="d-flex flex-column justify-content-center">
                                                 <h6 class="text-primary text-gradient font-weight-bold" style="padding-top:10px !important;">

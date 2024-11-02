@@ -1,15 +1,7 @@
 <?php
-session_start(); // Bắt đầu phiên
-
-// Kiểm tra nếu người dùng đã đăng nhập
-if (!isset($_SESSION['auth_user_id'])) {
-   // Chuyển hướng người dùng về trang đăng nhập nếu chưa đăng nhập
-   header("Location: ../TEST_Khoa/sign-in_test.php");
-   exit();
+if (!$conn) {
+   die("Kết nối không thành công: " . mysqli_connect_error());
 }
-
-// Kết nối đến cơ sở dữ liệu
-require_once '../assets/include/config.php'; // Bao gồm file kết nối
 
 // Lấy dữ liệu người dùng từ cơ sở dữ liệu
 $user_id = mysqli_real_escape_string($conn, $_SESSION['auth_user_id']); // Lấy user_id từ phiên
