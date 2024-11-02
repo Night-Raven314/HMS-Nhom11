@@ -227,95 +227,94 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     </thead>
 
                                     <?php
+// Truy vấn cuộc hẹn từ cơ sở dữ liệu
+$sql = "SELECT app.appointment_id,
+            ptn.full_name AS patient_name,
+            dct.full_name AS doctor_name,
+            spc.specialty_name,
+            app.booking_date,
+            app.booking_time,
+            app.cons_fee,
+            app.created_at
+        FROM fact_appointment app
+        LEFT JOIN dim_user ptn ON app.patient_id = ptn.user_id
+        LEFT JOIN dim_user dct ON app.doctor_id = dct.user_id
+        LEFT JOIN dim_specialties spc ON app.specialty_id = spc.specialty_id
+        WHERE ptn.user_id = $auth_user_id
+        ORDER BY app.booking_date DESC, app.booking_time DESC;";
+$result = $conn->query($sql);
 
-                                            $sql = "SELECT ptn.full_name AS patient_name,
-                                                    dct.full_name AS doctor_name,
-                                                    spc.specialty_name,
-                                                    app.booking_date,
-                                                    app.booking_time,
-                                                    app.cons_fee,
-                                                    app.created_at
-                                                FROM fact_appointment app
-                                                LEFT JOIN dim_user ptn ON app.patient_id = ptn.user_id
-                                                LEFT JOIN dim_user dct ON app.doctor_id = dct.user_id
-                                                LEFT JOIN dim_specialties spc ON app.specialty_id = spc.specialty_id
-                                                WHERE ptn.user_id = $auth_user_id
-                                                ORDER BY app.booking_date DESC, app.booking_time DESC; ";
-                                            $result = $conn->query($sql);
-                                            // Kiểm tra và hiển thị dữ liệu
-                                            if ($result->num_rows > 0) {
-                                                while ($row = $result->fetch_assoc()) {
+// Hiển thị các cuộc hẹn và tạo popup sửa lịch hẹn cho mỗi cuộc hẹn
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $appointment_id = $row["appointment_id"];
+        $ptn = $row["patient_name"];
+        $dtn = $row["doctor_name"];
+        $spn = $row["specialty_name"];
+        $bkd = $row["booking_date"];
+        $bkt = $row["booking_time"];
+        $cf = $row["cons_fee"];
+        
+        echo "<tr>";
+        echo "<td class='align-middle text-center'><h6 class='mb-0 text-sm'>$dtn</h6></td>";
+        echo "<td class='align-middle text-center'><h6 class='mb-0 text-sm'>$ptn</h6></td>";
+        echo "<td class='align-middle text-center'><span class='text-xs font-weight-bold mb-0'>$spn</span></td>";
+        echo "<td class='align-middle text-center'><p class='text-xs font-weight-bold mb-0'>$cf VNĐ</p></td>";
+        echo "<td class='align-middle text-center'><span class='text-xs font-weight-bold mb-0'>$bkd</span></td>";
+        echo "<td class='align-middle text-center'><span class='text-xs font-weight-bold mb-0'>$bkt</span></td>";
 
+        // Nút Sửa mở popup
+        echo "<td>
+                <a href='#popup_edit-$appointment_id' class='text-secondary font-weight-bold text-xs edit-btn' title='Sửa thông tin' data-toggle='modal' data-target='#popup_edit-$appointment_id'>Sửa</a>
+              </td>";
+        echo "</tr>";
+?>
 
-                                                    $fullname = $row["full_name"];
-                                                    $ptn = $row["patient_name"];
-                                                    $dtn = $row["doctor_name"];
-                                                    $spn = $row["specialty_name"];
-                                                    $bkd = $row["booking_date"];
-                                                    $bkt = $row["booking_time"];
-                                                    $cf = $row["cons_fee"];
-                                                    $created_at = $row["created_at"];
+<!-- Popup Sửa Lịch Hẹn -->
+<div id="popup_edit-<?php echo $appointment_id; ?>" class="overlay_flight_traveldil">
+    <div class="card popup-cont">
+        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+            <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Sửa Lịch Hẹn</h4>
+            </div>
+        </div>
+        <div class="card-body">
+            <form method="POST" action="update_appointment.php">
+                <input type="hidden" name="appointment_id" value="<?php echo $appointment_id; ?>">
+                
+                <!-- Các trường chỉnh sửa -->
+                <div class="mb-3">
+                    <label for="booking_date-<?php echo $appointment_id; ?>" class="form-label">Ngày hẹn</label>
+                    <input type="date" name="booking_date" id="booking_date-<?php echo $appointment_id; ?>" class="form-control" value="<?php echo $bkd; ?>">
+                </div>
+                <div class="mb-3">
+                    <label for="booking_time-<?php echo $appointment_id; ?>" class="form-label">Giờ hẹn</label>
+                    <input type="time" name="booking_time" id="booking_time-<?php echo $appointment_id; ?>" class="form-control" value="<?php echo $bkt; ?>">
+                </div>
+                <div class="mb-3">
+                    <label for="cons_fee-<?php echo $appointment_id; ?>" class="form-label">Phí khám</label>
+                    <input type="number" name="cons_fee" id="cons_fee-<?php echo $appointment_id; ?>" class="form-control" value="<?php echo $cf; ?>">
+                </div>
 
-                                                    echo "<tr>";
-                                                    echo '<td class="align-middle text-center">
-                                                    <div class="d-flex px-2 py-1">
-                                                        <div class="d-flex flex-column justify-content-center">
-                                                            <h6 class="mb-0 text-sm">' . $dtn . '</h6>
-                                                        </div>
-                                                    </div>
-                                                </td>';
-                                                    echo '<td class="align-middle text-center">
-                                                    <div class="d-flex px-2 py-1">
-                                                        <div class="d-flex flex-column justify-content-center">
-                                                            <h6 class="mb-0 text-sm">' . $ptn . '</h6>
-                                                        </div>
-                                                    </div>
-                                                </td>';
+                <!-- Nút cập nhật -->
+                <div class="text-center">
+                    <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập nhật</button>
+                </div>
+                <!-- Nút thoát -->
+                <div class="text-center">
+                    <button type="button" class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0" onclick="closePopup(<?php echo $appointment_id; ?>)">Thoát</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
-                                                    echo ' <td class="align-middle text-center">
-                                                    <span class="text-xs font-weight-bold mb-0">' . $spn . '</span>
-                                                </td>';
-
-                                                    echo '<td class="align-middle text-center">
-                                                <p class="text-xs font-weight-bold mb-0">' . $cf . '</p>
-                                                <p class="text-xs text-secondary mb-0">VNĐ</p>
-                                            </td>';
-
-                                                    echo '<td class="align-middle text-center">
-                                                <span class="text-xs font-weight-bold mb-0">' . $bkd . '</span>
-                                            </td>';
-                                                    echo '<td class="align-middle text-center">
-                                                <span class="text-xs font-weight-bold mb-0">' . $bkt . '</span>
-                                            </td>';
-                                                    echo '<td class="align-middle text-center">
-                                                <span class="text-xs font-weight-bold mb-0">' . $created_at . '</span>
-                                            </td>';
-
-
-
-
-
-                                                    echo "</tr>";
-                                                }
-                                            } else {
-                                                // echo "Không tìm thấy người dùng.";
-                                            }
-
-
-                                            // Đóng kết nối
-
-
-
-
-
-
-
-
-
-                                            ?>
-
-
-
+<?php
+    }
+} else {
+    echo "<p>Không tìm thấy lịch hẹn nào.</p>";
+}
+?>
 
                                     <tbody>
 
