@@ -1,7 +1,7 @@
 // Function To Display Popup
 function div_show(popupId) {
   // Mảng chứa các ID của popup mà bạn có thể cần ẩn
-  const popupIds = ["edit-popup", "register-popup", "container-popup"];
+  const popupIds = ["edit-popup", "register-popup", "container_popup"];
 
   // Duyệt qua tất cả các ID để ẩn popup tương ứng nếu tồn tại trên trang
   popupIds.forEach((id) => {

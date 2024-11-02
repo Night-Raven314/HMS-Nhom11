@@ -195,7 +195,7 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                     </div>
                     <div class="col-auto" style="margin-left: auto; margin-right: 10px;">
                         <div class="text-center">
-                            <button type="button" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0" title="Edit Profile" onclick="div_show()">Cập nhật</button>
+                            <button type="button" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0" title="Edit Profile" onclick="div_show('container_popup')">Cập nhật</button>
                         </div>
                     </div>
                     <div class="card-header pb-0 p-3"></div>
@@ -213,7 +213,7 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
         </div>
 
         <!-- Popup Section for Form -->
-        <div id="container-popup" style="display: none;">
+        <div class="popup-container" id="container_popup" style="display: none;">
             <div id="popupFormContainer">
                 <div class="card">
                     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
@@ -251,7 +251,7 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                             </div>
                             <div class="text-center">
                                 <button type="button" class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
-                                    onclick="div_hide()">Thoát</button>
+                                    onclick="div_hide('container_popup')">Thoát</button>
                             </div>
                         </form>
                     </div>
@@ -263,3 +263,4 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
     <?php
     include SITE_ROOT . ('/HMS-Nhom11/assets/include/footer.php');
     ?>
+    <script src="http://localhost/HMS-Nhom11/assets/js/popup-copy.js"></script>

@@ -91,6 +91,7 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                 <nav aria-label="breadcrumb">
                     <h6 class="font-weight-bolder mb-0">TEST_Khoa</h6>
                 </nav>
+
                 <ul class="navbar-nav  justify-content-end">
                     <li class="nav-item d-flex align-items-center">
                         <a class="btn btn-outline-primary btn-sm mb-0 me-3" href="../TEST_Khoa/sign-in_test.php">Đăng xuất</a>
@@ -105,8 +106,11 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                 <div class="col-md-12">
                     <div class="card my-4">
                         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                            <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                            <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3 d-flex justify-content-between align-items-center">
                                 <h6 class="text-white text-capitalize ps-3">Lịch Làm Việc của Nhân Viên</h6>
+                                <button type="button" class="btn btn-light btn-sm me-3 shadow-sm" onclick="div_show('container_popup')">
+                                    Đăng ký lịch
+                                </button>
                             </div>
                         </div>
                         <div class="card-body px-0 pb-2">
@@ -130,7 +134,59 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                 </div>
             </div>
         </div>
+
+        <!-- Popup Section for Doctor Appointment Scheduling -->
+        <div class="popup-container" id="container_popup" style="display: none;">
+            <div id="popupFormContainer">
+                <div class="card">
+                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                        <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                            <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Đăng ký lịch</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form role="form">
+                            <!-- Doctor's Name -->
+                            <div class="input-group input-group-outline mb-3">
+                                <label class="form-label">Tên bác sĩ</label>
+                                <input type="text" class="form-control" placeholder="">
+                            </div>
+
+                            <!-- Appointment Date -->
+                            <div class="input-group input-group-outline mb-3">
+                                <label class="col-form-label-lg" style="margin-right: 10px;">Ngày</label>
+                                <input type="date" class="form-control">
+                            </div>
+
+                            <!-- Start Time -->
+                            <div class="input-group input-group-outline mb-3">
+                                <label class="col-form-label-lg" style="margin-right: 10px;">Giờ bắt đầu</label>
+                                <input type="time" class="form-control">
+                            </div>
+
+                            <!-- End Time -->
+                            <div class="input-group input-group-outline mb-3">
+                                <label class="col-form-label-lg" style="margin-right: 10px;">Giờ kết thúc</label>
+                                <input type="time" class="form-control">
+                            </div>
+
+                            <div class="text-center">
+                                <!-- Register Button -->
+                                <button type="button" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Đăng ký</button>
+                            </div>
+
+                            <div class="text-center">
+                                <!-- Exit Button -->
+                                <button type="button" class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0" onclick="div_hide('container_popup')">Thoát</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
         <?php include SITE_ROOT . ('/HMS-Nhom11/assets/include/footer.php'); ?>
+        <script src="http://localhost/HMS-Nhom11/assets/js/popup-copy.js"></script>
+
 
 
     </main>
