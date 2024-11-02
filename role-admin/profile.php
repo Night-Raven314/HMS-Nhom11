@@ -294,7 +294,7 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                             echo '<div class="col-auto" style="margin-left: auto; margin-right: 10px;">
                                             <div class="text-center">
                                                 <button type="button" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0"
-                                                    title="Edit Profile" onclick="div_show()">Cập nhật</button>
+                                                    title="Edit Profile" href="#popup_update">Cập nhật</button>
                                             </div>
                                      </div>
                                             <div class="card-header pb-0 p-3">
@@ -331,8 +331,16 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
         </div>
 
         <!-- Popup Section for Form -->
-        <div id="container-popup">
-            <div id="popupFormContainer">
+        <!-- <div id="container-popup">
+            <div id="container-popup">
+                <div id="popupFormContainer">
+
+                </div>
+            </div>
+        </div> -->
+
+        <!-- <div id="popup_flight_travlDil1" class="overlay_flight_traveldil">
+            <div class="popup_flight_travlDil">
                 <div class="card">
                     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                         <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
@@ -369,13 +377,25 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                             </div>
                             <div class="text-center">
                                 <button type="button" class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
-                                    onclick="div_hide()">Thoát</button>
+                                    onclick="popup_close_1()">Thoát</button>
                             </div>
+                            <a class="close_flight_travelDl" href="#">Eject</a>
                         </form>
                     </div>
                 </div>
             </div>
+        </div> -->
+
+        <div id="popup_update" class="overlay_flight_traveldil">
+            <div class="popup_flight_travlDil">
+                <h2>Fare Rules</h2>
+                <a class="close_flight_travelDl" href="#">&times;</a>
+                <div class="content_flightht_travel_dil">
+                    1st POPUP
+                </div>
+            </div>
         </div>
+
     </main>
 
     <?php

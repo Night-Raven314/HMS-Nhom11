@@ -212,8 +212,8 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                                 <h6 class="text-white text-capitalize ps-3" style="float: left;">Danh sách lịch hẹn kiểm
                                     tra</h6>
                                 <div class="table-float-btn-container">
-                                    <a class="table-float-btn btn btn-outline-primary btn-sm mb-0 me-3"
-                                        style="background: #ffffff" target="_blank" href="sign-in.php">Đăng ký</a>
+                                    <a class="table-float-btn btn btn-outline-primary btn-sm mb-0 me-3 lightbox"
+                                        style="background: #ffffff" onclick="lightbox_open(this)">Đăng ký</a>
                                 </div>
                             </div>
 

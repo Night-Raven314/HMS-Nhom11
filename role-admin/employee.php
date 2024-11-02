@@ -4,6 +4,71 @@ define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT']);
 include('sess-check.php');
 include SITE_ROOT . ('/HMS-Nhom11/assets/include/config.php');
 include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    if (isset($_POST['create']) && $_POST['create'] == 'create') {
+        $post_full_name = mysqli_real_escape_string($conn, $_POST['full_name']);
+        $post_user_name = mysqli_real_escape_string($conn, $_POST['user_name']);
+        $post_email = mysqli_real_escape_string($conn, $_POST['email_address']);
+        $post_contact_no = mysqli_real_escape_string($conn, $_POST['contact_no']);
+        $post_gender = mysqli_real_escape_string($conn, $_POST['gender']);
+        $post_role = mysqli_real_escape_string($conn, $_POST['role']);
+        $post_address = mysqli_real_escape_string($conn, $_POST['address']);
+        $post_city = mysqli_real_escape_string($conn, $_POST['city']);
+        $default_pwd = "P@ss123";
+
+        $sql = "INSERT INTO `dim_user` (`user_name`, `full_name`, `password`, `email_address`, `contact_no`, `role`, `gender`, `address`, `city`) VALUES ('$post_user_name', '$post_full_name', '$default_pwd', '$post_email', $post_contact_no, '$post_role', '$post_gender', '$post_address', '$post_city')";
+
+        $add = mysqli_query($conn, $sql);
+
+        echo "<script type='text/javascript'>alert('Thêm tài khoản thành công');</script>";
+
+        header('Refresh:0 , url=http://localhost/HMS-Nhom11/role-admin/employee.php');
+    }
+
+    if (isset($_POST['update'])) {
+        $post_full_name = (empty(mysqli_real_escape_string($conn, $_POST['full_name'])) === true) ? $fullname : mysqli_real_escape_string($conn, $_POST['full_name']);
+        $post_user_name = (empty(mysqli_real_escape_string($conn, $_POST['user_name'])) === true) ? $user_name : mysqli_real_escape_string($conn, $_POST['user_name']);
+        $post_email = (empty(mysqli_real_escape_string($conn, $_POST['email_address'])) === true) ? $emailaddress : mysqli_real_escape_string($conn, $_POST['email_address']);
+        $post_contact_no = (empty(mysqli_real_escape_string($conn, $_POST['contact_no'])) === true) ? $phone : mysqli_real_escape_string($conn, $_POST['contact_no']);
+        $post_gender = (empty(mysqli_real_escape_string($conn, $_POST['gender'])) === true) ? $gender : mysqli_real_escape_string($conn, $_POST['gender']);
+        $post_role = (empty(mysqli_real_escape_string($conn, $_POST['role'])) === true) ? $role : mysqli_real_escape_string($conn, $_POST['role']);
+        $post_address = (empty(mysqli_real_escape_string($conn, $_POST['address'])) === true) ? $address : mysqli_real_escape_string($conn, $_POST['address']);
+        $post_city = (empty(mysqli_real_escape_string($conn, $_POST['city'])) === true) ? $city : mysqli_real_escape_string($conn, $_POST['city']);
+
+        $post_update_id = $_POST['update']; //Get user ID that need update
+
+        $sql = "UPDATE `dim_user` SET
+        `user_name` = '$post_user_name',
+        `full_name` = '$post_full_name',
+        `email_address` = '$post_email',
+        `contact_no` = '$post_contact_no',
+        `role` = '$post_role',
+        `gender` = '$post_gender',
+        `address` = '$post_address',
+        `city` = '$post_city' 
+        WHERE user_id = $post_update_id";
+
+        $update = mysqli_query($conn, $sql);
+
+        echo "<script type='text/javascript'>alert('Cập nhật tài khoản thành công');</script>";
+
+        header('Refresh:0 , url=http://localhost/HMS-Nhom11/role-admin/employee.php');
+    }
+
+    if (isset($_POST['delete'])) {
+        $post_delete_id = $_POST['delete']; //Get user ID that need delete
+
+        $sql = "DELETE FROM `dim_user` WHERE user_id = $post_delete_id";
+
+        $delete = mysqli_query($conn, $sql);
+
+        echo "<script type='text/javascript'>alert('Xoá tài khoản thành công');</script>";
+
+        header('Refresh:0 , url=http://localhost/HMS-Nhom11/role-admin/employee.php');
+    }
+}
 ?>
 
 <head>
@@ -165,6 +230,7 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
 
                     <h6 class="font-weight-bolder mb-0">Quản lý người dùng</h6>
 
+
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -204,7 +270,8 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                                     <a class="dropdown-item border-radius-md" href="profile.php">
                                         <div class="d-flex py-1">
                                             <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="text-primary text-gradient font-weight-bold" style="padding-top:10px !important;">
+                                                <h6 class="text-primary text-gradient font-weight-bold"
+                                                    style="padding-top:10px !important;">
                                                     Thông tin người dùng
                                                 </h6>
                                             </div>
@@ -215,7 +282,8 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                                     <a class="dropdown-item border-radius-md" href="../assets/include/log-out.php">
                                         <div class="d-flex py-1">
                                             <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="text-primary text-gradient font-weight-bold" style="padding-top:10px !important;">
+                                                <h6 class="text-primary text-gradient font-weight-bold"
+                                                    style="padding-top:10px !important;">
                                                     Đăng xuất
                                                 </h6>
                                             </div>
@@ -237,15 +305,22 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                     <div class="card my-4">
                         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                             <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                                <h6 class="text-white text-capitalize ps-3">Thông tin người dùng trên hệ thống</h6>
+                                <h6 class="text-white text-capitalize ps-3" style="float: left;">Quản lý nhân viên</h6>
+                                <div class="table-float-btn-container">
+                                    <a class="table-float-btn btn btn-outline-primary btn-sm mb-0 me-3"
+                                        style="background: #ffffff" href="#popup_add">Thêm nhân viên</a>
+                                </div>
                             </div>
                         </div>
 
                         <div class="card-body px-0 pb-2">
                             <div class="table-responsive p-0">
-                                <table id="drugTable" class="table align-items-center mb-0">
+                                <table id="employeeTable" class="table align-items-center mb-0">
                                     <thead>
                                         <tr>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                User ID</th>
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Họ và Tên</th>
@@ -255,6 +330,9 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Username</th>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                Số điện thoại</th>
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Email</th>
@@ -273,161 +351,181 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                                     <tbody>
                                         <?php
 
-                                        $sql = "SELECT * FROM `dim_user` WHERE `role` <> 'patient' ";
-                                        $result = $conn->query($sql);
+                                        //Get data for table
+                                        
+                                        $get_data_query = "SELECT * FROM `dim_user` WHERE `role` <> 'patient' ";
+
+                                        $get_data = mysqli_query($conn, $get_data_query);
+
+                                        $count = mysqli_num_rows($get_data);
                                         // Kiểm tra và hiển thị dữ liệu
-                                        if ($result->num_rows > 0) {
+                                        if ($count > 0) {
                                             $roleMapping = [
                                                 "doctor" => "Bác sĩ",
                                                 "admin" => "Quản trị viên",
                                                 "patient" => "Bệnh nhân"
                                             ];
-                                            while ($row = $result->fetch_assoc()) {
-                                                $role = isset($roleMapping[$row["role"]]) ? $roleMapping[$row["role"]] : $row["role"];
+                                            while ($row = mysqli_fetch_assoc($get_data)) {
+                                                $user_id = $row["user_id"];
                                                 $fullname = $row["full_name"];
-                                                //   $role=$row["role"];
+                                                $role = isset($roleMapping[$row["role"]]) ? $roleMapping[$row["role"]] : $row["role"];
                                                 $user_name = $row["user_name"];
-                                                $emailaddress = $row["email_address"];
-                                                $password = $row["password"];
+                                                $phone = substr($row["contact_no"], 0, 5) // Get the first two digits
+                                                    . str_repeat('*', (strlen($row["contact_no"]) - 7)) // Apply enough asterisks to cover the middle numbers
+                                                    . substr($row["contact_no"], -2); // Get the last two digits
+                                                $emailaddress = substr($row["email_address"], 0, 5) // Get the first two digits
+                                                    . str_repeat('*', (strlen($row["email_address"]) - 17)) // Apply enough asterisks to cover the middle numbers
+                                                    . substr($row["email_address"], -12); // Get the last two digits
+                                                $password = str_repeat('*', (strlen($row["password"])));
                                                 $created_at = $row["created_at"];
                                                 $updated_at = $row["updated_at"];
+                                                $gender = $row["gender"];
+                                                $address = $row["address"];
+                                                $city = $row["city"];
 
                                                 echo "<tr>";
-                                                echo '<td class="align-middle text-center">
-                                                        <h6 class="mb-0 text-sm">' . $fullname . '</h6>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <p class="text-xs font-weight-bold mb-0">' . $role . '</p>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <p class="text-xs font-weight-bold mb-0">' . $user_name . '</p>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">' . $emailaddress . '</span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">' . $password . '</span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">' . $created_at . '</span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">' . $updated_at . '</span>
-                                            </td>
-                                            <td class="align-middle" onclick="div_show()">
-                                                <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user" title="Edit user">
-                                                    Edit
-                                                </a>
-                                            </td>';
+                                                echo "<td class='align-middle text-center'>";
+                                                echo "<h6 class='mb-0 text-sm'>" . $user_id . "</h6>";
+                                                echo "</td>";
+                                                echo "<td class='align-middle text-center'>";
+                                                echo "<h6 class='mb-0 text-sm'>" . $fullname . "</h6>";
+                                                echo "</td>";
+                                                echo "<td class='align-middle text-center text-sm'>";
+                                                echo "<p class='text-xs font-weight-bold mb-0'>" . $role . "</p>";
+                                                echo "</td>";
+                                                echo "<td class='align-middle text-center text-sm'>";
+                                                echo "<p class='text-xs font-weight-bold mb-0'>" . $user_name . "</p>";
+                                                echo "</td>";
+                                                echo "<td class='align-middle text-center text-sm'>";
+                                                echo "<p class='text-xs font-weight-bold mb-0'>" . $phone . "</p>";
+                                                echo "</td>";
+                                                echo "<td class='align-middle text-center'>";
+                                                echo "<span class='text-secondary text-xs font-weight-bold'>" . $emailaddress . "</span>";
+                                                echo "</td>";
+                                                echo "<td class='align-middle text-center'>";
+                                                echo "<span class='text-secondary text-xs font-weight-bold'>" . $password . "</span>";
+                                                echo "</td>";
+                                                echo "<td class='align-middle text-center'>";
+                                                echo "<span class='text-secondary text-xs font-weight-bold'>" . $created_at . "</span>";
+                                                echo "</td>";
+                                                echo "<td class='align-middle text-center'>";
+                                                echo "<span class='text-secondary text-xs font-weight-bold'>" . $updated_at . "</span>";
+                                                echo "</td>";
+                                                ?>
+                                                <td>
+                                                    <a href='#popup_edit-<?php echo $user_id; ?>'
+                                                        class='text-secondary font-weight-bold text-xs edit-btn'
+                                                        data-original-title='edit' title='Sửa thông tin' data-toggle='modal'
+                                                        data-target='#popup_edit-<?php echo $user_id; ?>'>Sửa</a>
+                                                </td>
+                                                </tr>
 
 
 
+                                                <!-- Popup for User edit -->
+                                                <div id="popup_edit-<?php echo $user_id; ?>" class="overlay_flight_traveldil">
+                                                    <div class="card popup-cont">
+                                                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                                                            <div
+                                                                class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                                                                <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">
+                                                                    Cập nhật tài khoản nhân viên
+                                                                </h4>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-body edit-body">
+                                                            <form name="new_user" role="form" method="POST">
+                                                                <div class="row"> <!-- Thêm hàng để chia thành 2 bên -->
+                                                                    <div class="col-md-6"> <!-- Cột bên trái -->
+                                                                        <div class="input-group input-group-outline mb-3">
+                                                                            <label for="full_name" class="form-label">Họ và
+                                                                                Tên</label>
+                                                                            <input name="full_name" id="full_name"
+                                                                                class="form-control" value="">
+                                                                        </div>
+                                                                        <div class="input-group input-group-outline mb-3">
+                                                                            <label class="form-label">Email</label>
+                                                                            <input name="email_address" id="email_address"
+                                                                                class="form-control">
+                                                                        </div>
+                                                                        <div class="input-group input-group-outline mb-3">
+                                                                            <!-- <label class="form-label-lg" style="margin-right: 10px;">Giới tính</label> -->
+                                                                            <select name="gender" id="gender"
+                                                                                class="form-control">
+                                                                                <option value="" disabled selected>Chọn giới
+                                                                                    tính</option>
+                                                                                <option value="male">Nam</option>
+                                                                                <option value="female">Nữ</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6"> <!-- Cột bên phải -->
+                                                                        <div class="input-group input-group-outline mb-3">
+                                                                            <label class="form-label">Tên đăng nhập</label>
+                                                                            <input name="user_name" id="user_name"
+                                                                                class="form-control" />
+                                                                        </div>
+                                                                        <div class="input-group input-group-outline mb-3">
+                                                                            <label class="form-label">Số điện thoại</label>
+                                                                            <input name="contact_no" id="contact_no"
+                                                                                class="form-control">
+                                                                        </div>
+                                                                        <div class="input-group input-group-outline mb-3">
+                                                                            <!-- <label class="form-label-lg" style="margin-right: 10px;">Giới tính</label> -->
+                                                                            <select name="role" id="role" class="form-control">
+                                                                                <option value="" disabled selected>Chọn vị trí
+                                                                                </option>
+                                                                                <option value="doctor">Bác sỹ</option>
+                                                                                <option value="nurse">Y tá</option>
+                                                                                <option value="reception">Lễ tân</option>
+                                                                                <option value="admin">Quản trị viên</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="input-group input-group-outline mb-3">
+                                                                        <label class="form-label">Địa chỉ</label>
+                                                                        <input name="address" id="address" class="form-control">
+                                                                    </div>
+                                                                    <div class="input-group input-group-outline mb-3">
+                                                                        <label class="form-label">Thành phố</label>
+                                                                        <input name="city" id="city" class="form-control">
+                                                                    </div>
 
+                                                                    <div class="text-center">
+                                                                        <button type="submit" name="update" value=<?php echo $user_id; ?>
+                                                                            class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập
+                                                                            nhật</button>
+                                                                    </div>
 
+                                                                    <div class="text-center">
+                                                                        <button type="submit" name="delete" value=<?php echo $user_id; ?>
+                                                                            class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Xoá</button>
 
-                                                echo "</tr>";
+                                                                    </div>
+
+                                                                    <div class="text-center" href="#">
+                                                                        <button type="button"
+                                                                            class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
+                                                                            onclick="location.href='http://localhost/HMS-Nhom11/role-admin/employee.php'">Thoát</button>
+                                                                    </div>
+
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <?php
+
 
                                             }
                                         } else {
                                             echo "Không tìm thấy người dùng.";
                                         }
 
-
                                         // Đóng kết nối
-                                        
-
-
-
-
-
-
-
-
                                         ?>
-                                        <!-- <tr>
-                                            <td class="align-middle text-center">
-                                                        <h6 class="mb-0 text-sm">Nguyen Van A</h6>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <p class="text-xs font-weight-bold mb-0">Bac sy</p>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <p class="text-xs font-weight-bold mb-0">a.nguyenvan</p>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">van_a@gmail.com</span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">pasword123</span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">24/04/18</span>
-                                            </td>
-                                            <td class="align-middle" onclick="div_show()">
-                                                <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user" title="Edit user">
-                                                    Edit
-                                                </a>
-                                            </td>
-                                        </tr> -->
-                                        <!-- <tr>
-                                            <td class="align-middle text-center">
-                                                        <h6 class="mb-0 text-sm">Nguyen Van B</h6>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <p class="text-xs font-weight-bold mb-0">Benh nhan</p>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <p class="text-xs font-weight-bold mb-0">b.nguyenvan</p>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">van_b@gmail.com</span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">pasword123</span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">24/04/18</span>
-                                            </td>
-                                            <td class="align-middle" onclick="div_show()">
-                                                <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user" title="Edit user">
-                                                    Edit
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="align-middle text-center">
-                                                        <h6 class="mb-0 text-sm">Nguyen Van A</h6>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <p class="text-xs font-weight-bold mb-0">Bac sy</p>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <p class="text-xs font-weight-bold mb-0">a.nguyenvan</p>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">van_a@gmail.com</span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">pasword123</span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">24/04/18</span>
-                                            </td>
-                                            <td class="align-middle" onclick="div_show()">
-                                                <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user" title="Edit user">
-                                                    Edit
-                                                </a>
-                                            </td>
-                                        </tr> -->
+
                                     </tbody>
                                 </table>
                             </div>
@@ -479,50 +577,74 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
         </div>
 
         <!-- Popup Section for Form -->
-        <div id="container-popup">
-            <div id="popupContact">
-                <div class="card">
-                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                        <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                            <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Cập nhật thông tin</h4>
-                        </div>
+        <!-- Popup to create user -->
+        <div id="popup_add" class="overlay_flight_traveldil">
+            <div class="card popup-cont">
+                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                    <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                        <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Thêm tài khoản nhân viên</h4>
                     </div>
-                    <div class="card-body">
-                        <form role="form">
-                            <div class="input-group input-group-outline mb-3">
-                                <label class="form-label">Nguyen Van A</label>
-                                <input type="full_name" class="form-control">
+                </div>
+                <div class="card-body">
+                    <form name="new_user" role="form" method="POST">
+                        <div class="row"> <!-- Thêm hàng để chia thành 2 bên -->
+                            <div class="col-md-6"> <!-- Cột bên trái -->
+                                <div class="input-group input-group-outline mb-3">
+                                    <label class="form-label">Họ và Tên</label>
+                                    <input name="full_name" id="full_name" class="form-control" required>
+                                </div>
+                                <div class="input-group input-group-outline mb-3">
+                                    <label class="form-label">Email</label>
+                                    <input name="email_address" id="email_address" class="form-control" required>
+                                </div>
+                                <div class="input-group input-group-outline mb-3">
+                                    <!-- <label class="form-label-lg" style="margin-right: 10px;">Giới tính</label> -->
+                                    <select name="gender" id="gender" class="form-control" required>
+                                        <option value="" disabled selected>Chọn giới tính</option>
+                                        <option value="male">Nam</option>
+                                        <option value="female">Nữ</option>
+                                    </select>
+                                </div>
                             </div>
-                            <div class="input-group input-group-outline mb-3">
-                                <label class="form-label">+84123456789</label>
-                                <input type="contact_no" class="form-control">
-                            </div>
-                            <div class="input-group input-group-outline mb-3">
-                                <label class="form-label">Email</label>
-                                <input type="email" class="form-control">
-                            </div>
-                            <div class="input-group input-group-outline mb-3">
-                                <label class="form-label">Mật khẩu</label>
-                                <input type="email" class="form-control">
+                            <div class="col-md-6"> <!-- Cột bên phải -->
+                                <div class="input-group input-group-outline mb-3">
+                                    <label class="form-label">Tên đăng nhập</label>
+                                    <input name="user_name" id="user_name" class="form-control" required>
+                                </div>
+                                <div class="input-group input-group-outline mb-3">
+                                    <label class="form-label">Số điện thoại</label>
+                                    <input name="contact_no" id="contact_no" class="form-control" required>
+                                </div>
+                                <div class="input-group input-group-outline mb-3">
+                                    <!-- <label class="form-label-lg" style="margin-right: 10px;">Giới tính</label> -->
+                                    <select name="role" id="role" class="form-control" required>
+                                        <option value="" disabled selected>Chọn vị trí</option>
+                                        <option value="doctor">Bác sỹ</option>
+                                        <option value="nurse">Y tá</option>
+                                        <option value="reception">Lễ tân</option>
+                                        <option value="admin">Quản trị viên</option>
+                                    </select>
+                                </div>
                             </div>
                             <div class="input-group input-group-outline mb-3">
                                 <label class="form-label">Địa chỉ</label>
-                                <input type="address" class="form-control">
+                                <input name="address" id="address" class="form-control" required>
                             </div>
                             <div class="input-group input-group-outline mb-3">
                                 <label class="form-label">Thành phố</label>
-                                <input type="city" class="form-control">
+                                <input name="city" id="city" class="form-control" required>
                             </div>
                             <div class="text-center">
-                                <button type="button" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập
-                                    nhật</button>
+                                <button type="submit" name="create" value="create"
+                                    class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Tạo tài khoản</button>
                             </div>
-                            <div class="text-center">
+                            <div class="text-center" href="#">
                                 <button type="button" class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
-                                    onclick="div_hide()">Thoát</button>
+                                    onclick="location.href='http://localhost/HMS-Nhom11/role-admin/employee.php'">Thoát</button>
                             </div>
-                        </form>
-                    </div>
+
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

@@ -3,6 +3,7 @@
 <script src="http://localhost/HMS-Nhom11/assets/js/core/bootstrap.min.js"></script>
 <script src="http://localhost/HMS-Nhom11/assets/js/plugins/perfect-scrollbar.min.js"></script>
 <script src="http://localhost/HMS-Nhom11/assets/js/plugins/smooth-scrollbar.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 
 <script>
