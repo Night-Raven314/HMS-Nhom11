@@ -77,7 +77,7 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
     </aside>
     <!-- End Side Nav -->
 
-    <main class="main-contt border-radius-lg ">
+    <main class="main-content border-radius-lg ps ">
         <!-- Navbar -->
 
         <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 border-radius-xl shadow-none position-sticky blur shadow-blur mt-4 left-auto top-1 z-index-sticky"
