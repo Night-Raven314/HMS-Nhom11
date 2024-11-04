@@ -232,7 +232,7 @@ if ($result) {
                                         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                                             <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
                                                 <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">
-                                                    Tạo chuyên khoa
+                                                    Đăng ký thời gian làm việc
                                                 </h4>
                                             </div>
                                         </div>
