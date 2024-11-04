@@ -305,25 +305,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <thead>
                                         <tr>
                                             <th
-                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
                                                 ID</th>
                                             <th
-                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
                                                 Tên chuyên khoa</th>
                                             <th
-                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
                                                 Mô tả</th>
                                             <th
-                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
                                                 Ghi chú</th>
                                             <th
-                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
                                                 Ngày tạo</th>
                                             <th
-                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
                                                 Ngày chỉnh sửa</th>
                                             <th
-                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
                                                 Thao tác</th>
                                         </tr>
                                     </thead>

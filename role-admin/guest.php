@@ -323,34 +323,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <thead>
                                         <tr>
                                             <th
-                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
                                                 User ID</th>
                                             <th
-                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
                                                 Họ và Tên</th>
                                             <th
-                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
                                                 Vị trí</th>
                                             <th
-                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
                                                 Username</th>
                                             <th
-                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
                                                 Số điện thoại</th>
                                             <th
-                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
                                                 Email</th>
                                             <th
-                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
                                                 Mật khẩu</th>
                                             <th
-                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
                                                 Ngày tạo</th>
                                             <th
-                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
                                                 Ngày chỉnh sửa</th>
                                             <th
-                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
                                                 Thao tác</th>
                                         </tr>
                                     </thead>
