@@ -3,7 +3,7 @@
 // Database Authentication
 define('servername', 'localhost');
 define('username', 'root');
-define('password', '');
+define('password', '@Rturia14');
 define('dbname', 'dacn-hms');
 
 // Google Authentication

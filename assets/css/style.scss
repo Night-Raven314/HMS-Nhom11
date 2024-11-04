@@ -1,4 +1,5 @@
-@charset "UTF-8";
+$hms-color: #167070;
+
 #scroll-top {
   position: fixed;
   right: 15px;
@@ -10,16 +11,16 @@
   text-align: center;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Đổ bóng */
   transition: background-color 0.3s ease; /* Hiệu ứng khi hover */
-}
-#scroll-top i {
-  font-size: 24px; /* Kích thước icon */
-  color: #333; /* Màu của icon */
-}
-#scroll-top:hover {
-  background-color: #5dbfd6;
-}
-#scroll-top:hover i {
-  color: #007bff; /* Màu của icon khi hover */
+  i {
+    font-size: 24px; /* Kích thước icon */
+    color: #333; /* Màu của icon */
+  }
+  &:hover {
+    background-color: #5dbfd6;
+    i {
+      color: #007bff; /* Màu của icon khi hover */
+    }
+  }
 }
 
 @media (min-width: 1400px) {
@@ -32,6 +33,7 @@
     max-width: 1320px;
   }
 }
+
 #container-popup {
   width: 100%;
   height: 100%;
@@ -117,6 +119,7 @@ div#popupFormContainer {
 }
 
 /* Popup New */
+
 .overlay_flight_traveldil {
   position: fixed;
   top: 0;
@@ -129,12 +132,10 @@ div#popupFormContainer {
   opacity: 0;
   z-index: 10000 !important;
 }
-
 .overlay_flight_traveldil:target {
   visibility: visible;
   opacity: 1;
 }
-
 .popup_flight_travlDil {
   margin: 70px auto;
   padding: 20px;
@@ -144,7 +145,6 @@ div#popupFormContainer {
   position: relative;
   transition: all 2s ease-in-out;
 }
-
 .popup_flight_travlDil .close_flight_travelDl {
   position: absolute;
   top: 20px;
@@ -155,7 +155,6 @@ div#popupFormContainer {
   text-decoration: none;
   color: #333;
 }
-
 .popup_flight_travlDil .content_flightht_travel_dil {
   max-height: 30%;
   overflow: auto;
@@ -173,31 +172,28 @@ div#popupFormContainer {
 .custom-input {
   margin: 0 15px;
   position: relative;
+  label {
+    color: #414a4f;
+    position: absolute;
+  }
+  input {
+    transition: all 200ms ease-in-out;
+    border: 2px solid #d2d6da;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 14pt;
+    width: 100%;
+    &:focus {
+      outline: none;
+      border-color: $hms-color;
+      + label {
+        top: 0;
+        left: 10px;
+        background-color: #fff;
+      }
+    }
+    &::placeholder {
+      color: #d2d6da
+    }
+  }
 }
-.custom-input label {
-  color: #414a4f;
-  position: absolute;
-}
-.custom-input input {
-  transition: all 200ms ease-in-out;
-  border: 2px solid #d2d6da;
-  border-radius: 5px;
-  padding: 5px 10px;
-  font-size: 14pt;
-  width: 100%;
-}
-.custom-input input:focus {
-  outline: none;
-  border-color: #167070;
-}
-.custom-input input:focus + label {
-  top: 0;
-  left: 10px;
-  background-color: #fff;
-}
-.custom-input input::-moz-placeholder {
-  color: #d2d6da;
-}
-.custom-input input::placeholder {
-  color: #d2d6da;
-}/*# sourceMappingURL=style.css.map */

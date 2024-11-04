@@ -420,18 +420,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                 echo "</td>";
                                                 ?>
                                                 <td class='align-middle text-center'>
-                                                    <a href='#popup_edit-<?php echo $user_id; ?>'
+                                                  <button data-bs-toggle="modal" data-bs-target="#popup_edit-<?php echo $user_id; ?>">Sửa</button>
+                                                    <!-- <a href='#popup_edit-<?php echo $user_id; ?>'
                                                         class='text-secondary font-weight-bold text-xs edit-btn'
                                                         data-original-title='edit' title='Sửa thông tin' data-toggle='modal'
-                                                        data-target='#popup_edit-<?php echo $user_id; ?>'>Sửa</a>
+                                                        data-target='#popup_edit-<?php echo $user_id; ?>'>Sửa</a> -->
                                                 </td>
                                                 </tr>
 
-
-
-                                                <!-- Popup for User edit -->
-                                                <div id="popup_edit-<?php echo $user_id; ?>" class="overlay_flight_traveldil">
-                                                    <div class="card popup-cont">
+                                                <div class="modal fade" id="popup_edit-<?php echo $user_id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                  <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                      <div class="card">
                                                         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                                                             <div
                                                                 class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
@@ -512,14 +512,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                                                                     <div class="text-center" href="#">
                                                                         <button type="button"
-                                                                            class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
-                                                                            onclick="location.href='http://localhost/HMS-Nhom11/role-admin/employee.php'">Thoát</button>
+                                                                            class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0" data-bs-dismiss="modal">Thoát</button>
                                                                     </div>
 
                                                                 </div>
                                                             </form>
                                                         </div>
                                                     </div>
+                                                    </div>
+                                                  </div>
                                                 </div>
 
                                                 <?php

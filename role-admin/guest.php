@@ -390,7 +390,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                 $address = $row["address"];
                                                 $city = $row["city"];
 
-                                                echo "<tr>";
                                                 echo "<td class='align-middle text-center'>";
                                                 echo "<h6 class='mb-0 text-sm'>" . $user_id . "</h6>";
                                                 echo "</td>";
@@ -648,6 +647,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     </main>
 
-    <?php
-    include SITE_ROOT . ('/HMS-Nhom11/assets/include/footer.php');
-    ?>
+<?php
+  include SITE_ROOT . ('/HMS-Nhom11/assets/include/footer.php');
+?>
