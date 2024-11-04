@@ -450,6 +450,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                                             <input name="full_name" id="full_name"
                                                                                 class="form-control" value="">
                                                                         </div>
+                                                                        <div class="custom-input">
+                                                                          <input type="text" placeholder="Nhập họ và tên">
+                                                                          <label>Họ và tên</label>
+                                                                        </div>
                                                                         <div class="input-group input-group-outline mb-3">
                                                                             <label class="form-label">Email</label>
                                                                             <input type="email" name="email_address"

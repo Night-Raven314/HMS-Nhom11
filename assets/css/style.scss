@@ -170,30 +170,64 @@ div#popupFormContainer {
 }
 
 .custom-input {
-  margin: 0 15px;
+  margin: 20px 0;
   position: relative;
   label {
     color: #414a4f;
     position: absolute;
+    transition: all 200ms ease-in-out;
+    top: 10px;
+    left: 10px;
+    font-size: 12pt;
+    pointer-events: none;
   }
   input {
     transition: all 200ms ease-in-out;
     border: 2px solid #d2d6da;
     border-radius: 5px;
-    padding: 5px 10px;
+    padding: 5px 11px;
     font-size: 14pt;
     width: 100%;
     &:focus {
       outline: none;
       border-color: $hms-color;
       + label {
-        top: 0;
-        left: 10px;
+        top: -10px;
+        left: 5px;
+        font-size: 10pt;
+        padding: 0 5px;
         background-color: #fff;
+        color: $hms-color;
+      }
+      &::placeholder {
+        opacity: 1;
+        transition: opacity 200ms ease-in-out;
       }
     }
     &::placeholder {
-      color: #d2d6da
+      color: #b0b0b0;
+      opacity: 0;
+    }
+    &:not(:placeholder-shown) {
+      + label {
+        top: -10px;
+        left: 5px;
+        font-size: 10pt;
+        padding: 0 5px;
+        background-color: #fff;
+        color: $hms-color;
+      }
+      border-color: $hms-color;
+    }
+  }
+  &.date {
+    label {
+      top: -10px;
+      left: 5px;
+      font-size: 10pt;
+      padding: 0 5px;
+      background-color: #fff;
+      color: $hms-color;
     }
   }
 }

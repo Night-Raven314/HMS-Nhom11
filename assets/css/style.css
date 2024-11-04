@@ -171,18 +171,23 @@ div#popupFormContainer {
 }
 
 .custom-input {
-  margin: 0 15px;
+  margin: 20px 0;
   position: relative;
 }
 .custom-input label {
   color: #414a4f;
   position: absolute;
+  transition: all 200ms ease-in-out;
+  top: 10px;
+  left: 10px;
+  font-size: 12pt;
+  pointer-events: none;
 }
 .custom-input input {
   transition: all 200ms ease-in-out;
   border: 2px solid #d2d6da;
   border-radius: 5px;
-  padding: 5px 10px;
+  padding: 5px 11px;
   font-size: 14pt;
   width: 100%;
 }
@@ -191,13 +196,57 @@ div#popupFormContainer {
   border-color: #167070;
 }
 .custom-input input:focus + label {
-  top: 0;
-  left: 10px;
+  top: -10px;
+  left: 5px;
+  font-size: 10pt;
+  padding: 0 5px;
   background-color: #fff;
+  color: #167070;
+}
+.custom-input input:focus::-moz-placeholder {
+  opacity: 1;
+  -moz-transition: opacity 200ms ease-in-out;
+  transition: opacity 200ms ease-in-out;
+}
+.custom-input input:focus::placeholder {
+  opacity: 1;
+  transition: opacity 200ms ease-in-out;
 }
 .custom-input input::-moz-placeholder {
-  color: #d2d6da;
+  color: #b0b0b0;
+  opacity: 0;
 }
 .custom-input input::placeholder {
-  color: #d2d6da;
+  color: #b0b0b0;
+  opacity: 0;
+}
+.custom-input input:not(:-moz-placeholder-shown) {
+  border-color: #167070;
+}
+.custom-input input:not(:placeholder-shown) {
+  border-color: #167070;
+}
+.custom-input input:not(:-moz-placeholder-shown) + label {
+  top: -10px;
+  left: 5px;
+  font-size: 10pt;
+  padding: 0 5px;
+  background-color: #fff;
+  color: #167070;
+}
+.custom-input input:not(:placeholder-shown) + label {
+  top: -10px;
+  left: 5px;
+  font-size: 10pt;
+  padding: 0 5px;
+  background-color: #fff;
+  color: #167070;
+}
+.custom-input.date label {
+  top: -10px;
+  left: 5px;
+  font-size: 10pt;
+  padding: 0 5px;
+  background-color: #fff;
+  color: #167070;
 }/*# sourceMappingURL=style.css.map */
