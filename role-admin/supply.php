@@ -214,15 +214,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="container-fluid py-1 px-3">
                 <nav aria-label="breadcrumb">
 
-                    <h6 class="font-weight-bolder mb-0">Vật tư y tế</h6>
+                    <h6 class="font-weight-bolder mb-0">Quản lý vật tư y tế</h6>
+
 
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-                        <div class="input-group input-group-outline">
+                        <form method="GET" action="" class="input-group input-group-outline">
                             <label class="form-label">Tìm kiếm</label>
-                            <input type="text" class="form-control">
-                        </div>
+                            <input type="text" name="query" class="form-control" placeholder="">
+                        </form>
                     </div>
                     <ul class="navbar-nav  justify-content-end">
 
@@ -279,7 +280,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </li>
                         </li>
                     </ul>
-
                 </div>
             </div>
         </nav>
@@ -291,11 +291,68 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="card my-4">
                         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                             <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                                <h6 class="text-white text-capitalize ps-3" style="float: left;">Bảng vật tư ý tế
+                                <h6 class="text-white text-capitalize ps-3" style="float: left;">Thông tin vật tư y tế
                                 </h6>
                                 <div class="table-float-btn-container">
-                                    <a class="table-float-btn btn btn-outline-primary btn-sm mb-0 me-3"
-                                        style="background: #ffffff" href="#popup_add">Thêm vật tư</a>
+                                    <button class="table-float-btn btn btn-outline-primary btn-sm mb-0 me-3"
+                                        style="background: #ffffff" data-bs-toggle="modal"
+                                        data-bs-target="#popup_add">Thêm vật tư</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tạo vật tư -->
+                        <div class="modal fade" id="popup_add" tabindex="-1" aria-labelledby="ItemCreate"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="card">
+                                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                                            <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                                                <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">
+                                                    Tạo vật tư
+                                                </h4>
+                                            </div>
+                                        </div>
+                                        <div class="card-body edit-body">
+                                            <form name="itemcreate" role="form" method="POST">
+                                                <div class="custom-input">
+                                                    <input type="text" name="item_name" id="item_name"
+                                                        placeholder="Nhập tên vật tư">
+                                                    <label>Tên vật tư</label>
+                                                </div>
+                                                <div class="custom-input">
+                                                    <input type="number" name="price" id="price"
+                                                        placeholder="Nhập đơn giá">
+                                                    <label>Đơn giá</label>
+                                                </div>
+                                                <div class="input-group input-group-outline mb-3">
+                                                    <!-- <label class="form-label-lg" style="margin-right: 10px;">Giới tính</label> -->
+                                                    <select name="unit" id="unit" class="form-control">
+                                                        <option value="" disabled selected>Chọn đơn vị
+                                                            tính
+                                                        </option>
+                                                        <option value="viên">Viên</option>
+                                                        <option value="gói">Gói</option>
+                                                        <option value="hộp">Hộp</option>
+                                                        <option value="cái">Cái</option>
+                                                        <option value="bộ">Bộ</option>
+                                                    </select>
+                                                </div>
+                                                <div class="text-center">
+                                                    <button type="submit" name="create" value="create"
+                                                        class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Tạo
+                                                        chuyên khoa</button>
+                                                </div>
+
+                                                <div class="text-center">
+                                                    <button type="button"
+                                                        class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
+                                                        data-bs-dismiss="modal">Thoát</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -313,16 +370,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                 Tên vật tư</th>
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
-                                                Giá cả</th>
+                                                Đơn giá</th>
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
                                                 Loại</th>
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
-                                                Ngày nhập</th>
+                                                Ngày tạo</th>
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
-                                                ngày chỉnh sửa</th>
+                                                Ngày chỉnh sửa</th>
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
                                                 Thao tác</th>
@@ -384,68 +441,142 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                     <td class='align-middle text-center'>
                                                         <a href='#popup_edit-<?php echo $item_id; ?>'
                                                             class='text-secondary font-weight-bold text-xs edit-btn'
-                                                            data-original-title='edit' title='Sửa thông tin' data-toggle='modal'
-                                                            data-target='#popup_edit-<?php echo $item_id; ?>'>Sửa</a>
+                                                            data-original-title='edit' title='Sửa thông tin'
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#popup_edit-<?php echo $item_id; ?>">Cập nhật</a>
                                                     </td>
                                                 </tr>
 
-                                                <div id="popup_edit-<?php echo $item_id; ?>" class="overlay_flight_traveldil">
-                                                    <div class="card popup-cont">
-                                                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                                                            <div
-                                                                class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                                                                <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">
-                                                                    Cập nhật thông tin vật tư
-                                                                </h4>
+                                                <!-- Popup for Specialties edit -->
+                                                <div class="modal fade" id="popup_edit-<?php echo $item_id; ?>" tabindex="-1"
+                                                    aria-labelledby="ItemCreate" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="card">
+                                                                <div
+                                                                    class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                                                                    <div
+                                                                        class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                                                                        <h4
+                                                                            class="text-white font-weight-bolder text-center mt-2 mb-0">
+                                                                            Cập nhật vật tư
+                                                                        </h4>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="card-body edit-body">
+                                                                    <form name="itemcreate" role="form" method="POST">
+                                                                        <div class="custom-input">
+                                                                            <input type="text" name="item_name" id="item_name"
+                                                                                placeholder="<?php echo $item_name ?>">
+                                                                            <label>Tên vật tư</label>
+                                                                        </div>
+                                                                        <div class="custom-input">
+                                                                            <input type="number" name="price" id="price"
+                                                                                placeholder="<?php echo $item_price ?>">
+                                                                            <label>Đơn giá</label>
+                                                                        </div>
+                                                                        <div class="input-group input-group-outline mb-3">
+                                                                            <!-- <label class="form-label-lg" style="margin-right: 10px;">Giới tính</label> -->
+                                                                            <select name="unit" id="unit" class="form-control">
+                                                                                <option value="" disabled selected>Chọn đơn vị
+                                                                                    tính
+                                                                                </option>
+                                                                                <option value="viên">Viên</option>
+                                                                                <option value="gói">Gói</option>
+                                                                                <option value="hộp">Hộp</option>
+                                                                                <option value="cái">Cái</option>
+                                                                                <option value="bộ">Bộ</option>
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="text-center">
+                                                                            <button type="submit" name="update" value=<?php echo $item_id; ?>
+                                                                                class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập
+                                                                                nhật</button>
+                                                                        </div>
+
+                                                                        <div class="text-center">
+                                                                            <button type="submit" name="delete" value=<?php echo $item_id; ?>
+                                                                                class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Xoá</button>
+
+                                                                        </div>
+
+                                                                        <div class="text-center">
+                                                                            <button type="button"
+                                                                                class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
+                                                                                data-bs-dismiss="modal">Thoát</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                        <div class="card-body edit-body">
-                                                            <form name="edit_item" role="form" method="POST">
-
-                                                                <div class="input-group input-group-outline mb-3">
-                                                                    <label class="form-label">Tên vật tư</label>
-                                                                    <input name="item_name" id="item_name" class="form-control">
-                                                                </div>
-                                                                <div class="input-group input-group-outline mb-3">
-                                                                    <label class="form-label">Đơn giá</label>
-                                                                    <input type="number" name="price" id="price"
-                                                                        class="form-control">
-                                                                </div>
-                                                                <div class="input-group input-group-outline mb-3">
-                                                                    <!-- <label class="form-label-lg" style="margin-right: 10px;">Giới tính</label> -->
-                                                                    <select name="unit" id="unit" class="form-control">
-                                                                        <option value="" disabled selected>Chọn đơn vị tính
-                                                                        </option>
-                                                                        <option value="viên">Viên</option>
-                                                                        <option value="gói">Gói</option>
-                                                                        <option value="hộp">Hộp</option>
-                                                                        <option value="cái">Cái</option>
-                                                                        <option value="bộ">Bộ</option>
-                                                                    </select>
-                                                                </div>
-
-                                                                <div class="text-center">
-                                                                    <button type="submit" name="update" value=<?php echo $item_id; ?>
-                                                                        class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập
-                                                                        nhật</button>
-                                                                </div>
-
-                                                                <div class="text-center">
-                                                                    <button type="submit" name="delete" value=<?php echo $item_id; ?>
-                                                                        class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Xoá</button>
-
-                                                                </div>
-
-                                                                <div class="text-center">
-                                                                    <button type="button"
-                                                                        class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
-                                                                        onclick="location.href='http://localhost/HMS-Nhom11/role-admin/supply.php'">Thoát</button>
-                                                                </div>
-
-                                                        </div>
-                                                        </form>
                                                     </div>
                                                 </div>
+
+                                                
+                                                <!-- <div class="modal fade" id="popup_edit-<?php echo $item_id; ?>" tabindex="-1"
+                                                    aria-labelledby="ItemEdit" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="card">
+                                                                <div
+                                                                    class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                                                                    <div
+                                                                        class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                                                                        <h4
+                                                                            class="text-white font-weight-bolder text-center mt-2 mb-0">
+                                                                            Cập nhật thông tin chuyên khoa
+                                                                        </h4>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="card-body edit-body">
+                                                                    <form name="itemedit" role="form" method="POST">
+                                                                        <div class="custom-input">
+                                                                            <input type="text" name="item_name" id="item_name"
+                                                                                placeholder="Nhập tên vật tư">
+                                                                            <label>Tên vật tư</label>
+                                                                        </div>
+                                                                        <div class="custom-input">
+                                                                            <input type="number" name="price" id="price"
+                                                                                placeholder="Nhập đơn giá">
+                                                                            <label>Mô tả chuyên khoa</label>
+                                                                        </div>
+                                                                        <div class="input-group input-group-outline mb-3"> -->
+                                                                            <!-- <label class="form-label-lg" style="margin-right: 10px;">Giới tính</label> -->
+                                                                            <!-- <select name="unit" id="unit" class="form-control">
+                                                                                <option value="" disabled selected>Chọn đơn vị
+                                                                                    tính
+                                                                                </option>
+                                                                                <option value="viên">Viên</option>
+                                                                                <option value="gói">Gói</option>
+                                                                                <option value="hộp">Hộp</option>
+                                                                                <option value="cái">Cái</option>
+                                                                                <option value="bộ">Bộ</option>
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="text-center">
+                                                                            <button type="submit" name="update" value=<?php echo $item_id; ?>
+                                                                                class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập
+                                                                                nhật</button>
+                                                                        </div>
+
+                                                                        <div class="text-center">
+                                                                            <button type="submit" name="delete" value=<?php echo $item_id; ?>
+                                                                                class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Xoá</button>
+
+                                                                        </div>
+
+                                                                        <div class="text-center">
+                                                                            <button type="button"
+                                                                                class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
+                                                                                data-bs-dismiss="modal">Thoát</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div> -->
+
 
                                                 <?php
                                             }

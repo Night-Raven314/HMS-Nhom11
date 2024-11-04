@@ -1,15 +1,9 @@
 <?php
 define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT']);
-session_start(); // Bắt đầu phiên
+session_start();
 
-// Kiểm tra nếu người dùng đã đăng nhập
-if (!isset($_SESSION['auth_user_id'])) {
-    // Chuyển hướng người dùng về trang đăng nhập nếu chưa đăng nhập
-    header("Location: ../../TEST_Khoa/sign-in_test.php");
-    exit();
-}
+include('sess-check.php');
 include SITE_ROOT . ('/HMS-Nhom11/assets/include/config.php');
-include('../../TEST_Khoa/sess-check_test.php'); // nếu cần đi lên thêm một cấp
 include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
 ?>
 
@@ -22,7 +16,7 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
 <!-- Side Nav -->
 
 <body class="g-sidenav-show"
-    style="background-image: url('../../assets/image/Hospital_Seamless1.png'); background-size: 400px 400px;">
+    style="background-image: url('../assets/image/Hospital_Seamless1.png'); background-size: 400px 400px;">
 
     <aside
         class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 bg-gradient-dark"

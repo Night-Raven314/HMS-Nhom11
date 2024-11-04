@@ -309,22 +309,110 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
                                 <h6 class="text-white text-capitalize ps-3" style="float: left;">Thông tin người dùng
                                     trên hệ thống</h6>
+                                <!-- <div class="table-float-btn-container">
+                                    <button class="table-float-btn btn btn-outline-primary btn-sm mb-0 me-3"
+                                        style="background: #ffffff" data-bs-toggle="modal"
+                                        data-bs-target="popup_add">Thêm nhân
+                                        viên</button>
+                                </div> -->
                                 <div class="table-float-btn-container">
-                                    <a class="table-float-btn btn btn-outline-primary btn-sm mb-0 me-3"
-                                        style="background: #ffffff" href="#popup_user_add"
-                                        data-target="#popup_user_add">Thêm người dùng</a>
+                                    <button class="table-float-btn btn btn-outline-primary btn-sm mb-0 me-3"
+                                        style="background: #ffffff" data-bs-toggle="modal"
+                                        data-bs-target="#popup_add">Thêm người dùng</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Popup to create user -->
+                        <div class="modal fade" id="popup_add" tabindex="-1" aria-labelledby="GuestCreate"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="card">
+                                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                                            <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                                                <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">
+                                                    Tạo tài khoản người dùng
+                                                </h4>
+                                            </div>
+                                        </div>
+                                        <div class="card-body edit-body">
+                                            <form name="new_user" role="form" method="POST">
+                                                <div class="row"> <!-- Thêm hàng để chia thành 2 bên -->
+                                                    <div class="col-md-6"> <!-- Cột bên trái -->
+                                                        <div class="custom-input">
+                                                            <input type="text" name="full_name" id="full_name"
+                                                                placeholder="Nhập họ và tên">
+                                                            <label>Họ và Tên</label>
+                                                        </div>
+                                                        <div class="custom-input">
+                                                            <input type="email" name="email_address" id="email_address"
+                                                                placeholder="Nhập địa chỉ email">
+                                                            <label>Địa chỉ Email</label>
+                                                        </div>
+                                                        <div class="input-group input-group-outline mb-3">
+                                                            <!-- <label class="form-label-lg" style="margin-right: 10px;">Giới tính</label> -->
+                                                            <select name="gender" id="gender" class="form-control">
+                                                                <option value="" disabled selected>Chọn
+                                                                    giới
+                                                                    tính</option>
+                                                                <option value="male">Nam</option>
+                                                                <option value="female">Nữ</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6"> <!-- Cột bên phải -->
+                                                        <div class="custom-input">
+                                                            <input type="text" name="user_name" id="user_name"
+                                                                placeholder="Nhập họ và tên">
+                                                            <label>Tên đăng nhập</label>
+                                                        </div>
+                                                        <div class="custom-input">
+                                                            <input type="text" name="contact_no" id="contact_no"
+                                                                placeholder="Nhập họ và tên">
+                                                            <label>Số điện thoại</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="custom-input">
+                                                        <input type="text" name="address" id="address"
+                                                            placeholder="Nhập họ và tên">
+                                                        <label>Địa chỉ</label>
+                                                    </div>
+                                                    <div class="custom-input">
+                                                        <input type="text" name="city" id="city"
+                                                            placeholder="Nhập họ và tên">
+                                                        <label>Thành phố</label>
+                                                    </div>
+
+                                                    <div class="text-center">
+                                                        <button type="submit" name="create" value="create"
+                                                            class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Tạo
+                                                            tài
+                                                            khoản</button>
+                                                    </div>
+
+                                                    <div class="text-center">
+                                                        <button type="button"
+                                                            class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
+                                                            data-bs-dismiss="modal">Thoát</button>
+                                                    </div>
+
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="card-body px-0 pb-2">
                             <div class="table-responsive p-0">
-                                <table id="drugTable" class="table align-items-center mb-0">
+                                <table id="employeeTable" class="table align-items-center mb-0">
                                     <thead>
                                         <tr>
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
-                                                User ID</th>
+                                                Mã người dùng</th>
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
                                                 Họ và Tên</th>
@@ -333,7 +421,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                 Vị trí</th>
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
-                                                Username</th>
+                                                Tên đăng nhập</th>
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
                                                 Số điện thoại</th>
@@ -356,10 +444,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     </thead>
                                     <tbody>
                                         <?php
-
                                         //Get data for table
-                                        
-                                        $get_data_query = "SELECT * FROM `dim_user` WHERE `role` = 'patient' ";
+                                        $get_data_query = "SELECT * FROM `dim_user` WHERE `role` <> 'patient'";
 
                                         $get_data = mysqli_query($conn, $get_data_query);
 
@@ -383,134 +469,146 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                     . str_repeat('*', (strlen($row["email_address"]) - 17)) // Apply enough asterisks to cover the middle numbers
                                                     . substr($row["email_address"], -12); // Get the last two digits
                                                 $password = str_repeat('*', (strlen($row["password"])));
-                                                $og_pwd = $created_at = $row["password"];
                                                 $created_at = $row["created_at"];
                                                 $updated_at = $row["updated_at"];
                                                 $gender = $row["gender"];
                                                 $address = $row["address"];
                                                 $city = $row["city"];
 
-                                                echo "<td class='align-middle text-center'>";
-                                                echo "<h6 class='mb-0 text-sm'>" . $user_id . "</h6>";
-                                                echo "</td>";
-                                                echo "<td class='align-middle text-center'>";
-                                                echo "<h6 class='mb-0 text-sm'>" . $fullname . "</h6>";
-                                                echo "</td>";
-                                                echo "<td class='align-middle text-center text-sm'>";
-                                                echo "<p class='text-xs font-weight-bold mb-0'>" . $role . "</p>";
-                                                echo "</td>";
-                                                echo "<td class='align-middle text-center text-sm'>";
-                                                echo "<p class='text-xs font-weight-bold mb-0'>" . $user_name . "</p>";
-                                                echo "</td>";
-                                                echo "<td class='align-middle text-center text-sm'>";
-                                                echo "<p class='text-xs font-weight-bold mb-0'>" . $phone . "</p>";
-                                                echo "</td>";
-                                                echo "<td class='align-middle text-center'>";
-                                                echo "<span class='text-secondary text-xs font-weight-bold'>" . $emailaddress . "</span>";
-                                                echo "</td>";
-                                                echo "<td class='align-middle text-center'>";
-                                                echo "<span class='text-secondary text-xs font-weight-bold'>" . $password . "</span>";
-                                                echo "</td>";
-                                                echo "<td class='align-middle text-center'>";
-                                                echo "<span class='text-secondary text-xs font-weight-bold'>" . $created_at . "</span>";
-                                                echo "</td>";
-                                                echo "<td class='align-middle text-center'>";
-                                                echo "<span class='text-secondary text-xs font-weight-bold'>" . $updated_at . "</span>";
-                                                echo "</td>";
                                                 ?>
-                                                <td class='align-middle text-center'>
-                                                    <a href='#popup_edit-<?php echo $user_id; ?>'
-                                                        class='text-secondary font-weight-bold text-xs edit-btn'
-                                                        data-original-title='edit' title='Sửa thông tin' data-toggle='modal'
-                                                        data-target='#popup_edit-<?php echo $user_id; ?>'>Sửa</a>
-                                                </td>
+
+                                                <tr>
+                                                    <td class='align-middle text-center'>
+                                                        <h6 class='mb-0 text-sm'><?php echo $user_id; ?></h6>
+                                                    </td>
+                                                    <td class='align-middle text-center'>
+                                                        <h6 class='mb-0 text-sm'><?php echo $fullname; ?></h6>
+                                                    </td>
+                                                    <td class='align-middle text-center text-sm'>
+                                                        <p class='text-xs font-weight-bold mb-0'><?php echo $role; ?></p>
+                                                    </td>
+                                                    <td class='align-middle text-center text-sm'>
+                                                        <p class='text-xs font-weight-bold mb-0'><?php echo $user_name; ?></p>
+                                                    </td>
+                                                    <td class='align-middle text-center text-sm'>
+                                                        <p class='text-xs font-weight-bold mb-0'><?php echo $phone; ?></p>
+                                                    </td>
+                                                    <td class='align-middle text-center'>
+                                                        <span
+                                                            class='text-secondary text-xs font-weight-bold'><?php echo $emailaddress; ?></span>
+                                                    </td>
+                                                    <td class='align-middle text-center'>
+                                                        <span
+                                                            class='text-secondary text-xs font-weight-bold'><?php echo $password; ?></span>
+                                                    </td>
+                                                    <td class='align-middle text-center'>
+                                                        <span
+                                                            class='text-secondary text-xs font-weight-bold'><?php echo $created_at; ?></span>
+                                                    </td>
+                                                    <td class='align-middle text-center'>
+                                                        <span
+                                                            class='text-secondary text-xs font-weight-bold'><?php echo $updated_at; ?></span>
+                                                    </td>
+                                                    <td class='align-middle text-center'>
+                                                        <a href='#popup_edit-<?php echo $user_id; ?>'
+                                                            class='text-secondary font-weight-bold text-xs edit-btn'
+                                                            data-original-title='edit' title='Sửa thông tin'
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#popup_edit-<?php echo $user_id; ?>">Cập nhật</a>
+                                                    </td>
                                                 </tr>
 
-
-
-                                                <!-- Popup for User edit -->
-                                                <div id="popup_edit-<?php echo $user_id; ?>" class="overlay_flight_traveldil">
-                                                    <div class="card popup-cont">
-                                                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                                                            <div
-                                                                class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                                                                <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">
-                                                                    Cập nhật tài khoản người dùng
-                                                                </h4>
-                                                            </div>
-                                                        </div>
-                                                        <div class="card-body edit-body">
-                                                            <form name="new_user" role="form" method="POST">
-                                                                <div class="row"> <!-- Thêm hàng để chia thành 2 bên -->
-                                                                    <div class="col-md-6"> <!-- Cột bên trái -->
-                                                                        <div class="input-group input-group-outline mb-3">
-                                                                            <label for="full_name" class="form-label">Họ và
-                                                                                Tên</label>
-                                                                            <input name="full_name" id="full_name"
-                                                                                class="form-control" value="">
-                                                                        </div>
-                                                                        <div class="input-group input-group-outline mb-3">
-                                                                            <label class="form-label">Email</label>
-                                                                            <input type="email" name="email_address"
-                                                                                id="email_address" class="form-control">
-                                                                        </div>
-                                                                        <div class="input-group input-group-outline mb-3">
-                                                                            <!-- <label class="form-label-lg" style="margin-right: 10px;">Giới tính</label> -->
-                                                                            <select name="gender" id="gender"
-                                                                                class="form-control">
-                                                                                <option value="" disabled selected>Chọn giới
-                                                                                    tính</option>
-                                                                                <option value="male">Nam</option>
-                                                                                <option value="female">Nữ</option>
-                                                                            </select>
-                                                                        </div>
+                                                <div class="modal fade" id="popup_edit-<?php echo $user_id; ?>" tabindex="-1"
+                                                    aria-labelledby="GuestEdit" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="card">
+                                                                <div
+                                                                    class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                                                                    <div
+                                                                        class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                                                                        <h4
+                                                                            class="text-white font-weight-bolder text-center mt-2 mb-0">
+                                                                            Cập nhật tài khoản người dùng
+                                                                        </h4>
                                                                     </div>
-                                                                    <div class="col-md-6"> <!-- Cột bên phải -->
-                                                                        <div class="input-group input-group-outline mb-3">
-                                                                            <label class="form-label">Tên đăng nhập</label>
-                                                                            <input name="user_name" id="user_name"
-                                                                                class="form-control" />
-                                                                        </div>
-                                                                        <div class="input-group input-group-outline mb-3">
-                                                                            <label class="form-label">Mật khẩu</label>
-                                                                            <input name="password" id="password"
-                                                                                class="form-control" required>
-                                                                        </div>
-                                                                        <div class="input-group input-group-outline mb-3">
-                                                                            <label class="form-label">Số điện thoại</label>
-                                                                            <input name="contact_no" id="contact_no"
-                                                                                class="form-control">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="input-group input-group-outline mb-3">
-                                                                        <label class="form-label">Địa chỉ</label>
-                                                                        <input name="address" id="address" class="form-control">
-                                                                    </div>
-                                                                    <div class="input-group input-group-outline mb-3">
-                                                                        <label class="form-label">Thành phố</label>
-                                                                        <input name="city" id="city" class="form-control">
-                                                                    </div>
-
-                                                                    <div class="text-center">
-                                                                        <button type="submit" name="update" value=<?php echo $user_id; ?>
-                                                                            class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập
-                                                                            nhật</button>
-                                                                    </div>
-
-                                                                    <div class="text-center">
-                                                                        <button type="submit" name="delete" value=<?php echo $user_id; ?>
-                                                                            class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Xoá</button>
-
-                                                                    </div>
-
-                                                                    <div class="text-center" href="#">
-                                                                        <button type="button"
-                                                                            class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
-                                                                            onclick="location.href='http://localhost/HMS-Nhom11/role-admin/guest.php'">Thoát</button>
-                                                                    </div>
-
                                                                 </div>
-                                                            </form>
+                                                                <div class="card-body edit-body">
+                                                                    <form name="new_user" role="form" method="POST">
+                                                                        <div class="row"> <!-- Thêm hàng để chia thành 2 bên -->
+                                                                            <div class="col-md-6"> <!-- Cột bên trái -->
+                                                                                <div class="custom-input">
+                                                                                    <input type="text" name="full_name"
+                                                                                        id="full_name"
+                                                                                        placeholder="<?php echo $fullname; ?>">
+                                                                                    <label>Họ và Tên</label>
+                                                                                </div>
+                                                                                <div class="custom-input">
+                                                                                    <input type="email" name="email_address"
+                                                                                        id="email_address"
+                                                                                        placeholder="<?php echo $emailaddress; ?>">
+                                                                                    <label>Địa chỉ Email</label>
+                                                                                </div>
+                                                                                <div
+                                                                                    class="input-group input-group-outline mb-3">
+                                                                                    <!-- <label class="form-label-lg" style="margin-right: 10px;">Giới tính</label> -->
+                                                                                    <select name="gender" id="gender"
+                                                                                        class="form-control">
+                                                                                        <option value="" disabled selected>Chọn
+                                                                                            giới
+                                                                                            tính</option>
+                                                                                        <option value="male">Nam</option>
+                                                                                        <option value="female">Nữ</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-6"> <!-- Cột bên phải -->
+                                                                                <div class="custom-input">
+                                                                                    <input type="text" name="user_name"
+                                                                                        id="user_name"
+                                                                                        placeholder="<?php echo $user_name; ?>">
+                                                                                    <label>Tên đăng nhập</label>
+                                                                                </div>
+                                                                                <div class="custom-input">
+                                                                                    <input type="text" name="contact_no"
+                                                                                        id="contact_no"
+                                                                                        placeholder="<?php echo $phone; ?>">
+                                                                                    <label>Số điện thoại</label>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="custom-input">
+                                                                                <input type="text" name="address" id="address"
+                                                                                    placeholder="<?php echo $address; ?>">
+                                                                                <label>Địa chỉ</label>
+                                                                            </div>
+                                                                            <div class="custom-input">
+                                                                                <input type="text" name="city" id="city"
+                                                                                    placeholder="<?php echo $city; ?>">
+                                                                                <label>Thành phố</label>
+                                                                            </div>
+
+                                                                            <div class="text-center">
+                                                                                <button type="submit" name="update" value=<?php echo $user_id; ?>
+                                                                                    class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập
+                                                                                    nhật</button>
+                                                                            </div>
+
+                                                                            <div class="text-center">
+                                                                                <button type="submit" name="delete" value=<?php echo $user_id; ?>
+                                                                                    class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Xoá</button>
+
+                                                                            </div>
+
+                                                                            <div class="text-center">
+                                                                                <button type="button"
+                                                                                    class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
+                                                                                    data-bs-dismiss="modal">Thoát</button>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -531,74 +629,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Popup Section for Form -->
-        <!-- Popup to create user -->
-        <div id="popup_user_add" class="overlay_flight_traveldil">
-            <div class="card popup-cont">
-                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                    <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                        <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Thêm tài khoản người dùng</h4>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <form name="new_user" role="form" method="POST">
-                        <div class="row"> <!-- Thêm hàng để chia thành 2 bên -->
-                            <div class="col-md-6"> <!-- Cột bên trái -->
-                                <div class="input-group input-group-outline mb-3">
-                                    <label class="form-label">Họ và Tên</label>
-                                    <input name="full_name" id="full_name" class="form-control" required>
-                                </div>
-                                <div class="input-group input-group-outline mb-3">
-                                    <label class="form-label">Email</label>
-                                    <input type="email" name="email_address" id="email_address" class="form-control"
-                                        required>
-                                </div>
-                                <div class="input-group input-group-outline mb-3">
-                                    <!-- <label class="form-label-lg" style="margin-right: 10px;">Giới tính</label> -->
-                                    <select name="gender" id="gender" class="form-control" required>
-                                        <option value="" disabled selected>Chọn giới tính</option>
-                                        <option value="male">Nam</option>
-                                        <option value="female">Nữ</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6"> <!-- Cột bên phải -->
-                                <div class="input-group input-group-outline mb-3">
-                                    <label class="form-label">Tên đăng nhập</label>
-                                    <input name="user_name" id="user_name" class="form-control" required>
-                                </div>
-                                <div class="input-group input-group-outline mb-3">
-                                    <label class="form-label">Mật khẩu</label>
-                                    <input name="password" id="password" class="form-control" required>
-                                </div>
-                                <div class="input-group input-group-outline mb-3">
-                                    <label class="form-label">Số điện thoại</label>
-                                    <input name="contact_no" id="contact_no" class="form-control" required>
-                                </div>
-                            </div>
-                            <div class="input-group input-group-outline mb-3">
-                                <label class="form-label">Địa chỉ</label>
-                                <input name="address" id="address" class="form-control" required>
-                            </div>
-                            <div class="input-group input-group-outline mb-3">
-                                <label class="form-label">Thành phố</label>
-                                <input name="city" id="city" class="form-control" required>
-                            </div>
-                            <div class="text-center">
-                                <button type="submit" name="create" value="create"
-                                    class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Tạo tài khoản</button>
-                            </div>
-                            <div class="text-center" href="#">
-                                <button type="button" class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
-                                    onclick="location.href='http://localhost/HMS-Nhom11/role-admin/guest.php'">Thoát</button>
-                            </div>
-
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>
@@ -647,6 +677,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     </main>
 
-<?php
-  include SITE_ROOT . ('/HMS-Nhom11/assets/include/footer.php');
-?>
+    <?php
+    include SITE_ROOT . ('/HMS-Nhom11/assets/include/footer.php');
+    ?>

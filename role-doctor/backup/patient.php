@@ -6,15 +6,9 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/config.php');
 include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
 ?>
 
-<script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const greetingValue = urlParams.get('usrid');
-    console.log(greetingValue);  
-</script>
-
 <head>
     <title>
-        Hồ sơ bệnh nhân
+        Quản lý bệnh nhân
     </title>
 </head>
 
@@ -61,26 +55,14 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
 
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="patient.php">
+                    <a class="nav-link text-white active bg-gradient-primary" href="patient.php">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">groups</i>
                             <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
                         </div>
 
-                        <span class="nav-link-text ms-1">Quản lý bệnh nhân</span>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link text-white active bg-gradient-primary" href="s_patient_medhist.php">
-
-                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">groups</i>
-                            <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
-                        </div>
-
-                        <span class="nav-link-text ms-1">[Temp] Bệnh án</span>
+                        <span class="nav-link-text ms-1">Danh sách bệnh nhân</span>
                     </a>
                 </li>
 
@@ -89,17 +71,6 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                     </h6>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="work_hour.php">
-
-                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">calendar_month</i>
-                            <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
-                        </div>
-
-                        <span class="nav-link-text ms-1">Lịch làm việc</span>
-                    </a>
-                </li>
 
             </ul>
         </div>
@@ -107,7 +78,7 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
     </aside>
     <!-- End Side Nav -->
 
-    <main class="main-content border-radius-lg ps ">
+    <main class="main-content border-radius-lg ">
         <!-- Navbar -->
 
         <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 border-radius-xl shadow-none position-sticky blur shadow-blur mt-4 left-auto top-1 z-index-sticky"
@@ -115,7 +86,7 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
             <div class="container-fluid py-1 px-3">
                 <nav aria-label="breadcrumb">
 
-                    <h6 class="font-weight-bolder mb-0">HỒ SƠ BỆNH NHÂN</h6>
+                    <h6 class="font-weight-bolder mb-0">QUẢN LÝ BỆNH NHÂN</h6>
 
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
@@ -189,145 +160,109 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                     <div class="card my-4">
                         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                             <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                                <h6 class="text-white text-capitalize ps-3">Thông tin bệnh nhân</h6>
-
+                                <h6 class="text-white text-capitalize ps-3">Danh sách bệnh nhân</h6>
                             </div>
                         </div>
                         <div class="card-body px-0 pb-2">
                             <div class="table-responsive p-0">
                                 <table class="table align-items-center mb-0">
-                                    <table class="table table-bordered ">
-                                        <?php
-                                        $sql = "SELECT  usr.full_name,
-                                              usr.email_address,
-                                              usr.contact_no,
-                                              usr.address,
-                                              usr.city,
-                                              usr.gender,
-                                              usr.created_at,
-                                              ptn.patient_age,
-                                              ptn.med_hist
-                                      FROM dim_user usr
-                                      LEFT JOIN fact_patient_details ptn
-                                      ON ptn.patient_id = usr.user_id
-                                      WHERE
-                                          -- usr.full_name = 'Pham Van Cuong'
-                                          usr.user_id =$auth_user_id; ";
-                                        $result = $conn->query($sql);
-                                        // Kiểm tra và hiển thị dữ liệu
-                                        if ($result->num_rows > 0) {
-                                            while ($row = $result->fetch_assoc()) {
+                                    <thead>
+                                        <tr>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
+                                                STT</th>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
+                                                Họ và Tên</th>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
+                                                Số điện thoại</th>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
+                                                Giới tính</th>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
+                                                Ngày giờ  hẹn khám</th>
+                                            <th
 
-                                                $roleMapping = [
-                                                    "male" => "Nam",
-                                                    "female" => "Nữ"
-                                                ];
+                                                class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
+                                                Ngày tạo cuộc hẹn</th>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
+                                                Thao tác</th>
 
-                                                $fullname = $row["full_name"];
-                                                $emailaddress = $row["email_address"];
-                                                $sdt = $row["contact_no"];
-                                                $address = $row["address"];
-                                                $gender = isset($roleMapping[$row["gender"]]) ? $roleMapping[$row["gender"]] : $row["gender"];
-                                                $tuoi = $row["patient_age"];
-                                                $tsb = $row["med_hist"];
-                                                $created_at = $row["created_at"];
+                                            <th class="text-secondary opacity-7"></th>
+                                        </tr>
+                                    </thead>
 
-                                                ?>
-                                                <tr>
-                                                    <th>Họ và tên</th>
-                                                    <td><?php echo $fullname ?></td>
-                                                    <th>Địa chỉ email</th>
-                                                    <td><?php echo $emailaddress ?></td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Số điện thoại</th>
-                                                    <td><?php echo $sdt ?></td>
-                                                    <th>Địa chỉ</th>
-                                                    <td><?php echo $address ?></td>
-                                                </tr>
-                                                <th>Giới tính</th>
-                                                <td><?php echo $gender ?></td>
-                                                <th>Tuổi</th>
-                                                <td><?php echo $tuoi ?></td>
-                                                </tr>
-                                                <th>Tiền sử bệnh (nếu có )</th>
-                                                <td><?php echo $tsb ?></td>
-                                                <th>Ngày/Giờ hẹn khám</th>
-                                                <td><?php echo $created_at ?></td>
-                                                </td>
-
-                                                <?php
-                                            }
-                                        } else {
-                                            // echo "Không tìm thấy người dùng.";
-                                        }
-
-                                        ?>
-
-                                    </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="card my-4">
-                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                            <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                                <h6 class="text-white text-capitalize ps-3"> Lịch sử kiểm tra y tế</h6>
-                            </div>
-                        </div>
-                        <div class="card-body px-0 pb-2">
-                            <div class="table-responsive p-0">
-                                <table class="table align-items-center justify-content-center mb-0">
-                                    <tr>
-                                        <th>Huyết áp</th>
-                                        <th>Trọng lượng</th>
-                                        <th>Lượng đường trong máu</th>
-                                        <th>Nhiệt độ cơ thể</th>
-                                        <th>Đơn thuốc</th>
-                                        <th>Ngày/Giờ khám</th>
-                                    </tr>
                                     <?php
 
-                                    $sql = "SELECT fmh.blood_press,fmh.blood_sugar,fmh.weight,fmh.temp,fmh.med_note,fmh.created_at
-
-                                        FROM fact_med_hist fmh
-                                            LEFT JOIN dim_user usr
-                                                ON fmh.patient_id = usr.user_id
-                                        WHERE
-                                            -- usr.full_name = 'Pham Thi Kim'
-                                            usr.user_id = $auth_user_id
-                                        ORDER BY
-                                            created_at DESC, med_hist_id DESC";
-
+                                    $sql = "SELECT p.full_name AS patient_name,
+                                            p.contact_no ,
+                                            p.gender ,
+                                            a.booking_date ,
+                                            a.booking_time ,
+                                            a.created_at 
+                                        FROM 
+                                            fact_appointment a
+                                        LEFT JOIN 
+                                            dim_user p ON a.patient_id = p.user_id
+                                        WHERE 
+                                            a.doctor_id = $auth_user_id
+                                        ORDER BY 
+                                            a.booking_date,a.booking_time ASC; ";
                                     $result = $conn->query($sql);
                                     // Kiểm tra và hiển thị dữ liệu
+                                    $i = 0;
                                     if ($result->num_rows > 0) {
                                         while ($row = $result->fetch_assoc()) {
-                                            $bp = $row["blood_press"];
-                                            $weight = $row["weight"];
-                                            $bs = $row["blood_sugar"];
-                                            $temp = $row["temp"];
-                                            $pres = $row["med_note"];
+                                            $i++;
+
+                                            $fullname = $row["full_name"];
+                                            $ptn = $row["patient_name"];
+                                            $sdt = $row["contact_no"];
+                                            $gender = $row["gender"];
+                                            $bkd = $row["booking_date"];
+                                            $bkt = $row["booking_time"];
+
                                             $created_at = $row["created_at"];
-
                                             ?>
-
                                             <tr>
-                                                <td><?php echo $bp ?></td>
-                                                <td><?php echo $weight ?></td>
-                                                <td><?php echo $bs ?></td>
-                                                <td><?php echo $temp ?></td>
-                                                <td><?php echo $pres ?></td>
-                                                <td><?php echo $created_at ?></td>
-                                                </tr>
+                                                <td class="align-middle text-center">
+                                                    <h6 class="mb-0 text-sm"><?php echo $i; ?></h6>
+                                                </td>
+                                                <td class="align-middle text-center">
+                                                    <h6 class="mb-0 text-sm"><?php echo $ptn; ?></h6>
+                                                </td>
+                                                <td class="align-middle text-center">
+                                                    <span class="text-xs font-weight-bold mb-0"><?php echo $sdt; ?></span>
+                                                </td>
+                                                <td class="align-middle text-center">
+                                                    <span class="text-xs font-weight-bold mb-0"><?php echo $gender; ?></span>
+                                                </td>
+                                                <td class="align-middle text-center">
+                                                    <p class="text-xs font-weight-bold mb-0"><?php echo $bkd; ?> <?php echo $bkt; ?></p>
+                                                </td>
+                                                <td class="align-middle text-center">
+                                                    <span class="text-xs font-weight-bold mb-0"><?php echo $created_at; ?></span>
+                                                </td>
+                                            </tr>";
                                             <?php
                                         }
                                     } else {
                                         // echo "Không tìm thấy người dùng.";
                                     }
+
+
+                                    // Đóng kết nối
+                                    
+
+
+
+
+
+
+
 
                                     ?>
                                 </table>

@@ -4,6 +4,29 @@ define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT']);
 include('sess-check.php');
 include SITE_ROOT . ('/HMS-Nhom11/assets/include/config.php');
 include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['update_health_metrics'])) {
+        $bld_press = mysqli_real_escape_string($conn, $_POST['blood_pressure']);
+        $temp = mysqli_real_escape_string($conn, $_POST['body_temperature']);
+        ;
+        $weight = mysqli_real_escape_string($conn, $_POST['weight']);
+        ;
+        $bld_sgr = mysqli_real_escape_string($conn, $_POST['blood_sugar']);
+        ;
+        $note = mysqli_real_escape_string($conn, $_POST['notes']);
+
+        $row_id = $_POST['update_health_metrics'];
+
+        $sql = "INSERT INTO `fact_med_hist` (`appointment_id`, `patient_id`, `blood_press`, `blood_sugar`, `weight`, `temp`, `med_note`) VALUES ($row_id, $ptnid, '$bld_press', '$bld_sgr', '$weight', '$temp', '$note')";
+
+        $result = mysqli_query($conn, $sql);
+
+        echo "<script type='text/javascript'>alert('Lưu kết quả thành công');</script>";
+
+        header('Refresh:0 , url=http://localhost/HMS-Nhom11/role-doctor/schedule_test.php');
+    }
+}
 ?>
 
 <head>
@@ -62,13 +85,25 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                             <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
                         </div>
 
-                        <span class="nav-link-text ms-1">Danh sách bệnh nhân</span>
+                        <span class="nav-link-text ms-1">Quản lý bệnh nhân</span>
                     </a>
                 </li>
 
                 <li class="nav-item mt-3">
                     <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Quản trị
                     </h6>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="work_hour.php">
+
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="material-icons opacity-10">calendar_month</i>
+                            <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
+                        </div>
+
+                        <span class="nav-link-text ms-1">Lịch làm việc</span>
+                    </a>
                 </li>
 
             </ul>
@@ -123,7 +158,8 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                                     <a class="dropdown-item border-radius-md" href="profile.php">
                                         <div class="d-flex py-1">
                                             <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="text-primary text-gradient font-weight-bold" style="padding-top:10px !important;">
+                                                <h6 class="text-primary text-gradient font-weight-bold"
+                                                    style="padding-top:10px !important;">
                                                     Thông tin người dùng
                                                 </h6>
                                             </div>
@@ -134,7 +170,8 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                                     <a class="dropdown-item border-radius-md" href="../assets/include/log-out.php">
                                         <div class="d-flex py-1">
                                             <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="text-primary text-gradient font-weight-bold" style="padding-top:10px !important;">
+                                                <h6 class="text-primary text-gradient font-weight-bold"
+                                                    style="padding-top:10px !important;">
                                                     Đăng xuất
                                                 </h6>
                                             </div>
@@ -190,15 +227,18 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                                                 class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
                                                 Trạng thái</th>
 
-                                            <th class="text-secondary opacity-7"></th>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
+                                                Thao tác</th>
                                         </tr>
 
-
                                     </thead>
+                                    <tbody>
+                                        <?php
 
-                                    <?php
-
-                                    $sql = "SELECT ptn.full_name AS patient_name,
+                                        $sql = "SELECT ptn.user_id AS patient_id,
+                                            app.appointment_id AS appt_id,
+                                            ptn.full_name AS patient_name,
                                             dct.full_name AS doctor_name,
                                             spc.specialty_name,
                                             app.booking_date,
@@ -209,81 +249,204 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                                         LEFT JOIN dim_user ptn ON app.patient_id = ptn.user_id
                                         LEFT JOIN dim_user dct ON app.doctor_id = dct.user_id
                                         LEFT JOIN dim_specialties spc ON app.specialty_id = spc.specialty_id
-                                        WHERE dct.user_id = $auth_user_id
+                                        -- WHERE ptn.user_id = $auth_user_id
                                         ORDER BY app.booking_date DESC, app.booking_time DESC; ";
-                                    $result = $conn->query($sql);
-                                    // Kiểm tra và hiển thị dữ liệu
-                                    if ($result->num_rows > 0) {
-                                        while ($row = $result->fetch_assoc()) {
 
+                                        $result = $conn->query($sql);
 
-                                            $fullname = $row["full_name"];
-                                            $ptn = $row["patient_name"];
-                                            $dtn = $row["doctor_name"];
-                                            $spn = $row["specialty_name"];
-                                            $bkd = $row["booking_date"];
-                                            $bkt = $row["booking_time"];
-                                            $cf = $row["cons_fee"];
-                                            $created_at = $row["created_at"];
+                                        // Kiểm tra và hiển thị dữ liệu
+                                        
+                                        if ($result->num_rows > 0) {
+                                            while ($row = $result->fetch_assoc()) {
 
-                                            echo "<tr>";
-                                            echo '<td class="align-middle text-center">
-                                            <div class="d-flex px-2 py-1">
-                                                <div class="d-flex flex-column justify-content-center">
-                                                    <h6 class="mb-0 text-sm">' . $dtn . '</h6>
+                                                $ptnid = $row["patient_id"];
+                                                $appt_id = $row["appt_id"];
+                                                $fullname = $row["full_name"];
+                                                $ptn = $row["patient_name"];
+                                                $dtn = $row["doctor_name"];
+                                                $spn = $row["specialty_name"];
+                                                $bkd = $row["booking_date"];
+                                                $bkt = $row["booking_time"];
+                                                $cf = $row["cons_fee"];
+                                                $created_at = $row["created_at"];
+                                                ?>
+
+                                                <tr>
+                                                    <td class="align-middle text-center">
+                                                        <div class="d-flex px-2 py-1">
+                                                            <div class="d-flex flex-column justify-content-center">
+                                                                <h6 class="mb-0 text-sm"><?php echo $dtn; ?></h6>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td class="align-middle text-center">
+                                                        <div class="d-flex px-2 py-1">
+                                                            <div class="d-flex flex-column justify-content-center">
+                                                                <h6 class="mb-0 text-sm"><?php echo $ptn; ?></h6>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+
+                                                    <td class="align-middle text-center">
+                                                        <span class="text-xs font-weight-bold mb-0"><?php echo $spn; ?></span>
+                                                    </td>
+
+                                                    <td class="align-middle text-center">
+                                                        <p class="text-xs font-weight-bold mb-0"><?php $cf; ?></p>
+                                                        <p class="text-xs text-secondary mb-0">VNĐ</p>
+                                                    </td>
+
+                                                    <td class="align-middle text-center">
+                                                        <span class="text-xs font-weight-bold mb-0"><?php $bkd; ?></span>
+                                                    </td>
+                                                    <td class="align-middle text-center">
+                                                        <span class="text-xs font-weight-bold mb-0"><?php $bkt; ?></span>
+                                                    </td>
+                                                    <td class="align-middle text-center">
+                                                        <span class="text-xs font-weight-bold mb-0"><?php $created_at; ?></span>
+                                                    </td>
+                                                    <td class="align-middle text-center">
+                                                        <span class="text-xs font-weight-bold mb-0">N/A</span>
+                                                    </td>
+                                                    <td>
+                                                        <a href='#popup_health_metrics-<?php echo $appt_id; ?>'
+                                                            class='text-secondary font-weight-bold text-xs edit-btn'
+                                                            data-original-title='edit' title='Sửa thông tin'
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#popup_health_metrics-<?php echo $appt_id; ?>">Sửa</a>
+                                                        <a class=' text-secondary font-weight-bold text-xs edit-btn'> / </a>
+                                                        <a href='#popup_prescription-<?php echo $appt_id; ?>'
+                                                            class='text-secondary font-weight-bold text-xs edit-btn'
+                                                            data-original-title='edit' title='Sửa thông tin'
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#popup_prescription-<?php echo $appt_id; ?>">Lập đơn
+                                                            thuốc</a>
+                                                    </td>
+
+                                                </tr>
+                                                <!-- popup_health_metrics -->
+                                                <div class="modal fade" id="popup_health_metrics-<?php echo $appt_id; ?>"
+                                                    tabindex="-1" aria-labelledby="HealthEdit" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="card">
+                                                                <div
+                                                                    class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                                                                    <div
+                                                                        class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                                                                        <h4
+                                                                            class="text-white font-weight-bolder text-center mt-2 mb-0">
+                                                                            Cập nhật thông tin sức khoẻ
+                                                                        </h4>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="card-body edit-body">
+                                                                    <form name="spcedit" role="form" method="POST">
+                                                                        <div class="custom-input">
+                                                                            <input type="text" name="blood_pressure"
+                                                                                id="blood_pressure" placeholder="120/80">
+                                                                            <label>Huyết áp</label>
+                                                                        </div>
+                                                                        <div class="custom-input">
+                                                                            <input type="text" name="weight" id="weight"
+                                                                                placeholder="70kg">
+                                                                            <label>Cân nặng</label>
+                                                                        </div>
+                                                                        <div class="custom-input">
+                                                                            <input type="text" name="blood_sugar"
+                                                                                id="blood_sugar" placeholder="100 mg/Dl">
+                                                                            <label>Lượng đường trong máu</label>
+                                                                        </div>
+                                                                        <div class="custom-input">
+                                                                            <input type="text" name="body_temperature"
+                                                                                id="body_temperature" placeholder="36.5C">
+                                                                            <label>Nhiệt độ cơ thể</label>
+                                                                        </div>
+                                                                        <div class="custom-input">
+                                                                            <input type="text" name="notes" id="notes"
+                                                                                placeholder="Ghi chú thêm nếu cần">
+                                                                            <label>Ghi chú y tế</label>
+                                                                        </div>
+                                                                        <div class="text-center">
+                                                                            <button type="submit" name="update_health"
+                                                                                value="<?php echo $appt_id; ?>"
+                                                                                class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập
+                                                                                nhật</button>
+                                                                        </div>
+                                                                        <div class="text-center">
+                                                                            <button type="button"
+                                                                                class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
+                                                                                data-bs-dismiss="modal">Thoát</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </td>';
-                                            echo '<td class="align-middle text-center">
-                                            <div class="d-flex px-2 py-1">
-                                                <div class="d-flex flex-column justify-content-center">
-                                                    <h6 class="mb-0 text-sm">' . $ptn . '</h6>
+
+                                                <!-- Popup đơn thuốc -->
+                                                <div class="modal fade" id="popup_prescription-<?php echo $appt_id; ?>"
+                                                    tabindex="-1" aria-labelledby="PresEdit" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="card">
+                                                                <div
+                                                                    class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                                                                    <div
+                                                                        class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                                                                        <h4
+                                                                            class="text-white font-weight-bolder text-center mt-2 mb-0">
+                                                                            Lập đơn thuốc
+                                                                        </h4>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="card-body edit-body">
+                                                                    <form name="prescription_form" role="form" method="POST">
+                                                                        <input type="hidden" name="med_hist_id"
+                                                                            value="<?php echo $med_hist_id; ?>">
+                                                                        <!-- Thêm med_hist_id làm hidden field -->
+                                                                        <div class="custom-input">
+                                                                            <input type="text" name="item_name" id="item_name"
+                                                                                placeholder="">
+                                                                            <label>Tên thuốc</label>
+                                                                        </div>
+                                                                        <div class="custom-input">
+                                                                            <input type="number" name="amount" id="amount"
+                                                                                placeholder="">
+                                                                            <label>Số lượng</label>
+                                                                        </div>
+                                                                        <div class="custom-input">
+                                                                            <input type="text" name="item_note" id="item_note"
+                                                                                placeholder="">
+                                                                            <label>Ghi chú</label>
+                                                                        </div>
+                                                                        <!-- <div class="text-center">
+                                                                            <button type="submit" name="update_health"
+                                                                                value="<?php echo $appt_id; ?>"
+                                                                                class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập
+                                                                                nhật</button>
+                                                                        </div> -->
+                                                                        <div class="text-center">
+                                                                            <button type="submit" name="submit_prescription"
+                                                                                class="btn btn-lg bg-gradient-primary w-100 mt-4 mb-0">Lập
+                                                                                Đơn</button>
+                                                                        </div>
+                                                                        <div class="text-center">
+                                                                            <button type="button"
+                                                                                class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
+                                                                                data-bs-dismiss="modal">Thoát</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </td>';
-
-                                            echo ' <td class="align-middle text-center">
-                                            <span class="text-xs font-weight-bold mb-0">' . $spn . '</span>
-                                        </td>';
-
-                                            echo '<td class="align-middle text-center">
-                                        <p class="text-xs font-weight-bold mb-0">' . $cf . '</p>
-                                        <p class="text-xs text-secondary mb-0">VNĐ</p>
-                                    </td>';
-
-                                            echo '<td class="align-middle text-center">
-                                        <span class="text-xs font-weight-bold mb-0">' . $bkd . '</span>
-                                    </td>';
-                                            echo '<td class="align-middle text-center">
-                                        <span class="text-xs font-weight-bold mb-0">' . $bkt . '</span>
-                                    </td>';
-                                            echo '<td class="align-middle text-center">
-                                        <span class="text-xs font-weight-bold mb-0">' . $created_at . '</span>
-                                    </td>';
-
-
-
-
-
-                                            echo "</tr>";
+                                                <?php
+                                            }
                                         }
-                                    } else {
-                                        // echo "Không tìm thấy người dùng.";
-                                    }
-
-
-                                    // Đóng kết nối
-                                    
-
-
-
-
-
-
-
-
-                                    ?>
-                                    <tbody>
+                                        ?>
 
                                     </tbody>
                                 </table>
@@ -313,8 +476,13 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
             </footer>
         </div>
 
+
+
+
+
+
     </main>
 
-<?php
-include SITE_ROOT . ('/HMS-Nhom11/assets/include/footer.php');
-?>
+    <?php
+    include SITE_ROOT . ('/HMS-Nhom11/assets/include/footer.php');
+    ?>

@@ -1,21 +1,21 @@
 <?php
 define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT']);
 
-include('../../role-doctor/sess-check.php');
+include('sess-check.php');
 include SITE_ROOT . ('/HMS-Nhom11/assets/include/config.php');
 include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
 ?>
 
 <head>
     <title>
-        Hồ sơ bệnh nhân
+        Hồ sơ bênh nhân
     </title>
 </head>
 
 <!-- Side Nav -->
 
 <body class="g-sidenav-show"
-    style="background-image: url('../../assets/image/Hospital_Seamless1.png'); background-size: 400px 400px;">
+    style="background-image: url('../assets/image/Hospital_Seamless1.png'); background-size: 400px 400px;">
 
     <aside
         class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 bg-gradient-dark"
@@ -26,7 +26,7 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                 aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/material-dashboard/pages/dashboard "
                 target="_blank">
-                <img src="../../assets/image/logo01-sq.png" class="navbar-brand-img h-100" alt="main_logo">
+                <img src="../assets/image/logo01-sq.png" class="navbar-brand-img h-100" alt="main_logo">
                 <span class="ms-1 font-weight-bold text-white">HKL Hospital</span>
             </a>
         </div>
@@ -42,65 +42,33 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="../../TEST_Khoa/chot/profile_doc.php">
+                    <a class="nav-link text-white" href="schedule.php">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">person</i>
+                            <i class="material-icons opacity-10">calendar_month</i>
                             <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
                         </div>
 
-                        <span class="nav-link-text ms-1">Thông tin cá nhân</span>
+                        <span class="nav-link-text ms-1">Lịch hẹn kiểm tra</span>
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link text-white active bg-gradient-primary" href="../../TEST_Khoa/chot/medhist_doc.php">
-
-                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">description</i>
-                            <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
-                        </div>
-
-                        <span class="nav-link-text ms-1">Bệnh án</span>
-                    </a>
-                </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="../../TEST_Khoa/chot/patient_doc.php">
+                    <a class="nav-link text-white active bg-gradient-primary" href="patient.php">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">groups</i>
                             <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
                         </div>
 
-                        <span class="nav-link-text ms-1">Bệnh nhân</span>
+                        <span class="nav-link-text ms-1">Danh sách bệnh nhân</span>
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link text-white " href="../../TEST_Khoa/chot/schedule_doc.php">
-
-                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">event</i>
-                            <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
-                        </div>
-
-                        <span class="nav-link-text ms-1">Đặt lịch khám</span>
-                    </a>
-                </li>
-
-
-
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="../../TEST_Khoa/chot/work_doc.php">
-
-                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">calendar_today</i>
-                            <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
-                        </div>
-
-                        <span class="nav-link-text ms-1">Lịch làm</span>
-                    </a>
+                <li class="nav-item mt-3">
+                    <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Quản trị
+                    </h6>
                 </li>
 
             </ul>
@@ -109,7 +77,7 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
     </aside>
     <!-- End Side Nav -->
 
-    <main class="main-content border-radius-lg ps ">
+    <main class="main-content border-radius-lg ">
         <!-- Navbar -->
 
         <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 border-radius-xl shadow-none position-sticky blur shadow-blur mt-4 left-auto top-1 z-index-sticky"
@@ -144,7 +112,7 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                         <li class="nav-item dropdown pe-2 d-flex align-items-center">
                             <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="../../assets/image/user login image.png" alt="profile_image"
+                                <img src="../assets/image/user login image.png" alt="profile_image"
                                     class="border-radius-lg shadow-sm" style="max-width:45px">
                             </a>
 
@@ -163,7 +131,7 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                                     </a>
                                 </li>
                                 <li class="mb-2">
-                                    <a class="dropdown-item border-radius-md" href="../../assets/include/log-out.php">
+                                    <a class="dropdown-item border-radius-md" href="../assets/include/log-out.php">
                                         <div class="d-flex py-1">
                                             <div class="d-flex flex-column justify-content-center">
                                                 <h6 class="text-primary text-gradient font-weight-bold" style="padding-top:10px !important;">
@@ -223,7 +191,7 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                                       ON ptn.patient_id = usr.user_id
                                       WHERE
                                           -- usr.full_name = 'Pham Van Cuong'
-                                          usr.user_id =$auth_user_id; ";
+                                          usr.user_id =34; ";
                                         $result = $conn->query($sql);
                                         // Kiểm tra và hiển thị dữ liệu
                                         if ($result->num_rows > 0) {
@@ -261,6 +229,7 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                                                 echo " <th>Ngày/Giờ hẹn khám</th>  ";
                                                 echo "<td>$created_at</td>";
                                                 echo "</td>";
+
                                             }
                                         } else {
                                             // echo "Không tìm thấy người dùng.";
@@ -268,7 +237,7 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
 
 
                                         // Đóng kết nối
-
+                                        
 
 
 
@@ -312,7 +281,7 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                                         <th>Nhiệt độ cơ thể</th>
 
 
-                                        <th>Đơn thuốc</th>
+                                        <th>Ghi chú</th>
 
                                         <th>Ngày/Giờ hẹn khám</th>
 
@@ -328,7 +297,7 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                                                 ON fmh.patient_id = usr.user_id
                                         WHERE
                                             -- usr.full_name = 'Pham Thi Kim'
-                                            usr.user_id = $auth_user_id
+                                            usr.user_id = 34
                                         ORDER BY
                                             created_at DESC, med_hist_id DESC";
 
@@ -353,6 +322,7 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                                             echo "<td>$pres</td>";
                                             echo "<td>$created_at</td>";
                                             echo "</tr>";
+
                                         }
                                     } else {
                                         // echo "Không tìm thấy người dùng.";
@@ -360,7 +330,7 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
 
 
                                     // Đóng kết nối
-
+                                    
 
 
 
@@ -423,6 +393,6 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
 
     </main>
 
-    <?php
-    include SITE_ROOT . ('/HMS-Nhom11/assets/include/footer.php');
-    ?>
+<?php
+include SITE_ROOT . ('/HMS-Nhom11/assets/include/footer.php');
+?>

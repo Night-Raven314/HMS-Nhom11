@@ -214,15 +214,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="container-fluid py-1 px-3">
                 <nav aria-label="breadcrumb">
 
-                    <h6 class="font-weight-bolder mb-0">QUẢN LÝ CHUYÊN KHOA</h6>
+                    <h6 class="font-weight-bolder mb-0">Quản lý chuyên khoa</h6>
+
 
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-                        <div class="input-group input-group-outline">
+                        <form method="GET" action="" class="input-group input-group-outline">
                             <label class="form-label">Tìm kiếm</label>
-                            <input type="text" class="form-control">
-                        </div>
+                            <input type="text" name="query" class="form-control" placeholder="">
+                        </form>
                     </div>
                     <ul class="navbar-nav  justify-content-end">
 
@@ -293,8 +294,56 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <h6 class="text-white text-capitalize ps-3" style="float: left;">Thông tin chuyên khoa
                                 </h6>
                                 <div class="table-float-btn-container">
-                                    <a class="table-float-btn btn btn-outline-primary btn-sm mb-0 me-3"
-                                        style="background: #ffffff" href="#popup_add">Thêm chuyên khoa</a>
+                                    <button class="table-float-btn btn btn-outline-primary btn-sm mb-0 me-3"
+                                        style="background: #ffffff" data-bs-toggle="modal"
+                                        data-bs-target="#popup_add">Thêm chuyên khoa</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tạo chuyên khoa -->
+                        <div class="modal fade" id="popup_add" tabindex="-1"
+                            aria-labelledby="SpcCreate" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="card">
+                                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                                            <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                                                <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">
+                                                    Tạo chuyên khoa
+                                                </h4>
+                                            </div>
+                                        </div>
+                                        <div class="card-body edit-body">
+                                            <form name="spccreate" role="form" method="POST">
+                                                <div class="custom-input">
+                                                    <input type="text" name="spc_name" id="spc_name"
+                                                        placeholder="Nhập Tên chuyên khoa">
+                                                    <label>Tên chuyên khoa</label>
+                                                </div>
+                                                <div class="custom-input">
+                                                    <input type="text" name="spc_desc" id="spc_desc"
+                                                        placeholder="Nhập mô tả">
+                                                    <label>Mô tả chuyên khoa</label>
+                                                </div>
+                                                <div class="custom-input">
+                                                    <input type="text" name="spc_note" id="spc_note"
+                                                        placeholder="Nhập ghi chú">
+                                                    <label>Ghi chú chuyên khoa</label>
+                                                </div>
+                                                <div class="text-center">
+                                                    <button type="submit" name="create" value="create"
+                                                        class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Tạo chuyên khoa</button>
+                                                </div>
+
+                                                <div class="text-center">
+                                                    <button type="button"
+                                                        class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
+                                                        data-bs-dismiss="modal">Thoát</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -306,7 +355,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         <tr>
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
-                                                ID</th>
+                                                Mã chuyên khoa</th>
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
                                                 Tên chuyên khoa</th>
@@ -375,114 +424,79 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                         <p class="text-xs font-weight-bold mb-0"><?php echo $updated_at; ?></p>
                                                     </td>
                                                     <td class='align-middle text-center'>
-                                                        <a href='#popup_edit-<?php echo $spc_id; ?>'
+                                                        <a href='#popup_edit-<?php echo $user_id; ?>'
                                                             class='text-secondary font-weight-bold text-xs edit-btn'
-                                                            data-original-title='edit' title='Sửa thông tin' data-toggle='modal'
-                                                            data-target='#popup_edit-<?php echo $spc_id; ?>'>Sửa</a>
+                                                            data-original-title='edit' title='Sửa thông tin'
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#popup_edit-<?php echo $spc_id; ?>">Cập nhật</a>
                                                     </td>
                                                 </tr>
 
                                                 <!-- Popup for Specialties edit -->
-                                                <div id="popup_edit-<?php echo $spc_id; ?>" class="overlay_flight_traveldil">
-                                                    <div class="card popup-cont">
-                                                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                                                            <div
-                                                                class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                                                                <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">
-                                                                    Cập nhật thông tin chuyên khoa
-                                                                </h4>
+                                                <div class="modal fade" id="popup_edit-<?php echo $spc_id; ?>" tabindex="-1"
+                                                    aria-labelledby="SpcEdit" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="card">
+                                                                <div
+                                                                    class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                                                                    <div
+                                                                        class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                                                                        <h4
+                                                                            class="text-white font-weight-bolder text-center mt-2 mb-0">
+                                                                            Cập nhật thông tin chuyên khoa
+                                                                        </h4>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="card-body edit-body">
+                                                                    <form name="spcedit" role="form" method="POST">
+                                                                        <div class="custom-input">
+                                                                            <input type="text" name="spc_name" id="spc_name"
+                                                                                placeholder="<?php echo $spc_name; ?>">
+                                                                            <label>Tên chuyên khoa</label>
+                                                                        </div>
+                                                                        <div class="custom-input">
+                                                                            <input type="text" name="spc_desc" id="spc_desc"
+                                                                                placeholder="<?php echo $spc_desc; ?>">
+                                                                            <label>Mô tả chuyên khoa</label>
+                                                                        </div>
+                                                                        <div class="custom-input">
+                                                                            <input type="text" name="spc_note" id="spc_note"
+                                                                                placeholder="<?php echo $spc_note; ?>">
+                                                                            <label>Ghi chú chuyên khoa</label>
+                                                                        </div>
+                                                                        <div class="text-center">
+                                                                            <button type="submit" name="update" value=<?php echo $spc_id; ?>
+                                                                                class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập
+                                                                                nhật</button>
+                                                                        </div>
+
+                                                                        <div class="text-center">
+                                                                            <button type="submit" name="delete" value=<?php echo $spc_id; ?>
+                                                                                class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Xoá</button>
+
+                                                                        </div>
+
+                                                                        <div class="text-center">
+                                                                            <button type="button"
+                                                                                class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
+                                                                                data-bs-dismiss="modal">Thoát</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                        <div class="card-body edit-body">
-                                                            <form name="edit_specialties" role="form" method="POST">
-
-                                                                <div class="input-group input-group-outline mb-3">
-                                                                    <label for="spc_name" class="form-label">Tên chuyên
-                                                                        khoa</label>
-                                                                    <input name="spc_name" id="spc_name" class="form-control"
-                                                                        value="">
-                                                                </div>
-                                                                <div class="input-group input-group-outline mb-3">
-                                                                    <label class="form-label">Mô tả</label>
-                                                                    <input name="spc_desc" id="spc_desc" class="form-control">
-                                                                </div>
-                                                                <div class="input-group input-group-outline mb-3">
-                                                                    <label class="form-label">Ghi chú</label>
-                                                                    <input name="spc_note" id="spc_note" class="form-control" />
-                                                                </div>
-
-                                                                <div class="text-center">
-                                                                    <button type="submit" name="update" value=<?php echo $spc_id; ?>
-                                                                        class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập
-                                                                        nhật</button>
-                                                                </div>
-
-                                                                <div class="text-center">
-                                                                    <button type="submit" name="delete" value=<?php echo $spc_id; ?>
-                                                                        class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Xoá</button>
-
-                                                                </div>
-
-                                                                <div class="text-center">
-                                                                    <button type="button"
-                                                                        class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
-                                                                        onclick="location.href='http://localhost/HMS-Nhom11/role-admin/speciality.php'">Thoát</button>
-                                                                </div>
-
-                                                        </div>
-                                                        </form>
                                                     </div>
                                                 </div>
-                                    </div>
-                                    </li>
-                                <?php }
+                                            <?php }
                                         } ?>
-                            </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
 
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        </div>
-
-
-        <!-- Popup Section for Form -->
-        <!-- Popup to create user -->
-        <div id="popup_add" class="overlay_flight_traveldil">
-            <div class="card popup-cont">
-                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                    <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                        <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Thêm chuyên khoa</h4>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <form name="new_user" role="form" method="POST">
-                        <div class="input-group input-group-outline mb-3">
-                            <label for="spc_name" class="form-label">Tên chuyên
-                                khoa</label>
-                            <input name="spc_name" id="spc_name" class="form-control" value="">
-                        </div>
-                        <div class="input-group input-group-outline mb-3">
-                            <label class="form-label">Mô tả</label>
-                            <input name="spc_desc" id="spc_desc" class="form-control">
-                        </div>
-                        <div class="input-group input-group-outline mb-3">
-                            <label class="form-label">Ghi chú</label>
-                            <input name="spc_note" id="spc_note" class="form-control" />
-                        </div>
-                        <div class="text-center">
-                            <button type="submit" name="create" value="create"
-                                class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Tạo chuyên khoa</button>
-                        </div>
-                        <div class="text-center" href="#">
-                            <button type="button" class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
-                                onclick="location.href='http://localhost/HMS-Nhom11/role-admin/speciality.php'">Thoát</button>
-                        </div>
-
-                </div>
-                </form>
             </div>
         </div>
 

@@ -1,4 +1,6 @@
-$hms-color: #167070;
+$hms-light: #44857D;
+$hms-neutral: #167070;
+$hms-dark: #003D59;
 
 #scroll-top {
   position: fixed;
@@ -170,34 +172,35 @@ div#popupFormContainer {
 }
 
 .custom-input {
-  margin: 20px 0;
+  font-family: "Roboto", Helvetica, Arial, sans-serif !important;
+  margin: 15px 0;
   position: relative;
   label {
     color: #414a4f;
     position: absolute;
     transition: all 200ms ease-in-out;
-    top: 10px;
+    top: 8px;
     left: 10px;
-    font-size: 12pt;
+    font-size: 11pt;
     pointer-events: none;
   }
   input {
     transition: all 200ms ease-in-out;
-    border: 2px solid #d2d6da;
+    border: 1px solid #d2d6da;
     border-radius: 5px;
-    padding: 5px 11px;
-    font-size: 14pt;
+    padding: 7px 11px 5px;
+    font-size: 11pt;
     width: 100%;
     &:focus {
       outline: none;
-      border-color: $hms-color;
+      border-color: $hms-neutral;
       + label {
         top: -10px;
         left: 5px;
         font-size: 10pt;
         padding: 0 5px;
         background-color: #fff;
-        color: $hms-color;
+        color: $hms-neutral;
       }
       &::placeholder {
         opacity: 1;
@@ -215,9 +218,9 @@ div#popupFormContainer {
         font-size: 10pt;
         padding: 0 5px;
         background-color: #fff;
-        color: $hms-color;
+        color: $hms-neutral;
       }
-      border-color: $hms-color;
+      border-color: $hms-neutral;
     }
   }
   &.date {
@@ -227,7 +230,7 @@ div#popupFormContainer {
       font-size: 10pt;
       padding: 0 5px;
       background-color: #fff;
-      color: $hms-color;
+      color: $hms-neutral;
     }
   }
 }

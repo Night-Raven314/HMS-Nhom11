@@ -17,8 +17,7 @@ if ($_SESSION['auth_user_role'] === 'admin') {
 }
 
 if ($_SESSION['auth_user_role'] === 'doctor') {
-    // header('Refresh:0 , url=http://localhost/HMS-Nhom11/role-doctor/schedule.php');
-    header('Refresh:0 , url=http://localhost/HMS-Nhom11/TEST_Khoa/chot/profile_doc.php');
+    header('Refresh:0 , url=http://localhost/HMS-Nhom11/role-doctor/schedule.php');
     exit();
 }
 
