@@ -28,9 +28,13 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
               <div class="card-body">
                 <p class="mb-0">Vui lòng nhập email đã đăng ký để lấy lại mật khẩu</p>
                 <form role="form" class="text-start">
-                  <div class="custom-input">
-                    <input type="text" name="email" id="email" placeholder="Nhập địa chỉ email">
-                    <label>Địa chỉ email</label>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="custom-input">
+                        <input type="text" name="email" id="email" placeholder="Nhập địa chỉ email">
+                        <label>Địa chỉ email</label>
+                      </div>
+                    </div>
                   </div>
                   <div class="text-center">
                     <button type="button" class="btn bg-gradient-primary w-100 my-4 mb-2">Lấy lại mật khẩu</button>

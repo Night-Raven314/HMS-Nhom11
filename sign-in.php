@@ -52,7 +52,7 @@ $client->addScope("https://www.googleapis.com/auth/user.phonenumbers.read");
 $google_url = $client->createAuthUrl();
 
 
-  ?>
+?>
 
 <head>
   <meta charset="utf-8" />
@@ -95,13 +95,19 @@ $google_url = $client->createAuthUrl();
               </div>
               <div class="card-body">
                 <form name="auth_form" role="form" class="text-start" onsubmit="return validation()" method="POST">
-                  <div class="custom-input">
-                    <input type="text" name="user_name" id="user_name" placeholder="Nhập tên đăng nhập">
-                    <label>Tên đăng nhập</label>
-                  </div>
-                  <div class="custom-input">
-                    <input type="password" name="password" id="password" placeholder="Nhập mật khẩu">
-                    <label>Mật khẩu</label>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="custom-input">
+                        <input type="text" name="user_name" id="user_name" placeholder="Nhập tên đăng nhập">
+                        <label>Tên đăng nhập</label>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="custom-input">
+                        <input type="password" name="password" id="password" placeholder="Nhập mật khẩu">
+                        <label>Mật khẩu</label>
+                      </div>
+                    </div>
                   </div>
                   <div class="text-center">
                     <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">Đăng nhập</button>
@@ -124,10 +130,6 @@ $google_url = $client->createAuthUrl();
                   </div>
                   <p class="mt-4 text-sm text-center">
                     <a href="./forgot-pwd.php" class="text-primary text-gradient font-weight-bold">Quên mật khẩu</a>
-                  </p>
-                  <p class="mt-4 text-sm text-center">
-                    Bạn là nhân viên?
-                    <a href="./sign-up.php" class="text-primary text-gradient font-weight-bold">Đăng nhập nhân viên</a>
                   </p>
                   <p class="mt-4 text-sm text-center">
                     Bạn chưa có tài khoản?

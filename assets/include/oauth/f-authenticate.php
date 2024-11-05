@@ -44,41 +44,47 @@ if (!isset($accessToken)) {
 }
 // If the access token is set, the user is logged in
 try {
-    // Get user data from Facebook
-    $response = $fb->get('/me?fields=name,email,picture', $accessToken);
-    $userData = $response->getGraphUser();
 
-    // Get user data from Facebook
-    $user_email = $userData->getEmail();
-    $full_name = $userData->getName();
+    
+    // Get basic user data from Facebook
+    $response = $fb->get('/me?fields=name,email', $accessToken);
+    $BuserData = $response->getGraphUser();
+
+    // Get basic user data from Facebook
+    $user_id = $BuserData->getId();
+    $full_name = $BuserData->getName();
+    $user_email = '';
+
     // $fbPictureUrl = $userData->getPicture()->getUrl();
+    
+    echo $userDetails;
 
-    $user_check = "SELECT * FROM `dim_user` WHERE `email_address` = '$user_email' AND `role` = 'patient'";
+    $user_check = "SELECT * FROM `dim_user` WHERE `oauth_facebook` = '$user_id' AND `role` = 'patient'";
     $user_info = mysqli_query($conn, $user_check);
 
     $count = mysqli_num_rows($user_info);
 
     if($count == 0){
 
-        $user_add = "INSERT INTO `dim_user` (`email_address`, `full_name`, `role`) VALUES ('$user_email', '$full_name', 'patient')";
+        $user_add = "INSERT INTO `dim_user` (`email_address`, `full_name`, `role`, `oauth_facebook`) VALUES ('$user_email', '$full_name', 'patient', '$user_id')";
         $user_info_add = mysqli_query($conn, $user_add);
+        $log_user_id = mysqli_insert_id($conn);
         
-        $user_get = "SELECT * FROM `dim_user` WHERE `email_address` = '$user_email' AND `role` = 'patient'";
-        $user_info_get = mysqli_query($conn, $user_get);
-        $new_row = mysqli_fetch_assoc($user_info_get);
+        // $user_get = "SELECT * FROM `dim_user` WHERE `user_id` = $log_user_id";
+        // $user_info_get = mysqli_query($conn, $user_get);
+        // $new_row = mysqli_fetch_assoc($user_info_get);
 
-        $_SESSION['auth_login_user'] = 'facebook_oauth';
-        $_SESSION['auth_login_email'] = $new_row['email_address'];
-        $_SESSION['auth_user_id'] = $new_row['user_id'];
-        $_SESSION['auth_user_role'] = $new_row['role'];
-        $_SESSION['auth_login_type'] = 'facebook_oauth';
+            $_SESSION['auth_user_id'] = $log_user_id;
+            $_SESSION['auth_user_role'] = 'patient';
+            $_SESSION['auth_login_type'] = 'facebook_oauth';
 
-        header('Refresh:0 , url=http://localhost/HMS-Nhom11/assets/include/redirect.php');
+            $_SESSION['temp_regis_name'] = $full_name;
+            $_SESSION['temp_regis_email'] = $user_email;
+
+        header('Refresh:0 , url=http://localhost/HMS-Nhom11/role-patient/complete_profile.php');
     } else {
         $old_row = mysqli_fetch_assoc($user_info);
 
-        $_SESSION['auth_login_user'] = $old_row['user_name'];
-        $_SESSION['auth_login_email'] = $old_row['email_address'];
         $_SESSION['auth_user_id'] = $old_row['user_id'];
         $_SESSION['auth_user_role'] = $old_row['role'];
         $_SESSION['auth_login_type'] = 'facebook_oauth';

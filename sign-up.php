@@ -92,21 +92,31 @@ $facebook_url = 'https://www.facebook.com/dialog/oauth?' . http_build_query($par
                 </div>
                 <div class="card-body">
                   <form role="form">
-                    <div class="custom-input">
-                      <input type="text" name="full_name" id="full_name" placeholder="Nhập họ và tên">
-                      <label>Họ và tên</label>
-                    </div>
-                    <div class="custom-input">
-                      <input type="text" name="email" id="email" placeholder="Nhập địa chỉ email">
-                      <label>Địa chỉ email</label>
-                    </div>
-                    <div class="custom-input">
-                      <input type="text" name="user_name" id="user_name" placeholder="Nhập tên đăng nhập">
-                      <label>Tên đăng nhập</label>
-                    </div>
-                    <div class="custom-input">
-                      <input type="password" name="password" id="password" placeholder="Nhập mật khẩu">
-                      <label>Mật khẩu</label>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="custom-input">
+                          <input type="text" name="full_name" id="full_name" placeholder="Nhập họ và tên">
+                          <label>Họ và tên</label>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="custom-input">
+                          <input type="text" name="email" id="email" placeholder="Nhập địa chỉ email">
+                          <label>Địa chỉ email</label>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="custom-input">
+                          <input type="text" name="user_name" id="user_name" placeholder="Nhập tên đăng nhập">
+                          <label>Tên đăng nhập</label>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="custom-input">
+                          <input type="password" name="password" id="password" placeholder="Nhập mật khẩu">
+                          <label>Mật khẩu</label>
+                        </div>
+                      </div>
                     </div>
                     <div class="form-check form-check-info text-start ps-0">
                       <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
@@ -147,10 +157,6 @@ $facebook_url = 'https://www.facebook.com/dialog/oauth?' . http_build_query($par
                   <p class="mt-4 text-sm text-center">
                     Bạn đã có tài khoản?
                     <a href="./sign-in.php" class="text-primary text-gradient font-weight-bold">Đăng nhập ngay</a>
-                  </p>
-                  <p class="mt-4 text-sm text-center">
-                    Bạn là nhân viên?
-                    <a href="./sign-in.php" class="text-primary text-gradient font-weight-bold">Đăng nhập ở đây</a>
                   </p>
                 </div>
               </div>
