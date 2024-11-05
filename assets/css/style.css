@@ -189,6 +189,7 @@ div#popupFormContainer {
   top: 8px;
   left: 10px;
   font-size: 11pt;
+  background-color: #fff;
   pointer-events: none;
 }
 .custom-input input, .custom-input select {
@@ -239,7 +240,6 @@ div#popupFormContainer {
   left: 5px;
   font-size: 10pt;
   padding: 0 5px;
-  background-color: #fff;
   color: #167070;
 }
 .custom-input input:not(:placeholder-shown) + label, .custom-input select:not(:placeholder-shown) + label {
@@ -247,6 +247,60 @@ div#popupFormContainer {
   left: 5px;
   font-size: 10pt;
   padding: 0 5px;
-  background-color: #fff;
   color: #167070;
+}
+.custom-input input[type=file]::file-selector-button {
+  display: none;
+}
+
+.custom-dropdown .button-avatar {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+}
+.custom-dropdown .button-avatar::after {
+  display: none;
+}
+.custom-dropdown .button-avatar img {
+  border-radius: 10px;
+  width: 37.46px;
+}
+.custom-dropdown .dropdown-menu::before {
+  display: none;
+}
+
+.custom-navbar {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  margin: 15px;
+}
+.custom-navbar .nav-left {
+  flex: 1;
+  font-size: 14pt;
+  color: #003D59;
+  font-weight: 600;
+}
+.custom-navbar .nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.custom-navbar .nav-right .custom-input {
+  margin: 0;
+}
+
+.custom-table {
+  max-height: 75vh;
+  max-height: 80dvh;
+  overflow-y: auto;
+}
+.custom-table table thead th {
+  position: sticky;
+  top: 0px;
+  z-index: 1;
+  background-color: #fff;
+  opacity: 1 !important;
 }/*# sourceMappingURL=style.css.map */

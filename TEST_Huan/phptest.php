@@ -19,6 +19,10 @@ $modalData = "something"
   <input type="date">
   <label>Date</label>
 </div>
+<div class="custom-input">
+  <input type="file">
+  <label>Upload file</label>
+</div>
 
 <!-- Button trigger modal -->
 <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
