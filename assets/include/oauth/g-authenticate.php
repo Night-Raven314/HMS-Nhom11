@@ -31,7 +31,7 @@ if(isset($_GET['code'])){
     }else{
         $user_data = $service->userinfo->get();
 
-        $user_check = "SELECT * FROM `dim_user` WHERE `email_address` = '$user_data->email' AND `role` = 'patient'";
+        $user_check = "SELECT * FROM `dim_user` WHERE (`email_address` = '$user_data->email' OR `oauth_google` = '$user_data->email') AND `role` = 'patient'";
         $user_info = mysqli_query($conn, $user_check);
 
         $count = mysqli_num_rows($user_info);
@@ -41,30 +41,29 @@ if(isset($_GET['code'])){
             $full_name = $user_data->name;
             $gender = $user_data->gender;
 
-            $user_add = "INSERT INTO `dim_user` (`email_address`, `full_name`, `gender`, `role`) VALUES ('$user_email', '$full_name', '$gender', 'patient')";
+            $user_add = "INSERT INTO `dim_user` (`email_address`, `oauth_google`, `full_name`, `gender`, `role`) VALUES ('$user_email', '$user_email', '$full_name', '$gender', 'patient')";
             $user_info_add = mysqli_query($conn, $user_add);
             
-            $user_get = "SELECT * FROM `dim_user` WHERE `email_address` = '$user_email' AND `role` = 'patient'";
+            $user_get = "SELECT * FROM `dim_user` WHERE `oauth_google` = '$user_email' AND `role` = 'patient'";
             $user_info_get = mysqli_query($conn, $user_get);
             $new_row = mysqli_fetch_assoc($user_info_get);
 
-            $_SESSION['auth_login_user'] = 'google_oauth';
-            $_SESSION['auth_login_email'] = $new_row['email_address'];
             $_SESSION['auth_user_id'] = $new_row['user_id'];
             $_SESSION['auth_user_role'] = $new_row['role'];
             $_SESSION['auth_login_type'] = 'google_oauth';
 
-            header('Refresh:0 , url=http://localhost/HMS-Nhom11/assets/include/redirect.php');
+            $_SESSION['temp_regis_name'] = $full_name;
+            $_SESSION['temp_regis_email'] = $user_email;
+
+            header('Refresh:0 , url=http://localhost/HMS-Nhom11/role-patient/complete_profile.php');
         } else {
             $old_row = mysqli_fetch_assoc($user_info);
 
-            $_SESSION['auth_login_user'] = $old_row['user_name'];
-            $_SESSION['auth_login_email'] = $old_row['email_address'];
             $_SESSION['auth_user_id'] = $old_row['user_id'];
             $_SESSION['auth_user_role'] = $old_row['role'];
             $_SESSION['auth_login_type'] = 'google_oauth';
 
-            header('Refresh:0 , url=http://localhost/HMS-Nhom11/assets/include/redirect.php');
+            header('Refresh:0 , url=http://localhost/HMS-Nhom11/role-patient/schedule.php');
         }
     }
 } else {

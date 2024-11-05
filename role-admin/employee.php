@@ -36,6 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $post_role = (empty(mysqli_real_escape_string($conn, $_POST['role'])) === true) ? $role : mysqli_real_escape_string($conn, $_POST['role']);
         $post_address = (empty(mysqli_real_escape_string($conn, $_POST['address'])) === true) ? $address : mysqli_real_escape_string($conn, $_POST['address']);
         $post_city = (empty(mysqli_real_escape_string($conn, $_POST['city'])) === true) ? $city : mysqli_real_escape_string($conn, $_POST['city']);
+        $post_password = (empty(mysqli_real_escape_string($conn, $_POST['password'])) === true) ? $password : mysqli_real_escape_string($conn, $_POST['password']);
 
         $post_update_id = $_POST['update']; //Get user ID that need update
 
@@ -47,7 +48,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         `role` = '$post_role',
         `gender` = '$post_gender',
         `address` = '$post_address',
-        `city` = '$post_city' 
+        `city` = '$post_city',
+        `password` = '$password' 
         WHERE user_id = $post_update_id";
 
         $update = mysqli_query($conn, $sql);
@@ -494,13 +496,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                 $fullname = $row["full_name"];
                                                 $role = isset($roleMapping[$row["role"]]) ? $roleMapping[$row["role"]] : $row["role"];
                                                 $user_name = $row["user_name"];
-                                                $phone = substr($row["contact_no"], 0, 5) // Get the first two digits
-                                                    . str_repeat('*', (strlen($row["contact_no"]) - 7)) // Apply enough asterisks to cover the middle numbers
-                                                    . substr($row["contact_no"], -2); // Get the last two digits
-                                                $emailaddress = substr($row["email_address"], 0, 5) // Get the first two digits
-                                                    . str_repeat('*', (strlen($row["email_address"]) - 17)) // Apply enough asterisks to cover the middle numbers
-                                                    . substr($row["email_address"], -12); // Get the last two digits
-                                                $password = str_repeat('*', (strlen($row["password"])));
+                                                // $phone = substr($row["contact_no"], 0, 5) // Get the first two digits
+                                                //     . str_repeat('*', (strlen($row["contact_no"]) - 7)) // Apply enough asterisks to cover the middle numbers
+                                                //     . substr($row["contact_no"], -2); // Get the last two digits
+                                                // $emailaddress = substr($row["email_address"], 0, 5) // Get the first two digits
+                                                //     . str_repeat('*', (strlen($row["email_address"]) - 17)) // Apply enough asterisks to cover the middle numbers
+                                                //     . substr($row["email_address"], -12); // Get the last two digits
+                                                // $password = str_repeat('*', (strlen($row["password"])));
+                                                $phone = $row["contact_no"];
+                                                $emailaddress = $row["email_address"];
+                                                $password = $row["password"];
                                                 $created_at = $row["created_at"];
                                                 $updated_at = $row["updated_at"];
                                                 $gender = $row["gender"];
@@ -585,7 +590,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                                                     <label>Tên đăng nhập</label>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-md-12">
+                                                                            <div class="col-md-6">
                                                                                 <div class="custom-input">
                                                                                     <input type="email" name="email_address"
                                                                                         id="email_address"
@@ -601,7 +606,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                                                     <label>Số điện thoại</label>
                                                                                 </div>
                                                                             </div>
-                                                                            <!-- <div class="col-md-6">
+                                                                            <div class="col-md-6">
+                                                                                <div class="custom-input">
+                                                                                    <input type="text" name="contact_no"
+                                                                                        id="contact_no"
+                                                                                        placeholder="<?php echo $password; ?>">
+                                                                                    <label>Mật khẩu</label>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-6">
                                                                                 <div class="custom-input">
                                                                                     <select name="gender" id="gender"
                                                                                         class="form-control">
@@ -615,7 +628,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                                                         <i class="fa-solid fa-chevron-down"></i>
                                                                                     </div>
                                                                                 </div>
-                                                                            </div> -->
+                                                                            </div>
                                                                             <div class="col-md-12">
                                                                                 <div class="custom-input">
                                                                                     <input type="text" name="address"
@@ -678,49 +691,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
 
-        <footer class="footer py-4  ">
-            <div class="container-fluid">
-                <div class="row align-items-center justify-content-lg-between">
-                    <div class="col-lg-6 mb-lg-0 mb-4">
-                        <div class="copyright text-center text-sm text-muted text-lg-start">
-                            ©
-                            <script>
-                                document.write(new Date().getFullYear())
-                            </script>,
-                            made with <i class="fa fa-heart"></i> by
-                            <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Huan, Khoa
-                                and Long</a>
-                            for Uni 24-25.
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-                            <li class="nav-item">
-                                <a href="https://www.creative-tim.com" class="nav-link text-muted"
-                                    target="_blank">Creative Tim</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted"
-                                    target="_blank">About
-                                    Us</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="https://www.creative-tim.com/blog" class="nav-link text-muted"
-                                    target="_blank">Blog</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted"
-                                    target="_blank">License</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </footer>
-        </div>
-
-    </main>
-
-    <?php
-    include SITE_ROOT . ('/HMS-Nhom11/assets/include/footer.php');
-    ?>
+        <?php
+        include SITE_ROOT . ('/HMS-Nhom11/assets/include/footer.php');
+        ?>

@@ -186,7 +186,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
                         </div>
 
-                        <span class="nav-link-text ms-1">Quản lý nhân viên</span>
+                        <span class="nav-link-text ms-1">Quản lý người dùng</span>
                     </a>
                 </li>
 
@@ -309,12 +309,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
                                 <h6 class="text-white text-capitalize ps-3" style="float: left;">Thông tin người dùng
                                     trên hệ thống</h6>
-                                <!-- <div class="table-float-btn-container">
-                                    <button class="table-float-btn btn btn-outline-primary btn-sm mb-0 me-3"
-                                        style="background: #ffffff" data-bs-toggle="modal"
-                                        data-bs-target="popup_add">Thêm nhân
-                                        viên</button>
-                                </div> -->
                                 <div class="table-float-btn-container">
                                     <button class="table-float-btn btn btn-outline-primary btn-sm mb-0 me-3"
                                         style="background: #ffffff" data-bs-toggle="modal"
@@ -324,7 +318,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </div>
 
                         <!-- Popup to create user -->
-                        <div class="modal fade" id="popup_add" tabindex="-1" aria-labelledby="GuestCreate"
+                        <div class="modal fade" id="popup_add" tabindex="-1" aria-labelledby="EmployeeCreate"
                             aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
@@ -339,49 +333,80 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         <div class="card-body edit-body">
                                             <form name="new_user" role="form" method="POST">
                                                 <div class="row"> <!-- Thêm hàng để chia thành 2 bên -->
-                                                    <div class="col-md-6"> <!-- Cột bên trái -->
+                                                    <div class="col-md-6">
                                                         <div class="custom-input">
                                                             <input type="text" name="full_name" id="full_name"
-                                                                placeholder="Nhập họ và tên">
+                                                                placeholder="Nguyen Van A">
                                                             <label>Họ và Tên</label>
                                                         </div>
-                                                        <div class="custom-input">
-                                                            <input type="email" name="email_address" id="email_address"
-                                                                placeholder="Nhập địa chỉ email">
-                                                            <label>Địa chỉ Email</label>
-                                                        </div>
-                                                        <div class="input-group input-group-outline mb-3">
-                                                            <!-- <label class="form-label-lg" style="margin-right: 10px;">Giới tính</label> -->
-                                                            <select name="gender" id="gender" class="form-control">
-                                                                <option value="" disabled selected>Chọn
-                                                                    giới
-                                                                    tính</option>
-                                                                <option value="male">Nam</option>
-                                                                <option value="female">Nữ</option>
-                                                            </select>
-                                                        </div>
                                                     </div>
-                                                    <div class="col-md-6"> <!-- Cột bên phải -->
+                                                    <div class="col-md-6">
                                                         <div class="custom-input">
                                                             <input type="text" name="user_name" id="user_name"
-                                                                placeholder="Nhập họ và tên">
+                                                                placeholder="nguyen_a123">
                                                             <label>Tên đăng nhập</label>
                                                         </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="custom-input">
+                                                            <input type="email" name="email_address" id="email_address"
+                                                                placeholder="example@mail.com">
+                                                            <label>Địa chỉ Email</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
                                                         <div class="custom-input">
                                                             <input type="text" name="contact_no" id="contact_no"
-                                                                placeholder="Nhập họ và tên">
+                                                                placeholder="84xxx">
                                                             <label>Số điện thoại</label>
                                                         </div>
                                                     </div>
-                                                    <div class="custom-input">
-                                                        <input type="text" name="address" id="address"
-                                                            placeholder="Nhập họ và tên">
-                                                        <label>Địa chỉ</label>
+                                                    <div class="col-md-6">
+                                                        <div class="custom-input">
+                                                            <select name="gender" id="gender" class="form-control">
+                                                                <option value="" disabled selected>Chọn
+                                                                    giới tính</option>
+                                                                <option value="male">Nam</option>
+                                                                <option value="female">Nữ</option>
+                                                            </select>
+                                                            <label>Giới tính</label>
+                                                            <div class="arrow-icon">
+                                                                <i class="fa-solid fa-chevron-down"></i>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div class="custom-input">
-                                                        <input type="text" name="city" id="city"
-                                                            placeholder="Nhập họ và tên">
-                                                        <label>Thành phố</label>
+                                                    <div class="col-md-6">
+                                                        <div class="custom-input">
+                                                            <select name="role" id="role" class="form-control">
+                                                                <option value="" disabled selected>Chọn
+                                                                    vị trí
+                                                                </option>
+                                                                <option value="doctor">Bác sỹ</option>
+                                                                <option value="nurse">Y tá</option>
+                                                                <option value="reception">Lễ tân
+                                                                </option>
+                                                                <option value="admin">Quản trị viên
+                                                                </option>
+                                                            </select>
+                                                            <label>Vị trí</label>
+                                                            <div class="arrow-icon">
+                                                                <i class="fa-solid fa-chevron-down"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="custom-input">
+                                                            <input type="text" name="address" id="address"
+                                                                placeholder="Nhập địa chỉ">
+                                                            <label>Địa chỉ</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="custom-input">
+                                                            <input type="text" name="city" id="city"
+                                                                placeholder="Nhập thành phố">
+                                                            <label>Thành phố</label>
+                                                        </div>
                                                     </div>
 
                                                     <div class="text-center">
@@ -462,13 +487,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                 $fullname = $row["full_name"];
                                                 $role = isset($roleMapping[$row["role"]]) ? $roleMapping[$row["role"]] : $row["role"];
                                                 $user_name = $row["user_name"];
-                                                $phone = substr($row["contact_no"], 0, 5) // Get the first two digits
-                                                    . str_repeat('*', (strlen($row["contact_no"]) - 7)) // Apply enough asterisks to cover the middle numbers
-                                                    . substr($row["contact_no"], -2); // Get the last two digits
-                                                $emailaddress = substr($row["email_address"], 0, 5) // Get the first two digits
-                                                    . str_repeat('*', (strlen($row["email_address"]) - 17)) // Apply enough asterisks to cover the middle numbers
-                                                    . substr($row["email_address"], -12); // Get the last two digits
-                                                $password = str_repeat('*', (strlen($row["password"])));
+                                                // $phone = substr($row["contact_no"], 0, 5) // Get the first two digits
+                                                //     . str_repeat('*', (strlen($row["contact_no"]) - 7)) // Apply enough asterisks to cover the middle numbers
+                                                //     . substr($row["contact_no"], -2); // Get the last two digits
+                                                // $emailaddress = substr($row["email_address"], 0, 5) // Get the first two digits
+                                                //     . str_repeat('*', (strlen($row["email_address"]) - 17)) // Apply enough asterisks to cover the middle numbers
+                                                //     . substr($row["email_address"], -12); // Get the last two digits
+                                                // $password = str_repeat('*', (strlen($row["password"])));
+                                                $phone = $row["contact_no"];
+                                                $emailaddress = $row["email_address"];
+                                                $password = $row["password"];
                                                 $created_at = $row["created_at"];
                                                 $updated_at = $row["updated_at"];
                                                 $gender = $row["gender"];
@@ -518,8 +546,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                     </td>
                                                 </tr>
 
+                                                <!-- Popup Chỉnh sửa thông tin -->
                                                 <div class="modal fade" id="popup_edit-<?php echo $user_id; ?>" tabindex="-1"
-                                                    aria-labelledby="GuestEdit" aria-hidden="true">
+                                                    aria-labelledby="EmployeeEdit" aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-centered">
                                                         <div class="modal-content">
                                                             <div class="card">
@@ -536,39 +565,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                                 <div class="card-body edit-body">
                                                                     <form name="new_user" role="form" method="POST">
                                                                         <div class="row"> <!-- Thêm hàng để chia thành 2 bên -->
-                                                                            <div class="col-md-6"> <!-- Cột bên trái -->
+                                                                            <div class="col-md-6">
                                                                                 <div class="custom-input">
                                                                                     <input type="text" name="full_name"
                                                                                         id="full_name"
                                                                                         placeholder="<?php echo $fullname; ?>">
                                                                                     <label>Họ và Tên</label>
                                                                                 </div>
-                                                                                <div class="custom-input">
-                                                                                    <input type="email" name="email_address"
-                                                                                        id="email_address"
-                                                                                        placeholder="<?php echo $emailaddress; ?>">
-                                                                                    <label>Địa chỉ Email</label>
-                                                                                </div>
-                                                                                <div
-                                                                                    class="input-group input-group-outline mb-3">
-                                                                                    <!-- <label class="form-label-lg" style="margin-right: 10px;">Giới tính</label> -->
-                                                                                    <select name="gender" id="gender"
-                                                                                        class="form-control">
-                                                                                        <option value="" disabled selected>Chọn
-                                                                                            giới
-                                                                                            tính</option>
-                                                                                        <option value="male">Nam</option>
-                                                                                        <option value="female">Nữ</option>
-                                                                                    </select>
-                                                                                </div>
                                                                             </div>
-                                                                            <div class="col-md-6"> <!-- Cột bên phải -->
+                                                                            <div class="col-md-6">
                                                                                 <div class="custom-input">
                                                                                     <input type="text" name="user_name"
                                                                                         id="user_name"
                                                                                         placeholder="<?php echo $user_name; ?>">
                                                                                     <label>Tên đăng nhập</label>
                                                                                 </div>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <div class="custom-input">
+                                                                                    <input type="email" name="email_address"
+                                                                                        id="email_address"
+                                                                                        placeholder="<?php echo $emailaddress; ?>">
+                                                                                    <label>Địa chỉ Email</label>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-6">
                                                                                 <div class="custom-input">
                                                                                     <input type="text" name="contact_no"
                                                                                         id="contact_no"
@@ -576,15 +597,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                                                     <label>Số điện thoại</label>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="custom-input">
-                                                                                <input type="text" name="address" id="address"
-                                                                                    placeholder="<?php echo $address; ?>">
-                                                                                <label>Địa chỉ</label>
+                                                                            <div class="col-md-6">
+                                                                                <div class="custom-input">
+                                                                                    <input type="text" name="contact_no"
+                                                                                        id="contact_no"
+                                                                                        placeholder="<?php echo $password; ?>">
+                                                                                    <label>Mật khẩu</label>
+                                                                                </div>
                                                                             </div>
-                                                                            <div class="custom-input">
-                                                                                <input type="text" name="city" id="city"
-                                                                                    placeholder="<?php echo $city; ?>">
-                                                                                <label>Thành phố</label>
+                                                                            <div class="col-md-6">
+                                                                                <div class="custom-input">
+                                                                                    <select name="gender" id="gender"
+                                                                                        class="form-control">
+                                                                                        <option value="" disabled selected>Chọn
+                                                                                            giới tính</option>
+                                                                                        <option value="male">Nam</option>
+                                                                                        <option value="female">Nữ</option>
+                                                                                    </select>
+                                                                                    <label>Giới tính</label>
+                                                                                    <div class="arrow-icon">
+                                                                                        <i class="fa-solid fa-chevron-down"></i>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-12">
+                                                                                <div class="custom-input">
+                                                                                    <input type="text" name="address"
+                                                                                        id="address"
+                                                                                        placeholder="<?php echo $address; ?>">
+                                                                                    <label>Địa chỉ</label>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-12">
+                                                                                <div class="custom-input">
+                                                                                    <input type="text" name="city" id="city"
+                                                                                        placeholder="<?php echo $city; ?>">
+                                                                                    <label>Thành phố</label>
+                                                                                </div>
                                                                             </div>
 
                                                                             <div class="text-center">
@@ -632,50 +681,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
             </div>
         </div>
-
-        <footer class="footer py-4  ">
-            <div class="container-fluid">
-                <div class="row align-items-center justify-content-lg-between">
-                    <div class="col-lg-6 mb-lg-0 mb-4">
-                        <div class="copyright text-center text-sm text-muted text-lg-start">
-                            ©
-                            <script>
-                                document.write(new Date().getFullYear())
-                            </script>,
-                            made with <i class="fa fa-heart"></i> by
-                            <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Huan, Khoa
-                                and Long</a>
-                            for Uni 24-25.
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-                            <li class="nav-item">
-                                <a href="https://www.creative-tim.com" class="nav-link text-muted"
-                                    target="_blank">Creative Tim</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted"
-                                    target="_blank">About
-                                    Us</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="https://www.creative-tim.com/blog" class="nav-link text-muted"
-                                    target="_blank">Blog</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted"
-                                    target="_blank">License</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </footer>
-        </div>
-
-
-    </main>
 
     <?php
     include SITE_ROOT . ('/HMS-Nhom11/assets/include/footer.php');

@@ -6,65 +6,46 @@ define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT']);
 include SITE_ROOT . ('/HMS-Nhom11/assets/include/config.php');
 include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
 
-require_once SITE_ROOT . ('/HMS-Nhom11/assets/vendor/google-oauth/vendor/autoload.php');
-
 session_start();
+$user_id = $_SESSION['auth_user_id'];
+
 $error = '';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-  // username and password sent from form 
-  $myusername = mysqli_real_escape_string($conn, $_POST['user_name']);
-  $mypassword = mysqli_real_escape_string($conn, $_POST['password']);
+  if (isset($_POST['create']) && $_POST['create'] == 'create') {
+    // username and password sent from form 
+    $post_full_name = mysqli_real_escape_string($conn, $_POST['full_name']);
+    $post_user_name = mysqli_real_escape_string($conn, $_POST['user_name']);
+    $post_password = mysqli_real_escape_string($conn, $_POST['password']);
+    $post_contact_no = mysqli_real_escape_string($conn, $_POST['contact_no']);
+    $post_address = mysqli_real_escape_string($conn, $_POST['address']);
+    $post_city = mysqli_real_escape_string($conn, $_POST['city']);
+    $post_gender = mysqli_real_escape_string($conn, $_POST['gender']);
 
-  $sql = "SELECT * FROM `dim_user` WHERE `user_name` = '$myusername' and `password` = '$mypassword'";
+    $sql = "UPDATE `dim_user` SET
+        `user_name` = '$post_user_name',
+        `full_name` = '$post_full_name',
+        `contact_no` = $post_contact_no,
+        `gender` = '$post_gender',
+        `address` = '$post_address',
+        `city` = '$post_city',
+        `password` = '$post_password' 
+        WHERE user_id = $user_id";
 
-  $result = mysqli_query($conn, $sql);
-  $row = mysqli_num_rows($result);
-  $count = mysqli_num_rows($result);
+    $result = mysqli_query($conn, $sql);
 
-  if ($count == 1) {
+    $_SESSION['auth_user_id'] = $user_id;
+    $_SESSION['auth_user_role'] = 'patient';
+    $_SESSION['auth_login_type'] = 'google_oauth';
 
-    $row = mysqli_fetch_assoc($result);
-
-    // session_register("myusername");
-    $_SESSION['auth_login_user'] = $myusername;
-    $_SESSION['auth_login_email'] = $row['email_address'];
-    $_SESSION['auth_user_id'] = $row['user_id'];
-    $_SESSION['auth_user_role'] = $row['role'];
-    $_SESSION['auth_login_type'] = 'manual';
-    header('Refresh:0 , url=http://localhost/HMS-Nhom11/assets/include/redirect.php');
-  } else {
-    $error = "Your Login Name or Password is invalid";
+    header('Refresh:0 , url=http://localhost/HMS-Nhom11/role-patient/schedule.php');
   }
 }
-
-// Google oAuth Initialize
-$client = new Google_Client();
-$client->setClientId(google_app_id);
-$client->setClientSecret(google_app_secret);
-$client->setRedirectUri(google_app_callback_url);
-$client->addScope("email");
-$client->addScope("profile");
-$client->addScope("https://www.googleapis.com/auth/user.addresses.read");
-$client->addScope("https://www.googleapis.com/auth/user.birthday.read");
-$client->addScope("https://www.googleapis.com/auth/user.gender.read");
-$client->addScope("https://www.googleapis.com/auth/user.phonenumbers.read");
-
-$google_url = $client->createAuthUrl();
-
-// Facebook oAuth Initialize
-$params = [
-  'client_id' => facebook_app_id,
-  'redirect_uri' => facebook_app_callback_url,
-  'response_type' => 'code',
-  'scope' => 'email'
-];
-$facebook_url = 'https://www.facebook.com/dialog/oauth?' . http_build_query($params)
-  ?>
+?>
 
 <head>
   <title>
-    Default
+    Hoàn tất đăng ký
   </title>
 </head>
 
@@ -88,10 +69,16 @@ $facebook_url = 'https://www.facebook.com/dialog/oauth?' . http_build_query($par
                   <h4 class="font-weight-bolder">Cập nhật thông tin</h4>
                   <p class="mb-0">Vui bổ sung các thông tin sau để hoàn tất việc tạo tài khoản</p>
                 </div>
+
+                <?php
+                $temp_user_name = $_SESSION['temp_regis_name'];
+                $temp_user_email = $_SESSION['temp_regis_email'];
+                ?>
+
                 <div class="card-body">
-                  <form role="form">
+                  <form name="update_form" role="form" method="POST">
                     <div class="custom-input">
-                      <input type="text" name="full_name" id="full_name" placeholder="Nhập họ và tên" required>
+                      <input type="text" name="full_name" id="full_name" value="<?php echo $temp_user_name ?>" required>
                       <label>Họ và tên</label>
                     </div>
                     <div class="custom-input">
@@ -103,7 +90,20 @@ $facebook_url = 'https://www.facebook.com/dialog/oauth?' . http_build_query($par
                       <label>Mật khẩu</label>
                     </div>
                     <div class="custom-input">
-                      <input type="text" name="email" id="email" value="example@mail.com" disabled required>
+                      <select name="gender" id="gender" class="form-control" required>
+                        <option value="" disabled selected>Chọn
+                          giới tính</option>
+                        <option value="male">Nam</option>
+                        <option value="female">Nữ</option>
+                      </select>
+                      <label>Giới tính</label>
+                      <div class="arrow-icon">
+                        <i class="fa-solid fa-chevron-down"></i>
+                      </div>
+                    </div>
+                    <div class="custom-input">
+                      <input type="text" name="email" id="email" value="<?php echo $temp_user_email ?>" disabled
+                        required>
                       <label>Địa chỉ email</label>
                     </div>
                     <div class="custom-input">
@@ -111,7 +111,7 @@ $facebook_url = 'https://www.facebook.com/dialog/oauth?' . http_build_query($par
                       <label>Số điện thoại</label>
                     </div>
                     <div class="custom-input">
-                      <input type="text" name="address" id="address" placeholder="Nhập địa chỉ email" required>
+                      <input type="text" name="address" id="address" placeholder="Địa chỉ" required>
                       <label>Địa chỉ</label>
                     </div>
                     <div class="custom-input">
@@ -126,7 +126,9 @@ $facebook_url = 'https://www.facebook.com/dialog/oauth?' . http_build_query($par
                       </label>
                     </div>
                     <div class="text-center">
-                      <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập nhật thông tin</button>
+                      <button type="submit" name="create" value="create"
+                        class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập nhật thông
+                        tin</button>
                     </div>
                   </form>
                 </div>

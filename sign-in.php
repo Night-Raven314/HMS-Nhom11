@@ -28,7 +28,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // session_register("myusername");
     $_SESSION['auth_login_user'] = $myusername;
-    $_SESSION['auth_login_email'] = $row['email_address'];
     $_SESSION['auth_user_id'] = $row['user_id'];
     $_SESSION['auth_user_role'] = $row['role'];
     $_SESSION['auth_login_type'] = 'manual';
@@ -51,15 +50,6 @@ $client->addScope("https://www.googleapis.com/auth/user.gender.read");
 $client->addScope("https://www.googleapis.com/auth/user.phonenumbers.read");
 
 $google_url = $client->createAuthUrl();
-
-// Facebook oAuth Initialize
-$params = [
-  'client_id' => facebook_app_id,
-  'redirect_uri' => facebook_app_callback_url,
-  'response_type' => 'code',
-  'scope' => 'email'
-];
-$facebook_url = 'https://www.facebook.com/dialog/oauth?' . http_build_query($params)
 
 
   ?>

@@ -1,3 +1,6 @@
+
+    </main>
+
 <!--   Core JS Files   -->
 <script src="http://localhost/HMS-Nhom11/assets/js/core/popper.min.js?<?php echo rand(100, 999) ?>"></script>
 <script src="http://localhost/HMS-Nhom11/assets/js/core/bootstrap.min.js?<?php echo rand(100, 999) ?>"></script>
