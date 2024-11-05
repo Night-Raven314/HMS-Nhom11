@@ -60,8 +60,6 @@ $params = [
   'scope' => 'email'
 ];
 $facebook_url = 'https://www.facebook.com/dialog/oauth?' . http_build_query($params)
-
-
   ?>
 
 <head>
@@ -74,39 +72,51 @@ $facebook_url = 'https://www.facebook.com/dialog/oauth?' . http_build_query($par
   <main class="main-content  mt-0">
     <section>
       <div class="page-header min-vh-100"
-        style="background-image: url('./assets/image/Hospital_Seamless1.png'); background-size: 400px 400px;">
+        style="background-image: url('../assets/image/Hospital_Seamless1.png'); background-size: 400px 400px;">
         <div class="container">
           <div class="row">
             <div
               class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 start-0 text-center justify-content-center flex-column">
               <div
                 class="position-relative bg-gradient-primary h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center"
-                style="background-image: url('./assets/image/HKL.png'); background-size: cover;">
+                style="background-image: url('../assets/image/HKL.png'); background-size: cover;">
               </div>
             </div>
             <div class="col-xl-4 col-lg-5 col-md-7 d-flex flex-column ms-auto me-auto ms-lg-auto me-lg-5">
               <div class="card">
                 <div class="card-header">
-                  <h4 class="font-weight-bolder">Đăng ký</h4>
-                  <p class="mb-0">Vui lòng điền các thông tin sau để đăng ký</p>
+                  <h4 class="font-weight-bolder">Cập nhật thông tin</h4>
+                  <p class="mb-0">Vui bổ sung các thông tin sau để hoàn tất việc tạo tài khoản</p>
                 </div>
                 <div class="card-body">
                   <form role="form">
                     <div class="custom-input">
-                      <input type="text" name="full_name" id="full_name" placeholder="Nhập họ và tên">
+                      <input type="text" name="full_name" id="full_name" placeholder="Nhập họ và tên" required>
                       <label>Họ và tên</label>
                     </div>
                     <div class="custom-input">
-                      <input type="text" name="email" id="email" placeholder="Nhập địa chỉ email">
-                      <label>Địa chỉ email</label>
-                    </div>
-                    <div class="custom-input">
-                      <input type="text" name="user_name" id="user_name" placeholder="Nhập tên đăng nhập">
+                      <input type="text" name="user_name" id="user_name" placeholder="Nhập tên đăng nhập" required>
                       <label>Tên đăng nhập</label>
                     </div>
                     <div class="custom-input">
-                      <input type="password" name="password" id="password" placeholder="Nhập mật khẩu">
+                      <input type="password" name="password" id="password" placeholder="Nhập mật khẩu" required>
                       <label>Mật khẩu</label>
+                    </div>
+                    <div class="custom-input">
+                      <input type="text" name="email" id="email" value="example@mail.com" disabled required>
+                      <label>Địa chỉ email</label>
+                    </div>
+                    <div class="custom-input">
+                      <input type="text" name="contact_no" id="contact_no" placeholder="84xxx" required>
+                      <label>Số điện thoại</label>
+                    </div>
+                    <div class="custom-input">
+                      <input type="text" name="address" id="address" placeholder="Nhập địa chỉ email" required>
+                      <label>Địa chỉ</label>
+                    </div>
+                    <div class="custom-input">
+                      <input type="text" name="city" id="city" placeholder="Nhập tên đăng nhập" required>
+                      <label>Thành phố</label>
                     </div>
                     <div class="form-check form-check-info text-start ps-0">
                       <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
@@ -116,42 +126,9 @@ $facebook_url = 'https://www.facebook.com/dialog/oauth?' . http_build_query($par
                       </label>
                     </div>
                     <div class="text-center">
-                      <button type="button" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Đăng
-                        ký</button>
-                    </div>
-                    <div class="text-center" style="padding-top: 20px; padding-bottom: 10px;">
-                      <a class="text-primary text-gradient font-weight-bold">Hoặc sử dụng tài khoản liên kết</a>
-                    </div>
-                    <div class="text-center">
-                      <a class="btn bg-gradient-primary" onclick="googleAuthRedirect()">
-                        <i class="fab fa-google" aria-hidden="true"></i>
-                      </a>
-                      <script>
-                        function googleAuthRedirect() {
-                          window.location.href = "<?php echo $google_url ?>";
-                        }
-                      </script>
-                      <a class="btn bg-gradient-primary" href="assets/include/oauth/f-authenticate.php">
-                        <i class="fab fa-facebook" aria-hidden="true"></i>
-                      </a>
-                      <script>
-                        function facebookAuthRedirect() {
-                          window.location.href = "<?php echo $facebook_url ?>";
-                        }
-                      </script>
+                      <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập nhật thông tin</button>
                     </div>
                   </form>
-                </div>
-                <div class="card-footer text-center pt-0 px-lg-2 px-1">
-                  </p>
-                  <p class="mt-4 text-sm text-center">
-                    Bạn đã có tài khoản?
-                    <a href="./sign-in.php" class="text-primary text-gradient font-weight-bold">Đăng nhập ngay</a>
-                  </p>
-                  <p class="mt-4 text-sm text-center">
-                    Bạn là nhân viên?
-                    <a href="./sign-in.php" class="text-primary text-gradient font-weight-bold">Đăng nhập ở đây</a>
-                  </p>
                 </div>
               </div>
             </div>

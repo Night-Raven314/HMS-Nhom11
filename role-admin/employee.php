@@ -343,17 +343,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                     <div class="col-md-6"> <!-- Cột bên trái -->
                                                         <div class="custom-input">
                                                             <input type="text" name="full_name" id="full_name"
-                                                                placeholder="Nhập họ và tên">
+                                                                placeholder="Nhập họ và tên" required>
                                                             <label>Họ và Tên</label>
                                                         </div>
                                                         <div class="custom-input">
-                                                            <input type="email" name="email_address" id="email_address"
+                                                            <input type="email" name="email_address" id="email_address" required
                                                                 placeholder="Nhập địa chỉ email">
                                                             <label>Địa chỉ Email</label>
                                                         </div>
                                                         <div class="input-group input-group-outline mb-3">
                                                             <!-- <label class="form-label-lg" style="margin-right: 10px;">Giới tính</label> -->
-                                                            <select name="gender" id="gender" class="form-control">
+                                                            <select name="gender" id="gender" class="form-control" required>
                                                                 <option value="" disabled selected>Chọn
                                                                     giới
                                                                     tính</option>
@@ -365,12 +365,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                     <div class="col-md-6"> <!-- Cột bên phải -->
                                                         <div class="custom-input">
                                                             <input type="text" name="user_name" id="user_name"
-                                                                placeholder="Nhập họ và tên">
+                                                                placeholder="Nhập tên đăng nhập">
                                                             <label>Tên đăng nhập</label>
                                                         </div>
                                                         <div class="custom-input">
                                                             <input type="text" name="contact_no" id="contact_no"
-                                                                placeholder="Nhập họ và tên">
+                                                                placeholder="Nhập số điện thoại">
                                                             <label>Số điện thoại</label>
                                                         </div>
                                                         <div class="input-group input-group-outline mb-3">
@@ -390,12 +390,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                     </div>
                                                     <div class="custom-input">
                                                         <input type="text" name="address" id="address"
-                                                            placeholder="Nhập họ và tên">
+                                                            placeholder="Nhập địa chỉ">
                                                         <label>Địa chỉ</label>
                                                     </div>
                                                     <div class="custom-input">
                                                         <input type="text" name="city" id="city"
-                                                            placeholder="Nhập họ và tên">
+                                                            placeholder="Nhập thành phố">
                                                         <label>Thành phố</label>
                                                     </div>
 

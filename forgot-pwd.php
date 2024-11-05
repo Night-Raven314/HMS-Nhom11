@@ -6,9 +6,9 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
 ?>
 
 <head>
-    <title>
-        Quên mật khẩu
-    </title>
+  <title>
+    Quên mật khẩu
+  </title>
 </head>
 
 <body class="bg-gray-200">
@@ -28,9 +28,9 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
               <div class="card-body">
                 <p class="mb-0">Vui lòng nhập email đã đăng ký để lấy lại mật khẩu</p>
                 <form role="form" class="text-start">
-                  <div class="input-group input-group-outline my-3">
-                    <label class="form-label">Email</label>
-                    <input type="email" class="form-control">
+                  <div class="custom-input">
+                    <input type="text" name="email" id="email" placeholder="Nhập địa chỉ email">
+                    <label>Địa chỉ email</label>
                   </div>
                   <div class="text-center">
                     <button type="button" class="btn bg-gradient-primary w-100 my-4 mb-2">Lấy lại mật khẩu</button>
@@ -52,6 +52,6 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
     </div>
   </main>
 
-<?php
-include SITE_ROOT . ('/HMS-Nhom11/assets/include/footer.php');
-?>
+  <?php
+  include SITE_ROOT . ('/HMS-Nhom11/assets/include/footer.php');
+  ?>

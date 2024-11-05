@@ -59,10 +59,10 @@ $params = [
   'response_type' => 'code',
   'scope' => 'email'
 ];
-$facebook_url='https://www.facebook.com/dialog/oauth?' . http_build_query($params)
+$facebook_url = 'https://www.facebook.com/dialog/oauth?' . http_build_query($params)
 
 
-?>
+  ?>
 
 <head>
   <meta charset="utf-8" />
@@ -105,20 +105,20 @@ $facebook_url='https://www.facebook.com/dialog/oauth?' . http_build_query($param
               </div>
               <div class="card-body">
                 <form name="auth_form" role="form" class="text-start" onsubmit="return validation()" method="POST">
-                  <div class="input-group input-group-outline my-3">
-                    <label class="form-label">Tên đăng nhập</label>
-                    <input name="user_name" id="user_name" class="form-control">
+                  <div class="custom-input">
+                    <input type="text" name="user_name" id="user_name" placeholder="Nhập tên đăng nhập">
+                    <label>Tên đăng nhập</label>
                   </div>
-                  <div class="input-group input-group-outline mb-3">
-                    <label class="form-label">Mật khẩu</label>
-                    <input name="password" id="password" class="form-control">
+                  <div class="custom-input">
+                    <input type="password" name="password" id="password" placeholder="Nhập mật khẩu">
+                    <label>Mật khẩu</label>
                   </div>
                   <div class="text-center">
                     <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">Đăng nhập</button>
                   </div>
                   <div class="text-center" style="padding-top: 20px; padding-bottom: 10px;">
-                      <a class="text-primary text-gradient font-weight-bold">Hoặc sử dụng tài khoản liên kết</a>
-                    </div>
+                    <a class="text-primary text-gradient font-weight-bold">Hoặc sử dụng tài khoản liên kết</a>
+                  </div>
                   <div class="text-center">
                     <a class="btn bg-gradient-primary" onclick="googleAuthRedirect()">
                       <i class="fab fa-google fa-lg" aria-hidden="true"></i>
@@ -205,6 +205,6 @@ $facebook_url='https://www.facebook.com/dialog/oauth?' . http_build_query($param
     }(document, 'script', 'facebook-jssdk'));
   </script>
 
-    <?php
-    include SITE_ROOT . ('/HMS-Nhom11/assets/include/footer.php');
-    ?>
+  <?php
+  include SITE_ROOT . ('/HMS-Nhom11/assets/include/footer.php');
+  ?>
