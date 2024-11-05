@@ -172,8 +172,15 @@ div#popupFormContainer {
 
 .custom-input {
   font-family: "Roboto", Helvetica, Arial, sans-serif !important;
-  margin: 15px 0;
+  margin: 10px 0;
   position: relative;
+}
+.custom-input .arrow-icon {
+  pointer-events: none;
+  position: absolute;
+  right: 10px;
+  top: 7px;
+  color: #167070;
 }
 .custom-input label {
   color: #414a4f;
@@ -184,19 +191,19 @@ div#popupFormContainer {
   font-size: 11pt;
   pointer-events: none;
 }
-.custom-input input {
+.custom-input input, .custom-input select {
   transition: all 200ms ease-in-out;
   border: 1px solid #d2d6da;
   border-radius: 5px;
-  padding: 7px 11px 5px;
+  padding: 7px 13px 5px;
   font-size: 11pt;
   width: 100%;
 }
-.custom-input input:focus {
+.custom-input input:focus, .custom-input select:focus {
   outline: none;
   border-color: #167070;
 }
-.custom-input input:focus + label {
+.custom-input input:focus + label, .custom-input select:focus + label {
   top: -10px;
   left: 5px;
   font-size: 10pt;
@@ -204,30 +211,30 @@ div#popupFormContainer {
   background-color: #fff;
   color: #167070;
 }
-.custom-input input:focus::-moz-placeholder {
+.custom-input input:focus::-moz-placeholder, .custom-input select:focus::-moz-placeholder {
   opacity: 1;
   -moz-transition: opacity 200ms ease-in-out;
   transition: opacity 200ms ease-in-out;
 }
-.custom-input input:focus::placeholder {
+.custom-input input:focus::placeholder, .custom-input select:focus::placeholder {
   opacity: 1;
   transition: opacity 200ms ease-in-out;
 }
-.custom-input input::-moz-placeholder {
+.custom-input input::-moz-placeholder, .custom-input select::-moz-placeholder {
   color: #b0b0b0;
   opacity: 0;
 }
-.custom-input input::placeholder {
+.custom-input input::placeholder, .custom-input select::placeholder {
   color: #b0b0b0;
   opacity: 0;
 }
-.custom-input input:not(:-moz-placeholder-shown) {
+.custom-input input:not(:-moz-placeholder-shown), .custom-input select:not(:-moz-placeholder-shown) {
   border-color: #167070;
 }
-.custom-input input:not(:placeholder-shown) {
+.custom-input input:not(:placeholder-shown), .custom-input select:not(:placeholder-shown) {
   border-color: #167070;
 }
-.custom-input input:not(:-moz-placeholder-shown) + label {
+.custom-input input:not(:-moz-placeholder-shown) + label, .custom-input select:not(:-moz-placeholder-shown) + label {
   top: -10px;
   left: 5px;
   font-size: 10pt;
@@ -235,15 +242,7 @@ div#popupFormContainer {
   background-color: #fff;
   color: #167070;
 }
-.custom-input input:not(:placeholder-shown) + label {
-  top: -10px;
-  left: 5px;
-  font-size: 10pt;
-  padding: 0 5px;
-  background-color: #fff;
-  color: #167070;
-}
-.custom-input.date label {
+.custom-input input:not(:placeholder-shown) + label, .custom-input select:not(:placeholder-shown) + label {
   top: -10px;
   left: 5px;
   font-size: 10pt;

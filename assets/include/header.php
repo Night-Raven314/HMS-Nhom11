@@ -17,7 +17,8 @@
     <link href="http://localhost/HMS-Nhom11/assets/css/nucleo-svg.css" rel="stylesheet" />
 
     <!-- Font Awesome Icons -->
-    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <link href="http://localhost/HMS-Nhom11/assets/vendor/fontawesome/css/fontawesome.min.css" rel="stylesheet"></link>
+    <link href="http://localhost/HMS-Nhom11/assets/vendor/fontawesome/css/all.min.css" rel="stylesheet"></link>
 
     <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
