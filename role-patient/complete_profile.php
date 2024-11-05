@@ -17,6 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $post_full_name = mysqli_real_escape_string($conn, $_POST['full_name']);
     $post_user_name = mysqli_real_escape_string($conn, $_POST['user_name']);
     $post_password = mysqli_real_escape_string($conn, $_POST['password']);
+    $post_email = mysqli_real_escape_string($conn, $_POST['email']);
     $post_contact_no = mysqli_real_escape_string($conn, $_POST['contact_no']);
     $post_address = mysqli_real_escape_string($conn, $_POST['address']);
     $post_city = mysqli_real_escape_string($conn, $_POST['city']);
@@ -27,6 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         `full_name` = '$post_full_name',
         `contact_no` = $post_contact_no,
         `gender` = '$post_gender',
+        `email_address` = '$post_email',
         `address` = '$post_address',
         `city` = '$post_city',
         `password` = '$post_password' 
@@ -102,7 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                       </div>
                     </div>
                     <div class="custom-input">
-                      <input type="text" name="email" id="email" value="<?php echo $temp_user_email ?>" disabled
+                      <input type="text" name="email" id="email" placeholder="Nhập địa chỉ email" value="<?php echo $temp_user_email ?>"
                         required>
                       <label>Địa chỉ email</label>
                     </div>

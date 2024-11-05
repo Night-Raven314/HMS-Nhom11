@@ -63,7 +63,7 @@ if(isset($_GET['code'])){
             $_SESSION['auth_user_role'] = $old_row['role'];
             $_SESSION['auth_login_type'] = 'google_oauth';
 
-            header('Refresh:0 , url=http://localhost/HMS-Nhom11/role-patient/schedule.php');
+            header('Refresh:0 , url=http://localhost/HMS-Nhom11/assets/include/redirect.php');
         }
     }
 } else {
