@@ -173,8 +173,15 @@ div#popupFormContainer {
 
 .custom-input {
   font-family: "Roboto", Helvetica, Arial, sans-serif !important;
-  margin: 15px 0;
+  margin: 10px 0;
   position: relative;
+  .arrow-icon {
+    pointer-events: none;
+    position: absolute;
+    right: 10px;
+    top: 7px;
+    color: $hms-neutral;
+  }
   label {
     color: #414a4f;
     position: absolute;
@@ -184,11 +191,11 @@ div#popupFormContainer {
     font-size: 11pt;
     pointer-events: none;
   }
-  input {
+  input, select {
     transition: all 200ms ease-in-out;
     border: 1px solid #d2d6da;
     border-radius: 5px;
-    padding: 7px 11px 5px;
+    padding: 7px 13px 5px;
     font-size: 11pt;
     width: 100%;
     &:focus {
@@ -221,16 +228,6 @@ div#popupFormContainer {
         color: $hms-neutral;
       }
       border-color: $hms-neutral;
-    }
-  }
-  &.date {
-    label {
-      top: -10px;
-      left: 5px;
-      font-size: 10pt;
-      padding: 0 5px;
-      background-color: #fff;
-      color: $hms-neutral;
     }
   }
 }
