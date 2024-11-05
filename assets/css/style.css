@@ -293,8 +293,8 @@ div#popupFormContainer {
 }
 
 .custom-table {
-  max-height: 75vh;
-  max-height: 78dvh;
+  max-height: 69vh;
+  max-height: 72dvh;
   overflow-y: auto;
 }
 .custom-table table thead th {

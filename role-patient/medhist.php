@@ -80,81 +80,43 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
     <main class="main-content border-radius-lg ps ">
         <!-- Navbar -->
 
-        <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 border-radius-xl shadow-none position-sticky blur shadow-blur mt-4 left-auto top-1 z-index-sticky"
-            data-scroll="true">
-            <div class="container-fluid py-1 px-3">
-                <nav aria-label="breadcrumb">
-
-                    <h6 class="font-weight-bolder mb-0">HỒ SƠ BỆNH NHÂN</h6>
-
-                </nav>
-                <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-                    <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-
-                    </div>
-                    <ul class="navbar-nav  justify-content-end">
-
-                        <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
-                            <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
-                                <div class="sidenav-toggler-inner">
-                                    <i class="sidenav-toggler-line"></i>
-                                    <i class="sidenav-toggler-line"></i>
-                                    <i class="sidenav-toggler-line"></i>
-                                </div>
-                            </a>
-                        </li>
-
-                        <li class="nav-item d-flex align-items-center">
-                    </ul>
-
-                    <ul class="navbar-nav  justify-content-end">
-                        <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
-                        <li class="nav-item dropdown pe-2 d-flex align-items-center">
-                            <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="../assets/image/user login image.png" alt="profile_image"
-                                    class="border-radius-lg shadow-sm" style="max-width:45px">
-                            </a>
-
-
-                            <ul class="dropdown-menu dropdown-menu-end px-2 py-3 me-sm-n4"
-                                aria-labelledby="dropdownMenuButton">
-                                <li class="mb-2">
-                                    <a class="dropdown-item border-radius-md" href="profile.php">
-                                        <div class="d-flex py-1">
-                                            <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="text-primary text-gradient font-weight-bold" style="padding-top:10px !important;">
-                                                    Thông tin người dùng
-                                                </h6>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="mb-2">
-                                    <a class="dropdown-item border-radius-md" href="../assets/include/log-out.php">
-                                        <div class="d-flex py-1">
-                                            <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="text-primary text-gradient font-weight-bold" style="padding-top:10px !important;">
-                                                    Đăng xuất
-                                                </h6>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        </li>
-                    </ul>
-
-                </div>
+        <div class="custom-navbar">
+          <div class="nav-left">
+            Hồ sơ bệnh án
+          </div>
+          <div class="nav-right">
+            <div class="nav-item">
+              <div class="custom-input" style="width: 180px">
+                <input type="text" placeholder="Nhập từ khoá">
+                <label>Tìm kiếm</label>
+              </div>
             </div>
-        </nav>
+            <div class="nav-item">
+              <a href="javascript:;" id="iconNavbarSidenav">
+                <i class="fa-solid fa-bars"></i>
+              </a>
+            </div>
+            <div class="nav-item">
+              <div class="dropdown custom-dropdown">
+                <button class="button-avatar dropdown-toggle" data-bs-toggle="dropdown">
+                  <img src="../assets/image/user login image.png" alt="profile_image">
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="profile.php">Thông tin người dùng</a></li>
+                  <li><a class="dropdown-item" href="../assets/include/log-out.php">Đăng xuất</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- End Navbar -->
 
         <!-- End Navbar -->
         <div class="container-fluid py-4">
             <div class="row">
                 <div class="col-12">
-                    <div class="card my-4">
+                    <div class="card">
                         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                             <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
                                 <h6 class="text-white text-capitalize ps-3">Thông tin bệnh nhân</h6>
@@ -163,17 +125,9 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                         </div>
 
                         <div class="card-body px-0 pb-2">
-
-                            <div class="table-responsive p-0">
-
-                                <table class="table align-items-center mb-0">
-
-
+                            <div class="custom-table">
+                                <table class="table">
                                     <table class="table table-bordered ">
-
-
-
-
 
                                         <?php
 

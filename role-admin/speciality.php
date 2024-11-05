@@ -243,7 +243,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="container-fluid py-4">
             <div class="row">
                 <div class="col-12">
-                    <div class="card my-4">
+                    <div class="card">
                         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                             <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
                                 <h6 class="text-white text-capitalize ps-3" style="float: left;">Thông tin chuyên khoa
@@ -304,8 +304,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </div>
 
                         <div class="card-body px-0 pb-2">
-                            <div class="table-responsive p-0">
-                                <table id="specialtyTable" class="table align-items-center mb-0">
+                            <div class="custom-table">
+                                <table id="specialtyTable" class="table">
                                     <thead>
                                         <tr>
                                             <th
