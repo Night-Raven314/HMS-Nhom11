@@ -28,15 +28,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (isset($_POST['update'])) {
-        $post_full_name = (empty(mysqli_real_escape_string($conn, $_POST['full_name'])) === true) ? $fullname : mysqli_real_escape_string($conn, $_POST['full_name']);
-        $post_user_name = (empty(mysqli_real_escape_string($conn, $_POST['user_name'])) === true) ? $user_name : mysqli_real_escape_string($conn, $_POST['user_name']);
-        $post_email = (empty(mysqli_real_escape_string($conn, $_POST['email_address'])) === true) ? $emailaddress : mysqli_real_escape_string($conn, $_POST['email_address']);
-        $post_contact_no = (empty(mysqli_real_escape_string($conn, $_POST['contact_no'])) === true) ? $phone : mysqli_real_escape_string($conn, $_POST['contact_no']);
-        $post_gender = (empty(mysqli_real_escape_string($conn, $_POST['gender'])) === true) ? $gender : mysqli_real_escape_string($conn, $_POST['gender']);
-        $post_role = (empty(mysqli_real_escape_string($conn, $_POST['role'])) === true) ? $role : mysqli_real_escape_string($conn, $_POST['role']);
-        $post_address = (empty(mysqli_real_escape_string($conn, $_POST['address'])) === true) ? $address : mysqli_real_escape_string($conn, $_POST['address']);
-        $post_city = (empty(mysqli_real_escape_string($conn, $_POST['city'])) === true) ? $city : mysqli_real_escape_string($conn, $_POST['city']);
-        $post_pwd = (empty(mysqli_real_escape_string($conn, $_POST['password'])) === true) ? $og_pwd : mysqli_real_escape_string($conn, $_POST['password']);
+        $get_full_name = mysqli_real_escape_string($conn, $_POST['full_name']);
+        $get_user_name = mysqli_real_escape_string($conn, $_POST['user_name']);
+        $get_email = mysqli_real_escape_string($conn, $_POST['email_address']);
+        $get_contact_no = mysqli_real_escape_string($conn, $_POST['contact_no']);
+        $get_gender = mysqli_real_escape_string($conn, $_POST['gender']);
+        $get_role = mysqli_real_escape_string($conn, $_POST['role']);
+        $get_address = mysqli_real_escape_string($conn, $_POST['address']);
+        $get_city = mysqli_real_escape_string($conn, $_POST['city']);
+        $get_pwd = mysqli_real_escape_string($conn, $_POST['password']);
+
+        $post_full_name = (empty($get_full_name) === true) ? $fullname : $get_full_name;
+        $post_user_name = (empty($get_user_name) === true) ? $user_name : $get_user_name;
+        $post_email = (empty($get_email) === true) ? $emailaddress : $get_email;
+        $post_contact_no = (empty($get_contact_no) === true) ? $phone : $get_contact_no;
+        $post_gender = (empty($get_gender) === true) ? $gender : $get_gender;
+        $post_role = (empty($get_role) === true) ? $role : $get_role;
+        $post_address = (empty($get_address) === true) ? $address : $get_address;
+        $post_city = (empty($get_city) === true) ? $city : $get_city;
+        $post_pwd = (empty($get_pwd) === true) ? $og_pwd : $get_pwd;
 
         $post_update_id = $_POST['update']; //Get user ID that need update
 
@@ -226,40 +236,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <!-- Navbar -->
 
         <div class="custom-navbar">
-          <div class="nav-left">
-            Quản lý người dùng
-          </div>
-          <div class="nav-right">
-            <div class="nav-item">
-              <div class="custom-input" style="width: 180px">
-                <input type="text" placeholder="Nhập từ khoá">
-                <label>Tìm kiếm</label>
-              </div>
+            <div class="nav-left">
+                Quản lý người dùng
             </div>
-            <div class="nav-item">
-              <a href="javascript:;" id="iconNavbarSidenav">
-                <i class="fa-solid fa-bars"></i>
-              </a>
+            <div class="nav-right">
+                <div class="nav-item">
+                    <div class="custom-input" style="width: 180px">
+                        <input type="text" placeholder="Nhập từ khoá">
+                        <label>Tìm kiếm</label>
+                    </div>
+                </div>
+                <div class="nav-item">
+                    <a href="javascript:;" id="iconNavbarSidenav">
+                        <i class="fa-solid fa-bars"></i>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <div class="dropdown custom-dropdown">
+                        <button class="button-avatar dropdown-toggle" data-bs-toggle="dropdown">
+                            <img src="../assets/image/user login image.png" alt="profile_image">
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="profile.php">Thông tin người dùng</a></li>
+                            <li><a class="dropdown-item" href="../assets/include/log-out.php">Đăng xuất</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="nav-item">
-              <div class="dropdown custom-dropdown">
-                <button class="button-avatar dropdown-toggle" data-bs-toggle="dropdown">
-                  <img src="../assets/image/user login image.png" alt="profile_image">
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="profile.php">Thông tin người dùng</a></li>
-                  <li><a class="dropdown-item" href="../assets/include/log-out.php">Đăng xuất</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
         </div>
 
         <!-- End Navbar -->
         <div class="container-fluid py-4">
             <div class="row">
                 <div class="col-12">
-                    <div class="card my-4">
+                    <div class="card">
                         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                             <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
                                 <h6 class="text-white text-capitalize ps-3" style="float: left;">Thông tin người dùng
@@ -386,8 +396,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </div>
 
                         <div class="card-body px-0 pb-2">
-                            <div class="table-responsive p-0">
-                                <table id="employeeTable" class="table align-items-center mb-0">
+                            <div class="custom-table">
+                                <table id="employeeTable" class="table">
                                     <thead>
                                         <tr>
                                             <th
@@ -425,7 +435,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <tbody>
                                         <?php
                                         //Get data for table
-                                        $get_data_query = "SELECT * FROM `dim_user` WHERE `role` <> 'patient'";
+                                        $get_data_query = "SELECT * FROM `dim_user` WHERE `role` = 'patient'";
 
                                         $get_data = mysqli_query($conn, $get_data_query);
 
@@ -524,7 +534,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                                                 <div class="custom-input">
                                                                                     <input type="text" name="full_name"
                                                                                         id="full_name"
-                                                                                        placeholder="<?php echo $fullname; ?>">
+                                                                                        value="<?php echo $fullname; ?>">
                                                                                     <label>Họ và Tên</label>
                                                                                 </div>
                                                                             </div>
@@ -532,7 +542,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                                                 <div class="custom-input">
                                                                                     <input type="text" name="user_name"
                                                                                         id="user_name"
-                                                                                        placeholder="<?php echo $user_name; ?>">
+                                                                                        value="<?php echo $user_name; ?>">
                                                                                     <label>Tên đăng nhập</label>
                                                                                 </div>
                                                                             </div>
@@ -540,7 +550,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                                                 <div class="custom-input">
                                                                                     <input type="email" name="email_address"
                                                                                         id="email_address"
-                                                                                        placeholder="<?php echo $emailaddress; ?>">
+                                                                                        value="<?php echo $emailaddress; ?>">
                                                                                     <label>Địa chỉ Email</label>
                                                                                 </div>
                                                                             </div>
@@ -548,7 +558,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                                                 <div class="custom-input">
                                                                                     <input type="text" name="contact_no"
                                                                                         id="contact_no"
-                                                                                        placeholder="<?php echo $phone; ?>">
+                                                                                        value="<?php echo $phone; ?>">
                                                                                     <label>Số điện thoại</label>
                                                                                 </div>
                                                                             </div>
@@ -556,7 +566,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                                                 <div class="custom-input">
                                                                                     <input type="text" name="contact_no"
                                                                                         id="contact_no"
-                                                                                        placeholder="<?php echo $password; ?>">
+                                                                                        value="<?php echo $password; ?>">
                                                                                     <label>Mật khẩu</label>
                                                                                 </div>
                                                                             </div>
@@ -564,10 +574,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                                                 <div class="custom-input">
                                                                                     <select name="gender" id="gender"
                                                                                         class="form-control">
-                                                                                        <option value="" disabled selected>Chọn
-                                                                                            giới tính</option>
-                                                                                        <option value="male">Nam</option>
-                                                                                        <option value="female">Nữ</option>
+                                                                                        <?php
+                                                                                        if ($gender == 'male') {
+                                                                                            echo '<option value="male" selected>Nam</option>';
+                                                                                            echo '<option value="female">Nữ</option>';
+                                                                                        } else {
+                                                                                            echo '<option value="male">Nam</option>';
+                                                                                            echo '<option value="female" selected>Nữ</option>';
+                                                                                        }
+
+                                                                                        ?>
                                                                                     </select>
                                                                                     <label>Giới tính</label>
                                                                                     <div class="arrow-icon">
@@ -579,14 +595,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                                                 <div class="custom-input">
                                                                                     <input type="text" name="address"
                                                                                         id="address"
-                                                                                        placeholder="<?php echo $address; ?>">
+                                                                                        value="<?php echo $address; ?>">
                                                                                     <label>Địa chỉ</label>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-12">
                                                                                 <div class="custom-input">
                                                                                     <input type="text" name="city" id="city"
-                                                                                        placeholder="<?php echo $city; ?>">
+                                                                                        value="<?php echo $city; ?>">
                                                                                     <label>Thành phố</label>
                                                                                 </div>
                                                                             </div>
@@ -637,6 +653,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
 
-    <?php
-    include SITE_ROOT . ('/HMS-Nhom11/assets/include/footer.php');
-    ?>
+        <?php
+        include SITE_ROOT . ('/HMS-Nhom11/assets/include/footer.php');
+        ?>
