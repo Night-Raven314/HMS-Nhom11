@@ -297,18 +297,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <div class="card-header pb-0 p-3">
                             </div>
                             <div class="card-body p-3">
-                                <ul class="list-group">
-
-                                    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Số điện
-                                            thoại:</strong>&nbsp;<?php echo $phone ?></li>
-                                    <li class="list-group-item border-0 ps-0 text-sm"><strong
-                                            class="text-dark">Email:</strong>&nbsp;<?php echo $emailaddress ?></li>
-                                    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Địa
-                                            chỉ:</strong>&nbsp;<?php echo $address ?></li>
-
-                                    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Thành
-                                            phố:</strong>&nbsp;<?php echo $city ?></li>
-                                    <li class="list-group-item border-0 ps-0 pb-0">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <ul class="list-group">
+                                            <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Tên đăng nhập:</strong>&nbsp;<?php echo $user_name ?></li>
+                                            <li class="list-group-item border-0 ps-0 text-sm"><strong
+                                                    class="text-dark">Giới tính:</strong>&nbsp;<?php if($gender = 'male') {echo 'Nam';} else {echo 'Nữ';} ?></li>
+                                            <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Ngày đăng ký:</strong>&nbsp;<?php echo $created_at ?></li>
+                                            <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Ngày cập nhật:</strong>&nbsp;<?php echo $updated_at ?></li>
+                                            <li class="list-group-item border-0 ps-0 pb-0"></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <ul class="list-group">
+                                            <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Số điện
+                                                    thoại:</strong>&nbsp;<?php echo $phone ?></li>
+                                            <li class="list-group-item border-0 ps-0 text-sm"><strong
+                                                    class="text-dark">Email:</strong>&nbsp;<?php echo $emailaddress ?></li>
+                                            <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Địa
+                                                    chỉ:</strong>&nbsp;<?php echo $address ?></li>
+                                            <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Thành
+                                                    phố:</strong>&nbsp;<?php echo $city ?></li>
+                                            <li class="list-group-item border-0 ps-0 pb-0"></li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </tr>
 
