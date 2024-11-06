@@ -389,6 +389,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 
     <script>
+      let searchFilterDelay = null;
       let productData = null;
       let productDataFiltered = null;
       const displayTableDataFromFiltered = () => {
@@ -518,13 +519,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <?php  ?>
       const searchField = document.getElementById("searchTableField");
       searchField.addEventListener("keyup", () => {
-        const query = searchField.value.toLowerCase();
-        if(!query) {
-          productDataFiltered = productData;
-        } else {
-          productDataFiltered = productData.filter(item => item.item_name.toLowerCase().includes(query));
-        }
-        displayTableDataFromFiltered();
+        clearTimeout(searchFilterDelay);
+        searchFilterDelay = setTimeout(() => {
+          const query = searchField.value.toLowerCase();
+          if(!query) {
+            productDataFiltered = productData;
+          } else {
+            productDataFiltered = productData.filter(item => item.item_name.toLowerCase().includes(query));
+          }
+          displayTableDataFromFiltered();
+        }, 2000)
       })
     </script>
 
