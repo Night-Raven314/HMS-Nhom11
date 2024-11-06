@@ -258,13 +258,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <div class="card">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                 <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                    <h6 class="text-white text-capitalize ps-3" style="float: left;">Lịch sử giao dịch thanh toán
+                    <h6 class="text-white text-capitalize ps-3">Lịch sử giao dịch thanh toán
                     </h6>
-                    <div class="table-float-btn-container">
-                        <button class="table-float-btn btn btn-outline-primary btn-sm mb-0 me-3"
-                            style="background: #ffffff" data-bs-toggle="modal"
-                            data-bs-target="#popup_add">Tạo chuyên khoa</button>
-                    </div>
                 </div>
             </div>
 
