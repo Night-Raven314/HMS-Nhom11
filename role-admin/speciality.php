@@ -210,33 +210,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <!-- Navbar -->
 
         <div class="custom-navbar">
-          <div class="nav-left">
-            Quản lý chuyên khoa
-          </div>
-          <div class="nav-right">
-            <div class="nav-item">
-              <div class="custom-input" style="width: 180px">
-                <input type="text" placeholder="Nhập từ khoá">
-                <label>Tìm kiếm</label>
-              </div>
+            <div class="nav-left">
+                Quản lý chuyên khoa
             </div>
-            <div class="nav-item">
-              <a href="javascript:;" id="iconNavbarSidenav">
-                <i class="fa-solid fa-bars"></i>
-              </a>
+            <div class="nav-right">
+                <div class="nav-item">
+                    <div class="custom-input" style="width: 180px">
+                        <input type="text" placeholder="Nhập từ khoá">
+                        <label>Tìm kiếm</label>
+                    </div>
+                </div>
+                <div class="nav-item">
+                    <a href="javascript:;" id="iconNavbarSidenav">
+                        <i class="fa-solid fa-bars"></i>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <div class="dropdown custom-dropdown">
+                        <button class="button-avatar dropdown-toggle" data-bs-toggle="dropdown">
+                            <img src="../assets/image/user login image.png" alt="profile_image">
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="profile.php">Thông tin người dùng</a></li>
+                            <li><a class="dropdown-item" href="../assets/include/log-out.php">Đăng xuất</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="nav-item">
-              <div class="dropdown custom-dropdown">
-                <button class="button-avatar dropdown-toggle" data-bs-toggle="dropdown">
-                  <img src="../assets/image/user login image.png" alt="profile_image">
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="profile.php">Thông tin người dùng</a></li>
-                  <li><a class="dropdown-item" href="../assets/include/log-out.php">Đăng xuất</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
         </div>
 
         <!-- End Navbar -->
@@ -257,8 +257,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </div>
 
                         <!-- Tạo chuyên khoa -->
-                        <div class="modal fade" id="popup_add" tabindex="-1"
-                            aria-labelledby="SpcCreate" aria-hidden="true">
+                        <div class="modal fade" id="popup_add" tabindex="-1" aria-labelledby="SpcCreate"
+                            aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="card">
@@ -288,7 +288,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                 </div>
                                                 <div class="text-center">
                                                     <button type="submit" name="create" value="create"
-                                                        class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Tạo chuyên khoa</button>
+                                                        class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Tạo
+                                                        chuyên khoa</button>
                                                 </div>
 
                                                 <div class="text-center">
@@ -405,37 +406,52 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                                 </div>
                                                                 <div class="card-body edit-body">
                                                                     <form name="spcedit" role="form" method="POST">
-                                                                        <div class="custom-input">
-                                                                            <input type="text" name="spc_name" id="spc_name"
-                                                                                placeholder="<?php echo $spc_name; ?>">
-                                                                            <label>Tên chuyên khoa</label>
-                                                                        </div>
-                                                                        <div class="custom-input">
-                                                                            <input type="text" name="spc_desc" id="spc_desc"
-                                                                                placeholder="<?php echo $spc_desc; ?>">
-                                                                            <label>Mô tả chuyên khoa</label>
-                                                                        </div>
-                                                                        <div class="custom-input">
-                                                                            <input type="text" name="spc_note" id="spc_note"
-                                                                                placeholder="<?php echo $spc_note; ?>">
-                                                                            <label>Ghi chú chuyên khoa</label>
-                                                                        </div>
-                                                                        <div class="text-center">
-                                                                            <button type="submit" name="update" value=<?php echo $spc_id; ?>
-                                                                                class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập
-                                                                                nhật</button>
-                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <div class="custom-input">
+                                                                                    <input type="text" name="spc_name"
+                                                                                        id="spc_name"
+                                                                                        placeholder="<?php echo $spc_name; ?>">
+                                                                                    <label>Tên chuyên khoa</label>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-12">
+                                                                                <div class="custom-input">
+                                                                                    <input type="text" name="spc_desc"
+                                                                                        id="spc_desc"
+                                                                                        placeholder="<?php echo $spc_desc; ?>">
+                                                                                    <label>Mô tả chuyên khoa</label>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-12">
+                                                                                <div class="custom-input">
+                                                                                    <input type="text" name="spc_note"
+                                                                                        id="spc_note"
+                                                                                        placeholder="<?php echo $spc_note; ?>">
+                                                                                    <label>Ghi chú chuyên khoa</label>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <div class="text-center">
+                                                                                    <button type="submit" name="update"
+                                                                                        value=<?php echo $spc_id; ?>
+                                                                                        class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập
+                                                                                        nhật</button>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <div class="text-center">
+                                                                                    <button type="submit" name="delete"
+                                                                                        value=<?php echo $spc_id; ?>
+                                                                                        class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Xoá</button>
+                                                                                </div>
+                                                                            </div>
 
-                                                                        <div class="text-center">
-                                                                            <button type="submit" name="delete" value=<?php echo $spc_id; ?>
-                                                                                class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Xoá</button>
-
-                                                                        </div>
-
-                                                                        <div class="text-center">
-                                                                            <button type="button"
-                                                                                class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
-                                                                                data-bs-dismiss="modal">Thoát</button>
+                                                                            <div class="text-center">
+                                                                                <button type="button"
+                                                                                    class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
+                                                                                    data-bs-dismiss="modal">Thoát</button>
+                                                                            </div>
                                                                         </div>
                                                                     </form>
                                                                 </div>
@@ -454,28 +470,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
             </div>
         </div>
-    </div>
+        </div>
 
-    <!-- Popup Section for Form -->
+        <!-- Popup Section for Form -->
 
 
 
-    <script>
-        $(document).ready(function () {
-            $('#drugTable').DataTable({
-                "pagingType": "simple_numbers", // Sử dụng phân trang đơn giản
-                "language": {
-                    "search": "Tìm kiếm:",
-                    "paginate": {
-                        "next": "Tiếp",
-                        "previous": "Trước"
+        <script>
+            $(document).ready(function () {
+                $('#drugTable').DataTable({
+                    "pagingType": "simple_numbers", // Sử dụng phân trang đơn giản
+                    "language": {
+                        "search": "Tìm kiếm:",
+                        "paginate": {
+                            "next": "Tiếp",
+                            "previous": "Trước"
+                        }
                     }
-                }
+                });
             });
-        });
-    </script>
+        </script>
 
 
-    <?php
-    include SITE_ROOT . ('/HMS-Nhom11/assets/include/footer.php');
-    ?>
+        <?php
+        include SITE_ROOT . ('/HMS-Nhom11/assets/include/footer.php');
+        ?>

@@ -228,33 +228,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <!-- Navbar -->
 
         <div class="custom-navbar">
-          <div class="nav-left">
-            Quản lý nhân viên
-          </div>
-          <div class="nav-right">
-            <div class="nav-item">
-              <div class="custom-input" style="width: 180px">
-                <input type="text" placeholder="Nhập từ khoá">
-                <label>Tìm kiếm</label>
-              </div>
+            <div class="nav-left">
+                Quản lý nhân viên
             </div>
-            <div class="nav-item">
-              <a href="javascript:;" id="iconNavbarSidenav">
-                <i class="fa-solid fa-bars"></i>
-              </a>
+            <div class="nav-right">
+                <div class="nav-item">
+                    <div class="custom-input" style="width: 180px">
+                        <input type="text" placeholder="Nhập từ khoá">
+                        <label>Tìm kiếm</label>
+                    </div>
+                </div>
+                <div class="nav-item">
+                    <a href="javascript:;" id="iconNavbarSidenav">
+                        <i class="fa-solid fa-bars"></i>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <div class="dropdown custom-dropdown">
+                        <button class="button-avatar dropdown-toggle" data-bs-toggle="dropdown">
+                            <img src="../assets/image/user login image.png" alt="profile_image">
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="profile.php">Thông tin người dùng</a></li>
+                            <li><a class="dropdown-item" href="../assets/include/log-out.php">Đăng xuất</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="nav-item">
-              <div class="dropdown custom-dropdown">
-                <button class="button-avatar dropdown-toggle" data-bs-toggle="dropdown">
-                  <img src="../assets/image/user login image.png" alt="profile_image">
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="profile.php">Thông tin người dùng</a></li>
-                  <li><a class="dropdown-item" href="../assets/include/log-out.php">Đăng xuất</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
         </div>
 
         <!-- End Navbar -->
@@ -593,17 +593,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                                                     <label>Thành phố</label>
                                                                                 </div>
                                                                             </div>
-
-                                                                            <div class="text-center">
-                                                                                <button type="submit" name="update" value=<?php echo $user_id; ?>
-                                                                                    class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập
-                                                                                    nhật</button>
+                                                                            <!-- Thêm hàng để chia thành 2 bên -->
+                                                                            <div class="col-md-6">
+                                                                                <div class="text-center">
+                                                                                    <button type="submit" name="update"
+                                                                                        value=<?php echo $user_id; ?>
+                                                                                        class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập
+                                                                                        nhật</button>
+                                                                                </div>
                                                                             </div>
-
-                                                                            <div class="text-center">
-                                                                                <button type="submit" name="delete" value=<?php echo $user_id; ?>
-                                                                                    class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Xoá</button>
-
+                                                                            <div class="col-md-6">
+                                                                                <div class="text-center">
+                                                                                    <button type="submit" name="delete"
+                                                                                        value=<?php echo $user_id; ?>
+                                                                                        class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Xoá</button>
+                                                                                </div>
                                                                             </div>
 
                                                                             <div class="text-center">
@@ -611,7 +615,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                                                     class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
                                                                                     data-bs-dismiss="modal">Thoát</button>
                                                                             </div>
-
                                                                         </div>
                                                                     </form>
                                                                 </div>

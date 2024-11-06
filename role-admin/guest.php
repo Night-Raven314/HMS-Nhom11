@@ -607,16 +607,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                                                 </div>
                                                                             </div>
 
-                                                                            <div class="text-center">
-                                                                                <button type="submit" name="update" value=<?php echo $user_id; ?>
-                                                                                    class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập
-                                                                                    nhật</button>
+                                                                            <div class="col-md-6">
+                                                                                <div class="text-center">
+                                                                                    <button type="submit" name="update"
+                                                                                        value=<?php echo $user_id; ?>
+                                                                                        class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập
+                                                                                        nhật</button>
+                                                                                </div>
                                                                             </div>
-
-                                                                            <div class="text-center">
-                                                                                <button type="submit" name="delete" value=<?php echo $user_id; ?>
-                                                                                    class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Xoá</button>
-
+                                                                            <div class="col-md-6">
+                                                                                <div class="text-center">
+                                                                                    <button type="submit" name="delete"
+                                                                                        value=<?php echo $user_id; ?>
+                                                                                        class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Xoá</button>
+                                                                                </div>
                                                                             </div>
 
                                                                             <div class="text-center">
