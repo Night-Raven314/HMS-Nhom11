@@ -513,135 +513,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 
     <script>
-      let productData = null;
-      let productDataFiltered = null;
-      // $(document).ready(function () {
-      //   $('#drugTable').DataTable({
-      //     "pagingType": "simple_numbers", // Sử dụng phân trang đơn giản
-      //     "language": {
-      //       "search": "Tìm kiếm:",
-      //       "paginate": {
-      //         "next": "Tiếp",
-      //         "previous": "Trước"
-      //       }
-      //     }
-      //   });
-      // });
-      <?php
-        $sql = "SELECT * FROM `dim_item` ";
-        $result = $conn->query($sql);
-        // Kiểm tra và hiển thị dữ liệu
-        $productList = [];
-        while ($row = $result->fetch_assoc()) {
-            $productList[] = $row;
-        }
-      ?>
-        productData = <?php echo json_encode($productList) ?>;
-        productDataFiltered = productData;
-      <?php  ?>
-      const displayTableDataFromFiltered = () => {
-        const tbodyHTML = productDataFiltered.map(item => `
-          <tr>
-            <td class="align-middle text-center text-sm">
-              <p class="text-xs font-weight-bold mb-0">${item.item_id}</p>
-            </td>
-            <td class="align-middle text-center">
-              <div class="d-flex px-2 py-1">
-                <div>
-
-                </div>
-                <div class="d-flex flex-column justify-content-center">
-                  <h6 class="mb-0 text-sm">${item.item_name}</h6>
-                </div>
-              </div>
-            </td>
-            <td class="align-middle text-center">
-              <p class="text-xs font-weight-bold mb-0"><?php echo number_format(
-                $item_price,
-                0,
-                ',',
-                '.'
-              ) ?></p>
-              <p class="text-xs text-secondary mb-0">VNĐ</p>
-            </td>
-            <td class="align-middle text-center text-sm">
-              <p class="text-xs font-weight-bold mb-0"><?php echo $item_unit ?></p>
-            </td>
-            <td class="align-middle text-center">
-              <span class="text-secondary text-xs font-weight-bold"><?php echo $created_at ?></span>
-            </td>
-            <td class="align-middle text-center">
-              <span class="text-secondary text-xs font-weight-bold"><?php echo $updated_at ?></span>
-            </td>
-            <td class='align-middle text-center'>
-              <a href='#popup_edit-<?php echo $item_id; ?>'
-                class='text-secondary font-weight-bold text-xs edit-btn' data-original-title='edit'
-                title='Sửa thông tin' data-bs-toggle="modal"
-                data-bs-target="#popup_edit-<?php echo $item_id; ?>">Cập nhật</a>
-            </td>
-          </tr>
-
-          <!-- Popup for Specialties edit -->
-          <div class="modal fade" id="popup_edit-<?php echo $item_id; ?>" tabindex="-1"
-            aria-labelledby="ItemCreate" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-              <div class="modal-content">
-                <div class="card">
-                  <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                    <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                      <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">
-                        Cập nhật vật tư
-                      </h4>
-                    </div>
-                  </div>
-                  <div class="card-body edit-body">
-                    <form name="itemcreate" role="form" method="POST">
-                      <div class="custom-input">
-                        <input type="text" name="item_name" id="item_name"
-                          placeholder="<?php echo $item_name ?>">
-                        <label>Tên vật tư</label>
-                      </div>
-                      <div class="custom-input">
-                        <input type="number" name="price" id="price" placeholder="<?php echo $item_price ?>">
-                        <label>Đơn giá</label>
-                      </div>
-                      <div class="input-group input-group-outline mb-3">
-                        <!-- <label class="form-label-lg" style="margin-right: 10px;">Giới tính</label> -->
-                        <select name="unit" id="unit" class="form-control">
-                          <option value="" disabled selected>Chọn đơn vị
-                            tính
-                          </option>
-                          <option value="viên">Viên</option>
-                          <option value="gói">Gói</option>
-                          <option value="hộp">Hộp</option>
-                          <option value="cái">Cái</option>
-                          <option value="bộ">Bộ</option>
-                        </select>
-                      </div>
-                      <div class="text-center">
-                        <button type="submit" name="update" value=<?php echo $item_id; ?>
-                          class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập
-                          nhật</button>
-                      </div>
-
-                      <div class="text-center">
-                        <button type="submit" name="delete" value=<?php echo $item_id; ?>
-                          class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Xoá</button>
-
-                      </div>
-
-                      <div class="text-center">
-                        <button type="button" class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
-                          data-bs-dismiss="modal">Thoát</button>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        `)
-      }
+      $(document).ready(function () {
+        $('#drugTable').DataTable({
+          "pagingType": "simple_numbers", // Sử dụng phân trang đơn giản
+          "language": {
+            "search": "Tìm kiếm:",
+            "paginate": {
+              "next": "Tiếp",
+              "previous": "Trước"
+            }
+          }
+        });
+      });
     </script>
 
     <?php
