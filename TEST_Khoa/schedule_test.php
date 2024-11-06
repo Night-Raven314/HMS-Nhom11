@@ -6,24 +6,67 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/config.php');
 include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST['update_health_metrics'])) {
-        $bld_press = mysqli_real_escape_string($conn, $_POST['blood_pressure']);
-        $temp = mysqli_real_escape_string($conn, $_POST['body_temperature']);;
-        $weight = mysqli_real_escape_string($conn, $_POST['weight']);;
-        $bld_sgr = mysqli_real_escape_string($conn, $_POST['blood_sugar']);;
-        $note = mysqli_real_escape_string($conn, $_POST['notes']);
+    // Kiểm tra nếu form đã được gửi
+    if (isset($_POST['update_health'])) {
+        // Lấy dữ liệu từ form
+        $appt_id_update  = intval($_POST['update_health']); // Đây là ID cuộc hẹn
+        $blood_pressure = mysqli_real_escape_string($conn, $_POST['blood_pressure']);
+        $weight = mysqli_real_escape_string($conn, $_POST['weight']);
+        $blood_sugar = mysqli_real_escape_string($conn, $_POST['blood_sugar']);
+        $body_temperature = mysqli_real_escape_string($conn, $_POST['body_temperature']);
+        $notes = mysqli_real_escape_string($conn, $_POST['notes']);
 
-        $row_id = $_POST['update_health_metrics'];
+        // Lấy patient_id dựa vào appointment_id
+        $patientQuery = "SELECT patient_id FROM fact_appointment WHERE appointment_id = $appt_id_update";
+        $patientResult = $conn->query($patientQuery);
 
-        $sql = "INSERT INTO `fact_med_hist` (`appointment_id`, `patient_id`, `blood_press`, `blood_sugar`, `weight`, `temp`, `med_note`) VALUES ($row_id, $ptnid, '$bld_press', '$bld_sgr', '$weight', '$temp', '$note')";
+        if ($patientResult->num_rows > 0) {
+            $patientRow = $patientResult->fetch_assoc();
+            $patient_id = $patientRow['patient_id'];
+        } else {
+            echo "Không tìm thấy bệnh nhân tương ứng.";
+            exit;
+        }
 
-        $result = mysqli_query($conn, $sql);
+        // Thực hiện câu truy vấn cập nhật vào bảng fact_med_hist
+        $updateSql = "UPDATE `fact_med_hist` 
+                  SET `blood_press` = '$blood_pressure',
+                      `weight` = '$weight',
+                      `blood_sugar` = '$blood_sugar',
+                      `temp` = '$body_temperature',
+                      `med_note` = '$notes',
+                      `updated_at` = NOW()
+                  WHERE patient_id = $appt_id_update"; // Sử dụng appointment_id để xác định bản ghi cần cập nhật
 
-        echo "<script type='text/javascript'>alert('Lưu kết quả thành công');</script>";
-
-        header('Refresh:0 , url=http://localhost/HMS-Nhom11/role-doctor/schedule_test.php');
+        // Kiểm tra nếu cập nhật thành công
+        if ($conn->query($updateSql) === TRUE) {
+            // Chuyển hướng về trang 's_ptn_mh.php' sau khi cập nhật thành công
+            header("Location: s_ptn_mh.php?usrid=$patient_id&ptn_name=$patient_name_encoded&updated=true"); // Giả sử bạn đã có $patient_id
+            exit(); // Dừng kịch bản để đảm bảo không chạy thêm mã nào khác
+        } else {
+            echo "Lỗi khi cập nhật thông tin: " . $conn->error;
+        }
     }
 }
+// if ($_SERVER["REQUEST_METHOD"] == "POST") {
+//     if (isset($_POST['update_health_metrics'])) {
+//         $bld_press = mysqli_real_escape_string($conn, $_POST['blood_pressure']);
+//         $temp = mysqli_real_escape_string($conn, $_POST['body_temperature']);;
+//         $weight = mysqli_real_escape_string($conn, $_POST['weight']);;
+//         $bld_sgr = mysqli_real_escape_string($conn, $_POST['blood_sugar']);;
+//         $note = mysqli_real_escape_string($conn, $_POST['notes']);
+
+//         $row_id = $_POST['update_health_metrics'];
+
+//         $sql = "INSERT INTO `fact_med_hist` (`appointment_id`, `patient_id`, `blood_press`, `blood_sugar`, `weight`, `temp`, `med_note`) VALUES ($row_id, $ptnid, '$bld_press', '$bld_sgr', '$weight', '$temp', '$note')";
+
+//         $result = mysqli_query($conn, $sql);
+
+//         echo "<script type='text/javascript'>alert('Lưu kết quả thành công');</script>";
+
+//         header('Refresh:0 , url=http://localhost/HMS-Nhom11/role-doctor/schedule_test.php');
+//     }
+// }
 ?>
 
 <head>
@@ -62,7 +105,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-white active bg-gradient-primary" href="schedule.php">
+                    <a class="nav-link text-white active bg-gradient-primary" href="../TEST_Khoa/schedule_test.php">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">calendar_month</i>
@@ -75,20 +118,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="patient.php">
+                    <a class="nav-link text-white" href="../TEST_Khoa/ptn_test.php">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">groups</i>
                             <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
                         </div>
 
-                        <span class="nav-link-text ms-1">Danh sách bệnh nhân</span>
+                        <span class="nav-link-text ms-1">Quản lý bệnh nhân</span>
                     </a>
                 </li>
 
                 <li class="nav-item mt-3">
                     <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Quản trị
                     </h6>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="work_hour.php">
+
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="material-icons opacity-10">calendar_month</i>
+                            <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
+                        </div>
+
+                        <span class="nav-link-text ms-1">Lịch làm việc</span>
+                    </a>
                 </li>
 
             </ul>
@@ -143,7 +198,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <a class="dropdown-item border-radius-md" href="profile.php">
                                         <div class="d-flex py-1">
                                             <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="text-primary text-gradient font-weight-bold" style="padding-top:10px !important;">
+                                                <h6 class="text-primary text-gradient font-weight-bold"
+                                                    style="padding-top:10px !important;">
                                                     Thông tin người dùng
                                                 </h6>
                                             </div>
@@ -154,7 +210,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <a class="dropdown-item border-radius-md" href="../assets/include/log-out.php">
                                         <div class="d-flex py-1">
                                             <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="text-primary text-gradient font-weight-bold" style="padding-top:10px !important;">
+                                                <h6 class="text-primary text-gradient font-weight-bold"
+                                                    style="padding-top:10px !important;">
                                                     Đăng xuất
                                                 </h6>
                                             </div>
@@ -219,32 +276,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <tbody>
                                         <?php
 
-                                        $sql = "SELECT ptn.user_id AS patient_id,
-                                            app.appointment_id AS appt_id,
-                                            ptn.full_name AS patient_name,
-                                            dct.full_name AS doctor_name,
-                                            spc.specialty_name,
-                                            app.booking_date,
-                                            app.booking_time,
-                                            app.cons_fee,
-                                            app.created_at
-                                        FROM fact_appointment app
-                                        LEFT JOIN dim_user ptn ON app.patient_id = ptn.user_id
-                                        LEFT JOIN dim_user dct ON app.doctor_id = dct.user_id
-                                        LEFT JOIN dim_specialties spc ON app.specialty_id = spc.specialty_id
-                                        -- WHERE ptn.user_id = $auth_user_id
-                                        ORDER BY app.booking_date DESC, app.booking_time DESC; ";
+                                        $sql = "SELECT
+                                                    app.appointment_id AS appt_id,
+                                                    ptn.full_name AS patient_name,
+                                                    dct.full_name AS doctor_name,
+                                                    spc.specialty_name,
+                                                    app.booking_date,
+                                                    app.booking_time,
+                                                    app.cons_fee,
+                                                    app.created_at
+                                                    FROM fact_appointment app
+                                                    LEFT JOIN dim_user ptn ON app.patient_id = ptn.user_id
+                                                    LEFT JOIN dim_user dct ON app.doctor_id = dct.user_id
+                                                    LEFT JOIN dim_specialties spc ON app.specialty_id = spc.specialty_id
+                                                    -- WHERE fmh.patient_id = $patient_id
+                                                    ORDER BY app.booking_date ASC, app.booking_time ASC;";
 
                                         $result = $conn->query($sql);
 
                                         // Kiểm tra và hiển thị dữ liệu
-
                                         if ($result->num_rows > 0) {
                                             while ($row = $result->fetch_assoc()) {
-
-                                                $ptnid = $row["patient_id"];
-                                                $appt_id = $row["appt_id"];
-                                                $fullname = $row["full_name"];
+                                                $appt_id_display = $row["appt_id"];
                                                 $ptn = $row["patient_name"];
                                                 $dtn = $row["doctor_name"];
                                                 $spn = $row["specialty_name"];
@@ -255,6 +308,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         ?>
 
                                                 <tr>
+                                                    <td><?php echo $appt_id_display; ?></td>
+                                                    
                                                     <td class="align-middle text-center">
                                                         <div class="d-flex px-2 py-1">
                                                             <div class="d-flex flex-column justify-content-center">
@@ -275,117 +330,161 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                     </td>
 
                                                     <td class="align-middle text-center">
-                                                        <p class="text-xs font-weight-bold mb-0"><?php $cf; ?></p>
+                                                        <p class="text-xs font-weight-bold mb-0"><?php echo number_format($cf); ?></p>
                                                         <p class="text-xs text-secondary mb-0">VNĐ</p>
                                                     </td>
 
                                                     <td class="align-middle text-center">
-                                                        <span class="text-xs font-weight-bold mb-0"><?php $bkd; ?></span>
+                                                        <span class="text-xs font-weight-bold mb-0"><?php echo $bkd; ?></span>
                                                     </td>
                                                     <td class="align-middle text-center">
-                                                        <span class="text-xs font-weight-bold mb-0"><?php $bkt; ?></span>
+                                                        <span class="text-xs font-weight-bold mb-0"><?php echo $bkt; ?></span>
                                                     </td>
                                                     <td class="align-middle text-center">
-                                                        <span class="text-xs font-weight-bold mb-0"><?php $created_at; ?></span>
+                                                        <span class="text-xs font-weight-bold mb-0"><?php echo $created_at; ?></span>
                                                     </td>
                                                     <td class="align-middle text-center">
                                                         <span class="text-xs font-weight-bold mb-0">N/A</span>
                                                     </td>
                                                     <td>
-                                                        <a href=' #popup_health_metrics-<?php echo $appt_id;
-                                                                                        ?>' class=' text-secondary font-weight-bold text-xs edit-btn'
-                                                            data-original-title='edit' title='Sửa thông tin' data-toggle='modal'>Sửa</a>
-                                                        <a href='#popup_prescription-<?php echo $appt_id; ?>' class=' text-secondary font-weight-bold text-xs edit-btn'
-                                                            data-original-title='create' title='Lập đơn thuốc'>Lập đơn thuốc</a>
+                                                        <a href='#popup_health_metrics-<?php echo $appt_id_display; ?>'
+                                                            class='text-secondary font-weight-bold text-xs edit-btn'
+                                                            data-original-title='edit' title='Sửa thông tin'
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#popup_health_metrics-<?php echo $appt_id_display; ?>">Sửa</a>
+                                                        <a class=' text-secondary font-weight-bold text-xs edit-btn'> / </a>
+                                                        <a href='#popup_prescription-<?php echo $appt_id; ?>'
+                                                            class='text-secondary font-weight-bold text-xs edit-btn'
+                                                            data-original-title='edit' title='Sửa thông tin'
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#popup_prescription-<?php echo $appt_id; ?>">Lập đơn
+                                                            thuốc</a>
                                                     </td>
 
                                                 </tr>
                                                 <!-- popup_health_metrics -->
-                                                <div id="popup_health_metrics-<?php echo $appt_id; ?>" class="overlay_flight_traveldil">
-                                                    <div class="card popup-cont">
-                                                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                                                            <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                                                                <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">
-                                                                    Cập nhật thông tin sức khỏe
-                                                                </h4>
+                                                <div class="modal fade" id="popup_health_metrics-<?php echo $appt_id_display; ?>"
+                                                    tabindex="-1" aria-labelledby="HealthEdit" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="card">
+                                                                <div
+                                                                    class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                                                                    <div
+                                                                        class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                                                                        <h4
+                                                                            class="text-white font-weight-bolder text-center mt-2 mb-0">
+                                                                            Cập nhật thông tin sức khoẻ
+                                                                        </h4>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="card-body edit-body">
+                                                                    <form name="spcedit" role="form" method="POST">
+                                                                        <div class="custom-input">
+                                                                            <input type="text" name="blood_pressure"
+                                                                                id="blood_pressure" placeholder="120/80">
+                                                                            <label>Huyết áp</label>
+                                                                        </div>
+                                                                        <div class="custom-input">
+                                                                            <input type="text" name="weight" id="weight"
+                                                                                placeholder="70kg">
+                                                                            <label>Cân nặng</label>
+                                                                        </div>
+                                                                        <div class="custom-input">
+                                                                            <input type="text" name="blood_sugar"
+                                                                                id="blood_sugar" placeholder="100 mg/Dl">
+                                                                            <label>Lượng đường trong máu</label>
+                                                                        </div>
+                                                                        <div class="custom-input">
+                                                                            <input type="text" name="body_temperature"
+                                                                                id="body_temperature" placeholder="36.5C">
+                                                                            <label>Nhiệt độ cơ thể</label>
+                                                                        </div>
+                                                                        <div class="custom-input">
+                                                                            <input type="text" name="notes" id="notes"
+                                                                                placeholder="Ghi chú thêm nếu cần">
+                                                                            <label>Ghi chú y tế</label>
+                                                                        </div>
+                                                                        <div class="text-center">
+                                                                            <button type="submit" name="update_health"
+                                                                                value="<?php echo $appt_id_display; ?>"
+                                                                                class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập
+                                                                                nhật</button>
+                                                                        </div>
+                                                                        <div class="text-center">
+                                                                            <button type="button"
+                                                                                class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
+                                                                                data-bs-dismiss="modal">Thoát</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="card-body edit-body">
-                                                            <form name="update_health_metrics" role="form" method="POST">
-                                                                <div class="input-group input-group-outline mb-3">
-                                                                    <label for="blood_pressure" class="btn-group-vertical" style="margin-right: 10px;">Huyết áp</label>
-                                                                    <input type="text" name="blood_pressure" id="blood_pressure" class="form-control" placeholder="VD: 120/80" value="">
-                                                                </div>
-                                                                <div class="input-group input-group-outline mb-3">
-                                                                    <label for="weight" class="btn-group-vertical" style="margin-right: 10px;">Trọng lượng (kg)</label>
-                                                                    <input type="number" name="weight" id="weight" class="form-control" placeholder="VD: 70" step="0.1" value="">
-                                                                </div>
-                                                                <div class="input-group input-group-outline mb-3">
-                                                                    <label for="blood_sugar" class="btn-group-vertical" style="margin-right: 10px;">Lượng đường trong máu (mg/dL)</label>
-                                                                    <input type="number" name="blood_sugar" id="blood_sugar" class="form-control" placeholder="VD: 100" step="0.1" value="">
-                                                                </div>
-                                                                <div class="input-group input-group-outline mb-3">
-                                                                    <label for="body_temperature" class="btn-group-vertical" style="margin-right: 10px;">Nhiệt độ cơ thể (°C)</label>
-                                                                    <input type="number" name="body_temperature" id="body_temperature" class="form-control" placeholder="VD: 37.0" step="0.1" value="">
-                                                                </div>
-                                                                <div class="input-group input-group-outline mb-3">
-                                                                    <label for="notes" class="btn-group-vertical" style="margin-right: 10px;">Ghi chú</label>
-                                                                    <textarea name="notes" id="notes" class="form-control" placeholder="Ghi chú thêm nếu cần"></textarea>
-                                                                </div>
-
-                                                                <div class="text-center">
-                                                                    <button type="submit" name="update_health" value="<?php echo $appt_id; ?>"
-                                                                        class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập nhật</button>
-                                                                </div>
-
-                                                                <div class="text-center">
-                                                                    <button type="button" class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
-                                                                        onclick="location.href='http://localhost/HMS-Nhom11/role-admin/employee.php'">Thoát</button>
-                                                                </div>
-                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>
 
                                                 <!-- Popup đơn thuốc -->
-                                                <div id="popup_prescription-<?php echo $appointment_id; ?>" class="overlay_flight_traveldil">
-                                                    <div class="card popup-cont">
-                                                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                                                            <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                                                                <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">
-                                                                    Lập Đơn Thuốc
-                                                                </h4>
+                                                <div class="modal fade" id="popup_prescription-<?php echo $appt_id; ?>"
+                                                    tabindex="-1" aria-labelledby="PresEdit" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="card">
+                                                                <div
+                                                                    class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                                                                    <div
+                                                                        class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                                                                        <h4
+                                                                            class="text-white font-weight-bolder text-center mt-2 mb-0">
+                                                                            Lập đơn thuốc
+                                                                        </h4>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="card-body edit-body">
+                                                                    <form name="prescription_form" role="form" method="POST">
+                                                                        <input type="hidden" name="med_hist_id"
+                                                                            value="<?php echo $med_hist_id; ?>">
+                                                                        <!-- Thêm med_hist_id làm hidden field -->
+                                                                        <div class="custom-input">
+                                                                            <input type="text" name="item_name" id="item_name"
+                                                                                placeholder="">
+                                                                            <label>Tên thuốc</label>
+                                                                        </div>
+                                                                        <div class="custom-input">
+                                                                            <input type="number" name="amount" id="amount"
+                                                                                placeholder="">
+                                                                            <label>Số lượng</label>
+                                                                        </div>
+                                                                        <div class="custom-input">
+                                                                            <input type="text" name="item_note" id="item_note"
+                                                                                placeholder="">
+                                                                            <label>Ghi chú</label>
+                                                                        </div>
+                                                                        <!-- <div class="text-center">
+                                                                            <button type="submit" name="update_health"
+                                                                                value="<?php echo $appt_id; ?>"
+                                                                                class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập
+                                                                                nhật</button>
+                                                                        </div> -->
+                                                                        <div class="text-center">
+                                                                            <button type="submit" name="submit_prescription"
+                                                                                class="btn btn-lg bg-gradient-primary w-100 mt-4 mb-0">Lập
+                                                                                Đơn</button>
+                                                                        </div>
+                                                                        <div class="text-center">
+                                                                            <button type="button"
+                                                                                class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
+                                                                                data-bs-dismiss="modal">Thoát</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="card-body edit-body">
-                                                            <form name="prescription_form" method="POST">
-                                                                <input type="hidden" name="med_hist_id" value="<?php echo $med_hist_id; ?>"> <!-- Thêm med_hist_id làm hidden field -->
-                                                                <div class="input-group input-group-outline mb-3">
-                                                                    <label class="form-label">Tên thuốc</label>
-                                                                    <input name="item_name" id="item_name" class="form-control" required>
-                                                                </div>
-                                                                <div class="input-group input-group-outline mb-3">
-                                                                    <label class="form-label">Số lượng</label>
-                                                                    <input type="number" name="amount" id="amount" class="form-control" required>
-                                                                </div>
-
-                                                                <div class="input-group input-group-outline mb-3">
-                                                                    <label class="form-label">Ghi chú</label>
-                                                                    <textarea name="item_note" id="item_note" class="form-control" rows="3"></textarea>
-                                                                </div>
-                                                                <div class="text-center">
-                                                                    <button type="submit" name="submit_prescription" class="btn btn-lg bg-gradient-primary w-100 mt-4 mb-0">Lập Đơn</button>
-                                                                </div>
-                                                                <div class="text-center">
-                                                                    <button type="button" class="btn btn-lg btn-outline-primary w-100 mt-4 mb-0"
-                                                                        onclick="div_hide('popup_prescription')">Thoát</button>
-                                                                </div>
-                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>
                                         <?php
                                             }
+                                        } else {
+                                            echo "<tr><td colspan='7'>Không có dữ liệu.</td></tr>";
                                         }
                                         ?>
 
@@ -427,4 +526,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php
     include SITE_ROOT . ('/HMS-Nhom11/assets/include/footer.php');
     ?>
-    <script src="../assets/js/popup-copy.js"></script>

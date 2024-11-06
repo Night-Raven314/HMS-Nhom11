@@ -42,7 +42,7 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="schedule.php">
+                    <a class="nav-link text-white" href="../TEST_Khoa/schedule_test.php">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">calendar_month</i>
@@ -67,16 +67,16 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="../TEST_Khoa/s_ptn_mh.php">
+                    <!-- <a class="nav-link text-white" href="../TEST_Khoa/s_ptn_mh.php">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">groups</i>
+                            <i class="material-icons opacity-10">groups</i> -->
                             <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
-                        </div>
+                        <!-- </div>
 
                         <span class="nav-link-text ms-1">[Temp] Bệnh án</span>
                     </a>
-                </li>
+                </li> -->
 
                 <li class="nav-item mt-3">
                     <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Quản trị
@@ -235,7 +235,7 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                                             -- a.doctor_id = $auth_user_id
                                             p.full_name is NOT NULL
                                         ORDER BY 
-                                            a.booking_date,a.booking_time ASC; ";
+                                            a.booking_date,a.booking_time DESC; ";
                                     $result = $conn->query($sql);
                                     // Kiểm tra và hiển thị dữ liệu
                                     $i = 0;

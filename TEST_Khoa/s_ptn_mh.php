@@ -4,6 +4,10 @@ define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT']);
 include('../role-doctor/sess-check.php');
 include SITE_ROOT . ('/HMS-Nhom11/assets/include/config.php');
 include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
+
+
+
+
 ?>
 
 <script>
@@ -48,7 +52,7 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="schedule.php">
+                    <a class="nav-link text-white" href="../TEST_Khoa/schedule_test.php">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">calendar_month</i>
@@ -72,17 +76,17 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                     </a>
                 </li>
 
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link text-white active bg-gradient-primary" href="../TEST_Khoa/s_ptn_mh.php">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">groups</i>
-                            <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
-                        </div>
+                            <i class="material-icons opacity-10">groups</i> -->
+                <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
+                <!-- </div>
 
                         <span class="nav-link-text ms-1">[Temp] Bệnh án</span>
                     </a>
-                </li>
+                </li> -->
 
                 <li class="nav-item mt-3">
                     <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Quản trị
@@ -297,15 +301,15 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                                     <?php
                                     // Kiểm tra nếu có giá trị usrid trong URL
                                     if (isset($_GET['usrid'])) {
-                                        $patient_id = $_GET['usrid'];
+                                        $patient_id = $_GET['usrid'];   
 
                                         // Chú ý: cần kiểm tra xem patient_id có phải là số hay không
                                         if (is_numeric($patient_id)) {
                                             $sql = "SELECT fmh.blood_press, fmh.blood_sugar, fmh.weight, fmh.temp, fmh.med_note, fmh.created_at
-                                                FROM fact_med_hist fmh
-                                                LEFT JOIN dim_user usr ON fmh.patient_id = usr.user_id
-                                                WHERE usr.user_id = $patient_id
-                                                ORDER BY fmh.created_at DESC, fmh.med_hist_id DESC";
+                                                    FROM fact_med_hist fmh
+                                                    LEFT JOIN dim_user usr ON fmh.patient_id = usr.user_id
+                                                    WHERE usr.user_id = $patient_id
+                                                    ORDER BY fmh.created_at DESC, fmh.med_hist_id DESC";
 
                                             $result = $conn->query($sql);
 
@@ -327,6 +331,8 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                                                         <td><?php echo htmlspecialchars($pres); ?></td>
                                                         <td><?php echo htmlspecialchars($created_at); ?></td>
                                                     </tr>
+
+
                                     <?php
                                                 }
                                             } else {
