@@ -440,79 +440,78 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 class='text-secondary font-weight-bold text-xs edit-btn' data-original-title='edit'
                 title='Sửa thông tin' data-bs-toggle="modal"
                 data-bs-target="#popup_edit-${item.item_id}">Cập nhật</a>
-            </td>
-          </tr>
-
-          <div class="modal fade" id="popup_edit-${item.item_id}" tabindex="-1"
-            aria-labelledby="ItemCreate" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-              <div class="modal-content">
-                <div class="card">
-                  <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                    <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                      <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">
-                        Cập nhật vật tư
-                      </h4>
-                    </div>
-                  </div>
-                  <div class="card-body edit-body">
-                    <form name="itemcreate" role="form" method="POST">
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="custom-input">
-                            <input type="text" name="item_name" id="item_name required"
-                              value="${item.item_name}">
-                            <label>Tên vật tư</label>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="custom-input">
-                            <input type="number" name="price" id="price" value="${item.item_price}" required>
-                            <label>Đơn giá</label>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="custom-input">
-                            <!-- <label class="form-label-lg" style="margin-right: 10px;">Giới tính</label> -->
-                            <select name="unit" id="unit" required>
-                              <option value="" disabled selected>Chọn đơn vị
-                                tính
-                              </option>
-                              <option value="viên">Viên</option>
-                              <option value="gói">Gói</option>
-                              <option value="hộp">Hộp</option>
-                              <option value="cái">Cái</option>
-                              <option value="bộ">Bộ</option>
-                            </select>
-                            <label>Đơn vị tính</label>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="text-center">
-                            <button type="submit" name="update" value=${item.item_id}
-                              class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập
-                              nhật</button>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="text-center">
-                            <button type="submit" name="delete" value=${item.item_id}
-                              class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Xoá</button>
-                          </div>
-                        </div>
-                        <div class="col-md-12">
-                          <div class="text-center">
-                            <button type="button" class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
-                              data-bs-dismiss="modal">Thoát</button>
-                          </div>
+              
+              <div class="modal fade" id="popup_edit-${item.item_id}" tabindex="-1" aria-labelledby="ItemCreate" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="card">
+                      <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                        <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                          <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">
+                            Cập nhật vật tư
+                          </h4>
                         </div>
                       </div>
-                    </form>
+                      <div class="card-body edit-body">
+                        <form name="itemcreate" role="form" method="POST">
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class="custom-input">
+                                <input type="text" name="item_name" id="item_name required"
+                                  value="${item.item_name}">
+                                <label>Tên vật tư</label>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="custom-input">
+                                <input type="number" name="price" id="price" value="${item.item_price}" required>
+                                <label>Đơn giá</label>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="custom-input">
+                                <!-- <label class="form-label-lg" style="margin-right: 10px;">Giới tính</label> -->
+                                <select name="unit" id="unit" required>
+                                  <option value="" disabled selected>Chọn đơn vị
+                                    tính
+                                  </option>
+                                  <option value="viên">Viên</option>
+                                  <option value="gói">Gói</option>
+                                  <option value="hộp">Hộp</option>
+                                  <option value="cái">Cái</option>
+                                  <option value="bộ">Bộ</option>
+                                </select>
+                                <label>Đơn vị tính</label>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="text-center">
+                                <button type="submit" name="update" value=${item.item_id}
+                                  class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập
+                                  nhật</button>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="text-center">
+                                <button type="submit" name="delete" value=${item.item_id}
+                                  class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Xoá</button>
+                              </div>
+                            </div>
+                            <div class="col-md-12">
+                              <div class="text-center">
+                                <button type="button" class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
+                                  data-bs-dismiss="modal">Thoát</button>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
+            </td>
+          </tr>
         `).join("");
         document.getElementById('productTableBody').innerHTML = tbodyHTML;
       }
