@@ -295,7 +295,7 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                                         <th>Trọng lượng</th>
                                         <th>Lượng đường trong máu</th>
                                         <th>Nhiệt độ cơ thể</th>
-                                        <th>Đơn thuốc</th>
+                                        <th>Ghi chú</th>
                                         <th>Ngày/Giờ khám</th>
                                     </tr>
                                     <?php

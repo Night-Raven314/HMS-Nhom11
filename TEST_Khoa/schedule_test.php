@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                       `temp` = '$body_temperature',
                       `med_note` = '$notes',
                       `updated_at` = NOW()
-                  WHERE patient_id = $appt_id_update"; // Sử dụng appointment_id để xác định bản ghi cần cập nhật
+                  WHERE patient_id = $patient_id"; // Sử dụng appointment_id để xác định bản ghi cần cập nhật
 
         // Kiểm tra nếu cập nhật thành công
         if ($conn->query($updateSql) === TRUE) {
