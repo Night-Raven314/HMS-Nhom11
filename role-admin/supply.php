@@ -216,7 +216,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <div class="nav-right">
         <div class="nav-item">
           <div class="custom-input" style="width: 180px">
-            <input type="text" id="searchTableField" placeholder="Nhập từ khoá">
+            <input type="text" id="searchTableField" placeholder="Nhập tên thuốc">
             <label>Tìm kiếm</label>
           </div>
         </div>
@@ -250,7 +250,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </h6>
                 <div class="table-float-btn-container">
                   <button class="table-float-btn btn btn-outline-primary btn-sm mb-0 me-3" style="background: #ffffff"
-                    data-bs-toggle="modal" data-bs-target="#popup_add">Thêm vật tư</button>
+                    data-bs-toggle="modal" data-bs-target="#popup_add">Tạo vật tư</button>
                 </div>
               </div>
             </div>
@@ -269,36 +269,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                     <div class="card-body edit-body">
                       <form name="itemcreate" role="form" method="POST">
-                        <div class="custom-input">
-                          <input type="text" name="item_name" id="item_name" placeholder="Nhập tên vật tư">
-                          <label>Tên vật tư</label>
-                        </div>
-                        <div class="custom-input">
-                          <input type="number" name="price" id="price" placeholder="Nhập đơn giá">
-                          <label>Đơn giá</label>
-                        </div>
-                        <div class="input-group input-group-outline mb-3">
-                          <!-- <label class="form-label-lg" style="margin-right: 10px;">Giới tính</label> -->
-                          <select name="unit" id="unit" class="form-control">
-                            <option value="" disabled selected>Chọn đơn vị
-                              tính
-                            </option>
-                            <option value="viên">Viên</option>
-                            <option value="gói">Gói</option>
-                            <option value="hộp">Hộp</option>
-                            <option value="cái">Cái</option>
-                            <option value="bộ">Bộ</option>
-                          </select>
-                        </div>
-                        <div class="text-center">
-                          <button type="submit" name="create" value="create"
-                            class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Tạo
-                            chuyên khoa</button>
-                        </div>
-
-                        <div class="text-center">
-                          <button type="button" class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
-                            data-bs-dismiss="modal">Thoát</button>
+                      <div class="row">
+                          <div class="col-md-12">
+                            <div class="custom-input">
+                              <input type="text" name="item_name" id="item_name" placeholder="Nhập tên vật tư" required>
+                              <label>Tên vật tư</label>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="custom-input">
+                              <input type="number" name="price" id="price" placeholder="Nhập đơn giá" required>
+                              <label>Đơn giá</label>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="custom-input">
+                              <!-- <label class="form-label-lg" style="margin-right: 10px;">Giới tính</label> -->
+                              <select name="unit" id="unit" required>
+                                <option value="" disabled selected>Chọn đơn vị
+                                  tính
+                                </option>
+                                <option value="viên">Viên</option>
+                                <option value="gói">Gói</option>
+                                <option value="hộp">Hộp</option>
+                                <option value="cái">Cái</option>
+                                <option value="bộ">Bộ</option>
+                              </select>
+                              <label>Đơn vị tính</label>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="text-center">
+                              <button type="button" class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
+                                data-bs-dismiss="modal">Thoát</button>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="text-center">
+                              <button type="submit" name="create" value="create"
+                                class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Tạo
+                                vật tư</button>
+                            </div>
+                          </div>
                         </div>
                       </form>
                     </div>
@@ -347,7 +359,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <div class="card popup-cont">
         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
           <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-            <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Thêm chuyên khoa</h4>
+            <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Tạo vật tư y tế</h4>
           </div>
         </div>
         <div class="card-body">
@@ -390,10 +402,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <script>
       let searchFilterDelay = null;
-      let productData = null;
-      let productDataFiltered = null;
+      let tableData = null;
+      let tableDataFiltered = null;
       const displayTableDataFromFiltered = () => {
-        const tbodyHTML = productDataFiltered.map(item => `
+        const tbodyHTML = tableDataFiltered.map(item => `
           <tr>
             <td class="align-middle text-center text-sm">
               <p class="text-xs font-weight-bold mb-0">${item.item_id}</p>
@@ -445,43 +457,55 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   </div>
                   <div class="card-body edit-body">
                     <form name="itemcreate" role="form" method="POST">
-                      <div class="custom-input">
-                        <input type="text" name="item_name" id="item_name"
-                          placeholder="${item.item_name}">
-                        <label>Tên vật tư</label>
-                      </div>
-                      <div class="custom-input">
-                        <input type="number" name="price" id="price" placeholder="${item.item_price}">
-                        <label>Đơn giá</label>
-                      </div>
-                      <div class="input-group input-group-outline mb-3">
-                        <!-- <label class="form-label-lg" style="margin-right: 10px;">Giới tính</label> -->
-                        <select name="unit" id="unit" class="form-control">
-                          <option value="" disabled selected>Chọn đơn vị
-                            tính
-                          </option>
-                          <option value="viên">Viên</option>
-                          <option value="gói">Gói</option>
-                          <option value="hộp">Hộp</option>
-                          <option value="cái">Cái</option>
-                          <option value="bộ">Bộ</option>
-                        </select>
-                      </div>
-                      <div class="text-center">
-                        <button type="submit" name="update" value=${item.item_id}
-                          class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập
-                          nhật</button>
-                      </div>
-
-                      <div class="text-center">
-                        <button type="submit" name="delete" value=${item.item_id}
-                          class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Xoá</button>
-
-                      </div>
-
-                      <div class="text-center">
-                        <button type="button" class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
-                          data-bs-dismiss="modal">Thoát</button>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="custom-input">
+                            <input type="text" name="item_name" id="item_name required"
+                              value="${item.item_name}">
+                            <label>Tên vật tư</label>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="custom-input">
+                            <input type="number" name="price" id="price" value="${item.item_price}" required>
+                            <label>Đơn giá</label>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="custom-input">
+                            <!-- <label class="form-label-lg" style="margin-right: 10px;">Giới tính</label> -->
+                            <select name="unit" id="unit" required>
+                              <option value="" disabled selected>Chọn đơn vị
+                                tính
+                              </option>
+                              <option value="viên">Viên</option>
+                              <option value="gói">Gói</option>
+                              <option value="hộp">Hộp</option>
+                              <option value="cái">Cái</option>
+                              <option value="bộ">Bộ</option>
+                            </select>
+                            <label>Đơn vị tính</label>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="text-center">
+                            <button type="submit" name="update" value=${item.item_id}
+                              class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập
+                              nhật</button>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="text-center">
+                            <button type="submit" name="delete" value=${item.item_id}
+                              class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Xoá</button>
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="text-center">
+                            <button type="button" class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
+                              data-bs-dismiss="modal">Thoát</button>
+                          </div>
+                        </div>
                       </div>
                     </form>
                   </div>
@@ -492,18 +516,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         `).join("");
         document.getElementById('productTableBody').innerHTML = tbodyHTML;
       }
-      // $(document).ready(function () {
-      //   $('#drugTable').DataTable({
-      //     "pagingType": "simple_numbers", // Sử dụng phân trang đơn giản
-      //     "language": {
-      //       "search": "Tìm kiếm:",
-      //       "paginate": {
-      //         "next": "Tiếp",
-      //         "previous": "Trước"
-      //       }
-      //     }
-      //   });
-      // });
+
       <?php
         $sql = "SELECT * FROM `dim_item` ";
         $result = $conn->query($sql);
@@ -513,8 +526,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $productList[] = $row;
         }
       ?>
-        productData = <?php echo json_encode($productList) ?>;
-        productDataFiltered = productData;
+        tableData = <?php echo json_encode($productList) ?>;
+        tableDataFiltered = tableData;
         displayTableDataFromFiltered();
       <?php  ?>
       const searchField = document.getElementById("searchTableField");
@@ -523,12 +536,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         searchFilterDelay = setTimeout(() => {
           const query = searchField.value.toLowerCase();
           if(!query) {
-            productDataFiltered = productData;
+            tableDataFiltered = tableData;
           } else {
-            productDataFiltered = productData.filter(item => item.item_name.toLowerCase().includes(query));
+            tableDataFiltered = tableData.filter(item => item.item_name.toLowerCase().includes(query));
           }
           displayTableDataFromFiltered();
-        }, 2000)
+        }, 500)
       })
     </script>
 
