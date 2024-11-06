@@ -7,15 +7,14 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['update'])) {
-        $post_full_name = (empty(mysqli_real_escape_string($conn, $_POST['full_name'])) === true) ? $fullname : mysqli_real_escape_string($conn, $_POST['full_name']);
-        $post_user_name = (empty(mysqli_real_escape_string($conn, $_POST['user_name'])) === true) ? $user_name : mysqli_real_escape_string($conn, $_POST['user_name']);
-        $post_email = (empty(mysqli_real_escape_string($conn, $_POST['email_address'])) === true) ? $emailaddress : mysqli_real_escape_string($conn, $_POST['email_address']);
-        $post_contact_no = (empty(mysqli_real_escape_string($conn, $_POST['contact_no'])) === true) ? $phone : mysqli_real_escape_string($conn, $_POST['contact_no']);
-        $post_gender = (empty(mysqli_real_escape_string($conn, $_POST['gender'])) === true) ? $gender : mysqli_real_escape_string($conn, $_POST['gender']);
-        $post_role = (empty(mysqli_real_escape_string($conn, $_POST['role'])) === true) ? $role : mysqli_real_escape_string($conn, $_POST['role']);
-        $post_address = (empty(mysqli_real_escape_string($conn, $_POST['address'])) === true) ? $address : mysqli_real_escape_string($conn, $_POST['address']);
-        $post_city = (empty(mysqli_real_escape_string($conn, $_POST['city'])) === true) ? $city : mysqli_real_escape_string($conn, $_POST['city']);
-        $post_pwd = (empty(mysqli_real_escape_string($conn, $_POST['password'])) === true) ? $password : mysqli_real_escape_string($conn, $_POST['password']);
+        $post_full_name = mysqli_real_escape_string($conn, $_POST['full_name']);
+        $post_user_name = mysqli_real_escape_string($conn, $_POST['user_name']);
+        $post_email = mysqli_real_escape_string($conn, $_POST['email_address']);
+        $post_contact_no = mysqli_real_escape_string($conn, $_POST['contact_no']);
+        $post_gender = mysqli_real_escape_string($conn, $_POST['gender']);
+        $post_address = mysqli_real_escape_string($conn, $_POST['address']);
+        $post_city = mysqli_real_escape_string($conn, $_POST['city']);
+        $post_pwd = mysqli_real_escape_string($conn, $_POST['password']);
 
         $post_update_id = $_POST['update']; //Get user ID that need update
 
@@ -25,7 +24,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         `email_address` = '$post_email',
         `contact_no` = '$post_contact_no',
         `password` = '$post_pwd',
-        `role` = '$post_role',
         `gender` = '$post_gender',
         `address` = '$post_address',
         `city` = '$post_city' 
@@ -35,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         echo "<script type='text/javascript'>alert('Cập nhật tài khoản thành công');</script>";
 
-        header('Refresh:0 , url=http://localhost/HMS-Nhom11/role-admin/guest.php');
+        header('Refresh:0 , url=http://localhost/HMS-Nhom11/role-admin/profile.php');
     }
 }
 ?>
@@ -181,6 +179,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </div>
 
                         <span class="nav-link-text ms-1">Quản lý chuyên khoa</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="payment_log.php">
+
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="material-icons opacity-10">payments</i>
+                            <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
+                        </div>
+
+                        <span class="nav-link-text ms-1">Lịch sử giao dịch</span>
                     </a>
                 </li>
 
@@ -365,7 +375,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="custom-input">
-                                                            <input type="password" name="contact_no" id="contact_no"
+                                                            <input type="password" name="password" id="password"
                                                                 value="<?php echo $password ?>" required>
                                                             <label>Mật khẩu</label>
                                                         </div>
@@ -394,7 +404,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="text-center">
-                                                            <button type="submit" name="update" value=${item.user_id}
+                                                            <button type="submit" name="update" value=<?php echo $user_id ?>
                                                                 class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập
                                                                 nhật</button>
                                                         </div>

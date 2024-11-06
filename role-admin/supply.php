@@ -200,6 +200,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           </a>
         </li>
 
+        <li class="nav-item">
+          <a class="nav-link text-white" href="payment_log.php">
+
+              <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                  <i class="material-icons opacity-10">payments</i>
+                  <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
+              </div>
+
+              <span class="nav-link-text ms-1">Lịch sử giao dịch</span>
+          </a>
+      </li>
+
       </ul>
     </div>
 
@@ -352,54 +364,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </div>
     </div>
 
-
-    <!-- Popup Section for Form -->
-    <!-- Popup to create user -->
-    <div id="popup_add" class="overlay_flight_traveldil">
-      <div class="card popup-cont">
-        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-          <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-            <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Tạo vật tư y tế</h4>
-          </div>
-        </div>
-        <div class="card-body">
-          <form name="edit_item" role="form" method="POST">
-
-            <div class="input-group input-group-outline mb-3">
-              <label class="form-label">Tên vật tư</label>
-              <input name="item_name" id="item_name" class="form-control" required>
-            </div>
-            <div class="input-group input-group-outline mb-3">
-              <label class="form-label">Đơn giá</label>
-              <input type="number" name="price" id="price" class="form-control" required>
-            </div>
-            <div class="input-group input-group-outline mb-3">
-              <!-- <label class="form-label-lg" style="margin-right: 10px;">Giới tính</label> -->
-              <select name="unit" id="unit" class="form-control" required>
-                <option value="" disabled selected>Chọn đơn vị tính
-                </option>
-                <option value="viên">Viên</option>
-                <option value="gói">Gói</option>
-                <option value="hộp">Hộp</option>
-                <option value="cái">Cái</option>
-                <option value="bộ">Bộ</option>
-              </select>
-            </div>
-
-            <div class="text-center">
-              <button type="submit" name="create" value="create"
-                class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Tạo vật tư</button>
-            </div>
-            <div class="text-center" href="#">
-              <button type="button" class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
-                onclick="location.href='http://localhost/HMS-Nhom11/role-admin/supply.php'">Thoát</button>
-            </div>
-
-        </div>
-        </form>
-      </div>
-    </div>
-
     <script>
       let searchFilterDelay = null;
       let tableData = null;
@@ -440,7 +404,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 class='text-secondary font-weight-bold text-xs edit-btn' data-original-title='edit'
                 title='Sửa thông tin' data-bs-toggle="modal"
                 data-bs-target="#popup_edit-${item.item_id}">Cập nhật</a>
-              
+                <a class='text-secondary font-weight-bold text-xs edit-btn'"> / </a>
+                <a href='#popup_delete-${item.item_id}'
+                class='text-secondary font-weight-bold text-xs edit-btn'
+                data-original-title='delete' title='Xoá vật tư'
+                data-bs-toggle="modal"
+                data-bs-target="#popup_delete-${item.item_id}">Xoá</a>
+
+
+              <!-- Popup Sửa thông tin -->
               <div class="modal fade" id="popup_edit-${item.item_id}" tabindex="-1" aria-labelledby="ItemCreate" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                   <div class="modal-content">
@@ -486,21 +458,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </div>
                             <div class="col-md-6">
                               <div class="text-center">
-                                <button type="submit" name="update" value=${item.item_id}
-                                  class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập
-                                  nhật</button>
+                                <button type="button" class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
+                                  data-bs-dismiss="modal">Thoát</button>
                               </div>
                             </div>
                             <div class="col-md-6">
                               <div class="text-center">
-                                <button type="submit" name="delete" value=${item.item_id}
-                                  class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Xoá</button>
-                              </div>
-                            </div>
-                            <div class="col-md-12">
-                              <div class="text-center">
-                                <button type="button" class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
-                                  data-bs-dismiss="modal">Thoát</button>
+                                <button type="submit" name="update" value=${item.item_id}
+                                  class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập
+                                  nhật</button>
                               </div>
                             </div>
                           </div>
@@ -509,6 +475,54 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                   </div>
                 </div>
+              </div>
+
+              <!-- Popup Xoá thông tin -->
+              <div class="modal fade" id="popup_delete-${item.item_id}" tabindex="-1"
+                  aria-labelledby="EmployeeEdit" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                          <div class="card">
+                              <div
+                                  class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                                  <div
+                                      class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                                      <h4
+                                          class="text-white font-weight-bolder text-center mt-2 mb-0">
+                                          Xoá vật tư y tế
+                                      </h4>
+                                  </div>
+                                  <div class="card-header">
+                                      <p class="font-weight-bolder text-center mt-2 mb-0">Bạn có chắc chắn muốn xoá vật tư sau?</p>
+                                      <p class="text-center mt-2 mb-0">${item.item_name}</p>
+                                      <p class="font-weight-bolder text-center mt-2 mb-0">Vật tư này sẽ không thể khôi phục</p>
+                                  </div>
+                              </div>
+                              <div class="card-body edit-body">
+                                  <form name="edit_user" role="form" method="POST">
+                                      <div class="row"> <!-- Thêm hàng để chia thành 2 bên -->
+                                          <!-- Thêm hàng để chia thành 2 bên -->
+                                          <div class="col-md-6">
+                                              <div class="text-center">
+                                                  <button type="button"
+                                                      class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
+                                                      data-bs-dismiss="modal">Thoát</button>
+                                              </div>
+                                          </div>
+                                          <div class="col-md-6">
+                                              <div class="text-center">
+                                                  <button type="submit" name="delete"
+                                                      value=${item.item_id}
+                                                      class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Xoá</button>
+                                              </div>
+                                          </div>
+                                          
+                                      </div>
+                                  </form>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
               </div>
             </td>
           </tr>

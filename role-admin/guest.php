@@ -226,6 +226,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="payment_log.php">
+
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="material-icons opacity-10">payments</i>
+                            <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
+                        </div>
+
+                        <span class="nav-link-text ms-1">Lịch sử giao dịch</span>
+                    </a>
+                </li>
+
             </ul>
         </div>
 
@@ -367,17 +379,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                         </div>
                                                     </div>
 
-                                                    <div class="text-center">
-                                                        <button type="submit" name="create" value="create"
-                                                            class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Tạo
-                                                            tài
-                                                            khoản</button>
+                                                    <div class="col-md-6">
+                                                        <div class="text-center">
+                                                            <button type="button"
+                                                                class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
+                                                                data-bs-dismiss="modal">Thoát</button>
+                                                        </div>
                                                     </div>
-
-                                                    <div class="text-center">
-                                                        <button type="button"
-                                                            class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
-                                                            data-bs-dismiss="modal">Thoát</button>
+                                                    <div class="col-md-6">
+                                                        <div class="text-center">
+                                                            <button type="submit" name="create" value="create"
+                                                                class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Tạo
+                                                                tài
+                                                                khoản</button>
+                                                        </div>
                                                     </div>
 
                                                 </div>
@@ -480,139 +495,187 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         data-original-title='edit' title='Sửa thông tin'
                         data-bs-toggle="modal"
                         data-bs-target="#popup_edit-${item.user_id}">Cập nhật</a>
-                </td>
-            </tr>
+                    <a class='text-secondary font-weight-bold text-xs edit-btn'"> / </a>
+                    <a href='#popup_delete-${item.user_id}'
+                        class='text-secondary font-weight-bold text-xs edit-btn'
+                        data-original-title='delete' title='Xoá tài khoản'
+                        data-bs-toggle="modal"
+                        data-bs-target="#popup_delete-${item.user_id}">Xoá</a>
 
-            <!-- Popup Chỉnh sửa thông tin -->
-            <div class="modal fade" id="popup_edit-${item.user_id}" tabindex="-1"
-                aria-labelledby="EmployeeEdit" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="card">
-                            <div
-                                class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                                <div
-                                    class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                                    <h4
-                                        class="text-white font-weight-bolder text-center mt-2 mb-0">
-                                        Cập nhật tài khoản người dùng
-                                    </h4>
-                                </div>
-                            </div>
-                            <div class="card-body edit-body">
-                                <form name="new_user" role="form" method="POST">
-                                    <div class="row"> <!-- Thêm hàng để chia thành 2 bên -->
-                                        <div class="col-md-6">
-                                            <div class="custom-input">
-                                                <input type="text" name="full_name"
-                                                    id="full_name"
-                                                    value="${item.full_name}" required>
-                                                <label>Họ và Tên</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="custom-input">
-                                                <input type="text" name="user_name"
-                                                    id="user_name"
-                                                    value="${item.user_name}" required>
-                                                <label>Tên đăng nhập</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="custom-input">
-                                                <input type="email" name="email_address"
-                                                    id="email_address"
-                                                    value="${item.email_address}" required>
-                                                <label>Địa chỉ Email</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="custom-input">
-                                                <input type="text" name="contact_no"
-                                                    id="contact_no"
-                                                    value="${item.contact_no}" required>
-                                                <label>Số điện thoại</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="custom-input">
-                                                <select name="gender" id="gender"
-                                                    required>
-                                                    <option value="" disabled selected hidden>Chọn
-                                                        giới tính</option>
-                                                    <option value="male">Nam</option>
-                                                    <option value="female">Nữ</option>
-                                                </select>
-                                                <label>Giới tính</label>
-                                                <div class="arrow-icon">
-                                                    <i class="fa-solid fa-chevron-down"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="custom-input">
-                                                <select name="role" id="role" disabled required>
-                                                    <option value="patient" selected>Bệnh nhân</option>
-                                                    </option>
-                                                </select>
-                                                <label>Vị trí</label>
-                                                <div class="arrow-icon">
-                                                    <i class="fa-solid fa-chevron-down"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="custom-input">
-                                                <input type="password" name="contact_no"
-                                                    id="contact_no"
-                                                    value="${item.password}" required>
-                                                <label>Mật khẩu</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="custom-input">
-                                                <input type="text" name="address"
-                                                    id="address"
-                                                    value="${item.address}" required>
-                                                <label>Địa chỉ</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="custom-input">
-                                                <input type="text" name="city" id="city"
-                                                    value="${item.city}" required>
-                                                <label>Thành phố</label>
-                                            </div>
-                                        </div>
-                                        <!-- Thêm hàng để chia thành 2 bên -->
-                                        <div class="col-md-6">
-                                            <div class="text-center">
-                                                <button type="submit" name="update"
-                                                    value=${item.user_id}
-                                                    class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập
-                                                    nhật</button>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="text-center">
-                                                <button type="submit" name="delete"
-                                                    value=${item.user_id}
-                                                    class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Xoá</button>
-                                            </div>
-                                        </div>
-
-                                        <div class="text-center">
-                                            <button type="button"
-                                                class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
-                                                data-bs-dismiss="modal">Thoát</button>
+                    <!-- Popup Chỉnh sửa thông tin -->
+                    <div class="modal fade" id="popup_edit-${item.user_id}" tabindex="-1"
+                        aria-labelledby="EmployeeEdit" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="card">
+                                    <div
+                                        class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                                        <div
+                                            class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                                            <h4
+                                                class="text-white font-weight-bolder text-center mt-2 mb-0">
+                                                Cập nhật tài khoản người dùng
+                                            </h4>
                                         </div>
                                     </div>
-                                </form>
+                                    <div class="card-body edit-body">
+                                        <form name="edit_user" role="form" method="POST">
+                                            <div class="row"> <!-- Thêm hàng để chia thành 2 bên -->
+                                                <div class="col-md-6">
+                                                    <div class="custom-input">
+                                                        <input type="text" name="full_name"
+                                                            id="full_name"
+                                                            value="${item.full_name}" required>
+                                                        <label>Họ và Tên</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="custom-input">
+                                                        <input type="text" name="user_name"
+                                                            id="user_name"
+                                                            value="${item.user_name}" required>
+                                                        <label>Tên đăng nhập</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="custom-input">
+                                                        <input type="email" name="email_address"
+                                                            id="email_address"
+                                                            value="${item.email_address}" required>
+                                                        <label>Địa chỉ Email</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="custom-input">
+                                                        <input type="text" name="contact_no"
+                                                            id="contact_no"
+                                                            value="${item.contact_no}" required>
+                                                        <label>Số điện thoại</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="custom-input">
+                                                        <select name="gender" id="gender"
+                                                            required>
+                                                            <option value='' disabled selected>Chọn giới tính</option>
+                                                            <option value='male'>Nam</option>
+                                                            <option value='female'>Nữ</option>
+                                                        </select>
+                                                        <label>Giới tính</label>
+                                                        <div class="arrow-icon">
+                                                            <i class="fa-solid fa-chevron-down"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="custom-input">
+                                                        <select name="role" id="role" required>
+                                                            <option value="patient" selected>Bệnh nhân</option>
+                                                            </option>
+                                                        </select>
+                                                        <label>Vị trí</label>
+                                                        <div class="arrow-icon">
+                                                            <i class="fa-solid fa-chevron-down"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="custom-input">
+                                                        <input type="password" name="password"
+                                                            id="password"
+                                                            value="${item.password}" required>
+                                                        <label>Mật khẩu</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="custom-input">
+                                                        <input type="text" name="address"
+                                                            id="address"
+                                                            value="${item.address}" required>
+                                                        <label>Địa chỉ</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="custom-input">
+                                                        <input type="text" name="city" id="city"
+                                                            value="${item.city}" required>
+                                                        <label>Thành phố</label>
+                                                    </div>
+                                                </div>
+                                                <!-- Thêm hàng để chia thành 2 bên -->
+                                                <div class="col-md-6">
+                                                    <div class="text-center">
+                                                        <button type="button"
+                                                            class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
+                                                            data-bs-dismiss="modal">Thoát</button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="text-center">
+                                                        <button type="submit" name="update"
+                                                            value=${item.user_id}
+                                                            class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập
+                                                            nhật</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+
+                    <!-- Popup Xoá thông tin -->
+                    <div class="modal fade" id="popup_delete-${item.user_id}" tabindex="-1"
+                        aria-labelledby="EmployeeEdit" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="card">
+                                    <div
+                                        class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                                        <div
+                                            class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                                            <h4
+                                                class="text-white font-weight-bolder text-center mt-2 mb-0">
+                                                Xoá tài khoản người dùng
+                                            </h4>
+                                        </div>
+                                        <div class="card-header">
+                                            <p class="font-weight-bolder text-center mt-2 mb-0">Bạn có chắc chắn muốn xoá tài khoản sau?</p>
+                                            <p class="text-center mt-2 mb-0">${item.full_name} (${item.user_name})</p>
+                                            <p class="font-weight-bolder text-center mt-2 mb-0">Tài khoản này sẽ không thể khôi phục</p>
+                                        </div>
+                                    </div>
+                                    <div class="card-body edit-body">
+                                        <form name="edit_user" role="form" method="POST">
+                                            <div class="row"> <!-- Thêm hàng để chia thành 2 bên -->
+                                                <!-- Thêm hàng để chia thành 2 bên -->
+                                                <div class="col-md-6">
+                                                    <div class="text-center">
+                                                        <button type="button"
+                                                            class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
+                                                            data-bs-dismiss="modal">Thoát</button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="text-center">
+                                                        <button type="submit" name="delete"
+                                                            value=${item.user_id}
+                                                            class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Xoá</button>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
         `).join("");
                 document.getElementById('productTableBody').innerHTML = tbodyHTML;
             }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 02, 2024 at 09:13 PM
+-- Generation Time: Nov 06, 2024 at 07:53 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -174,55 +174,55 @@ CREATE TABLE `dim_user` (
   `address` varchar(255) DEFAULT NULL,
   `role` varchar(50) DEFAULT NULL,
   `specialty_id` int(11) DEFAULT NULL,
-  `pricing` varchar(255) DEFAULT NULL
+  `pricing` varchar(255) DEFAULT NULL,
+  `oauth_google` varchar(255) DEFAULT NULL,
+  `oauth_facebook` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `dim_user`
 --
 
-INSERT INTO `dim_user` (`user_id`, `user_name`, `password`, `email_address`, `contact_no`, `full_name`, `created_at`, `updated_at`, `gender`, `city`, `address`, `role`, `specialty_id`, `pricing`) VALUES
-(1, 'huan_patient', 'password123', 'huan.nguyen@example.com', 84912345601, 'Nguyen Nhut Gia Huan', '2024-10-07 05:36:07', NULL, 'male', 'Ho Chi Minh', '1 Le Duan', 'patient', NULL, NULL),
-(2, 'huan_doctor', 'password123', 'huan.nguyen@example.com', 84912345602, 'Nguyen Nhut Gia Huan', '2024-10-07 05:36:07', '2024-11-02 06:00:09', 'male', 'Ho Chi Minh', '1 Le Duan', 'doctor', 7, '400000'),
-(3, 'huan_admin', 'password123', 'huan.nguyen@example.com', 84983230494, 'Nguyen Nhut Gia Huan', '2024-10-07 05:36:07', '2024-11-02 18:48:21', 'male', 'Ho Chi Minh', '1 Le Duan', 'admin', NULL, NULL),
-(4, 'long_patient', 'password123', 'long.nguyen@example.com', 84912345604, 'Nguyen Ba Long', '2024-10-07 05:36:07', NULL, 'male', 'Ho Chi Minh', '2 Tran Hung Dao', 'patient', NULL, NULL),
-(5, 'long_doctor', 'password123', 'long.nguyen@example.com', 84912345605, 'Nguyen Ba Long', '2024-10-07 05:36:07', '2024-11-02 06:00:09', 'male', 'Ho Chi Minh', '2 Tran Hung Dao', 'doctor', 3, '450000'),
-(6, 'long_admin', 'password123', 'long.nguyen@example.com', 84912345606, 'Nguyen Ba Long', '2024-10-07 05:36:07', NULL, 'male', 'Ho Chi Minh', '2 Tran Hung Dao', 'admin', NULL, NULL),
-(7, 'khoa_patient', 'password123', 'khoa.tran@example.com', 84912345607, 'Tran Nguyen Dang Khoa', '2024-10-07 05:36:07', NULL, 'male', 'Ho Chi Minh', '3 Nguyen Thi Minh Khai', 'patient', NULL, NULL),
-(8, 'khoa_doctor', 'password123', 'khoa.tran@example.com', 84912345608, 'Tran Nguyen Dang Khoa', '2024-10-07 05:36:07', '2024-11-02 06:00:09', 'male', 'Ho Chi Minh', '3 Nguyen Thi Minh Khai', 'doctor', 10, '500000'),
-(9, 'khoa_admin', 'password123', 'khoa.tran@example.com', 84912345609, 'Tran Nguyen Dang Khoa', '2024-10-07 05:36:07', NULL, 'male', 'Ho Chi Minh', '3 Nguyen Thi Minh Khai', 'admin', NULL, NULL),
-(10, 'doctor10', 'password123', 'doctor10@example.com', 84910000010, 'Nguyen Van An', '2024-10-07 05:44:49', '2024-11-02 06:00:09', 'male', 'Ho Chi Minh', '10 Phan Xich Long', 'doctor', 1, '350000'),
-(11, 'doctor11', 'password123', 'doctor11@example.com', 84910000011, 'Tran Thi Bich', '2024-10-07 05:44:49', '2024-11-02 06:00:09', 'female', 'Ho Chi Minh', '11 Le Van Sy', 'doctor', 6, '370000'),
-(12, 'doctor12', 'password123', 'doctor12@example.com', 84910000012, 'Pham Minh Cuong', '2024-10-07 05:44:49', '2024-11-02 06:00:09', 'male', 'Ho Chi Minh', '12 Nguyen Trai', 'doctor', 4, '400000'),
-(13, 'doctor13', 'password123', 'doctor13@example.com', 84910000013, 'Nguyen Thi Hoa', '2024-10-07 05:44:49', '2024-11-02 06:00:09', 'female', 'Ho Chi Minh', '13 Vo Thi Sau', 'doctor', 9, '450000'),
-(14, 'doctor14', 'password123', 'doctor14@example.com', 84910000014, 'Tran Van Hai', '2024-10-07 05:44:49', '2024-11-02 06:00:09', 'male', 'Ho Chi Minh', '14 Hai Ba Trung', 'doctor', 2, '420000'),
-(15, 'doctor15', 'password123', 'doctor15@example.com', 84910000015, 'Pham Van Khoa', '2024-10-07 05:44:49', '2024-11-02 06:00:09', 'male', 'Ho Chi Minh', '15 Le Lai', 'doctor', 8, '390000'),
-(16, 'doctor16', 'password123', 'doctor16@example.com', 84910000016, 'Nguyen Thi Lan', '2024-10-07 05:44:49', '2024-11-02 06:00:09', 'female', 'Ho Chi Minh', '16 Tran Hung Dao', 'doctor', 5, '480000'),
-(17, 'doctor17', 'password123', 'doctor17@example.com', 84910000017, 'Tran Van Minh', '2024-10-07 05:44:49', '2024-11-02 06:00:09', 'male', 'Ho Chi Minh', '17 Nguyen Thi Minh Khai', 'doctor', 3, '460000'),
-(18, 'doctor18', 'password123', 'doctor18@example.com', 84910000018, 'Pham Thi Nhi', '2024-10-07 05:44:49', '2024-11-02 06:00:09', 'female', 'Ho Chi Minh', '18 Le Duan', 'doctor', 7, '410000'),
-(19, 'doctor19', 'password123', 'doctor19@example.com', 84910000019, 'Nguyen Van Quan', '2024-10-07 05:44:49', '2024-11-02 06:00:09', 'male', 'Ho Chi Minh', '19 Dong Khoi', 'doctor', 1, '500000'),
-(20, 'patient20', 'password123', 'patient20@example.com', 84920000020, 'Nguyen Van Tuan', '2024-10-07 05:44:59', NULL, 'male', 'Ho Chi Minh', '20 Nguyen Hue', 'patient', NULL, NULL),
-(21, 'patient21', 'password123', 'patient21@example.com', 84920000021, 'Tran Thi Thao', '2024-10-07 05:44:59', NULL, 'female', 'Ho Chi Minh', '21 Le Thanh Ton', 'patient', NULL, NULL),
-(22, 'patient22', 'password123', 'patient22@example.com', 84920000022, 'Pham Van Hoang', '2024-10-07 05:44:59', NULL, 'male', 'Ho Chi Minh', '22 Tran Van Kieu', 'patient', NULL, NULL),
-(23, 'patient23', 'password123', 'patient23@example.com', 84920000023, 'Nguyen Thi Ly', '2024-10-07 05:44:59', NULL, 'female', 'Ho Chi Minh', '23 Le Loi', 'patient', NULL, NULL),
-(24, 'patient24', 'password123', 'patient24@example.com', 84920000024, 'Tran Van Dat', '2024-10-07 05:44:59', NULL, 'male', 'Ho Chi Minh', '24 Pham Ngoc Thach', 'patient', NULL, NULL),
-(25, 'patient25', 'password123', 'patient25@example.com', 84920000025, 'Pham Thi Kim', '2024-10-07 05:44:59', NULL, 'female', 'Ho Chi Minh', '25 Vo Van Tan', 'patient', NULL, NULL),
-(26, 'patient26', 'password123', 'patient26@example.com', 84920000026, 'Nguyen Van Phuc', '2024-10-07 05:44:59', NULL, 'male', 'Ho Chi Minh', '26 Nguyen Thi Minh Khai', 'patient', NULL, NULL),
-(27, 'patient27', 'password123', 'patient27@example.com', 84920000027, 'Tran Thi Mai', '2024-10-07 05:44:59', NULL, 'female', 'Ho Chi Minh', '27 Le Van Sy', 'patient', NULL, NULL),
-(28, 'patient28', 'password123', 'patient28@example.com', 84920000028, 'Pham Van Tinh', '2024-10-07 05:44:59', NULL, 'male', 'Ho Chi Minh', '28 Nguyen Trai', 'patient', NULL, NULL),
-(29, 'patient29', 'password123', 'patient29@example.com', 84920000029, 'Nguyen Thi Hanh', '2024-10-07 05:44:59', NULL, 'female', 'Ho Chi Minh', '29 Hai Ba Trung', 'patient', NULL, NULL),
-(30, 'patient30', 'password123', 'patient30@example.com', 84920000030, 'Tran Van Quang', '2024-10-07 05:44:59', NULL, 'male', 'Ho Chi Minh', '30 Nguyen Hue', 'patient', NULL, NULL),
-(31, 'patient31', 'password123', 'patient31@example.com', 84920000031, 'Pham Thi Trang', '2024-10-07 05:44:59', NULL, 'female', 'Ho Chi Minh', '31 Le Thanh Ton', 'patient', NULL, NULL),
-(32, 'patient32', 'password123', 'patient32@example.com', 84920000032, 'Nguyen Van Son', '2024-10-07 05:44:59', NULL, 'male', 'Ho Chi Minh', '32 Tran Van Kieu', 'patient', NULL, NULL),
-(33, 'patient33', 'password123', 'patient33@example.com', 84920000033, 'Tran Thi Hoa', '2024-10-07 05:44:59', NULL, 'female', 'Ho Chi Minh', '33 Le Loi', 'patient', NULL, NULL),
-(34, 'patient34', 'password123', 'patient34@example.com', 84920000034, 'Pham Van Cuong', '2024-10-07 05:44:59', NULL, 'male', 'Ho Chi Minh', '34 Pham Ngoc Thach', 'patient', NULL, NULL),
-(35, 'patient35', 'password123', 'patient35@example.com', 84920000035, 'Nguyen Thi Ngoc', '2024-10-07 05:44:59', NULL, 'female', 'Ho Chi Minh', '35 Vo Van Tan', 'patient', NULL, NULL),
-(36, 'patient36', 'password123', 'patient36@example.com', 84920000036, 'Tran Van Hieu', '2024-10-07 05:44:59', NULL, 'male', 'Ho Chi Minh', '36 Nguyen Thi Minh Khai', 'patient', NULL, NULL),
-(37, 'patient37', 'password123', 'patient37@example.com', 84920000037, 'Pham Thi An', '2024-10-07 05:44:59', NULL, 'female', 'Ho Chi Minh', '37 Le Van Sy', 'patient', NULL, NULL),
-(38, 'patient38', 'password123', 'patient38@example.com', 84920000038, 'Nguyen Van Thanh', '2024-10-07 05:44:59', NULL, 'male', 'Ho Chi Minh', '38 Nguyen Trai', 'patient', NULL, NULL),
-(39, 'patient39', 'password123', 'patient39@example.com', 84920000039, 'Tran Thi Kim', '2024-10-07 05:44:59', NULL, 'female', 'Ho Chi Minh', '39 Hai Ba Trung', 'patient', NULL, NULL),
-(40, NULL, NULL, 'huan.nng25@gmail.com', NULL, 'Huan Nguyen', '2024-10-27 11:26:29', NULL, '', NULL, NULL, 'patient', NULL, NULL),
-(41, NULL, NULL, '', NULL, 'Ethan Nguyễn', '2024-10-27 11:32:23', NULL, NULL, NULL, NULL, 'patient', NULL, NULL);
+INSERT INTO `dim_user` (`user_id`, `user_name`, `password`, `email_address`, `contact_no`, `full_name`, `created_at`, `updated_at`, `gender`, `city`, `address`, `role`, `specialty_id`, `pricing`, `oauth_google`, `oauth_facebook`) VALUES
+(1, 'huan_patient', 'password123', 'huan.nguyen@example.com', 84912345601, 'Nguyen Nhut Gia Huan', '2024-10-07 05:36:07', NULL, 'male', 'Ho Chi Minh', '1 Le Duan', 'patient', NULL, NULL, NULL, NULL),
+(2, 'huan_doctor', 'password123', 'huan.nguyen@example.com', 84912345602, 'Nguyen Nhut Gia Huan', '2024-10-07 05:36:07', '2024-11-02 06:00:09', 'male', 'Ho Chi Minh', '1 Le Duan', 'doctor', 7, '400000', NULL, NULL),
+(3, 'huan_admin', 'password123', 'huan.nguyen@example.com', 84567890123, 'Nguyen Nhut Gia Huan', '2024-10-07 05:36:07', '2024-11-06 18:32:49', 'male', 'Ho Chi Minh', '1 Le Duan 14', 'admin', NULL, NULL, NULL, NULL),
+(4, 'long_patient', 'password123', 'long.nguyen@example.com', 84912345604, 'Nguyen Ba Long', '2024-10-07 05:36:07', NULL, 'male', 'Ho Chi Minh', '2 Tran Hung Dao', 'patient', NULL, NULL, NULL, NULL),
+(5, 'long_doctor', 'password123', 'long.nguyen@example.com', 84912345605, 'Nguyen Ba Long', '2024-10-07 05:36:07', '2024-11-02 06:00:09', 'male', 'Ho Chi Minh', '2 Tran Hung Dao', 'doctor', 3, '450000', NULL, NULL),
+(6, 'long_admin', 'password123', 'long.nguyen@example.com', 84912345606, 'Nguyen Ba Long', '2024-10-07 05:36:07', NULL, 'male', 'Ho Chi Minh', '2 Tran Hung Dao', 'admin', NULL, NULL, NULL, NULL),
+(7, 'khoa_patient', 'password123', 'khoa.tran@example.com', 84912345607, 'Tran Nguyen Dang Khoa', '2024-10-07 05:36:07', NULL, 'male', 'Ho Chi Minh', '3 Nguyen Thi Minh Khai', 'patient', NULL, NULL, NULL, NULL),
+(8, 'khoa_doctor', 'password123', 'khoa.tran@example.com', 84912345608, 'Tran Nguyen Dang Khoa', '2024-10-07 05:36:07', '2024-11-02 06:00:09', 'male', 'Ho Chi Minh', '3 Nguyen Thi Minh Khai', 'doctor', 10, '500000', NULL, NULL),
+(9, 'khoa_admin', 'password123', 'khoa.tran@example.com', 84912345609, 'Tran Nguyen Dang Khoa', '2024-10-07 05:36:07', NULL, 'male', 'Ho Chi Minh', '3 Nguyen Thi Minh Khai', 'admin', NULL, NULL, NULL, NULL),
+(10, 'doctor10', 'password123', 'doctor10@example.com', 84910000010, 'Nguyen Van An', '2024-10-07 05:44:49', '2024-11-02 06:00:09', 'male', 'Ho Chi Minh', '10 Phan Xich Long', 'doctor', 1, '350000', NULL, NULL),
+(11, 'doctor11', 'password123', 'doctor11@example.com', 84910000011, 'Tran Thi Bich', '2024-10-07 05:44:49', '2024-11-02 06:00:09', 'female', 'Ho Chi Minh', '11 Le Van Sy', 'doctor', 6, '370000', NULL, NULL),
+(12, 'doctor12', 'password123', 'doctor12@example.com', 84910000012, 'Pham Minh Cuong', '2024-10-07 05:44:49', '2024-11-02 06:00:09', 'male', 'Ho Chi Minh', '12 Nguyen Trai', 'doctor', 4, '400000', NULL, NULL),
+(13, 'doctor13', 'password123', 'doctor13@example.com', 84000000013, 'Vo Thi Hoa', '2024-10-07 05:44:49', '2024-11-05 01:21:01', 'female', 'Ho Chi Minh', '14 Vo Thi Sau', 'doctor', 9, '450000', NULL, NULL),
+(14, 'doctor14', 'password123', 'doctor14@example.com', 84910000014, 'Tran Van Hai', '2024-10-07 05:44:49', '2024-11-02 06:00:09', 'male', 'Ho Chi Minh', '14 Hai Ba Trung', 'doctor', 2, '420000', NULL, NULL),
+(15, 'doctor15', 'password123', 'doctor15@example.com', 84910000015, 'Pham Van Khoa', '2024-10-07 05:44:49', '2024-11-02 06:00:09', 'male', 'Ho Chi Minh', '15 Le Lai', 'doctor', 8, '390000', NULL, NULL),
+(16, 'doctor16', 'password123', 'doctor16@example.com', 84910000016, 'Nguyen Thi Lan', '2024-10-07 05:44:49', '2024-11-02 06:00:09', 'female', 'Ho Chi Minh', '16 Tran Hung Dao', 'doctor', 5, '480000', NULL, NULL),
+(17, 'doctor17', 'password123', 'doctor17@example.com', 84910000017, 'Tran Van Minh', '2024-10-07 05:44:49', '2024-11-02 06:00:09', 'male', 'Ho Chi Minh', '17 Nguyen Thi Minh Khai', 'doctor', 3, '460000', NULL, NULL),
+(18, 'doctor18', 'password123', 'doctor18@example.com', 84910000018, 'Pham Thi Nhi', '2024-10-07 05:44:49', '2024-11-02 06:00:09', 'female', 'Ho Chi Minh', '18 Le Duan', 'doctor', 7, '410000', NULL, NULL),
+(19, 'doctor19', 'password123', 'doctor19@example.com', 84910000019, 'Nguyen Van Quan', '2024-10-07 05:44:49', '2024-11-02 06:00:09', 'male', 'Ho Chi Minh', '19 Dong Khoi', 'doctor', 1, '500000', NULL, NULL),
+(20, 'patient20', 'password123', 'patient20@example.com', 84920000020, 'Nguyen Van Tuan', '2024-10-07 05:44:59', NULL, 'male', 'Ho Chi Minh', '20 Nguyen Hue', 'patient', NULL, NULL, NULL, NULL),
+(21, 'patient21', 'password123', 'patient21@example.com', 84920000021, 'Tran Thi Thao', '2024-10-07 05:44:59', NULL, 'female', 'Ho Chi Minh', '21 Le Thanh Ton', 'patient', NULL, NULL, NULL, NULL),
+(22, 'patient22', 'password123', 'patient22@example.com', 84920000022, 'Pham Van Hoang', '2024-10-07 05:44:59', NULL, 'male', 'Ho Chi Minh', '22 Tran Van Kieu', 'patient', NULL, NULL, NULL, NULL),
+(23, 'patient23', 'password123', 'patient23@example.com', 84920000023, 'Nguyen Thi Ly', '2024-10-07 05:44:59', NULL, 'female', 'Ho Chi Minh', '23 Le Loi', 'patient', NULL, NULL, NULL, NULL),
+(24, 'patient24', 'password123', 'patient24@example.com', 84920000024, 'Tran Van Dat', '2024-10-07 05:44:59', NULL, 'male', 'Ho Chi Minh', '24 Pham Ngoc Thach', 'patient', NULL, NULL, NULL, NULL),
+(25, 'patient25', 'password123', 'patient25@example.com', 84920000025, 'Pham Thi Kim', '2024-10-07 05:44:59', NULL, 'female', 'Ho Chi Minh', '25 Vo Van Tan', 'patient', NULL, NULL, NULL, NULL),
+(26, 'patient26', 'password123', 'patient26@example.com', 84920000026, 'Nguyen Van Phuc', '2024-10-07 05:44:59', NULL, 'male', 'Ho Chi Minh', '26 Nguyen Thi Minh Khai', 'patient', NULL, NULL, NULL, NULL),
+(27, 'patient27', 'password123', 'patient27@example.com', 84920000027, 'Tran Thi Mai', '2024-10-07 05:44:59', NULL, 'female', 'Ho Chi Minh', '27 Le Van Sy', 'patient', NULL, NULL, NULL, NULL),
+(28, 'patient28', 'password123', 'patient28@example.com', 84920000028, 'Pham Van Tinh', '2024-10-07 05:44:59', NULL, 'male', 'Ho Chi Minh', '28 Nguyen Trai', 'patient', NULL, NULL, NULL, NULL),
+(29, 'patient29', 'password123', 'patient29@example.com', 84920000029, 'Nguyen Thi Hanh', '2024-10-07 05:44:59', NULL, 'female', 'Ho Chi Minh', '29 Hai Ba Trung', 'patient', NULL, NULL, NULL, NULL),
+(30, 'patient30', 'password123', 'patient30@example.com', 84920000030, 'Tran Van Quang', '2024-10-07 05:44:59', NULL, 'male', 'Ho Chi Minh', '30 Nguyen Hue', 'patient', NULL, NULL, NULL, NULL),
+(31, 'patient31', 'password123', 'patient31@example.com', 84920000031, 'Pham Thi Trang', '2024-10-07 05:44:59', NULL, 'female', 'Ho Chi Minh', '31 Le Thanh Ton', 'patient', NULL, NULL, NULL, NULL),
+(32, 'patient32', 'password123', 'patient32@example.com', 84920000032, 'Nguyen Van Son', '2024-10-07 05:44:59', NULL, 'male', 'Ho Chi Minh', '32 Tran Van Kieu', 'patient', NULL, NULL, NULL, NULL),
+(33, 'patient33', 'password123', 'patient33@example.com', 84920000033, 'Tran Thi Hoa', '2024-10-07 05:44:59', NULL, 'female', 'Ho Chi Minh', '33 Le Loi', 'patient', NULL, NULL, NULL, NULL),
+(34, 'patient34', 'password123', 'patient34@example.com', 84920000034, 'Pham Van Cuong', '2024-10-07 05:44:59', NULL, 'male', 'Ho Chi Minh', '34 Pham Ngoc Thach', 'patient', NULL, NULL, NULL, NULL),
+(35, 'patient35', 'password123', 'patient35@example.com', 84920000035, 'Nguyen Thi Ngoc', '2024-10-07 05:44:59', NULL, 'female', 'Ho Chi Minh', '35 Vo Van Tan', 'patient', NULL, NULL, NULL, NULL),
+(36, 'patient36', 'password123', 'patient36@example.com', 84920000036, 'Tran Van Hieu', '2024-10-07 05:44:59', NULL, 'male', 'Ho Chi Minh', '36 Nguyen Thi Minh Khai', 'patient', NULL, NULL, NULL, NULL),
+(37, 'patient37', 'password123', 'patient37@example.com', 84920000037, 'Pham Thi An', '2024-10-07 05:44:59', NULL, 'female', 'Ho Chi Minh', '37 Le Van Sy', 'patient', NULL, NULL, NULL, NULL),
+(38, 'patient38', 'password123', 'patient38@example.com', 84920000038, 'Nguyen Van Thanh', '2024-10-07 05:44:59', NULL, 'male', 'Ho Chi Minh', '38 Nguyen Trai', 'patient', NULL, NULL, NULL, NULL),
+(39, 'patient39', 'password123', 'patient39@example.com', 84920000039, 'Tran Thi Kim', '2024-10-07 05:44:59', NULL, 'female', 'Ho Chi Minh', '39 Hai Ba Trung', 'patient', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -420,28 +420,32 @@ CREATE TABLE `fact_payment` (
   `amount` varchar(255) NOT NULL,
   `payment_desc` varchar(255) DEFAULT NULL,
   `payment_status` varchar(100) DEFAULT NULL,
-  `bank_trans_code` varchar(255) DEFAULT NULL
+  `bank_trans_code` varchar(255) DEFAULT NULL,
+  `created_at` date NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `fact_payment`
 --
 
-INSERT INTO `fact_payment` (`payment_id`, `payment_type`, `reference_id`, `amount`, `payment_desc`, `payment_status`, `bank_trans_code`) VALUES
-(6, 'appointment', 4, '345000', 'Test Pay 1', 'pending', NULL),
-(7, 'appointment', 4, '345000', 'Test Pay 1', 'pending', NULL),
-(8, 'appointment', 6, '345000', 'Test Pay 2', 'pending', NULL),
-(9, 'appointment', 7, '123000', 'Test pay 3', 'completed', '14641906'),
-(10, 'prescription', 12, '120000', 'Test Pay 4', 'completed', '14641914'),
-(11, 'prescription', 14, '120000', 'Pay test 5', 'pending', NULL),
-(12, 'prescription', 14, '120000', 'Pay test 5', 'pending', NULL),
-(13, 'prescription', 8, '20000', 'Test Pay 6', 'pending', NULL),
-(14, 'prescription', 8, '20000', 'Test Pay 6', 'completed', '14641919'),
-(15, 'prescription', 5, '140000', 'Pay test 7', 'pending', NULL),
-(16, 'appointment', 3, '123000', 'Test thanh toan', 'pending', NULL),
-(17, 'appointment', 3, '123000', 'Test thanh toan', 'pending', NULL),
-(18, 'appointment', 2, '123000', 'Test thanh toan', 'pending', NULL),
-(19, 'appointment', 2, '123000', 'asdfsd', 'completed', '14643763');
+INSERT INTO `fact_payment` (`payment_id`, `payment_type`, `reference_id`, `amount`, `payment_desc`, `payment_status`, `bank_trans_code`, `created_at`, `updated_at`) VALUES
+(6, 'appointment', 4, '345000', 'Test Pay 1', 'pending', NULL, '2024-11-07', NULL),
+(7, 'appointment', 4, '345000', 'Test Pay 1', 'pending', NULL, '2024-11-07', NULL),
+(8, 'appointment', 6, '345000', 'Test Pay 2', 'pending', NULL, '2024-11-07', NULL),
+(9, 'appointment', 7, '123000', 'Test pay 3', 'completed', '14641906', '2024-11-07', NULL),
+(10, 'prescription', 12, '120000', 'Test Pay 4', 'completed', '14641914', '2024-11-07', NULL),
+(11, 'prescription', 14, '120000', 'Pay test 5', 'pending', NULL, '2024-11-07', NULL),
+(12, 'prescription', 14, '120000', 'Pay test 5', 'pending', NULL, '2024-11-07', NULL),
+(13, 'prescription', 8, '20000', 'Test Pay 6', 'pending', NULL, '2024-11-07', NULL),
+(14, 'prescription', 8, '20000', 'Test Pay 6', 'completed', '14641919', '2024-11-07', NULL),
+(15, 'prescription', 5, '140000', 'Pay test 7', 'pending', NULL, '2024-11-07', NULL),
+(16, 'appointment', 3, '123000', 'Test thanh toan', 'pending', NULL, '2024-11-07', NULL),
+(17, 'appointment', 3, '123000', 'Test thanh toan', 'pending', NULL, '2024-11-07', NULL),
+(18, 'appointment', 2, '123000', 'Test thanh toan', 'pending', NULL, '2024-11-07', NULL),
+(19, 'appointment', 2, '123000', 'asdfsd', 'completed', '14643763', '2024-11-07', NULL),
+(20, 'appointment', 3, '123456', 'test', 'pending', NULL, '2024-11-07', NULL),
+(21, 'appointment', 3, '123456', 'test', 'pending', NULL, '2024-11-07', NULL);
 
 -- --------------------------------------------------------
 
@@ -575,19 +579,19 @@ ALTER TABLE `fact_user_login`
 -- AUTO_INCREMENT for table `dim_item`
 --
 ALTER TABLE `dim_item`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- AUTO_INCREMENT for table `dim_specialties`
 --
 ALTER TABLE `dim_specialties`
-  MODIFY `specialty_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `specialty_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `dim_user`
 --
 ALTER TABLE `dim_user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT for table `fact_appointment`
@@ -611,7 +615,7 @@ ALTER TABLE `fact_patient_details`
 -- AUTO_INCREMENT for table `fact_payment`
 --
 ALTER TABLE `fact_payment`
-  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `fact_prescriptions`

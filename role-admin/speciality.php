@@ -200,6 +200,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="payment_log.php">
+
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="material-icons opacity-10">payments</i>
+                            <!-- Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID -->
+                        </div>
+
+                        <span class="nav-link-text ms-1">Lịch sử giao dịch</span>
+                    </a>
+                </li>
+
             </ul>
         </div>
 
@@ -216,7 +228,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="nav-right">
                 <div class="nav-item">
                     <div class="custom-input" style="width: 180px">
-                        <input type="text" placeholder="Nhập từ khoá">
+                        <input type="text" id="searchTableField" placeholder="Nhập tên chuyên khoa">
                         <label>Tìm kiếm</label>
                     </div>
                 </div>
@@ -271,31 +283,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         </div>
                                         <div class="card-body edit-body">
                                             <form name="spccreate" role="form" method="POST">
-                                                <div class="custom-input">
-                                                    <input type="text" name="spc_name" id="spc_name"
-                                                        placeholder="Nhập Tên chuyên khoa">
-                                                    <label>Tên chuyên khoa</label>
-                                                </div>
-                                                <div class="custom-input">
-                                                    <input type="text" name="spc_desc" id="spc_desc"
-                                                        placeholder="Nhập mô tả">
-                                                    <label>Mô tả chuyên khoa</label>
-                                                </div>
-                                                <div class="custom-input">
-                                                    <input type="text" name="spc_note" id="spc_note"
-                                                        placeholder="Nhập ghi chú">
-                                                    <label>Ghi chú chuyên khoa</label>
-                                                </div>
-                                                <div class="text-center">
-                                                    <button type="submit" name="create" value="create"
-                                                        class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Tạo
-                                                        chuyên khoa</button>
-                                                </div>
-
-                                                <div class="text-center">
-                                                    <button type="button"
-                                                        class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
-                                                        data-bs-dismiss="modal">Thoát</button>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="custom-input">
+                                                            <input type="text" name="spc_name" id="spc_name"
+                                                                placeholder="Nhập Tên chuyên khoa">
+                                                            <label>Tên chuyên khoa</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="custom-input">
+                                                            <input type="text" name="spc_desc" id="spc_desc"
+                                                                placeholder="Nhập mô tả">
+                                                            <label>Mô tả chuyên khoa</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="custom-input">
+                                                            <input type="text" name="spc_note" id="spc_note"
+                                                                placeholder="Nhập ghi chú">
+                                                            <label>Ghi chú chuyên khoa</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="text-center">
+                                                            <button type="button"
+                                                                class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
+                                                                data-bs-dismiss="modal">Thoát</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="text-center">
+                                                            <button type="submit" name="create" value="create"
+                                                                class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Tạo
+                                                                chuyên khoa</button>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </form>
                                         </div>
@@ -332,138 +355,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                 Thao tác</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <?php
-
-                                        //Get data for table
-                                        
-                                        $get_data_query = "SELECT * FROM `dim_specialties`";
-
-                                        $get_data = mysqli_query($conn, $get_data_query);
-
-                                        $count = mysqli_num_rows($get_data);
-                                        // Kiểm tra và hiển thị dữ liệu
-                                        if ($count > 0) {
-                                            while ($row = mysqli_fetch_assoc($get_data)) {
-                                                $spc_id = $row["specialty_id"];
-                                                $spc_name = $row["specialty_name"];
-                                                $spc_desc = $row["description"];
-                                                $spc_note = $row["note"];
-                                                $created_at = $row["created_at"];
-                                                $updated_at = $row["updated_at"];
-                                                ?>
-                                                <tr>
-                                                    <td class="align-middle text-center text-sm">
-                                                        <p class="text-xs font-weight-bold mb-0"><?php echo $spc_id; ?></p>
-                                                    </td>
-                                                    <td class='align-middle text-center'>
-                                                        <div class="d-flex px-2 py-1">
-                                                            <div>
-                                                                <img src="https://medlatec.vn/media/207/catalog/chuyen-khoa-tim-mach.jpg"
-                                                                    class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                                            </div>
-                                                            <div class="d-flex flex-column justify-content-center">
-                                                                <h6 class="mb-0 text-sm"><?php echo $spc_name; ?></h6>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td class='align-middle text-center'>
-                                                        <p class="text-xs font-weight-bold mb-0"><?php echo $spc_desc; ?></p>
-                                                    </td>
-                                                    <td class='align-middle text-center'>
-                                                        <p class="text-xs font-weight-bold mb-0"><?php echo $spc_note; ?></p>
-                                                    </td>
-                                                    <td class='align-middle text-center'>
-                                                        <p class="text-xs font-weight-bold mb-0"><?php echo $created_at; ?></p>
-                                                    </td>
-                                                    <td class='align-middle text-center'>
-                                                        <p class="text-xs font-weight-bold mb-0"><?php echo $updated_at; ?></p>
-                                                    </td>
-                                                    <td class='align-middle text-center'>
-                                                        <a href='#popup_edit-<?php echo $user_id; ?>'
-                                                            class='text-secondary font-weight-bold text-xs edit-btn'
-                                                            data-original-title='edit' title='Sửa thông tin'
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#popup_edit-<?php echo $spc_id; ?>">Cập nhật</a>
-                                                    </td>
-                                                </tr>
-
-                                                <!-- Popup for Specialties edit -->
-                                                <div class="modal fade" id="popup_edit-<?php echo $spc_id; ?>" tabindex="-1"
-                                                    aria-labelledby="SpcEdit" aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered">
-                                                        <div class="modal-content">
-                                                            <div class="card">
-                                                                <div
-                                                                    class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                                                                    <div
-                                                                        class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                                                                        <h4
-                                                                            class="text-white font-weight-bolder text-center mt-2 mb-0">
-                                                                            Cập nhật thông tin chuyên khoa
-                                                                        </h4>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="card-body edit-body">
-                                                                    <form name="spcedit" role="form" method="POST">
-                                                                        <div class="row">
-                                                                            <div class="col-md-12">
-                                                                                <div class="custom-input">
-                                                                                    <input type="text" name="spc_name"
-                                                                                        id="spc_name"
-                                                                                        placeholder="<?php echo $spc_name; ?>">
-                                                                                    <label>Tên chuyên khoa</label>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-12">
-                                                                                <div class="custom-input">
-                                                                                    <input type="text" name="spc_desc"
-                                                                                        id="spc_desc"
-                                                                                        placeholder="<?php echo $spc_desc; ?>">
-                                                                                    <label>Mô tả chuyên khoa</label>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-12">
-                                                                                <div class="custom-input">
-                                                                                    <input type="text" name="spc_note"
-                                                                                        id="spc_note"
-                                                                                        placeholder="<?php echo $spc_note; ?>">
-                                                                                    <label>Ghi chú chuyên khoa</label>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-6">
-                                                                                <div class="text-center">
-                                                                                    <button type="submit" name="update"
-                                                                                        value=<?php echo $spc_id; ?>
-                                                                                        class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập
-                                                                                        nhật</button>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-6">
-                                                                                <div class="text-center">
-                                                                                    <button type="submit" name="delete"
-                                                                                        value=<?php echo $spc_id; ?>
-                                                                                        class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Xoá</button>
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <div class="text-center">
-                                                                                <button type="button"
-                                                                                    class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
-                                                                                    data-bs-dismiss="modal">Thoát</button>
-                                                                            </div>
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            <?php }
-                                        } ?>
+                                    <tbody id="productTableBody">
+                                        <!-- Data appear here -->
                                     </tbody>
                                 </table>
-
                             </div>
                         </div>
                     </div>
@@ -479,176 +374,161 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             const displayTableDataFromFiltered = () => {
                 const tbodyHTML = tableDataFiltered.map(item => `
             <tr>
-                <td class='align-middle text-center'>
-                    <h6 class='mb-0 text-sm'>${item.user_id}</h6>
+                <td class="align-middle text-center text-sm">
+                    <p class="text-xs font-weight-bold mb-0">${item.specialty_id}</p>
                 </td>
                 <td class='align-middle text-center'>
-                    <h6 class='mb-0 text-sm'>${item.full_name}</h6>
-                </td>
-                <td class='align-middle text-center text-sm'>
-                    <p class='text-xs font-weight-bold mb-0'>${item.role}</p>
-                </td>
-                <td class='align-middle text-center text-sm'>
-                    <p class='text-xs font-weight-bold mb-0'>${item.user_name}</p>
-                </td>
-                <td class='align-middle text-center text-sm'>
-                    <p class='text-xs font-weight-bold mb-0'>${item.contact_no}</p>
-                </td>
-                <td class='align-middle text-center'>
-                    <span
-                        class='text-secondary text-xs font-weight-bold'>${item.email_address}</span>
+                    <div class="d-flex px-2 py-1">
+                        <div>
+                            <img src="https://medlatec.vn/media/207/catalog/chuyen-khoa-tim-mach.jpg"
+                                class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                        </div>
+                        <div class="d-flex flex-column justify-content-center">
+                            <h6 class="mb-0 text-sm">${item.specialty_name}</h6>
+                        </div>
+                    </div>
                 </td>
                 <td class='align-middle text-center'>
-                    <span
-                        class='text-secondary text-xs font-weight-bold'>${item.password}</span>
+                    <p class="text-xs font-weight-bold mb-0">${item.description}</p>
                 </td>
                 <td class='align-middle text-center'>
-                    <span
-                        class='text-secondary text-xs font-weight-bold'>${item.created_at}</span>
+                    <p class="text-xs font-weight-bold mb-0">${item.note}</p>
                 </td>
                 <td class='align-middle text-center'>
-                    <span
-                        class='text-secondary text-xs font-weight-bold'>${item.updated_at}</span>
+                    <p class="text-xs font-weight-bold mb-0">${item.created_at}</p>
                 </td>
                 <td class='align-middle text-center'>
-                    <a href='#popup_edit-${item.user_id}'
+                    <p class="text-xs font-weight-bold mb-0">${item.updated_at}</p>
+                </td>
+                <td class='align-middle text-center'>
+                    <a href='#popup_edit-${item.specialty_id}'
                         class='text-secondary font-weight-bold text-xs edit-btn'
                         data-original-title='edit' title='Sửa thông tin'
                         data-bs-toggle="modal"
-                        data-bs-target="#popup_edit-${item.user_id}">Cập nhật</a>
-                </td>
-            </tr>
-
-            <!-- Popup Chỉnh sửa thông tin -->
-            <div class="modal fade" id="popup_edit-${item.user_id}" tabindex="-1"
-                aria-labelledby="EmployeeEdit" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="card">
-                            <div
-                                class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                        data-bs-target="#popup_edit-${item.specialty_id}">Cập nhật</a>\
+                <a class='text-secondary font-weight-bold text-xs edit-btn'"> / </a>
+                    <a href='#popup_delete-${item.specialty_id}'
+                        class='text-secondary font-weight-bold text-xs edit-btn'
+                        data-original-title='delete' title='Xoá chuyên khoa'
+                        data-bs-toggle="modal"
+                        data-bs-target="#popup_delete-${item.specialty_id}">Xoá</a>
+            
+                <!-- Popup for Specialties edit -->
+                <div class="modal fade" id="popup_edit-${item.specialty_id}" tabindex="-1"
+                    aria-labelledby="SpcEdit" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="card">
                                 <div
-                                    class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                                    <h4
-                                        class="text-white font-weight-bolder text-center mt-2 mb-0">
-                                        Cập nhật tài khoản người dùng
-                                    </h4>
-                                </div>
-                            </div>
-                            <div class="card-body edit-body">
-                                <form name="new_user" role="form" method="POST">
-                                    <div class="row"> <!-- Thêm hàng để chia thành 2 bên -->
-                                        <div class="col-md-6">
-                                            <div class="custom-input">
-                                                <input type="text" name="full_name"
-                                                    id="full_name"
-                                                    value="${item.full_name}" required>
-                                                <label>Họ và Tên</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="custom-input">
-                                                <input type="text" name="user_name"
-                                                    id="user_name"
-                                                    value="${item.user_name}" required>
-                                                <label>Tên đăng nhập</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="custom-input">
-                                                <input type="email" name="email_address"
-                                                    id="email_address"
-                                                    value="${item.email_address}" required>
-                                                <label>Địa chỉ Email</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="custom-input">
-                                                <input type="text" name="contact_no"
-                                                    id="contact_no"
-                                                    value="${item.contact_no}" required>
-                                                <label>Số điện thoại</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="custom-input">
-                                                <select name="gender" id="gender"
-                                                    required>
-                                                    <option value="" disabled selected hidden>Chọn
-                                                        giới tính</option>
-                                                    <option value="male">Nam</option>
-                                                    <option value="female">Nữ</option>
-                                                </select>
-                                                <label>Giới tính</label>
-                                                <div class="arrow-icon">
-                                                    <i class="fa-solid fa-chevron-down"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="custom-input">
-                                                <select name="role" id="role" disabled required>
-                                                    <option value="patient">Bệnh nhân</option>
-                                                    </option>
-                                                </select>
-                                                <label>Vị trí</label>
-                                                <div class="arrow-icon">
-                                                    <i class="fa-solid fa-chevron-down"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="custom-input">
-                                                <input type="password" name="contact_no"
-                                                    id="contact_no"
-                                                    value="${item.password}" required>
-                                                <label>Mật khẩu</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="custom-input">
-                                                <input type="text" name="address"
-                                                    id="address"
-                                                    value="${item.address}" required>
-                                                <label>Địa chỉ</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="custom-input">
-                                                <input type="text" name="city" id="city"
-                                                    value="${item.city}" required>
-                                                <label>Thành phố</label>
-                                            </div>
-                                        </div>
-                                        <!-- Thêm hàng để chia thành 2 bên -->
-                                        <div class="col-md-6">
-                                            <div class="text-center">
-                                                <button type="submit" name="update"
-                                                    value=${item.user_id}
-                                                    class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập
-                                                    nhật</button>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="text-center">
-                                                <button type="submit" name="delete"
-                                                    value=${item.user_id}
-                                                    class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Xoá</button>
-                                            </div>
-                                        </div>
-
-                                        <div class="text-center">
-                                            <button type="button"
-                                                class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
-                                                data-bs-dismiss="modal">Thoát</button>
-                                        </div>
+                                    class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                                    <div
+                                        class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                                        <h4
+                                            class="text-white font-weight-bolder text-center mt-2 mb-0">
+                                            Cập nhật thông tin chuyên khoa
+                                        </h4>
                                     </div>
-                                </form>
+                                </div>
+                                <div class="card-body edit-body">
+                                    <form name="spcedit" role="form" method="POST">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="custom-input">
+                                                    <input type="text" name="spc_name"
+                                                        id="spc_name"
+                                                        value="${item.specialty_name}" required>
+                                                    <label>Tên chuyên khoa</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="custom-input">
+                                                    <input type="text" name="spc_desc"
+                                                        id="spc_desc"
+                                                        value="${item.description}" required>
+                                                    <label>Mô tả chuyên khoa</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="custom-input">
+                                                    <input type="text" name="spc_note"
+                                                        id="spc_note"
+                                                        value="${item.note}" required>
+                                                    <label>Ghi chú chuyên khoa</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="text-center">
+                                                    <button type="button"
+                                                        class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
+                                                        data-bs-dismiss="modal">Thoát</button>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="text-center">
+                                                    <button type="submit" name="update"
+                                                        value=${item.specialty_id}
+                                                        class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập
+                                                        nhật</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+
+                <!-- Popup Xoá thông tin -->
+                    <div class="modal fade" id="popup_delete-${item.specialty_id}" tabindex="-1"
+                        aria-labelledby="EmployeeEdit" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="card">
+                                    <div
+                                        class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                                        <div
+                                            class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                                            <h4
+                                                class="text-white font-weight-bolder text-center mt-2 mb-0">
+                                                Xoá chuyên khoa
+                                            </h4>
+                                        </div>
+                                        <div class="card-header">
+                                            <p class="font-weight-bolder text-center mt-2 mb-0">Bạn có chắc chắn muốn xoá chuyên khoa sau?</p>
+                                            <p class="text-center mt-2 mb-0">${item.specialty_name}</p>
+                                            <p class="font-weight-bolder text-center mt-2 mb-0">Chuyên khoa này sẽ không thể khôi phục</p>
+                                        </div>
+                                    </div>
+                                    <div class="card-body edit-body">
+                                        <form name="edit_user" role="form" method="POST">
+                                            <div class="row"> <!-- Thêm hàng để chia thành 2 bên -->
+                                                <!-- Thêm hàng để chia thành 2 bên -->
+                                                <div class="col-md-6">
+                                                    <div class="text-center">
+                                                        <button type="button"
+                                                            class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
+                                                            data-bs-dismiss="modal">Thoát</button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="text-center">
+                                                        <button type="submit" name="delete"
+                                                            value=${item.specialty_id}
+                                                            class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Xoá</button>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
         `).join("");
                 document.getElementById('productTableBody').innerHTML = tbodyHTML;
             }
@@ -674,7 +554,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     if (!query) {
                         tableDataFiltered = tableData;
                     } else {
-                        tableDataFiltered = tableData.filter(item => item.email_address.toLowerCase().includes(query));
+                        tableDataFiltered = tableData.filter(item => item.specialty_name.toLowerCase().includes(query));
                     }
                     displayTableDataFromFiltered();
                 }, 500)
