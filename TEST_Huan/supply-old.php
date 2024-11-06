@@ -216,7 +216,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <div class="nav-right">
         <div class="nav-item">
           <div class="custom-input" style="width: 180px">
-            <input type="text" id="searchTableField" placeholder="Nhập từ khoá">
+            <input type="text" placeholder="Nhập từ khoá">
             <label>Tìm kiếm</label>
           </div>
         </div>
@@ -328,8 +328,132 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         Thao tác</th>
                     </tr>
                   </thead>
-                  <tbody id="productTableBody">
-                    <!-- Data appear here -->
+                  <tbody>
+                    <?php
+
+                    $sql = "SELECT * FROM `dim_item` ";
+                    $result = $conn->query($sql);
+                    // Kiểm tra và hiển thị dữ liệu
+                    if ($result->num_rows > 0) {
+                      while ($row = $result->fetch_assoc()) {
+
+
+
+                        //   $imagePath = "../assets/image/med_items/" . $row['item_id'] . ".png";
+                        $item_id = $row["item_id"];
+                        $item_name = $row["item_name"];
+                        $item_price = $row["item_price"];
+                        $item_unit = $row["item_unit"];
+                        $created_at = $row["created_at"];
+                        $updated_at = $row["updated_at"];
+                        ?>
+                        <tr>
+                          <td class="align-middle text-center text-sm">
+                            <p class="text-xs font-weight-bold mb-0"><?php echo $item_id ?></p>
+                          </td>
+                          <td class="align-middle text-center">
+                            <div class="d-flex px-2 py-1">
+                              <div>
+
+                              </div>
+                              <div class="d-flex flex-column justify-content-center">
+                                <h6 class="mb-0 text-sm"><?php echo $item_name ?></h6>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="align-middle text-center">
+                            <p class="text-xs font-weight-bold mb-0"><?php echo number_format(
+                              $item_price,
+                              0,
+                              ',',
+                              '.'
+                            ) ?></p> <!-- Định dạng tiền tệ -->
+                            <p class="text-xs text-secondary mb-0">VNĐ</p>
+                          </td>
+                          <td class="align-middle text-center text-sm">
+                            <p class="text-xs font-weight-bold mb-0"><?php echo $item_unit ?></p>
+                          </td>
+                          <td class="align-middle text-center">
+                            <span class="text-secondary text-xs font-weight-bold"><?php echo $created_at ?></span>
+                          </td>
+                          <td class="align-middle text-center">
+                            <span class="text-secondary text-xs font-weight-bold"><?php echo $updated_at ?></span>
+                          </td>
+                          <td class='align-middle text-center'>
+                            <a href='#popup_edit-<?php echo $item_id; ?>'
+                              class='text-secondary font-weight-bold text-xs edit-btn' data-original-title='edit'
+                              title='Sửa thông tin' data-bs-toggle="modal"
+                              data-bs-target="#popup_edit-<?php echo $item_id; ?>">Cập nhật</a>
+                          </td>
+                        </tr>
+
+                        <!-- Popup for Specialties edit -->
+                        <div class="modal fade" id="popup_edit-<?php echo $item_id; ?>" tabindex="-1"
+                          aria-labelledby="ItemCreate" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                              <div class="card">
+                                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                                  <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                                    <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">
+                                      Cập nhật vật tư
+                                    </h4>
+                                  </div>
+                                </div>
+                                <div class="card-body edit-body">
+                                  <form name="itemcreate" role="form" method="POST">
+                                    <div class="custom-input">
+                                      <input type="text" name="item_name" id="item_name"
+                                        placeholder="<?php echo $item_name ?>">
+                                      <label>Tên vật tư</label>
+                                    </div>
+                                    <div class="custom-input">
+                                      <input type="number" name="price" id="price" placeholder="<?php echo $item_price ?>">
+                                      <label>Đơn giá</label>
+                                    </div>
+                                    <div class="input-group input-group-outline mb-3">
+                                      <!-- <label class="form-label-lg" style="margin-right: 10px;">Giới tính</label> -->
+                                      <select name="unit" id="unit" class="form-control">
+                                        <option value="" disabled selected>Chọn đơn vị
+                                          tính
+                                        </option>
+                                        <option value="viên">Viên</option>
+                                        <option value="gói">Gói</option>
+                                        <option value="hộp">Hộp</option>
+                                        <option value="cái">Cái</option>
+                                        <option value="bộ">Bộ</option>
+                                      </select>
+                                    </div>
+                                    <div class="text-center">
+                                      <button type="submit" name="update" value=<?php echo $item_id; ?>
+                                        class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập
+                                        nhật</button>
+                                    </div>
+
+                                    <div class="text-center">
+                                      <button type="submit" name="delete" value=<?php echo $item_id; ?>
+                                        class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Xoá</button>
+
+                                    </div>
+
+                                    <div class="text-center">
+                                      <button type="button" class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
+                                        data-bs-dismiss="modal">Thoát</button>
+                                    </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <?php
+                      }
+                    } else {
+                      echo "Không tìm thấy người dùng.";
+                    }
+                    ?>
+
                   </tbody>
                 </table>
 
@@ -391,106 +515,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script>
       let productData = null;
       let productDataFiltered = null;
-      const displayTableDataFromFiltered = () => {
-        const tbodyHTML = productDataFiltered.map(item => `
-          <tr>
-            <td class="align-middle text-center text-sm">
-              <p class="text-xs font-weight-bold mb-0">${item.item_id}</p>
-            </td>
-            <td class="align-middle text-center">
-              <div class="d-flex px-2 py-1">
-                <div>
-
-                </div>
-                <div class="d-flex flex-column justify-content-center">
-                  <h6 class="mb-0 text-sm">${item.item_name}</h6>
-                </div>
-              </div>
-            </td>
-            <td class="align-middle text-center">
-              <p class="text-xs font-weight-bold mb-0">
-                ${item.item_price}
-              </p>
-              <p class="text-xs text-secondary mb-0">VNĐ</p>
-            </td>
-            <td class="align-middle text-center text-sm">
-              <p class="text-xs font-weight-bold mb-0">${item.item_unit}</p>
-            </td>
-            <td class="align-middle text-center">
-              <span class="text-secondary text-xs font-weight-bold">${item.created_at}</span>
-            </td>
-            <td class="align-middle text-center">
-              <span class="text-secondary text-xs font-weight-bold">${item.updated_at}</span>
-            </td>
-            <td class='align-middle text-center'>
-              <a href='#popup_edit-${item.item_id}'
-                class='text-secondary font-weight-bold text-xs edit-btn' data-original-title='edit'
-                title='Sửa thông tin' data-bs-toggle="modal"
-                data-bs-target="#popup_edit-${item.item_id}">Cập nhật</a>
-            </td>
-          </tr>
-
-          <div class="modal fade" id="popup_edit-${item.item_id}" tabindex="-1"
-            aria-labelledby="ItemCreate" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-              <div class="modal-content">
-                <div class="card">
-                  <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                    <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                      <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">
-                        Cập nhật vật tư
-                      </h4>
-                    </div>
-                  </div>
-                  <div class="card-body edit-body">
-                    <form name="itemcreate" role="form" method="POST">
-                      <div class="custom-input">
-                        <input type="text" name="item_name" id="item_name"
-                          placeholder="${item.item_name}">
-                        <label>Tên vật tư</label>
-                      </div>
-                      <div class="custom-input">
-                        <input type="number" name="price" id="price" placeholder="${item.item_price}">
-                        <label>Đơn giá</label>
-                      </div>
-                      <div class="input-group input-group-outline mb-3">
-                        <!-- <label class="form-label-lg" style="margin-right: 10px;">Giới tính</label> -->
-                        <select name="unit" id="unit" class="form-control">
-                          <option value="" disabled selected>Chọn đơn vị
-                            tính
-                          </option>
-                          <option value="viên">Viên</option>
-                          <option value="gói">Gói</option>
-                          <option value="hộp">Hộp</option>
-                          <option value="cái">Cái</option>
-                          <option value="bộ">Bộ</option>
-                        </select>
-                      </div>
-                      <div class="text-center">
-                        <button type="submit" name="update" value=${item.item_id}
-                          class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập
-                          nhật</button>
-                      </div>
-
-                      <div class="text-center">
-                        <button type="submit" name="delete" value=${item.item_id}
-                          class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Xoá</button>
-
-                      </div>
-
-                      <div class="text-center">
-                        <button type="button" class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
-                          data-bs-dismiss="modal">Thoát</button>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        `).join("");
-        document.getElementById('productTableBody').innerHTML = tbodyHTML;
-      }
       // $(document).ready(function () {
       //   $('#drugTable').DataTable({
       //     "pagingType": "simple_numbers", // Sử dụng phân trang đơn giản
@@ -514,18 +538,110 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       ?>
         productData = <?php echo json_encode($productList) ?>;
         productDataFiltered = productData;
-        displayTableDataFromFiltered();
       <?php  ?>
-      const searchField = document.getElementById("searchTableField");
-      searchField.addEventListener("keyup", () => {
-        const query = searchField.value.toLowerCase();
-        if(!query) {
-          productDataFiltered = productData;
-        } else {
-          productDataFiltered = productData.filter(item => item.item_name.toLowerCase().includes(query));
-        }
-        displayTableDataFromFiltered();
-      })
+      const displayTableDataFromFiltered = () => {
+        const tbodyHTML = productDataFiltered.map(item => `
+          <tr>
+            <td class="align-middle text-center text-sm">
+              <p class="text-xs font-weight-bold mb-0">${item.item_id}</p>
+            </td>
+            <td class="align-middle text-center">
+              <div class="d-flex px-2 py-1">
+                <div>
+
+                </div>
+                <div class="d-flex flex-column justify-content-center">
+                  <h6 class="mb-0 text-sm">${item.item_name}</h6>
+                </div>
+              </div>
+            </td>
+            <td class="align-middle text-center">
+              <p class="text-xs font-weight-bold mb-0"><?php echo number_format(
+                $item_price,
+                0,
+                ',',
+                '.'
+              ) ?></p>
+              <p class="text-xs text-secondary mb-0">VNĐ</p>
+            </td>
+            <td class="align-middle text-center text-sm">
+              <p class="text-xs font-weight-bold mb-0"><?php echo $item_unit ?></p>
+            </td>
+            <td class="align-middle text-center">
+              <span class="text-secondary text-xs font-weight-bold"><?php echo $created_at ?></span>
+            </td>
+            <td class="align-middle text-center">
+              <span class="text-secondary text-xs font-weight-bold"><?php echo $updated_at ?></span>
+            </td>
+            <td class='align-middle text-center'>
+              <a href='#popup_edit-<?php echo $item_id; ?>'
+                class='text-secondary font-weight-bold text-xs edit-btn' data-original-title='edit'
+                title='Sửa thông tin' data-bs-toggle="modal"
+                data-bs-target="#popup_edit-<?php echo $item_id; ?>">Cập nhật</a>
+            </td>
+          </tr>
+
+          <!-- Popup for Specialties edit -->
+          <div class="modal fade" id="popup_edit-<?php echo $item_id; ?>" tabindex="-1"
+            aria-labelledby="ItemCreate" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="card">
+                  <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                    <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                      <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">
+                        Cập nhật vật tư
+                      </h4>
+                    </div>
+                  </div>
+                  <div class="card-body edit-body">
+                    <form name="itemcreate" role="form" method="POST">
+                      <div class="custom-input">
+                        <input type="text" name="item_name" id="item_name"
+                          placeholder="<?php echo $item_name ?>">
+                        <label>Tên vật tư</label>
+                      </div>
+                      <div class="custom-input">
+                        <input type="number" name="price" id="price" placeholder="<?php echo $item_price ?>">
+                        <label>Đơn giá</label>
+                      </div>
+                      <div class="input-group input-group-outline mb-3">
+                        <!-- <label class="form-label-lg" style="margin-right: 10px;">Giới tính</label> -->
+                        <select name="unit" id="unit" class="form-control">
+                          <option value="" disabled selected>Chọn đơn vị
+                            tính
+                          </option>
+                          <option value="viên">Viên</option>
+                          <option value="gói">Gói</option>
+                          <option value="hộp">Hộp</option>
+                          <option value="cái">Cái</option>
+                          <option value="bộ">Bộ</option>
+                        </select>
+                      </div>
+                      <div class="text-center">
+                        <button type="submit" name="update" value=<?php echo $item_id; ?>
+                          class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cập
+                          nhật</button>
+                      </div>
+
+                      <div class="text-center">
+                        <button type="submit" name="delete" value=<?php echo $item_id; ?>
+                          class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Xoá</button>
+
+                      </div>
+
+                      <div class="text-center">
+                        <button type="button" class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
+                          data-bs-dismiss="modal">Thoát</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `)
+      }
     </script>
 
     <?php
