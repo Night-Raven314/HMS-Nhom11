@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 06, 2024 at 07:53 PM
+-- Generation Time: Nov 07, 2024 at 03:09 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -184,8 +184,8 @@ CREATE TABLE `dim_user` (
 --
 
 INSERT INTO `dim_user` (`user_id`, `user_name`, `password`, `email_address`, `contact_no`, `full_name`, `created_at`, `updated_at`, `gender`, `city`, `address`, `role`, `specialty_id`, `pricing`, `oauth_google`, `oauth_facebook`) VALUES
-(1, 'huan_patient', 'password123', 'huan.nguyen@example.com', 84912345601, 'Nguyen Nhut Gia Huan', '2024-10-07 05:36:07', NULL, 'male', 'Ho Chi Minh', '1 Le Duan', 'patient', NULL, NULL, NULL, NULL),
-(2, 'huan_doctor', 'password123', 'huan.nguyen@example.com', 84912345602, 'Nguyen Nhut Gia Huan', '2024-10-07 05:36:07', '2024-11-02 06:00:09', 'male', 'Ho Chi Minh', '1 Le Duan', 'doctor', 7, '400000', NULL, NULL),
+(1, 'huan_patient', 'password123', 'huan.nguyen@example.com', 84912345601, 'Nguyen Nhut Gia Huan', '2024-10-07 05:36:07', '2024-11-06 18:59:09', 'male', 'Ho Chi Minh', '1 Mac Dinh Chi', 'patient', NULL, NULL, NULL, NULL),
+(2, 'huan_doctor', 'password123', 'huan.nguyen@example.com', 84912345602, 'Nguyen Nhut Gia Huan', '2024-10-07 05:36:07', '2024-11-06 18:58:17', 'male', 'Ho Chi Minh', '1 Le Duan New', 'doctor', 7, '400000', NULL, NULL),
 (3, 'huan_admin', 'password123', 'huan.nguyen@example.com', 84567890123, 'Nguyen Nhut Gia Huan', '2024-10-07 05:36:07', '2024-11-06 18:32:49', 'male', 'Ho Chi Minh', '1 Le Duan 14', 'admin', NULL, NULL, NULL, NULL),
 (4, 'long_patient', 'password123', 'long.nguyen@example.com', 84912345604, 'Nguyen Ba Long', '2024-10-07 05:36:07', NULL, 'male', 'Ho Chi Minh', '2 Tran Hung Dao', 'patient', NULL, NULL, NULL, NULL),
 (5, 'long_doctor', 'password123', 'long.nguyen@example.com', 84912345605, 'Nguyen Ba Long', '2024-10-07 05:36:07', '2024-11-02 06:00:09', 'male', 'Ho Chi Minh', '2 Tran Hung Dao', 'doctor', 3, '450000', NULL, NULL),
@@ -513,6 +513,31 @@ CREATE TABLE `fact_user_login` (
   `status` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `fact_work_schedule`
+--
+
+CREATE TABLE `fact_work_schedule` (
+  `work_id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `specialty_id` int(11) DEFAULT NULL,
+  `booking_date` varchar(255) DEFAULT NULL,
+  `start_time` varchar(255) DEFAULT NULL,
+  `end_time` varchar(255) DEFAULT NULL,
+  `work_note` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `fact_work_schedule`
+--
+
+INSERT INTO `fact_work_schedule` (`work_id`, `user_id`, `specialty_id`, `booking_date`, `start_time`, `end_time`, `work_note`, `created_at`, `updated_at`) VALUES
+(1, 2, 2, '10/11/2024', '10:00 am', '11:00 am', 'Test', '2024-11-07 01:55:48', NULL);
+
 --
 -- Indexes for dumped tables
 --
@@ -572,6 +597,12 @@ ALTER TABLE `fact_user_login`
   ADD PRIMARY KEY (`login_id`);
 
 --
+-- Indexes for table `fact_work_schedule`
+--
+ALTER TABLE `fact_work_schedule`
+  ADD PRIMARY KEY (`work_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -628,6 +659,12 @@ ALTER TABLE `fact_prescriptions`
 --
 ALTER TABLE `fact_user_login`
   MODIFY `login_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `fact_work_schedule`
+--
+ALTER TABLE `fact_work_schedule`
+  MODIFY `work_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
