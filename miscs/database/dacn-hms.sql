@@ -421,7 +421,7 @@ CREATE TABLE `fact_payment` (
   `payment_desc` varchar(255) DEFAULT NULL,
   `payment_status` varchar(100) DEFAULT NULL,
   `bank_trans_code` varchar(255) DEFAULT NULL,
-  `created_at` date NOT NULL DEFAULT current_timestamp(),
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

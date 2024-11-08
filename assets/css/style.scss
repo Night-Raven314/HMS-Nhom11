@@ -193,6 +193,9 @@ div#popupFormContainer {
     background-color: #fff;
     pointer-events: none;
   }
+  select {
+    all: unset
+  }
   input, select {
     transition: all 200ms ease-in-out;
     border: 1px solid #d2d6da;
@@ -200,6 +203,7 @@ div#popupFormContainer {
     padding: 7px 13px 5px;
     font-size: 11pt;
     width: 100%;
+    box-sizing: border-box;
     &:focus {
       outline: none;
       border-color: $hms-neutral;
@@ -233,6 +237,10 @@ div#popupFormContainer {
   }
   input[type="file"]::file-selector-button {
     display: none;
+  }
+  select {
+    text-align: left;
+    color: #000
   }
 }
 

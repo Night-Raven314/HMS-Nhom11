@@ -192,6 +192,9 @@ div#popupFormContainer {
   background-color: #fff;
   pointer-events: none;
 }
+.custom-input select {
+  all: unset;
+}
 .custom-input input, .custom-input select {
   transition: all 200ms ease-in-out;
   border: 1px solid #d2d6da;
@@ -199,6 +202,7 @@ div#popupFormContainer {
   padding: 7px 13px 5px;
   font-size: 11pt;
   width: 100%;
+  box-sizing: border-box;
 }
 .custom-input input:focus, .custom-input select:focus {
   outline: none;
@@ -251,6 +255,10 @@ div#popupFormContainer {
 }
 .custom-input input[type=file]::file-selector-button {
   display: none;
+}
+.custom-input select {
+  text-align: left;
+  color: #000;
 }
 
 .custom-dropdown .button-avatar {
