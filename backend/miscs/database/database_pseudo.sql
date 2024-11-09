@@ -361,3 +361,27 @@ VALUES
 ('Room 505', 5, 1, 780000, 'active', NULL),
 ('Room 506', 5, 1, 780000, 'active', NULL),
 ('Room 507', 5, 1, 780000, 'occupied', NULL); -- Set to occupied
+
+-- Thêm dữ liệu dịch vụ khám
+INSERT INTO `dim_med_service` (`service_id`, `service_name`, `service_price`, `service_unit`, `status`)
+VALUES
+(1, 'Xét nghiệm máu toàn phần', 150000, 'lần', 'active'),
+(2, 'Xét nghiệm đường huyết', 80000, 'lần', 'active'),
+(3, 'Xét nghiệm nước tiểu', 70000, 'lần', 'active'),
+(4, 'Xét nghiệm chức năng gan', 120000, 'lần', 'active'),
+(5, 'Xét nghiệm chức năng thận', 100000, 'lần', 'active'),
+(6, 'Xét nghiệm mỡ máu', 90000, 'lần', 'active'),
+(7, 'Chụp X-quang ngực', 200000, 'lần', 'active'),
+(8, 'Chụp CT scan', 1500000, 'lần', 'active'),
+(9, 'Chụp cộng hưởng từ (MRI)', 2500000, 'lần', 'active'),
+(10, 'Chụp siêu âm ổ bụng', 300000, 'lần', 'active'),
+(11, 'Siêu âm tim', 500000, 'lần', 'active'),
+(12, 'Siêu âm tuyến giáp', 350000, 'lần', 'active'),
+(13, 'Điện tâm đồ (ECG)', 200000, 'lần', 'active'),
+(14, 'Đo mật độ xương', 400000, 'lần', 'active'),
+(15, 'Khám và chụp ảnh võng mạc', 250000, 'lần', 'active'),
+(16, 'Xét nghiệm nhóm máu', 60000, 'lần', 'active'),
+(17, 'Đo huyết áp', 30000, 'lần', 'active'),
+(18, 'Test COVID-19', 150000, 'lần', 'active'),
+(19, 'Xét nghiệm ung thư sớm', 1000000, 'lần', 'active'),
+(20, 'Kiểm tra nồng độ vitamin D', 80000, 'lần', 'active');
