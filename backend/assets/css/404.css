@@ -15,7 +15,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url('../../assets/image/Hospital_Seamless.png');
+    background-image: url('../../backend/assets/image/Hospital_Seamless.png');
     background-size: 400px 400px;
     filter: blur(5px); /* Adjust blur radius */
     z-index: -1;

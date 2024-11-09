@@ -1,7 +1,7 @@
-<?php include './assets/include/header.php'; ?>
+<?php include './backend/assets/include/header.php'; ?>
 
 <div class="main-content">
-    <?php include './assets/include/sidebar.php'; ?>
+    <?php include './backend/assets/include/sidebar.php'; ?>
     <div class="content">
         <h1>Welcome to HealthCare Hospital</h1>
         <p>Your health is our priority. We provide a wide range of medical services to meet your needs.</p>
@@ -48,5 +48,5 @@
 
 
 <?php
-    include SITE_ROOT . ('/HMS-Nhom11/assets/include/footer.php');
+    include SITE_ROOT . ('/HMS-Nhom11/backend/assets/include/footer.php');
     ?>

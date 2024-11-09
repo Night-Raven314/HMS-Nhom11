@@ -3,13 +3,13 @@
 
    define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT']);
 
-   include SITE_ROOT . ('/HMS-Nhom11/assets/include/config.php');
+   include SITE_ROOT . ('/HMS-Nhom11/backend/assets/include/config.php');
 
    // Start the session
    session_start();
 
    if(!isset($_SESSION['auth_user_id']) || $_SESSION['auth_user_role']!='doctor'){
-      header('Refresh:0 , url=http://localhost/HMS-Nhom11/sign-in.php');
+      header('Refresh:0 , url=http://localhost:8080/HMS-Nhom11/sign-in.php');
       die();
    }
    $user_id = $_SESSION['auth_user_id'];

@@ -444,7 +444,7 @@ class DisplayVideo extends \Google\Service
         [
           'methods' => [
             'upload' => [
-              'path' => 'v3/advertisers/{+advertiserId}/assets',
+              'path' => 'v3/advertisers/{+advertiserId}/backend/assets',
               'httpMethod' => 'POST',
               'parameters' => [
                 'advertiserId' => [

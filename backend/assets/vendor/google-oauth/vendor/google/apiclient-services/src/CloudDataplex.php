@@ -2510,7 +2510,7 @@ class CloudDataplex extends \Google\Service
         [
           'methods' => [
             'create' => [
-              'path' => 'v1/{+parent}/assets',
+              'path' => 'v1/{+parent}/backend/assets',
               'httpMethod' => 'POST',
               'parameters' => [
                 'parent' => [
@@ -2562,7 +2562,7 @@ class CloudDataplex extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1/{+parent}/assets',
+              'path' => 'v1/{+parent}/backend/assets',
               'httpMethod' => 'GET',
               'parameters' => [
                 'parent' => [

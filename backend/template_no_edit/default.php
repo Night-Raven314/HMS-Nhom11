@@ -1,8 +1,8 @@
 <?php
 define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT']);
 
-include SITE_ROOT . ('/HMS-Nhom11/assets/include/config.php');
-include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
+include SITE_ROOT . ('/HMS-Nhom11/backend/assets/include/config.php');
+include SITE_ROOT . ('/HMS-Nhom11/backend/assets/include/header.php');
 ?>
 
 <head>
@@ -14,7 +14,7 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
 <!-- Side Nav -->
 
 <body class="g-sidenav-show"
-    style="background-image: url('./assets/image/Hospital_Seamless1.png'); background-size: 400px 400px;">
+    style="background-image: url('./backend/assets/image/Hospital_Seamless1.png'); background-size: 400px 400px;">
 
     <aside
         class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 bg-gradient-dark"
@@ -212,5 +212,5 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
     </main>
 
 <?php
-include SITE_ROOT . ('/HMS-Nhom11/assets/include/footer.php');
+include SITE_ROOT . ('/HMS-Nhom11/backend/assets/include/footer.php');
 ?>

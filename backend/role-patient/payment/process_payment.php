@@ -3,7 +3,7 @@
 
   define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT']);
 
-  include SITE_ROOT . ('/HMS-Nhom11/assets/include/config.php');
+  include SITE_ROOT . ('/HMS-Nhom11/backend/assets/include/config.php');
 
   date_default_timezone_set('Asia/Ho_Chi_Minh');
 

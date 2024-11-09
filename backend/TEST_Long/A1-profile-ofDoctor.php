@@ -36,8 +36,8 @@ $conn->close();
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="../backend/assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="../backend/assets/img/favicon.png">
 
     <title>
         Thông tin người dùng
@@ -49,8 +49,8 @@ $conn->close();
         href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
 
     <!-- Nucleo Icons -->
-    <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
-    <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+    <link href="../backend/assets/css/nucleo-icons.css" rel="stylesheet" />
+    <link href="../backend/assets/css/nucleo-svg.css" rel="stylesheet" />
 
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
@@ -59,15 +59,15 @@ $conn->close();
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
 
     <!-- CSS Files -->
-    <link id="pagestyle" href="../assets/css/material_dash.css" rel="stylesheet" />
-    <link id="pagestyle" href="../assets/css/style.css" rel="stylesheet" />
+    <link id="pagestyle" href="../backend/assets/css/material_dash.css" rel="stylesheet" />
+    <link id="pagestyle" href="../backend/assets/css/style.css" rel="stylesheet" />
 
 </head>
 
 <!-- Side Nav -->
 
 <body class="g-sidenav-show"
-    style="background-image: url('../assets/image/Hospital_Seamless1.png'); background-size: 400px 400px;">
+    style="background-image: url('../backend/assets/image/Hospital_Seamless1.png'); background-size: 400px 400px;">
 
     <aside
         class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 bg-gradient-dark"
@@ -78,7 +78,7 @@ $conn->close();
                 aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/material-dashboard/pages/dashboard "
                 target="_blank">
-                <img src="../assets/image/logo01-sq.png" class="navbar-brand-img h-100" alt="main_logo">
+                <img src="../backend/assets/image/logo01-sq.png" class="navbar-brand-img h-100" alt="main_logo">
                 <span class="ms-1 font-weight-bold text-white">HKL Hospital</span>
             </a>
         </div>
@@ -267,7 +267,7 @@ $conn->close();
                 <div class="row gx-4 mb-2">
                     <div class="col-auto">
                         <div class="avatar avatar-xl position-relative">
-                            <img src="../assets/image/user login image.png" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+                            <img src="../backend/assets/image/user login image.png" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
                         </div>
                     </div>
                     <div class="col-auto my-auto">
@@ -310,7 +310,7 @@ $conn->close();
                 <div class="row gx-4 mb-2">
                     <div class="col-auto">
                         <div class="avatar avatar-xl position-relative">
-                            <img src="../assets/image/user login image.png" alt="profile_image"
+                            <img src="../backend/assets/image/user login image.png" alt="profile_image"
                                 class="w-100 border-radius-lg shadow-sm">
                         </div>
                     </div>
@@ -396,10 +396,10 @@ $conn->close();
     </main>
 
     <!--   Core JS Files   -->
-    <script src="../assets/js/core/popper.min.js"></script>
-    <script src="../assets/js/core/bootstrap.min.js"></script>
-    <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
-    <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
+    <script src="../backend/assets/js/core/popper.min.js"></script>
+    <script src="../backend/assets/js/core/bootstrap.min.js"></script>
+    <script src="../backend/assets/js/plugins/perfect-scrollbar.min.js"></script>
+    <script src="../backend/assets/js/plugins/smooth-scrollbar.min.js"></script>
 
 
     <script>
@@ -417,8 +417,8 @@ $conn->close();
 
 
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="../assets/js/material-dashboard.min.js"></script>
-    <script src="../assets/js/popup-copy.js"></script>
+    <script src="../backend/assets/js/material-dashboard.min.js"></script>
+    <script src="../backend/assets/js/popup-copy.js"></script>
 </body>
 
 </html>

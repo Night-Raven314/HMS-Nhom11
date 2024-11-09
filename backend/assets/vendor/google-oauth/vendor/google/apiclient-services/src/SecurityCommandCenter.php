@@ -118,7 +118,7 @@ class SecurityCommandCenter extends \Google\Service
         [
           'methods' => [
             'group' => [
-              'path' => 'v1/{+parent}/assets:group',
+              'path' => 'v1/{+parent}/backend/assets:group',
               'httpMethod' => 'POST',
               'parameters' => [
                 'parent' => [
@@ -128,7 +128,7 @@ class SecurityCommandCenter extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1/{+parent}/assets',
+              'path' => 'v1/{+parent}/backend/assets',
               'httpMethod' => 'GET',
               'parameters' => [
                 'parent' => [
@@ -968,7 +968,7 @@ class SecurityCommandCenter extends \Google\Service
         [
           'methods' => [
             'group' => [
-              'path' => 'v1/{+parent}/assets:group',
+              'path' => 'v1/{+parent}/backend/assets:group',
               'httpMethod' => 'POST',
               'parameters' => [
                 'parent' => [
@@ -978,7 +978,7 @@ class SecurityCommandCenter extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1/{+parent}/assets',
+              'path' => 'v1/{+parent}/backend/assets',
               'httpMethod' => 'GET',
               'parameters' => [
                 'parent' => [
@@ -1016,7 +1016,7 @@ class SecurityCommandCenter extends \Google\Service
                 ],
               ],
             ],'runDiscovery' => [
-              'path' => 'v1/{+parent}/assets:runDiscovery',
+              'path' => 'v1/{+parent}/backend/assets:runDiscovery',
               'httpMethod' => 'POST',
               'parameters' => [
                 'parent' => [
@@ -2240,7 +2240,7 @@ class SecurityCommandCenter extends \Google\Service
         [
           'methods' => [
             'group' => [
-              'path' => 'v1/{+parent}/assets:group',
+              'path' => 'v1/{+parent}/backend/assets:group',
               'httpMethod' => 'POST',
               'parameters' => [
                 'parent' => [
@@ -2250,7 +2250,7 @@ class SecurityCommandCenter extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1/{+parent}/assets',
+              'path' => 'v1/{+parent}/backend/assets',
               'httpMethod' => 'GET',
               'parameters' => [
                 'parent' => [

@@ -147,7 +147,7 @@ class MigrationCenterAPI extends \Google\Service
         [
           'methods' => [
             'aggregateValues' => [
-              'path' => 'v1/{+parent}/assets:aggregateValues',
+              'path' => 'v1/{+parent}/backend/assets:aggregateValues',
               'httpMethod' => 'POST',
               'parameters' => [
                 'parent' => [
@@ -157,7 +157,7 @@ class MigrationCenterAPI extends \Google\Service
                 ],
               ],
             ],'batchDelete' => [
-              'path' => 'v1/{+parent}/assets:batchDelete',
+              'path' => 'v1/{+parent}/backend/assets:batchDelete',
               'httpMethod' => 'POST',
               'parameters' => [
                 'parent' => [
@@ -167,7 +167,7 @@ class MigrationCenterAPI extends \Google\Service
                 ],
               ],
             ],'batchUpdate' => [
-              'path' => 'v1/{+parent}/assets:batchUpdate',
+              'path' => 'v1/{+parent}/backend/assets:batchUpdate',
               'httpMethod' => 'POST',
               'parameters' => [
                 'parent' => [
@@ -205,7 +205,7 @@ class MigrationCenterAPI extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1/{+parent}/assets',
+              'path' => 'v1/{+parent}/backend/assets',
               'httpMethod' => 'GET',
               'parameters' => [
                 'parent' => [
@@ -253,7 +253,7 @@ class MigrationCenterAPI extends \Google\Service
                 ],
               ],
             ],'reportAssetFrames' => [
-              'path' => 'v1/{+parent}/assets:reportAssetFrames',
+              'path' => 'v1/{+parent}/backend/assets:reportAssetFrames',
               'httpMethod' => 'POST',
               'parameters' => [
                 'parent' => [

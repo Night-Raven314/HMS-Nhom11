@@ -4,9 +4,9 @@ session_start();
 
 define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT']);
 
-include SITE_ROOT . ('/HMS-Nhom11/assets/include/config.php');
+include SITE_ROOT . ('/HMS-Nhom11/backend/assets/include/config.php');
  
-require_once SITE_ROOT . ('/HMS-Nhom11/assets/vendor/facebook-oauth/src/Facebook/autoload.php');
+require_once SITE_ROOT . ('/HMS-Nhom11/backend/assets/vendor/facebook-oauth/src/Facebook/autoload.php');
 
 $fb = new Facebook\Facebook([
     'app_id' => facebook_app_id,
@@ -81,7 +81,7 @@ try {
             $_SESSION['temp_regis_name'] = $full_name;
             $_SESSION['temp_regis_email'] = $user_email;
 
-        header('Refresh:0 , url=http://localhost/HMS-Nhom11/role-patient/complete_profile.php');
+        header('Refresh:0 , url=http://localhost:8080/HMS-Nhom11/role-patient/complete_profile.php');
     } else {
         $old_row = mysqli_fetch_assoc($user_info);
 
@@ -89,7 +89,7 @@ try {
         $_SESSION['auth_user_role'] = $old_row['role'];
         $_SESSION['auth_login_type'] = 'facebook_oauth';
 
-        header('Refresh:0 , url=http://localhost/HMS-Nhom11/assets/include/redirect.php');
+        header('Refresh:0 , url=http://localhost:8080/HMS-Nhom11/backend/assets/include/redirect.php');
     }
 
 } catch (Facebook\Exceptions\FacebookResponseException $e) {

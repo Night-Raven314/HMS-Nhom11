@@ -2,7 +2,7 @@
 
 define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT']);
 
-include SITE_ROOT . ('/HMS-Nhom11/assets/include/config.php');
+include SITE_ROOT . ('/HMS-Nhom11/backend/assets/include/config.php');
 /* Payment Notify
  * IPN URL: Ghi nhận kết quả thanh toán từ VNPAY
  * Các bước thực hiện:

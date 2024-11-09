@@ -1,8 +1,8 @@
 <?php
 define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT']);
 
-include SITE_ROOT . ('/HMS-Nhom11/assets/include/config.php');
-include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
+include SITE_ROOT . ('/HMS-Nhom11/backend/assets/include/config.php');
+include SITE_ROOT . ('/HMS-Nhom11/backend/assets/include/header.php');
 include '../TEST_Khoa/get_query.php';
 
 ?>
@@ -16,7 +16,7 @@ include '../TEST_Khoa/get_query.php';
 <!-- Side Nav -->
 
 <body class="g-sidenav-show"
-    style="background-image: url('../assets/image/Hospital_Seamless1.png'); background-size: 400px 400px;">
+    style="background-image: url('../backend/assets/image/Hospital_Seamless1.png'); background-size: 400px 400px;">
 
     <aside
         class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 bg-gradient-dark"
@@ -27,7 +27,7 @@ include '../TEST_Khoa/get_query.php';
                 aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/material-dashboard/pages/dashboard "
                 target="_blank">
-                <img src="../assets/image/logo01-sq.png" class="navbar-brand-img h-100" alt="main_logo">
+                <img src="../backend/assets/image/logo01-sq.png" class="navbar-brand-img h-100" alt="main_logo">
                 <span class="ms-1 font-weight-bold text-white">HKL Hospital</span>
             </a>
         </div>
@@ -273,5 +273,5 @@ include '../TEST_Khoa/get_query.php';
     </main>
 
     <?php
-    include SITE_ROOT . ('/HMS-Nhom11/assets/include/footer.php');
+    include SITE_ROOT . ('/HMS-Nhom11/backend/assets/include/footer.php');
     ?>

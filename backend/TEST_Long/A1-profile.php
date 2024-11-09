@@ -6,8 +6,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="./assets/img/favicon.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="./backend/assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="./backend/assets/img/favicon.png">
 
     <title>
         Thông tin người dùng
@@ -37,7 +37,7 @@
 <!-- Side Nav -->
 
 <body class="g-sidenav-show"
-    style="background-image: url('./assets/image/Hospital_Seamless1.png'); background-size: 400px 400px;">
+    style="background-image: url('./backend/assets/image/Hospital_Seamless1.png'); background-size: 400px 400px;">
 
     <aside
         class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 bg-gradient-dark"
@@ -337,10 +337,10 @@
     </main>
 
     <!--   Core JS Files   -->
-    <script src="./assets/js/core/popper.min.js"></script>
-    <script src="./assets/js/core/bootstrap.min.js"></script>
-    <script src="./assets/js/plugins/perfect-scrollbar.min.js"></script>
-    <script src="./assets/js/plugins/smooth-scrollbar.min.js"></script>
+    <script src="./backend/assets/js/core/popper.min.js"></script>
+    <script src="./backend/assets/js/core/bootstrap.min.js"></script>
+    <script src="./backend/assets/js/plugins/perfect-scrollbar.min.js"></script>
+    <script src="./backend/assets/js/plugins/smooth-scrollbar.min.js"></script>
 
 
     <script>

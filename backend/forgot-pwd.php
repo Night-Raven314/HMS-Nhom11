@@ -1,8 +1,8 @@
 <?php
 define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT']);
 
-include SITE_ROOT . ('/HMS-Nhom11/assets/include/config.php');
-include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
+include SITE_ROOT . ('/HMS-Nhom11/backend/assets/include/config.php');
+include SITE_ROOT . ('/HMS-Nhom11/backend/assets/include/header.php');
 ?>
 
 <head>
@@ -14,7 +14,7 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
 <body class="bg-gray-200">
   <main class="main-content  mt-0">
     <div class="page-header align-items-start min-vh-100"
-      style="background-image: url('./assets/image/Hospital_Seamless1.png'); background-size: 400px 400px;">
+      style="background-image: url('./backend/assets/image/Hospital_Seamless1.png'); background-size: 400px 400px;">
       <span class="mask bg-gradient-dark opacity-6"></span>
       <div class="container my-auto">
         <div class="row">
@@ -57,5 +57,5 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
   </main>
 
   <?php
-  include SITE_ROOT . ('/HMS-Nhom11/assets/include/footer.php');
+  include SITE_ROOT . ('/HMS-Nhom11/backend/assets/include/footer.php');
   ?>

@@ -129,7 +129,7 @@ class ProjectsLocationsBatches extends \Google\Service\Resource
    * that were created before 2023-01-01. state = RUNNING and
    * labels.environment=production filters for batches in state in a RUNNING state
    * that have a production environment label.See
-   * https://google.aip.dev/assets/misc/ebnf-filtering.txt for a detailed
+   * https://google.aip.dev/backend/assets/misc/ebnf-filtering.txt for a detailed
    * description of the filter syntax and a list of supported comparisons.
    * @opt_param string orderBy Optional. Field(s) on which to sort the list of
    * batches.Currently the only supported sort orders are unspecified (empty) and

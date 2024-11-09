@@ -1,8 +1,8 @@
 <?php
 define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT']);
 
-include SITE_ROOT . ('/HMS-Nhom11/assets/include/config.php');
-include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
+include SITE_ROOT . ('/HMS-Nhom11/backend/assets/include/config.php');
+include SITE_ROOT . ('/HMS-Nhom11/backend/assets/include/header.php');
 ?>
 
 <head>
@@ -330,5 +330,5 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
     </footer>
 
 <?php
-include SITE_ROOT . ('/HMS-Nhom11/assets/include/footer.php');
+include SITE_ROOT . ('/HMS-Nhom11/backend/assets/include/footer.php');
 ?>

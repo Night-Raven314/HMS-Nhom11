@@ -1,7 +1,7 @@
 <?php
 define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT']);
 
-include SITE_ROOT . ('/HMS-Nhom11/assets/include/config.php');
+include SITE_ROOT . ('/HMS-Nhom11/backend/assets/include/config.php');
 
 $vnp_HashSecret = vnpay_secret_key;
 

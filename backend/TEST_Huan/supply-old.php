@@ -2,8 +2,8 @@
 define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT']);
 
 include('sess-check.php');
-include SITE_ROOT . ('/HMS-Nhom11/assets/include/config.php');
-include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
+include SITE_ROOT . ('/HMS-Nhom11/backend/assets/include/config.php');
+include SITE_ROOT . ('/HMS-Nhom11/backend/assets/include/header.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     echo "<script type='text/javascript'>alert('Thêm vật tư thành công');</script>";
 
-    header('Refresh:0 , url=http://localhost/HMS-Nhom11/role-admin/supply.php');
+    header('Refresh:0 , url=http://localhost:8080/HMS-Nhom11/role-admin/supply.php');
   }
 
   if (isset($_POST['update'])) {
@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     echo "<script type='text/javascript'>alert('Cập nhật vật tư thành công');</script>";
 
-    header('Refresh:0 , url=http://localhost/HMS-Nhom11/role-admin/supply.php');
+    header('Refresh:0 , url=http://localhost:8080/HMS-Nhom11/role-admin/supply.php');
   }
 
   if (isset($_POST['delete'])) {
@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     echo "<script type='text/javascript'>alert('Xoá vật tư thành công');</script>";
 
-    header('Refresh:0 , url=http://localhost/HMS-Nhom11/role-admin/supply.php');
+    header('Refresh:0 , url=http://localhost:8080/HMS-Nhom11/role-admin/supply.php');
   }
 }
 ?>
@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!-- Side Nav -->
 
 <body class="g-sidenav-show"
-  style="background-image: url('../assets/image/Hospital_Seamless1.png'); background-size: 400px 400px;">
+  style="background-image: url('../backend/assets/image/Hospital_Seamless1.png'); background-size: 400px 400px;">
 
   <aside
     class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 bg-gradient-dark"
@@ -76,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/material-dashboard/pages/dashboard "
         target="_blank">
-        <img src="../assets/image/logo01-sq.png" class="navbar-brand-img h-100" alt="main_logo">
+        <img src="../backend/assets/image/logo01-sq.png" class="navbar-brand-img h-100" alt="main_logo">
         <span class="ms-1 font-weight-bold text-white">HKL Hospital</span>
       </a>
     </div>
@@ -228,11 +228,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="nav-item">
           <div class="dropdown custom-dropdown">
             <button class="button-avatar dropdown-toggle" data-bs-toggle="dropdown">
-              <img src="../assets/image/user login image.png" alt="profile_image">
+              <img src="../backend/assets/image/user login image.png" alt="profile_image">
             </button>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="profile.php">Thông tin người dùng</a></li>
-              <li><a class="dropdown-item" href="../assets/include/log-out.php">Đăng xuất</a></li>
+              <li><a class="dropdown-item" href="../backend/assets/include/log-out.php">Đăng xuất</a></li>
             </ul>
           </div>
         </div>
@@ -339,7 +339,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-                        //   $imagePath = "../assets/image/med_items/" . $row['item_id'] . ".png";
+                        //   $imagePath = "../backend/assets/image/med_items/" . $row['item_id'] . ".png";
                         $item_id = $row["item_id"];
                         $item_name = $row["item_name"];
                         $item_price = $row["item_price"];
@@ -504,7 +504,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <div class="text-center" href="#">
               <button type="button" class="btn btn-lg btn-outline-primary btn-lg w-100 mt-4 mb-0"
-                onclick="location.href='http://localhost/HMS-Nhom11/role-admin/supply.php'">Thoát</button>
+                onclick="location.href='http://localhost:8080/HMS-Nhom11/role-admin/supply.php'">Thoát</button>
             </div>
 
         </div>
@@ -528,5 +528,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </script>
 
     <?php
-    include SITE_ROOT . ('/HMS-Nhom11/assets/include/footer.php');
+    include SITE_ROOT . ('/HMS-Nhom11/backend/assets/include/footer.php');
     ?>

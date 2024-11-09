@@ -244,7 +244,7 @@ class OrganizationsSourcesFindings extends \Google\Service\Resource
    *
    * @param string $name The relative resource name of the SecurityMarks. See:
    * https://cloud.google.com/apis/design/resource_names#relative_resource_name
-   * Examples: "organizations/{organization_id}/assets/{asset_id}/securityMarks" "
+   * Examples: "organizations/{organization_id}/backend/assets/{asset_id}/securityMarks" "
    * organizations/{organization_id}/sources/{source_id}/findings/{finding_id}/sec
    * urityMarks".
    * @param SecurityMarks $postBody

@@ -3,8 +3,8 @@ define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT']);
 session_start();
 
 include('sess-check.php');
-include SITE_ROOT . ('/HMS-Nhom11/assets/include/config.php');
-include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
+include SITE_ROOT . ('/HMS-Nhom11/backend/assets/include/config.php');
+include SITE_ROOT . ('/HMS-Nhom11/backend/assets/include/header.php');
 ?>
 
 <head>
@@ -16,7 +16,7 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
 <!-- Side Nav -->
 
 <body class="g-sidenav-show"
-    style="background-image: url('../assets/image/Hospital_Seamless1.png'); background-size: 400px 400px;">
+    style="background-image: url('../backend/assets/image/Hospital_Seamless1.png'); background-size: 400px 400px;">
 
     <aside
         class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 bg-gradient-dark"
@@ -27,7 +27,7 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                 aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/material-dashboard/pages/dashboard "
                 target="_blank">
-                <img src="../../assets/image/logo01-sq.png" class="navbar-brand-img h-100" alt="main_logo">
+                <img src="../../backend/assets/image/logo01-sq.png" class="navbar-brand-img h-100" alt="main_logo">
                 <span class="ms-1 font-weight-bold text-white">HKL Hospital</span>
             </a>
         </div>
@@ -147,7 +147,7 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                         <li class="nav-item dropdown pe-2 d-flex align-items-center">
                             <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="../../assets/image/user login image.png" alt="profile_image"
+                                <img src="../../backend/assets/image/user login image.png" alt="profile_image"
                                     class="border-radius-lg shadow-sm" style="max-width:45px">
                             </a>
 
@@ -198,7 +198,7 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
                 <div class="row gx-4 mb-2">
                     <div class="col-auto">
                         <div class="avatar avatar-xl position-relative">
-                            <img src="../../assets/image/user login image.png" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+                            <img src="../../backend/assets/image/user login image.png" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
                         </div>
                     </div>
                     <div class="col-auto my-auto">
@@ -275,6 +275,6 @@ include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
     </main>
 
     <?php
-    include SITE_ROOT . ('/HMS-Nhom11/assets/include/footer.php');
+    include SITE_ROOT . ('/HMS-Nhom11/backend/assets/include/footer.php');
     ?>
-    <script src="http://localhost/HMS-Nhom11/assets/js/popup-copy.js"></script>
+    <script src="http://localhost:8080/HMS-Nhom11/backend/assets/js/popup-copy.js"></script>

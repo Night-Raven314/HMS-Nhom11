@@ -3,10 +3,10 @@
 
 define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT']);
 
-include SITE_ROOT . ('/HMS-Nhom11/assets/include/config.php');
-include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
+include SITE_ROOT . ('/HMS-Nhom11/backend/assets/include/config.php');
+include SITE_ROOT . ('/HMS-Nhom11/backend/assets/include/header.php');
 
-require_once SITE_ROOT . ('/HMS-Nhom11/assets/vendor/google-oauth/vendor/autoload.php');
+require_once SITE_ROOT . ('/HMS-Nhom11/backend/assets/vendor/google-oauth/vendor/autoload.php');
 
 session_start();
 $error = '';
@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION['auth_user_id'] = $row['user_id'];
     $_SESSION['auth_user_role'] = $row['role'];
     $_SESSION['auth_login_type'] = 'manual';
-    header('Refresh:0 , url=http://localhost/HMS-Nhom11/assets/include/redirect.php');
+    header('Refresh:0 , url=http://localhost:8080/HMS-Nhom11/backend/assets/include/redirect.php');
   } else {
     $error = "Your Login Name or Password is invalid";
   }
@@ -74,14 +74,14 @@ $facebook_url = 'https://www.facebook.com/dialog/oauth?' . http_build_query($par
   <main class="main-content  mt-0">
     <section>
       <div class="page-header min-vh-100"
-        style="background-image: url('./assets/image/Hospital_Seamless1.png'); background-size: 400px 400px;">
+        style="background-image: url('./backend/assets/image/Hospital_Seamless1.png'); background-size: 400px 400px;">
         <div class="container">
           <div class="row">
             <div
               class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 start-0 text-center justify-content-center flex-column">
               <div
                 class="position-relative bg-gradient-primary h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center"
-                style="background-image: url('./assets/image/HKL.png'); background-size: cover;">
+                style="background-image: url('./backend/assets/image/HKL.png'); background-size: cover;">
               </div>
             </div>
             <div class="col-xl-4 col-lg-5 col-md-7 d-flex flex-column ms-auto me-auto ms-lg-auto me-lg-5">
@@ -200,5 +200,5 @@ $facebook_url = 'https://www.facebook.com/dialog/oauth?' . http_build_query($par
   </script>
 
   <?php
-  include SITE_ROOT . ('/HMS-Nhom11/assets/include/footer.php');
+  include SITE_ROOT . ('/HMS-Nhom11/backend/assets/include/footer.php');
   ?>

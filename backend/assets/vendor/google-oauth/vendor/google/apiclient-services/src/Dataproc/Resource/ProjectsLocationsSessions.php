@@ -115,7 +115,7 @@ class ProjectsLocationsSessions extends \Google\Service\Resource
    * an ACTIVE state that were created before 2023-01-01. state = ACTIVE and
    * labels.environment=production is a filter for sessions in an ACTIVE state
    * that have a production environment label.See
-   * https://google.aip.dev/assets/misc/ebnf-filtering.txt for a detailed
+   * https://google.aip.dev/backend/assets/misc/ebnf-filtering.txt for a detailed
    * description of the filter syntax and a list of supported comparators.
    * @opt_param int pageSize Optional. The maximum number of sessions to return in
    * each response. The service may return fewer than this value.

@@ -3,10 +3,10 @@
 
 define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT']);
 
-include SITE_ROOT . ('/HMS-Nhom11/assets/include/config.php');
-include SITE_ROOT . ('/HMS-Nhom11/assets/include/header.php');
+include SITE_ROOT . ('/HMS-Nhom11/backend/assets/include/config.php');
+include SITE_ROOT . ('/HMS-Nhom11/backend/assets/include/header.php');
 
-require_once SITE_ROOT . ('/HMS-Nhom11/assets/vendor/google-oauth/vendor/autoload.php');
+require_once SITE_ROOT . ('/HMS-Nhom11/backend/assets/vendor/google-oauth/vendor/autoload.php');
 
 session_start();
 $error = '';
@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION['auth_user_id'] = $row['user_id'];
     $_SESSION['auth_user_role'] = $row['role'];
     $_SESSION['auth_login_type'] = 'manual';
-    header('Refresh:0 , url=http://localhost/HMS-Nhom11/assets/include/redirect.php');
+    header('Refresh:0 , url=http://localhost:8080/HMS-Nhom11/backend/assets/include/redirect.php');
   } else {
     $error = "Your Login Name or Password is invalid";
   }
@@ -57,8 +57,8 @@ $google_url = $client->createAuthUrl();
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="../backend/assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="../backend/assets/img/favicon.png">
   <title>
     Đăng nhập
   </title>
@@ -82,7 +82,7 @@ $google_url = $client->createAuthUrl();
 <body class="bg-gray-200">
   <main class="main-content  mt-0">
     <div class="page-header align-items-start min-vh-100"
-      style="background-image: url('./assets/image/Hospital_Seamless1.png'); background-size: 400px 400px;">
+      style="background-image: url('./backend/assets/image/Hospital_Seamless1.png'); background-size: 400px 400px;">
       <span class="mask bg-gradient-dark opacity-6"></span>
       <div class="container my-auto">
         <div class="row">
@@ -198,5 +198,5 @@ $google_url = $client->createAuthUrl();
   </script>
 
   <?php
-  include SITE_ROOT . ('/HMS-Nhom11/assets/include/footer.php');
+  include SITE_ROOT . ('/HMS-Nhom11/backend/assets/include/footer.php');
   ?>

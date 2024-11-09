@@ -36,12 +36,12 @@ $_SESSION['errmsg']="Invalid username or password";
 		<meta content="" name="description" />
 		<meta content="" name="author" />
 		<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
-		<link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.min.css">
-		<link rel="stylesheet" href="../assets/vendor/fontawesome/css/font-awesome.min.css">
-		<link rel="stylesheet" href="../assets/vendor/themify-icons/themify-icons.min.css">
-		<link href="../assets/vendor/animate.css/animate.min.css" rel="stylesheet" media="screen">
-		<link href="../assets/vendor/perfect-scrollbar/perfect-scrollbar.min.css" rel="stylesheet" media="screen">
-		<link href="../assets/vendor/switchery/switchery.min.css" rel="stylesheet" media="screen">
+		<link rel="stylesheet" href="../backend/assets/vendor/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../backend/assets/vendor/fontawesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../backend/assets/vendor/themify-icons/themify-icons.min.css">
+		<link href="../backend/assets/vendor/animate.css/animate.min.css" rel="stylesheet" media="screen">
+		<link href="../backend/assets/vendor/perfect-scrollbar/perfect-scrollbar.min.css" rel="stylesheet" media="screen">
+		<link href="../backend/assets/vendor/switchery/switchery.min.css" rel="stylesheet" media="screen">
 		<link rel="stylesheet" href="assets/css/styles.css">
 		<link rel="stylesheet" href="assets/css/plugins.css">
 		<link rel="stylesheet" href="assets/css/themes/theme-1.css" id="skin_color" />
@@ -92,13 +92,13 @@ $_SESSION['errmsg']="Invalid username or password";
 
 			</div>
 		</div>
-		<script src="../assets/vendor/jquery/jquery.min.js"></script>
-		<script src="../assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-		<script src="../assets/vendor/modernizr/modernizr.js"></script>
-		<script src="../assets/vendor/jquery-cookie/jquery.cookie.js"></script>
-		<script src="../assets/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-		<script src="../assets/vendor/switchery/switchery.min.js"></script>
-		<script src="../assets/vendor/jquery-validation/jquery.validate.min.js"></script>
+		<script src="../backend/assets/vendor/jquery/jquery.min.js"></script>
+		<script src="../backend/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+		<script src="../backend/assets/vendor/modernizr/modernizr.js"></script>
+		<script src="../backend/assets/vendor/jquery-cookie/jquery.cookie.js"></script>
+		<script src="../backend/assets/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+		<script src="../backend/assets/vendor/switchery/switchery.min.js"></script>
+		<script src="../backend/assets/vendor/jquery-validation/jquery.validate.min.js"></script>
 	
 		<script src="assets/js/main.js"></script>
 

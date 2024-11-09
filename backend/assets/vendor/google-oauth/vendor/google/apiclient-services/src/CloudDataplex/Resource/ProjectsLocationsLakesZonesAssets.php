@@ -65,7 +65,7 @@ class ProjectsLocationsLakesZonesAssets extends \Google\Service\Resource
    * (assets.delete)
    *
    * @param string $name Required. The resource name of the asset: projects/{proje
-   * ct_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/assets/{as
+   * ct_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/backend/assets/{as
    * set_id}.
    * @param array $optParams Optional parameters.
    * @return GoogleLongrunningOperation
@@ -81,7 +81,7 @@ class ProjectsLocationsLakesZonesAssets extends \Google\Service\Resource
    * Retrieves an asset resource. (assets.get)
    *
    * @param string $name Required. The resource name of the asset: projects/{proje
-   * ct_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/assets/{as
+   * ct_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/backend/assets/{as
    * set_id}.
    * @param array $optParams Optional parameters.
    * @return GoogleCloudDataplexV1Asset
@@ -155,7 +155,7 @@ class ProjectsLocationsLakesZonesAssets extends \Google\Service\Resource
    *
    * @param string $name Output only. The relative resource name of the asset, of
    * the form: projects/{project_number}/locations/{location_id}/lakes/{lake_id}/z
-   * ones/{zone_id}/assets/{asset_id}.
+   * ones/{zone_id}/backend/assets/{asset_id}.
    * @param GoogleCloudDataplexV1Asset $postBody
    * @param array $optParams Optional parameters.
    *

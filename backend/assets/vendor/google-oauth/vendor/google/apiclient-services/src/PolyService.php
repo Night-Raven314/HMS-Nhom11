@@ -74,7 +74,7 @@ class PolyService extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1/assets',
+              'path' => 'v1/backend/assets',
               'httpMethod' => 'GET',
               'parameters' => [
                 'category' => [
@@ -121,7 +121,7 @@ class PolyService extends \Google\Service
         [
           'methods' => [
             'list' => [
-              'path' => 'v1/{+name}/assets',
+              'path' => 'v1/{+name}/backend/assets',
               'httpMethod' => 'GET',
               'parameters' => [
                 'name' => [

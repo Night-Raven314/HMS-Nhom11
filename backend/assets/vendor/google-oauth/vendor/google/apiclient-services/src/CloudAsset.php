@@ -71,7 +71,7 @@ class CloudAsset extends \Google\Service
         [
           'methods' => [
             'list' => [
-              'path' => 'v1/{+parent}/assets',
+              'path' => 'v1/{+parent}/backend/assets',
               'httpMethod' => 'GET',
               'parameters' => [
                 'parent' => [

@@ -6,7 +6,7 @@
 
 define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT']);
 
-include SITE_ROOT . ('/HMS-Nhom11/assets/include/config.php');
+include SITE_ROOT . ('/HMS-Nhom11/backend/assets/include/config.php');
 
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 
@@ -17,8 +17,8 @@ session_start();
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="../backend/assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="../backend/assets/img/favicon.png">
   <meta name="referrer" content="no-referrer-when-downgrade">
   <meta name="Cross-Origin-Opener-Policy" content="same-origin-allow-popups">
 
@@ -30,8 +30,8 @@ session_start();
     href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
 
   <!-- Nucleo Icons -->
-  <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
-  <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+  <link href="../backend/assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="../backend/assets/css/nucleo-svg.css" rel="stylesheet" />
 
   <!-- Font Awesome Icons -->
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
@@ -40,14 +40,14 @@ session_start();
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
 
   <!-- CSS Files -->
-  <link id="pagestyle" href="../assets/css/material_dash.css" rel="stylesheet" />
-  <link id="pagestyle" href="../assets/css/style.css" rel="stylesheet" />
+  <link id="pagestyle" href="../backend/assets/css/material_dash.css" rel="stylesheet" />
+  <link id="pagestyle" href="../backend/assets/css/style.css" rel="stylesheet" />
 </head>
 
 <body>
   <main class="main-content  mt-0">
     <div class="page-header align-items-start min-vh-100"
-      style="background-image: url('../assets/image/Hospital_Seamless1.png'); background-size: 400px 400px;">
+      style="background-image: url('../backend/assets/image/Hospital_Seamless1.png'); background-size: 400px 400px;">
       <span class="mask bg-gradient-dark opacity-6"></span>
       <div class="container my-auto">
         <div class="row">
@@ -95,10 +95,10 @@ session_start();
 </body>
 
 <!--   Core JS Files   -->
-<script src="../assets/js/core/popper.min.js"></script>
-<script src="../assets/js/core/bootstrap.min.js"></script>
-<script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
-<script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
+<script src="../backend/assets/js/core/popper.min.js"></script>
+<script src="../backend/assets/js/core/bootstrap.min.js"></script>
+<script src="../backend/assets/js/plugins/perfect-scrollbar.min.js"></script>
+<script src="../backend/assets/js/plugins/smooth-scrollbar.min.js"></script>
 
 
 <script>
@@ -116,8 +116,8 @@ session_start();
 
 
 <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-<script src="../assets/js/material-dashboard.min.js"></script>
-<script src="../assets/js/popup.js"></script>
+<script src="../backend/assets/js/material-dashboard.min.js"></script>
+<script src="../backend/assets/js/popup.js"></script>
 </body>
 
 </html>
