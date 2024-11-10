@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 09, 2024 at 10:55 AM
+-- Generation Time: Nov 10, 2024 at 07:25 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -89,6 +89,7 @@ CREATE TABLE `dim_item` (
   `item_id` int(11) NOT NULL,
   `item_name` varchar(255) DEFAULT NULL,
   `item_price` int(11) DEFAULT NULL,
+  `item_lending_price` int(11) DEFAULT 0,
   `item_unit` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
@@ -99,37 +100,37 @@ CREATE TABLE `dim_item` (
 -- Dumping data for table `dim_item`
 --
 
-INSERT INTO `dim_item` (`item_id`, `item_name`, `item_price`, `item_unit`, `created_at`, `updated_at`, `status`) VALUES
-(1, 'Băng gạc vô trùng', 15000, 'gói', '2024-10-06 22:20:26', NULL, 'active'),
-(2, 'Khẩu trang y tế', 50000, 'hộp', '2024-10-06 22:20:26', NULL, 'active'),
-(3, 'Bông y tế', 25000, 'hộp', '2024-10-06 22:20:26', NULL, 'active'),
-(4, 'Nhiệt kế điện tử', 300000, 'cái', '2024-10-06 22:20:26', NULL, 'active'),
-(5, 'Máy đo huyết áp', 500000, 'cái', '2024-10-06 22:20:26', NULL, 'active'),
-(6, 'Bộ dụng cụ tiêm insulin', 150000, 'bộ', '2024-10-06 22:20:26', NULL, 'active'),
-(7, 'Găng tay y tế', 50000, 'hộp', '2024-10-06 22:20:26', NULL, 'active'),
-(8, 'Ống tiêm nhựa', 2000, 'cái', '2024-10-06 22:20:26', NULL, 'active'),
-(9, 'Máy đo đường huyết', 600000, 'cái', '2024-10-06 22:20:26', NULL, 'active'),
-(10, 'Băng keo cá nhân', 10000, 'gói', '2024-10-06 22:20:26', NULL, 'active'),
-(11, 'Bộ truyền dịch', 30000, 'bộ', '2024-10-06 22:20:26', NULL, 'active'),
-(12, 'Bình oxy y tế', 1000000, 'bình', '2024-10-06 22:20:26', NULL, 'active'),
-(13, 'Máy xông mũi họng', 800000, 'cái', '2024-10-06 22:20:26', NULL, 'active'),
-(14, 'Nạng y tế', 250000, 'cái', '2024-10-06 22:20:26', NULL, 'active'),
-(15, 'Xe lăn', 2500000, 'cái', '2024-10-06 22:20:26', NULL, 'active'),
-(16, 'Gạc rửa vết thương', 10000, 'gói', '2024-10-06 22:20:26', NULL, 'active'),
-(17, 'Kim tiêm vô trùng', 1000, 'cái', '2024-10-06 22:20:26', NULL, 'active'),
-(18, 'Bộ test đường huyết', 120000, 'bộ', '2024-10-06 22:20:26', NULL, 'active'),
-(19, 'Mặt nạ oxy', 50000, 'cái', '2024-10-06 22:20:26', NULL, 'active'),
-(20, 'Bộ dụng cụ sơ cứu', 150000, 'bộ', '2024-10-06 22:20:26', NULL, 'active'),
-(21, 'Cân sức khỏe điện tử', 250000, 'cái', '2024-10-06 22:20:26', NULL, 'active'),
-(22, 'Máy đo nồng độ oxy (SpO2)', 450000, 'cái', '2024-10-06 22:20:26', NULL, 'active'),
-(23, 'Máy trợ thở', 1500000, 'cái', '2024-10-06 22:20:26', NULL, 'active'),
-(24, 'Găng tay cao su', 40000, 'hộp', '2024-10-06 22:20:26', NULL, 'active'),
-(25, 'Ống nghe y tế', 300000, 'cái', '2024-10-06 22:20:26', NULL, 'active'),
-(26, 'Bình xịt mũi', 70000, 'chai', '2024-10-06 22:20:26', NULL, 'active'),
-(27, 'Băng thun hỗ trợ khớp', 100000, 'cái', '2024-10-06 22:20:26', NULL, 'active'),
-(28, 'Bông ngoáy tai y tế', 5000, 'gói', '2024-10-06 22:20:26', NULL, 'active'),
-(29, 'Kính bảo hộ y tế', 80000, 'cái', '2024-10-06 22:20:26', NULL, 'active'),
-(30, 'Máy đo nhiệt độ trán', 400000, 'cái', '2024-10-06 22:20:26', NULL, 'active');
+INSERT INTO `dim_item` (`item_id`, `item_name`, `item_price`, `item_lending_price`, `item_unit`, `created_at`, `updated_at`, `status`) VALUES
+(1, 'Băng gạc vô trùng', 15000, 0, 'gói', '2024-10-06 22:20:26', NULL, 'active'),
+(2, 'Khẩu trang y tế', 50000, 0, 'hộp', '2024-10-06 22:20:26', NULL, 'active'),
+(3, 'Bông y tế', 25000, 0, 'hộp', '2024-10-06 22:20:26', NULL, 'active'),
+(4, 'Nhiệt kế điện tử', 300000, 15000, 'cái', '2024-10-06 22:20:26', '2024-11-10 05:48:19', 'active'),
+(5, 'Máy đo huyết áp', 500000, 25000, 'cái', '2024-10-06 22:20:26', '2024-11-10 05:48:19', 'active'),
+(6, 'Bộ dụng cụ tiêm insulin', 150000, 0, 'bộ', '2024-10-06 22:20:26', NULL, 'active'),
+(7, 'Găng tay y tế', 50000, 0, 'hộp', '2024-10-06 22:20:26', NULL, 'active'),
+(8, 'Ống tiêm nhựa', 2000, 0, 'cái', '2024-10-06 22:20:26', NULL, 'active'),
+(9, 'Máy đo đường huyết', 600000, 30000, 'cái', '2024-10-06 22:20:26', '2024-11-10 05:48:19', 'active'),
+(10, 'Băng keo cá nhân', 10000, 0, 'gói', '2024-10-06 22:20:26', NULL, 'active'),
+(11, 'Bộ truyền dịch', 30000, 0, 'bộ', '2024-10-06 22:20:26', NULL, 'active'),
+(12, 'Bình oxy y tế', 1000000, 0, 'bình', '2024-10-06 22:20:26', NULL, 'active'),
+(13, 'Máy xông mũi họng', 800000, 40000, 'cái', '2024-10-06 22:20:26', '2024-11-10 05:48:19', 'active'),
+(14, 'Nạng y tế', 250000, 10000, 'cái', '2024-10-06 22:20:26', '2024-11-10 05:48:19', 'active'),
+(15, 'Xe lăn', 2500000, 50000, 'cái', '2024-10-06 22:20:26', '2024-11-10 05:48:19', 'active'),
+(16, 'Gạc rửa vết thương', 10000, 0, 'gói', '2024-10-06 22:20:26', NULL, 'active'),
+(17, 'Kim tiêm vô trùng', 1000, 0, 'cái', '2024-10-06 22:20:26', NULL, 'active'),
+(18, 'Bộ test đường huyết', 120000, 0, 'bộ', '2024-10-06 22:20:26', NULL, 'active'),
+(19, 'Mặt nạ oxy', 50000, 0, 'cái', '2024-10-06 22:20:26', NULL, 'active'),
+(20, 'Bộ dụng cụ sơ cứu', 150000, 0, 'bộ', '2024-10-06 22:20:26', NULL, 'active'),
+(21, 'Cân sức khỏe điện tử', 250000, 10000, 'cái', '2024-10-06 22:20:26', '2024-11-10 05:48:19', 'active'),
+(22, 'Máy đo nồng độ oxy (SpO2)', 450000, 20000, 'cái', '2024-10-06 22:20:26', '2024-11-10 05:48:19', 'active'),
+(23, 'Máy trợ thở', 1500000, 75000, 'cái', '2024-10-06 22:20:26', '2024-11-10 05:48:19', 'active'),
+(24, 'Găng tay cao su', 40000, 0, 'hộp', '2024-10-06 22:20:26', NULL, 'active'),
+(25, 'Ống nghe y tế', 300000, 15000, 'cái', '2024-10-06 22:20:26', '2024-11-10 05:48:19', 'active'),
+(26, 'Bình xịt mũi', 70000, 0, 'chai', '2024-10-06 22:20:26', NULL, 'active'),
+(27, 'Băng thun hỗ trợ khớp', 100000, 0, 'cái', '2024-10-06 22:20:26', NULL, 'active'),
+(28, 'Bông ngoáy tai y tế', 5000, 0, 'gói', '2024-10-06 22:20:26', NULL, 'active'),
+(29, 'Kính bảo hộ y tế', 80000, 0, 'cái', '2024-10-06 22:20:26', NULL, 'active'),
+(30, 'Máy đo nhiệt độ trán', 400000, 25000, 'cái', '2024-10-06 22:20:26', '2024-11-10 05:48:19', 'active');
 
 -- --------------------------------------------------------
 
@@ -255,10 +256,10 @@ INSERT INTO `dim_med_service` (`service_id`, `service_name`, `service_price`, `s
 CREATE TABLE `dim_room` (
   `room_id` int(11) NOT NULL,
   `room_name` varchar(255) DEFAULT NULL,
-  `room_floor` int(11) DEFAULT NULL,
-  `specialty_id` int(11) DEFAULT NULL,
+  `floor_id` int(11) DEFAULT NULL,
+  `faculty_id` int(11) DEFAULT NULL,
   `room_size` int(11) DEFAULT NULL,
-  `price` bigint(11) DEFAULT NULL,
+  `room_price` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
   `status` varchar(50) DEFAULT NULL
@@ -268,7 +269,7 @@ CREATE TABLE `dim_room` (
 -- Dumping data for table `dim_room`
 --
 
-INSERT INTO `dim_room` (`room_id`, `room_name`, `room_floor`, `specialty_id`, `room_size`, `price`, `created_at`, `updated_at`, `status`) VALUES
+INSERT INTO `dim_room` (`room_id`, `room_name`, `floor_id`, `faculty_id`, `room_size`, `room_price`, `created_at`, `updated_at`, `status`) VALUES
 (1, 'Room 101', 1, 1, 1, 700000, '2024-11-08 16:29:39', NULL, 'active'),
 (2, 'Room 102', 1, NULL, 2, 550000, '2024-11-08 16:29:39', NULL, 'occupied'),
 (3, 'Room 103', 1, NULL, 4, 350000, '2024-11-08 16:29:39', NULL, 'active'),
@@ -321,11 +322,11 @@ INSERT INTO `dim_room` (`room_id`, `room_name`, `room_floor`, `specialty_id`, `r
 
 CREATE TABLE `dim_user` (
   `user_id` int(11) NOT NULL,
-  `user_name` varchar(255) DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `email_address` varchar(255) DEFAULT NULL,
   `contact_no` bigint(11) DEFAULT NULL,
-  `full_name` varchar(255) DEFAULT NULL,
+  `fullname` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
   `gender` varchar(25) DEFAULT NULL,
@@ -333,7 +334,7 @@ CREATE TABLE `dim_user` (
   `address` varchar(255) DEFAULT NULL,
   `role` varchar(50) DEFAULT NULL,
   `faculty_id` int(11) DEFAULT NULL,
-  `pricing` varchar(255) DEFAULT NULL,
+  `pricing` int(11) DEFAULT NULL,
   `oauth_google` varchar(255) DEFAULT NULL,
   `oauth_facebook` varchar(255) DEFAULT NULL,
   `status` varchar(50) DEFAULT 'active'
@@ -343,26 +344,26 @@ CREATE TABLE `dim_user` (
 -- Dumping data for table `dim_user`
 --
 
-INSERT INTO `dim_user` (`user_id`, `user_name`, `password`, `email_address`, `contact_no`, `full_name`, `created_at`, `updated_at`, `gender`, `city`, `address`, `role`, `faculty_id`, `pricing`, `oauth_google`, `oauth_facebook`, `status`) VALUES
+INSERT INTO `dim_user` (`user_id`, `username`, `password`, `email_address`, `contact_no`, `fullname`, `created_at`, `updated_at`, `gender`, `city`, `address`, `role`, `faculty_id`, `pricing`, `oauth_google`, `oauth_facebook`, `status`) VALUES
 (1, 'huan_patient', 'password123', 'huan.nguyen@example.com', 84912345601, 'Nguyen Nhut Gia Huan', '2024-10-07 05:36:07', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '1 Mac Dinh Chi', 'patient', NULL, NULL, NULL, NULL, 'active'),
-(2, 'huan_doctor', 'password123', 'huan.nguyen@example.com', 84912345602, 'Nguyen Nhut Gia Huan', '2024-10-07 05:36:07', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '1 Le Duan New', 'doctor', 7, '400000', NULL, NULL, 'active'),
+(2, 'huan_doctor', 'password123', 'huan.nguyen@example.com', 84912345602, 'Nguyen Nhut Gia Huan', '2024-10-07 05:36:07', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '1 Le Duan New', 'doctor', 7, 400000, NULL, NULL, 'active'),
 (3, 'huan_admin', 'password123', 'huan.nguyen@example.com', 84567890123, 'Nguyen Nhut Gia Huan', '2024-10-07 05:36:07', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '1 Le Duan 14', 'admin', NULL, NULL, NULL, NULL, 'active'),
 (4, 'long_patient', 'password123', 'long.nguyen@example.com', 84912345604, 'Nguyen Ba Long', '2024-10-07 05:36:07', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '2 Tran Hung Dao', 'patient', NULL, NULL, NULL, NULL, 'active'),
-(5, 'long_doctor', 'password123', 'long.nguyen@example.com', 84912345605, 'Nguyen Ba Long', '2024-10-07 05:36:07', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '2 Tran Hung Dao', 'doctor', 3, '450000', NULL, NULL, 'active'),
+(5, 'long_doctor', 'password123', 'long.nguyen@example.com', 84912345605, 'Nguyen Ba Long', '2024-10-07 05:36:07', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '2 Tran Hung Dao', 'doctor', 3, 450000, NULL, NULL, 'active'),
 (6, 'long_admin', 'password123', 'long.nguyen@example.com', 84912345606, 'Nguyen Ba Long', '2024-10-07 05:36:07', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '2 Tran Hung Dao', 'admin', NULL, NULL, NULL, NULL, 'active'),
 (7, 'khoa_patient', 'password123', 'khoa.tran@example.com', 84912345607, 'Tran Nguyen Dang Khoa', '2024-10-07 05:36:07', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '3 Nguyen Thi Minh Khai', 'patient', NULL, NULL, NULL, NULL, 'active'),
-(8, 'khoa_doctor', 'password123', 'khoa.tran@example.com', 84912345608, 'Tran Nguyen Dang Khoa', '2024-10-07 05:36:07', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '3 Nguyen Thi Minh Khai', 'doctor', 10, '500000', NULL, NULL, 'active'),
+(8, 'khoa_doctor', 'password123', 'khoa.tran@example.com', 84912345608, 'Tran Nguyen Dang Khoa', '2024-10-07 05:36:07', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '3 Nguyen Thi Minh Khai', 'doctor', 10, 500000, NULL, NULL, 'active'),
 (9, 'khoa_admin', 'password123', 'khoa.tran@example.com', 84912345609, 'Tran Nguyen Dang Khoa', '2024-10-07 05:36:07', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '3 Nguyen Thi Minh Khai', 'admin', NULL, NULL, NULL, NULL, 'active'),
-(10, 'doctor10', 'password123', 'doctor10@example.com', 84910000010, 'Nguyen Van An', '2024-10-07 05:44:49', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '10 Phan Xich Long', 'doctor', 1, '350000', NULL, NULL, 'active'),
-(11, 'doctor11', 'password123', 'doctor11@example.com', 84910000011, 'Tran Thi Bich', '2024-10-07 05:44:49', '2024-11-09 05:44:11', 'female', 'Ho Chi Minh', '11 Le Van Sy', 'doctor', 6, '370000', NULL, NULL, 'active'),
-(12, 'doctor12', 'password123', 'doctor12@example.com', 84910000012, 'Pham Minh Cuong', '2024-10-07 05:44:49', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '12 Nguyen Trai', 'doctor', 4, '400000', NULL, NULL, 'active'),
-(13, 'doctor13', 'password123', 'doctor13@example.com', 84000000013, 'Vo Thi Hoa', '2024-10-07 05:44:49', '2024-11-09 05:44:11', 'female', 'Ho Chi Minh', '14 Vo Thi Sau', 'doctor', 9, '450000', NULL, NULL, 'active'),
-(14, 'doctor14', 'password123', 'doctor14@example.com', 84910000014, 'Tran Van Hai', '2024-10-07 05:44:49', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '14 Hai Ba Trung', 'doctor', 2, '420000', NULL, NULL, 'active'),
-(15, 'doctor15', 'password123', 'doctor15@example.com', 84910000015, 'Pham Van Khoa', '2024-10-07 05:44:49', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '15 Le Lai', 'doctor', 8, '390000', NULL, NULL, 'active'),
-(16, 'doctor16', 'password123', 'doctor16@example.com', 84910000016, 'Nguyen Thi Lan', '2024-10-07 05:44:49', '2024-11-09 05:44:11', 'female', 'Ho Chi Minh', '16 Tran Hung Dao', 'doctor', 5, '480000', NULL, NULL, 'active'),
-(17, 'doctor17', 'password123', 'doctor17@example.com', 84910000017, 'Tran Van Minh', '2024-10-07 05:44:49', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '17 Nguyen Thi Minh Khai', 'doctor', 3, '460000', NULL, NULL, 'active'),
-(18, 'doctor18', 'password123', 'doctor18@example.com', 84910000018, 'Pham Thi Nhi', '2024-10-07 05:44:49', '2024-11-09 05:44:11', 'female', 'Ho Chi Minh', '18 Le Duan', 'doctor', 7, '410000', NULL, NULL, 'active'),
-(19, 'doctor19', 'password123', 'doctor19@example.com', 84910000019, 'Nguyen Van Quan', '2024-10-07 05:44:49', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '19 Dong Khoi', 'doctor', 1, '500000', NULL, NULL, 'active'),
+(10, 'doctor10', 'password123', 'doctor10@example.com', 84910000010, 'Nguyen Van An', '2024-10-07 05:44:49', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '10 Phan Xich Long', 'doctor', 1, 350000, NULL, NULL, 'active'),
+(11, 'doctor11', 'password123', 'doctor11@example.com', 84910000011, 'Tran Thi Bich', '2024-10-07 05:44:49', '2024-11-09 05:44:11', 'female', 'Ho Chi Minh', '11 Le Van Sy', 'doctor', 6, 370000, NULL, NULL, 'active'),
+(12, 'doctor12', 'password123', 'doctor12@example.com', 84910000012, 'Pham Minh Cuong', '2024-10-07 05:44:49', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '12 Nguyen Trai', 'doctor', 4, 400000, NULL, NULL, 'active'),
+(13, 'doctor13', 'password123', 'doctor13@example.com', 84000000013, 'Vo Thi Hoa', '2024-10-07 05:44:49', '2024-11-09 05:44:11', 'female', 'Ho Chi Minh', '14 Vo Thi Sau', 'doctor', 9, 450000, NULL, NULL, 'active'),
+(14, 'doctor14', 'password123', 'doctor14@example.com', 84910000014, 'Tran Van Hai', '2024-10-07 05:44:49', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '14 Hai Ba Trung', 'doctor', 2, 420000, NULL, NULL, 'active'),
+(15, 'doctor15', 'password123', 'doctor15@example.com', 84910000015, 'Pham Van Khoa', '2024-10-07 05:44:49', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '15 Le Lai', 'doctor', 8, 390000, NULL, NULL, 'active'),
+(16, 'doctor16', 'password123', 'doctor16@example.com', 84910000016, 'Nguyen Thi Lan', '2024-10-07 05:44:49', '2024-11-09 05:44:11', 'female', 'Ho Chi Minh', '16 Tran Hung Dao', 'doctor', 5, 480000, NULL, NULL, 'active'),
+(17, 'doctor17', 'password123', 'doctor17@example.com', 84910000017, 'Tran Van Minh', '2024-10-07 05:44:49', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '17 Nguyen Thi Minh Khai', 'doctor', 3, 460000, NULL, NULL, 'active'),
+(18, 'doctor18', 'password123', 'doctor18@example.com', 84910000018, 'Pham Thi Nhi', '2024-10-07 05:44:49', '2024-11-09 05:44:11', 'female', 'Ho Chi Minh', '18 Le Duan', 'doctor', 7, 410000, NULL, NULL, 'active'),
+(19, 'doctor19', 'password123', 'doctor19@example.com', 84910000019, 'Nguyen Van Quan', '2024-10-07 05:44:49', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '19 Dong Khoi', 'doctor', 1, 500000, NULL, NULL, 'active'),
 (20, 'patient20', 'password123', 'patient20@example.com', 84920000020, 'Nguyen Van Tuan', '2024-10-07 05:44:59', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '20 Nguyen Hue', 'patient', NULL, NULL, NULL, NULL, 'active'),
 (21, 'patient21', 'password123', 'patient21@example.com', 84920000021, 'Tran Thi Thao', '2024-10-07 05:44:59', '2024-11-09 05:44:11', 'female', 'Ho Chi Minh', '21 Le Thanh Ton', 'patient', NULL, NULL, NULL, NULL, 'active'),
 (22, 'patient22', 'password123', 'patient22@example.com', 84920000022, 'Pham Van Hoang', '2024-10-07 05:44:59', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '22 Tran Van Kieu', 'patient', NULL, NULL, NULL, NULL, 'active'),
@@ -398,54 +399,90 @@ CREATE TABLE `fact_appointment` (
   `appt_fee` int(11) DEFAULT NULL,
   `appt_datetime` varchar(50) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
+  `status` varchar(50) NOT NULL DEFAULT 'active'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `fact_appointment`
 --
 
-INSERT INTO `fact_appointment` (`appt_id`, `doctor_id`, `patient_id`, `faculty_id`, `appt_fee`, `appt_datetime`, `created_at`, `updated_at`) VALUES
-(1, 13, 25, 4, 450000, '2024-10-15T10:30:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11'),
-(2, 16, 28, 7, 480000, '2024-10-17T14:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11'),
-(3, 12, 20, 3, 400000, '2024-10-20T09:45:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11'),
-(4, 15, 24, 6, 390000, '2024-10-22T16:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11'),
-(5, 18, 32, 9, 410000, '2024-10-24T08:15:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11'),
-(6, 14, 23, 5, 420000, '2024-10-26T11:30:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11'),
-(7, 17, 30, 8, 460000, '2024-10-28T15:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11'),
-(8, 11, 31, 2, 370000, '2024-10-30T13:45:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11'),
-(9, 10, 21, 1, 350000, '2024-11-02T10:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11'),
-(10, 19, 22, 10, 500000, '2024-11-04T17:30:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11'),
-(11, 14, 29, 5, 420000, '2024-11-05T09:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11'),
-(12, 13, 33, 4, 450000, '2024-11-07T14:15:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11'),
-(13, 15, 26, 6, 390000, '2024-11-10T11:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11'),
-(14, 18, 35, 9, 410000, '2024-11-11T13:30:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11'),
-(15, 17, 27, 8, 460000, '2024-11-12T16:45:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11'),
-(16, 12, 36, 3, 400000, '2024-11-13T09:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11'),
-(17, 10, 34, 1, 350000, '2024-11-14T14:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11'),
-(18, 11, 28, 2, 370000, '2024-11-15T08:30:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11'),
-(19, 16, 37, 7, 480000, '2024-11-16T15:15:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11'),
-(20, 19, 38, 10, 500000, '2024-11-17T10:45:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11'),
-(21, 13, 22, 4, 450000, '2024-11-18T13:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11'),
-(22, 12, 24, 3, 400000, '2024-11-19T09:30:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11'),
-(23, 15, 31, 6, 390000, '2024-11-20T17:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11'),
-(24, 16, 21, 7, 480000, '2024-11-21T08:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11'),
-(25, 11, 39, 2, 370000, '2024-11-22T14:45:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11'),
-(26, 10, 35, 1, 350000, '2024-11-23T10:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11'),
-(27, 14, 30, 5, 420000, '2024-11-24T13:15:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11'),
-(28, 17, 36, 8, 460000, '2024-11-25T15:30:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11'),
-(29, 18, 32, 9, 410000, '2024-11-26T11:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11'),
-(30, 19, 23, 10, 500000, '2024-11-27T16:30:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11'),
-(31, 16, 38, 7, 480000, '2024-11-28T09:45:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11'),
-(32, 12, 27, 3, 400000, '2024-11-29T14:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11'),
-(33, 15, 28, 6, 390000, '2024-11-30T12:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11'),
-(34, 14, 39, 5, 420000, '2024-12-01T10:30:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11'),
-(35, 13, 34, 4, 450000, '2024-12-02T13:45:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11'),
-(36, 11, 26, 2, 370000, '2024-12-03T16:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11'),
-(37, 10, 29, 1, 350000, '2024-12-04T09:15:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11'),
-(38, 18, 37, 9, 410000, '2024-12-05T11:30:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11'),
-(39, 19, 25, 10, 500000, '2024-12-06T15:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11'),
-(40, 17, 20, 8, 460000, '2024-12-07T10:15:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11');
+INSERT INTO `fact_appointment` (`appt_id`, `doctor_id`, `patient_id`, `faculty_id`, `appt_fee`, `appt_datetime`, `created_at`, `updated_at`, `status`) VALUES
+(1, 13, 25, 4, 450000, '2024-10-15T10:30:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
+(2, 16, 28, 7, 480000, '2024-10-17T14:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
+(3, 12, 20, 3, 400000, '2024-10-20T09:45:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
+(4, 15, 24, 6, 390000, '2024-10-22T16:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
+(5, 18, 32, 9, 410000, '2024-10-24T08:15:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
+(6, 14, 23, 5, 420000, '2024-10-26T11:30:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
+(7, 17, 30, 8, 460000, '2024-10-28T15:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
+(8, 11, 31, 2, 370000, '2024-10-30T13:45:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
+(9, 10, 21, 1, 350000, '2024-11-02T10:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
+(10, 19, 22, 10, 500000, '2024-11-04T17:30:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
+(11, 14, 29, 5, 420000, '2024-11-05T09:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
+(12, 13, 33, 4, 450000, '2024-11-07T14:15:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
+(13, 15, 26, 6, 390000, '2024-11-10T11:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
+(14, 18, 35, 9, 410000, '2024-11-11T13:30:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
+(15, 17, 27, 8, 460000, '2024-11-12T16:45:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
+(16, 12, 36, 3, 400000, '2024-11-13T09:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
+(17, 10, 34, 1, 350000, '2024-11-14T14:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
+(18, 11, 28, 2, 370000, '2024-11-15T08:30:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
+(19, 16, 37, 7, 480000, '2024-11-16T15:15:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
+(20, 19, 38, 10, 500000, '2024-11-17T10:45:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
+(21, 13, 22, 4, 450000, '2024-11-18T13:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
+(22, 12, 24, 3, 400000, '2024-11-19T09:30:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
+(23, 15, 31, 6, 390000, '2024-11-20T17:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
+(24, 16, 21, 7, 480000, '2024-11-21T08:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
+(25, 11, 39, 2, 370000, '2024-11-22T14:45:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
+(26, 10, 35, 1, 350000, '2024-11-23T10:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
+(27, 14, 30, 5, 420000, '2024-11-24T13:15:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
+(28, 17, 36, 8, 460000, '2024-11-25T15:30:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
+(29, 18, 32, 9, 410000, '2024-11-26T11:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
+(30, 19, 23, 10, 500000, '2024-11-27T16:30:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
+(31, 16, 38, 7, 480000, '2024-11-28T09:45:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
+(32, 12, 27, 3, 400000, '2024-11-29T14:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
+(33, 15, 28, 6, 390000, '2024-11-30T12:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
+(34, 14, 39, 5, 420000, '2024-12-01T10:30:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
+(35, 13, 34, 4, 450000, '2024-12-02T13:45:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
+(36, 11, 26, 2, 370000, '2024-12-03T16:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
+(37, 10, 29, 1, 350000, '2024-12-04T09:15:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
+(38, 18, 37, 9, 410000, '2024-12-05T11:30:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
+(39, 19, 25, 10, 500000, '2024-12-06T15:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
+(40, 17, 20, 8, 460000, '2024-12-07T10:15:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `fact_facility_asmt`
+--
+
+CREATE TABLE `fact_facility_asmt` (
+  `fac_asmt_id` int(11) NOT NULL,
+  `fac_mgmt_id` int(11) DEFAULT NULL,
+  `item_id` int(11) DEFAULT NULL,
+  `item_note` mediumtext DEFAULT NULL,
+  `start_datetime` varchar(50) DEFAULT NULL,
+  `end_datetime` varchar(50) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
+  `status` varchar(50) DEFAULT 'active'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `fact_facility_mgmt`
+--
+
+CREATE TABLE `fact_facility_mgmt` (
+  `fac_mgmt_id` int(11) NOT NULL,
+  `booker_id` int(11) DEFAULT NULL,
+  `patient_id` int(11) DEFAULT NULL,
+  `start_datetime` varchar(50) DEFAULT NULL,
+  `end_datetime` varchar(50) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
+  `status` varchar(50) DEFAULT 'active'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -457,68 +494,69 @@ CREATE TABLE `fact_med_hist` (
   `med_hist_id` int(11) NOT NULL,
   `appt_id` int(11) NOT NULL,
   `patient_id` int(11) DEFAULT NULL,
-  `blood_press` varchar(200) DEFAULT NULL,
-  `blood_sugar` varchar(200) DEFAULT NULL,
-  `weight` varchar(200) DEFAULT NULL,
-  `temp` varchar(200) DEFAULT NULL,
+  `blood_press` varchar(50) DEFAULT NULL,
+  `blood_sugar` varchar(50) DEFAULT NULL,
+  `weight` varchar(50) DEFAULT NULL,
+  `temp` varchar(50) DEFAULT NULL,
   `med_note` mediumtext DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
+  `status` varchar(50) NOT NULL DEFAULT 'active'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `fact_med_hist`
 --
 
-INSERT INTO `fact_med_hist` (`med_hist_id`, `appt_id`, `patient_id`, `blood_press`, `blood_sugar`, `weight`, `temp`, `med_note`, `created_at`, `updated_at`) VALUES
-(1, 0, 21, '115/75', '5.0', '55', '36.0', 'Kiểm tra sức khỏe bình thường. Tất cả các chỉ số đều ổn định.', '2024-10-08 14:49:09', NULL),
-(2, 0, 39, '120/80', '5.5', '60', '36.5', 'Kiểm tra sức khỏe bình thường.', '2024-10-08 14:49:09', NULL),
-(3, 0, 22, '145/92', '7.5', '82', '38.0', 'Huyết áp tăng cao. Đã kê thuốc.', '2024-10-08 14:49:09', NULL),
-(4, 0, 34, '145/90', '7.1', '78', '37.9', 'Chẩn đoán tiểu đường. Cần theo dõi sức khỏe cẩn thận.', '2024-10-08 14:49:09', NULL),
-(5, 0, 28, '140/90', '6.8', '75', '37.8', 'Chẩn đoán tiểu đường. Bắt đầu điều trị.', '2024-10-08 14:49:09', NULL),
-(6, 0, 26, '135/88', '6.4', '75', '37.0', 'Huyết áp hơi cao. Theo dõi thường xuyên.', '2024-10-08 14:49:09', NULL),
-(7, 0, 30, '135/88', '7.0', '76', '37.5', 'Theo dõi mức đường huyết. Đã điều chỉnh thuốc.', '2024-10-08 14:49:09', NULL),
-(8, 0, 20, '120/80', '5.5', '65', '36.5', 'Kiểm tra sức khỏe bình thường. Không có vấn đề gì.', '2024-10-08 14:49:09', NULL),
-(9, 0, 31, '120/78', '5.1', '59', '36.3', 'Không có vấn đề gì.', '2024-10-08 14:49:09', NULL),
-(10, 0, 35, '120/80', '5.0', '64', '36.5', 'Kiểm tra sức khỏe bình thường.', '2024-10-08 14:49:09', NULL),
-(11, 0, 36, '125/80', '5.9', '75', '37.0', 'Huyết áp đã ổn định.', '2024-10-08 14:49:09', NULL),
-(12, 0, 23, '130/85', '5.4', '70', '36.8', 'Kiểm tra cho thấy kết quả bình thường.', '2024-10-08 14:49:09', NULL),
-(13, 0, 38, '140/90', '7.0', '85', '37.8', 'Chẩn đoán tiểu đường. Cần theo dõi sức khỏe cẩn thận.', '2024-10-08 14:49:09', NULL),
-(14, 0, 40, '115/75', '5.1', '73', '36.5', 'Tất cả các chỉ số đều trong phạm vi bình thường.', '2024-10-08 14:49:09', NULL),
-(15, 0, 27, '125/80', '5.2', '70', '36.9', 'Kiểm tra định kỳ. Kết quả bình thường.', '2024-10-08 14:49:09', NULL),
-(16, 0, 25, '120/78', '5.3', '62', '36.6', 'Tất cả chỉ số trong phạm vi bình thường.', '2024-10-08 14:49:09', NULL),
-(17, 0, 24, '150/95', '8.0', '90', '38.5', 'Chẩn đoán tiểu đường. Cần thay đổi lối sống ngay lập tức.', '2024-10-08 14:49:09', NULL),
-(18, 0, 29, '125/82', '5.4', '63', '36.6', 'Đường huyết hơi cao. Khuyên thay đổi chế độ ăn uống.', '2024-10-08 14:49:09', NULL),
-(19, 0, 32, '130/85', '5.7', '80', '37.5', 'Kiểm tra cho thấy kết quả bình thường.', '2024-10-08 14:49:09', NULL),
-(20, 0, 33, '125/80', '5.2', '70', '36.9', 'Kiểm tra định kỳ. Kết quả bình thường.', '2024-10-08 14:49:09', NULL),
-(21, 0, 37, '110/70', '5.4', '58', '36.1', 'Kiểm tra sức khỏe định kỳ. Tất cả bình thường.', '2024-10-08 14:49:09', NULL),
-(22, 0, 21, '110/70', '4.9', '55', '36.0', 'Kiểm tra sức khỏe bình thường. Tất cả các chỉ số đều ổn định.', '2024-10-08 14:49:09', NULL),
-(23, 0, 22, '140/90', '6.5', '80', '37.8', 'Chẩn đoán tăng huyết áp. Cần thay đổi lối sống ngay lập tức.', '2024-10-08 14:49:09', NULL),
-(24, 0, 24, '145/92', '8.5', '91', '38.7', 'Mức đường huyết vẫn cao. Điều chỉnh thuốc.', '2024-10-08 14:49:09', NULL),
-(25, 0, 25, '125/82', '5.1', '56', '36.3', 'Mức đường huyết bình thường.', '2024-10-08 14:49:09', NULL),
-(26, 0, 40, '130/85', '6.0', '76', '37.2', 'Cần theo dõi huyết áp thường xuyên.', '2024-10-08 14:49:09', NULL),
-(27, 0, 39, '125/82', '5.7', '61', '36.6', 'Không có vấn đề gì.', '2024-10-08 14:49:09', NULL),
-(28, 0, 38, '145/92', '7.5', '87', '38.0', 'Mức đường huyết cao. Đã điều chỉnh thuốc.', '2024-10-08 14:49:09', NULL),
-(29, 0, 26, '130/85', '6.1', '76', '37.1', 'Cần chú ý đến chế độ ăn uống.', '2024-10-08 14:49:09', NULL),
-(30, 0, 30, '130/85', '6.5', '74', '37.3', 'Mức đường huyết đã được kiểm soát bằng thuốc.', '2024-10-08 14:49:09', NULL),
-(31, 0, 28, '130/85', '6.5', '84', '37.8', 'Huyết áp đã ổn định. Tiếp tục điều trị.', '2024-10-08 14:49:09', NULL),
-(32, 0, 29, '130/84', '5.8', '64', '36.7', 'Theo dõi mức đường huyết. Cần kiểm tra lại.', '2024-10-08 14:49:09', NULL),
-(33, 0, 27, '120/78', '5.3', '63', '36.4', 'Kiểm tra định kỳ. Không có vấn đề gì.', '2024-10-08 14:49:09', NULL),
-(34, 0, 20, '135/88', '6.0', '66', '37.0', 'Huyết áp hơi cao. Cần theo dõi chế độ ăn uống.', '2024-10-08 14:49:09', NULL),
-(35, 0, 31, '115/75', '5.0', '64', '36.5', 'Kiểm tra sức khỏe bình thường.', '2024-10-08 14:49:09', NULL),
-(36, 0, 36, '135/88', '6.4', '77', '37.2', 'Huyết áp hơi cao. Theo dõi thường xuyên.', '2024-10-08 14:49:09', NULL),
-(37, 0, 33, '130/85', '5.5', '72', '37.0', 'Không có dấu hiệu bất thường.', '2024-10-08 14:49:09', NULL),
-(38, 0, 35, '120/80', '5.0', '64', '36.5', 'Kiểm tra sức khỏe bình thường.', '2024-10-08 14:49:09', NULL),
-(39, 0, 34, '140/88', '6.9', '79', '37.8', 'Cần kiểm tra lại trong tháng tới.', '2024-10-08 14:49:09', NULL),
-(40, 0, 28, '140/88', '6.8', '86', '38.0', 'Cần theo dõi huyết áp. Kiểm tra định kỳ cần thiết.', '2024-10-08 14:49:09', NULL),
-(41, 0, 26, '120/80', '5.2', '75', '37.1', 'Kiểm tra sức khỏe bình thường. Tất cả các chỉ số đều ổn định.', '2024-10-08 14:49:09', NULL),
-(42, 0, 30, '140/90', '6.0', '75', '38.2', 'Huyết áp đã ổn định.', '2024-10-08 14:49:09', NULL),
-(43, 0, 23, '140/90', '6.5', '78', '37.3', 'Cần theo dõi mức đường huyết. Đã điều chỉnh thuốc.', '2024-10-08 14:49:09', NULL),
-(44, 0, 21, '110/70', '5.0', '56', '36.2', 'Kiểm tra sức khỏe bình thường. Tất cả các chỉ số đều ổn định.', '2024-10-08 14:49:09', NULL),
-(45, 0, 22, '130/85', '6.8', '82', '37.1', 'Huyết áp đã ổn định.', '2024-10-08 14:49:09', NULL),
-(46, 0, 24, '130/85', '5.9', '79', '37.6', 'Huyết áp và đường huyết đều trong mức bình thường.', '2024-10-08 14:49:09', NULL),
-(47, 0, 39, '120/80', '5.5', '60', '36.5', 'Kiểm tra sức khỏe bình thường.', '2024-10-08 14:49:09', NULL),
-(48, 0, 37, '115/75', '5.0', '58', '36.2', 'Kiểm tra sức khỏe bình thường. Tất cả các chỉ số đều ổn định.', '2024-10-08 14:49:09', NULL);
+INSERT INTO `fact_med_hist` (`med_hist_id`, `appt_id`, `patient_id`, `blood_press`, `blood_sugar`, `weight`, `temp`, `med_note`, `created_at`, `updated_at`, `status`) VALUES
+(1, 0, 21, '115/75', '5.0', '55', '36.0', 'Kiểm tra sức khỏe bình thường. Tất cả các chỉ số đều ổn định.', '2024-10-08 14:49:09', NULL, 'active'),
+(2, 0, 39, '120/80', '5.5', '60', '36.5', 'Kiểm tra sức khỏe bình thường.', '2024-10-08 14:49:09', NULL, 'active'),
+(3, 0, 22, '145/92', '7.5', '82', '38.0', 'Huyết áp tăng cao. Đã kê thuốc.', '2024-10-08 14:49:09', NULL, 'active'),
+(4, 0, 34, '145/90', '7.1', '78', '37.9', 'Chẩn đoán tiểu đường. Cần theo dõi sức khỏe cẩn thận.', '2024-10-08 14:49:09', NULL, 'active'),
+(5, 0, 28, '140/90', '6.8', '75', '37.8', 'Chẩn đoán tiểu đường. Bắt đầu điều trị.', '2024-10-08 14:49:09', NULL, 'active'),
+(6, 0, 26, '135/88', '6.4', '75', '37.0', 'Huyết áp hơi cao. Theo dõi thường xuyên.', '2024-10-08 14:49:09', NULL, 'active'),
+(7, 0, 30, '135/88', '7.0', '76', '37.5', 'Theo dõi mức đường huyết. Đã điều chỉnh thuốc.', '2024-10-08 14:49:09', NULL, 'active'),
+(8, 0, 20, '120/80', '5.5', '65', '36.5', 'Kiểm tra sức khỏe bình thường. Không có vấn đề gì.', '2024-10-08 14:49:09', NULL, 'active'),
+(9, 0, 31, '120/78', '5.1', '59', '36.3', 'Không có vấn đề gì.', '2024-10-08 14:49:09', NULL, 'active'),
+(10, 0, 35, '120/80', '5.0', '64', '36.5', 'Kiểm tra sức khỏe bình thường.', '2024-10-08 14:49:09', NULL, 'active'),
+(11, 0, 36, '125/80', '5.9', '75', '37.0', 'Huyết áp đã ổn định.', '2024-10-08 14:49:09', NULL, 'active'),
+(12, 0, 23, '130/85', '5.4', '70', '36.8', 'Kiểm tra cho thấy kết quả bình thường.', '2024-10-08 14:49:09', NULL, 'active'),
+(13, 0, 38, '140/90', '7.0', '85', '37.8', 'Chẩn đoán tiểu đường. Cần theo dõi sức khỏe cẩn thận.', '2024-10-08 14:49:09', NULL, 'active'),
+(14, 0, 40, '115/75', '5.1', '73', '36.5', 'Tất cả các chỉ số đều trong phạm vi bình thường.', '2024-10-08 14:49:09', NULL, 'active'),
+(15, 0, 27, '125/80', '5.2', '70', '36.9', 'Kiểm tra định kỳ. Kết quả bình thường.', '2024-10-08 14:49:09', NULL, 'active'),
+(16, 0, 25, '120/78', '5.3', '62', '36.6', 'Tất cả chỉ số trong phạm vi bình thường.', '2024-10-08 14:49:09', NULL, 'active'),
+(17, 0, 24, '150/95', '8.0', '90', '38.5', 'Chẩn đoán tiểu đường. Cần thay đổi lối sống ngay lập tức.', '2024-10-08 14:49:09', NULL, 'active'),
+(18, 0, 29, '125/82', '5.4', '63', '36.6', 'Đường huyết hơi cao. Khuyên thay đổi chế độ ăn uống.', '2024-10-08 14:49:09', NULL, 'active'),
+(19, 0, 32, '130/85', '5.7', '80', '37.5', 'Kiểm tra cho thấy kết quả bình thường.', '2024-10-08 14:49:09', NULL, 'active'),
+(20, 0, 33, '125/80', '5.2', '70', '36.9', 'Kiểm tra định kỳ. Kết quả bình thường.', '2024-10-08 14:49:09', NULL, 'active'),
+(21, 0, 37, '110/70', '5.4', '58', '36.1', 'Kiểm tra sức khỏe định kỳ. Tất cả bình thường.', '2024-10-08 14:49:09', NULL, 'active'),
+(22, 0, 21, '110/70', '4.9', '55', '36.0', 'Kiểm tra sức khỏe bình thường. Tất cả các chỉ số đều ổn định.', '2024-10-08 14:49:09', NULL, 'active'),
+(23, 0, 22, '140/90', '6.5', '80', '37.8', 'Chẩn đoán tăng huyết áp. Cần thay đổi lối sống ngay lập tức.', '2024-10-08 14:49:09', NULL, 'active'),
+(24, 0, 24, '145/92', '8.5', '91', '38.7', 'Mức đường huyết vẫn cao. Điều chỉnh thuốc.', '2024-10-08 14:49:09', NULL, 'active'),
+(25, 0, 25, '125/82', '5.1', '56', '36.3', 'Mức đường huyết bình thường.', '2024-10-08 14:49:09', NULL, 'active'),
+(26, 0, 40, '130/85', '6.0', '76', '37.2', 'Cần theo dõi huyết áp thường xuyên.', '2024-10-08 14:49:09', NULL, 'active'),
+(27, 0, 39, '125/82', '5.7', '61', '36.6', 'Không có vấn đề gì.', '2024-10-08 14:49:09', NULL, 'active'),
+(28, 0, 38, '145/92', '7.5', '87', '38.0', 'Mức đường huyết cao. Đã điều chỉnh thuốc.', '2024-10-08 14:49:09', NULL, 'active'),
+(29, 0, 26, '130/85', '6.1', '76', '37.1', 'Cần chú ý đến chế độ ăn uống.', '2024-10-08 14:49:09', NULL, 'active'),
+(30, 0, 30, '130/85', '6.5', '74', '37.3', 'Mức đường huyết đã được kiểm soát bằng thuốc.', '2024-10-08 14:49:09', NULL, 'active'),
+(31, 0, 28, '130/85', '6.5', '84', '37.8', 'Huyết áp đã ổn định. Tiếp tục điều trị.', '2024-10-08 14:49:09', NULL, 'active'),
+(32, 0, 29, '130/84', '5.8', '64', '36.7', 'Theo dõi mức đường huyết. Cần kiểm tra lại.', '2024-10-08 14:49:09', NULL, 'active'),
+(33, 0, 27, '120/78', '5.3', '63', '36.4', 'Kiểm tra định kỳ. Không có vấn đề gì.', '2024-10-08 14:49:09', NULL, 'active'),
+(34, 0, 20, '135/88', '6.0', '66', '37.0', 'Huyết áp hơi cao. Cần theo dõi chế độ ăn uống.', '2024-10-08 14:49:09', NULL, 'active'),
+(35, 0, 31, '115/75', '5.0', '64', '36.5', 'Kiểm tra sức khỏe bình thường.', '2024-10-08 14:49:09', NULL, 'active'),
+(36, 0, 36, '135/88', '6.4', '77', '37.2', 'Huyết áp hơi cao. Theo dõi thường xuyên.', '2024-10-08 14:49:09', NULL, 'active'),
+(37, 0, 33, '130/85', '5.5', '72', '37.0', 'Không có dấu hiệu bất thường.', '2024-10-08 14:49:09', NULL, 'active'),
+(38, 0, 35, '120/80', '5.0', '64', '36.5', 'Kiểm tra sức khỏe bình thường.', '2024-10-08 14:49:09', NULL, 'active'),
+(39, 0, 34, '140/88', '6.9', '79', '37.8', 'Cần kiểm tra lại trong tháng tới.', '2024-10-08 14:49:09', NULL, 'active'),
+(40, 0, 28, '140/88', '6.8', '86', '38.0', 'Cần theo dõi huyết áp. Kiểm tra định kỳ cần thiết.', '2024-10-08 14:49:09', NULL, 'active'),
+(41, 0, 26, '120/80', '5.2', '75', '37.1', 'Kiểm tra sức khỏe bình thường. Tất cả các chỉ số đều ổn định.', '2024-10-08 14:49:09', NULL, 'active'),
+(42, 0, 30, '140/90', '6.0', '75', '38.2', 'Huyết áp đã ổn định.', '2024-10-08 14:49:09', NULL, 'active'),
+(43, 0, 23, '140/90', '6.5', '78', '37.3', 'Cần theo dõi mức đường huyết. Đã điều chỉnh thuốc.', '2024-10-08 14:49:09', NULL, 'active'),
+(44, 0, 21, '110/70', '5.0', '56', '36.2', 'Kiểm tra sức khỏe bình thường. Tất cả các chỉ số đều ổn định.', '2024-10-08 14:49:09', NULL, 'active'),
+(45, 0, 22, '130/85', '6.8', '82', '37.1', 'Huyết áp đã ổn định.', '2024-10-08 14:49:09', NULL, 'active'),
+(46, 0, 24, '130/85', '5.9', '79', '37.6', 'Huyết áp và đường huyết đều trong mức bình thường.', '2024-10-08 14:49:09', NULL, 'active'),
+(47, 0, 39, '120/80', '5.5', '60', '36.5', 'Kiểm tra sức khỏe bình thường.', '2024-10-08 14:49:09', NULL, 'active'),
+(48, 0, 37, '115/75', '5.0', '58', '36.2', 'Kiểm tra sức khỏe bình thường. Tất cả các chỉ số đều ổn định.', '2024-10-08 14:49:09', NULL, 'active');
 
 -- --------------------------------------------------------
 
@@ -530,7 +568,6 @@ CREATE TABLE `fact_patient_details` (
   `record_id` int(11) NOT NULL,
   `doctor_id` int(11) NOT NULL,
   `patient_id` int(11) NOT NULL,
-  `patient_age` int(10) DEFAULT NULL,
   `med_hist` mediumtext DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
@@ -540,27 +577,27 @@ CREATE TABLE `fact_patient_details` (
 -- Dumping data for table `fact_patient_details`
 --
 
-INSERT INTO `fact_patient_details` (`record_id`, `doctor_id`, `patient_id`, `patient_age`, `med_hist`, `created_at`, `updated_at`) VALUES
-(1, 14, 20, 35, 'Huyết áp hơi cao. Theo dõi thường xuyên.', '2024-10-08 15:03:48', NULL),
-(2, 10, 21, 21, 'Kiểm tra sức khỏe bình thường.', '2024-10-08 15:03:48', NULL),
-(3, 15, 22, 31, 'Mức đường huyết vẫn cao. Điều chỉnh thuốc.', '2024-10-08 15:03:48', NULL),
-(4, 13, 23, 35, 'Chẩn đoán tiểu đường. Cần thay đổi lối sống ngay lập tức.', '2024-10-08 15:03:48', NULL),
-(5, 13, 24, 42, 'Theo dõi mức đường huyết. Đã điều chỉnh thuốc.', '2024-10-08 15:03:48', NULL),
-(6, 12, 25, 40, 'Kiểm tra sức khỏe bình thường. Tất cả các chỉ số đều ổn định.', '2024-10-08 15:03:48', NULL),
-(7, 11, 26, 27, 'Huyết áp đã ổn định. Theo dõi thường xuyên.', '2024-10-08 15:03:48', NULL),
-(8, 16, 27, 38, 'Chẩn đoán tăng huyết áp. Cần thay đổi lối sống ngay lập tức.', '2024-10-08 15:03:48', NULL),
-(9, 19, 28, 29, 'Chẩn đoán tiểu đường. Cần theo dõi sức khỏe cẩn thận.', '2024-10-08 15:03:48', NULL),
-(10, 10, 29, 24, 'Kiểm tra sức khỏe bình thường. Không có vấn đề gì.', '2024-10-08 15:03:48', NULL),
-(11, 11, 30, 45, 'Kiểm tra cho thấy kết quả bình thường.', '2024-10-08 15:03:48', NULL),
-(12, 15, 31, 33, 'Mức đường huyết cao. Đã điều chỉnh thuốc.', '2024-10-08 15:03:48', NULL),
-(13, 12, 32, 36, 'Kiểm tra sức khỏe bình thường. Tất cả các chỉ số đều ổn định.', '2024-10-08 15:03:48', NULL),
-(14, 13, 33, 32, 'Chẩn đoán tiểu đường. Cần theo dõi sức khỏe cẩn thận.', '2024-10-08 15:03:48', NULL),
-(15, 14, 34, 54, 'Huyết áp hơi cao. Theo dõi thường xuyên.', '2024-10-08 15:03:48', NULL),
-(16, 19, 35, 26, 'Kiểm tra sức khỏe bình thường. Tất cả các chỉ số đều ổn định.', '2024-10-08 15:03:48', NULL),
-(17, 16, 36, 42, 'Mức đường huyết vẫn cao. Điều chỉnh thuốc.', '2024-10-08 15:03:48', NULL),
-(18, 11, 37, 37, 'Theo dõi mức đường huyết. Đã điều chỉnh thuốc.', '2024-10-08 15:03:48', NULL),
-(19, 18, 38, 44, 'Chẩn đoán tiểu đường. Cần thay đổi lối sống ngay lập tức.', '2024-10-08 15:03:48', NULL),
-(20, 19, 39, 48, 'Kiểm tra sức khỏe bình thường. Không có vấn đề gì.', '2024-10-08 15:03:48', NULL);
+INSERT INTO `fact_patient_details` (`record_id`, `doctor_id`, `patient_id`, `med_hist`, `created_at`, `updated_at`) VALUES
+(1, 14, 20, 'Huyết áp hơi cao. Theo dõi thường xuyên.', '2024-10-08 15:03:48', NULL),
+(2, 10, 21, 'Kiểm tra sức khỏe bình thường.', '2024-10-08 15:03:48', NULL),
+(3, 15, 22, 'Mức đường huyết vẫn cao. Điều chỉnh thuốc.', '2024-10-08 15:03:48', NULL),
+(4, 13, 23, 'Chẩn đoán tiểu đường. Cần thay đổi lối sống ngay lập tức.', '2024-10-08 15:03:48', NULL),
+(5, 13, 24, 'Theo dõi mức đường huyết. Đã điều chỉnh thuốc.', '2024-10-08 15:03:48', NULL),
+(6, 12, 25, 'Kiểm tra sức khỏe bình thường. Tất cả các chỉ số đều ổn định.', '2024-10-08 15:03:48', NULL),
+(7, 11, 26, 'Huyết áp đã ổn định. Theo dõi thường xuyên.', '2024-10-08 15:03:48', NULL),
+(8, 16, 27, 'Chẩn đoán tăng huyết áp. Cần thay đổi lối sống ngay lập tức.', '2024-10-08 15:03:48', NULL),
+(9, 19, 28, 'Chẩn đoán tiểu đường. Cần theo dõi sức khỏe cẩn thận.', '2024-10-08 15:03:48', NULL),
+(10, 10, 29, 'Kiểm tra sức khỏe bình thường. Không có vấn đề gì.', '2024-10-08 15:03:48', NULL),
+(11, 11, 30, 'Kiểm tra cho thấy kết quả bình thường.', '2024-10-08 15:03:48', NULL),
+(12, 15, 31, 'Mức đường huyết cao. Đã điều chỉnh thuốc.', '2024-10-08 15:03:48', NULL),
+(13, 12, 32, 'Kiểm tra sức khỏe bình thường. Tất cả các chỉ số đều ổn định.', '2024-10-08 15:03:48', NULL),
+(14, 13, 33, 'Chẩn đoán tiểu đường. Cần theo dõi sức khỏe cẩn thận.', '2024-10-08 15:03:48', NULL),
+(15, 14, 34, 'Huyết áp hơi cao. Theo dõi thường xuyên.', '2024-10-08 15:03:48', NULL),
+(16, 19, 35, 'Kiểm tra sức khỏe bình thường. Tất cả các chỉ số đều ổn định.', '2024-10-08 15:03:48', NULL),
+(17, 16, 36, 'Mức đường huyết vẫn cao. Điều chỉnh thuốc.', '2024-10-08 15:03:48', NULL),
+(18, 11, 37, 'Theo dõi mức đường huyết. Đã điều chỉnh thuốc.', '2024-10-08 15:03:48', NULL),
+(19, 18, 38, 'Chẩn đoán tiểu đường. Cần thay đổi lối sống ngay lập tức.', '2024-10-08 15:03:48', NULL),
+(20, 19, 39, 'Kiểm tra sức khỏe bình thường. Không có vấn đề gì.', '2024-10-08 15:03:48', NULL);
 
 -- --------------------------------------------------------
 
@@ -605,10 +642,10 @@ INSERT INTO `fact_payment` (`payment_id`, `payment_type`, `reference_id`, `amoun
 -- --------------------------------------------------------
 
 --
--- Table structure for table `fact_prescriptions`
+-- Table structure for table `fact_prescription`
 --
 
-CREATE TABLE `fact_prescriptions` (
+CREATE TABLE `fact_prescription` (
   `pres_id` int(11) NOT NULL,
   `med_hist_id` int(11) NOT NULL,
   `item_id` int(11) NOT NULL,
@@ -619,10 +656,10 @@ CREATE TABLE `fact_prescriptions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `fact_prescriptions`
+-- Dumping data for table `fact_prescription`
 --
 
-INSERT INTO `fact_prescriptions` (`pres_id`, `med_hist_id`, `item_id`, `amount`, `price`, `item_note`, `created_at`) VALUES
+INSERT INTO `fact_prescription` (`pres_id`, `med_hist_id`, `item_id`, `amount`, `price`, `item_note`, `created_at`) VALUES
 (1, 3, 1, 1, 2000, 'Uống 1 viên buổi sáng sau ăn', '2024-10-08 14:50:10'),
 (2, 3, 9, 1, 2000, 'Uống 1 viên vào buổi tối', '2024-10-08 14:50:10'),
 (3, 4, 3, 2, 25000, 'Uống 1 viên mỗi ngày sau ăn', '2024-10-08 14:50:10'),
@@ -651,22 +688,6 @@ INSERT INTO `fact_prescriptions` (`pres_id`, `med_hist_id`, `item_id`, `amount`,
 (26, 38, 9, 1, 2000, 'Uống 1 viên vào buổi tối', '2024-10-08 14:50:10'),
 (27, 39, 10, 1, 10000, 'Uống 1 viên buổi sáng', '2024-10-08 14:50:10'),
 (28, 40, 5, 1, 1500, 'Uống 1 viên trước khi ăn', '2024-10-08 14:50:10');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `fact_user_login`
---
-
-CREATE TABLE `fact_user_login` (
-  `login_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `user_name` varchar(255) DEFAULT NULL,
-  `user_ip` binary(16) DEFAULT NULL,
-  `login_at` timestamp NULL DEFAULT current_timestamp(),
-  `logout_at` timestamp NULL DEFAULT NULL,
-  `status` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -786,6 +807,18 @@ ALTER TABLE `fact_appointment`
   ADD PRIMARY KEY (`appt_id`);
 
 --
+-- Indexes for table `fact_facility_asmt`
+--
+ALTER TABLE `fact_facility_asmt`
+  ADD PRIMARY KEY (`fac_asmt_id`);
+
+--
+-- Indexes for table `fact_facility_mgmt`
+--
+ALTER TABLE `fact_facility_mgmt`
+  ADD PRIMARY KEY (`fac_mgmt_id`);
+
+--
 -- Indexes for table `fact_med_hist`
 --
 ALTER TABLE `fact_med_hist`
@@ -804,16 +837,10 @@ ALTER TABLE `fact_payment`
   ADD PRIMARY KEY (`payment_id`);
 
 --
--- Indexes for table `fact_prescriptions`
+-- Indexes for table `fact_prescription`
 --
-ALTER TABLE `fact_prescriptions`
+ALTER TABLE `fact_prescription`
   ADD PRIMARY KEY (`pres_id`);
-
---
--- Indexes for table `fact_user_login`
---
-ALTER TABLE `fact_user_login`
-  ADD PRIMARY KEY (`login_id`);
 
 --
 -- Indexes for table `fact_work_schedule`
@@ -868,6 +895,18 @@ ALTER TABLE `fact_appointment`
   MODIFY `appt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
+-- AUTO_INCREMENT for table `fact_facility_asmt`
+--
+ALTER TABLE `fact_facility_asmt`
+  MODIFY `fac_asmt_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `fact_facility_mgmt`
+--
+ALTER TABLE `fact_facility_mgmt`
+  MODIFY `fac_mgmt_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `fact_med_hist`
 --
 ALTER TABLE `fact_med_hist`
@@ -886,16 +925,10 @@ ALTER TABLE `fact_payment`
   MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
--- AUTO_INCREMENT for table `fact_prescriptions`
+-- AUTO_INCREMENT for table `fact_prescription`
 --
-ALTER TABLE `fact_prescriptions`
+ALTER TABLE `fact_prescription`
   MODIFY `pres_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
-
---
--- AUTO_INCREMENT for table `fact_user_login`
---
-ALTER TABLE `fact_user_login`
-  MODIFY `login_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `fact_work_schedule`
