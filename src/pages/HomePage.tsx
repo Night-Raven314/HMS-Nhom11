@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet";
-import { HomeNavbar } from "../components/HomePage/HomeNavbar";
+import { HomeNavbar } from "../components/pages/HomePage/HomeNavbar";
 
 export const HomePage = () => {
 

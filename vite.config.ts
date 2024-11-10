@@ -11,5 +11,13 @@ export default defineConfig({
         // silenceDeprecations: ["legacy-js-api"]
       },
     },
+  },
+  server: {
+    proxy: {
+      '/HMS-Nhom11/backend': {
+        target: 'http://localhost:8080',
+        changeOrigin: true
+      },
+    }
   }
 })

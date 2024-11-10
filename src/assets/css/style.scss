@@ -2,6 +2,13 @@ $hms-light: #44857D;
 $hms-neutral: #167070;
 $hms-dark: #003D59;
 $text-color: #414A4F;
+$input-border: #d2d6da;
+
+// Colors
+$color-green: #00BD9D;
+$color-light-green: #f4fffd;
+$color-red: #D4212A;
+$color-light-red: #fff4f4;
 
 #scroll-top {
   position: fixed;
@@ -172,6 +179,19 @@ div#popupFormContainer {
   transform: translate(-50%, -50%);
 }
 
+@mixin floating-label {
+  top: -10px;
+  left: 5px;
+  font-size: 10pt;
+  padding: 0 5px;
+  color: $hms-neutral;
+}
+@mixin normal-label {
+  top: 8px;
+  left: 5px;
+  font-size: 11pt;
+  color: #414a4f;
+}
 .custom-input {
   font-family: "Roboto", Helvetica, Arial, sans-serif !important;
   margin: 10px 0;
@@ -184,55 +204,43 @@ div#popupFormContainer {
     color: $hms-neutral;
   }
   label {
-    color: #414a4f;
     position: absolute;
     transition: all 200ms ease-in-out;
-    top: 8px;
-    left: 10px;
-    font-size: 11pt;
     background-color: #fff;
     pointer-events: none;
+    @include floating-label();
   }
   select {
     all: unset
   }
-  input, select {
+  input, select, textarea {
     transition: all 200ms ease-in-out;
-    border: 1px solid #d2d6da;
+    border: 1px solid $hms-neutral;
     border-radius: 5px;
     padding: 7px 13px 5px;
     font-size: 11pt;
     width: 100%;
     box-sizing: border-box;
+    &::placeholder {
+      color: #b0b0b0;
+      opacity: 0;
+      transition: opacity 200ms ease-in-out;
+    }
+    &:placeholder-shown {
+      + label {
+        @include normal-label();
+      }
+      border-color: $input-border;
+    }
     &:focus {
       outline: none;
       border-color: $hms-neutral;
       + label {
-        top: -10px;
-        left: 5px;
-        font-size: 10pt;
-        padding: 0 5px;
-        background-color: #fff;
-        color: $hms-neutral;
+        @include floating-label();
       }
       &::placeholder {
         opacity: 1;
-        transition: opacity 200ms ease-in-out;
       }
-    }
-    &::placeholder {
-      color: #b0b0b0;
-      opacity: 0;
-    }
-    &:not(:placeholder-shown) {
-      + label {
-        top: -10px;
-        left: 5px;
-        font-size: 10pt;
-        padding: 0 5px;
-        color: $hms-neutral;
-      }
-      border-color: $hms-neutral;
     }
   }
   input[type="file"]::file-selector-button {
@@ -241,6 +249,22 @@ div#popupFormContainer {
   select {
     text-align: left;
     color: #000
+  }
+  textarea {
+    resize: unset;
+  }
+  .error-msg {
+    color: $color-red;
+    font-size: 11pt;
+    margin-top: 5px;
+  }
+  &.error-input {
+    input {
+      border-color: $color-red!important;
+    }
+    label {
+      color: $color-red!important
+    }
   }
 }
 
@@ -299,5 +323,87 @@ div#popupFormContainer {
         opacity: 1!important;
       }
     }
+  }
+}
+
+.custom-checkbox {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    width: 100% !important;
+    height: 100% !important;
+    top: 0;
+    left: 0;
+    margin: 0;
+  }
+
+  .checkbox-box {
+    border: 2px solid $hms-neutral;
+    display: grid;
+    place-items: center;
+    vertical-align: middle;
+    width: 22px;
+    height: 22px;
+    margin-right: 10px;
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+    position: relative;
+    pointer-events: none;
+    background-color: #fff;
+    fill: none;
+
+    .custom-fa {
+      width: 14px !important;
+      top: -3px;
+    }
+  }
+
+  &.modal-fix {
+    .checkbox-box {
+      .custom-fa {
+        top: -6px;
+      }
+    }
+  }
+
+  .checkbox-label {
+    font-size: 12pt;
+    pointer-events: none;
+  }
+
+  &.no-label {
+    .checkbox-box {
+      margin-right: 0;
+    }
+  }
+
+  input:checked ~ .checkbox-box {
+    background-color: $hms-neutral;
+    fill: #fff;
+  }
+
+  &.radio-style {
+    .checkbox-box {
+      border-radius: 50%;
+      padding: 4px;
+
+      .radio-icon {
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        border-radius: 50%;
+      }
+    }
+  }
+
+  &.disabled {
+    opacity: 0.8;
+    pointer-events: none;
   }
 }

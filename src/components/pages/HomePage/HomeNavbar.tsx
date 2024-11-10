@@ -1,7 +1,9 @@
 import { FC } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 export const HomeNavbar: FC = () => {
+  const navigate = useNavigate();
   return (
     <nav className="navbar navbar-main navbar-expand-lg px-0 mx-4 border-radius-xl shadow-none position-sticky blur shadow-blur mt-4 left-auto top-1 z-index-sticky"
       id="navbarBlur" data-scroll="true">
@@ -39,10 +41,10 @@ export const HomeNavbar: FC = () => {
               {/* Right corner user section */}
             </li>
             <li className="nav-item d-flex align-items-center">
-              <a className="btn btn-outline-primary btn-sm mb-0 me-3" href="sign-in.php">Đăng nhập</a>
+              <a className="btn btn-outline-primary btn-sm mb-0 me-3" onClick={() => navigate("sign-in")}>Đăng nhập</a>
             </li>
             <li className="nav-item d-flex align-items-center">
-              <a className="btn bg-gradient-primary btn-sm mb-0 me-3" href="sign-up.php">Đăng ký</a>
+              <a className="btn bg-gradient-primary btn-sm mb-0 me-3" onClick={() => navigate("sign-up")}>Đăng ký</a>
             </li>
 
           </ul>
