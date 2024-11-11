@@ -1,6 +1,7 @@
 import Axios from "axios";
 import { SignInFormType } from "../pages/SignIn";
 import { ProfileFormType } from "../pages/role-patient/CompleteProfile";
+import { UserFormType, UserRequestType } from "../pages/role-admin/Guest";
 
 export const hmsAxios = Axios.create({
   baseURL: `/HMS-Nhom11/backend/api/`,
@@ -68,6 +69,39 @@ export const apiCompleteProfile = async(profileForm:ProfileFormType) => {
     const res = await hmsAxios.post(
       "/account/complete-profile.php",
       JSON.stringify(profileForm)
+    );
+    if(res.data) {
+      data = res.data.data;
+    }
+  } catch (err:any) {
+    error = err.response.data.message;
+  }
+  return { data, error };
+}
+
+export const apiUpdateUser = async(userForm:UserRequestType) => {
+  let error = null;
+  let data = null;
+  try {
+    const res = await hmsAxios.post(
+      "/admin/update-user.php",
+      JSON.stringify(userForm)
+    );
+    if(res.data) {
+      data = res.data.data;
+    }
+  } catch (err:any) {
+    error = err.response.data.message;
+  }
+  return { data, error };
+}
+
+export const apiGetUser = async() => {
+  let error = null;
+  let data = null;
+  try {
+    const res = await hmsAxios.post(
+      "/admin/get-user.php"
     );
     if(res.data) {
       data = res.data.data;

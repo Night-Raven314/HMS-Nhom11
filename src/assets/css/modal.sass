@@ -1,0 +1,110 @@
+@import "./variables"
+$hms-light: #44857D
+$hms-neutral: #167070
+$hms-dark: #003D59
+$text-color: #414A4F
+$hms-gradient: linear-gradient(195deg, #167070 0%, #003d59 100%)
+
+@keyframes rotation
+  0%
+    transform: rotate(0deg)
+  100%
+    transform: rotate(360deg)
+
+.modal-container
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  display: grid
+  place-items: center
+  pointer-events: none
+  transition: all 400ms $ios-transition
+  z-index: 500
+  .modal-backdrop
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    background: rgba(0, 0, 0, 0.4)
+    transition: all 400ms $ios-transition
+    z-index: 1
+    opacity: 0
+    backdrop-filter: blur(10px)
+  .modal-content
+    position: relative
+    z-index: 10
+    transition: all 400ms $ios-transition
+    transform: scale(0.8)
+    opacity: 0
+    max-width: calc(100vw - 30px)
+    pointer-events: none
+    .content
+      .content-header
+        background-image: $hms-gradient
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1)
+        text-align: center
+        color: #fff
+        font-size: 20pt
+        padding: 15px
+        border-radius: 10px
+        font-weight: 600
+        margin: 0 15px
+        position: relative
+        z-index: 5
+      .content-body
+        background: #fff
+        border-radius: 10px
+        position: relative
+        z-index: 4
+        margin-top: -36px
+        overflow: hidden
+        @include floating-shadow
+        .body-content
+          color: $text-color
+          padding: 15px
+          padding-top: calc(36px + 15px)
+          padding-bottom: calc(76.44px + 15px)
+          font-size: 14pt
+          overflow-y: auto
+          max-height: calc(100dvh - 36.66px - 30px)
+        .body-footer
+          position: absolute
+          bottom: 0
+          left: 0
+          width: 100%
+          background-color: rgba(256, 256, 256, 0.7)
+          backdrop-filter: blur(10px)
+          box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5)
+          padding: 15px
+          text-align: right
+          .button-list
+            display: inline-flex
+            align-items: center
+            gap: 15px
+            button
+              margin: 0
+              font-size: 11pt
+              padding: 10px 15px
+    &.md
+      width: 600px
+    &.lg
+      width: 800px
+    &.xl
+      width: 1000px
+    &.hms-alert
+      width: 400px
+      .content
+        .content-body
+          .body-content, .body-footer
+            text-align: center
+  &.open
+    pointer-events: all
+    .modal-backdrop
+      opacity: 1
+    .modal-content
+      opacity: 1
+      transform: none
+      pointer-events: all

@@ -1,5 +1,7 @@
-import { FormikProps } from "formik";
-import { FC, memo, useEffect, useState } from "react";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Field, FormikProps } from "formik";
+import { FC, Fragment, memo, useEffect, useState } from "react";
 
 export type SelectOptionType = {
   value: string,
@@ -35,7 +37,7 @@ export const CustomInput: FC<CustomInputType> = memo(({
   textareaRow,
   selectOptions
 }) => {
-  
+
   const inputTouched = formik ? formik.touched[id] : false;
   const inputError: any = formik ? formik.errors[id] : false;
   const isError = inputTouched && inputError ? true : false;
@@ -57,34 +59,56 @@ export const CustomInput: FC<CustomInputType> = memo(({
   return (
     <div className={`custom-input ${type} ${isError ? "error-input" : ""}`}>
       {type === "textarea" ? (
-        <textarea
-          name={name || ""}
-          id={id}
-          rows={textareaRow || 2}
-          placeholder={placeholder || " "}
-          disabled={disabled}
-          onBlur={(e) => {
-            formik?.handleBlur(e);
-          }}
-          onChange={handleChange}
-          value={value}
-        />
+        <Fragment>
+          <textarea
+            name={name || ""}
+            id={id}
+            rows={textareaRow || 2}
+            placeholder={placeholder || " "}
+            disabled={disabled}
+            onBlur={(e) => {
+              formik?.handleBlur(e);
+            }}
+            onChange={handleChange}
+            value={value}
+          />
+          <label>{label}{isRequired ? " *" : ""}</label>
+        </Fragment>
       ) : ""}
       {type === "input" ? (
-        <input
-          type={inputType}
-          name={name || ""}
-          id={id}
-          placeholder={placeholder || " "}
-          disabled={disabled}
-          onBlur={(e) => {
-            formik?.handleBlur(e);
-          }}
-          onChange={handleChange}
-          value={value}
-        />
+        <Fragment>
+          <input
+            type={inputType}
+            name={name || ""}
+            id={id}
+            placeholder={placeholder || " "}
+            disabled={disabled}
+            onBlur={(e) => {
+              formik?.handleBlur(e);
+            }}
+            onChange={handleChange}
+            value={value}
+          />
+          <label>{label}{isRequired ? " *" : ""}</label>
+        </Fragment>
       ) : ""}
-      <label>{label}{isRequired ? " *" : ""}</label>
+      {type === "select" && selectOptions ? (
+        <Fragment>
+          <Field
+            as="select"
+            name={name || ""}
+            id={id}
+          >
+            {selectOptions.map(option => (
+              <option key={option.value} value={option.value}>{option.label}</option>
+            ))}
+          </Field>
+          <label>{label}{isRequired ? " *" : ""}</label>
+          <div className="arrow-icon">
+            <FontAwesomeIcon icon={faChevronDown} />
+          </div>
+        </Fragment>
+      ) : ""}
       {isError ? (
         <div className="error-msg">{inputError}</div>
       ) : null}

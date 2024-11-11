@@ -1,0 +1,140 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FC, useEffect, useState } from "react";
+import { faCalendar, faClipboard } from "@fortawesome/free-regular-svg-icons";
+import { faIdBadge, faKitMedical, faMoneyBill, faNotesMedical, faUserPen, faUsers } from "@fortawesome/free-solid-svg-icons";
+
+export const AdminSidebar:FC = () => {
+  return (
+    <div className="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl bg-gradient-dark">
+
+      <div className="sidenav-header">
+        <a className="navbar-brand m-0" href=" https://demos.creative-tim.com/material-dashboard/pages/dashboard "
+          target="_blank">
+          <img src="../backend/assets/image/logo01-sq.png" className="navbar-brand-img h-100" alt="main_logo" />
+          <span className="ms-1 font-weight-bold text-white">HKL Hospital</span>
+        </a>
+      </div>
+
+      <hr className="horizontal light mt-0 mb-2" />
+
+      <div className="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
+        <ul className="navbar-nav">
+
+          <li className="nav-item mt-3">
+            <h6 className="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Tính năng chính
+            </h6>
+          </li>
+
+          <li className="nav-item">
+            <a className="nav-link text-white" href="F1-schedule.php">
+
+              <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <FontAwesomeIcon icon={faCalendar} />
+                {/* Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID */}
+              </div>
+
+              <span className="nav-link-text ms-1">Lịch hẹn kiểm tra</span>
+            </a>
+          </li>
+
+
+          <li className="nav-item">
+            <a className="nav-link text-white" href="F2-user-medhist.php">
+
+              <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <FontAwesomeIcon icon={faClipboard} />
+                {/* Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID */}
+              </div>
+
+              <span className="nav-link-text ms-1">Hồ sơ sức khoẻ</span>
+            </a>
+          </li>
+
+
+          <li className="nav-item">
+            <a className="nav-link text-white" href="F3-patients.php">
+
+              <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <FontAwesomeIcon icon={faUsers} />
+                {/* Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID */}
+              </div>
+
+              <span className="nav-link-text ms-1">Danh sách bệnh nhân</span>
+            </a>
+          </li>
+
+
+          <li className="nav-item mt-3">
+            <h6 className="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Quản trị
+            </h6>
+          </li>
+
+          <li className="nav-item">
+            <a className="nav-link text-white active bg-gradient-primary" href="guest.php">
+
+              <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <FontAwesomeIcon icon={faUserPen} />
+                {/* Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID */}
+              </div>
+
+              <span className="nav-link-text ms-1">Quản lý người dùng</span>
+            </a>
+          </li>
+
+
+          <li className="nav-item">
+            <a className="nav-link text-white" href="employee.php">
+
+              <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <FontAwesomeIcon icon={faIdBadge} />
+                {/* Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID */}
+              </div>
+
+              <span className="nav-link-text ms-1">Quản lý nhân viên</span>
+            </a>
+          </li>
+
+
+          <li className="nav-item">
+            <a className="nav-link text-white" href="supply.php">
+
+              <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <FontAwesomeIcon icon={faKitMedical} />
+                {/* Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID */}
+              </div>
+
+              <span className="nav-link-text ms-1">Quản lý vật tư</span>
+            </a>
+          </li>
+
+
+          <li className="nav-item">
+            <a className="nav-link text-white" href="speciality.php">
+
+              <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <FontAwesomeIcon icon={faNotesMedical} />
+                {/* Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID */}
+              </div>
+
+              <span className="nav-link-text ms-1">Quản lý chuyên khoa</span>
+            </a>
+          </li>
+
+          <li className="nav-item">
+            <a className="nav-link text-white" href="payment_log.php">
+
+              <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <FontAwesomeIcon icon={faMoneyBill} />
+                {/* Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID */}
+              </div>
+
+              <span className="nav-link-text ms-1">Lịch sử giao dịch</span>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+
+    </div>
+  )
+}

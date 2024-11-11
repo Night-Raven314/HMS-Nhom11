@@ -3,12 +3,18 @@ $hms-neutral: #167070;
 $hms-dark: #003D59;
 $text-color: #414A4F;
 $input-border: #d2d6da;
+$table-border: #f0f2f5;
+$hms-gradient: linear-gradient(195deg, #167070 0%, #003d59 100%);
 
 // Colors
 $color-green: #00BD9D;
 $color-light-green: #f4fffd;
 $color-red: #D4212A;
 $color-light-red: #fff4f4;
+
+.text-color {
+  color: $text-color!important;
+}
 
 #scroll-top {
   position: fixed;
@@ -200,7 +206,7 @@ div#popupFormContainer {
     pointer-events: none;
     position: absolute;
     right: 10px;
-    top: 7px;
+    top: 4px;
     color: $hms-neutral;
   }
   label {
@@ -259,11 +265,14 @@ div#popupFormContainer {
     margin-top: 5px;
   }
   &.error-input {
-    input {
+    input, textarea, select {
       border-color: $color-red!important;
     }
-    label {
+    label, textarea, select {
       color: $color-red!important
+    }
+    .arrow-icon {
+      color: $color-red;
     }
   }
 }
@@ -293,7 +302,11 @@ div#popupFormContainer {
   padding: 15px;
   display: flex;
   align-items: center;
-  margin: 15px;
+  margin-bottom: 15px;
+  position: sticky;
+  top: 15px;
+  z-index: 100;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   .nav-left {
     flex: 1;
     font-size: 14pt;
@@ -406,4 +419,129 @@ div#popupFormContainer {
     opacity: 0.8;
     pointer-events: none;
   }
+}
+
+.main-background {
+  background-image: url('/image/Hospital_Seamless1.png');
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  overflow-y: auto;
+  position: absolute;
+  overflow-x: hidden;
+}
+.page-container {
+  position: relative;
+  padding: 15px;
+  .page-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: calc(250px + 15px);
+    .sidenav {
+      left: 0;
+      margin: 15px
+    }
+  }
+  .page-content {
+    margin-left: calc(250px + 15px);
+    box-sizing: border-box;
+  }
+}
+
+.hms-table {
+  .table-header {
+    position: relative;
+    z-index: 5;
+    background-image: $hms-gradient;
+    box-shadow: 0 4px 20px 0 rgba(22, 112, 112, 0.14), 0 7px 10px -5px rgba(0, 61, 89, 0.4);
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 0 30px;
+    .header-title {
+      color: #fff;
+      font-weight: 600;
+      flex: 1;
+      font-size: 14pt;
+    }
+    .header-button {
+      button {
+        margin-bottom: 0;
+        background-color: #fff;
+      }
+    }
+  }
+  .table-body {
+    position: relative;
+    z-index: 4;
+    background-color: #fff;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    overflow-x: auto;
+    border-radius: 10px;
+    margin-top: -32px;
+    max-height: calc(100dvh - 147px);
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      table-layout: fixed;
+      thead {
+        position: sticky;
+        top: 0px;
+        th {
+          background-color: rgba(256, 256, 256, 0.7);
+          backdrop-filter: blur(10px);
+          font-weight: 700;
+          font-size: 10pt;
+          line-height: 1.2;
+          color: #7b809a;
+          text-transform: uppercase;
+          text-align: center;
+          padding: 5px;
+          padding-top: calc(32px + 15px);
+          padding-bottom: 10px;
+        }
+      }
+      tbody {
+        tr {
+          border-top: 1px solid $table-border;
+          td {
+            padding: 10px 5px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 10pt;
+            word-wrap: break-word;
+          }
+        }
+      }
+    }
+    .table-button-list {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      button {
+        padding: 0;
+        border: none;
+        background-color: $hms-neutral;
+        color: #fff;
+        font-size: 10pt;
+        font-weight: 600;
+        width: 25px;
+        height: 25px;
+        border-radius: 5px;
+      }
+    }
+  }
+}
+
+// Button
+.btn-gradient {
+  background-image: $hms-gradient;
+  color: #fff;
+}
+.btn-outline {
+  border: 1px solid $hms-neutral!important;
+  color: $hms-neutral;
 }
