@@ -2,8 +2,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FC, useEffect, useState } from "react";
 import { faCalendar, faClipboard } from "@fortawesome/free-regular-svg-icons";
 import { faIdBadge, faKitMedical, faMoneyBill, faNotesMedical, faUserPen, faUsers } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
 export const AdminSidebar:FC = () => {
+  const navigate = useNavigate();
   return (
     <div className="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl bg-gradient-dark">
 
@@ -30,7 +32,6 @@ export const AdminSidebar:FC = () => {
 
               <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
                 <FontAwesomeIcon icon={faCalendar} />
-                {/* Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID */}
               </div>
 
               <span className="nav-link-text ms-1">Lịch hẹn kiểm tra</span>
@@ -43,7 +44,6 @@ export const AdminSidebar:FC = () => {
 
               <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
                 <FontAwesomeIcon icon={faClipboard} />
-                {/* Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID */}
               </div>
 
               <span className="nav-link-text ms-1">Hồ sơ sức khoẻ</span>
@@ -56,7 +56,6 @@ export const AdminSidebar:FC = () => {
 
               <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
                 <FontAwesomeIcon icon={faUsers} />
-                {/* Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID */}
               </div>
 
               <span className="nav-link-text ms-1">Danh sách bệnh nhân</span>
@@ -70,11 +69,10 @@ export const AdminSidebar:FC = () => {
           </li>
 
           <li className="nav-item">
-            <a className="nav-link text-white active bg-gradient-primary" href="guest.php">
+            <a className="nav-link text-white active bg-gradient-primary" href="/role-admin/guest">
 
               <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
                 <FontAwesomeIcon icon={faUserPen} />
-                {/* Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID */}
               </div>
 
               <span className="nav-link-text ms-1">Quản lý người dùng</span>
@@ -83,11 +81,10 @@ export const AdminSidebar:FC = () => {
 
 
           <li className="nav-item">
-            <a className="nav-link text-white" href="employee.php">
+            <a className="nav-link text-white" href="/role-admin/employee">
 
               <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
                 <FontAwesomeIcon icon={faIdBadge} />
-                {/* Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID */}
               </div>
 
               <span className="nav-link-text ms-1">Quản lý nhân viên</span>
@@ -96,11 +93,10 @@ export const AdminSidebar:FC = () => {
 
 
           <li className="nav-item">
-            <a className="nav-link text-white" href="supply.php">
+            <a className="nav-link text-white" href="/role-admin/supply">
 
               <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
                 <FontAwesomeIcon icon={faKitMedical} />
-                {/* Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID */}
               </div>
 
               <span className="nav-link-text ms-1">Quản lý vật tư</span>
@@ -109,11 +105,10 @@ export const AdminSidebar:FC = () => {
 
 
           <li className="nav-item">
-            <a className="nav-link text-white" href="speciality.php">
+            <a className="nav-link text-white" href="/role-admin/specialty">
 
               <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
                 <FontAwesomeIcon icon={faNotesMedical} />
-                {/* Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID */}
               </div>
 
               <span className="nav-link-text ms-1">Quản lý chuyên khoa</span>
@@ -121,11 +116,10 @@ export const AdminSidebar:FC = () => {
           </li>
 
           <li className="nav-item">
-            <a className="nav-link text-white" href="payment_log.php">
+            <a className="nav-link text-white" href="/role-admin/payment-log">
 
               <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
                 <FontAwesomeIcon icon={faMoneyBill} />
-                {/* Check https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Rounded for ID */}
               </div>
 
               <span className="nav-link-text ms-1">Lịch sử giao dịch</span>

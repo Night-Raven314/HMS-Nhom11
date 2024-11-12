@@ -7,6 +7,7 @@ import { setTmpUserSession, setUserSession } from "./helpers/global";
 import { AdminGuest } from "./pages/role-admin/Guest";
 import { GoogleLoginRedirect } from "./pages/GoogleLoginRedirect";
 import { CompleteProfile } from "./pages/role-patient/CompleteProfile";
+import { ProfilePage } from "./pages/Profile";
 
 export const App:FC = () => {
   const [checkLogin, setCheckLogin] = useState<boolean>(false);
@@ -37,6 +38,10 @@ export const App:FC = () => {
       element: <SignUpPage />,
     },
     {
+      path: "/profile",
+      element: <ProfilePage />,
+    },
+    {
       path: "/google-login-redirect",
       element: <GoogleLoginRedirect />,
     },
@@ -46,11 +51,11 @@ export const App:FC = () => {
     },
     {
       path: "/role-admin/guest",
-      element: <AdminGuest />,
+      element: <AdminGuest pageType="guest" />,
     },
     {
       path: "/role-admin/employee",
-      element: <div>To be added</div>,
+      element: <AdminGuest pageType="employee" />,
     },
     {
       path: "/role-admin/payment_log",

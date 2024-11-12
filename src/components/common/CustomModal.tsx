@@ -1,7 +1,5 @@
 import { forwardRef, ReactNode, Ref, useImperativeHandle, useState } from "react";
 import '../../assets/css/modal.sass';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 export type CustomModalHandles = {
   openModal: () => void,

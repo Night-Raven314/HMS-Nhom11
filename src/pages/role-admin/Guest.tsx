@@ -3,12 +3,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FC, useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet";
 import { AdminSidebar } from "../../components/common/AdminSidebar";
-import { PageNavbar } from "../../components/common/PageNavbar";
+import { NavbarHandles, PageNavbar } from "../../components/common/PageNavbar";
 import { CustomModal, CustomModalHandles } from "../../components/common/CustomModal";
 import { Form, Formik, FormikProps } from "formik";
 import { CustomInput } from "../../components/common/CustomInput";
 import { apiUpdateUser, apiGetUser } from "../../helpers/axios";
-import { useNavigate } from "react-router-dom";
 import { useToast } from "../../components/common/CustomToast";
 
 export type UserFormType = {
@@ -47,9 +46,14 @@ export type UserRequestType = UserFormType & {
   userId: string | null;
 }
 
-export const AdminGuest: FC = () => {
-  const navigate = useNavigate();
+export type AdminGuestProps = {
+  pageType:string
+}
+
+export const AdminGuest: FC<AdminGuestProps> = ({pageType}) => {
   const {openToast} = useToast();
+
+  const navbarRef = useRef<NavbarHandles>(null);
 
   const updateModalRef = useRef<CustomModalHandles>(null);
   const deleteAlertRef = useRef<CustomModalHandles>(null);
@@ -66,7 +70,9 @@ export const AdminGuest: FC = () => {
     role: "patient"
   })
   const [updateUserId, setUpdateUserId] = useState<string | null>(null);
+  const [searchKeyword, setSearchKeyword] = useState<string>("");
   const [userList, setUserList] = useState<UserListType[]>([]);
+  const [userListFiltered, setUserListFiltered] = useState<UserListType[]>([]);
 
   const genderOption = [
     { value: "", label: "Chọn giới tính" },
@@ -74,16 +80,17 @@ export const AdminGuest: FC = () => {
     { value: "female", label: "Nữ" },
   ]
 
-  const roleOption = [
+  const guestRoleOption = [
     { value: "patient", label: "Bệnh nhân" }
   ]
-  // const roleOption = [
-  //   {value: "", label: "Chọn vị trí"},
-  //   {value: "admin", label: "Quản trị viên"},
-  //   {value: "doctor", label: "Bác sỹ"},
-  //   {value: "nurse", label: "Y tá"},
-  //   {value: "patient", label: "Bệnh nhân"},
-  // ]
+  const employeeRoleOption = [
+    {value: "", label: "Chọn vị trí"},
+    {value: "admin", label: "Quản trị viên"},
+    {value: "doctor", label: "Bác sỹ"},
+    {value: "nurse", label: "Y tá"}
+  ]
+
+  const pageTerm = pageType === "guest" ? "người dùng" : "nhân viên";
 
   const getUserDeleteInfo = (userId:string | null, param: "user_name" | "full_name") => {
     const findUser = userList.find(user => user.user_id === userId);
@@ -225,19 +232,31 @@ export const AdminGuest: FC = () => {
     }
   }
   const getUserList = async() => {
-    const getUser = await apiGetUser();
+    const getUser = await apiGetUser(pageType);
     if(getUser.error) {
       openToast("error", "Lỗi", "Đã xảy ra lỗi khi lấy thông tin người dùng!", 5000);
     } else if (getUser.data) {
       setUserList(getUser.data);
     }
   }
+  const searchUser = () => {
+    if(searchKeyword) {
+      const searchKeywordLower = searchKeyword.toLowerCase();
+      const filterList = userList.filter(user => user.full_name.toLowerCase().includes(searchKeywordLower) || user.user_name.toLowerCase().includes(searchKeywordLower));
+      setUserListFiltered(filterList);
+    } else { 
+      setUserListFiltered(userList);
+    }
+  }
+  useEffect(() => {
+    searchUser();
+  }, [userList, searchKeyword])
 
   return (
     <>
       <Helmet>
         <title>
-          Quản lý người dùng - HKL
+          Quản lý {pageTerm} - HKL
         </title>
       </Helmet>
 
@@ -247,14 +266,18 @@ export const AdminGuest: FC = () => {
             <AdminSidebar />
           </div>
           <div className="page-content">
-            <PageNavbar />
+            <PageNavbar
+              navbarTitle={`Quản lý ${pageTerm}`}
+              searchRequest={(keyword) => {setSearchKeyword(keyword)}}
+              ref={navbarRef}
+            />
             <div className="content">
               <div className="hms-table">
                 <div className="table-header">
-                  <div className="header-title">Thông tin người dùng trên hệ thống</div>
+                  <div className="header-title">Thông tin {pageTerm} trên hệ thống</div>
                   <div className="header-button">
                     <button className="btn btn-outline-primary btn-sm" onClick={() => toggleUpdateModal("open")}>
-                      Tạo người dùng
+                      Tạo {pageTerm}
                     </button>
                   </div>
                 </div>
@@ -262,7 +285,7 @@ export const AdminGuest: FC = () => {
                   <table>
                     <thead>
                       <tr>
-                        <th style={{ width: "80px" }}>Mã người dùng</th>
+                        <th style={{ width: "80px" }}>Mã {pageTerm}</th>
                         <th style={{ width: "200px" }}>Họ và Tên</th>
                         <th style={{ width: "65px" }}>Vị trí</th>
                         <th style={{ width: "140px" }}>Tên đăng nhập</th>
@@ -274,8 +297,8 @@ export const AdminGuest: FC = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {userList.map((user) => (
-                        <tr>
+                      {userListFiltered.map((user) => (
+                        <tr key={user.user_id}>
                           <td className="text-color">{user.user_id}</td>
                           <td className="text-color">{user.full_name}</td>
                           <td>{user.role}</td>
@@ -307,7 +330,7 @@ export const AdminGuest: FC = () => {
 
       {/* Form tạo/cập nhật tài khoản */}
       <CustomModal
-        headerTitle={updateUserId ? "Cập nhật tài khoản người dùng" : "Tạo tài khoản người dùng"}
+        headerTitle={updateUserId ? `Cập nhật tài khoản ${pageTerm}` : `Tạo tài khoản ${pageTerm}`}
         size="md"
         type="modal"
         ref={updateModalRef}
@@ -409,7 +432,7 @@ export const AdminGuest: FC = () => {
                         initialValue=""
                         inputType="text"
                         isRequired={true}
-                        selectOptions={roleOption}
+                        selectOptions={pageType === "guest" ? guestRoleOption : employeeRoleOption}
                         type="select"
                         disabled={false}
                       />
@@ -465,9 +488,9 @@ export const AdminGuest: FC = () => {
       >
         <div className="body-content">
           Bạn có chắc chắn muốn xoá tài khoản này: 
-          <br/>- Mã người dùng: <b>{updateUserId}</b>
+          <br/>- Mã {pageTerm}: <b>{updateUserId}</b>
           <br/>- Họ và tên: <b>{getUserDeleteInfo(updateUserId, "full_name")}</b>
-          <br/>- Tên người dùng: <b>{getUserDeleteInfo(updateUserId, "user_name")}</b>
+          <br/>- Tên {pageTerm}: <b>{getUserDeleteInfo(updateUserId, "user_name")}</b>
         </div>
         <div className="body-footer">
           <div className="button-list">

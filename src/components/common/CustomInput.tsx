@@ -20,7 +20,9 @@ export type CustomInputType = {
   textareaRow?: number,
   formik?: FormikProps<any>,
   name?: string,
-  selectOptions?: SelectOptionType[]
+  selectOptions?: SelectOptionType[],
+  valueChange?: (value:string) => void,
+  changeDelay?: number
 }
 
 export const CustomInput: FC<CustomInputType> = memo(({
@@ -35,7 +37,9 @@ export const CustomInput: FC<CustomInputType> = memo(({
   name,
   type = "input",
   textareaRow,
-  selectOptions
+  selectOptions,
+  valueChange,
+  changeDelay = 1000
 }) => {
 
   const inputTouched = formik ? formik.touched[id] : false;
@@ -43,10 +47,17 @@ export const CustomInput: FC<CustomInputType> = memo(({
   const isError = inputTouched && inputError ? true : false;
   const [value, setValue] = useState<string>(initialValue || "");
 
+  let valueChangeDelay:any = null;
+
   const handleChange = (e: any) => {
     setValue(e.target.value);
     if (formik) {
       formik.handleChange(e);
+    } else if(valueChange) {
+      clearTimeout(valueChangeDelay);
+      valueChangeDelay = setTimeout(() => {
+        valueChange(e.target.value);
+      }, changeDelay);
     }
   }
 
@@ -55,6 +66,13 @@ export const CustomInput: FC<CustomInputType> = memo(({
       setValue(formik.values[id] ?? "");
     }
   }, [formik?.values[id]]);
+
+  useEffect(() => {
+    setValue(initialValue);
+    if(valueChange) {
+      valueChange(initialValue);
+    }
+  }, [initialValue])
 
   return (
     <div className={`custom-input ${type} ${isError ? "error-input" : ""}`}>

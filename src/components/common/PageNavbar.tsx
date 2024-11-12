@@ -1,16 +1,48 @@
-import { FC } from "react";
+import { forwardRef, Ref, useEffect, useImperativeHandle, useState } from "react";
+import { CustomInput } from "./CustomInput";
 
-export const PageNavbar:FC = () => {
+export type NavbarHandles = {
+  resetSearch: () => void
+}
+export type NavbarProps = {
+  navbarTitle:string,
+  searchRequest: (keyword:string) => void
+}
+
+export const PageNavbar = forwardRef(({navbarTitle, searchRequest}:NavbarProps, ref: Ref<NavbarHandles>) => {
+  const [searchKeyword, setSearchKeyword] = useState<string>("");
+  useEffect(() => {
+    searchRequest(searchKeyword);
+  }, [searchKeyword])
+
+  const resetSearch = () => {
+    setSearchKeyword("");
+  }
+
+  useImperativeHandle(ref, () => ({
+    resetSearch
+  }))
+
   return (
     <div className="custom-navbar">
       <div className="nav-left">
-        Quản lý người dùng
+        {navbarTitle}
       </div>
       <div className="nav-right">
         <div className="nav-item">
-          <div className="custom-input" style={{ width: '180px' }}>
-            <input type="text" id="searchTableField" placeholder="Nhập email" />
-            <label>Tìm kiếm</label>
+          <div style={{ width: '180px' }}>
+            <CustomInput
+              id="keyword"
+              name="keyword"
+              label="Tìm kiếm"
+              placeholder="Nhập từ khoá"
+              initialValue={searchKeyword}
+              inputType="text"
+              isRequired={false}
+              type="input"
+              disabled={false}
+              valueChange={(keyword) => setSearchKeyword(keyword)}
+            />
           </div>
         </div>
         <div className="nav-item">
@@ -19,12 +51,12 @@ export const PageNavbar:FC = () => {
               <img src="../backend/assets/image/user login image.png" alt="profile_image" />
             </button>
             <ul className="dropdown-menu">
-              <li><a className="dropdown-item" href="profile.php">Thông tin người dùng</a></li>
-              <li><a className="dropdown-item" href="../backend/assets/include/log-out.php">Đăng xuất</a></li>
+              <li><a className="dropdown-item" href="/profile">Thông tin người dùng</a></li>
+              <li><a className="dropdown-item" href="/logout">Đăng xuất</a></li>
             </ul>
           </div>
         </div>
       </div>
     </div>
   )
-}
+})

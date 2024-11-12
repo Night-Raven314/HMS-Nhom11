@@ -13,6 +13,7 @@ export const hmsAxios = Axios.create({
   },
 });
 
+// Account
 export const apiSignIn = async(signInForm:SignInFormType) => {
   let error = null;
   let data = null;
@@ -79,6 +80,7 @@ export const apiCompleteProfile = async(profileForm:ProfileFormType) => {
   return { data, error };
 }
 
+// User
 export const apiUpdateUser = async(userForm:UserRequestType) => {
   let error = null;
   let data = null;
@@ -96,12 +98,13 @@ export const apiUpdateUser = async(userForm:UserRequestType) => {
   return { data, error };
 }
 
-export const apiGetUser = async() => {
+export const apiGetUser = async(pageType:string) => {
   let error = null;
   let data = null;
   try {
     const res = await hmsAxios.post(
-      "/admin/get-user.php"
+      "/admin/get-user.php",
+      JSON.stringify({pageType})
     );
     if(res.data) {
       data = res.data.data;
