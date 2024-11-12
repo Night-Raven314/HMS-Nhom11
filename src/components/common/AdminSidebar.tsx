@@ -1,11 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 import { faCalendar, faClipboard } from "@fortawesome/free-regular-svg-icons";
-import { faIdBadge, faKitMedical, faMoneyBill, faNotesMedical, faUserPen, faUsers } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router-dom";
+import { faBookMedical, faIdBadge, faKitMedical, faMoneyBill, faNotesMedical, faPills, faUserPen, faUsers } from "@fortawesome/free-solid-svg-icons";
 
-export const AdminSidebar:FC = () => {
-  const navigate = useNavigate();
+export type AdminSidebarProps = {
+  selectedItem: string;
+}
+
+export const AdminSidebar:FC<AdminSidebarProps> = ({selectedItem}) => {
   return (
     <div className="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl bg-gradient-dark">
 
@@ -69,7 +71,7 @@ export const AdminSidebar:FC = () => {
           </li>
 
           <li className="nav-item">
-            <a className="nav-link text-white active bg-gradient-primary" href="/role-admin/guest">
+            <a className={`nav-link text-white ${selectedItem === "guest" ? "active bg-gradient-primary" : ""}`} href="/role-admin/guest">
 
               <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
                 <FontAwesomeIcon icon={faUserPen} />
@@ -81,7 +83,7 @@ export const AdminSidebar:FC = () => {
 
 
           <li className="nav-item">
-            <a className="nav-link text-white" href="/role-admin/employee">
+            <a className={`nav-link text-white ${selectedItem === "employee" ? "active bg-gradient-primary" : ""}`} href="/role-admin/employee">
 
               <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
                 <FontAwesomeIcon icon={faIdBadge} />
@@ -93,7 +95,7 @@ export const AdminSidebar:FC = () => {
 
 
           <li className="nav-item">
-            <a className="nav-link text-white" href="/role-admin/supply">
+            <a className={`nav-link text-white ${selectedItem === "item" ? "active bg-gradient-primary" : ""}`} href="/role-admin/supply">
 
               <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
                 <FontAwesomeIcon icon={faKitMedical} />
@@ -103,9 +105,31 @@ export const AdminSidebar:FC = () => {
             </a>
           </li>
 
+          <li className="nav-item">
+            <a className={`nav-link text-white ${selectedItem === "meds" ? "active bg-gradient-primary" : ""}`} href="/role-admin/medicine">
+
+              <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <FontAwesomeIcon icon={faPills} />
+              </div>
+
+              <span className="nav-link-text ms-1">Quản lý thuốc</span>
+            </a>
+          </li>
 
           <li className="nav-item">
-            <a className="nav-link text-white" href="/role-admin/specialty">
+            <a className={`nav-link text-white ${selectedItem === "med_service" ? "active bg-gradient-primary" : ""}`} href="/role-admin/med-service">
+
+              <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <FontAwesomeIcon icon={faBookMedical} />
+              </div>
+
+              <span className="nav-link-text ms-1">Quản lý dịch vụ y tế</span>
+            </a>
+          </li>
+
+
+          <li className="nav-item">
+            <a className={`nav-link text-white ${selectedItem === "specialty" ? "active bg-gradient-primary" : ""}`} href="/role-admin/specialty">
 
               <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
                 <FontAwesomeIcon icon={faNotesMedical} />
@@ -116,7 +140,7 @@ export const AdminSidebar:FC = () => {
           </li>
 
           <li className="nav-item">
-            <a className="nav-link text-white" href="/role-admin/payment-log">
+            <a className={`nav-link text-white ${selectedItem === "payment-log" ? "active bg-gradient-primary" : ""}`} href="/role-admin/payment-log">
 
               <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
                 <FontAwesomeIcon icon={faMoneyBill} />

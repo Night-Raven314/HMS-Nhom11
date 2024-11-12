@@ -2,6 +2,7 @@ import Axios from "axios";
 import { SignInFormType } from "../pages/SignIn";
 import { ProfileFormType } from "../pages/role-patient/CompleteProfile";
 import { UserFormType, UserRequestType } from "../pages/role-admin/Guest";
+import { ItemRequestType } from "../pages/role-admin/Item";
 
 export const hmsAxios = Axios.create({
   baseURL: `/HMS-Nhom11/backend/api/`,
@@ -104,6 +105,41 @@ export const apiGetUser = async(pageType:string) => {
   try {
     const res = await hmsAxios.post(
       "/admin/get-user.php",
+      JSON.stringify({pageType})
+    );
+    if(res.data) {
+      data = res.data.data;
+    }
+  } catch (err:any) {
+    error = err.response.data.message;
+  }
+  return { data, error };
+}
+
+// Item
+export const apiUpdateItem = async(itemForm:ItemRequestType) => {
+  let error = null;
+  let data = null;
+  try {
+    const res = await hmsAxios.post(
+      "/admin/update-item.php",
+      JSON.stringify(itemForm)
+    );
+    if(res.data) {
+      data = res.data.data;
+    }
+  } catch (err:any) {
+    error = err.response.data.message;
+  }
+  return { data, error };
+}
+
+export const apiGetItem = async(pageType:string) => {
+  let error = null;
+  let data = null;
+  try {
+    const res = await hmsAxios.post(
+      "/admin/get-item.php",
       JSON.stringify({pageType})
     );
     if(res.data) {

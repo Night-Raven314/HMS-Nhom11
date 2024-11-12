@@ -8,6 +8,7 @@ import { AdminGuest } from "./pages/role-admin/Guest";
 import { GoogleLoginRedirect } from "./pages/GoogleLoginRedirect";
 import { CompleteProfile } from "./pages/role-patient/CompleteProfile";
 import { ProfilePage } from "./pages/Profile";
+import { AdminItem } from "./pages/role-admin/Item";
 
 export const App:FC = () => {
   const [checkLogin, setCheckLogin] = useState<boolean>(false);
@@ -67,7 +68,15 @@ export const App:FC = () => {
     },
     {
       path: "/role-admin/supply",
-      element: <div>To be added</div>,
+      element: <AdminItem pageType="item" />,
+    },
+    {
+      path: "/role-admin/medicine",
+      element: <AdminItem pageType="meds" />,
+    },
+    {
+      path: "/role-admin/med-service",
+      element: <AdminItem pageType="med_service" />,
     },
     {
       path: "/role-doctor/",

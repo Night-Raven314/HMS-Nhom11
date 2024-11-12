@@ -212,7 +212,7 @@ export const AdminGuest: FC<AdminGuestProps> = ({pageType}) => {
     if(updateResponse.error) {
       openToast("error", "Lỗi", "Đã xảy ra lỗi khi tạo tài khoản!", 5000);
     } else if (updateResponse.data) {
-      openToast("success", "Thành công", updateUserId ? "Tài khoản đã được cập nhật" : "Tài khoản bệnh nhân đã được tạo!", 5000);
+      openToast("success", "Thành công", updateUserId ? "Tài khoản đã được cập nhật" : "Tài khoản đã được tạo!", 5000);
       toggleUpdateModal("close");
       getUserList();
     }
@@ -263,7 +263,7 @@ export const AdminGuest: FC<AdminGuestProps> = ({pageType}) => {
       <div className="main-background">
         <div className="page-container">
           <div className="page-sidebar">
-            <AdminSidebar />
+            <AdminSidebar selectedItem={pageType} />
           </div>
           <div className="page-content">
             <PageNavbar

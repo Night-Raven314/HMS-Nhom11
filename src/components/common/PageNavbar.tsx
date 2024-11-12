@@ -6,10 +6,11 @@ export type NavbarHandles = {
 }
 export type NavbarProps = {
   navbarTitle:string,
+  hideSearch?: boolean,
   searchRequest: (keyword:string) => void
 }
 
-export const PageNavbar = forwardRef(({navbarTitle, searchRequest}:NavbarProps, ref: Ref<NavbarHandles>) => {
+export const PageNavbar = forwardRef(({navbarTitle, hideSearch = false, searchRequest}:NavbarProps, ref: Ref<NavbarHandles>) => {
   const [searchKeyword, setSearchKeyword] = useState<string>("");
   useEffect(() => {
     searchRequest(searchKeyword);
@@ -29,22 +30,24 @@ export const PageNavbar = forwardRef(({navbarTitle, searchRequest}:NavbarProps, 
         {navbarTitle}
       </div>
       <div className="nav-right">
-        <div className="nav-item">
-          <div style={{ width: '180px' }}>
-            <CustomInput
-              id="keyword"
-              name="keyword"
-              label="Tìm kiếm"
-              placeholder="Nhập từ khoá"
-              initialValue={searchKeyword}
-              inputType="text"
-              isRequired={false}
-              type="input"
-              disabled={false}
-              valueChange={(keyword) => setSearchKeyword(keyword)}
-            />
+        {!hideSearch ? (
+          <div className="nav-item">
+            <div style={{ width: '180px' }}>
+              <CustomInput
+                id="keyword"
+                name="keyword"
+                label="Tìm kiếm"
+                placeholder="Nhập từ khoá"
+                initialValue={searchKeyword}
+                inputType="text"
+                isRequired={false}
+                type="input"
+                disabled={false}
+                valueChange={(keyword) => setSearchKeyword(keyword)}
+              />
+            </div>
           </div>
-        </div>
+        ) : ""}
         <div className="nav-item">
           <div className="dropdown custom-dropdown">
             <button className="button-avatar dropdown-toggle" data-bs-toggle="dropdown">
