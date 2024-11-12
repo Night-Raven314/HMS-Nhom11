@@ -19,7 +19,9 @@
     $post_id = $data['userId'] ? mysqli_real_escape_string($conn, $data['userId']) : null;
     $post_action = mysqli_real_escape_string($conn, $data['action']);
     if($post_action === "delete") {
-      $sql = "DELETE FROM `dim_user` WHERE user_id = $post_id";
+      $sql = "UPDATE `dim_user` SET
+          `status` = 'inactive'
+          WHERE user_id = '$post_id'";
     } else {
       $post_full_name = mysqli_real_escape_string($conn, $data['fullName']);
       $post_user_name = mysqli_real_escape_string($conn, $data['userName']);
@@ -47,7 +49,7 @@
           `gender` = '$post_gender',
           `address` = '$post_address',
           `city` = '$post_city' 
-          WHERE user_id = $post_id";
+          WHERE user_id = '$post_id'";
         
         default:
           # code...

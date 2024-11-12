@@ -36,6 +36,7 @@ export type UserListType = {
   specialty_id: string | null;
   created_at: string;
   updated_at: string;
+  status: string;
   oauth_facebook: string | null;
   oauth_google: string | null;
   pricing: string | null;
@@ -285,7 +286,6 @@ export const AdminGuest: FC<AdminGuestProps> = ({pageType}) => {
                   <table>
                     <thead>
                       <tr>
-                        <th style={{ width: "80px" }}>Mã {pageTerm}</th>
                         <th style={{ width: "200px" }}>Họ và Tên</th>
                         <th style={{ width: "65px" }}>Vị trí</th>
                         <th style={{ width: "140px" }}>Tên đăng nhập</th>
@@ -299,7 +299,6 @@ export const AdminGuest: FC<AdminGuestProps> = ({pageType}) => {
                     <tbody>
                       {userListFiltered.map((user) => (
                         <tr key={user.user_id}>
-                          <td className="text-color">{user.user_id}</td>
                           <td className="text-color">{user.full_name}</td>
                           <td>{user.role}</td>
                           <td>{user.user_name}</td>

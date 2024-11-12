@@ -20,7 +20,8 @@
     $post_id = $data['itemId'] ? mysqli_real_escape_string($conn, $data['itemId']) : null;
     $post_action = mysqli_real_escape_string($conn, $data['action']);
     if($post_action === "delete") {
-      $sql = "DELETE FROM `dim_" . $page_type . "` WHERE item_id = $post_id";
+      $sql = "UPDATE `dim_" . $page_type . "` SET
+      `status` = 'inactive' WHERE item_id = '$post_id'";
     } else {
       $post_item_name = mysqli_real_escape_string($conn, $data['itemName']);
       $post_item_unit = mysqli_real_escape_string($conn, $data['unit']);
@@ -33,7 +34,7 @@
           break;
 
         case 'update':
-          $sql = "UPDATE `dim_" . $page_type . "` SET `item_name` = '$post_item_name', `item_price` = '$post_item_price', `item_unit` = '$post_item_unit' WHERE item_id = $post_id";;
+          $sql = "UPDATE `dim_" . $page_type . "` SET `item_name` = '$post_item_name', `item_price` = '$post_item_price', `item_unit` = '$post_item_unit' WHERE item_id = '$post_id'";;
         
         default:
           # code...

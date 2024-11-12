@@ -23,6 +23,7 @@ export type ItemListType = {
   item_unit: string;
   created_at: string;
   updated_at: string | null;
+  status: string;
 };
 
 
@@ -246,7 +247,6 @@ export const AdminItem: FC<AdminItemProps> = ({pageType}) => {
                   <table>
                     <thead>
                       <tr>
-                        <th style={{ width: "80px" }}>Mã {pageTerm}</th>
                         <th style={{ width: "200px" }}>Tên {pageTerm}</th>
                         <th style={{ width: "65px" }}>Đơn giá</th>
                         <th style={{ width: "140px" }}>Loại</th>
@@ -258,7 +258,6 @@ export const AdminItem: FC<AdminItemProps> = ({pageType}) => {
                     <tbody>
                       {itemListFiltered.map((item) => (
                         <tr key={item.item_id}>
-                          <td className="text-color">{item.item_id}</td>
                           <td className="text-color">{item.item_name}</td>
                           <td>{item.item_price}</td>
                           <td>{item.item_unit}</td>
