@@ -20,8 +20,8 @@
       pres_data AS (
       SELECT
           pres.med_hist_id,
-          meds.meds_name,
-          meds.meds_unit,
+          meds.item_name,
+          meds.item_unit,
           pres.amount,
           pres.price,
           pres.amount * pres.price AS total_value
@@ -46,8 +46,8 @@
 
       SELECT
           fac.fac_mgmt_id,
-          svcs.service_name,
-          svcs.service_unit,
+          svcs.item_name,
+          svcs.item_unit,
           fac.amount,
           fac.item_price,
           fac.amount * fac.item_price AS total_value
@@ -72,7 +72,7 @@
       appointment_data AS (
       SELECT
           appt.appt_id,
-          usr.fullname,
+          usr.full_name,
           facl.fac_name,
           1 AS amount,
           appt.appt_fee,
