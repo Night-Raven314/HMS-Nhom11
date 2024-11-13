@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 10, 2024 at 07:25 AM
+-- Generation Time: Nov 13, 2024 at 06:14 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `dim_faculty` (
-  `fac_id` int(11) NOT NULL,
+  `fac_id` char(36) NOT NULL,
   `fac_name` varchar(255) DEFAULT NULL,
   `fac_desc` varchar(255) DEFAULT NULL,
   `fac_note` varchar(255) DEFAULT NULL,
@@ -42,16 +42,24 @@ CREATE TABLE `dim_faculty` (
 --
 
 INSERT INTO `dim_faculty` (`fac_id`, `fac_name`, `fac_desc`, `fac_note`, `created_at`, `updated_at`, `status`) VALUES
-(1, 'Khoa Tim mạch', 'Chuyên chẩn đoán, điều trị bệnh mạch vành, tăng huyết áp, suy tim, rối loạn nhịp tim.', '', '2024-10-07 04:36:31', '2024-11-02 06:10:11', 'active'),
-(2, 'Khoa Thần kinh', 'Điều trị các bệnh lý hệ thần kinh trung ương và ngoại vi như đột quỵ, động kinh, tủy sống.', '', '2024-10-07 04:36:31', '2024-11-02 06:10:11', 'active'),
-(3, 'Khoa Chấn thương chỉnh hình', 'Chăm sóc chấn thương, dị tật, thoái hóa khớp và bệnh lý hệ cơ xương.', '', '2024-10-07 04:36:31', '2024-11-02 06:10:11', 'active'),
-(4, 'Khoa Nhi', 'Chăm sóc sức khỏe toàn diện cho trẻ sơ sinh, trẻ em, thanh thiếu niên với nhiều bệnh lý trẻ em.', '', '2024-10-07 04:36:31', '2024-11-02 06:10:11', 'active'),
-(5, 'Khoa Ung bướu', 'Chuyên phát hiện và điều trị các loại ung thư như ung thư phổi, vú, máu và khối u.', '', '2024-10-07 04:36:31', '2024-11-02 06:10:11', 'active'),
-(6, 'Khoa Tai mũi họng', 'Điều trị viêm tai, mũi, họng, viêm xoang, đau họng mãn tính và các rối loạn liên quan.', '', '2024-10-07 04:36:31', '2024-11-02 06:10:11', 'active'),
-(7, 'Khoa Hô hấp', 'Chẩn đoán, điều trị các bệnh đường hô hấp như viêm phổi, hen suyễn, COPD, bệnh phổi.', '', '2024-10-07 04:36:31', '2024-11-02 06:10:11', 'active'),
-(8, 'Khoa Tiêu hóa', 'Điều trị các bệnh đường tiêu hóa như viêm gan, dạ dày, ruột, gan, mật và tuyến tụy.', '', '2024-10-07 04:36:31', '2024-11-02 06:10:11', 'active'),
-(9, 'Khoa Da liễu', 'Chăm sóc bệnh da như viêm da, dị ứng, mụn trứng cá, sắc tố và nhiễm trùng da.', '', '2024-10-07 04:36:31', '2024-11-02 06:10:11', 'active'),
-(10, 'Khoa Phụ sản', 'Chăm sóc sức khỏe sinh sản phụ nữ từ thai kỳ, sinh nở đến khám phụ khoa và hậu sản.', '', '2024-10-07 04:36:31', '2024-11-02 06:10:11', 'active');
+('63054655-a115-11ef-95f3-b42e994cb670', 'Khoa Tim mạch', 'Chuyên chẩn đoán, điều trị bệnh mạch vành, tăng huyết áp, suy tim, rối loạn nhịp tim.', '', '2024-10-07 04:36:31', '2024-11-12 16:44:34', 'active'),
+('63115435-a115-11ef-95f3-b42e994cb670', 'Khoa Thần kinh', 'Điều trị các bệnh lý hệ thần kinh trung ương và ngoại vi như đột quỵ, động kinh, tủy sống.', '', '2024-10-07 04:36:31', '2024-11-12 16:44:34', 'active'),
+('6311557a-a115-11ef-95f3-b42e994cb670', 'Khoa Chấn thương chỉnh hình', 'Chăm sóc chấn thương, dị tật, thoái hóa khớp và bệnh lý hệ cơ xương.', '', '2024-10-07 04:36:31', '2024-11-12 16:44:34', 'active'),
+('631155fd-a115-11ef-95f3-b42e994cb670', 'Khoa Nhi', 'Chăm sóc sức khỏe toàn diện cho trẻ sơ sinh, trẻ em, thanh thiếu niên với nhiều bệnh lý trẻ em.', '', '2024-10-07 04:36:31', '2024-11-12 16:44:34', 'active'),
+('63115688-a115-11ef-95f3-b42e994cb670', 'Khoa Ung bướu', 'Chuyên phát hiện và điều trị các loại ung thư như ung thư phổi, vú, máu và khối u.', '', '2024-10-07 04:36:31', '2024-11-12 16:44:34', 'active'),
+('63115701-a115-11ef-95f3-b42e994cb670', 'Khoa Tai mũi họng', 'Điều trị viêm tai, mũi, họng, viêm xoang, đau họng mãn tính và các rối loạn liên quan.', '', '2024-10-07 04:36:31', '2024-11-12 16:44:34', 'active'),
+('63115776-a115-11ef-95f3-b42e994cb670', 'Khoa Hô hấp', 'Chẩn đoán, điều trị các bệnh đường hô hấp như viêm phổi, hen suyễn, COPD, bệnh phổi.', '', '2024-10-07 04:36:31', '2024-11-12 16:44:34', 'active'),
+('631157ed-a115-11ef-95f3-b42e994cb670', 'Khoa Tiêu hóa', 'Điều trị các bệnh đường tiêu hóa như viêm gan, dạ dày, ruột, gan, mật và tuyến tụy.', '', '2024-10-07 04:36:31', '2024-11-12 16:44:34', 'active'),
+('6311585c-a115-11ef-95f3-b42e994cb670', 'Khoa Da liễu', 'Chăm sóc bệnh da như viêm da, dị ứng, mụn trứng cá, sắc tố và nhiễm trùng da.', '', '2024-10-07 04:36:31', '2024-11-12 16:44:34', 'active'),
+('631158d3-a115-11ef-95f3-b42e994cb670', 'Khoa Phụ sản', 'Chăm sóc sức khỏe sinh sản phụ nữ từ thai kỳ, sinh nở đến khám phụ khoa và hậu sản.', '', '2024-10-07 04:36:31', '2024-11-12 16:44:34', 'active');
+
+--
+-- Triggers `dim_faculty`
+--
+DELIMITER $$
+CREATE TRIGGER `before_insert_dim_faculty` BEFORE INSERT ON `dim_faculty` FOR EACH ROW SET NEW.fac_id = UUID()
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -60,7 +68,7 @@ INSERT INTO `dim_faculty` (`fac_id`, `fac_name`, `fac_desc`, `fac_note`, `create
 --
 
 CREATE TABLE `dim_floor` (
-  `floor_id` int(11) NOT NULL,
+  `floor_id` char(36) NOT NULL,
   `floor_name` varchar(255) DEFAULT NULL,
   `floor_note` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
@@ -73,11 +81,19 @@ CREATE TABLE `dim_floor` (
 --
 
 INSERT INTO `dim_floor` (`floor_id`, `floor_name`, `floor_note`, `created_at`, `updated_at`, `status`) VALUES
-(1, 'Tầng 1', NULL, '2024-11-09 08:07:27', NULL, 'active'),
-(2, 'Tầng 2', NULL, '2024-11-09 08:07:33', NULL, 'active'),
-(3, 'Tầng 3', NULL, '2024-11-09 08:07:40', NULL, 'active'),
-(4, 'Tầng 4', NULL, '2024-11-09 08:07:45', NULL, 'active'),
-(5, 'Tầng 5', 'Phòng VIP', '2024-11-09 08:08:05', NULL, 'active');
+('05681e2f-a116-11ef-95f3-b42e994cb670', 'Tầng 1', NULL, '2024-11-09 08:07:27', '2024-11-12 16:49:04', 'active'),
+('0569d3c3-a116-11ef-95f3-b42e994cb670', 'Tầng 2', NULL, '2024-11-09 08:07:33', '2024-11-12 16:49:04', 'active'),
+('0569d4dc-a116-11ef-95f3-b42e994cb670', 'Tầng 3', NULL, '2024-11-09 08:07:40', '2024-11-12 16:49:04', 'active'),
+('0569d551-a116-11ef-95f3-b42e994cb670', 'Tầng 4', NULL, '2024-11-09 08:07:45', '2024-11-12 16:49:04', 'active'),
+('0569d5c3-a116-11ef-95f3-b42e994cb670', 'Tầng 5', 'Phòng VIP', '2024-11-09 08:08:05', '2024-11-12 16:49:04', 'active');
+
+--
+-- Triggers `dim_floor`
+--
+DELIMITER $$
+CREATE TRIGGER `before_insert_dim_floor` BEFORE INSERT ON `dim_floor` FOR EACH ROW SET NEW.floor_id = UUID()
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -86,7 +102,7 @@ INSERT INTO `dim_floor` (`floor_id`, `floor_name`, `floor_note`, `created_at`, `
 --
 
 CREATE TABLE `dim_item` (
-  `item_id` int(11) NOT NULL,
+  `item_id` char(36) NOT NULL,
   `item_name` varchar(255) DEFAULT NULL,
   `item_price` int(11) DEFAULT NULL,
   `item_lending_price` int(11) DEFAULT 0,
@@ -101,36 +117,44 @@ CREATE TABLE `dim_item` (
 --
 
 INSERT INTO `dim_item` (`item_id`, `item_name`, `item_price`, `item_lending_price`, `item_unit`, `created_at`, `updated_at`, `status`) VALUES
-(1, 'Băng gạc vô trùng', 15000, 0, 'gói', '2024-10-06 22:20:26', NULL, 'active'),
-(2, 'Khẩu trang y tế', 50000, 0, 'hộp', '2024-10-06 22:20:26', NULL, 'active'),
-(3, 'Bông y tế', 25000, 0, 'hộp', '2024-10-06 22:20:26', NULL, 'active'),
-(4, 'Nhiệt kế điện tử', 300000, 15000, 'cái', '2024-10-06 22:20:26', '2024-11-10 05:48:19', 'active'),
-(5, 'Máy đo huyết áp', 500000, 25000, 'cái', '2024-10-06 22:20:26', '2024-11-10 05:48:19', 'active'),
-(6, 'Bộ dụng cụ tiêm insulin', 150000, 0, 'bộ', '2024-10-06 22:20:26', NULL, 'active'),
-(7, 'Găng tay y tế', 50000, 0, 'hộp', '2024-10-06 22:20:26', NULL, 'active'),
-(8, 'Ống tiêm nhựa', 2000, 0, 'cái', '2024-10-06 22:20:26', NULL, 'active'),
-(9, 'Máy đo đường huyết', 600000, 30000, 'cái', '2024-10-06 22:20:26', '2024-11-10 05:48:19', 'active'),
-(10, 'Băng keo cá nhân', 10000, 0, 'gói', '2024-10-06 22:20:26', NULL, 'active'),
-(11, 'Bộ truyền dịch', 30000, 0, 'bộ', '2024-10-06 22:20:26', NULL, 'active'),
-(12, 'Bình oxy y tế', 1000000, 0, 'bình', '2024-10-06 22:20:26', NULL, 'active'),
-(13, 'Máy xông mũi họng', 800000, 40000, 'cái', '2024-10-06 22:20:26', '2024-11-10 05:48:19', 'active'),
-(14, 'Nạng y tế', 250000, 10000, 'cái', '2024-10-06 22:20:26', '2024-11-10 05:48:19', 'active'),
-(15, 'Xe lăn', 2500000, 50000, 'cái', '2024-10-06 22:20:26', '2024-11-10 05:48:19', 'active'),
-(16, 'Gạc rửa vết thương', 10000, 0, 'gói', '2024-10-06 22:20:26', NULL, 'active'),
-(17, 'Kim tiêm vô trùng', 1000, 0, 'cái', '2024-10-06 22:20:26', NULL, 'active'),
-(18, 'Bộ test đường huyết', 120000, 0, 'bộ', '2024-10-06 22:20:26', NULL, 'active'),
-(19, 'Mặt nạ oxy', 50000, 0, 'cái', '2024-10-06 22:20:26', NULL, 'active'),
-(20, 'Bộ dụng cụ sơ cứu', 150000, 0, 'bộ', '2024-10-06 22:20:26', NULL, 'active'),
-(21, 'Cân sức khỏe điện tử', 250000, 10000, 'cái', '2024-10-06 22:20:26', '2024-11-10 05:48:19', 'active'),
-(22, 'Máy đo nồng độ oxy (SpO2)', 450000, 20000, 'cái', '2024-10-06 22:20:26', '2024-11-10 05:48:19', 'active'),
-(23, 'Máy trợ thở', 1500000, 75000, 'cái', '2024-10-06 22:20:26', '2024-11-10 05:48:19', 'active'),
-(24, 'Găng tay cao su', 40000, 0, 'hộp', '2024-10-06 22:20:26', NULL, 'active'),
-(25, 'Ống nghe y tế', 300000, 15000, 'cái', '2024-10-06 22:20:26', '2024-11-10 05:48:19', 'active'),
-(26, 'Bình xịt mũi', 70000, 0, 'chai', '2024-10-06 22:20:26', NULL, 'active'),
-(27, 'Băng thun hỗ trợ khớp', 100000, 0, 'cái', '2024-10-06 22:20:26', NULL, 'active'),
-(28, 'Bông ngoáy tai y tế', 5000, 0, 'gói', '2024-10-06 22:20:26', NULL, 'active'),
-(29, 'Kính bảo hộ y tế', 80000, 0, 'cái', '2024-10-06 22:20:26', NULL, 'active'),
-(30, 'Máy đo nhiệt độ trán', 400000, 25000, 'cái', '2024-10-06 22:20:26', '2024-11-10 05:48:19', 'active');
+('b7f03426-a115-11ef-95f3-b42e994cb670', 'Băng gạc vô trùng', 15000, 0, 'gói', '2024-10-06 22:20:26', '2024-11-12 16:46:53', 'active'),
+('b7f3c784-a115-11ef-95f3-b42e994cb670', 'Khẩu trang y tế', 50000, 0, 'hộp', '2024-10-06 22:20:26', '2024-11-12 16:46:53', 'active'),
+('b7f3c8ec-a115-11ef-95f3-b42e994cb670', 'Bông y tế', 25000, 0, 'hộp', '2024-10-06 22:20:26', '2024-11-12 16:46:53', 'active'),
+('b7f3c989-a115-11ef-95f3-b42e994cb670', 'Nhiệt kế điện tử', 300000, 15000, 'cái', '2024-10-06 22:20:26', '2024-11-12 16:46:53', 'active'),
+('b7f3ca16-a115-11ef-95f3-b42e994cb670', 'Máy đo huyết áp', 500000, 25000, 'cái', '2024-10-06 22:20:26', '2024-11-12 16:46:53', 'active'),
+('b7f3ca9f-a115-11ef-95f3-b42e994cb670', 'Bộ dụng cụ tiêm insulin', 150000, 0, 'bộ', '2024-10-06 22:20:26', '2024-11-12 16:46:53', 'active'),
+('b7f3cb28-a115-11ef-95f3-b42e994cb670', 'Găng tay y tế', 50000, 0, 'hộp', '2024-10-06 22:20:26', '2024-11-12 16:46:53', 'active'),
+('b7f3cbab-a115-11ef-95f3-b42e994cb670', 'Ống tiêm nhựa', 2000, 0, 'cái', '2024-10-06 22:20:26', '2024-11-12 16:46:53', 'active'),
+('b7f3cc27-a115-11ef-95f3-b42e994cb670', 'Máy đo đường huyết', 600000, 30000, 'cái', '2024-10-06 22:20:26', '2024-11-12 16:46:53', 'active'),
+('b7f3cca4-a115-11ef-95f3-b42e994cb670', 'Băng keo cá nhân', 10000, 0, 'gói', '2024-10-06 22:20:26', '2024-11-12 16:46:53', 'active'),
+('b7f3cd25-a115-11ef-95f3-b42e994cb670', 'Bộ truyền dịch', 30000, 0, 'bộ', '2024-10-06 22:20:26', '2024-11-12 16:46:53', 'active'),
+('b7f3cda1-a115-11ef-95f3-b42e994cb670', 'Bình oxy y tế', 1000000, 0, 'bình', '2024-10-06 22:20:26', '2024-11-12 16:46:53', 'active'),
+('b7f3ce1e-a115-11ef-95f3-b42e994cb670', 'Máy xông mũi họng', 800000, 40000, 'cái', '2024-10-06 22:20:26', '2024-11-12 16:46:53', 'active'),
+('b7f3cea3-a115-11ef-95f3-b42e994cb670', 'Nạng y tế', 250000, 10000, 'cái', '2024-10-06 22:20:26', '2024-11-12 16:46:53', 'active'),
+('b7f3cf23-a115-11ef-95f3-b42e994cb670', 'Xe lăn', 2500000, 50000, 'cái', '2024-10-06 22:20:26', '2024-11-12 16:46:53', 'active'),
+('b7f3cfa6-a115-11ef-95f3-b42e994cb670', 'Gạc rửa vết thương', 10000, 0, 'gói', '2024-10-06 22:20:26', '2024-11-12 16:46:53', 'active'),
+('b7f3d023-a115-11ef-95f3-b42e994cb670', 'Kim tiêm vô trùng', 1000, 0, 'cái', '2024-10-06 22:20:26', '2024-11-12 16:46:53', 'active'),
+('b7f3d109-a115-11ef-95f3-b42e994cb670', 'Bộ test đường huyết', 120000, 0, 'bộ', '2024-10-06 22:20:26', '2024-11-12 16:46:53', 'active'),
+('b7f3d190-a115-11ef-95f3-b42e994cb670', 'Mặt nạ oxy', 50000, 0, 'cái', '2024-10-06 22:20:26', '2024-11-12 16:46:53', 'active'),
+('b7f3d20b-a115-11ef-95f3-b42e994cb670', 'Bộ dụng cụ sơ cứu', 150000, 0, 'bộ', '2024-10-06 22:20:26', '2024-11-12 16:46:53', 'active'),
+('b7f3d285-a115-11ef-95f3-b42e994cb670', 'Cân sức khỏe điện tử', 250000, 10000, 'cái', '2024-10-06 22:20:26', '2024-11-12 16:46:53', 'active'),
+('b7f3d2f4-a115-11ef-95f3-b42e994cb670', 'Máy đo nồng độ oxy (SpO2)', 450000, 20000, 'cái', '2024-10-06 22:20:26', '2024-11-12 16:46:53', 'active'),
+('b7f3d35b-a115-11ef-95f3-b42e994cb670', 'Máy trợ thở', 1500000, 75000, 'cái', '2024-10-06 22:20:26', '2024-11-12 16:46:53', 'active'),
+('b7f3d3c7-a115-11ef-95f3-b42e994cb670', 'Găng tay cao su', 40000, 0, 'hộp', '2024-10-06 22:20:26', '2024-11-12 16:46:53', 'active'),
+('b7f3d431-a115-11ef-95f3-b42e994cb670', 'Ống nghe y tế', 300000, 15000, 'cái', '2024-10-06 22:20:26', '2024-11-12 16:46:53', 'active'),
+('b7f3d49c-a115-11ef-95f3-b42e994cb670', 'Bình xịt mũi', 70000, 0, 'chai', '2024-10-06 22:20:26', '2024-11-12 16:46:53', 'active'),
+('b7f3d507-a115-11ef-95f3-b42e994cb670', 'Băng thun hỗ trợ khớp', 100000, 0, 'cái', '2024-10-06 22:20:26', '2024-11-12 16:46:53', 'active'),
+('b7f3d57d-a115-11ef-95f3-b42e994cb670', 'Bông ngoáy tai y tế', 5000, 0, 'gói', '2024-10-06 22:20:26', '2024-11-12 16:46:53', 'active'),
+('b7f3d601-a115-11ef-95f3-b42e994cb670', 'Kính bảo hộ y tế', 80000, 0, 'cái', '2024-10-06 22:20:26', '2024-11-12 16:46:53', 'active'),
+('b7f3d680-a115-11ef-95f3-b42e994cb670', 'Máy đo nhiệt độ trán', 400000, 25000, 'cái', '2024-10-06 22:20:26', '2024-11-12 16:46:53', 'active');
+
+--
+-- Triggers `dim_item`
+--
+DELIMITER $$
+CREATE TRIGGER `before_insert_dim_item` BEFORE INSERT ON `dim_item` FOR EACH ROW SET NEW.item_id = UUID()
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -139,10 +163,10 @@ INSERT INTO `dim_item` (`item_id`, `item_name`, `item_price`, `item_lending_pric
 --
 
 CREATE TABLE `dim_meds` (
-  `meds_id` int(11) NOT NULL,
-  `meds_name` varchar(255) DEFAULT NULL,
-  `meds_price` int(11) DEFAULT NULL,
-  `meds_unit` varchar(50) DEFAULT NULL,
+  `item_id` char(36) NOT NULL,
+  `item_name` varchar(255) DEFAULT NULL,
+  `item_price` int(11) DEFAULT NULL,
+  `item_unit` varchar(50) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
   `status` varchar(50) DEFAULT 'active'
@@ -152,58 +176,67 @@ CREATE TABLE `dim_meds` (
 -- Dumping data for table `dim_meds`
 --
 
-INSERT INTO `dim_meds` (`meds_id`, `meds_name`, `meds_price`, `meds_unit`, `created_at`, `updated_at`, `status`) VALUES
-(1, 'Paracetamol', 2000, 'viên', '2024-10-07 05:15:01', NULL, 'active'),
-(2, 'Aspirin', 3000, 'viên', '2024-10-07 05:15:01', NULL, 'active'),
-(3, 'Amoxicillin', 25000, 'hộp', '2024-10-07 05:15:01', NULL, 'active'),
-(4, 'Vitamin C', 5000, 'viên', '2024-10-07 05:15:01', NULL, 'active'),
-(5, 'Ibuprofen', 1500, 'viên', '2024-10-07 05:15:01', NULL, 'active'),
-(6, 'Efferalgan', 12000, 'hộp', '2024-10-07 05:15:01', NULL, 'active'),
-(7, 'Panadol', 18000, 'hộp', '2024-10-07 05:15:01', NULL, 'active'),
-(8, 'Clarithromycin', 35000, 'hộp', '2024-10-07 05:15:01', NULL, 'active'),
-(9, 'Metformin', 2000, 'viên', '2024-10-07 05:15:01', NULL, 'active'),
-(10, 'Omeprazole', 10000, 'viên', '2024-10-07 05:15:01', NULL, 'active'),
-(11, 'Loratadine', 8000, 'hộp', '2024-10-07 05:15:01', NULL, 'active'),
-(12, 'Ciprofloxacin', 12000, 'viên', '2024-10-07 05:15:01', NULL, 'active'),
-(13, 'Azithromycin', 30000, 'hộp', '2024-10-07 05:15:01', NULL, 'active'),
-(14, 'Cefalexin', 25000, 'hộp', '2024-10-07 05:15:01', NULL, 'active'),
-(15, 'Acetylcysteine', 15000, 'gói', '2024-10-07 05:15:01', NULL, 'active'),
-(16, 'Silymarin', 4000, 'viên', '2024-10-07 05:15:01', NULL, 'active'),
-(17, 'Prednisolone', 12000, 'viên', '2024-10-07 05:15:01', NULL, 'active'),
-(18, 'Hydroxyzine', 20000, 'hộp', '2024-10-07 05:15:01', NULL, 'active'),
-(19, 'Drotaverin', 15000, 'viên', '2024-10-07 05:15:01', NULL, 'active'),
-(20, 'Diclofenac', 5000, 'viên', '2024-10-07 05:15:01', NULL, 'active'),
-(21, 'Fexofenadine', 25000, 'hộp', '2024-10-07 05:15:01', NULL, 'active'),
-(22, 'Ketoconazole', 20000, 'hộp', '2024-10-07 05:15:01', NULL, 'active'),
-(23, 'Cetirizine', 7000, 'hộp', '2024-10-07 05:15:01', NULL, 'active'),
-(24, 'Meloxicam', 2500, 'viên', '2024-10-07 05:15:01', NULL, 'active'),
-(25, 'Esomeprazole', 20000, 'hộp', '2024-10-07 05:15:01', NULL, 'active'),
-(26, 'Trimebutine', 15000, 'hộp', '2024-10-07 05:15:01', NULL, 'active'),
-(27, 'Loperamide', 3000, 'viên', '2024-10-07 05:15:01', NULL, 'active'),
-(28, 'Simvastatin', 10000, 'viên', '2024-10-07 05:15:01', NULL, 'active'),
-(29, 'Spironolactone', 5000, 'viên', '2024-10-07 05:15:01', NULL, 'active'),
-(30, 'Dulcolax', 12000, 'viên', '2024-10-07 05:15:01', NULL, 'active'),
-(31, 'Calcium carbonate', 8000, 'viên', '2024-10-07 05:15:01', NULL, 'active'),
-(32, 'Atorvastatin', 15000, 'hộp', '2024-10-07 05:15:01', NULL, 'active'),
-(33, 'Gabapentin', 18000, 'hộp', '2024-10-07 05:15:01', NULL, 'active'),
-(34, 'Doxycycline', 25000, 'hộp', '2024-10-07 05:15:01', NULL, 'active'),
-(35, 'Fluconazole', 20000, 'hộp', '2024-10-07 05:15:01', NULL, 'active'),
-(36, 'Montelukast', 18000, 'hộp', '2024-10-07 05:15:01', NULL, 'active'),
-(37, 'Folic Acid', 3000, 'viên', '2024-10-07 05:15:01', NULL, 'active'),
-(38, 'Amlodipine', 10000, 'viên', '2024-10-07 05:15:01', NULL, 'active'),
-(39, 'Candesartan', 15000, 'hộp', '2024-10-07 05:15:01', NULL, 'active'),
-(40, 'Losartan', 13000, 'viên', '2024-10-07 05:15:01', NULL, 'active'),
-(41, 'Levofloxacin', 22000, 'viên', '2024-10-07 05:15:01', NULL, 'active'),
-(42, 'Metronidazole', 10000, 'viên', '2024-10-07 05:15:01', NULL, 'active'),
-(43, 'Propranolol', 12000, 'viên', '2024-10-07 05:15:01', NULL, 'active'),
-(44, 'Lansoprazole', 18000, 'hộp', '2024-10-07 05:15:01', NULL, 'active'),
-(45, 'Ranitidine', 8000, 'viên', '2024-10-07 05:15:01', NULL, 'active'),
-(46, 'Terbinafine', 15000, 'viên', '2024-10-07 05:15:01', NULL, 'active'),
-(47, 'Tetracycline', 12000, 'hộp', '2024-10-07 05:15:01', NULL, 'active'),
-(48, 'Domperidone', 5000, 'viên', '2024-10-07 05:15:01', NULL, 'active'),
-(49, 'Bromhexine', 7000, 'hộp', '2024-10-07 05:15:01', NULL, 'active'),
-(50, 'Clotrimazole', 20000, 'hộp', '2024-10-07 05:15:01', NULL, 'active'),
-(51, 'Nystatin', 10000, 'viên', '2024-10-07 05:15:01', NULL, 'active');
+INSERT INTO `dim_meds` (`item_id`, `item_name`, `item_price`, `item_unit`, `created_at`, `updated_at`, `status`) VALUES
+('37052846-a11b-11ef-83b3-b42e994cb670', 'TPCN', 170000, 'hộp', '2024-11-12 17:26:13', '2024-11-12 17:26:43', 'inactive'),
+('a5abc0d8-a115-11ef-95f3-b42e994cb670', 'Paracetamol', 2000, 'viên', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af4687-a115-11ef-95f3-b42e994cb670', 'Aspirin', 3000, 'viên', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af47c1-a115-11ef-95f3-b42e994cb670', 'Amoxicillin', 25000, 'hộp', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af4858-a115-11ef-95f3-b42e994cb670', 'Vitamin C', 5000, 'viên', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af48e2-a115-11ef-95f3-b42e994cb670', 'Ibuprofen', 1500, 'viên', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af4961-a115-11ef-95f3-b42e994cb670', 'Efferalgan', 12000, 'hộp', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af49dd-a115-11ef-95f3-b42e994cb670', 'Panadol', 18000, 'hộp', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af4a53-a115-11ef-95f3-b42e994cb670', 'Clarithromycin', 35000, 'hộp', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af4ad7-a115-11ef-95f3-b42e994cb670', 'Metformin', 2000, 'viên', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af4b54-a115-11ef-95f3-b42e994cb670', 'Omeprazole', 10000, 'viên', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af4bcc-a115-11ef-95f3-b42e994cb670', 'Loratadine', 8000, 'hộp', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af4c44-a115-11ef-95f3-b42e994cb670', 'Ciprofloxacin', 12000, 'viên', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af4cfe-a115-11ef-95f3-b42e994cb670', 'Azithromycin', 30000, 'hộp', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af4d7d-a115-11ef-95f3-b42e994cb670', 'Cefalexin', 25000, 'hộp', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af4df1-a115-11ef-95f3-b42e994cb670', 'Acetylcysteine', 15000, 'gói', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af4e6b-a115-11ef-95f3-b42e994cb670', 'Silymarin', 4000, 'viên', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af4ee0-a115-11ef-95f3-b42e994cb670', 'Prednisolone', 12000, 'viên', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af4f5a-a115-11ef-95f3-b42e994cb670', 'Hydroxyzine', 20000, 'hộp', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af4fd4-a115-11ef-95f3-b42e994cb670', 'Drotaverin', 15000, 'viên', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af503f-a115-11ef-95f3-b42e994cb670', 'Diclofenac', 5000, 'viên', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af523e-a115-11ef-95f3-b42e994cb670', 'Fexofenadine', 25000, 'hộp', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af55d9-a115-11ef-95f3-b42e994cb670', 'Ketoconazole', 20000, 'hộp', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af5648-a115-11ef-95f3-b42e994cb670', 'Cetirizine', 7000, 'hộp', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af56a0-a115-11ef-95f3-b42e994cb670', 'Meloxicam', 2500, 'viên', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af56f6-a115-11ef-95f3-b42e994cb670', 'Esomeprazole', 20000, 'hộp', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af574d-a115-11ef-95f3-b42e994cb670', 'Trimebutine', 15000, 'hộp', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af57a0-a115-11ef-95f3-b42e994cb670', 'Loperamide', 3000, 'viên', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af57f0-a115-11ef-95f3-b42e994cb670', 'Simvastatin', 10000, 'viên', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af583d-a115-11ef-95f3-b42e994cb670', 'Spironolactone', 5000, 'viên', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af588f-a115-11ef-95f3-b42e994cb670', 'Dulcolax', 12000, 'viên', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af58dd-a115-11ef-95f3-b42e994cb670', 'Calcium carbonate', 8000, 'viên', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af592f-a115-11ef-95f3-b42e994cb670', 'Atorvastatin', 15000, 'hộp', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af597f-a115-11ef-95f3-b42e994cb670', 'Gabapentin', 18000, 'hộp', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af59cc-a115-11ef-95f3-b42e994cb670', 'Doxycycline', 25000, 'hộp', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af5a27-a115-11ef-95f3-b42e994cb670', 'Fluconazole', 20000, 'hộp', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af5a8a-a115-11ef-95f3-b42e994cb670', 'Montelukast', 18000, 'hộp', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af5adc-a115-11ef-95f3-b42e994cb670', 'Folic Acid', 3000, 'viên', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af5b29-a115-11ef-95f3-b42e994cb670', 'Amlodipine', 10000, 'viên', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af5b76-a115-11ef-95f3-b42e994cb670', 'Candesartan', 15000, 'hộp', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af5bc3-a115-11ef-95f3-b42e994cb670', 'Losartan', 13000, 'viên', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af5c10-a115-11ef-95f3-b42e994cb670', 'Levofloxacin', 22000, 'viên', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af5c63-a115-11ef-95f3-b42e994cb670', 'Metronidazole', 10000, 'viên', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af5cb3-a115-11ef-95f3-b42e994cb670', 'Propranolol', 12000, 'viên', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af5d00-a115-11ef-95f3-b42e994cb670', 'Lansoprazole', 18000, 'hộp', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af5d53-a115-11ef-95f3-b42e994cb670', 'Ranitidine', 8000, 'viên', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af5da1-a115-11ef-95f3-b42e994cb670', 'Terbinafine', 15000, 'viên', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af5dee-a115-11ef-95f3-b42e994cb670', 'Tetracycline', 12000, 'hộp', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af5e3f-a115-11ef-95f3-b42e994cb670', 'Domperidone', 5000, 'viên', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af5e8a-a115-11ef-95f3-b42e994cb670', 'Bromhexine', 7000, 'hộp', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af5ed8-a115-11ef-95f3-b42e994cb670', 'Clotrimazole', 20000, 'hộp', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active'),
+('a5af5f28-a115-11ef-95f3-b42e994cb670', 'Nystatin', 10000, 'viên', '2024-10-07 05:15:01', '2024-11-12 16:46:23', 'active');
+
+--
+-- Triggers `dim_meds`
+--
+DELIMITER $$
+CREATE TRIGGER `before_insert_dim_meds` BEFORE INSERT ON `dim_meds` FOR EACH ROW SET NEW.item_id = UUID()
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -212,10 +245,10 @@ INSERT INTO `dim_meds` (`meds_id`, `meds_name`, `meds_price`, `meds_unit`, `crea
 --
 
 CREATE TABLE `dim_med_service` (
-  `service_id` int(11) NOT NULL,
-  `service_name` varchar(255) DEFAULT NULL,
-  `service_price` int(11) DEFAULT NULL,
-  `service_unit` varchar(50) DEFAULT NULL,
+  `item_id` char(36) NOT NULL,
+  `item_name` varchar(255) DEFAULT NULL,
+  `item_price` int(11) DEFAULT NULL,
+  `item_unit` varchar(50) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
   `status` varchar(50) DEFAULT 'active'
@@ -225,27 +258,35 @@ CREATE TABLE `dim_med_service` (
 -- Dumping data for table `dim_med_service`
 --
 
-INSERT INTO `dim_med_service` (`service_id`, `service_name`, `service_price`, `service_unit`, `created_at`, `updated_at`, `status`) VALUES
-(1, 'Xét nghiệm máu toàn phần', 150000, 'lần', '2024-11-09 05:57:49', NULL, 'active'),
-(2, 'Xét nghiệm đường huyết', 80000, 'lần', '2024-11-09 05:57:49', NULL, 'active'),
-(3, 'Xét nghiệm nước tiểu', 70000, 'lần', '2024-11-09 05:57:49', NULL, 'active'),
-(4, 'Xét nghiệm chức năng gan', 120000, 'lần', '2024-11-09 05:57:49', NULL, 'active'),
-(5, 'Xét nghiệm chức năng thận', 100000, 'lần', '2024-11-09 05:57:49', NULL, 'active'),
-(6, 'Xét nghiệm mỡ máu', 90000, 'lần', '2024-11-09 05:57:49', NULL, 'active'),
-(7, 'Chụp X-quang ngực', 200000, 'lần', '2024-11-09 05:57:49', NULL, 'active'),
-(8, 'Chụp CT scan', 1500000, 'lần', '2024-11-09 05:57:49', NULL, 'active'),
-(9, 'Chụp cộng hưởng từ (MRI)', 2500000, 'lần', '2024-11-09 05:57:49', NULL, 'active'),
-(10, 'Chụp siêu âm ổ bụng', 300000, 'lần', '2024-11-09 05:57:49', NULL, 'active'),
-(11, 'Siêu âm tim', 500000, 'lần', '2024-11-09 05:57:49', NULL, 'active'),
-(12, 'Siêu âm tuyến giáp', 350000, 'lần', '2024-11-09 05:57:49', NULL, 'active'),
-(13, 'Điện tâm đồ (ECG)', 200000, 'lần', '2024-11-09 05:57:49', NULL, 'active'),
-(14, 'Đo mật độ xương', 400000, 'lần', '2024-11-09 05:57:49', NULL, 'active'),
-(15, 'Khám và chụp ảnh võng mạc', 250000, 'lần', '2024-11-09 05:57:49', NULL, 'active'),
-(16, 'Xét nghiệm nhóm máu', 60000, 'lần', '2024-11-09 05:57:49', NULL, 'active'),
-(17, 'Đo huyết áp', 30000, 'lần', '2024-11-09 05:57:49', NULL, 'active'),
-(18, 'Test COVID-19', 150000, 'lần', '2024-11-09 05:57:49', NULL, 'active'),
-(19, 'Xét nghiệm ung thư sớm', 1000000, 'lần', '2024-11-09 05:57:49', NULL, 'active'),
-(20, 'Kiểm tra nồng độ vitamin D', 80000, 'lần', '2024-11-09 05:57:49', NULL, 'active');
+INSERT INTO `dim_med_service` (`item_id`, `item_name`, `item_price`, `item_unit`, `created_at`, `updated_at`, `status`) VALUES
+('c967443b-a115-11ef-95f3-b42e994cb670', 'Xét nghiệm máu toàn phần', 150000, 'lần', '2024-11-09 05:57:49', '2024-11-12 16:47:22', 'active'),
+('c9674706-a115-11ef-95f3-b42e994cb670', 'Xét nghiệm đường huyết', 80000, 'lần', '2024-11-09 05:57:49', '2024-11-12 16:47:22', 'active'),
+('c967477f-a115-11ef-95f3-b42e994cb670', 'Xét nghiệm nước tiểu', 70000, 'lần', '2024-11-09 05:57:49', '2024-11-12 16:47:22', 'active'),
+('c96747e1-a115-11ef-95f3-b42e994cb670', 'Xét nghiệm chức năng gan', 120000, 'lần', '2024-11-09 05:57:49', '2024-11-12 16:47:22', 'active'),
+('c9674834-a115-11ef-95f3-b42e994cb670', 'Xét nghiệm chức năng thận', 100000, 'lần', '2024-11-09 05:57:49', '2024-11-12 16:47:22', 'active'),
+('c9674883-a115-11ef-95f3-b42e994cb670', 'Xét nghiệm mỡ máu', 90000, 'lần', '2024-11-09 05:57:49', '2024-11-12 16:47:22', 'active'),
+('c96748d7-a115-11ef-95f3-b42e994cb670', 'Chụp X-quang ngực', 200000, 'lần', '2024-11-09 05:57:49', '2024-11-12 16:47:22', 'active'),
+('c967492d-a115-11ef-95f3-b42e994cb670', 'Chụp CT scan', 1500000, 'lần', '2024-11-09 05:57:49', '2024-11-12 16:47:22', 'active'),
+('c967497d-a115-11ef-95f3-b42e994cb670', 'Chụp cộng hưởng từ (MRI)', 2500000, 'lần', '2024-11-09 05:57:49', '2024-11-12 16:47:22', 'active'),
+('c96749ca-a115-11ef-95f3-b42e994cb670', 'Chụp siêu âm ổ bụng', 300000, 'lần', '2024-11-09 05:57:49', '2024-11-12 16:47:22', 'active'),
+('c9674a19-a115-11ef-95f3-b42e994cb670', 'Siêu âm tim', 500000, 'lần', '2024-11-09 05:57:49', '2024-11-12 16:47:22', 'active'),
+('c9674a6a-a115-11ef-95f3-b42e994cb670', 'Siêu âm tuyến giáp', 350000, 'lần', '2024-11-09 05:57:49', '2024-11-12 16:47:22', 'active'),
+('c9674ab8-a115-11ef-95f3-b42e994cb670', 'Điện tâm đồ (ECG)', 200000, 'lần', '2024-11-09 05:57:49', '2024-11-12 16:47:22', 'active'),
+('c9674b06-a115-11ef-95f3-b42e994cb670', 'Đo mật độ xương', 400000, 'lần', '2024-11-09 05:57:49', '2024-11-12 16:47:22', 'active'),
+('c9674b54-a115-11ef-95f3-b42e994cb670', 'Khám và chụp ảnh võng mạc', 250000, 'lần', '2024-11-09 05:57:49', '2024-11-12 16:47:22', 'active'),
+('c9674b9f-a115-11ef-95f3-b42e994cb670', 'Xét nghiệm nhóm máu', 60000, 'lần', '2024-11-09 05:57:49', '2024-11-12 16:47:22', 'active'),
+('c9674bef-a115-11ef-95f3-b42e994cb670', 'Đo huyết áp', 30000, 'lần', '2024-11-09 05:57:49', '2024-11-12 16:47:22', 'active'),
+('c9674c3c-a115-11ef-95f3-b42e994cb670', 'Test COVID-19', 150000, 'lần', '2024-11-09 05:57:49', '2024-11-12 16:47:22', 'active'),
+('c9674c88-a115-11ef-95f3-b42e994cb670', 'Xét nghiệm ung thư sớm', 1000000, 'lần', '2024-11-09 05:57:49', '2024-11-12 16:47:22', 'active'),
+('c9674cd7-a115-11ef-95f3-b42e994cb670', 'Kiểm tra nồng độ vitamin D', 80000, 'lần', '2024-11-09 05:57:49', '2024-11-12 16:47:22', 'active');
+
+--
+-- Triggers `dim_med_service`
+--
+DELIMITER $$
+CREATE TRIGGER `before_insert_dim_med_service` BEFORE INSERT ON `dim_med_service` FOR EACH ROW SET NEW.item_id = UUID()
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -254,10 +295,10 @@ INSERT INTO `dim_med_service` (`service_id`, `service_name`, `service_price`, `s
 --
 
 CREATE TABLE `dim_room` (
-  `room_id` int(11) NOT NULL,
+  `room_id` char(36) NOT NULL,
   `room_name` varchar(255) DEFAULT NULL,
-  `floor_id` int(11) DEFAULT NULL,
-  `faculty_id` int(11) DEFAULT NULL,
+  `floor_id` char(36) DEFAULT NULL,
+  `faculty_id` char(36) DEFAULT NULL,
   `room_size` int(11) DEFAULT NULL,
   `room_price` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
@@ -270,49 +311,57 @@ CREATE TABLE `dim_room` (
 --
 
 INSERT INTO `dim_room` (`room_id`, `room_name`, `floor_id`, `faculty_id`, `room_size`, `room_price`, `created_at`, `updated_at`, `status`) VALUES
-(1, 'Room 101', 1, 1, 1, 700000, '2024-11-08 16:29:39', NULL, 'active'),
-(2, 'Room 102', 1, NULL, 2, 550000, '2024-11-08 16:29:39', NULL, 'occupied'),
-(3, 'Room 103', 1, NULL, 4, 350000, '2024-11-08 16:29:39', NULL, 'active'),
-(4, 'Room 104', 1, NULL, 2, 550000, '2024-11-08 16:29:39', NULL, 'occupied'),
-(5, 'Room 105', 1, 2, 1, 700000, '2024-11-08 16:29:39', NULL, 'active'),
-(6, 'Room 106', 1, NULL, 4, 350000, '2024-11-08 16:29:39', NULL, 'inactive'),
-(7, 'Room 107', 1, NULL, 2, 550000, '2024-11-08 16:29:39', NULL, 'active'),
-(8, 'Room 108', 1, NULL, 4, 350000, '2024-11-08 16:29:39', NULL, 'active'),
-(9, 'Room 109', 1, NULL, 1, 700000, '2024-11-08 16:29:39', NULL, 'active'),
-(10, 'Room 110', 1, NULL, 4, 350000, '2024-11-08 16:29:39', NULL, 'active'),
-(11, 'Room 201', 2, 3, 1, 720000, '2024-11-08 16:29:39', NULL, 'active'),
-(12, 'Room 202', 2, NULL, 2, 570000, '2024-11-08 16:29:39', NULL, 'inactive'),
-(13, 'Room 203', 2, NULL, 2, 570000, '2024-11-08 16:29:39', NULL, 'occupied'),
-(14, 'Room 204', 2, NULL, 4, 370000, '2024-11-08 16:29:39', NULL, 'active'),
-(15, 'Room 205', 2, 4, 2, 570000, '2024-11-08 16:29:39', NULL, 'active'),
-(16, 'Room 206', 2, NULL, 1, 720000, '2024-11-08 16:29:39', NULL, 'occupied'),
-(17, 'Room 207', 2, NULL, 4, 370000, '2024-11-08 16:29:39', NULL, 'inactive'),
-(18, 'Room 208', 2, NULL, 2, 570000, '2024-11-08 16:29:39', NULL, 'active'),
-(19, 'Room 209', 2, NULL, 1, 720000, '2024-11-08 16:29:39', NULL, 'active'),
-(20, 'Room 301', 3, 5, 1, 740000, '2024-11-08 16:29:39', NULL, 'active'),
-(21, 'Room 302', 3, NULL, 4, 390000, '2024-11-08 16:29:39', NULL, 'occupied'),
-(22, 'Room 303', 3, NULL, 2, 590000, '2024-11-08 16:29:39', NULL, 'inactive'),
-(23, 'Room 304', 3, NULL, 2, 590000, '2024-11-08 16:29:39', NULL, 'active'),
-(24, 'Room 305', 3, NULL, 4, 390000, '2024-11-08 16:29:39', NULL, 'active'),
-(25, 'Room 306', 3, 6, 2, 590000, '2024-11-08 16:29:39', NULL, 'active'),
-(26, 'Room 307', 3, NULL, 1, 740000, '2024-11-08 16:29:39', NULL, 'active'),
-(27, 'Room 308', 3, NULL, 4, 390000, '2024-11-08 16:29:39', NULL, 'occupied'),
-(28, 'Room 309', 3, NULL, 1, 740000, '2024-11-08 16:29:39', NULL, 'active'),
-(29, 'Room 401', 4, 7, 2, 610000, '2024-11-08 16:29:39', NULL, 'occupied'),
-(30, 'Room 402', 4, NULL, 4, 410000, '2024-11-08 16:29:39', NULL, 'active'),
-(31, 'Room 403', 4, NULL, 1, 760000, '2024-11-08 16:29:39', NULL, 'active'),
-(32, 'Room 404', 4, NULL, 2, 610000, '2024-11-08 16:29:39', NULL, 'inactive'),
-(33, 'Room 405', 4, NULL, 4, 410000, '2024-11-08 16:29:39', NULL, 'active'),
-(34, 'Room 406', 4, 8, 1, 760000, '2024-11-08 16:29:39', NULL, 'active'),
-(35, 'Room 407', 4, NULL, 2, 610000, '2024-11-08 16:29:39', NULL, 'occupied'),
-(36, 'Room 408', 4, NULL, 4, 410000, '2024-11-08 16:29:39', NULL, 'active'),
-(37, 'Room 501', 5, 9, 1, 780000, '2024-11-08 16:29:39', NULL, 'inactive'),
-(38, 'Room 502', 5, NULL, 1, 780000, '2024-11-08 16:29:39', NULL, 'active'),
-(39, 'Room 503', 5, NULL, 1, 780000, '2024-11-08 16:29:39', NULL, 'occupied'),
-(40, 'Room 504', 5, 10, 1, 780000, '2024-11-08 16:29:39', NULL, 'active'),
-(41, 'Room 505', 5, NULL, 1, 780000, '2024-11-08 16:29:39', NULL, 'active'),
-(42, 'Room 506', 5, NULL, 1, 780000, '2024-11-08 16:29:39', NULL, 'active'),
-(43, 'Room 507', 5, NULL, 1, 780000, '2024-11-08 16:29:39', NULL, 'occupied');
+('796a557f-a116-11ef-95f3-b42e994cb670', 'Room 101', '05681e2f-a116-11ef-95f3-b42e994cb670', '63054655-a115-11ef-95f3-b42e994cb670', 1, 700000, '2024-11-08 16:29:39', '2024-11-12 16:52:16', 'active'),
+('796a571d-a116-11ef-95f3-b42e994cb670', 'Room 110', '05681e2f-a116-11ef-95f3-b42e994cb670', NULL, 4, 350000, '2024-11-08 16:29:39', '2024-11-12 16:52:16', 'active'),
+('796a57c4-a116-11ef-95f3-b42e994cb670', 'Room 201', '0569d3c3-a116-11ef-95f3-b42e994cb670', '6311557a-a115-11ef-95f3-b42e994cb670', 1, 720000, '2024-11-08 16:29:39', '2024-11-12 16:52:16', 'active'),
+('796a5858-a116-11ef-95f3-b42e994cb670', 'Room 202', '0569d3c3-a116-11ef-95f3-b42e994cb670', NULL, 2, 570000, '2024-11-08 16:29:39', '2024-11-12 16:52:16', 'inactive'),
+('796a58e8-a116-11ef-95f3-b42e994cb670', 'Room 203', '0569d3c3-a116-11ef-95f3-b42e994cb670', NULL, 2, 570000, '2024-11-08 16:29:39', '2024-11-12 16:52:16', 'occupied'),
+('796a596e-a116-11ef-95f3-b42e994cb670', 'Room 204', '0569d3c3-a116-11ef-95f3-b42e994cb670', NULL, 4, 370000, '2024-11-08 16:29:39', '2024-11-12 16:52:16', 'active'),
+('796a5a24-a116-11ef-95f3-b42e994cb670', 'Room 205', '0569d3c3-a116-11ef-95f3-b42e994cb670', '631155fd-a115-11ef-95f3-b42e994cb670', 2, 570000, '2024-11-08 16:29:39', '2024-11-12 16:52:16', 'active'),
+('796a5aaa-a116-11ef-95f3-b42e994cb670', 'Room 206', '0569d3c3-a116-11ef-95f3-b42e994cb670', NULL, 1, 720000, '2024-11-08 16:29:39', '2024-11-12 16:52:16', 'occupied'),
+('796a5b2b-a116-11ef-95f3-b42e994cb670', 'Room 207', '0569d3c3-a116-11ef-95f3-b42e994cb670', NULL, 4, 370000, '2024-11-08 16:29:39', '2024-11-12 16:52:16', 'inactive'),
+('796a5baa-a116-11ef-95f3-b42e994cb670', 'Room 208', '0569d3c3-a116-11ef-95f3-b42e994cb670', NULL, 2, 570000, '2024-11-08 16:29:39', '2024-11-12 16:52:16', 'active'),
+('796a5c26-a116-11ef-95f3-b42e994cb670', 'Room 209', '0569d3c3-a116-11ef-95f3-b42e994cb670', NULL, 1, 720000, '2024-11-08 16:29:39', '2024-11-12 16:52:16', 'active'),
+('796a5ca0-a116-11ef-95f3-b42e994cb670', 'Room 102', '05681e2f-a116-11ef-95f3-b42e994cb670', NULL, 2, 550000, '2024-11-08 16:29:39', '2024-11-12 16:52:16', 'occupied'),
+('796a5d1b-a116-11ef-95f3-b42e994cb670', 'Room 301', '0569d4dc-a116-11ef-95f3-b42e994cb670', '63115688-a115-11ef-95f3-b42e994cb670', 1, 740000, '2024-11-08 16:29:39', '2024-11-12 16:52:16', 'active'),
+('796a5d98-a116-11ef-95f3-b42e994cb670', 'Room 302', '0569d4dc-a116-11ef-95f3-b42e994cb670', NULL, 4, 390000, '2024-11-08 16:29:39', '2024-11-12 16:52:16', 'occupied'),
+('796a5e0e-a116-11ef-95f3-b42e994cb670', 'Room 303', '0569d4dc-a116-11ef-95f3-b42e994cb670', NULL, 2, 590000, '2024-11-08 16:29:39', '2024-11-12 16:52:16', 'inactive'),
+('796a5e89-a116-11ef-95f3-b42e994cb670', 'Room 304', '0569d4dc-a116-11ef-95f3-b42e994cb670', NULL, 2, 590000, '2024-11-08 16:29:39', '2024-11-12 16:52:16', 'active'),
+('796a5f04-a116-11ef-95f3-b42e994cb670', 'Room 305', '0569d4dc-a116-11ef-95f3-b42e994cb670', NULL, 4, 390000, '2024-11-08 16:29:39', '2024-11-12 16:52:16', 'active'),
+('796a5f7d-a116-11ef-95f3-b42e994cb670', 'Room 306', '0569d4dc-a116-11ef-95f3-b42e994cb670', '63115701-a115-11ef-95f3-b42e994cb670', 2, 590000, '2024-11-08 16:29:39', '2024-11-12 16:52:16', 'active'),
+('796a5ff8-a116-11ef-95f3-b42e994cb670', 'Room 307', '0569d4dc-a116-11ef-95f3-b42e994cb670', NULL, 1, 740000, '2024-11-08 16:29:39', '2024-11-12 16:52:16', 'active'),
+('796a6077-a116-11ef-95f3-b42e994cb670', 'Room 308', '0569d4dc-a116-11ef-95f3-b42e994cb670', NULL, 4, 390000, '2024-11-08 16:29:39', '2024-11-12 16:52:16', 'occupied'),
+('796a60ed-a116-11ef-95f3-b42e994cb670', 'Room 309', '0569d4dc-a116-11ef-95f3-b42e994cb670', NULL, 1, 740000, '2024-11-08 16:29:39', '2024-11-12 16:52:16', 'active'),
+('796a6162-a116-11ef-95f3-b42e994cb670', 'Room 401', '0569d551-a116-11ef-95f3-b42e994cb670', '63115776-a115-11ef-95f3-b42e994cb670', 2, 610000, '2024-11-08 16:29:39', '2024-11-12 16:52:16', 'occupied'),
+('796a61de-a116-11ef-95f3-b42e994cb670', 'Room 103', '05681e2f-a116-11ef-95f3-b42e994cb670', NULL, 4, 350000, '2024-11-08 16:29:39', '2024-11-12 16:52:16', 'active'),
+('796a6253-a116-11ef-95f3-b42e994cb670', 'Room 402', '0569d551-a116-11ef-95f3-b42e994cb670', NULL, 4, 410000, '2024-11-08 16:29:39', '2024-11-12 16:52:16', 'active'),
+('796a62d5-a116-11ef-95f3-b42e994cb670', 'Room 403', '0569d551-a116-11ef-95f3-b42e994cb670', NULL, 1, 760000, '2024-11-08 16:29:39', '2024-11-12 16:52:16', 'active'),
+('796a634c-a116-11ef-95f3-b42e994cb670', 'Room 404', '0569d551-a116-11ef-95f3-b42e994cb670', NULL, 2, 610000, '2024-11-08 16:29:39', '2024-11-12 16:52:16', 'inactive'),
+('796a63c1-a116-11ef-95f3-b42e994cb670', 'Room 405', '0569d551-a116-11ef-95f3-b42e994cb670', NULL, 4, 410000, '2024-11-08 16:29:39', '2024-11-12 16:52:16', 'active'),
+('796a6433-a116-11ef-95f3-b42e994cb670', 'Room 406', '0569d551-a116-11ef-95f3-b42e994cb670', '631157ed-a115-11ef-95f3-b42e994cb670', 1, 760000, '2024-11-08 16:29:39', '2024-11-12 16:52:16', 'active'),
+('796a64ac-a116-11ef-95f3-b42e994cb670', 'Room 407', '0569d551-a116-11ef-95f3-b42e994cb670', NULL, 2, 610000, '2024-11-08 16:29:39', '2024-11-12 16:52:16', 'occupied'),
+('796a651e-a116-11ef-95f3-b42e994cb670', 'Room 408', '0569d551-a116-11ef-95f3-b42e994cb670', NULL, 4, 410000, '2024-11-08 16:29:39', '2024-11-12 16:52:16', 'active'),
+('796a6591-a116-11ef-95f3-b42e994cb670', 'Room 501', '0569d5c3-a116-11ef-95f3-b42e994cb670', '6311585c-a115-11ef-95f3-b42e994cb670', 1, 780000, '2024-11-08 16:29:39', '2024-11-12 16:52:16', 'inactive'),
+('796a6609-a116-11ef-95f3-b42e994cb670', 'Room 502', '0569d5c3-a116-11ef-95f3-b42e994cb670', NULL, 1, 780000, '2024-11-08 16:29:39', '2024-11-12 16:52:16', 'active'),
+('796a6684-a116-11ef-95f3-b42e994cb670', 'Room 503', '0569d5c3-a116-11ef-95f3-b42e994cb670', NULL, 1, 780000, '2024-11-08 16:29:39', '2024-11-12 16:52:16', 'occupied'),
+('796a67b6-a116-11ef-95f3-b42e994cb670', 'Room 104', '05681e2f-a116-11ef-95f3-b42e994cb670', NULL, 2, 550000, '2024-11-08 16:29:39', '2024-11-12 16:52:16', 'occupied'),
+('796a6830-a116-11ef-95f3-b42e994cb670', 'Room 504', '0569d5c3-a116-11ef-95f3-b42e994cb670', '631158d3-a115-11ef-95f3-b42e994cb670', 1, 780000, '2024-11-08 16:29:39', '2024-11-12 16:52:16', 'active'),
+('796a68a7-a116-11ef-95f3-b42e994cb670', 'Room 505', '0569d5c3-a116-11ef-95f3-b42e994cb670', NULL, 1, 780000, '2024-11-08 16:29:39', '2024-11-12 16:52:16', 'active'),
+('796a6919-a116-11ef-95f3-b42e994cb670', 'Room 506', '0569d5c3-a116-11ef-95f3-b42e994cb670', NULL, 1, 780000, '2024-11-08 16:29:39', '2024-11-12 16:52:16', 'active'),
+('796a698d-a116-11ef-95f3-b42e994cb670', 'Room 507', '0569d5c3-a116-11ef-95f3-b42e994cb670', NULL, 1, 780000, '2024-11-08 16:29:39', '2024-11-12 16:52:16', 'occupied'),
+('796a6a09-a116-11ef-95f3-b42e994cb670', 'Room 105', '05681e2f-a116-11ef-95f3-b42e994cb670', '63115435-a115-11ef-95f3-b42e994cb670', 1, 700000, '2024-11-08 16:29:39', '2024-11-12 16:52:16', 'active'),
+('796a6a80-a116-11ef-95f3-b42e994cb670', 'Room 106', '05681e2f-a116-11ef-95f3-b42e994cb670', NULL, 4, 350000, '2024-11-08 16:29:39', '2024-11-12 16:52:16', 'inactive'),
+('796a6af7-a116-11ef-95f3-b42e994cb670', 'Room 107', '05681e2f-a116-11ef-95f3-b42e994cb670', NULL, 2, 550000, '2024-11-08 16:29:39', '2024-11-12 16:52:16', 'active'),
+('796a6b6f-a116-11ef-95f3-b42e994cb670', 'Room 108', '05681e2f-a116-11ef-95f3-b42e994cb670', NULL, 4, 350000, '2024-11-08 16:29:39', '2024-11-12 16:52:16', 'active'),
+('796a6be3-a116-11ef-95f3-b42e994cb670', 'Room 109', '05681e2f-a116-11ef-95f3-b42e994cb670', NULL, 1, 700000, '2024-11-08 16:29:39', '2024-11-12 16:52:16', 'active');
+
+--
+-- Triggers `dim_room`
+--
+DELIMITER $$
+CREATE TRIGGER `before_insert_dim_room` BEFORE INSERT ON `dim_room` FOR EACH ROW SET NEW.room_id = UUID()
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -321,19 +370,19 @@ INSERT INTO `dim_room` (`room_id`, `room_name`, `floor_id`, `faculty_id`, `room_
 --
 
 CREATE TABLE `dim_user` (
-  `user_id` int(11) NOT NULL,
-  `username` varchar(255) DEFAULT NULL,
+  `user_id` char(36) NOT NULL,
+  `user_name` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `email_address` varchar(255) DEFAULT NULL,
   `contact_no` bigint(11) DEFAULT NULL,
-  `fullname` varchar(255) DEFAULT NULL,
+  `full_name` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
   `gender` varchar(25) DEFAULT NULL,
   `city` varchar(255) DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL,
   `role` varchar(50) DEFAULT NULL,
-  `faculty_id` int(11) DEFAULT NULL,
+  `faculty_id` char(36) DEFAULT NULL,
   `pricing` int(11) DEFAULT NULL,
   `oauth_google` varchar(255) DEFAULT NULL,
   `oauth_facebook` varchar(255) DEFAULT NULL,
@@ -344,46 +393,54 @@ CREATE TABLE `dim_user` (
 -- Dumping data for table `dim_user`
 --
 
-INSERT INTO `dim_user` (`user_id`, `username`, `password`, `email_address`, `contact_no`, `fullname`, `created_at`, `updated_at`, `gender`, `city`, `address`, `role`, `faculty_id`, `pricing`, `oauth_google`, `oauth_facebook`, `status`) VALUES
-(1, 'huan_patient', 'password123', 'huan.nguyen@example.com', 84912345601, 'Nguyen Nhut Gia Huan', '2024-10-07 05:36:07', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '1 Mac Dinh Chi', 'patient', NULL, NULL, NULL, NULL, 'active'),
-(2, 'huan_doctor', 'password123', 'huan.nguyen@example.com', 84912345602, 'Nguyen Nhut Gia Huan', '2024-10-07 05:36:07', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '1 Le Duan New', 'doctor', 7, 400000, NULL, NULL, 'active'),
-(3, 'huan_admin', 'password123', 'huan.nguyen@example.com', 84567890123, 'Nguyen Nhut Gia Huan', '2024-10-07 05:36:07', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '1 Le Duan 14', 'admin', NULL, NULL, NULL, NULL, 'active'),
-(4, 'long_patient', 'password123', 'long.nguyen@example.com', 84912345604, 'Nguyen Ba Long', '2024-10-07 05:36:07', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '2 Tran Hung Dao', 'patient', NULL, NULL, NULL, NULL, 'active'),
-(5, 'long_doctor', 'password123', 'long.nguyen@example.com', 84912345605, 'Nguyen Ba Long', '2024-10-07 05:36:07', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '2 Tran Hung Dao', 'doctor', 3, 450000, NULL, NULL, 'active'),
-(6, 'long_admin', 'password123', 'long.nguyen@example.com', 84912345606, 'Nguyen Ba Long', '2024-10-07 05:36:07', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '2 Tran Hung Dao', 'admin', NULL, NULL, NULL, NULL, 'active'),
-(7, 'khoa_patient', 'password123', 'khoa.tran@example.com', 84912345607, 'Tran Nguyen Dang Khoa', '2024-10-07 05:36:07', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '3 Nguyen Thi Minh Khai', 'patient', NULL, NULL, NULL, NULL, 'active'),
-(8, 'khoa_doctor', 'password123', 'khoa.tran@example.com', 84912345608, 'Tran Nguyen Dang Khoa', '2024-10-07 05:36:07', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '3 Nguyen Thi Minh Khai', 'doctor', 10, 500000, NULL, NULL, 'active'),
-(9, 'khoa_admin', 'password123', 'khoa.tran@example.com', 84912345609, 'Tran Nguyen Dang Khoa', '2024-10-07 05:36:07', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '3 Nguyen Thi Minh Khai', 'admin', NULL, NULL, NULL, NULL, 'active'),
-(10, 'doctor10', 'password123', 'doctor10@example.com', 84910000010, 'Nguyen Van An', '2024-10-07 05:44:49', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '10 Phan Xich Long', 'doctor', 1, 350000, NULL, NULL, 'active'),
-(11, 'doctor11', 'password123', 'doctor11@example.com', 84910000011, 'Tran Thi Bich', '2024-10-07 05:44:49', '2024-11-09 05:44:11', 'female', 'Ho Chi Minh', '11 Le Van Sy', 'doctor', 6, 370000, NULL, NULL, 'active'),
-(12, 'doctor12', 'password123', 'doctor12@example.com', 84910000012, 'Pham Minh Cuong', '2024-10-07 05:44:49', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '12 Nguyen Trai', 'doctor', 4, 400000, NULL, NULL, 'active'),
-(13, 'doctor13', 'password123', 'doctor13@example.com', 84000000013, 'Vo Thi Hoa', '2024-10-07 05:44:49', '2024-11-09 05:44:11', 'female', 'Ho Chi Minh', '14 Vo Thi Sau', 'doctor', 9, 450000, NULL, NULL, 'active'),
-(14, 'doctor14', 'password123', 'doctor14@example.com', 84910000014, 'Tran Van Hai', '2024-10-07 05:44:49', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '14 Hai Ba Trung', 'doctor', 2, 420000, NULL, NULL, 'active'),
-(15, 'doctor15', 'password123', 'doctor15@example.com', 84910000015, 'Pham Van Khoa', '2024-10-07 05:44:49', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '15 Le Lai', 'doctor', 8, 390000, NULL, NULL, 'active'),
-(16, 'doctor16', 'password123', 'doctor16@example.com', 84910000016, 'Nguyen Thi Lan', '2024-10-07 05:44:49', '2024-11-09 05:44:11', 'female', 'Ho Chi Minh', '16 Tran Hung Dao', 'doctor', 5, 480000, NULL, NULL, 'active'),
-(17, 'doctor17', 'password123', 'doctor17@example.com', 84910000017, 'Tran Van Minh', '2024-10-07 05:44:49', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '17 Nguyen Thi Minh Khai', 'doctor', 3, 460000, NULL, NULL, 'active'),
-(18, 'doctor18', 'password123', 'doctor18@example.com', 84910000018, 'Pham Thi Nhi', '2024-10-07 05:44:49', '2024-11-09 05:44:11', 'female', 'Ho Chi Minh', '18 Le Duan', 'doctor', 7, 410000, NULL, NULL, 'active'),
-(19, 'doctor19', 'password123', 'doctor19@example.com', 84910000019, 'Nguyen Van Quan', '2024-10-07 05:44:49', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '19 Dong Khoi', 'doctor', 1, 500000, NULL, NULL, 'active'),
-(20, 'patient20', 'password123', 'patient20@example.com', 84920000020, 'Nguyen Van Tuan', '2024-10-07 05:44:59', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '20 Nguyen Hue', 'patient', NULL, NULL, NULL, NULL, 'active'),
-(21, 'patient21', 'password123', 'patient21@example.com', 84920000021, 'Tran Thi Thao', '2024-10-07 05:44:59', '2024-11-09 05:44:11', 'female', 'Ho Chi Minh', '21 Le Thanh Ton', 'patient', NULL, NULL, NULL, NULL, 'active'),
-(22, 'patient22', 'password123', 'patient22@example.com', 84920000022, 'Pham Van Hoang', '2024-10-07 05:44:59', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '22 Tran Van Kieu', 'patient', NULL, NULL, NULL, NULL, 'active'),
-(23, 'patient23', 'password123', 'patient23@example.com', 84920000023, 'Nguyen Thi Ly', '2024-10-07 05:44:59', '2024-11-09 05:44:11', 'female', 'Ho Chi Minh', '23 Le Loi', 'patient', NULL, NULL, NULL, NULL, 'active'),
-(24, 'patient24', 'password123', 'patient24@example.com', 84920000024, 'Tran Van Dat', '2024-10-07 05:44:59', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '24 Pham Ngoc Thach', 'patient', NULL, NULL, NULL, NULL, 'active'),
-(25, 'patient25', 'password123', 'patient25@example.com', 84920000025, 'Pham Thi Kim', '2024-10-07 05:44:59', '2024-11-09 05:44:11', 'female', 'Ho Chi Minh', '25 Vo Van Tan', 'patient', NULL, NULL, NULL, NULL, 'active'),
-(26, 'patient26', 'password123', 'patient26@example.com', 84920000026, 'Nguyen Van Phuc', '2024-10-07 05:44:59', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '26 Nguyen Thi Minh Khai', 'patient', NULL, NULL, NULL, NULL, 'active'),
-(27, 'patient27', 'password123', 'patient27@example.com', 84920000027, 'Tran Thi Mai', '2024-10-07 05:44:59', '2024-11-09 05:44:11', 'female', 'Ho Chi Minh', '27 Le Van Sy', 'patient', NULL, NULL, NULL, NULL, 'active'),
-(28, 'patient28', 'password123', 'patient28@example.com', 84920000028, 'Pham Van Tinh', '2024-10-07 05:44:59', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '28 Nguyen Trai', 'patient', NULL, NULL, NULL, NULL, 'active'),
-(29, 'patient29', 'password123', 'patient29@example.com', 84920000029, 'Nguyen Thi Hanh', '2024-10-07 05:44:59', '2024-11-09 05:44:11', 'female', 'Ho Chi Minh', '29 Hai Ba Trung', 'patient', NULL, NULL, NULL, NULL, 'active'),
-(30, 'patient30', 'password123', 'patient30@example.com', 84920000030, 'Tran Van Quang', '2024-10-07 05:44:59', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '30 Nguyen Hue', 'patient', NULL, NULL, NULL, NULL, 'active'),
-(31, 'patient31', 'password123', 'patient31@example.com', 84920000031, 'Pham Thi Trang', '2024-10-07 05:44:59', '2024-11-09 05:44:11', 'female', 'Ho Chi Minh', '31 Le Thanh Ton', 'patient', NULL, NULL, NULL, NULL, 'active'),
-(32, 'patient32', 'password123', 'patient32@example.com', 84920000032, 'Nguyen Van Son', '2024-10-07 05:44:59', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '32 Tran Van Kieu', 'patient', NULL, NULL, NULL, NULL, 'active'),
-(33, 'patient33', 'password123', 'patient33@example.com', 84920000033, 'Tran Thi Hoa', '2024-10-07 05:44:59', '2024-11-09 05:44:11', 'female', 'Ho Chi Minh', '33 Le Loi', 'patient', NULL, NULL, NULL, NULL, 'active'),
-(34, 'patient34', 'password123', 'patient34@example.com', 84920000034, 'Pham Van Cuong', '2024-10-07 05:44:59', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '34 Pham Ngoc Thach', 'patient', NULL, NULL, NULL, NULL, 'active'),
-(35, 'patient35', 'password123', 'patient35@example.com', 84920000035, 'Nguyen Thi Ngoc', '2024-10-07 05:44:59', '2024-11-09 05:44:11', 'female', 'Ho Chi Minh', '35 Vo Van Tan', 'patient', NULL, NULL, NULL, NULL, 'active'),
-(36, 'patient36', 'password123', 'patient36@example.com', 84920000036, 'Tran Van Hieu', '2024-10-07 05:44:59', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '36 Nguyen Thi Minh Khai', 'patient', NULL, NULL, NULL, NULL, 'active'),
-(37, 'patient37', 'password123', 'patient37@example.com', 84920000037, 'Pham Thi An', '2024-10-07 05:44:59', '2024-11-09 05:44:11', 'female', 'Ho Chi Minh', '37 Le Van Sy', 'patient', NULL, NULL, NULL, NULL, 'active'),
-(38, 'patient38', 'password123', 'patient38@example.com', 84920000038, 'Nguyen Van Thanh', '2024-10-07 05:44:59', '2024-11-09 05:44:11', 'male', 'Ho Chi Minh', '38 Nguyen Trai', 'patient', NULL, NULL, NULL, NULL, 'active'),
-(39, 'patient39', 'password123', 'patient39@example.com', 84920000039, 'Tran Thi Kim', '2024-10-07 05:44:59', '2024-11-09 05:44:11', 'female', 'Ho Chi Minh', '39 Hai Ba Trung', 'patient', NULL, NULL, NULL, NULL, 'active');
+INSERT INTO `dim_user` (`user_id`, `user_name`, `password`, `email_address`, `contact_no`, `full_name`, `created_at`, `updated_at`, `gender`, `city`, `address`, `role`, `faculty_id`, `pricing`, `oauth_google`, `oauth_facebook`, `status`) VALUES
+('68edf2da-a114-11ef-95f3-b42e994cb670', 'huan_patient', 'password123', 'huan.nguyen@example.com', 84912345601, 'Nguyen Nhut Gia Huan', '2024-10-07 05:36:07', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '1 Mac Dinh Chi', 'patient', NULL, NULL, NULL, NULL, 'active'),
+('68ee02c1-a114-11ef-95f3-b42e994cb670', 'huan_doctor', 'password123', 'huan.nguyen@example.com', 84912345602, 'Nguyen Nhut Gia Huan', '2024-10-07 05:36:07', '2024-11-12 16:44:31', 'male', 'Ho Chi Minh', '1 Le Duan New', 'doctor', '63115776-a115-11ef-95f3-b42e994cb670', 400000, NULL, NULL, 'active'),
+('68ee03a8-a114-11ef-95f3-b42e994cb670', 'huan_admin', 'password123', 'huan.nguyen@example.com', 84567890123, 'Nguyen Nhut Gia Huan', '2024-10-07 05:36:07', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '1 Le Duan 14', 'admin', NULL, NULL, NULL, NULL, 'active'),
+('68ee0467-a114-11ef-95f3-b42e994cb670', 'long_patient', 'password123', 'long.nguyen@example.com', 84912345604, 'Nguyen Ba Long', '2024-10-07 05:36:07', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '2 Tran Hung Dao', 'patient', NULL, NULL, NULL, NULL, 'active'),
+('68ee0505-a114-11ef-95f3-b42e994cb670', 'long_doctor', 'password123', 'long.nguyen@example.com', 84912345605, 'Nguyen Ba Long', '2024-10-07 05:36:07', '2024-11-12 16:44:31', 'male', 'Ho Chi Minh', '2 Tran Hung Dao', 'doctor', '6311557a-a115-11ef-95f3-b42e994cb670', 450000, NULL, NULL, 'active'),
+('68ee05a8-a114-11ef-95f3-b42e994cb670', 'long_admin', 'password123', 'long.nguyen@example.com', 84912345606, 'Nguyen Ba Long', '2024-10-07 05:36:07', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '2 Tran Hung Dao', 'admin', NULL, NULL, NULL, NULL, 'active'),
+('68ee0641-a114-11ef-95f3-b42e994cb670', 'khoa_patient', 'password123', 'khoa.tran@example.com', 84912345607, 'Tran Nguyen Dang Khoa', '2024-10-07 05:36:07', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '3 Nguyen Thi Minh Khai', 'patient', NULL, NULL, NULL, NULL, 'active'),
+('68ee06e2-a114-11ef-95f3-b42e994cb670', 'khoa_doctor', 'password123', 'khoa.tran@example.com', 84912345608, 'Tran Nguyen Dang Khoa', '2024-10-07 05:36:07', '2024-11-12 16:44:31', 'male', 'Ho Chi Minh', '3 Nguyen Thi Minh Khai', 'doctor', '631158d3-a115-11ef-95f3-b42e994cb670', 500000, NULL, NULL, 'active'),
+('68ee077f-a114-11ef-95f3-b42e994cb670', 'khoa_admin', 'password123', 'khoa.tran@example.com', 84912345609, 'Tran Nguyen Dang Khoa', '2024-10-07 05:36:07', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '3 Nguyen Thi Minh Khai', 'admin', NULL, NULL, NULL, NULL, 'active'),
+('68ee0818-a114-11ef-95f3-b42e994cb670', 'doctor10', 'password123', 'doctor10@example.com', 84910000010, 'Nguyen Van An', '2024-10-07 05:44:49', '2024-11-12 16:44:31', 'male', 'Ho Chi Minh', '10 Phan Xich Long', 'doctor', '63054655-a115-11ef-95f3-b42e994cb670', 350000, NULL, NULL, 'active'),
+('68ee08af-a114-11ef-95f3-b42e994cb670', 'doctor11', 'password123', 'doctor11@example.com', 84910000011, 'Tran Thi Bich', '2024-10-07 05:44:49', '2024-11-12 16:44:31', 'female', 'Ho Chi Minh', '11 Le Van Sy', 'doctor', '63115701-a115-11ef-95f3-b42e994cb670', 370000, NULL, NULL, 'active'),
+('68ee0942-a114-11ef-95f3-b42e994cb670', 'doctor12', 'password123', 'doctor12@example.com', 84910000012, 'Pham Minh Cuong', '2024-10-07 05:44:49', '2024-11-12 16:44:31', 'male', 'Ho Chi Minh', '12 Nguyen Trai', 'doctor', '631155fd-a115-11ef-95f3-b42e994cb670', 400000, NULL, NULL, 'active'),
+('68ee09de-a114-11ef-95f3-b42e994cb670', 'doctor13', 'password123', 'doctor13@example.com', 84000000013, 'Vo Thi Hoa', '2024-10-07 05:44:49', '2024-11-12 16:44:31', 'female', 'Ho Chi Minh', '14 Vo Thi Sau', 'doctor', '6311585c-a115-11ef-95f3-b42e994cb670', 450000, NULL, NULL, 'active'),
+('68ee0a6f-a114-11ef-95f3-b42e994cb670', 'doctor14', 'password123', 'doctor14@example.com', 84910000014, 'Tran Van Hai', '2024-10-07 05:44:49', '2024-11-12 16:44:31', 'male', 'Ho Chi Minh', '14 Hai Ba Trung', 'doctor', '63115435-a115-11ef-95f3-b42e994cb670', 420000, NULL, NULL, 'active'),
+('68ee0b00-a114-11ef-95f3-b42e994cb670', 'doctor15', 'password123', 'doctor15@example.com', 84910000015, 'Pham Van Khoa', '2024-10-07 05:44:49', '2024-11-12 16:44:31', 'male', 'Ho Chi Minh', '15 Le Lai', 'doctor', '631157ed-a115-11ef-95f3-b42e994cb670', 390000, NULL, NULL, 'active'),
+('68ee0b90-a114-11ef-95f3-b42e994cb670', 'doctor16', 'password123', 'doctor16@example.com', 84910000016, 'Nguyen Thi Lan', '2024-10-07 05:44:49', '2024-11-12 16:44:31', 'female', 'Ho Chi Minh', '16 Tran Hung Dao', 'doctor', '63115688-a115-11ef-95f3-b42e994cb670', 480000, NULL, NULL, 'active'),
+('68ee0c2a-a114-11ef-95f3-b42e994cb670', 'doctor17', 'password123', 'doctor17@example.com', 84910000017, 'Tran Van Minh', '2024-10-07 05:44:49', '2024-11-12 16:44:31', 'male', 'Ho Chi Minh', '17 Nguyen Thi Minh Khai', 'doctor', '6311557a-a115-11ef-95f3-b42e994cb670', 460000, NULL, NULL, 'active'),
+('68ee0cc5-a114-11ef-95f3-b42e994cb670', 'doctor18', 'password123', 'doctor18@example.com', 84910000018, 'Pham Thi Nhi', '2024-10-07 05:44:49', '2024-11-12 16:44:31', 'female', 'Ho Chi Minh', '18 Le Duan', 'doctor', '63115776-a115-11ef-95f3-b42e994cb670', 410000, NULL, NULL, 'active'),
+('68ee0d59-a114-11ef-95f3-b42e994cb670', 'doctor19', 'password123', 'doctor19@example.com', 84910000019, 'Nguyen Van Quan', '2024-10-07 05:44:49', '2024-11-12 16:44:31', 'male', 'Ho Chi Minh', '19 Dong Khoi', 'doctor', '63054655-a115-11ef-95f3-b42e994cb670', 500000, NULL, NULL, 'active'),
+('68ee0dec-a114-11ef-95f3-b42e994cb670', 'patient20', 'password123', 'patient20@example.com', 84920000020, 'Nguyen Van Tuan', '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '20 Nguyen Hue', 'patient', NULL, NULL, NULL, NULL, 'active'),
+('68ee0e7c-a114-11ef-95f3-b42e994cb670', 'patient21', 'password123', 'patient21@example.com', 84920000021, 'Tran Thi Thao', '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'female', 'Ho Chi Minh', '21 Le Thanh Ton', 'patient', NULL, NULL, NULL, NULL, 'active'),
+('68ee0f0d-a114-11ef-95f3-b42e994cb670', 'patient22', 'password123', 'patient22@example.com', 84920000022, 'Pham Van Hoang', '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '22 Tran Van Kieu', 'patient', NULL, NULL, NULL, NULL, 'active'),
+('68ee0fa2-a114-11ef-95f3-b42e994cb670', 'patient23', 'password123', 'patient23@example.com', 84920000023, 'Nguyen Thi Ly', '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'female', 'Ho Chi Minh', '23 Le Loi', 'patient', NULL, NULL, NULL, NULL, 'active'),
+('68ee1040-a114-11ef-95f3-b42e994cb670', 'patient24', 'password123', 'patient24@example.com', 84920000024, 'Tran Van Dat', '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '24 Pham Ngoc Thach', 'patient', NULL, NULL, NULL, NULL, 'active'),
+('68ee10d0-a114-11ef-95f3-b42e994cb670', 'patient25', 'password123', 'patient25@example.com', 84920000025, 'Pham Thi Kim', '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'female', 'Ho Chi Minh', '25 Vo Van Tan', 'patient', NULL, NULL, NULL, NULL, 'active'),
+('68ee115e-a114-11ef-95f3-b42e994cb670', 'patient26', 'password123', 'patient26@example.com', 84920000026, 'Nguyen Van Phuc', '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '26 Nguyen Thi Minh Khai', 'patient', NULL, NULL, NULL, NULL, 'active'),
+('68ee11f5-a114-11ef-95f3-b42e994cb670', 'patient27', 'password123', 'patient27@example.com', 84920000027, 'Tran Thi Mai', '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'female', 'Ho Chi Minh', '27 Le Van Sy', 'patient', NULL, NULL, NULL, NULL, 'active'),
+('68ee128e-a114-11ef-95f3-b42e994cb670', 'patient28', 'password123', 'patient28@example.com', 84920000028, 'Pham Van Tinh', '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '28 Nguyen Trai', 'patient', NULL, NULL, NULL, NULL, 'active'),
+('68ee131e-a114-11ef-95f3-b42e994cb670', 'patient29', 'password123', 'patient29@example.com', 84920000029, 'Nguyen Thi Hanh', '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'female', 'Ho Chi Minh', '29 Hai Ba Trung', 'patient', NULL, NULL, NULL, NULL, 'active'),
+('68ee13ac-a114-11ef-95f3-b42e994cb670', 'patient30', 'password123', 'patient30@example.com', 84920000030, 'Tran Van Quang', '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '30 Nguyen Hue', 'patient', NULL, NULL, NULL, NULL, 'active'),
+('68ee143a-a114-11ef-95f3-b42e994cb670', 'patient31', 'password123', 'patient31@example.com', 84920000031, 'Pham Thi Trang', '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'female', 'Ho Chi Minh', '31 Le Thanh Ton', 'patient', NULL, NULL, NULL, NULL, 'active'),
+('68ee14cc-a114-11ef-95f3-b42e994cb670', 'patient32', 'password123', 'patient32@example.com', 84920000032, 'Nguyen Van Son', '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '32 Tran Van Kieu', 'patient', NULL, NULL, NULL, NULL, 'active'),
+('68ee1560-a114-11ef-95f3-b42e994cb670', 'patient33', 'password123', 'patient33@example.com', 84920000033, 'Tran Thi Hoa', '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'female', 'Ho Chi Minh', '33 Le Loi', 'patient', NULL, NULL, NULL, NULL, 'active'),
+('68ee15fd-a114-11ef-95f3-b42e994cb670', 'patient34', 'password123', 'patient34@example.com', 84920000034, 'Pham Van Cuong', '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '34 Pham Ngoc Thach', 'patient', NULL, NULL, NULL, NULL, 'active'),
+('68ee1691-a114-11ef-95f3-b42e994cb670', 'patient35', 'password123', 'patient35@example.com', 84920000035, 'Nguyen Thi Ngoc', '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'female', 'Ho Chi Minh', '35 Vo Van Tan', 'patient', NULL, NULL, NULL, NULL, 'active'),
+('68ee1724-a114-11ef-95f3-b42e994cb670', 'patient36', 'password123', 'patient36@example.com', 84920000036, 'Tran Van Hieu', '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '36 Nguyen Thi Minh Khai', 'patient', NULL, NULL, NULL, NULL, 'active'),
+('68ee17bc-a114-11ef-95f3-b42e994cb670', 'patient37', 'password123', 'patient37@example.com', 84920000037, 'Pham Thi An', '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'female', 'Ho Chi Minh', '37 Le Van Sy', 'patient', NULL, NULL, NULL, NULL, 'active'),
+('68ee1857-a114-11ef-95f3-b42e994cb670', 'patient38', 'password123', 'patient38@example.com', 84920000038, 'Nguyen Van Thanh', '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '38 Nguyen Trai', 'patient', NULL, NULL, NULL, NULL, 'active'),
+('68ee18ec-a114-11ef-95f3-b42e994cb670', 'patient39', 'password123', 'patient39@example.com', 84920000039, 'Tran Thi Kim', '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'female', 'Ho Chi Minh', '39 Hai Ba Trung', 'patient', NULL, NULL, NULL, NULL, 'active');
+
+--
+-- Triggers `dim_user`
+--
+DELIMITER $$
+CREATE TRIGGER `before_insert_dim_user` BEFORE INSERT ON `dim_user` FOR EACH ROW SET NEW.user_id = UUID()
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -392,10 +449,10 @@ INSERT INTO `dim_user` (`user_id`, `username`, `password`, `email_address`, `con
 --
 
 CREATE TABLE `fact_appointment` (
-  `appt_id` int(11) NOT NULL,
-  `doctor_id` int(11) DEFAULT NULL,
-  `patient_id` int(11) DEFAULT NULL,
-  `faculty_id` int(11) DEFAULT NULL,
+  `appt_id` char(36) NOT NULL,
+  `doctor_id` char(36) DEFAULT NULL,
+  `patient_id` char(36) DEFAULT NULL,
+  `faculty_id` char(36) DEFAULT NULL,
   `appt_fee` int(11) DEFAULT NULL,
   `appt_datetime` varchar(50) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
@@ -408,46 +465,54 @@ CREATE TABLE `fact_appointment` (
 --
 
 INSERT INTO `fact_appointment` (`appt_id`, `doctor_id`, `patient_id`, `faculty_id`, `appt_fee`, `appt_datetime`, `created_at`, `updated_at`, `status`) VALUES
-(1, 13, 25, 4, 450000, '2024-10-15T10:30:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
-(2, 16, 28, 7, 480000, '2024-10-17T14:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
-(3, 12, 20, 3, 400000, '2024-10-20T09:45:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
-(4, 15, 24, 6, 390000, '2024-10-22T16:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
-(5, 18, 32, 9, 410000, '2024-10-24T08:15:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
-(6, 14, 23, 5, 420000, '2024-10-26T11:30:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
-(7, 17, 30, 8, 460000, '2024-10-28T15:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
-(8, 11, 31, 2, 370000, '2024-10-30T13:45:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
-(9, 10, 21, 1, 350000, '2024-11-02T10:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
-(10, 19, 22, 10, 500000, '2024-11-04T17:30:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
-(11, 14, 29, 5, 420000, '2024-11-05T09:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
-(12, 13, 33, 4, 450000, '2024-11-07T14:15:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
-(13, 15, 26, 6, 390000, '2024-11-10T11:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
-(14, 18, 35, 9, 410000, '2024-11-11T13:30:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
-(15, 17, 27, 8, 460000, '2024-11-12T16:45:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
-(16, 12, 36, 3, 400000, '2024-11-13T09:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
-(17, 10, 34, 1, 350000, '2024-11-14T14:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
-(18, 11, 28, 2, 370000, '2024-11-15T08:30:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
-(19, 16, 37, 7, 480000, '2024-11-16T15:15:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
-(20, 19, 38, 10, 500000, '2024-11-17T10:45:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
-(21, 13, 22, 4, 450000, '2024-11-18T13:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
-(22, 12, 24, 3, 400000, '2024-11-19T09:30:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
-(23, 15, 31, 6, 390000, '2024-11-20T17:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
-(24, 16, 21, 7, 480000, '2024-11-21T08:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
-(25, 11, 39, 2, 370000, '2024-11-22T14:45:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
-(26, 10, 35, 1, 350000, '2024-11-23T10:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
-(27, 14, 30, 5, 420000, '2024-11-24T13:15:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
-(28, 17, 36, 8, 460000, '2024-11-25T15:30:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
-(29, 18, 32, 9, 410000, '2024-11-26T11:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
-(30, 19, 23, 10, 500000, '2024-11-27T16:30:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
-(31, 16, 38, 7, 480000, '2024-11-28T09:45:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
-(32, 12, 27, 3, 400000, '2024-11-29T14:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
-(33, 15, 28, 6, 390000, '2024-11-30T12:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
-(34, 14, 39, 5, 420000, '2024-12-01T10:30:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
-(35, 13, 34, 4, 450000, '2024-12-02T13:45:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
-(36, 11, 26, 2, 370000, '2024-12-03T16:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
-(37, 10, 29, 1, 350000, '2024-12-04T09:15:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
-(38, 18, 37, 9, 410000, '2024-12-05T11:30:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
-(39, 19, 25, 10, 500000, '2024-12-06T15:00:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active'),
-(40, 17, 20, 8, 460000, '2024-12-07T10:15:00Z', '2024-10-10 15:40:44', '2024-11-09 09:15:11', 'active');
+('b0e80d3a-a1e2-11ef-968e-b42e994cb670', '68ee09de-a114-11ef-95f3-b42e994cb670', '68ee10d0-a114-11ef-95f3-b42e994cb670', '631155fd-a115-11ef-95f3-b42e994cb670', 450000, '2024-10-15T10:30:00Z', '2024-10-10 15:40:44', '2024-11-13 17:14:10', 'active'),
+('b0e81f9e-a1e2-11ef-968e-b42e994cb670', '68ee0b90-a114-11ef-95f3-b42e994cb670', '68ee128e-a114-11ef-95f3-b42e994cb670', '63115776-a115-11ef-95f3-b42e994cb670', 480000, '2024-10-17T14:00:00Z', '2024-10-10 15:40:44', '2024-11-13 17:14:10', 'active'),
+('b0e820f0-a1e2-11ef-968e-b42e994cb670', '68ee0942-a114-11ef-95f3-b42e994cb670', '68ee0dec-a114-11ef-95f3-b42e994cb670', '6311557a-a115-11ef-95f3-b42e994cb670', 400000, '2024-10-20T09:45:00Z', '2024-10-10 15:40:44', '2024-11-13 17:14:10', 'active'),
+('b0e82166-a1e2-11ef-968e-b42e994cb670', '68ee0b00-a114-11ef-95f3-b42e994cb670', '68ee1040-a114-11ef-95f3-b42e994cb670', '63115701-a115-11ef-95f3-b42e994cb670', 390000, '2024-10-22T16:00:00Z', '2024-10-10 15:40:44', '2024-11-13 17:14:10', 'active'),
+('b0e821d2-a1e2-11ef-968e-b42e994cb670', '68ee0cc5-a114-11ef-95f3-b42e994cb670', '68ee14cc-a114-11ef-95f3-b42e994cb670', '6311585c-a115-11ef-95f3-b42e994cb670', 410000, '2024-10-24T08:15:00Z', '2024-10-10 15:40:44', '2024-11-13 17:14:10', 'active'),
+('b0e82231-a1e2-11ef-968e-b42e994cb670', '68ee0a6f-a114-11ef-95f3-b42e994cb670', '68ee0fa2-a114-11ef-95f3-b42e994cb670', '63115688-a115-11ef-95f3-b42e994cb670', 420000, '2024-10-26T11:30:00Z', '2024-10-10 15:40:44', '2024-11-13 17:14:10', 'active'),
+('b0e822a8-a1e2-11ef-968e-b42e994cb670', '68ee0c2a-a114-11ef-95f3-b42e994cb670', '68ee13ac-a114-11ef-95f3-b42e994cb670', '631157ed-a115-11ef-95f3-b42e994cb670', 460000, '2024-10-28T15:00:00Z', '2024-10-10 15:40:44', '2024-11-13 17:14:10', 'active'),
+('b0e82300-a1e2-11ef-968e-b42e994cb670', '68ee08af-a114-11ef-95f3-b42e994cb670', '68ee143a-a114-11ef-95f3-b42e994cb670', '63115435-a115-11ef-95f3-b42e994cb670', 370000, '2024-10-30T13:45:00Z', '2024-10-10 15:40:44', '2024-11-13 17:14:10', 'active'),
+('b0e8235f-a1e2-11ef-968e-b42e994cb670', '68ee0818-a114-11ef-95f3-b42e994cb670', '68ee0e7c-a114-11ef-95f3-b42e994cb670', '63054655-a115-11ef-95f3-b42e994cb670', 350000, '2024-11-02T10:00:00Z', '2024-10-10 15:40:44', '2024-11-13 17:14:10', 'active'),
+('b0e823b3-a1e2-11ef-968e-b42e994cb670', '68ee0d59-a114-11ef-95f3-b42e994cb670', '68ee0f0d-a114-11ef-95f3-b42e994cb670', '631158d3-a115-11ef-95f3-b42e994cb670', 500000, '2024-11-04T17:30:00Z', '2024-10-10 15:40:44', '2024-11-13 17:14:10', 'active'),
+('b0e82407-a1e2-11ef-968e-b42e994cb670', '68ee0a6f-a114-11ef-95f3-b42e994cb670', '68ee131e-a114-11ef-95f3-b42e994cb670', '63115688-a115-11ef-95f3-b42e994cb670', 420000, '2024-11-05T09:00:00Z', '2024-10-10 15:40:44', '2024-11-13 17:14:10', 'active'),
+('b0e8245c-a1e2-11ef-968e-b42e994cb670', '68ee09de-a114-11ef-95f3-b42e994cb670', '68ee1560-a114-11ef-95f3-b42e994cb670', '631155fd-a115-11ef-95f3-b42e994cb670', 450000, '2024-11-07T14:15:00Z', '2024-10-10 15:40:44', '2024-11-13 17:14:10', 'active'),
+('b0e82531-a1e2-11ef-968e-b42e994cb670', '68ee0b00-a114-11ef-95f3-b42e994cb670', '68ee115e-a114-11ef-95f3-b42e994cb670', '63115701-a115-11ef-95f3-b42e994cb670', 390000, '2024-11-10T11:00:00Z', '2024-10-10 15:40:44', '2024-11-13 17:14:10', 'active'),
+('b0e8259a-a1e2-11ef-968e-b42e994cb670', '68ee0cc5-a114-11ef-95f3-b42e994cb670', '68ee1691-a114-11ef-95f3-b42e994cb670', '6311585c-a115-11ef-95f3-b42e994cb670', 410000, '2024-11-11T13:30:00Z', '2024-10-10 15:40:44', '2024-11-13 17:14:10', 'active'),
+('b0e825f0-a1e2-11ef-968e-b42e994cb670', '68ee0c2a-a114-11ef-95f3-b42e994cb670', '68ee11f5-a114-11ef-95f3-b42e994cb670', '631157ed-a115-11ef-95f3-b42e994cb670', 460000, '2024-11-12T16:45:00Z', '2024-10-10 15:40:44', '2024-11-13 17:14:10', 'active'),
+('b0e82643-a1e2-11ef-968e-b42e994cb670', '68ee0942-a114-11ef-95f3-b42e994cb670', '68ee1724-a114-11ef-95f3-b42e994cb670', '6311557a-a115-11ef-95f3-b42e994cb670', 400000, '2024-11-13T09:00:00Z', '2024-10-10 15:40:44', '2024-11-13 17:14:10', 'active'),
+('b0e82697-a1e2-11ef-968e-b42e994cb670', '68ee0818-a114-11ef-95f3-b42e994cb670', '68ee15fd-a114-11ef-95f3-b42e994cb670', '63054655-a115-11ef-95f3-b42e994cb670', 350000, '2024-11-14T14:00:00Z', '2024-10-10 15:40:44', '2024-11-13 17:14:10', 'active'),
+('b0e826ef-a1e2-11ef-968e-b42e994cb670', '68ee08af-a114-11ef-95f3-b42e994cb670', '68ee128e-a114-11ef-95f3-b42e994cb670', '63115435-a115-11ef-95f3-b42e994cb670', 370000, '2024-11-15T08:30:00Z', '2024-10-10 15:40:44', '2024-11-13 17:14:10', 'active'),
+('b0e82744-a1e2-11ef-968e-b42e994cb670', '68ee0b90-a114-11ef-95f3-b42e994cb670', '68ee17bc-a114-11ef-95f3-b42e994cb670', '63115776-a115-11ef-95f3-b42e994cb670', 480000, '2024-11-16T15:15:00Z', '2024-10-10 15:40:44', '2024-11-13 17:14:10', 'active'),
+('b0e82799-a1e2-11ef-968e-b42e994cb670', '68ee0d59-a114-11ef-95f3-b42e994cb670', '68ee1857-a114-11ef-95f3-b42e994cb670', '631158d3-a115-11ef-95f3-b42e994cb670', 500000, '2024-11-17T10:45:00Z', '2024-10-10 15:40:44', '2024-11-13 17:14:10', 'active'),
+('b0e827ed-a1e2-11ef-968e-b42e994cb670', '68ee09de-a114-11ef-95f3-b42e994cb670', '68ee0f0d-a114-11ef-95f3-b42e994cb670', '631155fd-a115-11ef-95f3-b42e994cb670', 450000, '2024-11-18T13:00:00Z', '2024-10-10 15:40:44', '2024-11-13 17:14:10', 'active'),
+('b0e82841-a1e2-11ef-968e-b42e994cb670', '68ee0942-a114-11ef-95f3-b42e994cb670', '68ee1040-a114-11ef-95f3-b42e994cb670', '6311557a-a115-11ef-95f3-b42e994cb670', 400000, '2024-11-19T09:30:00Z', '2024-10-10 15:40:44', '2024-11-13 17:14:10', 'active'),
+('b0e82896-a1e2-11ef-968e-b42e994cb670', '68ee0b00-a114-11ef-95f3-b42e994cb670', '68ee143a-a114-11ef-95f3-b42e994cb670', '63115701-a115-11ef-95f3-b42e994cb670', 390000, '2024-11-20T17:00:00Z', '2024-10-10 15:40:44', '2024-11-13 17:14:10', 'active'),
+('b0e828ea-a1e2-11ef-968e-b42e994cb670', '68ee0b90-a114-11ef-95f3-b42e994cb670', '68ee0e7c-a114-11ef-95f3-b42e994cb670', '63115776-a115-11ef-95f3-b42e994cb670', 480000, '2024-11-21T08:00:00Z', '2024-10-10 15:40:44', '2024-11-13 17:14:10', 'active'),
+('b0e8293e-a1e2-11ef-968e-b42e994cb670', '68ee08af-a114-11ef-95f3-b42e994cb670', '68ee18ec-a114-11ef-95f3-b42e994cb670', '63115435-a115-11ef-95f3-b42e994cb670', 370000, '2024-11-22T14:45:00Z', '2024-10-10 15:40:44', '2024-11-13 17:14:10', 'active'),
+('b0e829ff-a1e2-11ef-968e-b42e994cb670', '68ee0818-a114-11ef-95f3-b42e994cb670', '68ee1691-a114-11ef-95f3-b42e994cb670', '63054655-a115-11ef-95f3-b42e994cb670', 350000, '2024-11-23T10:00:00Z', '2024-10-10 15:40:44', '2024-11-13 17:14:10', 'active'),
+('b0e82a67-a1e2-11ef-968e-b42e994cb670', '68ee0a6f-a114-11ef-95f3-b42e994cb670', '68ee13ac-a114-11ef-95f3-b42e994cb670', '63115688-a115-11ef-95f3-b42e994cb670', 420000, '2024-11-24T13:15:00Z', '2024-10-10 15:40:44', '2024-11-13 17:14:10', 'active'),
+('b0e82abd-a1e2-11ef-968e-b42e994cb670', '68ee0c2a-a114-11ef-95f3-b42e994cb670', '68ee1724-a114-11ef-95f3-b42e994cb670', '631157ed-a115-11ef-95f3-b42e994cb670', 460000, '2024-11-25T15:30:00Z', '2024-10-10 15:40:44', '2024-11-13 17:14:10', 'active'),
+('b0e82b12-a1e2-11ef-968e-b42e994cb670', '68ee0cc5-a114-11ef-95f3-b42e994cb670', '68ee14cc-a114-11ef-95f3-b42e994cb670', '6311585c-a115-11ef-95f3-b42e994cb670', 410000, '2024-11-26T11:00:00Z', '2024-10-10 15:40:44', '2024-11-13 17:14:10', 'active'),
+('b0e82b65-a1e2-11ef-968e-b42e994cb670', '68ee0d59-a114-11ef-95f3-b42e994cb670', '68ee0fa2-a114-11ef-95f3-b42e994cb670', '631158d3-a115-11ef-95f3-b42e994cb670', 500000, '2024-11-27T16:30:00Z', '2024-10-10 15:40:44', '2024-11-13 17:14:10', 'active'),
+('b0e82bb9-a1e2-11ef-968e-b42e994cb670', '68ee0b90-a114-11ef-95f3-b42e994cb670', '68ee1857-a114-11ef-95f3-b42e994cb670', '63115776-a115-11ef-95f3-b42e994cb670', 480000, '2024-11-28T09:45:00Z', '2024-10-10 15:40:44', '2024-11-13 17:14:10', 'active'),
+('b0e82c0d-a1e2-11ef-968e-b42e994cb670', '68ee0942-a114-11ef-95f3-b42e994cb670', '68ee11f5-a114-11ef-95f3-b42e994cb670', '6311557a-a115-11ef-95f3-b42e994cb670', 400000, '2024-11-29T14:00:00Z', '2024-10-10 15:40:44', '2024-11-13 17:14:10', 'active'),
+('b0e82c53-a1e2-11ef-968e-b42e994cb670', '68ee0b00-a114-11ef-95f3-b42e994cb670', '68ee128e-a114-11ef-95f3-b42e994cb670', '63115701-a115-11ef-95f3-b42e994cb670', 390000, '2024-11-30T12:00:00Z', '2024-10-10 15:40:44', '2024-11-13 17:14:10', 'active'),
+('b0e82c93-a1e2-11ef-968e-b42e994cb670', '68ee0a6f-a114-11ef-95f3-b42e994cb670', '68ee18ec-a114-11ef-95f3-b42e994cb670', '63115688-a115-11ef-95f3-b42e994cb670', 420000, '2024-12-01T10:30:00Z', '2024-10-10 15:40:44', '2024-11-13 17:14:10', 'active'),
+('b0e82cd3-a1e2-11ef-968e-b42e994cb670', '68ee09de-a114-11ef-95f3-b42e994cb670', '68ee15fd-a114-11ef-95f3-b42e994cb670', '631155fd-a115-11ef-95f3-b42e994cb670', 450000, '2024-12-02T13:45:00Z', '2024-10-10 15:40:44', '2024-11-13 17:14:10', 'active'),
+('b0e82d13-a1e2-11ef-968e-b42e994cb670', '68ee08af-a114-11ef-95f3-b42e994cb670', '68ee115e-a114-11ef-95f3-b42e994cb670', '63115435-a115-11ef-95f3-b42e994cb670', 370000, '2024-12-03T16:00:00Z', '2024-10-10 15:40:44', '2024-11-13 17:14:10', 'active'),
+('b0e82d52-a1e2-11ef-968e-b42e994cb670', '68ee0818-a114-11ef-95f3-b42e994cb670', '68ee131e-a114-11ef-95f3-b42e994cb670', '63054655-a115-11ef-95f3-b42e994cb670', 350000, '2024-12-04T09:15:00Z', '2024-10-10 15:40:44', '2024-11-13 17:14:10', 'active'),
+('b0e82d92-a1e2-11ef-968e-b42e994cb670', '68ee0cc5-a114-11ef-95f3-b42e994cb670', '68ee17bc-a114-11ef-95f3-b42e994cb670', '6311585c-a115-11ef-95f3-b42e994cb670', 410000, '2024-12-05T11:30:00Z', '2024-10-10 15:40:44', '2024-11-13 17:14:10', 'active'),
+('b0e82e8e-a1e2-11ef-968e-b42e994cb670', '68ee0d59-a114-11ef-95f3-b42e994cb670', '68ee10d0-a114-11ef-95f3-b42e994cb670', '631158d3-a115-11ef-95f3-b42e994cb670', 500000, '2024-12-06T15:00:00Z', '2024-10-10 15:40:44', '2024-11-13 17:14:10', 'active'),
+('b0e82ee5-a1e2-11ef-968e-b42e994cb670', '68ee0c2a-a114-11ef-95f3-b42e994cb670', '68ee0dec-a114-11ef-95f3-b42e994cb670', '631157ed-a115-11ef-95f3-b42e994cb670', 460000, '2024-12-07T10:15:00Z', '2024-10-10 15:40:44', '2024-11-13 17:14:10', 'active');
+
+--
+-- Triggers `fact_appointment`
+--
+DELIMITER $$
+CREATE TRIGGER `before_insert_fact_appointment` BEFORE INSERT ON `fact_appointment` FOR EACH ROW SET NEW.appt_id = UUID()
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -456,9 +521,12 @@ INSERT INTO `fact_appointment` (`appt_id`, `doctor_id`, `patient_id`, `faculty_i
 --
 
 CREATE TABLE `fact_facility_asmt` (
-  `fac_asmt_id` int(11) NOT NULL,
-  `fac_mgmt_id` int(11) DEFAULT NULL,
-  `item_id` int(11) DEFAULT NULL,
+  `fac_asmt_id` char(36) NOT NULL,
+  `fac_mgmt_id` char(36) DEFAULT NULL,
+  `item_type` varchar(50) DEFAULT NULL,
+  `item_id` char(36) DEFAULT NULL,
+  `amount` int(11) DEFAULT NULL,
+  `item_price` int(11) DEFAULT NULL,
   `item_note` mediumtext DEFAULT NULL,
   `start_datetime` varchar(50) DEFAULT NULL,
   `end_datetime` varchar(50) DEFAULT NULL,
@@ -467,6 +535,14 @@ CREATE TABLE `fact_facility_asmt` (
   `status` varchar(50) DEFAULT 'active'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Triggers `fact_facility_asmt`
+--
+DELIMITER $$
+CREATE TRIGGER `before_insert_fact_facility_asmt` BEFORE INSERT ON `fact_facility_asmt` FOR EACH ROW SET NEW.fac_asmt_id = UUID()
+$$
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
@@ -474,15 +550,23 @@ CREATE TABLE `fact_facility_asmt` (
 --
 
 CREATE TABLE `fact_facility_mgmt` (
-  `fac_mgmt_id` int(11) NOT NULL,
-  `booker_id` int(11) DEFAULT NULL,
-  `patient_id` int(11) DEFAULT NULL,
+  `fac_mgmt_id` char(36) NOT NULL,
+  `booker_id` char(36) DEFAULT NULL,
+  `patient_id` char(36) DEFAULT NULL,
   `start_datetime` varchar(50) DEFAULT NULL,
   `end_datetime` varchar(50) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
   `status` varchar(50) DEFAULT 'active'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Triggers `fact_facility_mgmt`
+--
+DELIMITER $$
+CREATE TRIGGER `before_insert_fact_facility_mgmt` BEFORE INSERT ON `fact_facility_mgmt` FOR EACH ROW SET NEW.fac_mgmt_id = UUID()
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -491,9 +575,9 @@ CREATE TABLE `fact_facility_mgmt` (
 --
 
 CREATE TABLE `fact_med_hist` (
-  `med_hist_id` int(11) NOT NULL,
+  `med_hist_id` char(36) NOT NULL,
   `appt_id` int(11) NOT NULL,
-  `patient_id` int(11) DEFAULT NULL,
+  `patient_id` char(36) DEFAULT NULL,
   `blood_press` varchar(50) DEFAULT NULL,
   `blood_sugar` varchar(50) DEFAULT NULL,
   `weight` varchar(50) DEFAULT NULL,
@@ -509,54 +593,53 @@ CREATE TABLE `fact_med_hist` (
 --
 
 INSERT INTO `fact_med_hist` (`med_hist_id`, `appt_id`, `patient_id`, `blood_press`, `blood_sugar`, `weight`, `temp`, `med_note`, `created_at`, `updated_at`, `status`) VALUES
-(1, 0, 21, '115/75', '5.0', '55', '36.0', 'Kiểm tra sức khỏe bình thường. Tất cả các chỉ số đều ổn định.', '2024-10-08 14:49:09', NULL, 'active'),
-(2, 0, 39, '120/80', '5.5', '60', '36.5', 'Kiểm tra sức khỏe bình thường.', '2024-10-08 14:49:09', NULL, 'active'),
-(3, 0, 22, '145/92', '7.5', '82', '38.0', 'Huyết áp tăng cao. Đã kê thuốc.', '2024-10-08 14:49:09', NULL, 'active'),
-(4, 0, 34, '145/90', '7.1', '78', '37.9', 'Chẩn đoán tiểu đường. Cần theo dõi sức khỏe cẩn thận.', '2024-10-08 14:49:09', NULL, 'active'),
-(5, 0, 28, '140/90', '6.8', '75', '37.8', 'Chẩn đoán tiểu đường. Bắt đầu điều trị.', '2024-10-08 14:49:09', NULL, 'active'),
-(6, 0, 26, '135/88', '6.4', '75', '37.0', 'Huyết áp hơi cao. Theo dõi thường xuyên.', '2024-10-08 14:49:09', NULL, 'active'),
-(7, 0, 30, '135/88', '7.0', '76', '37.5', 'Theo dõi mức đường huyết. Đã điều chỉnh thuốc.', '2024-10-08 14:49:09', NULL, 'active'),
-(8, 0, 20, '120/80', '5.5', '65', '36.5', 'Kiểm tra sức khỏe bình thường. Không có vấn đề gì.', '2024-10-08 14:49:09', NULL, 'active'),
-(9, 0, 31, '120/78', '5.1', '59', '36.3', 'Không có vấn đề gì.', '2024-10-08 14:49:09', NULL, 'active'),
-(10, 0, 35, '120/80', '5.0', '64', '36.5', 'Kiểm tra sức khỏe bình thường.', '2024-10-08 14:49:09', NULL, 'active'),
-(11, 0, 36, '125/80', '5.9', '75', '37.0', 'Huyết áp đã ổn định.', '2024-10-08 14:49:09', NULL, 'active'),
-(12, 0, 23, '130/85', '5.4', '70', '36.8', 'Kiểm tra cho thấy kết quả bình thường.', '2024-10-08 14:49:09', NULL, 'active'),
-(13, 0, 38, '140/90', '7.0', '85', '37.8', 'Chẩn đoán tiểu đường. Cần theo dõi sức khỏe cẩn thận.', '2024-10-08 14:49:09', NULL, 'active'),
-(14, 0, 40, '115/75', '5.1', '73', '36.5', 'Tất cả các chỉ số đều trong phạm vi bình thường.', '2024-10-08 14:49:09', NULL, 'active'),
-(15, 0, 27, '125/80', '5.2', '70', '36.9', 'Kiểm tra định kỳ. Kết quả bình thường.', '2024-10-08 14:49:09', NULL, 'active'),
-(16, 0, 25, '120/78', '5.3', '62', '36.6', 'Tất cả chỉ số trong phạm vi bình thường.', '2024-10-08 14:49:09', NULL, 'active'),
-(17, 0, 24, '150/95', '8.0', '90', '38.5', 'Chẩn đoán tiểu đường. Cần thay đổi lối sống ngay lập tức.', '2024-10-08 14:49:09', NULL, 'active'),
-(18, 0, 29, '125/82', '5.4', '63', '36.6', 'Đường huyết hơi cao. Khuyên thay đổi chế độ ăn uống.', '2024-10-08 14:49:09', NULL, 'active'),
-(19, 0, 32, '130/85', '5.7', '80', '37.5', 'Kiểm tra cho thấy kết quả bình thường.', '2024-10-08 14:49:09', NULL, 'active'),
-(20, 0, 33, '125/80', '5.2', '70', '36.9', 'Kiểm tra định kỳ. Kết quả bình thường.', '2024-10-08 14:49:09', NULL, 'active'),
-(21, 0, 37, '110/70', '5.4', '58', '36.1', 'Kiểm tra sức khỏe định kỳ. Tất cả bình thường.', '2024-10-08 14:49:09', NULL, 'active'),
-(22, 0, 21, '110/70', '4.9', '55', '36.0', 'Kiểm tra sức khỏe bình thường. Tất cả các chỉ số đều ổn định.', '2024-10-08 14:49:09', NULL, 'active'),
-(23, 0, 22, '140/90', '6.5', '80', '37.8', 'Chẩn đoán tăng huyết áp. Cần thay đổi lối sống ngay lập tức.', '2024-10-08 14:49:09', NULL, 'active'),
-(24, 0, 24, '145/92', '8.5', '91', '38.7', 'Mức đường huyết vẫn cao. Điều chỉnh thuốc.', '2024-10-08 14:49:09', NULL, 'active'),
-(25, 0, 25, '125/82', '5.1', '56', '36.3', 'Mức đường huyết bình thường.', '2024-10-08 14:49:09', NULL, 'active'),
-(26, 0, 40, '130/85', '6.0', '76', '37.2', 'Cần theo dõi huyết áp thường xuyên.', '2024-10-08 14:49:09', NULL, 'active'),
-(27, 0, 39, '125/82', '5.7', '61', '36.6', 'Không có vấn đề gì.', '2024-10-08 14:49:09', NULL, 'active'),
-(28, 0, 38, '145/92', '7.5', '87', '38.0', 'Mức đường huyết cao. Đã điều chỉnh thuốc.', '2024-10-08 14:49:09', NULL, 'active'),
-(29, 0, 26, '130/85', '6.1', '76', '37.1', 'Cần chú ý đến chế độ ăn uống.', '2024-10-08 14:49:09', NULL, 'active'),
-(30, 0, 30, '130/85', '6.5', '74', '37.3', 'Mức đường huyết đã được kiểm soát bằng thuốc.', '2024-10-08 14:49:09', NULL, 'active'),
-(31, 0, 28, '130/85', '6.5', '84', '37.8', 'Huyết áp đã ổn định. Tiếp tục điều trị.', '2024-10-08 14:49:09', NULL, 'active'),
-(32, 0, 29, '130/84', '5.8', '64', '36.7', 'Theo dõi mức đường huyết. Cần kiểm tra lại.', '2024-10-08 14:49:09', NULL, 'active'),
-(33, 0, 27, '120/78', '5.3', '63', '36.4', 'Kiểm tra định kỳ. Không có vấn đề gì.', '2024-10-08 14:49:09', NULL, 'active'),
-(34, 0, 20, '135/88', '6.0', '66', '37.0', 'Huyết áp hơi cao. Cần theo dõi chế độ ăn uống.', '2024-10-08 14:49:09', NULL, 'active'),
-(35, 0, 31, '115/75', '5.0', '64', '36.5', 'Kiểm tra sức khỏe bình thường.', '2024-10-08 14:49:09', NULL, 'active'),
-(36, 0, 36, '135/88', '6.4', '77', '37.2', 'Huyết áp hơi cao. Theo dõi thường xuyên.', '2024-10-08 14:49:09', NULL, 'active'),
-(37, 0, 33, '130/85', '5.5', '72', '37.0', 'Không có dấu hiệu bất thường.', '2024-10-08 14:49:09', NULL, 'active'),
-(38, 0, 35, '120/80', '5.0', '64', '36.5', 'Kiểm tra sức khỏe bình thường.', '2024-10-08 14:49:09', NULL, 'active'),
-(39, 0, 34, '140/88', '6.9', '79', '37.8', 'Cần kiểm tra lại trong tháng tới.', '2024-10-08 14:49:09', NULL, 'active'),
-(40, 0, 28, '140/88', '6.8', '86', '38.0', 'Cần theo dõi huyết áp. Kiểm tra định kỳ cần thiết.', '2024-10-08 14:49:09', NULL, 'active'),
-(41, 0, 26, '120/80', '5.2', '75', '37.1', 'Kiểm tra sức khỏe bình thường. Tất cả các chỉ số đều ổn định.', '2024-10-08 14:49:09', NULL, 'active'),
-(42, 0, 30, '140/90', '6.0', '75', '38.2', 'Huyết áp đã ổn định.', '2024-10-08 14:49:09', NULL, 'active'),
-(43, 0, 23, '140/90', '6.5', '78', '37.3', 'Cần theo dõi mức đường huyết. Đã điều chỉnh thuốc.', '2024-10-08 14:49:09', NULL, 'active'),
-(44, 0, 21, '110/70', '5.0', '56', '36.2', 'Kiểm tra sức khỏe bình thường. Tất cả các chỉ số đều ổn định.', '2024-10-08 14:49:09', NULL, 'active'),
-(45, 0, 22, '130/85', '6.8', '82', '37.1', 'Huyết áp đã ổn định.', '2024-10-08 14:49:09', NULL, 'active'),
-(46, 0, 24, '130/85', '5.9', '79', '37.6', 'Huyết áp và đường huyết đều trong mức bình thường.', '2024-10-08 14:49:09', NULL, 'active'),
-(47, 0, 39, '120/80', '5.5', '60', '36.5', 'Kiểm tra sức khỏe bình thường.', '2024-10-08 14:49:09', NULL, 'active'),
-(48, 0, 37, '115/75', '5.0', '58', '36.2', 'Kiểm tra sức khỏe bình thường. Tất cả các chỉ số đều ổn định.', '2024-10-08 14:49:09', NULL, 'active');
+('27ec08fc-a113-11ef-95f3-b42e994cb670', 0, '68ee0e7c-a114-11ef-95f3-b42e994cb670', '115/75', '5.0', '55', '36.0', 'Kiểm tra sức khỏe bình thường. Tất cả các chỉ số đều ổn định.', '2024-10-08 14:49:09', '2024-11-12 16:37:33', 'active'),
+('27eddc22-a113-11ef-95f3-b42e994cb670', 0, '68ee18ec-a114-11ef-95f3-b42e994cb670', '120/80', '5.5', '60', '36.5', 'Kiểm tra sức khỏe bình thường.', '2024-10-08 14:49:09', '2024-11-12 16:37:33', 'active'),
+('27eddd62-a113-11ef-95f3-b42e994cb670', 0, '68ee0f0d-a114-11ef-95f3-b42e994cb670', '145/92', '7.5', '82', '38.0', 'Huyết áp tăng cao. Đã kê thuốc.', '2024-10-08 14:49:09', '2024-11-12 16:37:33', 'active'),
+('27edde0d-a113-11ef-95f3-b42e994cb670', 0, '68ee15fd-a114-11ef-95f3-b42e994cb670', '145/90', '7.1', '78', '37.9', 'Chẩn đoán tiểu đường. Cần theo dõi sức khỏe cẩn thận.', '2024-10-08 14:49:09', '2024-11-12 16:37:33', 'active'),
+('27eddeb4-a113-11ef-95f3-b42e994cb670', 0, '68ee128e-a114-11ef-95f3-b42e994cb670', '140/90', '6.8', '75', '37.8', 'Chẩn đoán tiểu đường. Bắt đầu điều trị.', '2024-10-08 14:49:09', '2024-11-12 16:37:33', 'active'),
+('27eddf4c-a113-11ef-95f3-b42e994cb670', 0, '68ee115e-a114-11ef-95f3-b42e994cb670', '135/88', '6.4', '75', '37.0', 'Huyết áp hơi cao. Theo dõi thường xuyên.', '2024-10-08 14:49:09', '2024-11-12 16:37:33', 'active'),
+('27eddfea-a113-11ef-95f3-b42e994cb670', 0, '68ee13ac-a114-11ef-95f3-b42e994cb670', '135/88', '7.0', '76', '37.5', 'Theo dõi mức đường huyết. Đã điều chỉnh thuốc.', '2024-10-08 14:49:09', '2024-11-12 16:37:33', 'active'),
+('27ede07a-a113-11ef-95f3-b42e994cb670', 0, '68ee0dec-a114-11ef-95f3-b42e994cb670', '120/80', '5.5', '65', '36.5', 'Kiểm tra sức khỏe bình thường. Không có vấn đề gì.', '2024-10-08 14:49:09', '2024-11-12 16:37:33', 'active'),
+('27ede117-a113-11ef-95f3-b42e994cb670', 0, '68ee143a-a114-11ef-95f3-b42e994cb670', '120/78', '5.1', '59', '36.3', 'Không có vấn đề gì.', '2024-10-08 14:49:09', '2024-11-12 16:37:33', 'active'),
+('27ede1a8-a113-11ef-95f3-b42e994cb670', 0, '68ee1691-a114-11ef-95f3-b42e994cb670', '120/80', '5.0', '64', '36.5', 'Kiểm tra sức khỏe bình thường.', '2024-10-08 14:49:09', '2024-11-12 16:37:33', 'active'),
+('27ede236-a113-11ef-95f3-b42e994cb670', 0, '68ee1724-a114-11ef-95f3-b42e994cb670', '125/80', '5.9', '75', '37.0', 'Huyết áp đã ổn định.', '2024-10-08 14:49:09', '2024-11-12 16:37:33', 'active'),
+('27ede2c5-a113-11ef-95f3-b42e994cb670', 0, '68ee0fa2-a114-11ef-95f3-b42e994cb670', '130/85', '5.4', '70', '36.8', 'Kiểm tra cho thấy kết quả bình thường.', '2024-10-08 14:49:09', '2024-11-12 16:37:33', 'active'),
+('27ede355-a113-11ef-95f3-b42e994cb670', 0, '68ee1857-a114-11ef-95f3-b42e994cb670', '140/90', '7.0', '85', '37.8', 'Chẩn đoán tiểu đường. Cần theo dõi sức khỏe cẩn thận.', '2024-10-08 14:49:09', '2024-11-12 16:37:33', 'active'),
+('27ede3e9-a113-11ef-95f3-b42e994cb670', 0, '40', '115/75', '5.1', '73', '36.5', 'Tất cả các chỉ số đều trong phạm vi bình thường.', '2024-10-08 14:49:09', '2024-11-12 16:40:03', 'inactive'),
+('27ede476-a113-11ef-95f3-b42e994cb670', 0, '68ee11f5-a114-11ef-95f3-b42e994cb670', '125/80', '5.2', '70', '36.9', 'Kiểm tra định kỳ. Kết quả bình thường.', '2024-10-08 14:49:09', '2024-11-12 16:37:33', 'active'),
+('27ede501-a113-11ef-95f3-b42e994cb670', 0, '68ee10d0-a114-11ef-95f3-b42e994cb670', '120/78', '5.3', '62', '36.6', 'Tất cả chỉ số trong phạm vi bình thường.', '2024-10-08 14:49:09', '2024-11-12 16:37:33', 'active'),
+('27ede589-a113-11ef-95f3-b42e994cb670', 0, '68ee1040-a114-11ef-95f3-b42e994cb670', '150/95', '8.0', '90', '38.5', 'Chẩn đoán tiểu đường. Cần thay đổi lối sống ngay lập tức.', '2024-10-08 14:49:09', '2024-11-12 16:37:33', 'active'),
+('27ede61b-a113-11ef-95f3-b42e994cb670', 0, '68ee131e-a114-11ef-95f3-b42e994cb670', '125/82', '5.4', '63', '36.6', 'Đường huyết hơi cao. Khuyên thay đổi chế độ ăn uống.', '2024-10-08 14:49:09', '2024-11-12 16:37:33', 'active'),
+('27ede6a7-a113-11ef-95f3-b42e994cb670', 0, '68ee14cc-a114-11ef-95f3-b42e994cb670', '130/85', '5.7', '80', '37.5', 'Kiểm tra cho thấy kết quả bình thường.', '2024-10-08 14:49:09', '2024-11-12 16:37:33', 'active'),
+('27ede73a-a113-11ef-95f3-b42e994cb670', 0, '68ee1560-a114-11ef-95f3-b42e994cb670', '125/80', '5.2', '70', '36.9', 'Kiểm tra định kỳ. Kết quả bình thường.', '2024-10-08 14:49:09', '2024-11-12 16:37:33', 'active'),
+('27ede7c3-a113-11ef-95f3-b42e994cb670', 0, '68ee17bc-a114-11ef-95f3-b42e994cb670', '110/70', '5.4', '58', '36.1', 'Kiểm tra sức khỏe định kỳ. Tất cả bình thường.', '2024-10-08 14:49:09', '2024-11-12 16:37:33', 'active'),
+('27ede853-a113-11ef-95f3-b42e994cb670', 0, '68ee0e7c-a114-11ef-95f3-b42e994cb670', '110/70', '4.9', '55', '36.0', 'Kiểm tra sức khỏe bình thường. Tất cả các chỉ số đều ổn định.', '2024-10-08 14:49:09', '2024-11-12 16:37:33', 'active'),
+('27ede8e7-a113-11ef-95f3-b42e994cb670', 0, '68ee0f0d-a114-11ef-95f3-b42e994cb670', '140/90', '6.5', '80', '37.8', 'Chẩn đoán tăng huyết áp. Cần thay đổi lối sống ngay lập tức.', '2024-10-08 14:49:09', '2024-11-12 16:37:33', 'active'),
+('27ede970-a113-11ef-95f3-b42e994cb670', 0, '68ee1040-a114-11ef-95f3-b42e994cb670', '145/92', '8.5', '91', '38.7', 'Mức đường huyết vẫn cao. Điều chỉnh thuốc.', '2024-10-08 14:49:09', '2024-11-12 16:37:33', 'active'),
+('27ede9ea-a113-11ef-95f3-b42e994cb670', 0, '68ee10d0-a114-11ef-95f3-b42e994cb670', '125/82', '5.1', '56', '36.3', 'Mức đường huyết bình thường.', '2024-10-08 14:49:09', '2024-11-12 16:37:33', 'active'),
+('27edeaf7-a113-11ef-95f3-b42e994cb670', 0, '68ee18ec-a114-11ef-95f3-b42e994cb670', '125/82', '5.7', '61', '36.6', 'Không có vấn đề gì.', '2024-10-08 14:49:09', '2024-11-12 16:37:33', 'active'),
+('27edeb78-a113-11ef-95f3-b42e994cb670', 0, '68ee1857-a114-11ef-95f3-b42e994cb670', '145/92', '7.5', '87', '38.0', 'Mức đường huyết cao. Đã điều chỉnh thuốc.', '2024-10-08 14:49:09', '2024-11-12 16:37:33', 'active'),
+('27edec00-a113-11ef-95f3-b42e994cb670', 0, '68ee115e-a114-11ef-95f3-b42e994cb670', '130/85', '6.1', '76', '37.1', 'Cần chú ý đến chế độ ăn uống.', '2024-10-08 14:49:09', '2024-11-12 16:37:33', 'active'),
+('27edec92-a113-11ef-95f3-b42e994cb670', 0, '68ee13ac-a114-11ef-95f3-b42e994cb670', '130/85', '6.5', '74', '37.3', 'Mức đường huyết đã được kiểm soát bằng thuốc.', '2024-10-08 14:49:09', '2024-11-12 16:37:33', 'active'),
+('27eded1e-a113-11ef-95f3-b42e994cb670', 0, '68ee128e-a114-11ef-95f3-b42e994cb670', '130/85', '6.5', '84', '37.8', 'Huyết áp đã ổn định. Tiếp tục điều trị.', '2024-10-08 14:49:09', '2024-11-12 16:37:33', 'active'),
+('27ededa7-a113-11ef-95f3-b42e994cb670', 0, '68ee131e-a114-11ef-95f3-b42e994cb670', '130/84', '5.8', '64', '36.7', 'Theo dõi mức đường huyết. Cần kiểm tra lại.', '2024-10-08 14:49:09', '2024-11-12 16:37:33', 'active'),
+('27edee2d-a113-11ef-95f3-b42e994cb670', 0, '68ee11f5-a114-11ef-95f3-b42e994cb670', '120/78', '5.3', '63', '36.4', 'Kiểm tra định kỳ. Không có vấn đề gì.', '2024-10-08 14:49:09', '2024-11-12 16:37:33', 'active'),
+('27edeeb8-a113-11ef-95f3-b42e994cb670', 0, '68ee0dec-a114-11ef-95f3-b42e994cb670', '135/88', '6.0', '66', '37.0', 'Huyết áp hơi cao. Cần theo dõi chế độ ăn uống.', '2024-10-08 14:49:09', '2024-11-12 16:37:33', 'active'),
+('27edef3e-a113-11ef-95f3-b42e994cb670', 0, '68ee143a-a114-11ef-95f3-b42e994cb670', '115/75', '5.0', '64', '36.5', 'Kiểm tra sức khỏe bình thường.', '2024-10-08 14:49:09', '2024-11-12 16:37:33', 'active'),
+('27edefcd-a113-11ef-95f3-b42e994cb670', 0, '68ee1724-a114-11ef-95f3-b42e994cb670', '135/88', '6.4', '77', '37.2', 'Huyết áp hơi cao. Theo dõi thường xuyên.', '2024-10-08 14:49:09', '2024-11-12 16:37:33', 'active'),
+('27edf057-a113-11ef-95f3-b42e994cb670', 0, '68ee1560-a114-11ef-95f3-b42e994cb670', '130/85', '5.5', '72', '37.0', 'Không có dấu hiệu bất thường.', '2024-10-08 14:49:09', '2024-11-12 16:37:33', 'active'),
+('27edf0e4-a113-11ef-95f3-b42e994cb670', 0, '68ee1691-a114-11ef-95f3-b42e994cb670', '120/80', '5.0', '64', '36.5', 'Kiểm tra sức khỏe bình thường.', '2024-10-08 14:49:09', '2024-11-12 16:37:33', 'active'),
+('27edf16f-a113-11ef-95f3-b42e994cb670', 0, '68ee15fd-a114-11ef-95f3-b42e994cb670', '140/88', '6.9', '79', '37.8', 'Cần kiểm tra lại trong tháng tới.', '2024-10-08 14:49:09', '2024-11-12 16:37:33', 'active'),
+('27edf1fc-a113-11ef-95f3-b42e994cb670', 0, '68ee128e-a114-11ef-95f3-b42e994cb670', '140/88', '6.8', '86', '38.0', 'Cần theo dõi huyết áp. Kiểm tra định kỳ cần thiết.', '2024-10-08 14:49:09', '2024-11-12 16:37:33', 'active'),
+('27edf28a-a113-11ef-95f3-b42e994cb670', 0, '68ee115e-a114-11ef-95f3-b42e994cb670', '120/80', '5.2', '75', '37.1', 'Kiểm tra sức khỏe bình thường. Tất cả các chỉ số đều ổn định.', '2024-10-08 14:49:09', '2024-11-12 16:37:33', 'active'),
+('27edf317-a113-11ef-95f3-b42e994cb670', 0, '68ee13ac-a114-11ef-95f3-b42e994cb670', '140/90', '6.0', '75', '38.2', 'Huyết áp đã ổn định.', '2024-10-08 14:49:09', '2024-11-12 16:37:33', 'active'),
+('27edf3a0-a113-11ef-95f3-b42e994cb670', 0, '68ee0fa2-a114-11ef-95f3-b42e994cb670', '140/90', '6.5', '78', '37.3', 'Cần theo dõi mức đường huyết. Đã điều chỉnh thuốc.', '2024-10-08 14:49:09', '2024-11-12 16:37:33', 'active'),
+('27edf41f-a113-11ef-95f3-b42e994cb670', 0, '68ee0e7c-a114-11ef-95f3-b42e994cb670', '110/70', '5.0', '56', '36.2', 'Kiểm tra sức khỏe bình thường. Tất cả các chỉ số đều ổn định.', '2024-10-08 14:49:09', '2024-11-12 16:37:33', 'active'),
+('27edf4ac-a113-11ef-95f3-b42e994cb670', 0, '68ee0f0d-a114-11ef-95f3-b42e994cb670', '130/85', '6.8', '82', '37.1', 'Huyết áp đã ổn định.', '2024-10-08 14:49:09', '2024-11-12 16:37:33', 'active'),
+('27edf539-a113-11ef-95f3-b42e994cb670', 0, '68ee1040-a114-11ef-95f3-b42e994cb670', '130/85', '5.9', '79', '37.6', 'Huyết áp và đường huyết đều trong mức bình thường.', '2024-10-08 14:49:09', '2024-11-12 16:37:33', 'active'),
+('27edf5c7-a113-11ef-95f3-b42e994cb670', 0, '68ee18ec-a114-11ef-95f3-b42e994cb670', '120/80', '5.5', '60', '36.5', 'Kiểm tra sức khỏe bình thường.', '2024-10-08 14:49:09', '2024-11-12 16:37:33', 'active'),
+('27edf657-a113-11ef-95f3-b42e994cb670', 0, '68ee17bc-a114-11ef-95f3-b42e994cb670', '115/75', '5.0', '58', '36.2', 'Kiểm tra sức khỏe bình thường. Tất cả các chỉ số đều ổn định.', '2024-10-08 14:49:09', '2024-11-12 16:37:33', 'active');
 
 -- --------------------------------------------------------
 
@@ -566,8 +649,8 @@ INSERT INTO `fact_med_hist` (`med_hist_id`, `appt_id`, `patient_id`, `blood_pres
 
 CREATE TABLE `fact_patient_details` (
   `record_id` int(11) NOT NULL,
-  `doctor_id` int(11) NOT NULL,
-  `patient_id` int(11) NOT NULL,
+  `doctor_id` char(36) DEFAULT NULL,
+  `patient_id` char(36) DEFAULT NULL,
   `med_hist` mediumtext DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
@@ -578,26 +661,26 @@ CREATE TABLE `fact_patient_details` (
 --
 
 INSERT INTO `fact_patient_details` (`record_id`, `doctor_id`, `patient_id`, `med_hist`, `created_at`, `updated_at`) VALUES
-(1, 14, 20, 'Huyết áp hơi cao. Theo dõi thường xuyên.', '2024-10-08 15:03:48', NULL),
-(2, 10, 21, 'Kiểm tra sức khỏe bình thường.', '2024-10-08 15:03:48', NULL),
-(3, 15, 22, 'Mức đường huyết vẫn cao. Điều chỉnh thuốc.', '2024-10-08 15:03:48', NULL),
-(4, 13, 23, 'Chẩn đoán tiểu đường. Cần thay đổi lối sống ngay lập tức.', '2024-10-08 15:03:48', NULL),
-(5, 13, 24, 'Theo dõi mức đường huyết. Đã điều chỉnh thuốc.', '2024-10-08 15:03:48', NULL),
-(6, 12, 25, 'Kiểm tra sức khỏe bình thường. Tất cả các chỉ số đều ổn định.', '2024-10-08 15:03:48', NULL),
-(7, 11, 26, 'Huyết áp đã ổn định. Theo dõi thường xuyên.', '2024-10-08 15:03:48', NULL),
-(8, 16, 27, 'Chẩn đoán tăng huyết áp. Cần thay đổi lối sống ngay lập tức.', '2024-10-08 15:03:48', NULL),
-(9, 19, 28, 'Chẩn đoán tiểu đường. Cần theo dõi sức khỏe cẩn thận.', '2024-10-08 15:03:48', NULL),
-(10, 10, 29, 'Kiểm tra sức khỏe bình thường. Không có vấn đề gì.', '2024-10-08 15:03:48', NULL),
-(11, 11, 30, 'Kiểm tra cho thấy kết quả bình thường.', '2024-10-08 15:03:48', NULL),
-(12, 15, 31, 'Mức đường huyết cao. Đã điều chỉnh thuốc.', '2024-10-08 15:03:48', NULL),
-(13, 12, 32, 'Kiểm tra sức khỏe bình thường. Tất cả các chỉ số đều ổn định.', '2024-10-08 15:03:48', NULL),
-(14, 13, 33, 'Chẩn đoán tiểu đường. Cần theo dõi sức khỏe cẩn thận.', '2024-10-08 15:03:48', NULL),
-(15, 14, 34, 'Huyết áp hơi cao. Theo dõi thường xuyên.', '2024-10-08 15:03:48', NULL),
-(16, 19, 35, 'Kiểm tra sức khỏe bình thường. Tất cả các chỉ số đều ổn định.', '2024-10-08 15:03:48', NULL),
-(17, 16, 36, 'Mức đường huyết vẫn cao. Điều chỉnh thuốc.', '2024-10-08 15:03:48', NULL),
-(18, 11, 37, 'Theo dõi mức đường huyết. Đã điều chỉnh thuốc.', '2024-10-08 15:03:48', NULL),
-(19, 18, 38, 'Chẩn đoán tiểu đường. Cần thay đổi lối sống ngay lập tức.', '2024-10-08 15:03:48', NULL),
-(20, 19, 39, 'Kiểm tra sức khỏe bình thường. Không có vấn đề gì.', '2024-10-08 15:03:48', NULL);
+(1, '68ee0a6f-a114-11ef-95f3-b42e994cb670', '68ee0dec-a114-11ef-95f3-b42e994cb670', 'Huyết áp hơi cao. Theo dõi thường xuyên.', '2024-10-08 15:03:48', '2024-11-12 16:37:35'),
+(2, '68ee0818-a114-11ef-95f3-b42e994cb670', '68ee0e7c-a114-11ef-95f3-b42e994cb670', 'Kiểm tra sức khỏe bình thường.', '2024-10-08 15:03:48', '2024-11-12 16:37:35'),
+(3, '68ee0b00-a114-11ef-95f3-b42e994cb670', '68ee0f0d-a114-11ef-95f3-b42e994cb670', 'Mức đường huyết vẫn cao. Điều chỉnh thuốc.', '2024-10-08 15:03:48', '2024-11-12 16:37:35'),
+(4, '68ee09de-a114-11ef-95f3-b42e994cb670', '68ee0fa2-a114-11ef-95f3-b42e994cb670', 'Chẩn đoán tiểu đường. Cần thay đổi lối sống ngay lập tức.', '2024-10-08 15:03:48', '2024-11-12 16:37:35'),
+(5, '68ee09de-a114-11ef-95f3-b42e994cb670', '68ee1040-a114-11ef-95f3-b42e994cb670', 'Theo dõi mức đường huyết. Đã điều chỉnh thuốc.', '2024-10-08 15:03:48', '2024-11-12 16:37:35'),
+(6, '68ee0942-a114-11ef-95f3-b42e994cb670', '68ee10d0-a114-11ef-95f3-b42e994cb670', 'Kiểm tra sức khỏe bình thường. Tất cả các chỉ số đều ổn định.', '2024-10-08 15:03:48', '2024-11-12 16:37:35'),
+(7, '68ee08af-a114-11ef-95f3-b42e994cb670', '68ee115e-a114-11ef-95f3-b42e994cb670', 'Huyết áp đã ổn định. Theo dõi thường xuyên.', '2024-10-08 15:03:48', '2024-11-12 16:37:35'),
+(8, '68ee0b90-a114-11ef-95f3-b42e994cb670', '68ee11f5-a114-11ef-95f3-b42e994cb670', 'Chẩn đoán tăng huyết áp. Cần thay đổi lối sống ngay lập tức.', '2024-10-08 15:03:48', '2024-11-12 16:37:35'),
+(9, '68ee0d59-a114-11ef-95f3-b42e994cb670', '68ee128e-a114-11ef-95f3-b42e994cb670', 'Chẩn đoán tiểu đường. Cần theo dõi sức khỏe cẩn thận.', '2024-10-08 15:03:48', '2024-11-12 16:37:35'),
+(10, '68ee0818-a114-11ef-95f3-b42e994cb670', '68ee131e-a114-11ef-95f3-b42e994cb670', 'Kiểm tra sức khỏe bình thường. Không có vấn đề gì.', '2024-10-08 15:03:48', '2024-11-12 16:37:35'),
+(11, '68ee08af-a114-11ef-95f3-b42e994cb670', '68ee13ac-a114-11ef-95f3-b42e994cb670', 'Kiểm tra cho thấy kết quả bình thường.', '2024-10-08 15:03:48', '2024-11-12 16:37:35'),
+(12, '68ee0b00-a114-11ef-95f3-b42e994cb670', '68ee143a-a114-11ef-95f3-b42e994cb670', 'Mức đường huyết cao. Đã điều chỉnh thuốc.', '2024-10-08 15:03:48', '2024-11-12 16:37:35'),
+(13, '68ee0942-a114-11ef-95f3-b42e994cb670', '68ee14cc-a114-11ef-95f3-b42e994cb670', 'Kiểm tra sức khỏe bình thường. Tất cả các chỉ số đều ổn định.', '2024-10-08 15:03:48', '2024-11-12 16:37:35'),
+(14, '68ee09de-a114-11ef-95f3-b42e994cb670', '68ee1560-a114-11ef-95f3-b42e994cb670', 'Chẩn đoán tiểu đường. Cần theo dõi sức khỏe cẩn thận.', '2024-10-08 15:03:48', '2024-11-12 16:37:35'),
+(15, '68ee0a6f-a114-11ef-95f3-b42e994cb670', '68ee15fd-a114-11ef-95f3-b42e994cb670', 'Huyết áp hơi cao. Theo dõi thường xuyên.', '2024-10-08 15:03:48', '2024-11-12 16:37:35'),
+(16, '68ee0d59-a114-11ef-95f3-b42e994cb670', '68ee1691-a114-11ef-95f3-b42e994cb670', 'Kiểm tra sức khỏe bình thường. Tất cả các chỉ số đều ổn định.', '2024-10-08 15:03:48', '2024-11-12 16:37:35'),
+(17, '68ee0b90-a114-11ef-95f3-b42e994cb670', '68ee1724-a114-11ef-95f3-b42e994cb670', 'Mức đường huyết vẫn cao. Điều chỉnh thuốc.', '2024-10-08 15:03:48', '2024-11-12 16:37:35'),
+(18, '68ee08af-a114-11ef-95f3-b42e994cb670', '68ee17bc-a114-11ef-95f3-b42e994cb670', 'Theo dõi mức đường huyết. Đã điều chỉnh thuốc.', '2024-10-08 15:03:48', '2024-11-12 16:37:35'),
+(19, '68ee0cc5-a114-11ef-95f3-b42e994cb670', '68ee1857-a114-11ef-95f3-b42e994cb670', 'Chẩn đoán tiểu đường. Cần thay đổi lối sống ngay lập tức.', '2024-10-08 15:03:48', '2024-11-12 16:37:35'),
+(20, '68ee0d59-a114-11ef-95f3-b42e994cb670', '68ee18ec-a114-11ef-95f3-b42e994cb670', 'Kiểm tra sức khỏe bình thường. Không có vấn đề gì.', '2024-10-08 15:03:48', '2024-11-12 16:37:35');
 
 -- --------------------------------------------------------
 
@@ -606,14 +689,16 @@ INSERT INTO `fact_patient_details` (`record_id`, `doctor_id`, `patient_id`, `med
 --
 
 CREATE TABLE `fact_payment` (
-  `payment_id` int(11) NOT NULL,
+  `payment_id` char(36) NOT NULL,
   `payment_type` varchar(100) NOT NULL,
-  `reference_id` int(11) NOT NULL,
+  `appt_id` char(36) DEFAULT NULL,
+  `med_hist_id` char(36) DEFAULT NULL,
+  `fac_mgmt_id` int(11) DEFAULT NULL,
   `amount` varchar(255) NOT NULL,
   `payment_desc` varchar(255) DEFAULT NULL,
   `payment_status` varchar(100) DEFAULT NULL,
   `bank_trans_code` varchar(255) DEFAULT NULL,
-  `created_at` date NOT NULL DEFAULT current_timestamp(),
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -621,23 +706,31 @@ CREATE TABLE `fact_payment` (
 -- Dumping data for table `fact_payment`
 --
 
-INSERT INTO `fact_payment` (`payment_id`, `payment_type`, `reference_id`, `amount`, `payment_desc`, `payment_status`, `bank_trans_code`, `created_at`, `updated_at`) VALUES
-(6, 'appointment', 4, '345000', 'Test Pay 1', 'pending', NULL, '2024-11-07', NULL),
-(7, 'appointment', 4, '345000', 'Test Pay 1', 'pending', NULL, '2024-11-07', NULL),
-(8, 'appointment', 6, '345000', 'Test Pay 2', 'pending', NULL, '2024-11-07', NULL),
-(9, 'appointment', 7, '123000', 'Test pay 3', 'completed', '14641906', '2024-11-07', NULL),
-(10, 'prescription', 12, '120000', 'Test Pay 4', 'completed', '14641914', '2024-11-07', NULL),
-(11, 'prescription', 14, '120000', 'Pay test 5', 'pending', NULL, '2024-11-07', NULL),
-(12, 'prescription', 14, '120000', 'Pay test 5', 'pending', NULL, '2024-11-07', NULL),
-(13, 'prescription', 8, '20000', 'Test Pay 6', 'pending', NULL, '2024-11-07', NULL),
-(14, 'prescription', 8, '20000', 'Test Pay 6', 'completed', '14641919', '2024-11-07', NULL),
-(15, 'prescription', 5, '140000', 'Pay test 7', 'pending', NULL, '2024-11-07', NULL),
-(16, 'appointment', 3, '123000', 'Test thanh toan', 'pending', NULL, '2024-11-07', NULL),
-(17, 'appointment', 3, '123000', 'Test thanh toan', 'pending', NULL, '2024-11-07', NULL),
-(18, 'appointment', 2, '123000', 'Test thanh toan', 'pending', NULL, '2024-11-07', NULL),
-(19, 'appointment', 2, '123000', 'asdfsd', 'completed', '14643763', '2024-11-07', NULL),
-(20, 'appointment', 3, '123456', 'test', 'pending', NULL, '2024-11-07', NULL),
-(21, 'appointment', 3, '123456', 'test', 'pending', NULL, '2024-11-07', NULL);
+INSERT INTO `fact_payment` (`payment_id`, `payment_type`, `appt_id`, `med_hist_id`, `fac_mgmt_id`, `amount`, `payment_desc`, `payment_status`, `bank_trans_code`, `created_at`, `updated_at`) VALUES
+('c2315ca7-a0f8-11ef-95f3-b42e994cb670', 'prescription', 'b0e8245c-a1e2-11ef-968e-b42e994cb670', NULL, NULL, '120000', 'Test Pay 4', 'completed', '14641914', '2024-11-06 17:00:00', '2024-11-13 17:14:08'),
+('c2316cca-a0f8-11ef-95f3-b42e994cb670', 'prescription', 'b0e8259a-a1e2-11ef-968e-b42e994cb670', NULL, NULL, '120000', 'Pay test 5', 'pending', NULL, '2024-11-06 17:00:00', '2024-11-13 17:14:08'),
+('c2316d97-a0f8-11ef-95f3-b42e994cb670', 'prescription', 'b0e8259a-a1e2-11ef-968e-b42e994cb670', NULL, NULL, '120000', 'Pay test 5', 'pending', NULL, '2024-11-06 17:00:00', '2024-11-13 17:14:08'),
+('c2316e42-a0f8-11ef-95f3-b42e994cb670', 'prescription', 'b0e82300-a1e2-11ef-968e-b42e994cb670', NULL, NULL, '20000', 'Test Pay 6', 'pending', NULL, '2024-11-06 17:00:00', '2024-11-13 17:14:08'),
+('c2316ee1-a0f8-11ef-95f3-b42e994cb670', 'prescription', 'b0e82300-a1e2-11ef-968e-b42e994cb670', NULL, NULL, '20000', 'Test Pay 6', 'completed', '14641919', '2024-11-06 17:00:00', '2024-11-13 17:14:08'),
+('c2316f76-a0f8-11ef-95f3-b42e994cb670', 'prescription', 'b0e82166-a1e2-11ef-968e-b42e994cb670', '27edde0d-a113-11ef-95f3-b42e994cb670', NULL, '140000', 'Pay test 7', 'pending', NULL, '2024-11-06 17:00:00', '2024-11-13 17:14:08'),
+('c2317007-a0f8-11ef-95f3-b42e994cb670', 'appointment', 'b0e820f0-a1e2-11ef-968e-b42e994cb670', NULL, NULL, '123000', 'Test thanh toan', 'pending', NULL, '2024-11-06 17:00:00', '2024-11-13 17:14:08'),
+('c2317098-a0f8-11ef-95f3-b42e994cb670', 'appointment', 'b0e820f0-a1e2-11ef-968e-b42e994cb670', NULL, NULL, '123000', 'Test thanh toan', 'pending', NULL, '2024-11-06 17:00:00', '2024-11-13 17:14:08'),
+('c2317128-a0f8-11ef-95f3-b42e994cb670', 'appointment', 'b0e81f9e-a1e2-11ef-968e-b42e994cb670', NULL, NULL, '123000', 'Test thanh toan', 'pending', NULL, '2024-11-06 17:00:00', '2024-11-13 17:14:08'),
+('c23171b3-a0f8-11ef-95f3-b42e994cb670', 'appointment', 'b0e81f9e-a1e2-11ef-968e-b42e994cb670', NULL, NULL, '123000', 'asdfsd', 'completed', '14643763', '2024-11-06 17:00:00', '2024-11-13 17:14:08'),
+('c2317242-a0f8-11ef-95f3-b42e994cb670', 'appointment', 'b0e820f0-a1e2-11ef-968e-b42e994cb670', NULL, NULL, '123456', 'test', 'pending', NULL, '2024-11-06 17:00:00', '2024-11-13 17:14:08'),
+('c23172ce-a0f8-11ef-95f3-b42e994cb670', 'appointment', 'b0e820f0-a1e2-11ef-968e-b42e994cb670', NULL, NULL, '123456', 'test', 'pending', NULL, '2024-11-06 17:00:00', '2024-11-13 17:14:08'),
+('c2317354-a0f8-11ef-95f3-b42e994cb670', 'appointment', 'b0e82166-a1e2-11ef-968e-b42e994cb670', NULL, NULL, '345000', 'Test Pay 1', 'pending', NULL, '2024-11-06 17:00:00', '2024-11-13 17:14:08'),
+('c23173d9-a0f8-11ef-95f3-b42e994cb670', 'appointment', 'b0e82166-a1e2-11ef-968e-b42e994cb670', NULL, NULL, '345000', 'Test Pay 1', 'pending', NULL, '2024-11-06 17:00:00', '2024-11-13 17:14:08'),
+('c2317461-a0f8-11ef-95f3-b42e994cb670', 'appointment', 'b0e82231-a1e2-11ef-968e-b42e994cb670', NULL, NULL, '345000', 'Test Pay 2', 'pending', NULL, '2024-11-06 17:00:00', '2024-11-13 17:14:08'),
+('c23174eb-a0f8-11ef-95f3-b42e994cb670', 'appointment', 'b0e822a8-a1e2-11ef-968e-b42e994cb670', NULL, NULL, '123000', 'Test pay 3', 'completed', '14641906', '2024-11-06 17:00:00', '2024-11-13 17:14:08');
+
+--
+-- Triggers `fact_payment`
+--
+DELIMITER $$
+CREATE TRIGGER `before_insert_fact_payment` BEFORE INSERT ON `fact_payment` FOR EACH ROW SET NEW.payment_id = UUID()
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -647,8 +740,8 @@ INSERT INTO `fact_payment` (`payment_id`, `payment_type`, `reference_id`, `amoun
 
 CREATE TABLE `fact_prescription` (
   `pres_id` int(11) NOT NULL,
-  `med_hist_id` int(11) NOT NULL,
-  `item_id` int(11) NOT NULL,
+  `med_hist_id` char(36) DEFAULT NULL,
+  `item_id` char(36) DEFAULT NULL,
   `amount` int(10) DEFAULT NULL,
   `price` int(10) DEFAULT NULL,
   `item_note` mediumtext DEFAULT NULL,
@@ -660,34 +753,34 @@ CREATE TABLE `fact_prescription` (
 --
 
 INSERT INTO `fact_prescription` (`pres_id`, `med_hist_id`, `item_id`, `amount`, `price`, `item_note`, `created_at`) VALUES
-(1, 3, 1, 1, 2000, 'Uống 1 viên buổi sáng sau ăn', '2024-10-08 14:50:10'),
-(2, 3, 9, 1, 2000, 'Uống 1 viên vào buổi tối', '2024-10-08 14:50:10'),
-(3, 4, 3, 2, 25000, 'Uống 1 viên mỗi ngày sau ăn', '2024-10-08 14:50:10'),
-(4, 4, 10, 1, 10000, 'Uống 1 viên buổi sáng', '2024-10-08 14:50:10'),
-(5, 5, 4, 1, 15000, 'Uống 1 viên sau khi ăn', '2024-10-08 14:50:10'),
-(6, 8, 2, 1, 3000, 'Uống 1 viên trước khi ngủ', '2024-10-08 14:50:10'),
-(7, 9, 9, 1, 2000, 'Uống 1 viên buổi tối trước khi ngủ', '2024-10-08 14:50:10'),
-(8, 11, 5, 1, 1500, 'Uống 1 viên trước khi ăn', '2024-10-08 14:50:10'),
-(9, 12, 6, 2, 12000, 'Uống 1 viên vào buổi tối', '2024-10-08 14:50:10'),
-(10, 13, 1, 2, 2000, 'Uống 1 viên vào buổi sáng', '2024-10-08 14:50:10'),
-(11, 14, 10, 1, 10000, 'Uống 1 viên buổi sáng trước ăn', '2024-10-08 14:50:10'),
-(12, 15, 4, 1, 12000, 'Uống 1 viên vào buổi tối', '2024-10-08 14:50:10'),
-(13, 17, 11, 1, 10000, 'Uống 1 viên trước bữa ăn', '2024-10-08 14:50:10'),
-(14, 18, 10, 1, 2000, 'Uống 1 viên buổi sáng', '2024-10-08 14:50:10'),
-(15, 21, 5, 1, 15000, 'Uống 1 viên mỗi ngày sau ăn', '2024-10-08 14:50:10'),
-(16, 22, 3, 1, 25000, 'Uống 1 viên mỗi ngày sau ăn', '2024-10-08 14:50:10'),
-(17, 23, 4, 2, 25000, 'Uống 1 viên mỗi ngày sau ăn', '2024-10-08 14:50:10'),
-(18, 24, 9, 1, 2000, 'Uống 1 viên vào buổi tối', '2024-10-08 14:50:10'),
-(19, 27, 1, 1, 2000, 'Uống 1 viên buổi sáng sau ăn', '2024-10-08 14:50:10'),
-(20, 28, 2, 1, 3000, 'Uống 1 viên vào buổi tối', '2024-10-08 14:50:10'),
-(21, 30, 6, 2, 12000, 'Uống 1 viên vào buổi tối', '2024-10-08 14:50:10'),
-(22, 31, 3, 1, 25000, 'Uống 1 viên mỗi ngày sau ăn', '2024-10-08 14:50:10'),
-(23, 32, 10, 1, 10000, 'Uống 1 viên buổi sáng', '2024-10-08 14:50:10'),
-(24, 35, 4, 1, 15000, 'Uống 1 viên sau khi ăn', '2024-10-08 14:50:10'),
-(25, 37, 3, 1, 2000, 'Uống 1 viên buổi sáng sau ăn', '2024-10-08 14:50:10'),
-(26, 38, 9, 1, 2000, 'Uống 1 viên vào buổi tối', '2024-10-08 14:50:10'),
-(27, 39, 10, 1, 10000, 'Uống 1 viên buổi sáng', '2024-10-08 14:50:10'),
-(28, 40, 5, 1, 1500, 'Uống 1 viên trước khi ăn', '2024-10-08 14:50:10');
+(1, '27eddd62-a113-11ef-95f3-b42e994cb670', 'a5abc0d8-a115-11ef-95f3-b42e994cb670', 1, 2000, 'Uống 1 viên buổi sáng sau ăn', '2024-10-08 14:50:10'),
+(2, '27eddd62-a113-11ef-95f3-b42e994cb670', 'a5af4ad7-a115-11ef-95f3-b42e994cb670', 1, 2000, 'Uống 1 viên vào buổi tối', '2024-10-08 14:50:10'),
+(3, '27edde0d-a113-11ef-95f3-b42e994cb670', 'a5af47c1-a115-11ef-95f3-b42e994cb670', 2, 25000, 'Uống 1 viên mỗi ngày sau ăn', '2024-10-08 14:50:10'),
+(4, '27edde0d-a113-11ef-95f3-b42e994cb670', 'a5af4b54-a115-11ef-95f3-b42e994cb670', 1, 10000, 'Uống 1 viên buổi sáng', '2024-10-08 14:50:10'),
+(5, '27eddeb4-a113-11ef-95f3-b42e994cb670', 'a5af4858-a115-11ef-95f3-b42e994cb670', 1, 15000, 'Uống 1 viên sau khi ăn', '2024-10-08 14:50:10'),
+(6, '27ede07a-a113-11ef-95f3-b42e994cb670', 'a5af4687-a115-11ef-95f3-b42e994cb670', 1, 3000, 'Uống 1 viên trước khi ngủ', '2024-10-08 14:50:10'),
+(7, '27ede117-a113-11ef-95f3-b42e994cb670', 'a5af4ad7-a115-11ef-95f3-b42e994cb670', 1, 2000, 'Uống 1 viên buổi tối trước khi ngủ', '2024-10-08 14:50:10'),
+(8, '27ede236-a113-11ef-95f3-b42e994cb670', 'a5af48e2-a115-11ef-95f3-b42e994cb670', 1, 1500, 'Uống 1 viên trước khi ăn', '2024-10-08 14:50:10'),
+(9, '27ede2c5-a113-11ef-95f3-b42e994cb670', 'a5af4961-a115-11ef-95f3-b42e994cb670', 2, 12000, 'Uống 1 viên vào buổi tối', '2024-10-08 14:50:10'),
+(10, '27ede355-a113-11ef-95f3-b42e994cb670', 'a5abc0d8-a115-11ef-95f3-b42e994cb670', 2, 2000, 'Uống 1 viên vào buổi sáng', '2024-10-08 14:50:10'),
+(11, '27ede3e9-a113-11ef-95f3-b42e994cb670', 'a5af4b54-a115-11ef-95f3-b42e994cb670', 1, 10000, 'Uống 1 viên buổi sáng trước ăn', '2024-10-08 14:50:10'),
+(12, '27ede476-a113-11ef-95f3-b42e994cb670', 'a5af4858-a115-11ef-95f3-b42e994cb670', 1, 12000, 'Uống 1 viên vào buổi tối', '2024-10-08 14:50:10'),
+(13, '27ede589-a113-11ef-95f3-b42e994cb670', 'a5af4bcc-a115-11ef-95f3-b42e994cb670', 1, 10000, 'Uống 1 viên trước bữa ăn', '2024-10-08 14:50:10'),
+(14, '27ede61b-a113-11ef-95f3-b42e994cb670', 'a5af4b54-a115-11ef-95f3-b42e994cb670', 1, 2000, 'Uống 1 viên buổi sáng', '2024-10-08 14:50:10'),
+(15, '27ede7c3-a113-11ef-95f3-b42e994cb670', 'a5af48e2-a115-11ef-95f3-b42e994cb670', 1, 15000, 'Uống 1 viên mỗi ngày sau ăn', '2024-10-08 14:50:10'),
+(16, '27ede853-a113-11ef-95f3-b42e994cb670', 'a5af47c1-a115-11ef-95f3-b42e994cb670', 1, 25000, 'Uống 1 viên mỗi ngày sau ăn', '2024-10-08 14:50:10'),
+(17, '27ede8e7-a113-11ef-95f3-b42e994cb670', 'a5af4858-a115-11ef-95f3-b42e994cb670', 2, 25000, 'Uống 1 viên mỗi ngày sau ăn', '2024-10-08 14:50:10'),
+(18, '27ede970-a113-11ef-95f3-b42e994cb670', 'a5af4ad7-a115-11ef-95f3-b42e994cb670', 1, 2000, 'Uống 1 viên vào buổi tối', '2024-10-08 14:50:10'),
+(19, '27edeaf7-a113-11ef-95f3-b42e994cb670', 'a5abc0d8-a115-11ef-95f3-b42e994cb670', 1, 2000, 'Uống 1 viên buổi sáng sau ăn', '2024-10-08 14:50:10'),
+(20, '27edeb78-a113-11ef-95f3-b42e994cb670', 'a5af4687-a115-11ef-95f3-b42e994cb670', 1, 3000, 'Uống 1 viên vào buổi tối', '2024-10-08 14:50:10'),
+(21, '27edec92-a113-11ef-95f3-b42e994cb670', 'a5af4961-a115-11ef-95f3-b42e994cb670', 2, 12000, 'Uống 1 viên vào buổi tối', '2024-10-08 14:50:10'),
+(22, '27eded1e-a113-11ef-95f3-b42e994cb670', 'a5af47c1-a115-11ef-95f3-b42e994cb670', 1, 25000, 'Uống 1 viên mỗi ngày sau ăn', '2024-10-08 14:50:10'),
+(23, '27ededa7-a113-11ef-95f3-b42e994cb670', 'a5af4b54-a115-11ef-95f3-b42e994cb670', 1, 10000, 'Uống 1 viên buổi sáng', '2024-10-08 14:50:10'),
+(24, '27edef3e-a113-11ef-95f3-b42e994cb670', 'a5af4858-a115-11ef-95f3-b42e994cb670', 1, 15000, 'Uống 1 viên sau khi ăn', '2024-10-08 14:50:10'),
+(25, '27edf057-a113-11ef-95f3-b42e994cb670', 'a5af47c1-a115-11ef-95f3-b42e994cb670', 1, 2000, 'Uống 1 viên buổi sáng sau ăn', '2024-10-08 14:50:10'),
+(26, '27edf0e4-a113-11ef-95f3-b42e994cb670', 'a5af4ad7-a115-11ef-95f3-b42e994cb670', 1, 2000, 'Uống 1 viên vào buổi tối', '2024-10-08 14:50:10'),
+(27, '27edf16f-a113-11ef-95f3-b42e994cb670', 'a5af4b54-a115-11ef-95f3-b42e994cb670', 1, 10000, 'Uống 1 viên buổi sáng', '2024-10-08 14:50:10'),
+(28, '27edf1fc-a113-11ef-95f3-b42e994cb670', 'a5af48e2-a115-11ef-95f3-b42e994cb670', 1, 1500, 'Uống 1 viên trước khi ăn', '2024-10-08 14:50:10');
 
 -- --------------------------------------------------------
 
@@ -696,8 +789,8 @@ INSERT INTO `fact_prescription` (`pres_id`, `med_hist_id`, `item_id`, `amount`, 
 --
 
 CREATE TABLE `fact_work_schedule` (
-  `work_id` int(11) NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
+  `work_id` char(36) NOT NULL,
+  `user_id` char(36) DEFAULT NULL,
   `start_datetime` varchar(50) DEFAULT NULL,
   `end_datetime` varchar(50) DEFAULT NULL,
   `work_note` varchar(255) DEFAULT NULL,
@@ -710,55 +803,63 @@ CREATE TABLE `fact_work_schedule` (
 --
 
 INSERT INTO `fact_work_schedule` (`work_id`, `user_id`, `start_datetime`, `end_datetime`, `work_note`, `created_at`, `updated_at`) VALUES
-(2, 11, '2024-11-12T08:00:00Z', '2024-11-12T16:00:00Z', NULL, '2024-11-09 09:39:16', NULL),
-(3, 14, '2024-11-14T08:00:00Z', '2024-11-14T16:00:00Z', NULL, '2024-11-09 09:39:16', NULL),
-(4, 13, '2024-11-13T07:00:00Z', '2024-11-13T12:00:00Z', 'Hôm nay tôi phải đi khám bác sĩ, làm việc nửa ngày', '2024-11-09 09:39:16', NULL),
-(5, 16, '2024-11-13T09:00:00Z', '2024-11-13T17:00:00Z', NULL, '2024-11-09 09:39:16', NULL),
-(6, 10, '2024-11-11T07:30:00Z', '2024-11-11T15:30:00Z', NULL, '2024-11-09 09:39:16', NULL),
-(7, 18, '2024-11-10T07:00:00Z', '2024-11-10T12:00:00Z', 'Do có việc gia đình, tôi chỉ làm việc buổi sáng', '2024-11-09 09:39:16', NULL),
-(8, 19, '2024-11-10T10:00:00Z', '2024-11-10T18:00:00Z', NULL, '2024-11-09 09:39:16', NULL),
-(9, 11, '2024-11-14T08:00:00Z', '2024-11-14T14:00:00Z', 'Tôi có cuộc họp quan trọng vào chiều nên phải nghỉ làm buổi chiều', '2024-11-09 09:39:16', NULL),
-(10, 12, '2024-11-12T08:00:00Z', '2024-11-12T16:00:00Z', NULL, '2024-11-09 09:39:16', NULL),
-(11, 15, '2024-11-13T07:30:00Z', '2024-11-13T15:30:00Z', 'Bị ốm, tôi nghỉ ca chiều hôm nay', '2024-11-09 09:39:16', NULL),
-(12, 14, '2024-11-12T08:30:00Z', '2024-11-12T16:30:00Z', NULL, '2024-11-09 09:39:16', NULL),
-(13, 10, '2024-11-10T09:00:00Z', '2024-11-10T17:00:00Z', NULL, '2024-11-09 09:39:16', NULL),
-(14, 17, '2024-11-14T10:00:00Z', '2024-11-14T18:00:00Z', NULL, '2024-11-09 09:39:16', NULL),
-(15, 16, '2024-11-11T10:00:00Z', '2024-11-11T18:00:00Z', NULL, '2024-11-09 09:39:16', NULL),
-(16, 18, '2024-11-12T06:30:00Z', '2024-11-12T12:30:00Z', 'Mẹ tôi ốm nên tôi chỉ có thể làm nửa ngày hôm nay', '2024-11-09 09:39:16', NULL),
-(17, 19, '2024-11-12T08:00:00Z', '2024-11-12T16:00:00Z', NULL, '2024-11-09 09:39:16', NULL),
-(18, 12, '2024-11-14T07:30:00Z', '2024-11-14T15:30:00Z', NULL, '2024-11-09 09:39:16', NULL),
-(19, 14, '2024-11-13T08:00:00Z', '2024-11-13T14:00:00Z', 'Tôi có cuộc hẹn sáng nay, nên chỉ làm nửa ca', '2024-11-09 09:39:16', NULL),
-(20, 15, '2024-11-11T07:00:00Z', '2024-11-11T13:00:00Z', 'Do lý do cá nhân, tôi chỉ làm việc buổi sáng', '2024-11-09 09:39:16', NULL),
-(21, 13, '2024-11-10T09:30:00Z', '2024-11-10T17:30:00Z', NULL, '2024-11-09 09:39:16', NULL),
-(22, 11, '2024-11-13T09:00:00Z', '2024-11-13T17:00:00Z', NULL, '2024-11-09 09:39:16', NULL),
-(23, 18, '2024-11-14T08:00:00Z', '2024-11-14T16:00:00Z', NULL, '2024-11-09 09:39:16', NULL),
-(24, 10, '2024-11-13T08:00:00Z', '2024-11-13T16:00:00Z', NULL, '2024-11-09 09:39:16', NULL),
-(25, 12, '2024-11-10T10:30:00Z', '2024-11-10T16:30:00Z', 'Công việc hôm nay có chút khó khăn, tôi phải làm ca nửa ngày', '2024-11-09 09:39:16', NULL),
-(26, 16, '2024-11-11T07:00:00Z', '2024-11-11T15:00:00Z', 'Tôi phải chăm sóc con cái, vì vậy tôi nghỉ ca chiều', '2024-11-09 09:39:16', NULL),
-(27, 19, '2024-11-13T07:30:00Z', '2024-11-13T15:30:00Z', 'Tôi có lịch hẹn bác sĩ vào chiều nay, nên chỉ làm ca sáng', '2024-11-09 09:39:16', NULL),
-(28, 17, '2024-11-13T08:00:00Z', '2024-11-13T16:00:00Z', NULL, '2024-11-09 09:39:16', NULL),
-(29, 15, '2024-11-14T07:00:00Z', '2024-11-14T15:00:00Z', NULL, '2024-11-09 09:39:16', NULL),
-(30, 14, '2024-11-11T08:00:00Z', '2024-11-11T14:00:00Z', 'Có việc đột xuất, tôi phải nghỉ làm ca chiều', '2024-11-09 09:39:16', NULL),
-(31, 13, '2024-11-12T08:00:00Z', '2024-11-12T16:00:00Z', NULL, '2024-11-09 09:39:16', NULL),
-(32, 16, '2024-11-10T10:00:00Z', '2024-11-10T18:00:00Z', NULL, '2024-11-09 09:39:16', NULL),
-(33, 12, '2024-11-11T09:00:00Z', '2024-11-11T17:00:00Z', NULL, '2024-11-09 09:39:16', NULL),
-(34, 10, '2024-11-12T07:30:00Z', '2024-11-12T15:30:00Z', NULL, '2024-11-09 09:39:16', NULL),
-(35, 14, '2024-11-10T08:30:00Z', '2024-11-10T16:30:00Z', NULL, '2024-11-09 09:39:16', NULL),
-(36, 18, '2024-11-13T08:00:00Z', '2024-11-13T16:00:00Z', NULL, '2024-11-09 09:39:16', NULL),
-(37, 11, '2024-11-14T09:00:00Z', '2024-11-14T17:00:00Z', NULL, '2024-11-09 09:39:16', NULL),
-(38, 19, '2024-11-14T08:00:00Z', '2024-11-14T16:00:00Z', NULL, '2024-11-09 09:39:16', NULL),
-(39, 12, '2024-11-13T09:00:00Z', '2024-11-13T17:00:00Z', NULL, '2024-11-09 09:39:16', NULL),
-(40, 15, '2024-11-12T10:00:00Z', '2024-11-12T18:00:00Z', NULL, '2024-11-09 09:39:16', NULL),
-(41, 13, '2024-11-11T07:30:00Z', '2024-11-11T15:30:00Z', 'Bận việc gia đình, tôi chỉ làm nửa ngày', '2024-11-09 09:39:16', NULL),
-(42, 16, '2024-11-14T07:00:00Z', '2024-11-14T15:00:00Z', NULL, '2024-11-09 09:39:16', NULL),
-(43, 14, '2024-11-12T07:30:00Z', '2024-11-12T15:30:00Z', 'Do lịch hẹn quan trọng, tôi làm việc nửa ngày', '2024-11-09 09:39:16', NULL),
-(44, 17, '2024-11-12T10:00:00Z', '2024-11-12T18:00:00Z', NULL, '2024-11-09 09:39:16', NULL),
-(45, 11, '2024-11-11T10:00:00Z', '2024-11-11T18:00:00Z', NULL, '2024-11-09 09:39:16', NULL),
-(46, 13, '2024-11-14T07:30:00Z', '2024-11-14T15:30:00Z', 'Tôi cần nghỉ ca chiều vì có việc đột xuất', '2024-11-09 09:39:16', NULL),
-(47, 18, '2024-11-10T08:00:00Z', '2024-11-10T16:00:00Z', NULL, '2024-11-09 09:39:16', NULL),
-(48, 19, '2024-11-11T08:30:00Z', '2024-11-11T16:30:00Z', NULL, '2024-11-09 09:39:16', NULL),
-(49, 12, '2024-11-14T07:30:00Z', '2024-11-14T15:30:00Z', NULL, '2024-11-09 09:39:16', NULL),
-(50, 17, '2024-11-12T09:00:00Z', '2024-11-12T17:00:00Z', NULL, '2024-11-09 09:39:16', NULL);
+('10', '68ee0942-a114-11ef-95f3-b42e994cb670', '2024-11-12T08:00:00Z', '2024-11-12T16:00:00Z', NULL, '2024-11-09 09:39:16', '2024-11-12 16:37:37'),
+('11', '68ee0b00-a114-11ef-95f3-b42e994cb670', '2024-11-13T07:30:00Z', '2024-11-13T15:30:00Z', 'Bị ốm, tôi nghỉ ca chiều hôm nay', '2024-11-09 09:39:16', '2024-11-12 16:37:37'),
+('12', '68ee0a6f-a114-11ef-95f3-b42e994cb670', '2024-11-12T08:30:00Z', '2024-11-12T16:30:00Z', NULL, '2024-11-09 09:39:16', '2024-11-12 16:37:37'),
+('13', '68ee0818-a114-11ef-95f3-b42e994cb670', '2024-11-10T09:00:00Z', '2024-11-10T17:00:00Z', NULL, '2024-11-09 09:39:16', '2024-11-12 16:37:37'),
+('14', '68ee0c2a-a114-11ef-95f3-b42e994cb670', '2024-11-14T10:00:00Z', '2024-11-14T18:00:00Z', NULL, '2024-11-09 09:39:16', '2024-11-12 16:37:37'),
+('15', '68ee0b90-a114-11ef-95f3-b42e994cb670', '2024-11-11T10:00:00Z', '2024-11-11T18:00:00Z', NULL, '2024-11-09 09:39:16', '2024-11-12 16:37:37'),
+('16', '68ee0cc5-a114-11ef-95f3-b42e994cb670', '2024-11-12T06:30:00Z', '2024-11-12T12:30:00Z', 'Mẹ tôi ốm nên tôi chỉ có thể làm nửa ngày hôm nay', '2024-11-09 09:39:16', '2024-11-12 16:37:37'),
+('17', '68ee0d59-a114-11ef-95f3-b42e994cb670', '2024-11-12T08:00:00Z', '2024-11-12T16:00:00Z', NULL, '2024-11-09 09:39:16', '2024-11-12 16:37:37'),
+('18', '68ee0942-a114-11ef-95f3-b42e994cb670', '2024-11-14T07:30:00Z', '2024-11-14T15:30:00Z', NULL, '2024-11-09 09:39:16', '2024-11-12 16:37:37'),
+('19', '68ee0a6f-a114-11ef-95f3-b42e994cb670', '2024-11-13T08:00:00Z', '2024-11-13T14:00:00Z', 'Tôi có cuộc hẹn sáng nay, nên chỉ làm nửa ca', '2024-11-09 09:39:16', '2024-11-12 16:37:37'),
+('2', '68ee08af-a114-11ef-95f3-b42e994cb670', '2024-11-12T08:00:00Z', '2024-11-12T16:00:00Z', NULL, '2024-11-09 09:39:16', '2024-11-12 16:37:37'),
+('20', '68ee0b00-a114-11ef-95f3-b42e994cb670', '2024-11-11T07:00:00Z', '2024-11-11T13:00:00Z', 'Do lý do cá nhân, tôi chỉ làm việc buổi sáng', '2024-11-09 09:39:16', '2024-11-12 16:37:37'),
+('21', '68ee09de-a114-11ef-95f3-b42e994cb670', '2024-11-10T09:30:00Z', '2024-11-10T17:30:00Z', NULL, '2024-11-09 09:39:16', '2024-11-12 16:37:37'),
+('22', '68ee08af-a114-11ef-95f3-b42e994cb670', '2024-11-13T09:00:00Z', '2024-11-13T17:00:00Z', NULL, '2024-11-09 09:39:16', '2024-11-12 16:37:37'),
+('23', '68ee0cc5-a114-11ef-95f3-b42e994cb670', '2024-11-14T08:00:00Z', '2024-11-14T16:00:00Z', NULL, '2024-11-09 09:39:16', '2024-11-12 16:37:37'),
+('24', '68ee0818-a114-11ef-95f3-b42e994cb670', '2024-11-13T08:00:00Z', '2024-11-13T16:00:00Z', NULL, '2024-11-09 09:39:16', '2024-11-12 16:37:37'),
+('25', '68ee0942-a114-11ef-95f3-b42e994cb670', '2024-11-10T10:30:00Z', '2024-11-10T16:30:00Z', 'Công việc hôm nay có chút khó khăn, tôi phải làm ca nửa ngày', '2024-11-09 09:39:16', '2024-11-12 16:37:37'),
+('26', '68ee0b90-a114-11ef-95f3-b42e994cb670', '2024-11-11T07:00:00Z', '2024-11-11T15:00:00Z', 'Tôi phải chăm sóc con cái, vì vậy tôi nghỉ ca chiều', '2024-11-09 09:39:16', '2024-11-12 16:37:37'),
+('27', '68ee0d59-a114-11ef-95f3-b42e994cb670', '2024-11-13T07:30:00Z', '2024-11-13T15:30:00Z', 'Tôi có lịch hẹn bác sĩ vào chiều nay, nên chỉ làm ca sáng', '2024-11-09 09:39:16', '2024-11-12 16:37:37'),
+('28', '68ee0c2a-a114-11ef-95f3-b42e994cb670', '2024-11-13T08:00:00Z', '2024-11-13T16:00:00Z', NULL, '2024-11-09 09:39:16', '2024-11-12 16:37:37'),
+('29', '68ee0b00-a114-11ef-95f3-b42e994cb670', '2024-11-14T07:00:00Z', '2024-11-14T15:00:00Z', NULL, '2024-11-09 09:39:16', '2024-11-12 16:37:37'),
+('3', '68ee0a6f-a114-11ef-95f3-b42e994cb670', '2024-11-14T08:00:00Z', '2024-11-14T16:00:00Z', NULL, '2024-11-09 09:39:16', '2024-11-12 16:37:37'),
+('30', '68ee0a6f-a114-11ef-95f3-b42e994cb670', '2024-11-11T08:00:00Z', '2024-11-11T14:00:00Z', 'Có việc đột xuất, tôi phải nghỉ làm ca chiều', '2024-11-09 09:39:16', '2024-11-12 16:37:37'),
+('31', '68ee09de-a114-11ef-95f3-b42e994cb670', '2024-11-12T08:00:00Z', '2024-11-12T16:00:00Z', NULL, '2024-11-09 09:39:16', '2024-11-12 16:37:37'),
+('32', '68ee0b90-a114-11ef-95f3-b42e994cb670', '2024-11-10T10:00:00Z', '2024-11-10T18:00:00Z', NULL, '2024-11-09 09:39:16', '2024-11-12 16:37:37'),
+('33', '68ee0942-a114-11ef-95f3-b42e994cb670', '2024-11-11T09:00:00Z', '2024-11-11T17:00:00Z', NULL, '2024-11-09 09:39:16', '2024-11-12 16:37:37'),
+('34', '68ee0818-a114-11ef-95f3-b42e994cb670', '2024-11-12T07:30:00Z', '2024-11-12T15:30:00Z', NULL, '2024-11-09 09:39:16', '2024-11-12 16:37:37'),
+('35', '68ee0a6f-a114-11ef-95f3-b42e994cb670', '2024-11-10T08:30:00Z', '2024-11-10T16:30:00Z', NULL, '2024-11-09 09:39:16', '2024-11-12 16:37:37'),
+('36', '68ee0cc5-a114-11ef-95f3-b42e994cb670', '2024-11-13T08:00:00Z', '2024-11-13T16:00:00Z', NULL, '2024-11-09 09:39:16', '2024-11-12 16:37:37'),
+('37', '68ee08af-a114-11ef-95f3-b42e994cb670', '2024-11-14T09:00:00Z', '2024-11-14T17:00:00Z', NULL, '2024-11-09 09:39:16', '2024-11-12 16:37:37'),
+('38', '68ee0d59-a114-11ef-95f3-b42e994cb670', '2024-11-14T08:00:00Z', '2024-11-14T16:00:00Z', NULL, '2024-11-09 09:39:16', '2024-11-12 16:37:37'),
+('39', '68ee0942-a114-11ef-95f3-b42e994cb670', '2024-11-13T09:00:00Z', '2024-11-13T17:00:00Z', NULL, '2024-11-09 09:39:16', '2024-11-12 16:37:37'),
+('4', '68ee09de-a114-11ef-95f3-b42e994cb670', '2024-11-13T07:00:00Z', '2024-11-13T12:00:00Z', 'Hôm nay tôi phải đi khám bác sĩ, làm việc nửa ngày', '2024-11-09 09:39:16', '2024-11-12 16:37:37'),
+('40', '68ee0b00-a114-11ef-95f3-b42e994cb670', '2024-11-12T10:00:00Z', '2024-11-12T18:00:00Z', NULL, '2024-11-09 09:39:16', '2024-11-12 16:37:37'),
+('41', '68ee09de-a114-11ef-95f3-b42e994cb670', '2024-11-11T07:30:00Z', '2024-11-11T15:30:00Z', 'Bận việc gia đình, tôi chỉ làm nửa ngày', '2024-11-09 09:39:16', '2024-11-12 16:37:37'),
+('42', '68ee0b90-a114-11ef-95f3-b42e994cb670', '2024-11-14T07:00:00Z', '2024-11-14T15:00:00Z', NULL, '2024-11-09 09:39:16', '2024-11-12 16:37:37'),
+('43', '68ee0a6f-a114-11ef-95f3-b42e994cb670', '2024-11-12T07:30:00Z', '2024-11-12T15:30:00Z', 'Do lịch hẹn quan trọng, tôi làm việc nửa ngày', '2024-11-09 09:39:16', '2024-11-12 16:37:37'),
+('44', '68ee0c2a-a114-11ef-95f3-b42e994cb670', '2024-11-12T10:00:00Z', '2024-11-12T18:00:00Z', NULL, '2024-11-09 09:39:16', '2024-11-12 16:37:37'),
+('45', '68ee08af-a114-11ef-95f3-b42e994cb670', '2024-11-11T10:00:00Z', '2024-11-11T18:00:00Z', NULL, '2024-11-09 09:39:16', '2024-11-12 16:37:37'),
+('46', '68ee09de-a114-11ef-95f3-b42e994cb670', '2024-11-14T07:30:00Z', '2024-11-14T15:30:00Z', 'Tôi cần nghỉ ca chiều vì có việc đột xuất', '2024-11-09 09:39:16', '2024-11-12 16:37:37'),
+('47', '68ee0cc5-a114-11ef-95f3-b42e994cb670', '2024-11-10T08:00:00Z', '2024-11-10T16:00:00Z', NULL, '2024-11-09 09:39:16', '2024-11-12 16:37:37'),
+('48', '68ee0d59-a114-11ef-95f3-b42e994cb670', '2024-11-11T08:30:00Z', '2024-11-11T16:30:00Z', NULL, '2024-11-09 09:39:16', '2024-11-12 16:37:37'),
+('49', '68ee0942-a114-11ef-95f3-b42e994cb670', '2024-11-14T07:30:00Z', '2024-11-14T15:30:00Z', NULL, '2024-11-09 09:39:16', '2024-11-12 16:37:37'),
+('5', '68ee0b90-a114-11ef-95f3-b42e994cb670', '2024-11-13T09:00:00Z', '2024-11-13T17:00:00Z', NULL, '2024-11-09 09:39:16', '2024-11-12 16:37:37'),
+('50', '68ee0c2a-a114-11ef-95f3-b42e994cb670', '2024-11-12T09:00:00Z', '2024-11-12T17:00:00Z', NULL, '2024-11-09 09:39:16', '2024-11-12 16:37:37'),
+('6', '68ee0818-a114-11ef-95f3-b42e994cb670', '2024-11-11T07:30:00Z', '2024-11-11T15:30:00Z', NULL, '2024-11-09 09:39:16', '2024-11-12 16:37:37'),
+('7', '68ee0cc5-a114-11ef-95f3-b42e994cb670', '2024-11-10T07:00:00Z', '2024-11-10T12:00:00Z', 'Do có việc gia đình, tôi chỉ làm việc buổi sáng', '2024-11-09 09:39:16', '2024-11-12 16:37:37'),
+('8', '68ee0d59-a114-11ef-95f3-b42e994cb670', '2024-11-10T10:00:00Z', '2024-11-10T18:00:00Z', NULL, '2024-11-09 09:39:16', '2024-11-12 16:37:37'),
+('9', '68ee08af-a114-11ef-95f3-b42e994cb670', '2024-11-14T08:00:00Z', '2024-11-14T14:00:00Z', 'Tôi có cuộc họp quan trọng vào chiều nên phải nghỉ làm buổi chiều', '2024-11-09 09:39:16', '2024-11-12 16:37:37');
+
+--
+-- Triggers `fact_work_schedule`
+--
+DELIMITER $$
+CREATE TRIGGER `before_insert_fact_work_schedule` BEFORE INSERT ON `fact_work_schedule` FOR EACH ROW SET NEW.work_id = UUID()
+$$
+DELIMITER ;
 
 --
 -- Indexes for dumped tables
@@ -786,7 +887,13 @@ ALTER TABLE `dim_item`
 -- Indexes for table `dim_meds`
 --
 ALTER TABLE `dim_meds`
-  ADD PRIMARY KEY (`meds_id`);
+  ADD PRIMARY KEY (`item_id`);
+
+--
+-- Indexes for table `dim_med_service`
+--
+ALTER TABLE `dim_med_service`
+  ADD PRIMARY KEY (`item_id`);
 
 --
 -- Indexes for table `dim_room`
@@ -853,88 +960,16 @@ ALTER TABLE `fact_work_schedule`
 --
 
 --
--- AUTO_INCREMENT for table `dim_faculty`
---
-ALTER TABLE `dim_faculty`
-  MODIFY `fac_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
--- AUTO_INCREMENT for table `dim_floor`
---
-ALTER TABLE `dim_floor`
-  MODIFY `floor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `dim_item`
---
-ALTER TABLE `dim_item`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
-
---
--- AUTO_INCREMENT for table `dim_meds`
---
-ALTER TABLE `dim_meds`
-  MODIFY `meds_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
-
---
--- AUTO_INCREMENT for table `dim_room`
---
-ALTER TABLE `dim_room`
-  MODIFY `room_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
-
---
--- AUTO_INCREMENT for table `dim_user`
---
-ALTER TABLE `dim_user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
-
---
--- AUTO_INCREMENT for table `fact_appointment`
---
-ALTER TABLE `fact_appointment`
-  MODIFY `appt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
-
---
--- AUTO_INCREMENT for table `fact_facility_asmt`
---
-ALTER TABLE `fact_facility_asmt`
-  MODIFY `fac_asmt_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `fact_facility_mgmt`
---
-ALTER TABLE `fact_facility_mgmt`
-  MODIFY `fac_mgmt_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `fact_med_hist`
---
-ALTER TABLE `fact_med_hist`
-  MODIFY `med_hist_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
-
---
 -- AUTO_INCREMENT for table `fact_patient_details`
 --
 ALTER TABLE `fact_patient_details`
   MODIFY `record_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT for table `fact_payment`
---
-ALTER TABLE `fact_payment`
-  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
-
---
 -- AUTO_INCREMENT for table `fact_prescription`
 --
 ALTER TABLE `fact_prescription`
   MODIFY `pres_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
-
---
--- AUTO_INCREMENT for table `fact_work_schedule`
---
-ALTER TABLE `fact_work_schedule`
-  MODIFY `work_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
