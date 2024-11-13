@@ -3,6 +3,7 @@ import { SignInFormType } from "../pages/SignIn";
 import { ProfileFormType } from "../pages/role-patient/CompleteProfile";
 import { UserFormType, UserRequestType } from "../pages/role-admin/Guest";
 import { ItemRequestType } from "../pages/role-admin/Item";
+import { FacultyRequestType } from "../pages/role-admin/Faculty";
 
 export const hmsAxios = Axios.create({
   baseURL: `/HMS-Nhom11/backend/api/`,
@@ -141,6 +142,73 @@ export const apiGetItem = async(pageType:string) => {
     const res = await hmsAxios.post(
       "/admin/get-item.php",
       JSON.stringify({pageType})
+    );
+    if(res.data) {
+      data = res.data.data;
+    }
+  } catch (err:any) {
+    error = err.response.data.message;
+  }
+  return { data, error };
+}
+
+// Faculty
+export const apiUpdateFaculty = async(facultyForm:FacultyRequestType) => {
+  let error = null;
+  let data = null;
+  try {
+    const res = await hmsAxios.post(
+      "/admin/update-faculty.php",
+      JSON.stringify(facultyForm)
+    );
+    if(res.data) {
+      data = res.data.data;
+    }
+  } catch (err:any) {
+    error = err.response.data.message;
+  }
+  return { data, error };
+}
+
+export const apiGetFaculty = async() => {
+  let error = null;
+  let data = null;
+  try {
+    const res = await hmsAxios.post(
+      "/admin/get-faculty.php"
+    );
+    if(res.data) {
+      data = res.data.data;
+    }
+  } catch (err:any) {
+    error = err.response.data.message;
+  }
+  return { data, error };
+}
+
+// Payment log
+export const apiGetPayment = async() => {
+  let error = null;
+  let data = null;
+  try {
+    const res = await hmsAxios.post(
+      "/payment/get-payment.php"
+    );
+    if(res.data) {
+      data = res.data.data;
+    }
+  } catch (err:any) {
+    error = err.response.data.message;
+  }
+  return { data, error };
+}
+export const apiGetPaymentDetail = async(paymentId:string) => {
+  let error = null;
+  let data = null;
+  try {
+    const res = await hmsAxios.post(
+      "/payment/get-payment-details.php",
+      JSON.stringify({"payment_id": paymentId})
     );
     if(res.data) {
       data = res.data.data;

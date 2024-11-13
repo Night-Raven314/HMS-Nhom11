@@ -20,14 +20,14 @@
       pres_data AS (
       SELECT
           pres.med_hist_id,
-          meds.meds_name,
-          meds.meds_unit,
+          meds.item_name,
+          meds.item_unit,
           pres.amount,
           pres.price,
           pres.amount * pres.price AS total_value
       FROM `fact_prescription` pres
           LEFT JOIN `dim_meds` meds
-              ON pres.item_id = meds.meds_id
+              ON pres.item_id = meds.item_id
       ),
 
       facility_data AS (
@@ -46,14 +46,14 @@
 
       SELECT
           fac.fac_mgmt_id,
-          svcs.service_name,
-          svcs.service_unit,
+          svcs.item_name,
+          svcs.item_unit,
           fac.amount,
           fac.item_price,
           fac.amount * fac.item_price AS total_value
       FROM `fact_facility_asmt` fac
           LEFT JOIN `dim_med_service` svcs
-              ON fac.item_id = svcs.service_id AND fac.item_type = 'service'
+              ON fac.item_id = svcs.item_id AND fac.item_type = 'service'
 
       UNION ALL
 
@@ -72,7 +72,7 @@
       appointment_data AS (
       SELECT
           appt.appt_id,
-          usr.fullname,
+          usr.full_name,
           facl.fac_name,
           1 AS amount,
           appt.appt_fee,
@@ -102,7 +102,7 @@
             pmt.payment_desc,
             pres.*
         FROM `fact_payment` pmt
-        LEFT JOIN `pres_data` pres ON pres.med_hist_id = pmt.pres_id
+        LEFT JOIN `pres_data` pres ON pres.med_hist_id = pmt.med_hist_id
 
         UNION ALL
 

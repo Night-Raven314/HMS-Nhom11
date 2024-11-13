@@ -9,6 +9,8 @@ import { GoogleLoginRedirect } from "./pages/GoogleLoginRedirect";
 import { CompleteProfile } from "./pages/role-patient/CompleteProfile";
 import { ProfilePage } from "./pages/Profile";
 import { AdminItem } from "./pages/role-admin/Item";
+import { AdminFaculty } from "./pages/role-admin/Faculty";
+import { AdminPaymentLog } from "./pages/role-admin/PaymentLog";
 
 export const App:FC = () => {
   const [checkLogin, setCheckLogin] = useState<boolean>(false);
@@ -59,12 +61,12 @@ export const App:FC = () => {
       element: <AdminGuest pageType="employee" />,
     },
     {
-      path: "/role-admin/payment_log",
-      element: <div>To be added</div>,
+      path: "/role-admin/payment-log",
+      element: <AdminPaymentLog />,
     },
     {
-      path: "/role-admin/specialty",
-      element: <div>To be added</div>,
+      path: "/role-admin/faculty",
+      element: <AdminFaculty />,
     },
     {
       path: "/role-admin/supply",

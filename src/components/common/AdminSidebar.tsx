@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FC } from "react";
 import { faCalendar, faClipboard } from "@fortawesome/free-regular-svg-icons";
 import { faBookMedical, faIdBadge, faKitMedical, faMoneyBill, faNotesMedical, faPills, faUserPen, faUsers } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 export type AdminSidebarProps = {
   selectedItem: string;
@@ -81,73 +82,71 @@ export const AdminSidebar:FC<AdminSidebarProps> = ({selectedItem}) => {
             </a>
           </li>
 
-
           <li className="nav-item">
-            <a className={`nav-link text-white ${selectedItem === "employee" ? "active bg-gradient-primary" : ""}`} href="/role-admin/employee">
+            <Link to="/role-admin/employee">
+              <div className={`nav-link text-white ${selectedItem === "employee" ? "active bg-gradient-primary" : ""}`}>
+                <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                  <FontAwesomeIcon icon={faIdBadge} />
+                </div>
 
-              <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                <FontAwesomeIcon icon={faIdBadge} />
+                <span className="nav-link-text ms-1">Quản lý nhân viên</span>
               </div>
-
-              <span className="nav-link-text ms-1">Quản lý nhân viên</span>
-            </a>
-          </li>
-
-
-          <li className="nav-item">
-            <a className={`nav-link text-white ${selectedItem === "item" ? "active bg-gradient-primary" : ""}`} href="/role-admin/supply">
-
-              <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                <FontAwesomeIcon icon={faKitMedical} />
-              </div>
-
-              <span className="nav-link-text ms-1">Quản lý vật tư</span>
-            </a>
+            </Link>
           </li>
 
           <li className="nav-item">
-            <a className={`nav-link text-white ${selectedItem === "meds" ? "active bg-gradient-primary" : ""}`} href="/role-admin/medicine">
-
-              <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                <FontAwesomeIcon icon={faPills} />
+            <Link to="/role-admin/supply">
+              <div className={`nav-link text-white ${selectedItem === "item" ? "active bg-gradient-primary" : ""}`}>
+                <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                  <FontAwesomeIcon icon={faKitMedical} />
+                </div>
+                <span className="nav-link-text ms-1">Quản lý vật tư</span>
               </div>
-
-              <span className="nav-link-text ms-1">Quản lý thuốc</span>
-            </a>
+            </Link>
           </li>
 
           <li className="nav-item">
-            <a className={`nav-link text-white ${selectedItem === "med_service" ? "active bg-gradient-primary" : ""}`} href="/role-admin/med-service">
-
-              <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                <FontAwesomeIcon icon={faBookMedical} />
+            <Link to="/role-admin/medicine">
+              <div className={`nav-link text-white ${selectedItem === "meds" ? "active bg-gradient-primary" : ""}`}>
+                <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                  <FontAwesomeIcon icon={faPills} />
+                </div>
+                <span className="nav-link-text ms-1">Quản lý thuốc</span>
               </div>
-
-              <span className="nav-link-text ms-1">Quản lý dịch vụ y tế</span>
-            </a>
-          </li>
-
-
-          <li className="nav-item">
-            <a className={`nav-link text-white ${selectedItem === "specialty" ? "active bg-gradient-primary" : ""}`} href="/role-admin/specialty">
-
-              <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                <FontAwesomeIcon icon={faNotesMedical} />
-              </div>
-
-              <span className="nav-link-text ms-1">Quản lý chuyên khoa</span>
-            </a>
+            </Link>
           </li>
 
           <li className="nav-item">
-            <a className={`nav-link text-white ${selectedItem === "payment-log" ? "active bg-gradient-primary" : ""}`} href="/role-admin/payment-log">
-
-              <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                <FontAwesomeIcon icon={faMoneyBill} />
+            <Link to="/role-admin/med-service">
+              <div className={`nav-link text-white ${selectedItem === "med_service" ? "active bg-gradient-primary" : ""}`}>
+                <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                  <FontAwesomeIcon icon={faBookMedical} />
+                </div>
+                <span className="nav-link-text ms-1">Quản lý dịch vụ y tế</span>
               </div>
+            </Link>
+          </li>
 
-              <span className="nav-link-text ms-1">Lịch sử giao dịch</span>
-            </a>
+          <li className="nav-item">
+            <Link to="/role-admin/faculty">
+              <div className={`nav-link text-white ${selectedItem === "faculty" ? "active bg-gradient-primary" : ""}`}>
+                <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                  <FontAwesomeIcon icon={faNotesMedical} />
+                </div>
+                <span className="nav-link-text ms-1">Quản lý chuyên khoa</span>
+              </div>
+            </Link>
+          </li>
+
+          <li className="nav-item">
+            <Link to="/role-admin/payment-log">
+              <div className={`nav-link text-white ${selectedItem === "payment-log" ? "active bg-gradient-primary" : ""}`}>
+                <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                  <FontAwesomeIcon icon={faMoneyBill} />
+                </div>
+                <span className="nav-link-text ms-1">Lịch sử giao dịch</span>
+              </div>
+            </Link>
           </li>
 
         </ul>
