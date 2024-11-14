@@ -563,6 +563,23 @@ div#popupFormContainer {
   font-weight: 700;
   margin-bottom: 5px;
 }
+.title-with-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 5px;
+  .title-text {
+    font-size: 14pt;
+    font-weight: 700;
+  }
+  .title-button {
+    button {
+      padding: 3px 8px;
+      margin-bottom: 0;
+      font-size: 11pt;
+    }
+  }
+}
 
 // Button
 .btn-gradient {
@@ -572,4 +589,9 @@ div#popupFormContainer {
 .btn-outline {
   border: 1px solid $hms-neutral!important;
   color: $hms-neutral;
+}
+.btn {
+  &:hover, &:active {
+    color: #fff!important;
+  }
 }

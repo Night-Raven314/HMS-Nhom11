@@ -1,3 +1,5 @@
+import { format } from "date-fns";
+
 export const getItemTypeName = (type:string) => {
   switch (type) {
     case "appointment":
@@ -10,4 +12,8 @@ export const getItemTypeName = (type:string) => {
     default:
       break;
   }
+}
+
+export const convertISOToDateTime = (date:string) => {
+  return format(new Date(date), "yyyy-MM-dd HH:mm");
 }
