@@ -16,7 +16,24 @@
   if ($data) {
     $auth_user_id = $data['auth_user_id'] ? mysqli_real_escape_string($conn, $data['auth_user_id']) : null;
     // Process the form data (e.g., save to database, send email, etc.)
-    $sql = "SELECT * FROM `dim_appointment` WHERE status <> 'inactive' AND doctor_id = '$auth_user_id'";
+    $sql = "SELECT
+        appt.doctor_id,
+        dct.full_name AS doctor_name,
+        appt.patient_id,
+        ptn.full_name AS patient_name,
+        appt.faculty_id,
+        fac.fac_name AS faculty_name,
+        appt.appt_fee,
+        appt.appt_datetime
+      FROM `fact_appointment` appt
+        LEFT JOIN `dim_user` dct
+          ON appt.doctor_id = dct.user_id
+        LEFT JOIN `dim_user` ptn
+          ON appt.patient_id = ptn.user_id
+        LEFT JOIN `dim_faculty` fac
+          ON appt.faculty_id = dct.faculty_id
+      WHERE
+        appt.status <> 'inactive' AND doctor_id = '$auth_user_id'";
     if($sql) {
       $result = $conn->query($sql);
       if ($result) { 
