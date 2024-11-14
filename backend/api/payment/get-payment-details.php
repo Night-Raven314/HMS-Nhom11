@@ -24,8 +24,8 @@
           meds.item_unit,
           pres.amount,
           pres.price,
-          pres.amount * pres.price AS total_value
-          'prescription' AS item_type,
+          pres.amount * pres.price AS total_value,
+          'prescription' AS item_type
       FROM `fact_prescription` pres
           LEFT JOIN `dim_meds` meds
               ON pres.item_id = meds.item_id
@@ -38,8 +38,8 @@
           item.item_unit,
           fac.amount,
           fac.item_price,
-          fac.amount * fac.item_price AS total_value
-          'facility' AS item_type,
+          fac.amount * fac.item_price AS total_value,
+          'facility' AS item_type
       FROM `fact_facility_asmt` fac
           LEFT JOIN `dim_item` item
               ON fac.item_id = item.item_id AND fac.item_type = 'item'
@@ -52,8 +52,8 @@
           svcs.item_unit,
           fac.amount,
           fac.item_price,
-          fac.amount * fac.item_price AS total_value
-          'facility' AS item_type,
+          fac.amount * fac.item_price AS total_value,
+          'facility' AS item_type
       FROM `fact_facility_asmt` fac
           LEFT JOIN `dim_med_service` svcs
               ON fac.item_id = svcs.item_id AND fac.item_type = 'service'
@@ -64,10 +64,10 @@
           fac.fac_mgmt_id,
           room.room_name,
           'room slot' AS unit,
-          timestampdiff(day, STR_TO_DATE(fac.start_datetime, '%Y-%m-%dT%H:%i:%s'), STR_TO_DATE(fac.end_datetime, '%Y-%m-%dT%H:%i:%s')) + 1  AS amount -- same start/end date means 1
+          timestampdiff(day, STR_TO_DATE(fac.start_datetime, '%Y-%m-%dT%H:%i:%s'), STR_TO_DATE(fac.end_datetime, '%Y-%m-%dT%H:%i:%s')) + 1, -- same start/end date means 1
           fac.item_price,
-          timestampdiff(day, STR_TO_DATE(fac.start_datetime, '%Y-%m-%dT%H:%i:%s'), STR_TO_DATE(fac.end_datetime, '%Y-%m-%dT%H:%i:%s')) * fac.item_price  AS total_value -- same start/end date means 1
-          'facility' AS item_type,
+          timestampdiff(day, STR_TO_DATE(fac.start_datetime, '%Y-%m-%dT%H:%i:%s'), STR_TO_DATE(fac.end_datetime, '%Y-%m-%dT%H:%i:%s')) * fac.item_price  AS total_value, -- same start/end date means 1
+          'facility' AS item_type
       FROM `fact_facility_asmt` fac
           LEFT JOIN `dim_room` room
               ON fac.item_id = room.room_id AND fac.item_type = 'room'
@@ -80,8 +80,8 @@
           facl.fac_name,
           1 AS amount,
           appt.appt_fee,
-          appt.appt_fee AS total_value
-          'appointment' AS item_type,
+          appt.appt_fee AS total_value,
+          'appointment' AS item_type
       FROM `fact_appointment` appt
           LEFT JOIN `dim_faculty` facl
               ON facl.fac_id = appt.faculty_id

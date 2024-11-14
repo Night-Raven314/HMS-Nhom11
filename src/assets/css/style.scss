@@ -3,7 +3,7 @@ $hms-neutral: #167070;
 $hms-dark: #003D59;
 $text-color: #414A4F;
 $input-border: #d2d6da;
-$table-border: #f0f2f5;
+$table-border: #b8b8b8;
 $hms-gradient: linear-gradient(195deg, #167070 0%, #003d59 100%);
 
 // Colors
@@ -534,6 +534,34 @@ div#popupFormContainer {
       }
     }
   }
+  &.no-header {
+    .table-body {
+      margin-top: 0;
+      table {
+        thead {
+          th {
+            padding-top: 10px;
+          }
+        }
+      }
+    }
+  }
+  &.modal-height {
+    .table-body {
+      max-height: calc(90vh - 209px);
+      max-height: calc(100dvh - 209px);
+    }
+  }
+  &.full-height {
+    .table-body {
+      max-height: none;
+    }
+  }
+}
+.table-title {
+  font-size: 14pt;
+  font-weight: 700;
+  margin-bottom: 5px;
 }
 
 // Button

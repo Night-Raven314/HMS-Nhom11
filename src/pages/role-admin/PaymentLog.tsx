@@ -5,6 +5,7 @@ import { NavbarHandles, PageNavbar } from "../../components/common/PageNavbar";
 import { CustomModal, CustomModalHandles } from "../../components/common/CustomModal";
 import { apiGetPayment, apiGetPaymentDetail } from "../../helpers/axios";
 import { useToast } from "../../components/common/CustomToast";
+import { getItemTypeName } from "../../helpers/utils";
 
 export type PaymentListType = {
   payment_id: string;
@@ -19,6 +20,23 @@ export type PaymentListType = {
   created_at: string;
   updated_at: string;
 };
+type PaymentDetailsType = {
+  payment_id: string;
+  payment_type: string;
+  payment_desc: string;
+  appt_id: string;
+  full_name: string;
+  fac_name: string;
+  amount: string;
+  appt_fee: string;
+  total_value: string;
+  item_type: string;
+};
+type PaymentDetailsTableType = {
+  tableType: string;
+  tableDetails: PaymentDetailsType[]
+}
+
 
 
 export const AdminPaymentLog: FC = () => {
@@ -26,12 +44,12 @@ export const AdminPaymentLog: FC = () => {
 
   const navbarRef = useRef<NavbarHandles>(null);
   const infoModalRef = useRef<CustomModalHandles>(null);
-  const [viewPayment, setViewPayment] = useState<PaymentListType | null>(null);
+  const [viewPayment, setViewPayment] = useState<PaymentDetailsTableType[]>([]);
   const [searchKeyword, setSearchKeyword] = useState<string>("");
   const [paymentList, setPaymentList] = useState<PaymentListType[]>([]);
   const [paymentListFiltered, setPaymentListFiltered] = useState<PaymentListType[]>([]);
 
-  const pageTerm = "chuyên khoa";
+  const pageTerm = "Lịch sử giao dịch";
 
   useEffect(() => {
     getPaymentList();
@@ -46,7 +64,7 @@ export const AdminPaymentLog: FC = () => {
             if(getPaymentDetails.error) {
               openToast("error", "Lỗi", "Đã xảy ra lỗi khi lấy lịch sử giao dịch này!", 5000);
             } else if(getPaymentDetails.data) {
-              setViewPayment(getPaymentDetails.data);
+              setupPaymentDetail(getPaymentDetails.data);
               infoModalRef.current.openModal();
             }
           }
@@ -59,6 +77,23 @@ export const AdminPaymentLog: FC = () => {
           break;
       }
     }
+  }
+
+  const setupPaymentDetail = (data:any) => {
+    let uniqueType:string[] = [];
+    data.forEach((item:any) => {
+      if(!uniqueType.includes(item.item_type)) {
+        uniqueType.push(item.item_type);
+      }
+    });
+    let tmpDetailsTable:PaymentDetailsTableType[] = []
+    uniqueType.forEach(type => {
+      tmpDetailsTable.push({
+        tableType: type,
+        tableDetails: data.filter((item:any) => item.item_type === type)
+      })
+    })
+    setViewPayment(tmpDetailsTable);
   }
 
   const getPaymentList = async() => {
@@ -86,7 +121,7 @@ export const AdminPaymentLog: FC = () => {
     <>
       <Helmet>
         <title>
-          Quản lý {pageTerm} - HKL
+          {pageTerm} - HKL
         </title>
       </Helmet>
 
@@ -97,7 +132,7 @@ export const AdminPaymentLog: FC = () => {
           </div>
           <div className="page-content">
             <PageNavbar
-              navbarTitle={`Quản lý ${pageTerm}`}
+              navbarTitle={`${pageTerm}`}
               searchRequest={(keyword) => {setSearchKeyword(keyword)}}
               ref={navbarRef}
             />
@@ -124,7 +159,7 @@ export const AdminPaymentLog: FC = () => {
                           <td className="text-color">{payment.payment_id}</td>
                           <td>{payment.created_at}</td>
                           <td>{payment.updated_at ? payment.updated_at : ""}</td>
-                          <td>{payment.payment_type}</td>
+                          <td>{getItemTypeName(payment.payment_type)}</td>
                           <td>{payment.bank_trans_code}</td>
                           <td>{payment.amount}</td>
                         </tr>
@@ -141,12 +176,50 @@ export const AdminPaymentLog: FC = () => {
       {/* Modal xem giao dịch */}
       <CustomModal
         headerTitle={"Thông tin giao dịch"}
-        size="md"
+        size="xl"
         type="modal"
         ref={infoModalRef}
       >
         <div className="body-content">
-          
+          {viewPayment.length ? (
+            <>
+              {viewPayment.map(type => (
+                <>
+                  <div className="table-title">{getItemTypeName(type.tableType)}</div>
+                  <div className="hms-table no-header full-height" style={{marginBottom: "30px"}}>
+                    <div className="table-body">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th style={{ width: "150px" }}>{type.tableType === "appointment" ? "Bác sỹ" : "Tên sản phẩm"}</th>
+                            <th style={{ width: "140px" }}>{type.tableType === "appointment" ? "Chuyên khoa" : "Đơn vị"}</th>
+                            <th style={{ width: "50px" }}>Số lượng</th>
+                            <th style={{ width: "100px" }}>Đơn giá</th>
+                            <th style={{ width: "100px" }}>Tổng</th>
+                            <th style={{ width: "140px" }}>Ghi chú</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {type.tableDetails.map((payment, index) => (
+                            <tr key={index}>
+                              <td>{payment.full_name}</td>
+                              <td>{payment.fac_name}</td>
+                              <td>{payment.amount}</td>
+                              <td>{payment.appt_fee}</td>
+                              <td>{payment.total_value}</td>
+                              <td>{payment.payment_desc}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </>
+              ))}
+            </>
+          ) : (
+            <div>Không có dữ liệu</div>
+          )}
         </div>
         <div className="body-footer">
           <div className="button-list">
