@@ -3,21 +3,21 @@ define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT']);
 
 session_start();
 
-include('sess-check.php');
+// include('sess-check.php');
 include SITE_ROOT . ('/HMS-Nhom11/backend/assets/include/config.php');
 include SITE_ROOT . ('/HMS-Nhom11/backend/assets/include/header.php');
 
 // Khởi tạo biến
-$specialties = []; // Khởi tạo mảng
+$faculty = []; // Khởi tạo mảng
 
 // Lấy dữ liệu chuyên khoa
-$sql = "SELECT specialty_id, specialty_name FROM dim_specialties";
+$sql = "SELECT fac_id, fac_name FROM dim_faculty";
 $result = $conn->query($sql);
 
 if ($result) {
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            $specialties[] = $row; // Thêm mỗi hàng vào mảng
+            $faculty[] = $row; // Thêm mỗi hàng vào mảng
         }
     } else {
         echo "Không có chuyên khoa nào được tìm thấy.";
@@ -298,7 +298,7 @@ if ($result) {
                 const tbodyHTML = tableDataFiltered.map(item => `
           <tr>
             <td class="align-middle text-center text-sm">
-              <p class="text-xs font-weight-bold mb-0">${item.specialty_name}</p>
+              <p class="text-xs font-weight-bold mb-0">${item.fac_name}</p>
             </td>
             <td class="align-middle text-center">
               <p class="text-xs font-weight-bold mb-0">
@@ -451,11 +451,11 @@ if ($result) {
             }
 
             <?php
-            $current_user = $_SESSION['auth_user_id'];
-            $sql = "SELECT spc.specialty_name AS specialty_name, sch.* 
+            $current_user = "68ee08af-a114-11ef-95f3-b42e994cb670";
+            $sql = "SELECT spc.fac_name AS fac_name, sch.* 
             FROM `fact_work_schedule` sch 
-            LEFT JOIN `dim_specialties` spc 
-            ON spc.specialty_id = sch.specialty_id 
+            LEFT JOIN `dim_faculty` spc 
+            ON spc.fac_id = sch.fac_id 
             WHERE `user_id` = $current_user ";
             $result = $conn->query($sql);
             // Kiểm tra và hiển thị dữ liệu

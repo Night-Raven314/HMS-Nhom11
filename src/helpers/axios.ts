@@ -218,3 +218,21 @@ export const apiGetPaymentDetail = async(paymentId:string) => {
   }
   return { data, error };
 }
+
+// Doctor schedule
+export const apiGetDoctorSchedule = async(userId:string) => {
+  let error = null;
+  let data = null;
+  try {
+    const res = await hmsAxios.post(
+      "/doctor/get-appointment.php",
+      JSON.stringify({auth_user_id: userId})
+    );
+    if(res.data) {
+      data = res.data.data;
+    }
+  } catch (err:any) {
+    error = err.response.data.message;
+  }
+  return { data, error };
+}

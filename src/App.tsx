@@ -11,6 +11,7 @@ import { ProfilePage } from "./pages/Profile";
 import { AdminItem } from "./pages/role-admin/Item";
 import { AdminFaculty } from "./pages/role-admin/Faculty";
 import { AdminPaymentLog } from "./pages/role-admin/PaymentLog";
+import { DoctorSchedule } from "./pages/role-doctor/Schedule";
 
 export const App:FC = () => {
   const [checkLogin, setCheckLogin] = useState<boolean>(false);
@@ -79,6 +80,14 @@ export const App:FC = () => {
     {
       path: "/role-admin/med-service",
       element: <AdminItem pageType="med_service" />,
+    },
+    {
+      path: "/role-doctor/schedule",
+      element: <DoctorSchedule />,
+    },
+    {
+      path: "/role-doctor/",
+      element: <div>To be added</div>,
     },
     {
       path: "/role-doctor/",
