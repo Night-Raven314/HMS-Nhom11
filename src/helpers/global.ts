@@ -1,7 +1,7 @@
 import { TmpUserSessionType, UserSessionType } from "./types";
 
 export let UserSession:UserSessionType | null = null;
-export const setUserSession = (data:UserSessionType) => {
+export const setUserSession = (data:UserSessionType | null) => {
   UserSession = data;
 }
 
