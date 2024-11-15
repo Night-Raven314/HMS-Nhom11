@@ -13,6 +13,7 @@ import { AdminFaculty } from "./pages/role-admin/Faculty";
 import { AdminPaymentLog } from "./pages/role-admin/PaymentLog";
 import { DoctorSchedule } from "./pages/role-doctor/Schedule";
 import { Logout } from "./pages/Logout";
+import { FacebookLoginRedirect } from "./pages/FacebookLoginRedirect";
 
 export const App:FC = () => {
   const [checkLogin, setCheckLogin] = useState<boolean>(false);
@@ -53,6 +54,10 @@ export const App:FC = () => {
     {
       path: "/google-login-redirect",
       element: <GoogleLoginRedirect />,
+    },
+    {
+      path: "/facebook-login-redirect",
+      element: <FacebookLoginRedirect />,
     },
     {
       path: "/role-patient/complete-profile",

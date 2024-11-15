@@ -66,6 +66,22 @@ export const apiProcessGoogleSignIn = async(param:string) => {
   return { data, error };
 }
 
+export const apiProcessFacebookSignIn = async(param:string) => {
+  let error = null;
+  let data = null;
+  try {
+    const res = await hmsAxios.post(
+      `/oauth/f-authenticate.php${param}`
+    );
+    if(res.data) {
+      data = res.data.data;
+    }
+  } catch (err:any) {
+    error = err.response.data.message;
+  }
+  return { data, error };
+}
+
 export const apiCompleteProfile = async(profileForm:ProfileFormType) => {
   let error = null;
   let data = null;

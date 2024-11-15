@@ -53,9 +53,7 @@ if(isset($_GET['code'])){
             $data = (object)[
               "auth_user_id" => $new_row['user_id'],
               "auth_user_role" => $new_row['role'],
-              "auth_login_type" => "google_oauth",
-              "temp_regis_name" => $full_name,
-              "temp_regis_email" => $user_email
+              "auth_login_type" => "google_oauth"
             ];
             echo json_encode(["status" => "success", "data" => $data]);
         } else {
@@ -64,7 +62,7 @@ if(isset($_GET['code'])){
             $data = (object)[
               "auth_user_id" => $old_row['user_id'],
               "auth_user_role" => $old_row['role'],
-              "auth_login_type" => "manual"
+              "auth_login_type" => "google-oauth"
             ];
             echo json_encode(["status" => "success", "data" => $data]);
         }

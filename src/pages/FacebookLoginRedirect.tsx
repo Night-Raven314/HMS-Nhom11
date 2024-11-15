@@ -1,9 +1,9 @@
 import { FC, useEffect } from "react";
-import { apiProcessGoogleSignIn } from "../helpers/axios";
+import { apiProcessFacebookSignIn } from "../helpers/axios";
 import { setTmpUserSession, setUserSession, UserSession } from "../helpers/global";
 import { useNavigate } from "react-router-dom";
 
-export const GoogleLoginRedirect:FC = () => {
+export const FacebookLoginRedirect:FC = () => {
   const navigate = useNavigate();
   const handleRedirectBasedOnRoles = () => {
     if(UserSession) {
@@ -26,7 +26,7 @@ export const GoogleLoginRedirect:FC = () => {
   
   useEffect(() => {
     const processSignIn = async(param:string) => {
-      const response = await apiProcessGoogleSignIn(param);
+      const response = await apiProcessFacebookSignIn(param);
       if(response.data) {
         if(response.data.auth_user_id) {
           setTmpUserSession(response.data);
@@ -39,7 +39,7 @@ export const GoogleLoginRedirect:FC = () => {
       }
     }
     const getFullUrl = window.location.href;
-    const getParam = getFullUrl.split("http://localhost/google-login-redirect")[1];
+    const getParam = getFullUrl.split("http://localhost/facebook-login-redirect")[1];
     if(getParam) {
       processSignIn(getParam);
     }
