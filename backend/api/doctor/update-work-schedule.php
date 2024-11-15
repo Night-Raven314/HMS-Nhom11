@@ -17,9 +17,10 @@
     $sql = "";
     // Access form values
     $auth_user_id = $data['auth_user_id'] ? mysqli_real_escape_string($conn, $data['auth_user_id']) : null;
+    $post_id = $data['work_id'] ? mysqli_real_escape_string($conn, $data['work_id']) : null;
     $post_action = mysqli_real_escape_string($conn, $data['action']);
     if($post_action === "delete") {
-      $sql = "UPDATE `fact_work-schedule` SET `status` = 'inactive' WHERE user_id = '$auth_user_id'";
+      $sql = "UPDATE `fact_work-schedule` SET `status` = 'inactive' WHERE work_id = '$post_id'";
       $result = mysqli_query($conn, $sql);
       if ($result) {
         echo json_encode(["status" => "success", "data" => "success"]);
@@ -43,17 +44,13 @@
           break;
 
         case 'update':
-          $sub_main_sql = "UPDATE `fact_work-schedule` SET `status` = 'inactive' WHERE user_id = '$auth_user_id'";
+          $post_start_time = mysqli_real_escape_string($conn, $row['start_datetime']);
+          $post_end_time = mysqli_real_escape_string($conn, $row['end_datetime']);
+          $post_note = mysqli_real_escape_string($conn, $row['work_note']);
+
+          $sub_main_sql = "UPDATE `fact_work-schedule` SET `user_id` = '$auth_user_id', `start_datetime` = '$post_start_time', `end_datetime` = '$post_end_time', `work_note` = '$post_note' WHERE work_id = '$post_id'";
           mysqli_query($conn, $sub_main_sql);
           
-          foreach ($data["request"] as $row) {
-            $post_start_time = mysqli_real_escape_string($conn, $row['start_datetime']);
-            $post_end_time = mysqli_real_escape_string($conn, $row['end_datetime']);
-            $post_note = mysqli_real_escape_string($conn, $row['work_note']);
-
-            $sub_sql = "INSERT INTO `fact_work_schedule` (`user_id`, `start_datetime`, `end_datetime`, `work_note`) VALUES ('$auth_user_id', '$post_start_time', '$post_end_time', '$post_note')";
-            mysqli_query($conn, $sub_sql);
-          }
           echo json_encode(["status" => "success", "data" => "success"]);
           break;
 

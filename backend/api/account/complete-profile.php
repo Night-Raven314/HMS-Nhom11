@@ -16,6 +16,7 @@
     $errorMsg = "";
     // Access form values
     $user_id = mysqli_real_escape_string($conn, $data['userId']);
+    $user_role = mysqli_real_escape_string($conn, $data['userRole']);
     $login_type = mysqli_real_escape_string($conn, $data['loginType']);
     $post_full_name = mysqli_real_escape_string($conn, $data['fullName']);
     $post_user_name = mysqli_real_escape_string($conn, $data['userName']);
@@ -44,7 +45,7 @@
     if ($result) {
       $response = (object)[
         "auth_user_id" => $user_id,
-        "auth_user_role" => "patient",
+        "auth_user_role" => $user_role,
         "auth_login_type" => $login_type
       ];
       echo json_encode(["status" => "success", "data" => $response]);
