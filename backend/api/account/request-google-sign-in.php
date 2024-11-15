@@ -8,7 +8,7 @@
   $client = new Google_Client();
   $client->setClientId('104458844677-uvj7eo80ufvo6cimqoa3jr4s2rldoje2.apps.googleusercontent.com');
   $client->setClientSecret('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');
-  $client->setRedirectUri('http://localhost/google-login-redirect');
+  $client->setRedirectUri('https://localhost/google-login-redirect');
   $client->addScope("email");
   $client->addScope("profile");
   $client->addScope("https://www.googleapis.com/auth/user.addresses.read");

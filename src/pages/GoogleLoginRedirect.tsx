@@ -39,7 +39,7 @@ export const GoogleLoginRedirect:FC = () => {
       }
     }
     const getFullUrl = window.location.href;
-    const getParam = getFullUrl.split("http://localhost/google-login-redirect")[1];
+    const getParam = getFullUrl.split("https://localhost/google-login-redirect")[1];
     if(getParam) {
       processSignIn(getParam);
     }

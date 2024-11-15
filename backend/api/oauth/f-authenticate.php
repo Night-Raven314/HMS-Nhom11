@@ -24,7 +24,7 @@ if (isset($_GET['state'])) {
 // If the captured code param exists and is valid
 try {
     // Get the access token
-    $accessToken = $helper->getAccessToken();
+    $accessToken = $helper->getAccessToken('https://localhost/facebook-login-redirect');
 } catch (Facebook\Exceptions\FacebookResponseException $e) {
     // Handle error
     echo 'Graph returned an error: ' . $e->getMessage();
@@ -38,7 +38,7 @@ try {
 // If the access token is not set, redirect to the login page
 if (!isset($accessToken)) {
     // Define params and redirect to Facebook OAuth page
-    $loginUrl = $helper->getLoginUrl('http://localhost/facebook-login-redirect', ['email']);
+    $loginUrl = $helper->getLoginUrl('https://localhost/facebook-login-redirect', ['email']);
     header('Location: ' . $loginUrl);
     exit;
 }
@@ -68,11 +68,16 @@ try {
 
         $user_add = "INSERT INTO `dim_user` (`email_address`, `full_name`, `role`, `oauth_facebook`) VALUES ('$user_email', '$full_name', 'patient', '$user_id')";
         $user_info_add = mysqli_query($conn, $user_add);
-        $log_user_id = mysqli_insert_id($conn);
+        $user_get = "SELECT * FROM `dim_user` WHERE `oauth_facebook` = '$user_id' AND `role` = 'patient'";
+        $user_info_get = mysqli_query($conn, $user_get);
+        $new_row = mysqli_fetch_assoc($user_info_get);
+
+        // header('Refresh:0 , url=http://localhost:8080/HMS-Nhom11/role-patient/complete_profile.php');
+
         $data = (object)[
-          "auth_user_id" => $log_user_id,
-          "auth_user_role" => "patient",
-          "auth_login_type" => "facebook_oauth"
+          "auth_user_id" => $new_row['user_id'],
+          "auth_user_role" => $new_row['role'],
+          "auth_login_type" => "google_oauth"
         ];
         echo json_encode(["status" => "success", "data" => $data]);
     } else {

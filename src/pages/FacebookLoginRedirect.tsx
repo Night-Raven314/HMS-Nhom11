@@ -39,7 +39,7 @@ export const FacebookLoginRedirect:FC = () => {
       }
     }
     const getFullUrl = window.location.href;
-    const getParam = getFullUrl.split("http://localhost/facebook-login-redirect")[1];
+    const getParam = getFullUrl.split("https://localhost/facebook-login-redirect")[1];
     if(getParam) {
       processSignIn(getParam);
     }

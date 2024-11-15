@@ -7,19 +7,21 @@ import { CustomInput } from "../../components/common/CustomInput";
 import { setUserSession, TmpUserSession } from "../../helpers/global";
 import { faCheck, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { useToast } from "../../components/common/CustomToast";
-import { apiCompleteProfile } from "../../helpers/axios";
+import { apiCompleteProfile, apiGetUserAccount } from "../../helpers/axios";
+import { UserAccountType } from "../../helpers/types";
 
 export type ProfileFormType = {
-  fullName?: string,
-  userName?: string,
-  password?: string,
-  gender?: string,
-  email?: string,
-  contactNo?: string,
-  address?: string,
-  city?: string,
-  userId?: number,
-  loginType?: string
+  fullName?: string | null,
+  userName?: string | null,
+  password?: string | null,
+  gender?: string | null,
+  email?: string | null,
+  contactNo?: string | null,
+  address?: string | null,
+  city?: string | null,
+  userId?: string | null,
+  userRole?: string | null,
+  loginType?: string | null,
 }
 
 export const CompleteProfile:FC = () => {
@@ -75,22 +77,32 @@ export const CompleteProfile:FC = () => {
   }
 
   useEffect(() => {
-    if(TmpUserSession) {
-      setInitialValue({
-        userId: Number(TmpUserSession.auth_user_id),
-        loginType: "google_oauth",
-        fullName: TmpUserSession.temp_regis_name,
-        userName: "",
-        password: "",
-        gender: "",
-        email: TmpUserSession.temp_regis_email,
-        contactNo: "",
-        address: "",
-        city: ""
-      })
-    } else {
-      navigate("/sign-in")
+    const getUserData = async() => {
+      if(TmpUserSession) {
+        const resultUser = await apiGetUserAccount(TmpUserSession.auth_user_id);
+        if(resultUser.error) {
+          openToast("error", "Lỗi", "Đã xảy ra lỗi khi lấy thông tin!", 5000);
+        } else if (resultUser.data) {
+          const userData:UserAccountType = resultUser.data[0];
+          setInitialValue({
+            userId: TmpUserSession.auth_user_id,
+            loginType: "google_oauth",
+            fullName: userData.full_name,
+            userName: userData.user_name,
+            password: userData.password,
+            gender: userData.gender,
+            email: userData.email_address,
+            contactNo: userData.contact_no,
+            address: userData.address,
+            city: userData.city,
+            userRole: userData.role
+          })
+        }
+      } else {
+        navigate("/sign-in")
+      }
     }
+    getUserData();
   }, [])
 
   const handleSubmit = async(value:ProfileFormType) => {

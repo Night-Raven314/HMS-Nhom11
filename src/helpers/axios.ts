@@ -34,6 +34,23 @@ export const apiSignIn = async(signInForm:SignInFormType) => {
   return { data, error };
 }
 
+export const apiGetUserAccount = async(userId:string) => {
+  let error = null;
+  let data = null;
+  try {
+    const res = await hmsAxios.post(
+      `/account/get-user.php`,
+      JSON.stringify({auth_user_id: userId})
+    );
+    if(res.data) {
+      data = res.data.data;
+    }
+  } catch (err:any) {
+    error = err.response.data.message;
+  }
+  return { data, error };
+}
+
 export const apiRequestGoogleSignIn = async() => {
   let error = null;
   let data = null;

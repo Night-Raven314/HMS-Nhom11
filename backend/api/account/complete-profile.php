@@ -37,8 +37,7 @@
         `address` = '$post_address',
         `city` = '$post_city',
         `password` = '$post_password' 
-        WHERE user_id = $user_id";
-
+        WHERE user_id = '$user_id'";
     $result = mysqli_query($conn, $sql);
 
   
