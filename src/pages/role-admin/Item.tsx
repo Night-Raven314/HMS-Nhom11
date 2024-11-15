@@ -90,7 +90,7 @@ export const AdminItem: FC<AdminItemProps> = ({pageType}) => {
 
   useEffect(() => {
     getItemList();
-  }, [])
+  }, [pageType])
 
   const validate = (value: ItemFormType) => {
     let errors: ItemFormType = {};
