@@ -14,7 +14,7 @@ define('google_app_callback_url', 'http://localhost/google-login-redirect');
 // Facebook Authentication
 define('facebook_app_id', '8730803523625712');
 define('facebook_app_secret', 'f7438a3246ad2a0a75bc9ace3c2c5fa6');
-define('facebook_app_callback_url', 'http://localhost/HMS-Nhom11/backend/api/oauth/f-authenticate.php');
+define('facebook_app_callback_url', 'http://localhost/facebook-login-redirect');
 define('facebook_oauth_version', 'v18.0');
 
 // VNPAY 

@@ -12,7 +12,7 @@ import { AdminItem } from "./pages/role-admin/Item";
 import { AdminFaculty } from "./pages/role-admin/Faculty";
 import { AdminPaymentLog } from "./pages/role-admin/PaymentLog";
 import { DoctorSchedule } from "./pages/role-doctor/Schedule";
-import { Logout } from "./pages/logout";
+import { Logout } from "./pages/Logout";
 
 export const App:FC = () => {
   const [checkLogin, setCheckLogin] = useState<boolean>(false);

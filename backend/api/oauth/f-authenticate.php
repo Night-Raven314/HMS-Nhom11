@@ -4,14 +4,14 @@ session_start();
 
 define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT']);
 
-include SITE_ROOT . ('/HMS-Nhom11/backend/assets/include/config.php');
+include ('../config.php');
  
-require_once SITE_ROOT . ('/HMS-Nhom11/backend/assets/vendor/facebook-oauth/src/Facebook/autoload.php');
+require_once ('../../assets/vendor/facebook-oauth/src/Facebook/autoload.php');
 
 $fb = new Facebook\Facebook([
-    'app_id' => facebook_app_id,
-    'app_secret' => facebook_app_secret,
-    'default_graph_version' => facebook_oauth_version,
+    'app_id' => '8730803523625712',
+    'app_secret' => 'f7438a3246ad2a0a75bc9ace3c2c5fa6',
+    'default_graph_version' => 'v18.0',
 ]);
 
 // Create the login helper object
@@ -38,7 +38,7 @@ try {
 // If the access token is not set, redirect to the login page
 if (!isset($accessToken)) {
     // Define params and redirect to Facebook OAuth page
-    $loginUrl = $helper->getLoginUrl(facebook_app_callback_url, ['email']);
+    $loginUrl = $helper->getLoginUrl('http://localhost/facebook-login-redirect', ['email']);
     header('Location: ' . $loginUrl);
     exit;
 }

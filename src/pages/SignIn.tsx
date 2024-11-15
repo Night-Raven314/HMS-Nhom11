@@ -81,7 +81,7 @@ export const SignInPage:FC = () => {
         }
         break;
       case "facebook":
-        window.open("/HMS-Nhom11/backend/assets/include/oauth/f-authenticate.php", "_self");
+        window.open("/HMS-Nhom11/backend/api/oauth/f-authenticate.php", "_self");
         break;
     
       default:
