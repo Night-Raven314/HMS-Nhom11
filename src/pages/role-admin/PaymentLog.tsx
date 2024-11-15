@@ -31,6 +31,7 @@ type PaymentDetailsType = {
   appt_fee: string;
   total_value: string;
   item_type: string;
+  item_note: string;
 };
 type PaymentDetailsTableType = {
   tableType: string;
@@ -207,7 +208,7 @@ export const AdminPaymentLog: FC = () => {
                               <td>{payment.amount}</td>
                               <td>{payment.appt_fee}</td>
                               <td>{payment.total_value}</td>
-                              <td>{payment.payment_desc}</td>
+                              <td>{payment.item_note}</td>
                             </tr>
                           ))}
                         </tbody>

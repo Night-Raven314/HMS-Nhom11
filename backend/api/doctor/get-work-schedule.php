@@ -16,7 +16,7 @@
   if ($data) {
     $auth_user_id = $data['auth_user_id'] ? mysqli_real_escape_string($conn, $data['auth_user_id']) : null;
     // Process the form data (e.g., save to database, send email, etc.)
-    $sql = "SELECT * FROM `fact_work_schedule` WHERE status <> 'inactive' AND user_id = '$auth_user_id'";
+    $sql = "SELECT * FROM `fact_work_schedule` WHERE status <> 'inactive' AND user_id = '$auth_user_id' ORDER BY start_datetime DESC";
     if($sql) {
       $result = $conn->query($sql);
       if ($result) { 

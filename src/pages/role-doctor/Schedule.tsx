@@ -271,8 +271,7 @@ export const DoctorSchedule: FC = () => {
                       <tr>
                         <th style={{ width: "100px" }}>Thời gian bắt đầu</th>
                         <th style={{ width: "100px" }}>Thời gian kết thúc</th>
-                        <th style={{ width: "200px" }}>Ghi chú</th>
-                        <th style={{ width: "100px" }}>Trạng thái</th>
+                        <th style={{ width: "265px" }}>Ghi chú</th>
                         <th style={{ width: "140px" }}>Ngày tạo</th>
                         <th style={{ width: "140px" }}>Ngày chỉnh sửa</th>
                         <th style={{ width: "100px" }}>Thao tác</th>
@@ -284,7 +283,6 @@ export const DoctorSchedule: FC = () => {
                           <td className="text-color">{convertISOToDateTime(schedule.start_datetime)}</td>
                           <td className="text-color">{convertISOToDateTime(schedule.end_datetime)}</td>
                           <td>{schedule.work_note}</td>
-                          <td>{schedule.status}</td>
                           <td>{schedule.created_at}</td>
                           <td>{schedule.updated_at ? schedule.updated_at : ""}</td>
                           <td>
