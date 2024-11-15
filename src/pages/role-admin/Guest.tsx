@@ -104,7 +104,7 @@ export const AdminGuest: FC<AdminGuestProps> = ({pageType}) => {
 
   useEffect(() => {
     getUserList();
-  }, [])
+  }, [pageType])
 
   const validate = (value: UserFormType) => {
     let errors: UserFormType = {};

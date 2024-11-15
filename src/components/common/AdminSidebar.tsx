@@ -72,14 +72,15 @@ export const AdminSidebar:FC<AdminSidebarProps> = ({selectedItem}) => {
           </li>
 
           <li className="nav-item">
-            <a className={`nav-link text-white ${selectedItem === "guest" ? "active bg-gradient-primary" : ""}`} href="/role-admin/guest">
+            <Link to="/role-admin/guest">
+              <div className={`nav-link text-white ${selectedItem === "guest" ? "active bg-gradient-primary" : ""}`}>
+                <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                  <FontAwesomeIcon icon={faUserPen} />
+                </div>
 
-              <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                <FontAwesomeIcon icon={faUserPen} />
+                <span className="nav-link-text ms-1">Quản lý người dùng</span>
               </div>
-
-              <span className="nav-link-text ms-1">Quản lý người dùng</span>
-            </a>
+            </Link>
           </li>
 
           <li className="nav-item">
