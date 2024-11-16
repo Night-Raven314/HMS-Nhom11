@@ -4,7 +4,7 @@ import { ProfileFormType } from "../pages/role-patient/CompleteProfile";
 import { UserFormType, UserRequestType } from "../pages/role-admin/Guest";
 import { ItemRequestType } from "../pages/role-admin/Item";
 import { FacultyRequestType } from "../pages/role-admin/Faculty";
-import { ScheduleFormType, ScheduleRequestType } from "../pages/role-doctor/Schedule";
+import { DynamicRequestType, ScheduleFormType, ScheduleRequestType } from "../pages/role-doctor/Schedule";
 
 export const hmsAxios = Axios.create({
   baseURL: `/HMS-Nhom11/backend/api/`,
@@ -270,13 +270,29 @@ export const apiGetDoctorSchedule = async(userId:string) => {
   }
   return { data, error };
 }
-export const apiUpdateDoctorSchedule = async(facultyForm:ScheduleRequestType) => {
+export const apiCreateDoctorSchedule = async(scheduleForm:DynamicRequestType) => {
   let error = null;
   let data = null;
   try {
     const res = await hmsAxios.post(
       "/doctor/update-work-schedule.php",
-      JSON.stringify(facultyForm)
+      JSON.stringify(scheduleForm)
+    );
+    if(res.data) {
+      data = res.data.data;
+    }
+  } catch (err:any) {
+    error = err.response.data.message;
+  }
+  return { data, error };
+}
+export const apiUpdateDoctorSchedule = async(scheduleRequest:ScheduleRequestType) => {
+  let error = null;
+  let data = null;
+  try {
+    const res = await hmsAxios.post(
+      "/doctor/update-work-schedule.php",
+      JSON.stringify(scheduleRequest)
     );
     if(res.data) {
       data = res.data.data;

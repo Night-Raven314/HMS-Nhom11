@@ -6,7 +6,7 @@ import { NavbarHandles, PageNavbar } from "../../components/common/PageNavbar";
 import { CustomModal, CustomModalHandles } from "../../components/common/CustomModal";
 import { FieldArray, Form, Formik, FormikErrors, FormikHelpers, FormikProps } from "formik";
 import { CustomInput } from "../../components/common/CustomInput";
-import { apiGetDoctorSchedule, apiUpdateDoctorSchedule } from "../../helpers/axios";
+import { apiCreateDoctorSchedule, apiGetDoctorSchedule, apiUpdateDoctorSchedule } from "../../helpers/axios";
 import { useToast } from "../../components/common/CustomToast";
 import { DoctorSidebar } from "../../components/common/DoctorSidebar";
 import { UserSession } from "../../helpers/global";
@@ -34,10 +34,16 @@ export type DynamicFormType = {
   schedules: ScheduleFormType[];
 }
 
-export type ScheduleRequestType = {
+export type DynamicRequestType = {
   action: string;
   auth_user_id: string;
   request: ScheduleFormType[];
+}
+
+export type ScheduleRequestType = ScheduleFormType & {
+  action: string;
+  auth_user_id: string;
+  work_id: string
 }
 
 export const DoctorSchedule: FC = () => {
@@ -45,6 +51,7 @@ export const DoctorSchedule: FC = () => {
 
   const navbarRef = useRef<NavbarHandles>(null);
 
+  const createModalRef = useRef<CustomModalHandles>(null);
   const updateModalRef = useRef<CustomModalHandles>(null);
   const deleteAlertRef = useRef<CustomModalHandles>(null);
   const updateFormRef = useRef<FormikProps<ScheduleFormType>>(null);
@@ -93,28 +100,20 @@ export const DoctorSchedule: FC = () => {
   }
 
   const toggleUpdateModal = (action: string, workId?:string) => {
-    if (updateModalRef.current) {
-      switch (action) {
-        case "open":
-          updateFormRef.current?.resetForm();
-          setUpdateScheduleId(workId ? workId : null);
-          if(workId) {
-            const findSchedule = scheduleList.find(schedule => schedule.work_id === workId);
-            if(findSchedule) {
-              setInitialValueUpdate({
-                start_datetime: format(new Date(findSchedule.start_datetime), "yyyy-MM-dd'T'HH:mm"),
-                end_datetime: format(new Date(findSchedule.end_datetime), "yyyy-MM-dd'T'HH:mm"),
-                work_note: findSchedule.work_note ? findSchedule.work_note : "",
-              })
-            } else {
-              createFormRef.current?.resetForm();
-              setInitialValue({
-                schedules: [{
-                  start_datetime: "",
-                  end_datetime: "",
-                  work_note: "",
-                }]
-              })
+    switch (action) {
+      case "open":
+        updateFormRef.current?.resetForm();
+        setUpdateScheduleId(workId ? workId : null);
+        if(workId) {
+          const findSchedule = scheduleList.find(schedule => schedule.work_id === workId);
+          if(findSchedule) {
+            setInitialValueUpdate({
+              start_datetime: format(new Date(findSchedule.start_datetime), "yyyy-MM-dd'T'HH:mm"),
+              end_datetime: format(new Date(findSchedule.end_datetime), "yyyy-MM-dd'T'HH:mm"),
+              work_note: findSchedule.work_note ? findSchedule.work_note : "",
+            })
+            if(updateModalRef.current) {
+              updateModalRef.current.openModal();
             }
           } else {
             createFormRef.current?.resetForm();
@@ -125,32 +124,59 @@ export const DoctorSchedule: FC = () => {
                 work_note: "",
               }]
             })
+            if(createModalRef.current) {
+              createModalRef.current.openModal();
+            }
           }
-          updateModalRef.current.openModal();
+        } else {
+          createFormRef.current?.resetForm();
+          setInitialValue({
+            schedules: [{
+              start_datetime: "",
+              end_datetime: "",
+              work_note: "",
+            }]
+          })
+          if(createModalRef.current) {
+            createModalRef.current.openModal();
+          }
+        }
+        break;
+      case "close":
+        if(createModalRef.current) {
+          createModalRef.current.closeModal();
+        }
+        if(updateModalRef.current) {
+          updateModalRef.current.closeModal();
+        }
+        break;
+
+      default:
+        break;
+    }
+  }
+  const toggleDeleteAlert = (action: string, workId?:string) => {
+    if (deleteAlertRef.current) {
+      switch (action) {
+        case "open":
+          setUpdateScheduleId(workId ? workId : null);
+          const findSchedule = scheduleList.find(schedule => schedule.work_id === workId);
+          if(findSchedule) {
+            setInitialValueUpdate({
+              start_datetime: format(new Date(findSchedule.start_datetime), "yyyy-MM-dd HH:mm"),
+              end_datetime: format(new Date(findSchedule.end_datetime), "yyyy-MM-dd HH:mm"),
+              work_note: findSchedule.work_note ? findSchedule.work_note : "",
+            })
+            deleteAlertRef.current.openModal();
+          }
           break;
         case "close":
-          updateModalRef.current.closeModal();
+          deleteAlertRef.current.closeModal();
           break;
 
         default:
           break;
       }
-    }
-  }
-  const toggleDeleteAlert = (action: string, workId?:string) => {
-    if (deleteAlertRef.current) {
-      // switch (action) {
-      //   case "open":
-      //     setUpdateFacultyId(workId ? workId : null);
-      //     deleteAlertRef.current.openModal();
-      //     break;
-      //   case "close":
-      //     deleteAlertRef.current.closeModal();
-      //     break;
-
-      //   default:
-      //     break;
-      // }
     }
   }
   const submitCreateSchedule = async(value:DynamicFormType, helpers: FormikHelpers<DynamicFormType>) => {
@@ -167,7 +193,7 @@ export const DoctorSchedule: FC = () => {
       value.schedules.forEach(sch => {
         tmpRequest.push(sch);
       })
-      const createResult = await apiUpdateDoctorSchedule({
+      const createResult = await apiCreateDoctorSchedule({
         action: "create",
         auth_user_id: UserSession.auth_user_id,
         request: tmpRequest
@@ -184,34 +210,42 @@ export const DoctorSchedule: FC = () => {
       openToast("error", "Lỗi biểu mẫu", "Một số lịch làm việc chưa chọn ngày giờ!", 5000);
     }
   }
-  const submitUpdateSchedule = async(value:ScheduleFormType, action:string) => {
-    // const scheduleRequest: ScheduleRequestType = {
-    //   ...value,
-    //   action: action,
-    //   workId: updateScheduleId
-    // }
-    // const updateResponse = await apiUpdateDoctorSchedule(scheduleRequest);
-    // if(updateResponse.error) {
-    //   openToast("error", "Lỗi", "Đã xảy ra lỗi khi tạo chuyên khoa!", 5000);
-    // } else if (updateResponse.data) {
-    //   openToast("success", "Thành công", updateScheduleId ? "Chuyên khoa đã được cập nhật" : "Chuyên khoa đã được tạo!", 5000);
-    //   toggleUpdateModal("close");
-    //   getScheduleList();
-    // }
+  const submitUpdateSchedule = async(value:ScheduleFormType, helpers: FormikHelpers<ScheduleFormType>) => {
+    if(!value.start_datetime || !value.end_datetime) {
+      openToast("error", "Lỗi biểu mẫu", "Lịch làm việc chưa chọn ngày giờ!", 5000);
+    } else if(UserSession && updateScheduleId) {
+      const scheduleRequest: ScheduleRequestType = {
+        ...value,
+        action: "update",
+        auth_user_id: UserSession.auth_user_id,
+        work_id: updateScheduleId
+      }
+      const updateResponse = await apiUpdateDoctorSchedule(scheduleRequest);
+      if(updateResponse.error) {
+        openToast("error", "Lỗi", "Đã xảy ra lỗi khi tạo chuyên khoa!", 5000);
+      } else if (updateResponse.data) {
+        openToast("success", "Thành công", `Lịch làm việc đã được cập nhật`, 5000);
+        toggleUpdateModal("close");
+        getScheduleList();
+      }
+    }
   }
   const deleteSchedule = async() => {
-    // const scheduleRequest: ScheduleRequestType = {
-    //   action: "delete",
-    //   workId: updateScheduleId
-    // }
-    // const updateResponse = await apiUpdateSchedule(scheduleRequest);
-    // if(updateResponse.error) {
-    //   openToast("error", "Lỗi", `Đã xảy ra lỗi khi xoá chuyên khoa!`, 5000);
-    // } else if (updateResponse.data) {
-    //   openToast("success", "Thành công", `Chuyên khoa đã xoá!`, 5000);
-    //   toggleDeleteAlert("close");
-    //   getScheduleList();
-    // }
+    if(updateScheduleId && UserSession) {
+      const scheduleRequest: ScheduleRequestType = {
+        action: "delete",
+        auth_user_id: UserSession.auth_user_id,
+        work_id: updateScheduleId
+      }
+      const updateResponse = await apiUpdateDoctorSchedule(scheduleRequest);
+      if(updateResponse.error) {
+        openToast("error", "Lỗi", `Đã xảy ra lỗi khi xoá lịch làm việc!`, 5000);
+      } else if (updateResponse.data) {
+        openToast("success", "Thành công", `Lịch làm việc đã xoá!`, 5000);
+        toggleDeleteAlert("close");
+        getScheduleList();
+      }
+    }
   }
   const getScheduleList = async() => {
     if(UserSession) {
@@ -308,10 +342,10 @@ export const DoctorSchedule: FC = () => {
 
       {/* Form tạo */}
       <CustomModal
-        headerTitle={updateScheduleId ? `Cập nhật ${pageTerm}` : `Tạo ${pageTerm}`}
+        headerTitle={`Tạo ${pageTerm}`}
         size="lg"
         type="modal"
-        ref={updateModalRef}
+        ref={createModalRef}
       >
         <Formik
           validateOnChange={true}
@@ -334,13 +368,15 @@ export const DoctorSchedule: FC = () => {
                             <div className="title-with-btn">
                               <div className="title-text">Lịch làm việc {index + 1}</div>
                               <div className="title-button">
-                                <button
-                                  type="button"
-                                  className="btn btn-gradient"
-                                  onClick={() => {
-                                    remove(index)
-                                  }}
-                                ><FontAwesomeIcon icon={faTrash} /></button>
+                                {formikProps.values.schedules.length > 1 ? (
+                                  <button
+                                    type="button"
+                                    className="btn btn-gradient"
+                                    onClick={() => {
+                                      remove(index)
+                                    }}
+                                  ><FontAwesomeIcon icon={faTrash} /></button>
+                                ) : ""}
                               </div>
                             </div>
                             <div className="col-md-3">
@@ -407,7 +443,7 @@ export const DoctorSchedule: FC = () => {
                 </div>
                 <div className="body-footer">
                   <div className="button-list">
-                    {/* <button type="button" className="btn btn-outline" onClick={() => toggleUpdateModal("close")}>Thoát</button> */}
+                    <button type="button" className="btn btn-outline" onClick={() => toggleUpdateModal("close")}>Thoát</button>
                     <button type="submit" className="btn btn-gradient">{updateScheduleId ? "Cập nhật" : "Tạo"}</button>
                   </div>
                 </div>
@@ -415,6 +451,107 @@ export const DoctorSchedule: FC = () => {
             )
           }}
         </Formik>
+      </CustomModal>
+      <CustomModal
+        headerTitle={`Cập nhật ${pageTerm}`}
+        size="lg"
+        type="modal"
+        ref={updateModalRef}
+      >
+        <Formik
+          validateOnChange={true}
+          validateOnBlur={true}
+          enableReinitialize={true}
+          initialValues={initialValueUpdate}
+          validate={() => {}}
+          innerRef={updateFormRef}
+          onSubmit={submitUpdateSchedule}
+        >
+          {(formikProps) => {
+            return (
+              <Form>
+                <div className="body-content">
+                  <div className="row">
+                    <div className="col-md-3">
+                      <CustomInput
+                        formik={formikProps}
+                        id={`start_datetime`}
+                        name={`start_datetime`}
+                        label="Thời gian bắt đầu"
+                        placeholder="Chọn thời gian bắt đầu"
+                        initialValue=""
+                        inputType="datetime-local"
+                        isRequired={true}
+                        type="input"
+                        disabled={false}
+                      />
+                    </div>
+                    <div className="col-md-3">
+                      <CustomInput
+                        formik={formikProps}
+                        id={`end_datetime`}
+                        name={`end_datetime`}
+                        label="Thời gian kết thúc"
+                        placeholder="Chọn thời gian kết thúc"
+                        initialValue=""
+                        inputType="datetime-local"
+                        isRequired={true}
+                        type="input"
+                        disabled={false}
+                      />
+                    </div>
+                    <div className="col-md-6">
+                      <CustomInput
+                        formik={formikProps}
+                        id={`work_note`}
+                        name={`work_note`}
+                        label="Ghi chú"
+                        placeholder="Nhập ghi chú chuyên khoa"
+                        initialValue=""
+                        inputType="text"
+                        isRequired={false}
+                        type="input"
+                        textareaRow={3}
+                        disabled={false}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="body-footer">
+                  <div className="button-list">
+                    <button type="button" className="btn btn-outline" onClick={() => toggleUpdateModal("close")}>Thoát</button>
+                    <button type="submit" className="btn btn-gradient">Cập nhật</button>
+                  </div>
+                </div>
+              </Form>
+            )
+          }}
+        </Formik>
+      </CustomModal>
+
+      {/* Alert xoá lịch */}
+      <CustomModal
+        headerTitle={`Xoá ${pageTerm}`}
+        size="md"
+        type="alert"
+        ref={deleteAlertRef}
+      >
+        <div className="body-content">
+          Bạn có chắc chắn xoá lịch làm việc này?
+          <br/>- <b>Ngày bắt đầu: </b>{initialValueUpdate.start_datetime}
+          <br/>- <b>Ngày kết thúc: </b>{initialValueUpdate.end_datetime}
+          {initialValueUpdate.work_note ? (
+            <>
+              <br/>- <b>Ghi chú: </b>{initialValueUpdate.work_note}
+            </>
+          ) : ""}
+        </div>
+        <div className="body-footer">
+          <div className="button-list">
+            <button type="button" className="btn btn-outline" onClick={() => toggleDeleteAlert("close")}>Không</button>
+            <button type="button" className="btn btn-gradient" onClick={() => deleteSchedule()}>Xoá</button>
+          </div>
+        </div>
       </CustomModal>
 
     </>

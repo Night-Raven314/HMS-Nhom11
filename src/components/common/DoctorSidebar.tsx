@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FC } from "react";
 import { faCalendar, faClipboard } from "@fortawesome/free-regular-svg-icons";
-import { faBookMedical, faIdBadge, faKitMedical, faMoneyBill, faNotesMedical, faPills, faUserPen, faUsers } from "@fortawesome/free-solid-svg-icons";
+import { faBookMedical, faClock, faIdBadge, faKitMedical, faMoneyBill, faNotesMedical, faPills, faUserPen, faUsers } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 export type DoctorSidebarProps = {
@@ -33,6 +33,17 @@ export const DoctorSidebar:FC<DoctorSidebarProps> = ({selectedItem}) => {
           <li className="nav-item">
             <Link to="/role-doctor/schedule">
               <div className={`nav-link text-white ${selectedItem === "schedule" ? "active bg-gradient-primary" : ""}`}>
+                <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                  <FontAwesomeIcon icon={faClock} />
+                </div>
+
+                <span className="nav-link-text ms-1">Quản lý lịch làm việc</span>
+              </div>
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/role-doctor/appointment">
+              <div className={`nav-link text-white ${selectedItem === "appointment" ? "active bg-gradient-primary" : ""}`}>
                 <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
                   <FontAwesomeIcon icon={faCalendar} />
                 </div>
