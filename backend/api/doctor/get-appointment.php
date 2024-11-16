@@ -16,24 +16,35 @@
   if ($data) {
     $auth_user_id = $data['auth_user_id'] ? mysqli_real_escape_string($conn, $data['auth_user_id']) : null;
     // Process the form data (e.g., save to database, send email, etc.)
-    $sql = "SELECT
+    $sql = "WITH
+      doctor_data AS (
+        SELECT
+            dct.user_id AS doctor_id,
+            dct.full_name AS doctor_name,
+            fac.fac_id AS faculty_id,
+            fac.fac_name AS faculty_name
+        FROM `dim_user` dct
+            LEFT JOIN `dim_faculty` fac
+              ON dct.faculty_id = fac.fac_id
+      )
+
+      SELECT
         appt.doctor_id,
-        dct.full_name AS doctor_name,
+        dct.doctor_name,
         appt.patient_id,
         ptn.full_name AS patient_name,
         appt.faculty_id,
-        fac.fac_name AS faculty_name,
+        dct.faculty_name,
         appt.appt_fee,
         appt.appt_datetime
       FROM `fact_appointment` appt
-        LEFT JOIN `dim_user` dct
-          ON appt.doctor_id = dct.user_id
+        LEFT JOIN doctor_data dct
+          ON appt.doctor_id = dct.doctor_id
         LEFT JOIN `dim_user` ptn
           ON appt.patient_id = ptn.user_id
-        LEFT JOIN `dim_faculty` fac
-          ON appt.faculty_id = dct.faculty_id
       WHERE
-        appt.status <> 'deleted' AND doctor_id = '$auth_user_id'";
+        appt.status <> 'deleted'
+        AND dct.doctor_id = '$auth_user_id'";
     if($sql) {
       $result = $conn->query($sql);
       if ($result) { 
