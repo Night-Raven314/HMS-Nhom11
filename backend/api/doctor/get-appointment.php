@@ -64,6 +64,7 @@ if ($data) {
         appt.appt_datetime,
         CASE 
           WHEN mhsm.count > 0 THEN 'completed'
+          WHEN STR_TO_DATE(appt.appt_datetime, '%Y-%m-%dT%H:%i:%s') >= CURRENT_TIMESTAMP() THEN 'upcoming'
           ELSE 'missed' END AS appt_status
       FROM `fact_appointment` appt
       LEFT JOIN doctor_data dct
