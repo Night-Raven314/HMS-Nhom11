@@ -53,28 +53,28 @@ if ($data) {
         appt_id
     )
       SELECT
-          appt.doctor_id,
-          dct.doctor_name,
-          appt.patient_id,
-          ptn.full_name AS patient_name,
-          appt.faculty_id,
-          dct.faculty_name,
-          appt.appt_fee,
-          appt.appt_datetime,
-          CASE 
-            WHEN mhsm.count > 0 THEN 'completed'
-              ELSE 'missed' END AS appt_status
-      FROM
-          `fact_appointment` appt
-      LEFT JOIN doctor_data dct ON
-          appt.doctor_id = dct.doctor_id
-      LEFT JOIN `dim_user` ptn ON
-          appt.patient_id = ptn.user_id
-      LEFT JOIN med_hist_match mhsm ON
-          appt.appt_id = mhsm.appt_id
+        appt_appt_id,
+        appt.doctor_id,
+        dct.doctor_name,
+        appt.patient_id,
+        ptn.full_name AS patient_name,
+        appt.faculty_id,
+        dct.faculty_name,
+        appt.appt_fee,
+        appt.appt_datetime,
+        CASE 
+          WHEN mhsm.count > 0 THEN 'completed'
+          ELSE 'missed' END AS appt_status
+      FROM `fact_appointment` appt
+      LEFT JOIN doctor_data dct
+        ON appt.doctor_id = dct.doctor_id
+      LEFT JOIN `dim_user` ptn
+        ON appt.patient_id = ptn.user_id
+      LEFT JOIN med_hist_match mhsm
+        ON appt.appt_id = mhsm.appt_id
       WHERE
-          appt.status <> 'deleted'
-        AND dct.doctor_id = '$auth_user_id'";
+        appt.status <> 'deleted'
+      AND dct.doctor_id = '$auth_user_id'";
   if ($sql) {
     $result = $conn->query($sql);
     if ($result) {
