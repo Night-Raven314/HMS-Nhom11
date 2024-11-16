@@ -16,34 +16,27 @@
     $errorMsg = "";
     $sql = "";
     // Access form values
-    $post_id = $data['med_hist_id'] ? mysqli_real_escape_string($conn, $data['med_hist_id']) : null;
+    $post_id = $data['facId'] ? mysqli_real_escape_string($conn, $data['facId']) : null;
     $post_action = mysqli_real_escape_string($conn, $data['action']);
     if($post_action === "delete") {
-      $sql = "UPDATE `fact_prescription` SET
-      `status` = 'deleted' WHERE med_hist_id = '$post_id'";
+      $sql = "UPDATE `dim_floor` SET
+          `status` = 'deleted'
+          WHERE floor_id = '$post_id'";
     } else {
+      $post_floor_name = mysqli_real_escape_string($conn, $data['name']);
+      $post_floor_note = mysqli_real_escape_string($conn, $data['desc']);
+
       // Process the form data (e.g., save to database, send email, etc.)
       switch ($post_action) {
         case 'create':
-          foreach ($data as $row) {
-            $post_blood_press = mysqli_real_escape_string($conn, $data['blood_press']);
-            $post_blood_sugar = mysqli_real_escape_string($conn, $data['blood_sugar']);
-            $post_weight = mysqli_real_escape_string($conn, $data['weight']);
-            $post_temp = mysqli_real_escape_string($conn, $data['temp']);
-            $post_med_note = mysqli_real_escape_string($conn, $data['med_note']);
-          }
-
-
-
-
-
-          $sql = "INSERT INTO `fact_med_hist` (`blood_press`, `blood_sugar`, `weight`, `temp`, `med_note`) VALUES ('$post_blood_press', '$post_blood_sugar', '$post_weight', '$post_temp', '$post_med_note')";
+          $sql = "INSERT INTO `dim_floor` (`floor_name`, `floor_note`) VALUES ('$post_floor_name', '$post_floor_note')";
           break;
 
         case 'update':
-          $sql = "UPDATE `fact_prescription` SET `status` = 'deleted' WHERE med_hist_id = '$post_id'";
-          
-          $sql = "UPDATE `fact_med_hist` SET `blood_press` = '$post_blood_press', `blood_sugar` = '$post_blood_sugar', `weight` = '$post_weight', `temp` = '$post_temp', `med_note` = '$post_med_note' WHERE med_hist_id = '$post_id'";;
+          $sql = "UPDATE `dim_faculty` SET
+          `floor_name` = '$post_floor_name',
+          `floor_note` = '$post_floor_note'
+          WHERE floor_id = '$post_id'";
         
         default:
           # code...

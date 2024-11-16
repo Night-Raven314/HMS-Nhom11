@@ -10,7 +10,7 @@
   
   $errorMsg = "";
   // Get the raw POST data and decode it
-  $sql = "SELECT * FROM `dim_faculty` WHERE status <> 'deleted'";
+  $sql = "SELECT * FROM `dim_room` WHERE status <> 'deleted'";
   if($sql) {
     $result = $conn->query($sql);
     if ($result) { 

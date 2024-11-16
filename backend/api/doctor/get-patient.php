@@ -44,6 +44,7 @@
           ON doc.faculty_id = fac.fac_id
       WHERE
         fac.fac_id = (SELECT faculty_id FROM get_fac LIMIT 1)
+        AND ptn.status <> 'deleted'
       ORDER BY
         hst.updated_at DESC, hst.created_at DESC";
     if($sql) {

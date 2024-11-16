@@ -20,7 +20,7 @@
     $post_action = mysqli_real_escape_string($conn, $data['action']);
     if($post_action === "delete") {
       $sql = "UPDATE `dim_faculty` SET
-          `status` = 'inactive'
+          `status` = 'deleted'
           WHERE fac_id = '$post_id'";
     } else {
       $post_fac_name = mysqli_real_escape_string($conn, $data['name']);

@@ -21,7 +21,7 @@
     $post_action = mysqli_real_escape_string($conn, $data['action']);
     if($post_action === "delete") {
       $sql = "UPDATE `dim_" . $page_type . "` SET
-      `status` = 'inactive' WHERE item_id = '$post_id'";
+      `status` = 'deleted' WHERE item_id = '$post_id'";
     } else {
       $post_item_name = mysqli_real_escape_string($conn, $data['itemName']);
       $post_item_unit = mysqli_real_escape_string($conn, $data['unit']);

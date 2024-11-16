@@ -16,7 +16,7 @@
   if ($data) {
     $userId = mysqli_real_escape_string($conn, $data['auth_user_id']);
     // Process the form data (e.g., save to database, send email, etc.)
-    $sql = "SELECT * FROM `dim_user` WHERE user_id = '$userId' AND status <> 'inactive'";
+    $sql = "SELECT * FROM `dim_user` WHERE user_id = '$userId' AND status <> 'deleted'";
     if($sql) {
       $result = $conn->query($sql);
       if ($result) { 

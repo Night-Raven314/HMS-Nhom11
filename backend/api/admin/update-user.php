@@ -20,7 +20,7 @@
     $post_action = mysqli_real_escape_string($conn, $data['action']);
     if($post_action === "delete") {
       $sql = "UPDATE `dim_user` SET
-          `status` = 'inactive'
+          `status` = 'deleted'
           WHERE user_id = '$post_id'";
     } else {
       $post_full_name = mysqli_real_escape_string($conn, $data['fullName']);

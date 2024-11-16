@@ -20,7 +20,7 @@
     $post_id = isset($data['work_id']) ? mysqli_real_escape_string($conn, $data['work_id']) : null;
     $post_action = mysqli_real_escape_string($conn, $data['action']);
     if($post_action === "delete") {
-      $sql = "UPDATE `fact_work_schedule` SET `status` = 'inactive' WHERE work_id = '$post_id'";
+      $sql = "UPDATE `fact_work_schedule` SET `status` = 'deleted' WHERE work_id = '$post_id'";
       $result = mysqli_query($conn, $sql);
       if ($result) {
         echo json_encode(["status" => "success", "data" => "success"]);

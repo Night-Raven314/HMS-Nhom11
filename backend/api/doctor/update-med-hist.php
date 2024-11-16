@@ -20,7 +20,7 @@
     $post_action = mysqli_real_escape_string($conn, $data['action']);
     if($post_action === "delete") {
       $sql = "UPDATE `fact_med_hist` SET
-      `status` = 'inactive' WHERE med_hist_id = '$post_id'";
+      `status` = 'deleted' WHERE med_hist_id = '$post_id'";
     } else {
       $post_blood_press = mysqli_real_escape_string($conn, $data['blood_press']);
       $post_blood_sugar = mysqli_real_escape_string($conn, $data['blood_sugar']);

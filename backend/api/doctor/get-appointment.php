@@ -33,7 +33,7 @@
         LEFT JOIN `dim_faculty` fac
           ON appt.faculty_id = dct.faculty_id
       WHERE
-        appt.status <> 'inactive' AND doctor_id = '$auth_user_id'";
+        appt.status <> 'deleted' AND doctor_id = '$auth_user_id'";
     if($sql) {
       $result = $conn->query($sql);
       if ($result) { 
