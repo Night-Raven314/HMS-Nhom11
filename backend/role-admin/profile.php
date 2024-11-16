@@ -1,7 +1,7 @@
 <?php
 define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT']);
 
-include('sess-check.php');
+// include('sess-check.php');
 include SITE_ROOT . ('/HMS-Nhom11/backend/assets/include/config.php');
 include SITE_ROOT . ('/HMS-Nhom11/backend/assets/include/header.php');
 

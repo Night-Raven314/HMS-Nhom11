@@ -31,24 +31,26 @@ export const DoctorSidebar:FC<DoctorSidebarProps> = ({selectedItem}) => {
           </li>
 
           <li className="nav-item">
-            <a className={`nav-link text-white ${selectedItem === "schedule" ? "active bg-gradient-primary" : ""}`} href="/role-doctor/schedule">
+            <Link to="/role-doctor/schedule">
+              <div className={`nav-link text-white ${selectedItem === "schedule" ? "active bg-gradient-primary" : ""}`}>
+                <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                  <FontAwesomeIcon icon={faCalendar} />
+                </div>
 
-              <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                <FontAwesomeIcon icon={faCalendar} />
+                <span className="nav-link-text ms-1">Lịch đặt hẹn khám</span>
               </div>
-
-              <span className="nav-link-text ms-1">Lịch đặt hẹn khám</span>
-            </a>
+            </Link>
           </li>
           <li className="nav-item">
-            <a className={`nav-link text-white ${selectedItem === "patients" ? "active bg-gradient-primary" : ""}`} href="/role-doctor/patients">
+            <Link to="/role-doctor/patients">
+              <div className={`nav-link text-white ${selectedItem === "patients" ? "active bg-gradient-primary" : ""}`}>
+                <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                  <FontAwesomeIcon icon={faUsers} />
+                </div>
 
-              <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                <FontAwesomeIcon icon={faUsers} />
+                <span className="nav-link-text ms-1">Quản lý bệnh nhân</span>
               </div>
-
-              <span className="nav-link-text ms-1">Quản lý bệnh nhân</span>
-            </a>
+            </Link>
           </li>
 
 

@@ -1,5 +1,6 @@
 import { forwardRef, Ref, useEffect, useImperativeHandle, useState } from "react";
 import { CustomInput } from "./CustomInput";
+import { Link } from "react-router-dom";
 
 export type NavbarHandles = {
   resetSearch: () => void
@@ -54,8 +55,8 @@ export const PageNavbar = forwardRef(({navbarTitle, hideSearch = false, searchRe
               <img src="../backend/assets/image/user login image.png" alt="profile_image" />
             </button>
             <ul className="dropdown-menu">
-              <li><a className="dropdown-item" href="/profile">Thông tin người dùng</a></li>
-              <li><a className="dropdown-item" href="/logout">Đăng xuất</a></li>
+              <Link to="/profile"><li className="dropdown-item">Thông tin người dùng</li></Link>
+              <Link to="/logout"><li className="dropdown-item">Đăng xuất</li></Link>
             </ul>
           </div>
         </div>

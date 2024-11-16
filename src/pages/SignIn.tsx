@@ -170,7 +170,7 @@ export const SignInPage:FC = () => {
                                 <a href="./forgot-pwd.php" className="text-primary text-gradient font-weight-bold">Quên mật khẩu</a>
                               </p>
                               <p className="mt-4 text-sm text-center">
-                                Bạn chưa có tài khoản? <a onClick={() => navigate("sign-up")} className="text-primary text-gradient font-weight-bold">Đăng ký ngay</a>
+                                Bạn chưa có tài khoản? <a onClick={() => navigate("/sign-up")} className="text-primary text-gradient font-weight-bold">Đăng ký ngay</a>
                               </p>
                             </div>
                           </div>

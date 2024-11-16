@@ -12,20 +12,20 @@ export type TmpUserSessionType = {
 
 export type UserAccountType = {
   user_id: string;
-  user_name: string | null;
-  password: string | null;
+  user_name: string;
+  password: string;
   email_address: string;
-  contact_no: string | null;
+  contact_no: string;
   full_name: string;
   created_at: string;
-  updated_at: string | null;
-  gender: string | null;
-  city: string | null;
-  address: string | null;
+  updated_at: string;
+  gender: string;
+  city: string;
+  address: string;
   role: string;
-  faculty_id: string | null;
-  pricing: string | null;
-  oauth_google: string | null;
-  oauth_facebook: string | null;
+  faculty_id: string;
+  pricing: string;
+  oauth_google: string;
+  oauth_facebook: string;
   status: string;
 };

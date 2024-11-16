@@ -31,7 +31,7 @@
       $post_city = mysqli_real_escape_string($conn, $data['city']);
       $post_gender = mysqli_real_escape_string($conn, $data['gender']);
       $post_role = mysqli_real_escape_string($conn, $data['role']);
-      $default_pwd = "P@ss123";
+      $default_pwd = $data['password'] ? mysqli_real_escape_string($conn, $data['password']) : "P@ss123";
 
       // Process the form data (e.g., save to database, send email, etc.)
       switch ($post_action) {
