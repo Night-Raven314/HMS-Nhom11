@@ -32,15 +32,14 @@
       // Process the form data (e.g., save to database, send email, etc.)
       switch ($post_action) {
         case 'create':
-          $sub_sql_create = "INSERT INTO `fact_med_hist` (`blood_press`, `blood_sugar`, `weight`, `temp`, `med_note`) VALUES ('$post_blood_press', '$post_blood_sugar', '$post_weight', '$post_temp', '$post_med_note')";
+          $sql = "INSERT INTO `fact_med_hist` (`blood_press`, `blood_sugar`, `weight`, `temp`, `med_note`) VALUES ('$post_blood_press', '$post_blood_sugar', '$post_weight', '$post_temp', '$post_med_note')";
 
-          mysqli_query($conn, $sub_sql_create);
           break;
 
         case 'update':
-          $sub_sql_update = "UPDATE `fact_med_hist` SET `blood_press` = '$post_blood_press', `blood_sugar` = '$post_blood_sugar', `weight` = '$post_weight', `temp` = '$post_temp', `med_note` = '$post_med_note' WHERE med_hist_id = '$post_id'";
-          
-          mysqli_query($conn, $sub_sql_create);
+          $sql = "UPDATE `fact_med_hist` SET `blood_press` = '$post_blood_press', `blood_sugar` = '$post_blood_sugar', `weight` = '$post_weight', `temp` = '$post_temp', `med_note` = '$post_med_note' WHERE med_hist_id = '$post_id'";
+
+          break;
         
         default:
           # code...

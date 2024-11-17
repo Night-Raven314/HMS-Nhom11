@@ -48,10 +48,8 @@
           $post_end_time = mysqli_real_escape_string($conn, $data['end_datetime']);
           $post_note = mysqli_real_escape_string($conn, $data['work_note']);
 
-          $sub_main_sql = "UPDATE `fact_work_schedule` SET `user_id` = '$auth_user_id', `start_datetime` = '$post_start_time', `end_datetime` = '$post_end_time', `work_note` = '$post_note' WHERE work_id = '$post_id'";
-          mysqli_query($conn, $sub_main_sql);
+          $sql = "UPDATE `fact_work_schedule` SET `user_id` = '$auth_user_id', `start_datetime` = '$post_start_time', `end_datetime` = '$post_end_time', `work_note` = '$post_note' WHERE work_id = '$post_id'";
           
-          echo json_encode(["status" => "success", "data" => "success"]);
           break;
 
         default:
@@ -59,6 +57,17 @@
           break;
       }
     }
+
+  if($sql) {
+    $result = mysqli_query($conn, $sql);
+
+    if ($result) {
+      echo json_encode(["status" => "success", "data" => "success"]);
+    } else {
+      http_response_code(500);
+      echo json_encode(["status" => "error", "message" => "invalidCredential"]);
+    }
+  }
 
 } else {
     // Handle error if no data or missing expected values

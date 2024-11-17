@@ -32,6 +32,7 @@
             $sub_sql_create = "INSERT INTO `dim_floor` (`floor_order`, `floor_name`, `floor_note`) VALUES ('$post_floor_order', '$post_floor_name', '$post_floor_note')";
             mysqli_query($conn, $sub_sql_create);
           }
+          echo json_encode(["status" => "success", "data" => "success"]);
           break;
 
         case 'update':
@@ -44,6 +45,7 @@
             $sub_sql_update = "UPDATE `dim_floor` SET `floor_order` = '$post_floor_order', `floor_name` = '$post_floor_name', `floor_note` = '$post_floor_note' WHERE floor_id = '$post_floor_id'";
             mysqli_query($conn, $sub_sql_update);
           }
+          echo json_encode(["status" => "success", "data" => "success"]);
           break;
         
         default:

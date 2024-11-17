@@ -16,30 +16,17 @@
     $errorMsg = "";
     $sql = "";
     // Access form values
-    $post_action = mysqli_real_escape_string($conn, $data['action']);
-    if($post_action === "deduction") {
-      foreach ($data as $row) {
-        $post_item_id = mysqli_real_escape_string($conn, $row['item_id']);
-        $post_amount = mysqli_real_escape_string($conn, $row['amount']);
-        $post_stock_note = mysqli_real_escape_string($conn, $row['note']);
+    $post_action = mysqli_real_escape_string($conn, $data['action']); //addition or deduction
+    foreach ($data as $row) {
+      $post_item_id = mysqli_real_escape_string($conn, $row['item_id']);
+      $post_amount = mysqli_real_escape_string($conn, $row['amount']);
+      $post_stock_note = mysqli_real_escape_string($conn, $row['note']);
 
-        $sub_sql_addition = "INSERT INTO `fact_item_stock` (`item_id`, `change_type`, `amount_changed`, `stock_note`) VALUES ('$post_item_id', 'deduction', '$post_amount', '$post_stock_note')";
-        mysqli_query($conn, $sub_sql_create);
+      $sub_sql_addition = "INSERT INTO `fact_item_stock` (`item_id`, `change_type`, `amount_changed`, `stock_note`) VALUES ('$post_item_id', '$post_action', '$post_amount', '$post_stock_note')";
+      mysqli_query($conn, $sub_sql_create);
 
-      }
-    } else if($post_action === "addition") {
-      // Process the form data (e.g., save to database, send email, etc.)
-      foreach ($data as $row) {
-        $post_item_id = mysqli_real_escape_string($conn, $row['item_id']);
-        $post_amount = mysqli_real_escape_string($conn, $row['amount']);
-        $post_stock_note = mysqli_real_escape_string($conn, $row['note']);
-
-        $sub_sql_addition = "INSERT INTO `fact_item_stock` (`item_id`, `change_type`, `amount_changed`, `stock_note`) VALUES ('$post_item_id', 'addition', '$post_amount', '$post_stock_note')";
-        mysqli_query($conn, $sub_sql_create);
-
-      }
     }
-
+    
     if($sql) {
       $result = mysqli_query($conn, $sql);
 

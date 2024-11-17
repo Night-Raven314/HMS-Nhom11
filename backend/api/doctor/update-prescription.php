@@ -21,7 +21,6 @@
     if($post_action === "delete") {
       $sql = "UPDATE `fact_prescription` SET
       `status` = 'deleted' WHERE med_hist_id = '$post_id'";
-      mysqli_query($conn, $sql);
     } else {
       // Process the form data (e.g., save to database, send email, etc.)
       switch ($post_action) {
@@ -37,6 +36,7 @@
             mysqli_query($conn, $sub_sql_create);
 
           }
+          echo json_encode(["status" => "success", "data" => "success"]);
           break;
 
         case 'update':
@@ -71,6 +71,7 @@
             mysqli_query($conn, $sub_sql_create);
 
           }
+          echo json_encode(["status" => "success", "data" => "success"]);
           break;
         
         default:
