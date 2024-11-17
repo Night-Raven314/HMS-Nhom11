@@ -14,6 +14,8 @@ import { AdminPaymentLog } from "./pages/role-admin/PaymentLog";
 import { DoctorSchedule } from "./pages/role-doctor/Schedule";
 import { Logout } from "./pages/Logout";
 import { FacebookLoginRedirect } from "./pages/FacebookLoginRedirect";
+import { DoctorAppointment } from "./pages/role-doctor/Appointment";
+import { DoctorPatients } from "./pages/role-doctor/Patients";
 
 export const App:FC = () => {
   const [checkLogin, setCheckLogin] = useState<boolean>(false);
@@ -63,6 +65,7 @@ export const App:FC = () => {
       path: "/role-patient/complete-profile",
       element: <CompleteProfile />,
     },
+    // Admin page
     {
       path: "/role-admin/guest",
       element: <AdminGuest pageType="guest" />,
@@ -91,18 +94,20 @@ export const App:FC = () => {
       path: "/role-admin/med-service",
       element: <AdminItem pageType="med_service" />,
     },
+    // Doctor page
     {
       path: "/role-doctor/schedule",
       element: <DoctorSchedule />,
     },
     {
-      path: "/role-doctor/",
-      element: <div>To be added</div>,
+      path: "/role-doctor/appointment",
+      element: <DoctorAppointment />,
     },
     {
-      path: "/role-doctor/",
-      element: <div>To be added</div>,
+      path: "/role-doctor/patients",
+      element: <DoctorPatients />,
     },
+    // Patient page
     {
       path: "/role-patient/",
       element: <div>To be added</div>,
