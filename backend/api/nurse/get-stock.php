@@ -16,7 +16,7 @@
   if ($data) {
     $post_id = $data['patient_id'] ? mysqli_real_escape_string($conn, $data['patient_id']) : null;
     // Process the form data (e.g., save to database, send email, etc.)
-    $sql = "SELECT * FROM fact_item_stock WHERE timestampdiff(day, created_at, CURRENT_TIMESTAMP()) <= 30";
+    $sql = "SELECT * FROM fact_item_stock WHERE (timestampdiff(day, created_at, CURRENT_TIMESTAMP()) <= 30 OR status = 'active')";
     if($sql) {
       $result = $conn->query($sql);
       if ($result) { 
