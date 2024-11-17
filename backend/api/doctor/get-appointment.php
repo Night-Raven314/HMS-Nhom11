@@ -29,6 +29,7 @@
       )
 
       SELECT
+        appt.appt_id,
         appt.doctor_id,
         dct.doctor_name,
         appt.patient_id,
