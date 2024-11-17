@@ -16,33 +16,44 @@
     $errorMsg = "";
     $sql = "";
     // Access form values
-    $post_id = $data['facId'] ? mysqli_real_escape_string($conn, $data['facId']) : null;
     $post_action = mysqli_real_escape_string($conn, $data['action']);
     if($post_action === "delete") {
       $sql = "UPDATE `dim_room` SET
           `status` = 'deleted'
           WHERE room_id = '$post_id'";
     } else {
-      $post_room_name = mysqli_real_escape_string($conn, $data['name']);
-      $post_room_floor = mysqli_real_escape_string($conn, $data['floor_id']);
-      $post_room_fac = mysqli_real_escape_string($conn, $data['fac_id']);
-      $post_room_size = mysqli_real_escape_string($conn, $data['size']);
-      $post_room_price = mysqli_real_escape_string($conn, $data['price']);
-
       // Process the form data (e.g., save to database, send email, etc.)
       switch ($post_action) {
         case 'create':
-          $sql = "INSERT INTO `dim_room` (`room_name`, `floor_id`, `faculty_id`, `room_size` , `room_price`) VALUES ('$post_room_name', '$post_room_floor', '$post_room_fac', $post_room_size, $post_room_price)";
+          foreach ($data["request"] as $row) {
+            $post_room_order = mysqli_real_escape_string($conn, $data['order']);
+            $post_room_name = mysqli_real_escape_string($conn, $data['name']);
+            $post_room_floor = mysqli_real_escape_string($conn, $data['floor_id']);
+            $post_room_fac = mysqli_real_escape_string($conn, $data['fac_id']);
+            $post_room_size = mysqli_real_escape_string($conn, $data['size']);
+            $post_room_price = mysqli_real_escape_string($conn, $data['price']);
+
+            $sub_sql_create = "INSERT INTO `dim_room` (`room_order`, `room_name`, `floor_id`, `faculty_id`, `room_size`, `room_price`) VALUES ('$post_room_order', '$post_room_name', '$post_room_floor', '$post_room_fac', $post_room_size, $post_room_price)";
+            mysqli_query($conn, $sub_sql_create);
+          }
           break;
 
         case 'update':
-          $sql = "UPDATE `dim_faculty` SET
-          `room_name` = '$post_room_name',
-          `floor_id` = '$post_room_floor',
-          `faculty_id` = '$post_room_fac',
-          `room_size` = $post_room_size,
-          `room_price` = $post_room_price
-          WHERE room_id = '$post_id'";
+          foreach ($data["request"] as $row) {
+
+            $post_id = $data['room_id'] ? mysqli_real_escape_string($conn, $data['room_id']) : null;
+
+            $post_room_order = mysqli_real_escape_string($conn, $data['order']);
+            $post_room_name = mysqli_real_escape_string($conn, $data['name']);
+            $post_room_floor = mysqli_real_escape_string($conn, $data['floor_id']);
+            $post_room_fac = mysqli_real_escape_string($conn, $data['fac_id']);
+            $post_room_size = mysqli_real_escape_string($conn, $data['size']);
+            $post_room_price = mysqli_real_escape_string($conn, $data['price']);
+
+            $sub_sql_update = "UPDATE `dim_room` SET `room_order` = '$post_room_order', `room_name` = '$post_room_name', `floor_id` = '$post_room_floor', `faculty_id` = '$post_room_fac', `room_size` = $post_room_size, `room_price` = $post_room_price WHERE room_id = '$post_room_id'";
+            mysqli_query($conn, $sub_sql_update);
+          }
+          break;
         
         default:
           # code...

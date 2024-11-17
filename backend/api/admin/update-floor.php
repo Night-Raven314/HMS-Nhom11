@@ -16,27 +16,35 @@
     $errorMsg = "";
     $sql = "";
     // Access form values
-    $post_id = $data['facId'] ? mysqli_real_escape_string($conn, $data['facId']) : null;
+    $post_id = $data['floor_id'] ? mysqli_real_escape_string($conn, $data['floor_id']) : null;
     $post_action = mysqli_real_escape_string($conn, $data['action']);
     if($post_action === "delete") {
-      $sql = "UPDATE `dim_floor` SET
-          `status` = 'deleted'
-          WHERE floor_id = '$post_id'";
+      $sql = "UPDATE `dim_floor` SET `status` = 'deleted' WHERE floor_id = '$post_id'";
     } else {
-      $post_floor_name = mysqli_real_escape_string($conn, $data['name']);
-      $post_floor_note = mysqli_real_escape_string($conn, $data['desc']);
-
       // Process the form data (e.g., save to database, send email, etc.)
       switch ($post_action) {
         case 'create':
-          $sql = "INSERT INTO `dim_floor` (`floor_name`, `floor_note`) VALUES ('$post_floor_name', '$post_floor_note')";
+          foreach ($data["request"] as $row) {
+            $post_floor_order = mysqli_real_escape_string($conn, $data['order']);
+            $post_floor_name = mysqli_real_escape_string($conn, $data['name']);
+            $post_floor_note = mysqli_real_escape_string($conn, $data['desc']);
+
+            $sub_sql_create = "INSERT INTO `dim_floor` (`floor_order`, `floor_name`, `floor_note`) VALUES ('$post_floor_order', '$post_floor_name', '$post_floor_note')";
+            mysqli_query($conn, $sub_sql_create);
+          }
           break;
 
         case 'update':
-          $sql = "UPDATE `dim_faculty` SET
-          `floor_name` = '$post_floor_name',
-          `floor_note` = '$post_floor_note'
-          WHERE floor_id = '$post_id'";
+          foreach ($data["request"] as $row) {
+            $post_floor_id = mysqli_real_escape_string($conn, $data['id']);
+            $post_floor_order = mysqli_real_escape_string($conn, $data['order']);
+            $post_floor_name = mysqli_real_escape_string($conn, $data['name']);
+            $post_floor_note = mysqli_real_escape_string($conn, $data['desc']);
+
+            $sub_sql_update = "UPDATE `dim_floor` SET `floor_order` = '$post_floor_order', `floor_name` = '$post_floor_name', `floor_note` = '$post_floor_note' WHERE floor_id = '$post_floor_id'";
+            mysqli_query($conn, $sub_sql_update);
+          }
+          break;
         
         default:
           # code...
