@@ -26,24 +26,29 @@
       switch ($post_action) {
         case 'create':
           foreach ($data as $row) {
-            $post_blood_press = mysqli_real_escape_string($conn, $data['blood_press']);
-            $post_blood_sugar = mysqli_real_escape_string($conn, $data['blood_sugar']);
-            $post_weight = mysqli_real_escape_string($conn, $data['weight']);
-            $post_temp = mysqli_real_escape_string($conn, $data['temp']);
-            $post_med_note = mysqli_real_escape_string($conn, $data['med_note']);
+            $post_item_id = mysqli_real_escape_string($conn, $row['item_id']);
+            $post_amount = mysqli_real_escape_string($conn, $row['amount']);
+            $post_price = mysqli_real_escape_string($conn, $row['price']);
+            $post_note = mysqli_real_escape_string($conn, $row['item_note']);
+
+            $sub_sql_create = "INSERT INTO `fact_prescription` (`med_hist_id`, `item_id`, `amount`, `price`, `item_note`) VALUES ('$post_id', '$post_item_id', '$post_amount', '$post_price', '$post_note')";
+
           }
-
-
-
-
-
-          $sql = "INSERT INTO `fact_med_hist` (`blood_press`, `blood_sugar`, `weight`, `temp`, `med_note`) VALUES ('$post_blood_press', '$post_blood_sugar', '$post_weight', '$post_temp', '$post_med_note')";
           break;
 
         case 'update':
           $sql = "UPDATE `fact_prescription` SET `status` = 'deleted' WHERE med_hist_id = '$post_id'";
           
-          $sql = "UPDATE `fact_med_hist` SET `blood_press` = '$post_blood_press', `blood_sugar` = '$post_blood_sugar', `weight` = '$post_weight', `temp` = '$post_temp', `med_note` = '$post_med_note' WHERE med_hist_id = '$post_id'";;
+          foreach ($data as $row) {
+            $post_item_id = mysqli_real_escape_string($conn, $row['item_id']);
+            $post_amount = mysqli_real_escape_string($conn, $row['amount']);
+            $post_price = mysqli_real_escape_string($conn, $row['price']);
+            $post_note = mysqli_real_escape_string($conn, $row['item_note']);
+
+            $sub_sql_create = "INSERT INTO `fact_med_hist` (`med_hist_id`, `item_id`, `amount`, `price`, `item_note`) VALUES ('$post_id', '$post_item_id', '$post_amount', '$post_price', '$post_note')";
+
+          }
+          break;
         
         default:
           # code...
