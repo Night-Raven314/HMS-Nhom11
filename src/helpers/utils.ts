@@ -28,6 +28,17 @@ export const getRoleName = (role:string) => {
       return "Không xác định"
   }
 }
+export const getGenderName = (gender:string) => {
+  switch (gender) {
+    case "male":
+      return "Nam"
+    case "female":
+      return "Nữ"
+  
+    default:
+      return "Chưa chọn";
+  }
+}
 
 export const convertISOToDateTime = (date:string) => {
   return format(new Date(date), "yyyy-MM-dd HH:mm");
