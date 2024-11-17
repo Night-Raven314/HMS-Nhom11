@@ -53,7 +53,7 @@ if ($data) {
         appt_id
     )
       SELECT
-        appt_appt_id,
+        appt.appt_id,
         appt.doctor_id,
         dct.doctor_name,
         appt.patient_id,
