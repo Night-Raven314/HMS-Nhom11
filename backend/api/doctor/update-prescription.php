@@ -21,6 +21,7 @@
     if($post_action === "delete") {
       $sql = "UPDATE `fact_prescription` SET
       `status` = 'deleted' WHERE med_hist_id = '$post_id'";
+      mysqli_query($conn, $sql);
     } else {
       // Process the form data (e.g., save to database, send email, etc.)
       switch ($post_action) {
@@ -31,13 +32,33 @@
             $post_price = mysqli_real_escape_string($conn, $row['price']);
             $post_note = mysqli_real_escape_string($conn, $row['item_note']);
 
-            $sub_sql_create = "INSERT INTO `fact_prescription` (`med_hist_id`, `item_id`, `amount`, `price`, `item_note`) VALUES ('$post_id', '$post_item_id', '$post_amount', '$post_price', '$post_note')";
+            $sub_sql_create = "INSERT INTO `fact_prescription` (`med_hist_id`, `item_id`, `amount`, `price`, `item_note`) VALUES ('$post_id', '$post_item_id', '$post_amount', '$post_price', '$post_note');
+              INSERT INTO `fact_item_stock` (`item_id`, `change_type`, `amount_changed`) VALUES ('$post_item_id', 'deduction', '$post_amount')";
+            mysqli_query($conn, $sub_sql_create);
 
           }
           break;
 
         case 'update':
+          $sub_sql_get_old_pres = "SELECT pres.med_hist_id, pres.item_id, pres.amount FROM `fact_prescription` pres
+            WHERE pres.med_hist_id = '$post_id' AND pres.status <> 'deleted'";
+          $result = mysqli_query($conn, $sub_sql_get_old_pres);
+
+          $old_pres = [];
+          while ($pres_row = $result->fetch_assoc()) {
+            $old_pres[] = $pres_row;
+          }
+
+          foreach ($old_pres as $old_pres_row) {
+              $post_item_id = mysqli_real_escape_string($conn, $old_pres_row['item_id']);
+              $post_amount = mysqli_real_escape_string($conn, $old_pres_row['amount']);
+  
+              $sub_sql_return_meds = "INSERT INTO `fact_item_stock` (`item_id`, `change_type`, `amount_changed`) VALUES ('$post_item_id', 'addition', '$post_amount')";
+              mysqli_query($conn, $sub_sql_return_meds);
+            }
+
           $sql = "UPDATE `fact_prescription` SET `status` = 'deleted' WHERE med_hist_id = '$post_id'";
+          mysqli_query($conn, $sub_sql_return_meds);
           
           foreach ($data as $row) {
             $post_item_id = mysqli_real_escape_string($conn, $row['item_id']);
@@ -45,7 +66,9 @@
             $post_price = mysqli_real_escape_string($conn, $row['price']);
             $post_note = mysqli_real_escape_string($conn, $row['item_note']);
 
-            $sub_sql_create = "INSERT INTO `fact_med_hist` (`med_hist_id`, `item_id`, `amount`, `price`, `item_note`) VALUES ('$post_id', '$post_item_id', '$post_amount', '$post_price', '$post_note')";
+            $sub_sql_create = "INSERT INTO `fact_med_hist` (`med_hist_id`, `item_id`, `amount`, `price`, `item_note`) VALUES ('$post_id', '$post_item_id', '$post_amount', '$post_price', '$post_note');
+              INSERT INTO `fact_item_stock` (`item_id`, `change_type`, `amount_changed`) VALUES ('$post_item_id', 'deduction', '$post_amount')";
+            mysqli_query($conn, $sub_sql_create);
 
           }
           break;
