@@ -165,7 +165,7 @@ export const AdminFaculty: FC = () => {
   const getFacultyList = async() => {
     const getFaculty = await apiGetFaculty();
     if(getFaculty.error) {
-      openToast("error", "Lỗi", "Đã xảy ra lỗi khi lấy thông tin người dùng!", 5000);
+      openToast("error", "Lỗi", "Đã xảy ra lỗi khi lấy thông tin chuyên khoa!", 5000);
     } else if (getFaculty.data) {
       setFacultyList(getFaculty.data);
     }

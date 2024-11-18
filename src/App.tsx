@@ -16,6 +16,7 @@ import { Logout } from "./pages/Logout";
 import { FacebookLoginRedirect } from "./pages/FacebookLoginRedirect";
 import { DoctorAppointment } from "./pages/role-doctor/Appointment";
 import { DoctorPatients } from "./pages/role-doctor/Patients";
+import { AdminBuilding } from "./pages/role-admin/Building";
 
 export const App:FC = () => {
   const [checkLogin, setCheckLogin] = useState<boolean>(false);
@@ -66,6 +67,10 @@ export const App:FC = () => {
       element: <CompleteProfile />,
     },
     // Admin page
+    {
+      path: "/role-admin/building",
+      element: <AdminBuilding />,
+    },
     {
       path: "/role-admin/guest",
       element: <AdminGuest pageType="guest" />,

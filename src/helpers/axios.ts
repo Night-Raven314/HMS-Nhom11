@@ -5,6 +5,7 @@ import { UserFormType, UserRequestType } from "../pages/role-admin/Guest";
 import { ItemRequestType } from "../pages/role-admin/Item";
 import { FacultyRequestType } from "../pages/role-admin/Faculty";
 import { DynamicRequestType, ScheduleFormType, ScheduleRequestType } from "../pages/role-doctor/Schedule";
+import { FloorRequestType, RoomAPIRequestType } from "../pages/role-admin/Building";
 
 export const hmsAxios = Axios.create({
   baseURL: `/HMS-Nhom11/backend/api/`,
@@ -106,6 +107,78 @@ export const apiCompleteProfile = async(profileForm:ProfileFormType) => {
     const res = await hmsAxios.post(
       "/account/complete-profile.php",
       JSON.stringify(profileForm)
+    );
+    if(res.data) {
+      data = res.data.data;
+    }
+  } catch (err:any) {
+    error = err.response.data.message;
+  }
+  return { data, error };
+}
+
+export const apiAdminGetBuilding = async() => {
+  let error = null;
+  let data = null;
+  try {
+    const [dataFloor, dataRoom] = await Promise.all([
+      hmsAxios.post(
+        "/admin/get-floor.php"
+      ),
+      hmsAxios.post(
+        "/admin/get-room.php"
+      ),
+    ])
+    if(dataFloor.data && dataRoom.data) {
+      data = {
+        floors: dataFloor.data.data,
+        rooms: dataRoom.data.data
+      };
+    }
+  } catch (err:any) {
+    error = err.response.data.message;
+  }
+  return { data, error };
+}
+export const apiAdminUpdateFloor = async(request:FloorRequestType) => {
+  let error = null;
+  let data = null;
+  try {
+    const res = await hmsAxios.post(
+      "/admin/update-floor.php",
+      JSON.stringify(request)
+    );
+    if(res.data) {
+      data = res.data.data;
+    }
+  } catch (err:any) {
+    error = err.response.data.message;
+  }
+  return { data, error };
+}
+export const apiAdminUpdateRooms = async(request:RoomAPIRequestType) => {
+  let error = null;
+  let data = null;
+  try {
+    const res = await hmsAxios.post(
+      "/admin/update-room.php",
+      JSON.stringify(request)
+    );
+    if(res.data) {
+      data = res.data.data;
+    }
+  } catch (err:any) {
+    error = err.response.data.message;
+  }
+  return { data, error };
+}
+
+export const apiAdminGetRoom = async() => {
+  let error = null;
+  let data = null;
+  try {
+    const res = await hmsAxios.post(
+      "/admin/get-room.php"
     );
     if(res.data) {
       data = res.data.data;

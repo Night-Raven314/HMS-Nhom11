@@ -17,6 +17,7 @@
       // Kiểm tra và hiển thị dữ liệu
       $data = [];
       while ($row = $result->fetch_assoc()) {
+        $row["room_order"] = (int) $row["room_order"];
         $data[] = $row;
       }
       echo json_encode(["status" => "success", "data" => $data]);

@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FC } from "react";
 import { faCalendar, faClipboard } from "@fortawesome/free-regular-svg-icons";
-import { faBookMedical, faIdBadge, faKitMedical, faMoneyBill, faNotesMedical, faPills, faUserPen, faUsers } from "@fortawesome/free-solid-svg-icons";
+import { faBookMedical, faBuilding, faIdBadge, faKitMedical, faMoneyBill, faNotesMedical, faPills, faUserPen, faUsers } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 export type AdminSidebarProps = {
@@ -69,6 +69,18 @@ export const AdminSidebar:FC<AdminSidebarProps> = ({selectedItem}) => {
           <li className="nav-item mt-3">
             <h6 className="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Quản trị
             </h6>
+          </li>
+
+          <li className="nav-item">
+            <Link to="/role-admin/building">
+              <div className={`nav-link text-white ${selectedItem === "building" ? "active bg-gradient-primary" : ""}`}>
+                <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                  <FontAwesomeIcon icon={faBuilding} />
+                </div>
+
+                <span className="nav-link-text ms-1">Quản lý khu nội trú</span>
+              </div>
+            </Link>
           </li>
 
           <li className="nav-item">

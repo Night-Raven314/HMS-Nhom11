@@ -39,6 +39,28 @@ export const getGenderName = (gender:string) => {
       return "Chưa chọn";
   }
 }
+export const getFloorStatus = (status:string) => {
+  switch (status) {
+    case "active":
+      return "Hoạt động"
+  
+    default:
+      return "Không xác định";
+  }
+}
+export const getRoomStatus = (status:string) => {
+  switch (status) {
+    case "active":
+      return "Còn trống"
+    case "occupied":
+      return "Hết chỗ"
+    case "maintenance":
+      return "Bảo trì"
+  
+    default:
+      return "Không xác định";
+  }
+}
 
 export const convertISOToDateTime = (date:string) => {
   return format(new Date(date), "yyyy-MM-dd HH:mm");

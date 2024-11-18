@@ -8,9 +8,9 @@ import { ToastProvider } from './components/common/CustomToast';
 import { App } from './App';
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
+  <>
     <ToastProvider>
       <App />
     </ToastProvider>
-  </StrictMode>
+  </>
 )

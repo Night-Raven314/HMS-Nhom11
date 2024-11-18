@@ -5,6 +5,8 @@ $text-color: #414A4F;
 $input-border: #d2d6da;
 $table-border: #b8b8b8;
 $hms-gradient: linear-gradient(195deg, #167070 0%, #003d59 100%);
+$red-gradient: linear-gradient(195deg, #ed213a, #93291e);
+$orange-gradient: linear-gradient(-195deg, #f12711, #f5af19);
 
 // Colors
 $color-green: #00BD9D;
@@ -15,6 +17,21 @@ $color-light-red: #fff4f4;
 .text-color {
   color: $text-color!important;
 }
+
+@keyframes lightShake {
+  0% { transform: translate(0.5px, 0.5px) rotate(0deg); }
+  10% { transform: translate(-0.5px, -1px) rotate(-0.5deg); }
+  20% { transform: translate(-1px, 0px) rotate(0.5deg); }
+  30% { transform: translate(1px, 0.5px) rotate(0deg); }
+  40% { transform: translate(0.5px, -0.5px) rotate(0.5deg); }
+  50% { transform: translate(-0.5px, 1px) rotate(-0.5deg); }
+  60% { transform: translate(-1px, 0.5px) rotate(0deg); }
+  70% { transform: translate(1px, 0.5px) rotate(-0.5deg); }
+  80% { transform: translate(-0.5px, -0.5px) rotate(0.5deg); }
+  90% { transform: translate(0.5px, 1px) rotate(0deg); }
+  100% { transform: translate(0.5px, -1px) rotate(-0.5deg); }
+}
+
 
 #scroll-top {
   position: fixed;
@@ -295,6 +312,7 @@ div#popupFormContainer {
     }
   }
   .dropdown-menu {
+    inset: 0px 0px auto auto!important;
     &::before {
       display: none;
     }
@@ -432,7 +450,6 @@ div#popupFormContainer {
   height: 100dvh;
   overflow-y: auto;
   position: absolute;
-  overflow-x: hidden;
 }
 .page-container {
   position: relative;
@@ -486,7 +503,7 @@ div#popupFormContainer {
     overflow-x: auto;
     border-radius: 10px;
     margin-top: -32px;
-    max-height: calc(100dvh - 147px);
+    max-height: calc(100dvh - 157px);
     table {
       border-collapse: collapse;
       width: 100%;
@@ -635,6 +652,183 @@ div#popupFormContainer {
     color: $text-color;
     .desc-content {
       margin-top: 10px;
+    }
+  }
+}
+
+.hms-building {
+  .building-header {
+    position: relative;
+    z-index: 5;
+    background-image: $hms-gradient;
+    background-color: transparent;
+    box-shadow: 0 4px 20px 0 rgba(22, 112, 112, 0.14), 0 7px 10px -5px rgba(0, 61, 89, 0.4);
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 0 30px;
+    transition: all 200ms ease-in-out;
+    box-sizing: border-box;
+    .header-title {
+      color: #fff;
+      font-weight: 600;
+      flex: 1;
+      font-size: 14pt;
+      transition: all 200ms ease-in-out;
+    }
+    .header-button {
+      button {
+        margin-bottom: 0;
+        background-color: #fff;
+        transition: all 200ms ease-in-out;
+      }
+    }
+  }
+  .building-content {
+    background-color: #fff;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    border-radius: 10px;
+    margin-top: -37px;
+    padding: 15px;
+    padding-top: calc(37px + 15px);
+    max-height: calc(100dvh - 67.46px - 45px - 38px);
+    overflow-y: auto;
+    .floor-container {
+      display: flex;
+      align-items: center;
+      color: $text-color;
+      gap: 30px;
+      margin-bottom: 30px;
+      background-color: rgba(256, 256, 256, 0.8);
+      backdrop-filter: blur(10px);
+      border-radius: 10px;
+      .floor-title-container {
+        flex: 0 0 300px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        color: $hms-neutral;
+        padding-left: 15px;
+        .floor-icon {
+          font-size: 18pt;
+          button {
+            font-size: 14pt;
+            padding: 10px;
+            line-height: 1.2;
+          }
+        }
+        .floor-info {
+          flex: 1;
+          .floor-name {
+            font-size: 25pt;
+            font-weight: 700;
+          }
+          .floor-note {
+            font-size: 14pt;
+          }
+        }
+      }
+      .floor-rooms-container {
+        flex: 1;
+        border: 2px solid $hms-neutral;
+        border-radius: 10px;
+        padding: 15px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+        min-height: calc(118.77px + 30px);
+      }
+    }
+    .room-item {
+      background-image: $hms-gradient;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 8px;
+      position: relative;
+      .delete-btn {
+        border: none;
+        background-color: $color-red;
+        width: 30px;
+        height: 30px;
+        border-radius: 30px;
+        color: #fff;
+        font-size: 16pt;
+        line-height: 1.2;
+        border: 1px solid #fff;
+        position: absolute;
+        right: -13px;
+        top: -10px;
+        transition: all 200ms ease-in-out;
+        // opacity: 0;
+        // transform: scale(0);
+      }
+      .item-container {
+        .room-name {
+          font-size: 20pt;
+          line-height: 1.2;
+          font-weight: 700;
+        }
+      }
+      &.occupied {
+        background-image: $red-gradient;
+      }
+      &.hidden {
+        opacity: 0!important;
+      }
+      &.add-room {
+        background-image: none;
+        color: $hms-neutral;
+        text-align: center;
+        border: 2px dashed $hms-neutral;
+        display: grid;
+        place-items: center;
+        transition: all 200ms ease-in-out;
+        transform: scale(1);
+        min-height: 118.77px;
+        .item-add-container {
+          display: inline-flex;
+          align-items: center;
+          gap: 15px;
+          .add-icon {
+            font-size: 25pt;
+          }
+          .add-text {
+            font-size: 20pt;
+            font-weight: 700;
+          }
+        }
+      }
+    }
+  }
+  &.edit-mode {
+    .building-header {
+      background-color: #fff;
+      background-image: none;
+      outline: 3px dashed $hms-neutral;
+      .header-title {
+        color: $hms-neutral;
+      }
+      .header-button {
+        button {
+          background-image: $hms-gradient;
+          color: #fff;
+        }
+      }
+    }
+    .building-content {
+      .room-item {
+        .delete-btn {
+          opacity: 1;
+          transform: none;
+        }
+        &.add-room {
+          transform: scale(0);
+          opacity: 0;
+          pointer-events: none;
+        }
+      }
     }
   }
 }
