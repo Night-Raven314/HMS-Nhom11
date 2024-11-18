@@ -23,6 +23,7 @@
       `status` = 'deleted' WHERE med_hist_id = '$post_id'";
       mysqli_query($conn, $sql);
     } else {
+      $post_log_id = mysqli_real_escape_string($conn, $data['ptn_log_id']);
       $post_blood_press = mysqli_real_escape_string($conn, $data['blood_press']);
       $post_blood_sugar = mysqli_real_escape_string($conn, $data['blood_sugar']);
       $post_weight = mysqli_real_escape_string($conn, $data['weight']);
@@ -32,12 +33,12 @@
       // Process the form data (e.g., save to database, send email, etc.)
       switch ($post_action) {
         case 'create':
-          $sql = "INSERT INTO `fact_med_hist` (`blood_press`, `blood_sugar`, `weight`, `temp`, `med_note`) VALUES ('$post_blood_press', '$post_blood_sugar', '$post_weight', '$post_temp', '$post_med_note')";
+          $sql = "INSERT INTO `fact_med_hist` (`ptn_log_id`, `blood_press`, `blood_sugar`, `weight`, `temp`, `med_note`) VALUES ('$post_log_id', '$post_blood_press', '$post_blood_sugar', '$post_weight', '$post_temp', '$post_med_note')";
 
           break;
 
         case 'update':
-          $sql = "UPDATE `fact_med_hist` SET `blood_press` = '$post_blood_press', `blood_sugar` = '$post_blood_sugar', `weight` = '$post_weight', `temp` = '$post_temp', `med_note` = '$post_med_note' WHERE med_hist_id = '$post_id'";
+          $sql = "UPDATE `fact_med_hist` SET `ptn_log_id` = '$post_log_id', `blood_press` = '$post_blood_press', `blood_sugar` = '$post_blood_sugar', `weight` = '$post_weight', `temp` = '$post_temp', `med_note` = '$post_med_note' WHERE med_hist_id = '$post_id'";
 
           break;
         

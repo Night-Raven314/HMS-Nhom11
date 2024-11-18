@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 17, 2024 at 06:05 PM
+-- Generation Time: Nov 18, 2024 at 04:24 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -671,6 +671,14 @@ INSERT INTO `fact_med_hist` (`med_hist_id`, `ptn_log_id`, `doctor_id`, `patient_
 ('27edf5c7-a113-11ef-95f3-b42e994cb670', '', '68ee0818-a114-11ef-95f3-b42e994cb670', '68ee18ec-a114-11ef-95f3-b42e994cb670', '120/80', '5.5', NULL, '60', NULL, '36.5', 'Kiểm tra sức khỏe bình thường.', '2024-10-08 14:49:09', '2024-11-14 16:55:23', 'active'),
 ('27edf657-a113-11ef-95f3-b42e994cb670', '', '68ee0a6f-a114-11ef-95f3-b42e994cb670', '68ee17bc-a114-11ef-95f3-b42e994cb670', '115/75', '5.0', NULL, '58', NULL, '36.2', 'Kiểm tra sức khỏe bình thường. Tất cả các chỉ số đều ổn định.', '2024-10-08 14:49:09', '2024-11-14 16:55:23', 'active');
 
+--
+-- Triggers `fact_med_hist`
+--
+DELIMITER $$
+CREATE TRIGGER `before_insert_fact_med_hist` BEFORE INSERT ON `fact_med_hist` FOR EACH ROW SET NEW.med_hist_id = UUID()
+$$
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
@@ -690,6 +698,14 @@ CREATE TABLE `fact_patient_log` (
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
   `status` varchar(50) DEFAULT 'active'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Triggers `fact_patient_log`
+--
+DELIMITER $$
+CREATE TRIGGER `before_insert_fact_patient_log` BEFORE INSERT ON `fact_patient_log` FOR EACH ROW SET NEW.ptn_log_id = UUID()
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
