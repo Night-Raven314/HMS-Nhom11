@@ -34,7 +34,8 @@
             $post_room_size = mysqli_real_escape_string($conn, $row['size']);
             $post_room_price = mysqli_real_escape_string($conn, $row['price']);
 
-            $sub_sql_create = "INSERT INTO `dim_room` (`room_order`, `room_name`, `floor_id`, `faculty_id`, `room_size`, `room_price`, `status`) VALUES ('$post_room_order', '$post_room_name', '$post_room_floor', '$post_room_fac', $post_room_size, $post_room_price, 'active')";
+            $sub_sql_create = "INSERT INTO `dim_room` (`room_order`, `room_name`, `floor_id`, `faculty_id`, `room_size`, `room_price`, `status`)
+              VALUES ('$post_room_order', '$post_room_name', '$post_room_floor', '$post_room_fac', $post_room_size, $post_room_price, 'active')";
             mysqli_query($conn, $sub_sql_create);
           }
           echo json_encode(["status" => "success", "data" => "success"]);
@@ -51,8 +52,10 @@
             $post_room_fac = mysqli_real_escape_string($conn, $row['fac_id']);
             $post_room_size = mysqli_real_escape_string($conn, $row['size']);
             $post_room_price = mysqli_real_escape_string($conn, $row['price']);
+            $post_room_status = mysqli_real_escape_string($conn, $row['status']);
 
-            $sub_sql_update = "UPDATE `dim_room` SET `room_order` = '$post_room_order', `room_name` = '$post_room_name', `floor_id` = '$post_room_floor', `faculty_id` = '$post_room_fac', `room_size` = $post_room_size, `room_price` = $post_room_price WHERE room_id = '$post_room_id'";
+            $sub_sql_update = "UPDATE `dim_room` SET `room_order` = '$post_room_order', `room_name` = '$post_room_name', `floor_id` = '$post_room_floor',
+              `faculty_id` = '$post_room_fac', `room_size` = $post_room_size, `room_price` = $post_room_price, `status` = $post_room_status WHERE room_id = '$post_room_id'";
             mysqli_query($conn, $sub_sql_update);
           }
           echo json_encode(["status" => "success", "data" => "success"]);
