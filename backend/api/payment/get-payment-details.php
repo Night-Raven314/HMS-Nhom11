@@ -17,9 +17,19 @@
     $payment_id = mysqli_real_escape_string($conn, $data['payment_id']);
     // Process the form data (e.g., save to database, send email, etc.)
     $sql = "WITH 
+      med_hist_ref AS (
+      SELECT
+          med.med_hist_id
+      FROM `fact_med_hist` med
+          LEFT JOIN `fact_payment` pmt
+              ON med.ptn_log_id = pmt.ptn_log_id
+      WHERE
+          pmt.payment_id = '$payment_id'
+      ),
+          
       pres_data AS (
       SELECT
-          pres.med_hist_id,
+          hst.ptn_log_id,
           meds.item_name,
           meds.item_unit,
           pres.amount,
@@ -30,6 +40,10 @@
       FROM `fact_prescription` pres
           LEFT JOIN `dim_meds` meds
               ON pres.item_id = meds.item_id
+          LEFT JOIN `fact_med_hist` hst
+          	  ON pres.med_hist_id = hst.med_hist_id
+      WHERE
+          pres.med_hist_id IN (SELECT med_hist_id FROM med_hist_ref)
       ),
 
       facility_data AS (
@@ -112,7 +126,7 @@
             pmt.payment_desc,
             pres.*
         FROM `fact_payment` pmt
-        LEFT JOIN `pres_data` pres ON pres.med_hist_id = pmt.med_hist_id
+        LEFT JOIN `pres_data` pres ON pres.ptn_log_id = pmt.ptn_log_id
 
         UNION ALL
 
@@ -122,7 +136,7 @@
             pmt.payment_desc,
             fac.*
         FROM `fact_payment` pmt
-        LEFT JOIN `facility_data` fac ON fac.ptn_log_id = pmt.fac_mgmt_id
+        LEFT JOIN `facility_data` fac ON fac.ptn_log_id = pmt.ptn_log_id
       ) AS unioned_data
       WHERE unioned_data.payment_id = '$payment_id' AND amount IS NOT NULL";
     if($sql) {
