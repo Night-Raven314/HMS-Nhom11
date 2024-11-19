@@ -17,6 +17,7 @@
     $sql = "";
     // Access form values
     $post_id = $data['med_hist_id'] ? mysqli_real_escape_string($conn, $data['med_hist_id']) : null;
+    $post_ptn_log = $data['med_hist_id'] ? mysqli_real_escape_string($conn, $data['ptn_log_id']) : null;
     $post_action = mysqli_real_escape_string($conn, $data['action']);
     if($post_action === "delete") {
       $sql = "UPDATE `fact_med_hist` SET
@@ -33,7 +34,8 @@
       // Process the form data (e.g., save to database, send email, etc.)
       switch ($post_action) {
         case 'create':
-          $sql = "INSERT INTO `fact_med_hist` (`ptn_log_id`, `blood_press`, `blood_sugar`, `weight`, `temp`, `med_note`) VALUES ('$post_log_id', '$post_blood_press', '$post_blood_sugar', '$post_weight', '$post_temp', '$post_med_note')";
+          $sql = "INSERT INTO `fact_med_hist` (`ptn_log_id`, `blood_press`, `blood_sugar`, `weight`, `temp`, `med_note`) VALUES ('$post_log_id', '$post_blood_press', '$post_blood_sugar', '$post_weight', '$post_temp', '$post_med_note');
+            UPDATE `fact_patient_log` SET `med_note` = '$post_med_note' WHERE ptn_log_id = '$post_ptn_log'";
 
           break;
 

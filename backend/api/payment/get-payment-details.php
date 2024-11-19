@@ -34,7 +34,7 @@
 
       facility_data AS (
       SELECT
-          fac.fac_mgmt_id,
+          fac.ptn_log_id,
           item.item_name,
           item.item_unit,
           fac.amount,
@@ -49,7 +49,7 @@
       UNION ALL
 
       SELECT
-          fac.fac_mgmt_id,
+          fac.ptn_log_id,
           svcs.item_name,
           svcs.item_unit,
           fac.amount,
@@ -64,7 +64,7 @@
       UNION ALL
 
       SELECT
-          fac.fac_mgmt_id,
+          fac.ptn_log_id,
           room.room_name,
           'room slot' AS unit,
           timestampdiff(day, STR_TO_DATE(fac.start_datetime, '%Y-%m-%dT%H:%i:%s'), STR_TO_DATE(fac.end_datetime, '%Y-%m-%dT%H:%i:%s')) + 1, -- same start/end date means 1
@@ -122,7 +122,7 @@
             pmt.payment_desc,
             fac.*
         FROM `fact_payment` pmt
-        LEFT JOIN `facility_data` fac ON fac.fac_mgmt_id = pmt.fac_mgmt_id
+        LEFT JOIN `facility_data` fac ON fac.ptn_log_id = pmt.fac_mgmt_id
       ) AS unioned_data
       WHERE unioned_data.payment_id = '$payment_id' AND amount IS NOT NULL";
     if($sql) {
