@@ -17,7 +17,7 @@
     $sql = "";
     // Access form values
     $post_id = $data['med_hist_id'] ? mysqli_real_escape_string($conn, $data['med_hist_id']) : null;
-    $post_ptn_log = $data['med_hist_id'] ? mysqli_real_escape_string($conn, $data['ptn_log_id']) : null;
+    $post_ptn_log = $data['ptn_log_id'] ? mysqli_real_escape_string($conn, $data['ptn_log_id']) : null;
     $post_action = mysqli_real_escape_string($conn, $data['action']);
     if($post_action === "delete") {
       $sql = "UPDATE `fact_med_hist` SET
