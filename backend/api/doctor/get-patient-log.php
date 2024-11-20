@@ -32,12 +32,12 @@
       LEFT JOIN `dim_user` ptn
         ON ptn.user_id = log.patient_id
       LEFT JOIN `dim_user` doc
-        ON doc.user_id = log.patient_id
+        ON doc.user_id = log.doctor_id
       LEFT JOIN `dim_faculty` fac
         ON fac.fac_id = log.faculty_id
     WHERE
       patient_id = '$post_id'
-      AND status <> 'deleted'";
+      AND log.status <> 'deleted'";
     if($sql) {
       $result = $conn->query($sql);
       if ($result) { 

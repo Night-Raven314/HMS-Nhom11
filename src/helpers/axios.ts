@@ -414,6 +414,7 @@ export type UpdatePatientLogType = {
   faculty_id: string | null,
   ptn_log_id?: string,
   is_inpatient: number,
+  auth_user_id: string,
   action: string
 }
 

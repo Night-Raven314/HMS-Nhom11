@@ -17,15 +17,13 @@ export type PatientLogType = {
   ptn_log_id: string;
   patient_id: string;
   doctor_id: string;
-  doctor_name: string;
+  full_name: string;
   faculty_id: string;
-  faculty_name: string;
+  fac_name: string;
   is_inpatient: string;
   med_note: string | null;
   start_datetime: string;
   end_datetime: string | null;
-  created_at: string;
-  updated_at: string | null;
   status: string;
 };
 
@@ -67,6 +65,7 @@ export const PatientInfo:FC = () => {
       const request:UpdatePatientLogType = {
         patient_id: patientId,
         faculty_id: UserSession.faculty_id,
+        auth_user_id: UserSession.auth_user_id,
         is_inpatient: 0,
         action: "create"
       }
@@ -149,7 +148,7 @@ export const PatientInfo:FC = () => {
                             </div>
                             <div className="info-text">
                               <div className="text-title">Ngày tạo</div>
-                              <div className="text-desc">{convertISOToDateTime(log.created_at)}</div>
+                              <div className="text-desc">{convertISOToDateTime(log.start_datetime)}</div>
                             </div>
                           </div>
                           <div className="col-md-3 info-container">
@@ -158,7 +157,7 @@ export const PatientInfo:FC = () => {
                             </div>
                             <div className="info-text">
                               <div className="text-title">Chuyên khoa</div>
-                              <div className="text-desc">{log.faculty_name}</div>
+                              <div className="text-desc">{log.fac_name}</div>
                             </div>
                           </div>
                           <div className="col-md-3 info-container">
@@ -167,7 +166,7 @@ export const PatientInfo:FC = () => {
                             </div>
                             <div className="info-text">
                               <div className="text-title">Bác sỹ khám ban đầu</div>
-                              <div className="text-desc">{log.doctor_name}</div>
+                              <div className="text-desc">{log.full_name}</div>
                             </div>
                           </div>
                           <div className="col-md-3 info-container">
