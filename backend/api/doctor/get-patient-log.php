@@ -16,8 +16,28 @@
   if ($data) {
     $post_id = $data['patient_id'] ? mysqli_real_escape_string($conn, $data['patient_id']) : null;
     // Process the form data (e.g., save to database, send email, etc.)
-    $sql = "SELECT * FROM `fact_patient_log` WHERE patient_id = '$post_id' AND status <> 'deleted'
-      ORDER BY created_at DESC";
+    $sql = "SELECT
+      log.ptn_log_id,
+      log.patient_id,
+      ptn.full_name,
+      log.doctor_id,
+      doc.full_name,
+      log.faculty_id,
+      fac.fac_name,
+      log.is_inpatient,
+      log.med_note,
+      log.start_datetime,
+      log.end_datetime
+    FROM `fact_patient_log` log
+      LEFT JOIN `dim_user` ptn
+        ON ptn.user_id = log.patient_id
+      LEFT JOIN `dim_user` doc
+        ON doc.user_id = log.patient_id
+      LEFT JOIN `dim_faculty` fac
+        ON fac.fac_id = log.faculty_id
+    WHERE
+      patient_id = '$post_id'
+      AND status <> 'deleted'";
     if($sql) {
       $result = $conn->query($sql);
       if ($result) { 

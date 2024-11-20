@@ -18,25 +18,30 @@
     $ptn_log_id = $data['ptn_log_id'] ? mysqli_real_escape_string($conn, $data['ptn_log_id']) : null;
     // Process the form data (e.g., save to database, send email, etc.)
     $sql = "SELECT
-          pres.med_hist_id,
-          mshst.patient_id,
-          meds.item_name,
-          pres.amount,
-          meds.item_unit,
-          pres.item_note,
-          pmt.payment_status,
-          pmt.updated_at
-      FROM `fact_prescription` pres
-        LEFT JOIN `fact_payment` pmt
-          ON pres.med_hist_id = pmt.med_hist_id
-        LEFT JOIN `dim_meds` meds
-          ON pres.item_id = meds.item_id
-        LEFT JOIN `fact_med_hist` mshst
-          ON pres.med_hist_id = mshst.med_hist_id
-      WHERE
-        mshst.status <> 'deleted'
-        AND pres.status <> 'deleted'
-        AND mshst.ptn_log_id = '$ptn_log_id'";
+        'item' AS item_type,
+        item_id,
+        item_name,
+        item_unit,
+        item_price,
+        CASE
+          WHEN item_lending_price = 0 THEN item_price
+            ELSE item_lending_price END AS item_lending_price
+      FROM
+        `dim_item`
+      WHERE status <> 'deleted'
+
+      UNION ALL
+
+      SELECT
+        'service' AS item_type,
+        item_id,
+        item_name,
+        item_unit,
+        item_price,
+        item_price
+      FROM
+        `dim_med_service`
+      WHERE status <> 'deleted';";
     if($sql) {
       $result = $conn->query($sql);
       if ($result) { 
