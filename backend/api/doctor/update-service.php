@@ -24,14 +24,25 @@
     } else if($post_action === "create") {
 
       foreach ($data as $row) {
+        $post_item_type = mysqli_real_escape_string($conn, $row['item_type']);
         $post_item_id = mysqli_real_escape_string($conn, $row['item_id']);
         $post_amount = mysqli_real_escape_string($conn, $row['amount']);
         $post_price = mysqli_real_escape_string($conn, $row['price']);
         $post_note = mysqli_real_escape_string($conn, $row['item_note']);
+        $post_start_time = mysqli_real_escape_string($conn, $row['start_time']);
+        $post_end_time = mysqli_real_escape_string($conn, $row['post_end_time']);
 
-        $sub_sql_create = "INSERT INTO `fact_prescription` (`med_hist_id`, `item_id`, `amount`, `price`, `item_note`) VALUES ('$post_id', '$post_item_id', '$post_amount', '$post_price', '$post_note');
-          INSERT INTO `fact_item_stock` (`item_id`, `change_type`, `amount_changed`) VALUES ('$post_item_id', 'deduction', '$post_amount')";
+        $sub_sql_create = "INSERT INTO `fact_facility_asmt` (`item_type`, `item_id`, `amount`, `price`, `item_note`, `start_datetime`, `end_datetime`)
+          VALUES ('$post_item_type', '$post_item_id', '$post_amount', '$post_price', '$post_note', '$post_price', '$post_note')";
         mysqli_query($conn, $sub_sql_create);
+
+        $post_is_lending = mysqli_real_escape_string($conn, $row['is_lending']);
+
+        if  ($post_item_type === 'item' && $post_is_lending === 'false') {
+          $sub_sql_stock = "INSERT INTO `fact_item_stock` (`item_id`, `change_type`, `amount_changed`) VALUES ('$post_item_id', 'deduction', '$post_amount')";
+
+          mysqli_query($conn, $sub_sql_stock);
+        }
 
       }
       echo json_encode(["status" => "success", "data" => "success"]);
