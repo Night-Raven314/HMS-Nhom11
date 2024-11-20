@@ -29,11 +29,13 @@
       )
 
       SELECT
-        DISTINCT(room_id) AS room_id,
         room_order,
+        'room' AS item_type,
+        DISTINCT(room_id) AS item_id,
         room_name,
+        'Giường' AS item_unit
         room_size,
-        room_price,
+        item_price,
         CASE
           WHEN COUNT(fac_asmt_id) >= room_size THEN 'occupied'
             ELSE 'active' END AS status
