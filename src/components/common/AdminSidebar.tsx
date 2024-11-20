@@ -33,11 +33,11 @@ export const AdminSidebar:FC<AdminSidebarProps> = ({selectedItem}) => {
           <li className="nav-item">
             <a className="nav-link text-white" href="F1-schedule.php">
 
-              <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <div className="side-icon">
                 <FontAwesomeIcon icon={faCalendar} />
               </div>
 
-              <span className="nav-link-text ms-1">Lịch hẹn kiểm tra</span>
+              <span className="side-text">Lịch hẹn kiểm tra</span>
             </a>
           </li>
 
@@ -45,11 +45,11 @@ export const AdminSidebar:FC<AdminSidebarProps> = ({selectedItem}) => {
           <li className="nav-item">
             <a className="nav-link text-white" href="F2-user-medhist.php">
 
-              <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <div className="side-icon">
                 <FontAwesomeIcon icon={faClipboard} />
               </div>
 
-              <span className="nav-link-text ms-1">Hồ sơ sức khoẻ</span>
+              <span className="side-text">Hồ sơ sức khoẻ</span>
             </a>
           </li>
 
@@ -57,11 +57,11 @@ export const AdminSidebar:FC<AdminSidebarProps> = ({selectedItem}) => {
           <li className="nav-item">
             <a className="nav-link text-white" href="F3-patients.php">
 
-              <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <div className="side-icon">
                 <FontAwesomeIcon icon={faUsers} />
               </div>
 
-              <span className="nav-link-text ms-1">Danh sách bệnh nhân</span>
+              <span className="side-text">Danh sách bệnh nhân</span>
             </a>
           </li>
 
@@ -74,11 +74,11 @@ export const AdminSidebar:FC<AdminSidebarProps> = ({selectedItem}) => {
           <li className="nav-item">
             <Link to="/role-admin/building">
               <div className={`nav-link text-white ${selectedItem === "building" ? "active bg-gradient-primary" : ""}`}>
-                <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <div className="side-icon">
                   <FontAwesomeIcon icon={faBuilding} />
                 </div>
 
-                <span className="nav-link-text ms-1">Quản lý khu nội trú</span>
+                <span className="side-text">Quản lý khu nội trú</span>
               </div>
             </Link>
           </li>
@@ -86,11 +86,11 @@ export const AdminSidebar:FC<AdminSidebarProps> = ({selectedItem}) => {
           <li className="nav-item">
             <Link to="/role-admin/guest">
               <div className={`nav-link text-white ${selectedItem === "guest" ? "active bg-gradient-primary" : ""}`}>
-                <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <div className="side-icon">
                   <FontAwesomeIcon icon={faUserPen} />
                 </div>
 
-                <span className="nav-link-text ms-1">Quản lý người dùng</span>
+                <span className="side-text">Quản lý người dùng</span>
               </div>
             </Link>
           </li>
@@ -98,11 +98,11 @@ export const AdminSidebar:FC<AdminSidebarProps> = ({selectedItem}) => {
           <li className="nav-item">
             <Link to="/role-admin/employee">
               <div className={`nav-link text-white ${selectedItem === "employee" ? "active bg-gradient-primary" : ""}`}>
-                <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <div className="side-icon">
                   <FontAwesomeIcon icon={faIdBadge} />
                 </div>
 
-                <span className="nav-link-text ms-1">Quản lý nhân viên</span>
+                <span className="side-text">Quản lý nhân viên</span>
               </div>
             </Link>
           </li>
@@ -110,10 +110,10 @@ export const AdminSidebar:FC<AdminSidebarProps> = ({selectedItem}) => {
           <li className="nav-item">
             <Link to="/role-admin/supply">
               <div className={`nav-link text-white ${selectedItem === "item" ? "active bg-gradient-primary" : ""}`}>
-                <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <div className="side-icon">
                   <FontAwesomeIcon icon={faKitMedical} />
                 </div>
-                <span className="nav-link-text ms-1">Quản lý vật tư</span>
+                <span className="side-text">Quản lý vật tư</span>
               </div>
             </Link>
           </li>
@@ -121,10 +121,10 @@ export const AdminSidebar:FC<AdminSidebarProps> = ({selectedItem}) => {
           <li className="nav-item">
             <Link to="/role-admin/medicine">
               <div className={`nav-link text-white ${selectedItem === "meds" ? "active bg-gradient-primary" : ""}`}>
-                <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <div className="side-icon">
                   <FontAwesomeIcon icon={faPills} />
                 </div>
-                <span className="nav-link-text ms-1">Quản lý thuốc</span>
+                <span className="side-text">Quản lý thuốc</span>
               </div>
             </Link>
           </li>
@@ -132,10 +132,10 @@ export const AdminSidebar:FC<AdminSidebarProps> = ({selectedItem}) => {
           <li className="nav-item">
             <Link to="/role-admin/med-service">
               <div className={`nav-link text-white ${selectedItem === "med_service" ? "active bg-gradient-primary" : ""}`}>
-                <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <div className="side-icon">
                   <FontAwesomeIcon icon={faBookMedical} />
                 </div>
-                <span className="nav-link-text ms-1">Quản lý dịch vụ y tế</span>
+                <span className="side-text">Quản lý dịch vụ y tế</span>
               </div>
             </Link>
           </li>
@@ -143,10 +143,10 @@ export const AdminSidebar:FC<AdminSidebarProps> = ({selectedItem}) => {
           <li className="nav-item">
             <Link to="/role-admin/faculty">
               <div className={`nav-link text-white ${selectedItem === "faculty" ? "active bg-gradient-primary" : ""}`}>
-                <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <div className="side-icon">
                   <FontAwesomeIcon icon={faNotesMedical} />
                 </div>
-                <span className="nav-link-text ms-1">Quản lý chuyên khoa</span>
+                <span className="side-text">Quản lý chuyên khoa</span>
               </div>
             </Link>
           </li>
@@ -154,10 +154,10 @@ export const AdminSidebar:FC<AdminSidebarProps> = ({selectedItem}) => {
           <li className="nav-item">
             <Link to="/role-admin/payment-log">
               <div className={`nav-link text-white ${selectedItem === "payment-log" ? "active bg-gradient-primary" : ""}`}>
-                <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <div className="side-icon">
                   <FontAwesomeIcon icon={faMoneyBill} />
                 </div>
-                <span className="nav-link-text ms-1">Lịch sử giao dịch</span>
+                <span className="side-text">Lịch sử giao dịch</span>
               </div>
             </Link>
           </li>

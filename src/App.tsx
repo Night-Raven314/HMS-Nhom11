@@ -17,6 +17,7 @@ import { FacebookLoginRedirect } from "./pages/FacebookLoginRedirect";
 import { DoctorAppointment } from "./pages/role-doctor/Appointment";
 import { DoctorPatients } from "./pages/role-doctor/Patients";
 import { AdminBuilding } from "./pages/role-admin/Building";
+import { PatientInfo } from "./pages/PatientInfo";
 
 export const App:FC = () => {
   const [checkLogin, setCheckLogin] = useState<boolean>(false);
@@ -53,6 +54,10 @@ export const App:FC = () => {
     {
       path: "/profile",
       element: <ProfilePage />,
+    },
+    {
+      path: "/patient-info/:patientId",
+      element: <PatientInfo />,
     },
     {
       path: "/google-login-redirect",

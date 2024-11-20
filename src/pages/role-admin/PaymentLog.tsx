@@ -62,6 +62,7 @@ export const AdminPaymentLog: FC = () => {
         case "open":
           if(paymentId) {
             const getPaymentDetails = await apiGetPaymentDetail(paymentId);
+            console.log(getPaymentDetails)
             if(getPaymentDetails.error) {
               openToast("error", "Lỗi", "Đã xảy ra lỗi khi lấy lịch sử giao dịch này!", 5000);
             } else if(getPaymentDetails.data) {
