@@ -26,7 +26,6 @@
       $post_patient_id = mysqli_real_escape_string($conn, $data['patient_id']);
       $post_faculty_id = mysqli_real_escape_string($conn, $data['faculty_id']);
       $post_inpatient = mysqli_real_escape_string($conn, $data['is_inpatient']);
-      $post_med_note = mysqli_real_escape_string($conn, $data['med_note']);
       $post_start_datetime = mysqli_real_escape_string($conn, $data['start_datetime']);
       $post_end_datetime = mysqli_real_escape_string($conn, $data['end_datetime']);
 
@@ -34,13 +33,13 @@
         case 'create':
           $iso8601 = (new DateTime())->format(DateTime::ATOM); // Same as ISO 8601
 
-          $sql = "INSERT INTO `fact_patient_log` (`patient_id`, `doctor_id`, `faculty_id`, `is_inpatient`, `med_note`, `start_datetime`, `end_datetime`)
-            VALUES ('$post_patient_id', '$auth_user_id', '$post_faculty_id', $post_inpatient, '$post_med_note', '$iso8601', NULL)";
+          $sql = "INSERT INTO `fact_patient_log` (`patient_id`, `doctor_id`, `faculty_id`, `is_inpatient`, `start_datetime`, `end_datetime`)
+            VALUES ('$post_patient_id', '$auth_user_id', '$post_faculty_id', $post_inpatient, '$iso8601', NULL)";
           break;
 
         case 'update':
           $sql = "UPDATE `fact_patient_log` SET `patient_id` = '$post_patient_id', `doctor_id` = '$auth_user_id', `faculty_id` = '$post_faculty_id', `is_inpatient` = $post_inpatient,
-             `med_note` = '$post_med_note', `start_datetime` = '$post_start_datetime', `end_datetime` = '$post_end_datetime' WHERE ptn_log_id = '$post_id'";
+             `start_datetime` = '$post_start_datetime', `end_datetime` = '$post_end_datetime' WHERE ptn_log_id = '$post_id'";
           break;
         
         default:

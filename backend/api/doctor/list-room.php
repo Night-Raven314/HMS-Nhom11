@@ -17,26 +17,34 @@
     //$auth_user_id = $data['auth_user_id'] ? mysqli_real_escape_string($conn, $data['auth_user_id']) : null;
     $ptn_log_id = $data['ptn_log_id'] ? mysqli_real_escape_string($conn, $data['ptn_log_id']) : null;
     // Process the form data (e.g., save to database, send email, etc.)
-    $sql = "SELECT
-          pres.med_hist_id,
-          mshst.patient_id,
-          meds.item_name,
-          pres.amount,
-          meds.item_unit,
-          pres.item_note,
-          pmt.payment_status,
-          pmt.updated_at
-      FROM `fact_prescription` pres
-        LEFT JOIN `fact_payment` pmt
-          ON pres.med_hist_id = pmt.med_hist_id
-        LEFT JOIN `dim_meds` meds
-          ON pres.item_id = meds.item_id
-        LEFT JOIN `fact_med_hist` mshst
-          ON pres.med_hist_id = mshst.med_hist_id
+    $sql = "WITH
+      active_room AS (
+      SELECT
+        fac_asmt_id,
+        item_id,
+        amount
+      FROM `fact_facility_asmt`
       WHERE
-        mshst.status <> 'deleted'
-        AND pres.status <> 'deleted'
-        AND mshst.ptn_log_id = '$ptn_log_id'";
+        status <> 'deleted'
+      )
+
+      SELECT
+        DISTINCT(room_id) AS room_id,
+        room_order,
+        room_name,
+        room_size,
+        room_price,
+        CASE
+          WHEN COUNT(fac_asmt_id) >= room_size THEN 'occupied'
+            ELSE 'active' END AS status
+      FROM `dim_room` room
+        LEFT JOIN active_room actv
+          ON actv.item_id = room.room_id
+      WHERE
+        room.status <> 'active'
+      GROUP BY 1, 2, 3, 4, 5
+      ORDER BY room_order DESC
+      ";
     if($sql) {
       $result = $conn->query($sql);
       if ($result) { 
