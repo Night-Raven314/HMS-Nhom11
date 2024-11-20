@@ -7,7 +7,7 @@ import { UserSession } from "../helpers/global";
 import { CustomInput } from "../components/common/CustomInput";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRotateBack, faArrowsRotate, faCalendar, faChevronRight, faHospital, faMoneyBill, faNotesMedical, faNoteSticky, faUserDoctor } from "@fortawesome/free-solid-svg-icons";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { UserAccountType } from "../helpers/types";
 import { apiGetFaculty, apiGetPatientLog, apiGetUserAccount, apiUpdatePatientLog, UpdatePatientLogType } from "../helpers/axios";
 import { useToast } from "../components/common/CustomToast";
@@ -138,74 +138,76 @@ export const PatientInfo:FC = () => {
                 <div className="patient-log-list">
                   
                   {patientLog.map(log => (
-                    <div className="log-item">
+                    <Link to={`/patient-log/${log.ptn_log_id}`}>
+                      <div className="log-item">
 
-                      <div className="item-info-container">
-                        <div className="row">
-                          <div className="col-md-3 info-container">
-                            <div className="info-icon">
-                              <FontAwesomeIcon icon={faCalendar} />
-                            </div>
-                            <div className="info-text">
-                              <div className="text-title">Ngày tạo</div>
-                              <div className="text-desc">{convertISOToDateTime(log.start_datetime)}</div>
-                            </div>
-                          </div>
-                          <div className="col-md-3 info-container">
-                            <div className="info-icon">
-                              <FontAwesomeIcon icon={faNotesMedical} />
-                            </div>
-                            <div className="info-text">
-                              <div className="text-title">Chuyên khoa</div>
-                              <div className="text-desc">{log.fac_name}</div>
-                            </div>
-                          </div>
-                          <div className="col-md-3 info-container">
-                            <div className="info-icon">
-                              <FontAwesomeIcon icon={faUserDoctor} />
-                            </div>
-                            <div className="info-text">
-                              <div className="text-title">Bác sỹ khám ban đầu</div>
-                              <div className="text-desc">{log.full_name}</div>
-                            </div>
-                          </div>
-                          <div className="col-md-3 info-container">
-                            <div className="info-icon">
-                              <FontAwesomeIcon icon={faHospital} />
-                            </div>
-                            <div className="info-text">
-                              <div className="text-title">Loại hình điều trị</div>
-                              <div className="text-desc">{Number(log.is_inpatient) ? "Nội trú" : "Ngoại trú"}</div>
-                            </div>
-                          </div>
-                          <div className="col-md-3 info-container">
-                            <div className="info-icon">
-                              <FontAwesomeIcon icon={faArrowsRotate} />
-                            </div>
-                            <div className="info-text">
-                              <div className="text-title">Trạng thái</div>
-                              <div className="text-desc">Đang điều trị</div>
-                            </div>
-                          </div>
-                          {log.med_note ? (
-                            <div className="col-md-9 info-container">
+                        <div className="item-info-container">
+                          <div className="row">
+                            <div className="col-md-3 info-container">
                               <div className="info-icon">
-                                <FontAwesomeIcon icon={faNoteSticky} />
+                                <FontAwesomeIcon icon={faCalendar} />
                               </div>
                               <div className="info-text">
-                                <div className="text-title">Ghi chú gần nhất</div>
-                                <div className="text-desc">{log.med_note}</div>
+                                <div className="text-title">Ngày tạo</div>
+                                <div className="text-desc">{convertISOToDateTime(log.start_datetime)}</div>
                               </div>
                             </div>
-                          ) : ""}
+                            <div className="col-md-3 info-container">
+                              <div className="info-icon">
+                                <FontAwesomeIcon icon={faNotesMedical} />
+                              </div>
+                              <div className="info-text">
+                                <div className="text-title">Chuyên khoa</div>
+                                <div className="text-desc">{log.fac_name}</div>
+                              </div>
+                            </div>
+                            <div className="col-md-3 info-container">
+                              <div className="info-icon">
+                                <FontAwesomeIcon icon={faUserDoctor} />
+                              </div>
+                              <div className="info-text">
+                                <div className="text-title">Bác sỹ khám ban đầu</div>
+                                <div className="text-desc">{log.full_name}</div>
+                              </div>
+                            </div>
+                            <div className="col-md-3 info-container">
+                              <div className="info-icon">
+                                <FontAwesomeIcon icon={faHospital} />
+                              </div>
+                              <div className="info-text">
+                                <div className="text-title">Loại hình điều trị</div>
+                                <div className="text-desc">{Number(log.is_inpatient) ? "Nội trú" : "Ngoại trú"}</div>
+                              </div>
+                            </div>
+                            <div className="col-md-3 info-container">
+                              <div className="info-icon">
+                                <FontAwesomeIcon icon={faArrowsRotate} />
+                              </div>
+                              <div className="info-text">
+                                <div className="text-title">Trạng thái</div>
+                                <div className="text-desc">Đang điều trị</div>
+                              </div>
+                            </div>
+                            {log.med_note ? (
+                              <div className="col-md-9 info-container">
+                                <div className="info-icon">
+                                  <FontAwesomeIcon icon={faNoteSticky} />
+                                </div>
+                                <div className="info-text">
+                                  <div className="text-title">Ghi chú gần nhất</div>
+                                  <div className="text-desc">{log.med_note}</div>
+                                </div>
+                              </div>
+                            ) : ""}
+                          </div>
                         </div>
-                      </div>
 
-                      <div className="item-arrow">
-                        <FontAwesomeIcon icon={faChevronRight} />
-                      </div>
+                        <div className="item-arrow">
+                          <FontAwesomeIcon icon={faChevronRight} />
+                        </div>
 
-                    </div>
+                        </div>
+                    </Link>
                   ))}
                   
                 </div>
