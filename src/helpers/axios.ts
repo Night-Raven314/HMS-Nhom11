@@ -407,3 +407,46 @@ export const apiGetDoctorPatients = async(userId:string) => {
   }
   return { data, error };
 }
+
+// Patient logs
+export type UpdatePatientLogType = {
+  patient_id: string,
+  faculty_id: string | null,
+  ptn_log_id?: string,
+  is_inpatient: number,
+  auth_user_id: string,
+  action: string
+}
+
+export const apiUpdatePatientLog = async(request:UpdatePatientLogType) => {
+  let error = null;
+  let data = null;
+  try {
+    const res = await hmsAxios.post(
+      "/doctor/update-patient-log.php",
+      JSON.stringify(request)
+    );
+    if(res.data) {
+      data = res.data.data;
+    }
+  } catch (err:any) {
+    error = err.response.data.message;
+  }
+  return { data, error };
+}
+export const apiGetPatientLog = async(userId:string) => {
+  let error = null;
+  let data = null;
+  try {
+    const res = await hmsAxios.post(
+      "/doctor/get-patient-log.php",
+      JSON.stringify({patient_id: userId})
+    );
+    if(res.data) {
+      data = res.data.data;
+    }
+  } catch (err:any) {
+    error = err.response.data.message;
+  }
+  return { data, error };
+}

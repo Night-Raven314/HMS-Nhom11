@@ -8,6 +8,7 @@ import { useToast } from "../../components/common/CustomToast";
 import { convertISOToDateTime, getItemTypeName } from "../../helpers/utils";
 import { DoctorSidebar } from "../../components/common/DoctorSidebar";
 import { UserSession } from "../../helpers/global";
+import { useNavigate } from "react-router-dom";
 
 export type ApptListType = {
   appt_id: string,
@@ -25,6 +26,7 @@ export type ApptListType = {
 
 export const DoctorAppointment: FC = () => {
   const {openToast} = useToast();
+  const navigate = useNavigate();
 
   const navbarRef = useRef<NavbarHandles>(null);
   const [searchKeyword, setSearchKeyword] = useState<string>("");
@@ -58,7 +60,11 @@ export const DoctorAppointment: FC = () => {
   }
   useEffect(() => {
     searchAppt();
-  }, [apptList, searchKeyword])
+  }, [apptList, searchKeyword]);
+
+  const openPatientInfo = (userId:string) => {
+    navigate(`/patient-info/${userId}`);
+  }
 
   return (
     <>
@@ -88,8 +94,8 @@ export const DoctorAppointment: FC = () => {
                   <table>
                     <thead>
                       <tr>
-                        <th style={{ width: "120px" }}>Bác sỹ</th>
                         <th style={{ width: "120px" }}>Bệnh nhân</th>
+                        <th style={{ width: "120px" }}>Bác sỹ</th>
                         <th style={{ width: "100px" }}>Chuyên khoa</th>
                         <th style={{ width: "120px" }}>Ngày hẹn</th>
                         <th style={{ width: "100px" }}>Thành tiền</th>
@@ -97,9 +103,9 @@ export const DoctorAppointment: FC = () => {
                     </thead>
                     <tbody>
                       {apptListFiltered.map((appt) => (
-                        <tr key={appt.appt_id}>
-                          <td>{appt.doctor_name}</td>
+                        <tr key={appt.appt_id} style={{cursor: "pointer"}} onClick={() => openPatientInfo(appt.patient_id)}>
                           <td>{appt.patient_name}</td>
+                          <td>{appt.doctor_name}</td>
                           <td>{appt.faculty_name}</td>
                           <td>{convertISOToDateTime(appt.appt_datetime)}</td>
                           <td>{appt.appt_fee}</td>

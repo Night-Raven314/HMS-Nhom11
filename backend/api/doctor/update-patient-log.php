@@ -17,17 +17,15 @@
     $sql = "";
     // Access form values
     $auth_user_id = isset($data['auth_user_id']) ? mysqli_real_escape_string($conn, $data['auth_user_id']) : null;
-    $post_id = $data['ptn_log_id'] ? mysqli_real_escape_string($conn, $data['ptn_log_id']) : null;
     $post_action = mysqli_real_escape_string($conn, $data['action']);
     if($post_action === "delete") {
+      $post_id = $data['ptn_log_id'] ? mysqli_real_escape_string($conn, $data['ptn_log_id']) : null;
       $sql = "UPDATE `fact_patient_log` SET `status` = 'deleted' WHERE ptn_log_id = '$post_id'";
     } else {
       // Process the form data (e.g., save to database, send email, etc.)
       $post_patient_id = mysqli_real_escape_string($conn, $data['patient_id']);
       $post_faculty_id = mysqli_real_escape_string($conn, $data['faculty_id']);
       $post_inpatient = mysqli_real_escape_string($conn, $data['is_inpatient']);
-      $post_start_datetime = mysqli_real_escape_string($conn, $data['start_datetime']);
-      $post_end_datetime = mysqli_real_escape_string($conn, $data['end_datetime']);
 
       switch ($post_action) {
         case 'create':
@@ -38,6 +36,8 @@
           break;
 
         case 'update':
+          $post_start_datetime = mysqli_real_escape_string($conn, $data['start_datetime']);
+          $post_end_datetime = mysqli_real_escape_string($conn, $data['end_datetime']);
           $sql = "UPDATE `fact_patient_log` SET `patient_id` = '$post_patient_id', `doctor_id` = '$auth_user_id', `faculty_id` = '$post_faculty_id', `is_inpatient` = $post_inpatient,
              `start_datetime` = '$post_start_datetime', `end_datetime` = '$post_end_datetime' WHERE ptn_log_id = '$post_id'";
           break;

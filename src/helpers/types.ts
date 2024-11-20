@@ -1,7 +1,8 @@
 export type UserSessionType = {
   auth_user_id: string,
   auth_user_role: string,
-  auth_login_type: string
+  auth_login_type: string,
+  faculty_id: string | null
 }
 
 export type TmpUserSessionType = {

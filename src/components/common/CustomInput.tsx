@@ -112,15 +112,23 @@ export const CustomInput: FC<CustomInputType> = memo(({
       ) : ""}
       {type === "select" && selectOptions ? (
         <Fragment>
-          <Field
-            as="select"
-            name={name || ""}
-            id={id}
-          >
-            {selectOptions.map(option => (
-              <option key={option.value} value={option.value}>{option.label}</option>
-            ))}
-          </Field>
+          {formik ? (
+            <Field
+              as="select"
+              name={name || ""}
+              id={id}
+            >
+              {selectOptions.map(option => (
+                <option key={option.value} value={option.value}>{option.label}</option>
+              ))}
+            </Field>
+          ) : (
+            <select>
+              {selectOptions.map(option => (
+                <option key={option.value} value={option.value}>{option.label}</option>
+              ))}
+            </select>
+          )}
           <label>{label}{isRequired ? " *" : ""}</label>
           <div className="arrow-icon">
             <FontAwesomeIcon icon={faChevronDown} />

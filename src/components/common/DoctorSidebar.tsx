@@ -33,33 +33,33 @@ export const DoctorSidebar:FC<DoctorSidebarProps> = ({selectedItem}) => {
           <li className="nav-item">
             <Link to="/role-doctor/schedule">
               <div className={`nav-link text-white ${selectedItem === "schedule" ? "active bg-gradient-primary" : ""}`}>
-                <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <div className="side-icon">
                   <FontAwesomeIcon icon={faClock} />
                 </div>
 
-                <span className="nav-link-text ms-1">Quản lý lịch làm việc</span>
+                <span className="side-text">Quản lý lịch làm việc</span>
               </div>
             </Link>
           </li>
           <li className="nav-item">
             <Link to="/role-doctor/appointment">
               <div className={`nav-link text-white ${selectedItem === "appointment" ? "active bg-gradient-primary" : ""}`}>
-                <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <div className="side-icon">
                   <FontAwesomeIcon icon={faCalendar} />
                 </div>
 
-                <span className="nav-link-text ms-1">Lịch đặt hẹn khám</span>
+                <span className="side-text">Lịch đặt hẹn khám</span>
               </div>
             </Link>
           </li>
           <li className="nav-item">
             <Link to="/role-doctor/patients">
               <div className={`nav-link text-white ${selectedItem === "patients" ? "active bg-gradient-primary" : ""}`}>
-                <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <div className="side-icon">
                   <FontAwesomeIcon icon={faUsers} />
                 </div>
 
-                <span className="nav-link-text ms-1">Quản lý bệnh nhân</span>
+                <span className="side-text">Quản lý bệnh nhân</span>
               </div>
             </Link>
           </li>

@@ -33,7 +33,8 @@
       $data = (object)[
         "auth_user_id" => $row['user_id'],
         "auth_user_role" => $row['role'],
-        "auth_login_type" => "manual"
+        "auth_login_type" => "manual",
+        "faculty_id" => $row['faculty_id']
       ];
       echo json_encode(["status" => "success", "data" => $data]);
     } else {
