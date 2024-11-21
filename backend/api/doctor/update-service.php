@@ -33,13 +33,13 @@
         $post_end_time = mysqli_real_escape_string($conn, $row['post_end_time']);
 
         $sub_sql_create = "INSERT INTO `fact_facility_asmt` (`item_type`, `item_id`, `amount`, `price`, `item_note`, `start_datetime`, `end_datetime`)
-          VALUES ('$post_item_type', '$post_item_id', '$post_amount', '$post_price', '$post_note', '$post_price', '$post_note')";
+          VALUES ('$post_item_type', '$post_item_id', $post_amount, $post_price, '$post_note', '$post_price', '$post_note')";
         mysqli_query($conn, $sub_sql_create);
 
         $post_is_lending = mysqli_real_escape_string($conn, $row['is_lending']);
 
         if  ($post_item_type === 'item' && $post_is_lending === 'false') {
-          $sub_sql_stock = "INSERT INTO `fact_item_stock` (`item_id`, `change_type`, `amount_changed`) VALUES ('$post_item_id', 'deduction', '$post_amount')";
+          $sub_sql_stock = "INSERT INTO `fact_item_stock` (`item_id`, `change_type`, `amount_changed`) VALUES ('$post_item_id', 'deduction', $post_amount)";
 
           mysqli_query($conn, $sub_sql_stock);
         }

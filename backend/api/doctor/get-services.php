@@ -43,7 +43,16 @@
       )
 
       SELECT
-        fac.*
+        fac.fac_asmt_id,
+        fac.item_type,
+        fac.item_id,
+        itm.item_name,
+        itm.item_unit,
+        CASE
+        	WHEN fac.amount IS NULL THEN timestampdiff(day, STR_TO_DATE(fac.start_datetime, '%Y-%m-%dT%H:%i:%s'), STR_TO_DATE(fac.end_datetime, '%Y-%m-%dT%H:%i:%s')) + 1
+            ELSE fac.amount END AS amount,
+        fac.item_price,
+        fac.item_note
       FROM `fact_facility_asmt` fac
         LEFT JOIN item_list itm
             ON fac.item_id = itm.item_id
