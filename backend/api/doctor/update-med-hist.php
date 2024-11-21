@@ -26,21 +26,22 @@
     } else {
       $post_log_id = mysqli_real_escape_string($conn, $data['ptn_log_id']);
       $post_blood_press = mysqli_real_escape_string($conn, $data['blood_press']);
-      $post_blood_sugar = mysqli_real_escape_string($conn, $data['blood_sugar']);
+      $post_spo2 = mysqli_real_escape_string($conn, $data['spo2']);
       $post_weight = mysqli_real_escape_string($conn, $data['weight']);
+      $post_height = mysqli_real_escape_string($conn, $data['height']);
       $post_temp = mysqli_real_escape_string($conn, $data['temp']);
       $post_med_note = mysqli_real_escape_string($conn, $data['med_note']);
 
       // Process the form data (e.g., save to database, send email, etc.)
       switch ($post_action) {
         case 'create':
-          $sql = "INSERT INTO `fact_med_hist` (`ptn_log_id`, `blood_press`, `blood_sugar`, `weight`, `temp`, `med_note`) VALUES ('$post_log_id', '$post_blood_press', '$post_blood_sugar', '$post_weight', '$post_temp', '$post_med_note');
+          $sql = "INSERT INTO `fact_med_hist` (`ptn_log_id`, `blood_press`, `spo2`, `height`, `weight`, `temp`, `med_note`) VALUES ('$post_log_id', '$post_blood_press', '$post_spo2', '$post_height', '$post_weight', '$post_temp', '$post_med_note');
             UPDATE `fact_patient_log` SET `med_note` = '$post_med_note' WHERE ptn_log_id = '$post_ptn_log'";
 
           break;
 
         case 'update':
-          $sql = "UPDATE `fact_med_hist` SET `ptn_log_id` = '$post_log_id', `blood_press` = '$post_blood_press', `blood_sugar` = '$post_blood_sugar', `weight` = '$post_weight', `temp` = '$post_temp', `med_note` = '$post_med_note' WHERE med_hist_id = '$post_id'";
+          $sql = "UPDATE `fact_med_hist` SET `ptn_log_id` = '$post_log_id', `blood_press` = '$post_blood_press', `spo2` = '$post_spo2', `height` = '$post_height', `weight` = '$post_weight', `temp` = '$post_temp', `med_note` = '$post_med_note' WHERE med_hist_id = '$post_id'";
 
           break;
         
