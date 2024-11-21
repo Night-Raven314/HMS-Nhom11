@@ -14,7 +14,7 @@
   // Get data sent from FE
   $data = json_decode($input, true);
   if ($data) {
-    $post_id = $data['patient_id'] ? mysqli_real_escape_string($conn, $data['patient_id']) : null;
+    $post_id = isset($data['ptn_log_id']) ? mysqli_real_escape_string($conn, $data['ptn_log_id']) : null;
     // Process the form data (e.g., save to database, send email, etc.)
     $sql = "SELECT
       log.ptn_log_id,
@@ -36,7 +36,7 @@
       LEFT JOIN `dim_faculty` fac
         ON fac.fac_id = log.faculty_id
     WHERE
-      patient_id = '$post_id'
+      ptn_log_id = '$post_id'
       AND log.status <> 'deleted'";
     if($sql) {
       $result = $conn->query($sql);

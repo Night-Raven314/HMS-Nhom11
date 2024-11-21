@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRotateBack, faArrowsRotate, faCalendar, faChevronRight, faHospital, faMoneyBill, faNotesMedical, faNoteSticky, faUserDoctor } from "@fortawesome/free-solid-svg-icons";
 import { Link, useParams } from "react-router-dom";
 import { UserAccountType } from "../helpers/types";
-import { apiGetFaculty, apiGetPatientLog, apiGetUserAccount, apiUpdatePatientLog, UpdatePatientLogType } from "../helpers/axios";
+import { apiGetFaculty, apiGetPatientLogList, apiGetUserAccount, apiUpdatePatientLog, UpdatePatientLogType } from "../helpers/axios";
 import { useToast } from "../components/common/CustomToast";
 import { FacultyListType } from "./role-admin/Faculty";
 
@@ -31,7 +31,7 @@ export const PatientInfo:FC = () => {
   const {openToast} = useToast();
   const {patientId} = useParams();
   const [userInfo, setUserInfo] = useState<UserAccountType | null>(null);
-  const [patientLog, setPatientLog] = useState<PatientLogType[]>([]);
+  const [patientLogList, setPatientLogList] = useState<PatientLogType[]>([]);
 
   const getPatientInfo = async() => {
     if(patientId) {
@@ -44,20 +44,20 @@ export const PatientInfo:FC = () => {
       }
     }
   }
-  const getPatientLog = async() => {
+  const getPatientLogList = async() => {
     if(patientId) {
-      const resultLog = await apiGetPatientLog(patientId);
+      const resultLog = await apiGetPatientLogList(patientId);
       if(resultLog.error) {
         openToast("error", "Lỗi", "Đã xảy ra lỗi khi lấy thông tin!", 5000);
       } else if (resultLog.data) {
-        setPatientLog(resultLog.data);
+        setPatientLogList(resultLog.data);
       }
     }
   }
 
   useEffect(() => {
     getPatientInfo();
-    getPatientLog();
+    getPatientLogList();
   }, [])
 
   const createPatientLog = async() => {
@@ -74,7 +74,7 @@ export const PatientInfo:FC = () => {
         openToast("error", "Lỗi", "Đã xảy ra lỗi khi tạo hồ sơ khám!", 5000);
       } else if (resultUser.data) {
         openToast("success", "Thành công", "Đã tạo hồ sơ khám mới!");
-        getPatientLog();
+        getPatientLogList();
       }
     }
   }
@@ -137,7 +137,7 @@ export const PatientInfo:FC = () => {
                 </div>
                 <div className="patient-log-list">
                   
-                  {patientLog.map(log => (
+                  {patientLogList.map(log => (
                     <Link to={`/patient-log/${log.ptn_log_id}`}>
                       <div className="log-item">
 
@@ -206,7 +206,7 @@ export const PatientInfo:FC = () => {
                           <FontAwesomeIcon icon={faChevronRight} />
                         </div>
 
-                        </div>
+                      </div>
                     </Link>
                   ))}
                   

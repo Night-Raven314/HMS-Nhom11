@@ -16,15 +16,12 @@
     $errorMsg = "";
     $sql = "";
     // Access form values
-    $post_id = $data['med_hist_id'] ? mysqli_real_escape_string($conn, $data['med_hist_id']) : null;
-    $post_ptn_log = $data['ptn_log_id'] ? mysqli_real_escape_string($conn, $data['ptn_log_id']) : null;
     $post_action = mysqli_real_escape_string($conn, $data['action']);
     if($post_action === "delete") {
       $sql = "UPDATE `fact_med_hist` SET
       `status` = 'deleted' WHERE med_hist_id = '$post_id'";
       mysqli_query($conn, $sql);
     } else {
-      $post_log_id = mysqli_real_escape_string($conn, $data['ptn_log_id']);
       $post_blood_press = mysqli_real_escape_string($conn, $data['blood_press']);
       $post_spo2 = mysqli_real_escape_string($conn, $data['spo2']);
       $post_weight = mysqli_real_escape_string($conn, $data['weight']);
@@ -35,13 +32,21 @@
       // Process the form data (e.g., save to database, send email, etc.)
       switch ($post_action) {
         case 'create':
-          $sql = "INSERT INTO `fact_med_hist` (`ptn_log_id`, `blood_press`, `spo2`, `height`, `weight`, `temp`, `med_note`) VALUES ('$post_log_id', '$post_blood_press', '$post_spo2', '$post_height', '$post_weight', '$post_temp', '$post_med_note');
-            UPDATE `fact_patient_log` SET `med_note` = '$post_med_note' WHERE ptn_log_id = '$post_ptn_log'";
+          $post_ptn_log = mysqli_real_escape_string($conn, $data['ptn_log_id']);
+          $post_doctor_id = mysqli_real_escape_string($conn, $data['doctor_id']);
+          $post_patient_id = mysqli_real_escape_string($conn, $data['patient_id']);
+          $sql = "INSERT INTO `fact_med_hist` (`ptn_log_id`, `doctor_id`, `patient_id`, `blood_press`, `spo2`, `height`, `weight`, `temp`, `med_note`) VALUES ('$post_ptn_log', '$post_doctor_id', '$post_patient_id', '$post_blood_press', '$post_spo2', '$post_height', '$post_weight', '$post_temp', '$post_med_note')";
+          mysqli_query($conn, $sql);
+
+          $sql2 = "UPDATE `fact_patient_log` SET `med_note` = '$post_med_note' WHERE ptn_log_id = '$post_ptn_log'";
+          mysqli_query($conn, $sql2);
 
           break;
 
         case 'update':
+          $post_id = isset($data['med_hist_id']) ? mysqli_real_escape_string($conn, $data['med_hist_id']) : null;
           $sql = "UPDATE `fact_med_hist` SET `ptn_log_id` = '$post_log_id', `blood_press` = '$post_blood_press', `spo2` = '$post_spo2', `height` = '$post_height', `weight` = '$post_weight', `temp` = '$post_temp', `med_note` = '$post_med_note' WHERE med_hist_id = '$post_id'";
+          mysqli_query($conn, $sql);
 
           break;
         
@@ -51,16 +56,7 @@
       }
     }
 
-    if($sql) {
-      $result = mysqli_query($conn, $sql);
-
-      if ($result) {
-        echo json_encode(["status" => "success", "data" => "success"]);
-      } else {
-        http_response_code(500);
-        echo json_encode(["status" => "error", "message" => "invalidCredential"]);
-      }
-    }
+    echo json_encode(["status" => "success", "data" => "success"]);
 
 } else {
     // Handle error if no data or missing expected values

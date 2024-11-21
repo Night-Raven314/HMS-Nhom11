@@ -1,10 +1,185 @@
-import { FC } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet";
 import { DoctorSidebar } from "../components/common/DoctorSidebar";
 import { PageNavbar } from "../components/common/PageNavbar";
 import { UserSession } from "../helpers/global";
+import { UserAccountType } from "../helpers/types";
+import { useParams } from "react-router-dom";
+import { useToast } from "../components/common/CustomToast";
+import { PatientLogType } from "./PatientInfo";
+import { apiGetMedHistList, apiGetPatientLog, apiGetUserAccount, apiUpdateMedHist } from "../helpers/axios";
+import { faCalendar, faNotesMedical, faUserDoctor, faHospital, faArrowsRotate, faNoteSticky, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { convertISOToDateTime } from "../helpers/utils";
+import { Formik, FormikProps, Form } from "formik";
+import { CustomInput } from "../components/common/CustomInput";
+import { CustomModal, CustomModalHandles } from "../components/common/CustomModal";
+
+export type MedHistList = {
+  doctor_id: string;
+  doctor_name: string;
+  patient_id: string;
+  patient_name: string;
+  fac_id: string;
+  fac_name: string;
+  contact_no: string;
+  email_address: string;
+  address: string;
+  city: string;
+  gender: string;
+  blood_press: string;
+  blood_sugar: string | null;
+  spo2: string;
+  weight: string;
+  height: string;
+  temp: string;
+  med_note: string;
+  created_at: string;
+};
+
+
+export type MedHistForm = {
+  weight?: string,
+  height?: string,
+  temp?: string,
+  spo2?: string,
+  blood_press?: string,
+  med_note?: string,
+}
+export type MedHistRequestType = MedHistForm & {
+  action: string,
+  med_hist_id?: string,
+  ptn_log_id?: string,
+  doctor_id?:string,
+  patient_id?:string
+}
 
 export const PatientLog:FC = () => {
+  const {openToast} = useToast();
+  const {patientLogId} = useParams();
+
+  const [userInfo, setUserInfo] = useState<UserAccountType | null>(null);
+  const [patientLog, setPatientLog] = useState<PatientLogType | null>(null);
+  const [medHistList, setMedHistList] = useState<MedHistList[]>([]);
+
+  // Modal med hist
+  const medHistModalRef = useRef<CustomModalHandles>(null);
+  const medHistFormRef = useRef<FormikProps<MedHistForm>>(null);
+  const [updateMedHistId, setUpdateMedHistId] = useState<string | null>();
+  const [medHistInitial, setMedHistInitial] = useState<MedHistForm>({
+    weight: "",
+    height: "",
+    temp: "",
+    spo2: "",
+    blood_press: "",
+    med_note: "",
+  })
+  const medHistValidate = (value: MedHistForm) => {
+    let errors: MedHistForm = {};
+    if (!value.weight) {
+      errors.weight = " ";
+    }
+    if (!value.height) {
+      errors.height = " ";
+    }
+    if (!value.spo2) {
+      errors.spo2 = " ";
+    }
+    if (!value.temp) {
+      errors.temp = " ";
+    }
+    if (!value.blood_press) {
+      errors.blood_press = " ";
+    }
+    return errors;
+  }
+  const toggleMedHistModal = (action: string, medHistId?:string) => {
+    setUpdateMedHistId(medHistId ? medHistId : null);
+    if (medHistModalRef.current) {
+      switch (action) {
+        case "open":
+          medHistFormRef.current?.resetForm();
+          setMedHistInitial({
+            weight: "",
+            height: "",
+            temp: "",
+            blood_press: "",
+            med_note: "",
+          })
+          medHistModalRef.current.openModal();
+          break;
+        case "close":
+          medHistModalRef.current.closeModal();
+          break;
+
+        default:
+          break;
+      }
+    }
+  }
+  // ------------------------------
+
+  const getPatientInfo = async() => {
+    if(patientLog && patientLog.patient_id) {
+      const resultUser = await apiGetUserAccount(patientLog.patient_id);
+      if(resultUser.error) {
+        openToast("error", "Lỗi", "Đã xảy ra lỗi khi lấy thông tin!", 5000);
+      } else if (resultUser.data) {
+        const userData:UserAccountType = resultUser.data[0];
+        setUserInfo(userData);
+      }
+    }
+  }
+  const getPatientLog = async() => {
+    if(patientLogId) {
+      const resultLog = await apiGetPatientLog(patientLogId);
+      if(resultLog.error) {
+        openToast("error", "Lỗi", "Đã xảy ra lỗi khi lấy thông tin!", 5000);
+      } else if (resultLog.data) {
+        setPatientLog(resultLog.data[0]);
+      }
+    }
+  }
+  const getMedHistList = async() => {
+    if(patientLogId) {
+      const result = await apiGetMedHistList(patientLogId);
+      if(result.error) {
+        openToast("error", "Lỗi", "Đã xảy ra lỗi khi lấy thông tin!", 5000);
+      } else if (result.data) {
+        setMedHistList(result.data)
+      }
+    }
+  }
+  const submitUpdateMedHist = async(value:MedHistForm, action:string) => {
+    if(patientLogId && patientLog) {
+      const userRequest: MedHistRequestType = {
+        ...value,
+        action: action,
+        ptn_log_id: patientLogId,
+        doctor_id: patientLog.doctor_id,
+        patient_id: patientLog.patient_id
+      }
+      const updateResponse = await apiUpdateMedHist(userRequest);
+      if(updateResponse.error) {
+        openToast("error", "Lỗi", "Đã xảy ra lỗi khi lưu thông tin!", 5000);
+      } else if (updateResponse.data) {
+        openToast("success", "Thành công", "Đã thêm thông tin sức khoẻ", 5000);
+        toggleMedHistModal("close");
+        getMedHistList();
+      }
+    }
+  }
+
+  useEffect(() => {
+    getPatientLog();
+    getMedHistList();
+  }, [])
+  useEffect(() => {
+    if(patientLog) {
+      getPatientInfo();
+    }
+  }, [patientLog])
+  
   return (
     <>
       <Helmet>
@@ -27,11 +202,345 @@ export const PatientLog:FC = () => {
               hideSearch={true}
             />
             <div className="content">
-              
+              <div className="hms-log-container">
+                <div className="hms-container">
+                  {userInfo ? (
+                    <div className="profile-user-container">
+                      <div className="user-avatar">
+                        <img src="/image/default-avatar.png" />
+                      </div>
+                      <div className="user-info">
+                        <div className="info-name">{userInfo.full_name}</div>
+                        {/* <div className="info-desc">69 tuổi</div> */}
+                      </div>
+                      <div className="user-action">
+                        <button className="btn btn-gradient" onClick={() => {}}>Hoàn thành điều trị</button>
+                      </div>
+                    </div>
+                  ) : ""}
+                  {patientLog ? (
+                    <div className="patient-log-list no-floating">
+                      <div className="log-item">
+
+                        <div className="item-info-container">
+                          <div className="row">
+                            <div className="col-md-3 info-container">
+                              <div className="info-icon">
+                                <FontAwesomeIcon icon={faCalendar} />
+                              </div>
+                              <div className="info-text">
+                                <div className="text-title">Ngày tạo</div>
+                                <div className="text-desc">{convertISOToDateTime(patientLog.start_datetime)}</div>
+                              </div>
+                            </div>
+                            <div className="col-md-3 info-container">
+                              <div className="info-icon">
+                                <FontAwesomeIcon icon={faNotesMedical} />
+                              </div>
+                              <div className="info-text">
+                                <div className="text-title">Chuyên khoa</div>
+                                <div className="text-desc">{patientLog.fac_name}</div>
+                              </div>
+                            </div>
+                            <div className="col-md-3 info-container">
+                              <div className="info-icon">
+                                <FontAwesomeIcon icon={faUserDoctor} />
+                              </div>
+                              <div className="info-text">
+                                <div className="text-title">Bác sỹ khám ban đầu</div>
+                                <div className="text-desc">{patientLog.full_name}</div>
+                              </div>
+                            </div>
+                            <div className="col-md-3 info-container">
+                              <div className="info-icon">
+                                <FontAwesomeIcon icon={faHospital} />
+                              </div>
+                              <div className="info-text">
+                                <div className="text-title">Loại hình điều trị</div>
+                                <div className="text-desc">{Number(patientLog.is_inpatient) ? "Nội trú" : "Ngoại trú"}</div>
+                              </div>
+                            </div>
+                            <div className="col-md-3 info-container">
+                              <div className="info-icon">
+                                <FontAwesomeIcon icon={faArrowsRotate} />
+                              </div>
+                              <div className="info-text">
+                                <div className="text-title">Trạng thái</div>
+                                <div className="text-desc">Đang điều trị</div>
+                              </div>
+                            </div>
+                            {patientLog.med_note ? (
+                              <div className="col-md-9 info-container">
+                                <div className="info-icon">
+                                  <FontAwesomeIcon icon={faNoteSticky} />
+                                </div>
+                                <div className="info-text">
+                                  <div className="text-title">Ghi chú gần nhất</div>
+                                  <div className="text-desc">{patientLog.med_note}</div>
+                                </div>
+                              </div>
+                            ) : ""}
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  ) : ""}
+                </div>
+                <div className="patient-log-grid">
+                  <div className="grid-med-hist">
+                    <div className="hms-table">
+                      <div className="table-header">
+                        <div className="header-title">Lịch sử kiểm tra sức khoẻ</div>
+                        <div className="header-button">
+                          <button className="btn btn-outline-primary btn-sm" onClick={() => toggleMedHistModal("open")}>
+                            Tạo
+                          </button>
+                        </div>
+                      </div>
+                      <div className="table-body">
+                        <table>
+                          <thead>
+                            <tr>
+                              <th style={{ width: "75px" }}>Cân nặng</th>
+                              <th style={{ width: "75px" }}>Chiều cao</th>
+                              <th style={{ width: "75px" }}>Nhiệt độ</th>
+                              <th style={{ width: "75px" }}>Huyết áp</th>
+                              <th style={{ width: "75px" }}>SpO2</th>
+                              <th style={{ width: "140px" }}>Ngày kiểm tra</th>
+                              <th style={{ width: "200px" }}>Ghi chú</th>
+                              <th style={{ width: "50px" }}>Thao tác</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {medHistList.map((item) => (
+                              <tr>
+                                <td>{item.weight} kg</td>
+                                <td>{item.height} cm</td>
+                                <td>{item.temp}°C</td>
+                                <td>{item.blood_press} mmHg</td>
+                                <td>{item.spo2}%</td>
+                                <td>{convertISOToDateTime(item.created_at)}</td>
+                                <td>{item.med_note}</td>
+                                <td>
+                                  <div className="table-button-list">
+                                    <button onClick={() => {}}>
+                                      <FontAwesomeIcon icon={faTrash} />
+                                    </button>
+                                  </div>
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="grid-pres">
+                    <div className="hms-table">
+                      <div className="table-header">
+                        <div className="header-title">Đơn thuốc</div>
+                        <div className="header-button">
+                          <button className="btn btn-outline-primary btn-sm" onClick={() => {}}>
+                            Tạo
+                          </button>
+                        </div>
+                      </div>
+                      <div className="table-body">
+                        <table>
+                          <thead>
+                            <tr>
+                              <th style={{ width: "100px" }}>Tên thuốc</th>
+                              <th style={{ width: "45px" }}>Đơn vị</th>
+                              <th style={{ width: "45px" }}>Số lượng</th>
+                              <th style={{ width: "150px" }}>Ghi chú</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {Array.from({ length: 30 }, (_, index) => index).map((item) => (
+                              <tr>
+                                <td>OnabotulinumtoxinA</td>
+                                <td>hộp</td>
+                                <td>69</td>
+                                <td>Uống 1 viên buổi sáng trước ăn</td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>  
+                  </div>
+
+                  <div className="grid-service">
+                    <div className="hms-table">
+                      <div className="table-header">
+                        <div className="header-title">Dịch vụ</div>
+                        <div className="header-button">
+                          <button className="btn btn-outline-primary btn-sm" onClick={() => {}}>
+                            Tạo
+                          </button>
+                        </div>
+                      </div>
+                      <div className="table-body">
+                        <table>
+                          <thead>
+                            <tr>
+                              <th style={{ width: "100px" }}>Tên dịch vụ</th>
+                              <th style={{ width: "45px" }}>Đơn vị</th>
+                              <th style={{ width: "45px" }}>Số lượng</th>
+                              <th style={{ width: "150px" }}>Ghi chú</th>
+                              <th style={{ width: "50px" }}>Thao tác</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {Array.from({ length: 30 }, (_, index) => index).map((item) => (
+                              <tr>
+                                <td>Bộ dụng cụ tiêm insulin</td>
+                                <td>bộ</td>
+                                <td>69</td>
+                                <td>Just use it god damn it</td>
+                                <td>
+                                  <div className="table-button-list">
+                                    <button onClick={() => {}}>
+                                      <FontAwesomeIcon icon={faTrash} />
+                                    </button>
+                                  </div>
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div> 
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
+      <CustomModal
+        headerTitle={`Kiểm tra sức khoẻ`}
+        size="lg"
+        type="modal"
+        ref={medHistModalRef}
+      >
+        <Formik
+          validateOnChange={true}
+          validateOnBlur={true}
+          enableReinitialize={true}
+          initialValues={medHistInitial}
+          validate={medHistValidate}
+          innerRef={medHistFormRef}
+          onSubmit={(values) => {
+            submitUpdateMedHist(values, "create")
+          }}
+        >
+          {(formikProps) => {
+            return (
+              <Form>
+                <div className="body-content">
+                  <div className="row">
+                    <div className="col-md-2">
+                      <CustomInput
+                        formik={formikProps}
+                        id="weight"
+                        name="weight"
+                        label="Cân nặng"
+                        placeholder="Nhập cân nặng"
+                        initialValue=""
+                        inputType="text"
+                        isRequired={true}
+                        type="input"
+                        disabled={false}
+                      />
+                    </div>
+                    <div className="col-md-2">
+                      <CustomInput
+                        formik={formikProps}
+                        id="height"
+                        name="height"
+                        label="Chiều cao"
+                        placeholder="Nhập chiều cao"
+                        initialValue=""
+                        inputType="text"
+                        isRequired={true}
+                        type="input"
+                        disabled={false}
+                      />
+                    </div>
+                    <div className="col-md-2">
+                      <CustomInput
+                        formik={formikProps}
+                        id="spo2"
+                        name="spo2"
+                        label="SpO2"
+                        placeholder="Nhập SpO2"
+                        initialValue=""
+                        inputType="text"
+                        isRequired={true}
+                        type="input"
+                        disabled={false}
+                      />
+                    </div>
+                    <div className="col-md-2">
+                      <CustomInput
+                        formik={formikProps}
+                        id="temp"
+                        name="temp"
+                        label="Nhiệt độ"
+                        placeholder="Nhập nhiệt độ"
+                        initialValue=""
+                        inputType="text"
+                        isRequired={true}
+                        type="input"
+                        disabled={false}
+                      />
+                    </div>
+                    <div className="col-md-4">
+                      <CustomInput
+                        formik={formikProps}
+                        id="blood_press"
+                        name="blood_press"
+                        label="Huyết áp"
+                        placeholder="Nhập huyết áp"
+                        initialValue=""
+                        inputType="text"
+                        isRequired={true}
+                        type="input"
+                        disabled={false}
+                      />
+                    </div>
+                    <div className="col-md-12">
+                      <CustomInput
+                        formik={formikProps}
+                        id="med_note"
+                        name="med_note"
+                        label="Ghi chú"
+                        placeholder="Nhập ghi chú"
+                        initialValue=""
+                        inputType="text"
+                        isRequired={false}
+                        type="textarea"
+                        textareaRow={2}
+                        disabled={false}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="body-footer">
+                  <div className="button-list">
+                    <button type="button" className="btn btn-outline" onClick={() => toggleMedHistModal("close")}>Thoát</button>
+                    <button type="submit" name="create" value="create" className="btn btn-gradient">Tạo</button>
+                  </div>
+                </div>
+              </Form>
+            )
+          }}
+        </Formik>
+      </CustomModal>
 
     </>
   )

@@ -14,40 +14,30 @@
   // Get data sent from FE
   $data = json_decode($input, true);
   if ($data) {
-    $post_id = mysqli_real_escape_string($conn, $data['ptn_log_id']);
+    $post_id = $data['patient_id'] ? mysqli_real_escape_string($conn, $data['patient_id']) : null;
     // Process the form data (e.g., save to database, send email, etc.)
     $sql = "SELECT
-        doc.user_id AS doctor_id,
-        doc.full_name AS doctor_name,
-        ptn.user_id AS patient_id,
-        ptn.full_name AS patient_name,
-        fac.fac_id,
-        fac.fac_name,
-        ptn.contact_no,
-        ptn.email_address,
-        ptn.address,
-        ptn.city,
-        ptn.gender,
-        hst.blood_press,
-        hst.blood_sugar,
-        hst.spo2,
-        hst.weight,
-        hst.height,
-        hst.temp,
-        hst.med_note,
-        hst.created_at
-      FROM `fact_med_hist` hst
-        LEFT JOIN `dim_user` doc
-          ON hst.doctor_id = doc.user_id
-        LEFT JOIN `dim_user` ptn
-          ON hst.patient_id = ptn.user_id
-        LEFT JOIN `dim_faculty` fac
-          ON doc.faculty_id = fac.fac_id
-      WHERE
-        hst.ptn_log_id = '$post_id'
-        AND ptn.status <> 'deleted'
-      ORDER BY
-        hst.updated_at DESC, hst.created_at DESC";
+      log.ptn_log_id,
+      log.patient_id,
+      ptn.full_name,
+      log.doctor_id,
+      doc.full_name,
+      log.faculty_id,
+      fac.fac_name,
+      log.is_inpatient,
+      log.med_note,
+      log.start_datetime,
+      log.end_datetime
+    FROM `fact_patient_log` log
+      LEFT JOIN `dim_user` ptn
+        ON ptn.user_id = log.patient_id
+      LEFT JOIN `dim_user` doc
+        ON doc.user_id = log.doctor_id
+      LEFT JOIN `dim_faculty` fac
+        ON fac.fac_id = log.faculty_id
+    WHERE
+      patient_id = '$post_id'
+      AND log.status <> 'deleted'";
     if($sql) {
       $result = $conn->query($sql);
       if ($result) { 

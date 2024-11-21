@@ -6,6 +6,7 @@ import { ItemRequestType } from "../pages/role-admin/Item";
 import { FacultyRequestType } from "../pages/role-admin/Faculty";
 import { DynamicRequestType, ScheduleFormType, ScheduleRequestType } from "../pages/role-doctor/Schedule";
 import { FloorRequestType, RoomAPIRequestType } from "../pages/role-admin/Building";
+import { MedHistRequestType } from "../pages/PatientLog";
 
 export const hmsAxios = Axios.create({
   baseURL: `/HMS-Nhom11/backend/api/`,
@@ -434,13 +435,61 @@ export const apiUpdatePatientLog = async(request:UpdatePatientLogType) => {
   }
   return { data, error };
 }
-export const apiGetPatientLog = async(userId:string) => {
+export const apiGetPatientLogList = async(userId:string) => {
+  let error = null;
+  let data = null;
+  try {
+    const res = await hmsAxios.post(
+      "/doctor/get-patient-log-list.php",
+      JSON.stringify({patient_id: userId})
+    );
+    if(res.data) {
+      data = res.data.data;
+    }
+  } catch (err:any) {
+    error = err.response.data.message;
+  }
+  return { data, error };
+}
+export const apiGetPatientLog = async(patientLogId:string) => {
   let error = null;
   let data = null;
   try {
     const res = await hmsAxios.post(
       "/doctor/get-patient-log.php",
-      JSON.stringify({patient_id: userId})
+      JSON.stringify({ptn_log_id: patientLogId})
+    );
+    if(res.data) {
+      data = res.data.data;
+    }
+  } catch (err:any) {
+    error = err.response.data.message;
+  }
+  return { data, error };
+}
+export const apiGetMedHistList = async(patientLogId:string) => {
+  let error = null;
+  let data = null;
+  try {
+    const res = await hmsAxios.post(
+      "/doctor/get-med-hist.php",
+      JSON.stringify({ptn_log_id: patientLogId})
+    );
+    if(res.data) {
+      data = res.data.data;
+    }
+  } catch (err:any) {
+    error = err.response.data.message;
+  }
+  return { data, error };
+}
+export const apiUpdateMedHist = async(request:MedHistRequestType) => {
+  let error = null;
+  let data = null;
+  try {
+    const res = await hmsAxios.post(
+      "/doctor/update-med-hist.php",
+      JSON.stringify(request)
     );
     if(res.data) {
       data = res.data.data;
