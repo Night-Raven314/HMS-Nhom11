@@ -24,11 +24,7 @@
           pres.amount,
           meds.item_unit,
           pres.item_note,
-          pmt.payment_status,
-          pmt.updated_at
       FROM `fact_prescription` pres
-        LEFT JOIN `fact_payment` pmt
-          ON pres.med_hist_id = pmt.med_hist_id
         LEFT JOIN `dim_meds` meds
           ON pres.item_id = meds.item_id
         LEFT JOIN `fact_med_hist` mshst
