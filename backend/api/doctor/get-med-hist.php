@@ -35,7 +35,8 @@
         hst.height,
         hst.temp,
         hst.med_note,
-        hst.created_at
+        hst.created_at,
+        hst.med_hist_id
       FROM `fact_med_hist` hst
         LEFT JOIN `dim_user` doc
           ON hst.doctor_id = doc.user_id
@@ -45,7 +46,7 @@
           ON doc.faculty_id = fac.fac_id
       WHERE
         hst.ptn_log_id = '$post_id'
-        AND ptn.status <> 'deleted'
+        AND hst.status <> 'deleted'
       ORDER BY
         hst.updated_at DESC, hst.created_at DESC";
     if($sql) {

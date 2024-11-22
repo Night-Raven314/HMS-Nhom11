@@ -16,6 +16,7 @@ import { CustomInput } from "../components/common/CustomInput";
 import { CustomModal, CustomModalHandles } from "../components/common/CustomModal";
 
 export type MedHistList = {
+  med_hist_id: string;
   doctor_id: string;
   doctor_name: string;
   patient_id: string;
@@ -63,6 +64,7 @@ export const PatientLog:FC = () => {
   const [medHistList, setMedHistList] = useState<MedHistList[]>([]);
 
   // Modal med hist
+  const medHistDeleteModalRef = useRef<CustomModalHandles>(null);
   const medHistModalRef = useRef<CustomModalHandles>(null);
   const medHistFormRef = useRef<FormikProps<MedHistForm>>(null);
   const [updateMedHistId, setUpdateMedHistId] = useState<string | null>();
@@ -95,26 +97,28 @@ export const PatientLog:FC = () => {
   }
   const toggleMedHistModal = (action: string, medHistId?:string) => {
     setUpdateMedHistId(medHistId ? medHistId : null);
-    if (medHistModalRef.current) {
-      switch (action) {
-        case "open":
-          medHistFormRef.current?.resetForm();
-          setMedHistInitial({
-            weight: "",
-            height: "",
-            temp: "",
-            blood_press: "",
-            med_note: "",
-          })
-          medHistModalRef.current.openModal();
-          break;
-        case "close":
-          medHistModalRef.current.closeModal();
-          break;
+    switch (action) {
+      case "open":
+        medHistFormRef.current?.resetForm();
+        setMedHistInitial({
+          weight: "",
+          height: "",
+          temp: "",
+          blood_press: "",
+          med_note: "",
+        })
+        medHistModalRef?.current?.openModal();
+        break;
+      case "openDelete":
+        medHistDeleteModalRef?.current?.openModal();
+        break;
+      case "close":
+        medHistModalRef?.current?.closeModal();
+        medHistDeleteModalRef?.current?.closeModal();
+        break;
 
-        default:
-          break;
-      }
+      default:
+        break;
     }
   }
   // ------------------------------
@@ -164,6 +168,22 @@ export const PatientLog:FC = () => {
         openToast("error", "Lỗi", "Đã xảy ra lỗi khi lưu thông tin!", 5000);
       } else if (updateResponse.data) {
         openToast("success", "Thành công", "Đã thêm thông tin sức khoẻ", 5000);
+        toggleMedHistModal("close");
+        getMedHistList();
+      }
+    }
+  }
+  const deleteMedHist = async() => {
+    if(updateMedHistId) {
+      const userRequest: MedHistRequestType = {
+        action: "delete",
+        med_hist_id: updateMedHistId
+      }
+      const updateResponse = await apiUpdateMedHist(userRequest);
+      if(updateResponse.error) {
+        openToast("error", "Lỗi", "Đã xảy ra lỗi khi xoá thông tin!", 5000);
+      } else if (updateResponse.data) {
+        openToast("success", "Thành công", "Đã xoá thông tin sức khoẻ", 5000);
         toggleMedHistModal("close");
         getMedHistList();
       }
@@ -314,7 +334,7 @@ export const PatientLog:FC = () => {
                           </thead>
                           <tbody>
                             {medHistList.map((item) => (
-                              <tr>
+                              <tr style={{cursor: "pointer"}}>
                                 <td>{item.weight} kg</td>
                                 <td>{item.height} cm</td>
                                 <td>{item.temp}°C</td>
@@ -324,7 +344,7 @@ export const PatientLog:FC = () => {
                                 <td>{item.med_note}</td>
                                 <td>
                                   <div className="table-button-list">
-                                    <button onClick={() => {}}>
+                                    <button onClick={() => {toggleMedHistModal("openDelete", item.med_hist_id)}}>
                                       <FontAwesomeIcon icon={faTrash} />
                                     </button>
                                   </div>
@@ -540,6 +560,24 @@ export const PatientLog:FC = () => {
             )
           }}
         </Formik>
+      </CustomModal>
+
+      {/* Alert xoá med hist */}
+      <CustomModal
+        headerTitle={"Xoá tài khoản"}
+        size="md"
+        type="alert"
+        ref={medHistDeleteModalRef}
+      >
+        <div className="body-content">
+          Bạn có chắc chắn muốn xoá thông tin kiểm tra sức khoẻ này?
+        </div>
+        <div className="body-footer">
+          <div className="button-list">
+            <button type="button" className="btn btn-outline" onClick={() => toggleMedHistModal("close")}>Không</button>
+            <button type="button" className="btn btn-gradient" onClick={() => deleteMedHist()}>Xoá</button>
+          </div>
+        </div>
       </CustomModal>
 
     </>
