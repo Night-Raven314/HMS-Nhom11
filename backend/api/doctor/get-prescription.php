@@ -23,7 +23,7 @@
           meds.item_name,
           pres.amount,
           meds.item_unit,
-          pres.item_note,
+          pres.item_note
       FROM `fact_prescription` pres
         LEFT JOIN `dim_meds` meds
           ON pres.item_id = meds.item_id

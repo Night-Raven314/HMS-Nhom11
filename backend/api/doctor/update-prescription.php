@@ -25,16 +25,16 @@
       // Process the form data (e.g., save to database, send email, etc.)
       switch ($post_action) {
         case 'create':
-          foreach ($data as $row) {
+          foreach ($data['request'] as $row) {
             $post_item_id = mysqli_real_escape_string($conn, $row['item_id']);
             $post_amount = mysqli_real_escape_string($conn, $row['amount']);
             $post_price = mysqli_real_escape_string($conn, $row['price']);
             $post_note = mysqli_real_escape_string($conn, $row['item_note']);
 
-            $sub_sql_create = "INSERT INTO `fact_prescription` (`med_hist_id`, `item_id`, `amount`, `price`, `item_note`) VALUES ('$post_id', '$post_item_id', '$post_amount', '$post_price', '$post_note');
-              INSERT INTO `fact_item_stock` (`item_id`, `change_type`, `amount_changed`) VALUES ('$post_item_id', 'deduction', '$post_amount')";
+            $sub_sql_create = "INSERT INTO `fact_prescription` (`med_hist_id`, `item_id`, `amount`, `price`, `item_note`) VALUES ('$post_id', '$post_item_id', '$post_amount', '$post_price', '$post_note')";
             mysqli_query($conn, $sub_sql_create);
-
+            $sub_sql_create2 = "INSERT INTO `fact_item_stock` (`item_id`, `change_type`, `amount_changed`) VALUES ('$post_item_id', 'deduction', '$post_amount')";
+            mysqli_query($conn, $sub_sql_create2);
           }
           echo json_encode(["status" => "success", "data" => "success"]);
           break;

@@ -1052,3 +1052,11 @@ div#popupFormContainer {
     color: $hms-neutral!important;
   }
 }
+.btn-delete {
+  background-color: $color-red!important;
+  color: #fff;
+}
+.delete-btn {
+  padding: 5px 15px;
+  margin-top: 10px;
+}

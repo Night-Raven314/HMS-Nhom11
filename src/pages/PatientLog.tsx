@@ -561,7 +561,7 @@ export const PatientLog:FC = () => {
 
       {/* Alert xoá med hist */}
       <CustomModal
-        headerTitle={"Xoá tài khoản"}
+        headerTitle={"Xoá thông tin"}
         size="md"
         type="alert"
         ref={medHistDeleteModalRef}

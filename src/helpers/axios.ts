@@ -7,6 +7,7 @@ import { FacultyRequestType } from "../pages/role-admin/Faculty";
 import { DynamicRequestType, ScheduleFormType, ScheduleRequestType } from "../pages/role-doctor/Schedule";
 import { FloorRequestType, RoomAPIRequestType } from "../pages/role-admin/Building";
 import { MedHistRequestType } from "../pages/PatientLog";
+import { CreatePrescriptionRequestType } from "../components/pages/PatientLog/Prescription";
 
 export const hmsAxios = Axios.create({
   baseURL: `/HMS-Nhom11/backend/api/`,
@@ -508,6 +509,22 @@ export const aptGetPrescription = async(medHistId:string) => {
     const res = await hmsAxios.post(
       "/doctor/get-prescription.php",
       JSON.stringify({med_hist_id: medHistId})
+    );
+    if(res.data) {
+      data = res.data.data;
+    }
+  } catch (err:any) {
+    error = err.response.data.message;
+  }
+  return { data, error };
+}
+export const aptUpdatePrescription = async(request:CreatePrescriptionRequestType) => {
+  let error = null;
+  let data = null;
+  try {
+    const res = await hmsAxios.post(
+      "/doctor/update-prescription.php",
+      JSON.stringify(request)
     );
     if(res.data) {
       data = res.data.data;
