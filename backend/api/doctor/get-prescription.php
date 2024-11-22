@@ -15,7 +15,7 @@
   $data = json_decode($input, true);
   if ($data) {
     //$auth_user_id = $data['auth_user_id'] ? mysqli_real_escape_string($conn, $data['auth_user_id']) : null;
-    $ptn_log_id = $data['ptn_log_id'] ? mysqli_real_escape_string($conn, $data['ptn_log_id']) : null;
+    $med_hist_id = $data['med_hist_id'] ? mysqli_real_escape_string($conn, $data['med_hist_id']) : null;
     // Process the form data (e.g., save to database, send email, etc.)
     $sql = "SELECT
           pres.med_hist_id,
@@ -32,7 +32,7 @@
       WHERE
         mshst.status <> 'deleted'
         AND pres.status <> 'deleted'
-        AND mshst.ptn_log_id = '$ptn_log_id'";
+        AND mshst.med_hist_id = '$med_hist_id'";
     if($sql) {
       $result = $conn->query($sql);
       if ($result) { 
