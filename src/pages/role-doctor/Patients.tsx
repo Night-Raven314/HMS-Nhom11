@@ -7,6 +7,7 @@ import { useToast } from "../../components/common/CustomToast";
 import { convertISOToDateTime, getGenderName, getItemTypeName } from "../../helpers/utils";
 import { DoctorSidebar } from "../../components/common/DoctorSidebar";
 import { UserSession } from "../../helpers/global";
+import { useNavigate } from "react-router-dom";
 
 export type PatientListType = {
   doctor_id: string;
@@ -22,6 +23,7 @@ export type PatientListType = {
 
 export const DoctorPatients: FC = () => {
   const {openToast} = useToast();
+  const navigate = useNavigate();
 
   const navbarRef = useRef<NavbarHandles>(null);
   const [searchKeyword, setSearchKeyword] = useState<string>("");
@@ -62,7 +64,11 @@ export const DoctorPatients: FC = () => {
   }
   useEffect(() => {
     searchPatient();
-  }, [patientList, searchKeyword])
+  }, [patientList, searchKeyword]);
+
+  const openPatientInfo = (userId:string) => {
+    navigate(`/patient-info/${userId}`);
+  }
 
   return (
     <>
@@ -102,7 +108,7 @@ export const DoctorPatients: FC = () => {
                     </thead>
                     <tbody>
                       {patientListFiltered.map((patient, index) => (
-                        <tr key={index}>
+                        <tr key={index} style={{cursor: "pointer"}} onClick={() => openPatientInfo(patient.patient_id)}>
                           <td>{patient.patient_name}</td>
                           <td>{patient.contact_no}</td>
                           <td>{getGenderName(patient.gender)}</td>
