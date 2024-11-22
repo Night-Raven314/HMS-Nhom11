@@ -14,6 +14,7 @@ import { convertISOToDateTime } from "../helpers/utils";
 import { Formik, FormikProps, Form } from "formik";
 import { CustomInput } from "../components/common/CustomInput";
 import { CustomModal, CustomModalHandles } from "../components/common/CustomModal";
+import { PrescriptionTable } from "../components/pages/PatientLog/Prescription";
 
 export type MedHistList = {
   med_hist_id: string;
@@ -59,9 +60,14 @@ export const PatientLog:FC = () => {
   const {openToast} = useToast();
   const {patientLogId} = useParams();
 
+  const medHistTableRef = useRef<HTMLDivElement | null>(null);
+  const presTableRef = useRef<HTMLDivElement | null>(null);
+
   const [userInfo, setUserInfo] = useState<UserAccountType | null>(null);
   const [patientLog, setPatientLog] = useState<PatientLogType | null>(null);
+
   const [medHistList, setMedHistList] = useState<MedHistList[]>([]);
+  const [selectedMedHistId, setSelectedMedHistId] = useState<string | null>(null);
 
   // Modal med hist
   const medHistDeleteModalRef = useRef<CustomModalHandles>(null);
@@ -121,6 +127,15 @@ export const PatientLog:FC = () => {
         break;
     }
   }
+
+  const handleClickOutside = (event:MouseEvent) => {
+    if(
+      medHistTableRef.current && !medHistTableRef.current.contains(event.target as Node) &&
+      presTableRef.current && !presTableRef.current.contains(event.target as Node)
+    ) {
+      setSelectedMedHistId(null);
+    }
+  }
   // ------------------------------
 
   const getPatientInfo = async() => {
@@ -144,6 +159,8 @@ export const PatientLog:FC = () => {
       }
     }
   }
+
+  // Med hist
   const getMedHistList = async() => {
     if(patientLogId) {
       const result = await apiGetMedHistList(patientLogId);
@@ -193,6 +210,10 @@ export const PatientLog:FC = () => {
   useEffect(() => {
     getPatientLog();
     getMedHistList();
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
   }, [])
   useEffect(() => {
     if(patientLog) {
@@ -307,7 +328,7 @@ export const PatientLog:FC = () => {
                     </div>
                   ) : ""}
                 </div>
-                <div className="patient-log-grid">
+                <div className="patient-log-grid" ref={medHistTableRef}>
                   <div className="grid-med-hist">
                     <div className="hms-table">
                       <div className="table-header">
@@ -334,7 +355,12 @@ export const PatientLog:FC = () => {
                           </thead>
                           <tbody>
                             {medHistList.map((item) => (
-                              <tr style={{cursor: "pointer"}}>
+                              <tr
+                                key={item.med_hist_id}
+                                style={{cursor: "pointer"}}
+                                className={`${selectedMedHistId === item.med_hist_id ? "selected" : ""}`}
+                                onClick={() => setSelectedMedHistId(item.med_hist_id)}
+                              >
                                 <td>{item.weight} kg</td>
                                 <td>{item.height} cm</td>
                                 <td>{item.temp}°C</td>
@@ -357,39 +383,10 @@ export const PatientLog:FC = () => {
                     </div>
                   </div>
 
-                  <div className="grid-pres">
-                    <div className="hms-table">
-                      <div className="table-header">
-                        <div className="header-title">Đơn thuốc</div>
-                        <div className="header-button">
-                          <button className="btn btn-outline-primary btn-sm" onClick={() => {}}>
-                            Tạo
-                          </button>
-                        </div>
-                      </div>
-                      <div className="table-body">
-                        <table>
-                          <thead>
-                            <tr>
-                              <th style={{ width: "100px" }}>Tên thuốc</th>
-                              <th style={{ width: "45px" }}>Đơn vị</th>
-                              <th style={{ width: "45px" }}>Số lượng</th>
-                              <th style={{ width: "150px" }}>Ghi chú</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {Array.from({ length: 30 }, (_, index) => index).map((item) => (
-                              <tr>
-                                <td>OnabotulinumtoxinA</td>
-                                <td>hộp</td>
-                                <td>69</td>
-                                <td>Uống 1 viên buổi sáng trước ăn</td>
-                              </tr>
-                            ))}
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>  
+                  <div className="grid-pres" ref={presTableRef}>
+                    <PrescriptionTable
+                      selectedMedHistId={selectedMedHistId}
+                    />
                   </div>
 
                   <div className="grid-service">

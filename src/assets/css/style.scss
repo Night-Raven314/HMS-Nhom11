@@ -961,9 +961,39 @@ div#popupFormContainer {
     overflow: auto;
     position: relative;
     max-height: 100%;
+    .table-header {
+      min-height: 74.23px;
+    }
     .table-body {
-      max-height: calc(100dvh - 400px);
       overflow: auto;
+      line-height: 1.2;
+      .table-center-alert {
+        display: grid;
+        place-items: center;
+        font-size: 18pt;
+        color: $hms-neutral;
+        height: 100%;
+        font-weight: 600;
+        text-align: center;
+        padding: 0 15px;
+      }
+      table {
+        tbody {
+          tr {
+            &.selected {
+              background-image: $hms-gradient;
+              td {
+                color: #fff;
+                button {
+                  background-image: none;
+                  background-color: #fff;
+                  color: $hms-neutral;
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
   .grid-med-hist {
@@ -972,8 +1002,7 @@ div#popupFormContainer {
     overflow: hidden;
     .hms-table {
       .table-body {
-        max-height: calc(100dvh - 400px);
-        overflow: auto;
+        height: calc(100dvh - 400px);
       }
     }
   }
@@ -982,8 +1011,7 @@ div#popupFormContainer {
     grid-row: 1;
     .hms-table {
       .table-body {
-        max-height: calc(((100dvh - 400px) / 2) - 30.11px);
-        overflow: auto;
+        height: calc(((100dvh - 400px) / 2) - 30.11px);
       }
     }
   }
@@ -992,8 +1020,7 @@ div#popupFormContainer {
     grid-row: 2;
     .hms-table {
       .table-body {
-        max-height: calc(((100dvh - 400px) / 2) - 30.11px);
-        overflow: auto;
+        height: calc(((100dvh - 400px) / 2) - 30.11px);
       }
     }
   }

@@ -499,3 +499,21 @@ export const apiUpdateMedHist = async(request:MedHistRequestType) => {
   }
   return { data, error };
 }
+
+// Presription
+export const aptGetPrescription = async(medHistId:string) => {
+  let error = null;
+  let data = null;
+  try {
+    const res = await hmsAxios.post(
+      "/doctor/get-prescription.php",
+      JSON.stringify({med_hist_id: medHistId})
+    );
+    if(res.data) {
+      data = res.data.data;
+    }
+  } catch (err:any) {
+    error = err.response.data.message;
+  }
+  return { data, error };
+}
