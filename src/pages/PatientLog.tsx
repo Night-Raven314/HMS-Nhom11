@@ -570,7 +570,7 @@ export const PatientLog:FC = () => {
         ref={medHistDeleteModalRef}
       >
         <div className="body-content">
-          Bạn có chắc chắn muốn xoá thông tin kiểm tra sức khoẻ này?
+          Bạn có chắc chắn muốn xoá thông tin kiểm tra sức khoẻ này? Thông tin đơn thuốc kèm theo thông tin kiểm tra sức khoẻ này cũng sẽ bị xoá.
         </div>
         <div className="body-footer">
           <div className="button-list">
