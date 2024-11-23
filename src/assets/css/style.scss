@@ -6,7 +6,7 @@ $input-border: #d2d6da;
 $table-border: #b8b8b8;
 $hms-gradient: linear-gradient(195deg, #167070 0%, #003d59 100%);
 $red-gradient: linear-gradient(195deg, #ed213a, #93291e);
-$orange-gradient: linear-gradient(-195deg, #f12711, #f5af19);
+$orange-gradient: linear-gradient(195deg, #fe8c00, #f83600);
 
 // Colors
 $color-green: #00BD9D;
@@ -759,6 +759,9 @@ div#popupFormContainer {
     &.occupied {
       background-image: $red-gradient;
     }
+    &.maintenance {
+      background-image: $orange-gradient;
+    }
     &.hidden {
       opacity: 0!important;
     }
@@ -807,7 +810,7 @@ div#popupFormContainer {
           font-size: 18pt;
         }
       }
-      &.occupied, &.disabled {
+      &.occupied, &.maintenance, &.disabled {
         opacity: 0.5!important;
         pointer-events: none!important;
       }

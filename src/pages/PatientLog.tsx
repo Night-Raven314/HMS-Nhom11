@@ -187,6 +187,7 @@ export const PatientLog:FC = () => {
       } else if (updateResponse.data) {
         openToast("success", "Thành công", "Đã thêm thông tin sức khoẻ", 5000);
         toggleMedHistModal("close");
+        getPatientLog();
         getMedHistList();
       }
     }
@@ -395,6 +396,7 @@ export const PatientLog:FC = () => {
                     {patientLog ? (
                       <ServiceTable
                         patientLog={patientLog}
+                        requestReload={() => getPatientLog()}
                       />
                     ) : ""}
                   </div>
