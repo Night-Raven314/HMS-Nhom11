@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export type PrescriptionProps = {
   selectedMedHistId: string | null;
+  treatmentCompleted: boolean
 }
 export type PrescriptionList = {
   med_hist_id: string,
@@ -35,7 +36,7 @@ export type CreatePrescriptionRequestType = {
 }
 
 export const PrescriptionTable:FC<PrescriptionProps> = ({
-  selectedMedHistId
+  selectedMedHistId, treatmentCompleted
 }) => {
   const {openToast} = useToast();
   const [presList, setPresList] = useState<PrescriptionList[]>([]);
@@ -200,7 +201,7 @@ export const PrescriptionTable:FC<PrescriptionProps> = ({
       <div className="hms-table">
         <div className="table-header">
           <div className="header-title">Đơn thuốc</div>
-          {selectedMedHistId ? (
+          {selectedMedHistId && !treatmentCompleted ? (
             <div className="header-button">
               {presList.length ? (
                 <button className="btn btn-outline-primary btn-sm btn-delete" onClick={() => {toggleModal("delete")}}>

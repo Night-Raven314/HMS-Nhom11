@@ -25,6 +25,7 @@ export type ItemListType = {
   created_at: string;
   updated_at: string;
   status: string;
+  item_type?:string
 };
 
 export type ItemRequestType = ItemFormType & {

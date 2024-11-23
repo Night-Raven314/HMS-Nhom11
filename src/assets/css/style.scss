@@ -1068,14 +1068,14 @@ div#popupFormContainer {
 }
 .btn-gradient {
   background-image: $hms-gradient;
-  color: #fff;
+  color: #fff!important;
   &:hover, &:active {
     color: #fff!important;
   }
 }
 .btn-outline {
   border: 1px solid $hms-neutral!important;
-  color: $hms-neutral;
+  color: $hms-neutral!important;
   &:hover, &:active {
     color: $hms-neutral!important;
   }

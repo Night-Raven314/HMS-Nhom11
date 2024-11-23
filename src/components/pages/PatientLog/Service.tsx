@@ -6,7 +6,7 @@ import { FieldArray, Form, Formik, FormikHelpers, FormikProps } from "formik";
 import { CustomInput, SelectOptionType } from "../../common/CustomInput";
 import { CustomModal, CustomModalHandles } from "../../common/CustomModal";
 import { ItemListType } from "../../../pages/role-admin/Item";
-import { apiAdminGetBuilding, apiGetItem, apiGetService, apiUpdatePatientLog, apiUpdateRoom, apiUpdateService, UpdatePatientLogType } from "../../../helpers/axios";
+import { apiAdminGetBuilding, apiCompleteTreatment, apiGetItem, apiGetService, apiGetServiceList, apiUpdatePatientLog, apiUpdateRoom, apiUpdateService, UpdatePatientLogType } from "../../../helpers/axios";
 import { ServiceRoomModal } from "./ServiceRoom";
 import { BuildingType, FloorType, RoomType } from "../../../pages/role-admin/Building";
 import { convertISOToDateTime } from "../../../helpers/utils";
@@ -130,7 +130,7 @@ export const ServiceTable:FC<ServiceProps> = ({patientLog, requestReload}) => {
   }
 
   const getServiceList = async() => {
-    const getItem = await apiGetItem("item");
+    const getItem = await apiGetServiceList();
     if(getItem.error) {
       openToast("error", "Lỗi", `Đã xảy ra lỗi khi lấy thông tin!`, 5000);
     } else if (getItem.data) {
@@ -278,7 +278,7 @@ export const ServiceTable:FC<ServiceProps> = ({patientLog, requestReload}) => {
         const findService = serviceList.find(lService => lService.item_id === service.item_id);
         if(findService) {
           service.price = findService.item_price;
-          service.item_type = "item";
+          service.item_type = findService.item_type ? findService.item_type : "item";
           service.is_lending = findService.item_lending_price === "0" ? "false" : "true";
         } else {
           service.price = "0";
@@ -380,9 +380,11 @@ export const ServiceTable:FC<ServiceProps> = ({patientLog, requestReload}) => {
         <div className="table-header">
           <div className="header-title">Dịch vụ</div>
           <div className="header-button">
-            <button className="btn btn-outline-primary btn-sm" onClick={() => {toggleModal("open")}}>
-              Thêm dịch vụ
-            </button>
+            {patientLog.status !== "completed" ? (
+              <button className="btn btn-outline-primary btn-sm" onClick={() => {toggleModal("open")}}>
+                Thêm dịch vụ
+              </button>
+            ) : ""}
           </div>
         </div>
         <div className="table-body">
@@ -393,7 +395,9 @@ export const ServiceTable:FC<ServiceProps> = ({patientLog, requestReload}) => {
                 <th style={{ width: "55px" }}>Đơn vị</th>
                 <th style={{ width: "45px" }}>Số lượng</th>
                 <th style={{ width: "150px" }}>Ghi chú</th>
-                <th style={{ width: "50px" }}>Thao tác</th>
+                {patientLog.status !== "completed" ? (
+                  <th style={{ width: "50px" }}>Thao tác</th>
+                ) : ""}
               </tr>
             </thead>
             <tbody>
@@ -403,21 +407,23 @@ export const ServiceTable:FC<ServiceProps> = ({patientLog, requestReload}) => {
                   <td>{item.item_unit}</td>
                   <td>{item.amount}</td>
                   <td>{item.item_note}</td>
-                  <td>
-                    {!item.end_datetime ? (
-                      <div className="table-button-list">
-                        {item.item_type === "room" ? (
-                          <button onClick={() => {toggleModal("openRoomSwap", item, item.item_id)}}>
-                            <FontAwesomeIcon icon={faRotate} />
-                          </button>
-                        ) : (
-                          <button onClick={() => {toggleModal("delete", item)}}>
-                            <FontAwesomeIcon icon={faTrash} />
-                          </button>
-                        )}
-                      </div>
-                    ) : ""}
-                  </td>
+                  {patientLog.status !== "completed" ? (
+                    <td>
+                      {!item.end_datetime ? (
+                        <div className="table-button-list">
+                          {item.item_type === "room" ? (
+                            <button onClick={() => {toggleModal("openRoomSwap", item, item.item_id)}}>
+                              <FontAwesomeIcon icon={faRotate} />
+                            </button>
+                          ) : (
+                            <button onClick={() => {toggleModal("delete", item)}}>
+                              <FontAwesomeIcon icon={faTrash} />
+                            </button>
+                          )}
+                        </div>
+                      ) : ""}
+                    </td>
+                  ) : ""}
                 </tr>
               ))}
             </tbody>
@@ -771,7 +777,7 @@ export const ServiceTable:FC<ServiceProps> = ({patientLog, requestReload}) => {
                               </div>
                             </div>
                           ) : ""}
-                          {!selectedRoom ? (
+                          {!selectedRoom && patientLog.is_inpatient !== "1" ? (
                             <div className="col-md-12">
                               <button
                                 type="button"

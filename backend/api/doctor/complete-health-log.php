@@ -14,7 +14,6 @@
   $data = json_decode($input, true);
   if ($data) {
     $errorMsg = "";
-    $sql = "";
     // Access form values
     $post_id = isset($data['ptn_log_id']) ? mysqli_real_escape_string($conn, $data['ptn_log_id']) : null;
 
@@ -39,16 +38,7 @@
         WHERE `ptn_log_id` = '$post_id'";
     mysqli_query($conn, $sql_update_log);
 
-    if($sql) {
-        $result = mysqli_query($conn, $sql);
-
-        if ($result) {
-            echo json_encode(["status" => "success", "data" => "success"]);
-        } else {
-            http_response_code(500);
-            echo json_encode(["status" => "error", "message" => "invalidCredential"]);
-        }
-    }
+    echo json_encode(["status" => "success", "data" => "success"]);
 
 } else {
     // Handle error if no data or missing expected values

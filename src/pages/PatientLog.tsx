@@ -7,7 +7,7 @@ import { UserAccountType } from "../helpers/types";
 import { useParams } from "react-router-dom";
 import { useToast } from "../components/common/CustomToast";
 import { PatientLogType } from "./PatientInfo";
-import { apiGetMedHistList, apiGetPatientLog, apiGetUserAccount, apiUpdateMedHist } from "../helpers/axios";
+import { apiCompleteTreatment, apiGetMedHistList, apiGetPatientLog, apiGetUserAccount, apiUpdateMedHist } from "../helpers/axios";
 import { faCalendar, faNotesMedical, faUserDoctor, faHospital, faArrowsRotate, faNoteSticky, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { convertISOToDateTime } from "../helpers/utils";
@@ -61,6 +61,7 @@ export const PatientLog:FC = () => {
   const {openToast} = useToast();
   const {patientLogId} = useParams();
 
+  const confirmCompleteModalRef = useRef<CustomModalHandles>(null);
   const medHistTableRef = useRef<HTMLTableSectionElement | null>(null);
   const presTableRef = useRef<HTMLDivElement | null>(null);
 
@@ -210,6 +211,18 @@ export const PatientLog:FC = () => {
     }
   }
 
+  const completeTreatment = async() => {
+    if(patientLog) {
+      const result = await apiCompleteTreatment(patientLog.ptn_log_id);
+      if(result.error) {
+        openToast("error", "Lỗi", "Đã xảy ra lỗi đánh dấu hoàn thành!", 5000);
+      } else if (result.data) {
+        getPatientLog();
+        confirmCompleteModalRef.current?.closeModal();
+      }
+    }
+  }
+
   useEffect(() => {
     getPatientLog();
     getMedHistList();
@@ -258,7 +271,7 @@ export const PatientLog:FC = () => {
                         {/* <div className="info-desc">69 tuổi</div> */}
                       </div>
                       <div className="user-action">
-                        <button className="btn btn-gradient" onClick={() => {}}>Hoàn thành điều trị</button>
+                        <button className="btn btn-gradient" disabled={patientLog && patientLog.status === "completed" ? true : false} onClick={() => {confirmCompleteModalRef.current?.openModal()}}>{patientLog && patientLog.status === "completed" ? "Đã hoàn thành" : "Hoàn thành"} điều trị</button>
                       </div>
                     </div>
                   ) : ""}
@@ -337,9 +350,11 @@ export const PatientLog:FC = () => {
                       <div className="table-header">
                         <div className="header-title">Lịch sử kiểm tra sức khoẻ</div>
                         <div className="header-button">
-                          <button className="btn btn-outline-primary btn-sm" onClick={() => toggleMedHistModal("open")}>
+                          {patientLog && patientLog.status !== "completed" ? (
+                            <button className="btn btn-outline-primary btn-sm" onClick={() => toggleMedHistModal("open")}>
                             Tạo
                           </button>
+                          ) : ""}
                         </div>
                       </div>
                       <div className="table-body">
@@ -353,7 +368,9 @@ export const PatientLog:FC = () => {
                               <th style={{ width: "75px" }}>SpO2</th>
                               <th style={{ width: "140px" }}>Ngày kiểm tra</th>
                               <th style={{ width: "200px" }}>Ghi chú</th>
-                              <th style={{ width: "50px" }}>Thao tác</th>
+                              {patientLog && patientLog.status !== "completed" ? (
+                                <th style={{ width: "50px" }}>Thao tác</th>
+                              ) : ""}
                             </tr>
                           </thead>
                           <tbody ref={medHistTableRef}>
@@ -371,13 +388,15 @@ export const PatientLog:FC = () => {
                                 <td>{item.spo2}%</td>
                                 <td>{convertISOToDateTime(item.created_at)}</td>
                                 <td>{item.med_note}</td>
-                                <td>
-                                  <div className="table-button-list">
-                                    <button onClick={() => {toggleMedHistModal("openDelete", item.med_hist_id)}}>
-                                      <FontAwesomeIcon icon={faTrash} />
-                                    </button>
-                                  </div>
-                                </td>
+                                {patientLog && patientLog.status !== "completed" ? (
+                                  <td>
+                                    <div className="table-button-list">
+                                      <button onClick={() => {toggleMedHistModal("openDelete", item.med_hist_id)}}>
+                                        <FontAwesomeIcon icon={faTrash} />
+                                      </button>
+                                    </div>
+                                  </td>
+                                ) : ""}
                               </tr>
                             ))}
                           </tbody>
@@ -389,6 +408,7 @@ export const PatientLog:FC = () => {
                   <div className="grid-pres" ref={presTableRef}>
                     <PrescriptionTable
                       selectedMedHistId={selectedMedHistId}
+                      treatmentCompleted={patientLog && patientLog.status === "completed" ? true : false}
                     />
                   </div>
 
@@ -542,6 +562,24 @@ export const PatientLog:FC = () => {
           <div className="button-list">
             <button type="button" className="btn btn-outline" onClick={() => toggleMedHistModal("close")}>Không</button>
             <button type="button" className="btn btn-gradient" onClick={() => deleteMedHist()}>Xoá</button>
+          </div>
+        </div>
+      </CustomModal>
+
+      {/* Alert confirm hoàn thành điều trị */}
+      <CustomModal
+        headerTitle={"Hoàn thành điều trị?"}
+        size="md"
+        type="alert"
+        ref={confirmCompleteModalRef}
+      >
+        <div className="body-content">
+          Bạn có chắc chắn muốn đánh dấu hồ sơ khám bệnh này đã hoàn thành điều trị? Bạn sẽ không thể chỉnh sửa hồ sơ này sau khi hoàn thành điều trị.
+        </div>
+        <div className="body-footer">
+          <div className="button-list">
+            <button type="button" className="btn btn-outline" onClick={() => toggleMedHistModal("close")}>Không</button>
+            <button type="button" className="btn btn-gradient" onClick={() => completeTreatment()}>Chắc chắn</button>
           </div>
         </div>
       </CustomModal>

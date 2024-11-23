@@ -423,6 +423,21 @@ export type UpdatePatientLogType = {
   end_datetime?: string | null
 }
 
+export const apiGetServiceList = async() => {
+  let error = null;
+  let data = null;
+  try {
+    const res = await hmsAxios.post(
+      "/doctor/list-service.php"
+    );
+    if(res.data) {
+      data = res.data.data;
+    }
+  } catch (err:any) {
+    error = err.response.data.message;
+  }
+  return { data, error };
+}
 export const apiUpdatePatientLog = async(request:UpdatePatientLogType) => {
   let error = null;
   let data = null;
@@ -577,6 +592,22 @@ export const apiUpdateRoom = async(request:RoomUpdateRequestType) => {
     const res = await hmsAxios.post(
       "/doctor/update-room.php",
       JSON.stringify(request)
+    );
+    if(res.data) {
+      data = res.data.data;
+    }
+  } catch (err:any) {
+    error = err.response.data.message;
+  }
+  return { data, error };
+}
+export const apiCompleteTreatment = async(patientLogId:string) => {
+  let error = null;
+  let data = null;
+  try {
+    const res = await hmsAxios.post(
+      "/doctor/complete-health-log.php",
+      JSON.stringify({ptn_log_id: patientLogId})
     );
     if(res.data) {
       data = res.data.data;
