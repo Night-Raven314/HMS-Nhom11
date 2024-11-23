@@ -44,7 +44,7 @@
           	  ON pres.med_hist_id = hst.med_hist_id
       WHERE
           pres.med_hist_id IN (SELECT med_hist_id FROM med_hist_ref)
-          AND pres.status <> 'deleted'
+          AND pres.status = 'completed'
       ),
 
       facility_data AS (
@@ -61,7 +61,7 @@
           LEFT JOIN `dim_item` item
               ON fac.item_id = item.item_id AND fac.item_type = 'item'
       WHERE
-        fac.status <> 'deleted'
+        fac.status = 'completed'
 
       UNION ALL
 
@@ -78,7 +78,7 @@
           LEFT JOIN `dim_med_service` svcs
               ON fac.item_id = svcs.item_id AND fac.item_type = 'service'
       WHERE
-        fac.status <> 'deleted'
+        fac.status = 'completed'
 
       UNION ALL
 
@@ -101,7 +101,7 @@
           LEFT JOIN `dim_room` room
               ON fac.item_id = room.room_id AND fac.item_type = 'room'
       WHERE
-        fac.status <> 'deleted'
+        fac.status = 'completed'
       ),
 
       appointment_data AS (
