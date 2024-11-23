@@ -36,6 +36,7 @@
           break;
 
         case 'update':
+          $post_id = $data['ptn_log_id'] ? mysqli_real_escape_string($conn, $data['ptn_log_id']) : null;
           $post_start_datetime = mysqli_real_escape_string($conn, $data['start_datetime']);
           $post_end_datetime = mysqli_real_escape_string($conn, $data['end_datetime']);
           $sql = "UPDATE `fact_patient_log` SET `patient_id` = '$post_patient_id', `doctor_id` = '$auth_user_id', `faculty_id` = '$post_faculty_id', `is_inpatient` = $post_inpatient,

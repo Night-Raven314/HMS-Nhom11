@@ -49,7 +49,8 @@ export type RoomFormType = {
   name?: string,
   fac_id?: string | null,
   size?: string,
-  price?: string
+  price?: string,
+  status?: string
 }
 export type RoomRequestType = RoomFormType & {
   order: string,
@@ -72,6 +73,10 @@ export type BuildingType = FloorType & {
 
 export const AdminBuilding: FC = () => {
   const {openToast} = useToast();
+  const statusOptions:SelectOptionType[] = [
+    {value: "active", label: "Hoạt động"},
+    {value: "maintenance", label: "Bảo trì"}
+  ]
 
   const navbarRef = useRef<NavbarHandles>(null);
   const [buildingList, setBuildingList] = useState<BuildingType[]>([]);
@@ -834,7 +839,7 @@ export const AdminBuilding: FC = () => {
               <Form>
                 <div className="body-content">
                   <div className="row">
-                    <div className="col-md-3">
+                    <div className="col-md-6">
                       <CustomInput
                         formik={formikProps}
                         id={`name`}
@@ -848,7 +853,7 @@ export const AdminBuilding: FC = () => {
                         disabled={false}
                       />
                     </div>
-                    <div className="col-md-4">
+                    <div className="col-md-6">
                       <CustomInput
                         formik={formikProps}
                         id={`fac_id`}
@@ -877,7 +882,7 @@ export const AdminBuilding: FC = () => {
                         disabled={false}
                       />
                     </div>
-                    <div className="col-md-3">
+                    <div className="col-md-4">
                       <CustomInput
                         formik={formikProps}
                         id={`price`}
@@ -888,6 +893,21 @@ export const AdminBuilding: FC = () => {
                         inputType="number"
                         isRequired={true}
                         type="input"
+                        disabled={false}
+                      />
+                    </div>
+                    <div className="col-md-6">
+                      <CustomInput
+                        formik={formikProps}
+                        id={`status`}
+                        name={`status`}
+                        label="Trạng thái"
+                        placeholder=""
+                        initialValue=""
+                        inputType="text"
+                        isRequired={true}
+                        selectOptions={statusOptions}
+                        type="select"
                         disabled={false}
                       />
                     </div>

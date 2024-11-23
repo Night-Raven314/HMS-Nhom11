@@ -6,7 +6,7 @@ import { FieldArray, Form, Formik, FormikHelpers, FormikProps } from "formik";
 import { CustomInput, SelectOptionType } from "../../common/CustomInput";
 import { CustomModal, CustomModalHandles } from "../../common/CustomModal";
 import { ItemListType } from "../../../pages/role-admin/Item";
-import { apiAdminGetBuilding, apiGetItem, apiGetService, apiUpdateRoom, apiUpdateService } from "../../../helpers/axios";
+import { apiAdminGetBuilding, apiGetItem, apiGetService, apiUpdatePatientLog, apiUpdateRoom, apiUpdateService, UpdatePatientLogType } from "../../../helpers/axios";
 import { ServiceRoomModal } from "./ServiceRoom";
 import { BuildingType, FloorType, RoomType } from "../../../pages/role-admin/Building";
 import { convertISOToDateTime } from "../../../helpers/utils";
@@ -14,6 +14,7 @@ import { PatientLogType } from "../../../pages/PatientInfo";
 
 export type ServiceProps = {
   patientLog: PatientLogType;
+  requestReload: () => void;
 }
 export type ServiceTableType = {
   fac_asmt_id: string;
@@ -67,7 +68,7 @@ export type RoomUpdateRequestType = {
   end_time: string
 }
 
-export const ServiceTable:FC<ServiceProps> = ({patientLog}) => {
+export const ServiceTable:FC<ServiceProps> = ({patientLog, requestReload}) => {
   const {openToast} = useToast();
   const [serviceTable, setServiceTable] = useState<ServiceTableType[]>([]);
   const [serviceList, setServiceList] = useState<ItemListType[]>([]);
@@ -79,18 +80,7 @@ export const ServiceTable:FC<ServiceProps> = ({patientLog}) => {
   const serviceCreateFormRef = useRef<FormikProps<DynamicServiceFormType>>(null);
   const [updateService, setUpdateService] = useState<ServiceTableType | null>(null);
   const [serviceCreateInitialValue, setPresCreateInitialValue] = useState<DynamicServiceFormType>({
-    services: [
-      {
-        item_id: "",
-        item_type: "",
-        amount: "",
-        price: "",
-        item_note: "",
-        start_time: "",
-        end_time: "",
-        is_lending: "false"
-      }
-    ]
+    services: []
   })
   // Service create room
   const [selectedRoom, setSelectedRoom] = useState<RoomType | undefined>(undefined);
@@ -184,22 +174,6 @@ export const ServiceTable:FC<ServiceProps> = ({patientLog}) => {
         setPresCreateInitialValue({
           services: []
         })
-        setTimeout(() => {
-          setPresCreateInitialValue({
-            services: [
-              {
-                item_id: "",
-                item_type: "",
-                amount: "",
-                price: "",
-                item_note: "",
-                start_time: "",
-                end_time: "",
-                is_lending: "false"
-              }
-            ]
-          })
-        }, 0);
         if(serviceCreateModalRef.current) {
           serviceCreateModalRef.current.openModal();
         }
@@ -213,22 +187,6 @@ export const ServiceTable:FC<ServiceProps> = ({patientLog}) => {
         setPresCreateInitialValue({
           services: []
         })
-        setTimeout(() => {
-          setPresCreateInitialValue({
-            services: [
-              {
-                item_id: "",
-                item_type: "",
-                amount: "",
-                price: "",
-                item_note: "",
-                start_time: "",
-                end_time: "",
-                is_lending: "false"
-              }
-            ]
-          })
-        }, 0);
         // Find rooms
         let getRoom:RoomType | undefined;
         let getFloor:FloorType | undefined;
@@ -340,6 +298,24 @@ export const ServiceTable:FC<ServiceProps> = ({patientLog}) => {
           is_lending: "false",
           item_type: "room"
         })
+        if(patientLog.is_inpatient === "0") {
+          const request:UpdatePatientLogType = {
+            ptn_log_id: patientLog.ptn_log_id,
+            patient_id: patientLog.patient_id,
+            faculty_id: patientLog.faculty_id,
+            auth_user_id: patientLog.doctor_id,
+            start_datetime: patientLog.start_datetime,
+            end_datetime: patientLog.end_datetime,
+            is_inpatient: 1,
+            action: "update"
+          }
+          const resultUser = await apiUpdatePatientLog(request);
+          if(resultUser.error) {
+            openToast("error", "Lỗi", "Đã xảy ra lỗi khi tạo hồ sơ khám!", 5000);
+          } else if (resultUser.data) {
+            requestReload();
+          }
+        }
       }
       const result = await apiUpdateService({
         action: "create",
@@ -684,15 +660,13 @@ export const ServiceTable:FC<ServiceProps> = ({patientLog}) => {
                                 />
                               </div>
                               <div className="col-md-1">
-                                {formikProps.values.services.length > 1 ? (
-                                  <button
-                                    type="button"
-                                    className="btn btn-gradient form-delete-btn"
-                                    onClick={() => {
-                                      remove(index)
-                                    }}
-                                  ><FontAwesomeIcon icon={faTrash} /></button>
-                                ) : ""}
+                                <button
+                                  type="button"
+                                  className="btn btn-gradient form-delete-btn"
+                                  onClick={() => {
+                                    remove(index)
+                                  }}
+                                ><FontAwesomeIcon icon={faTrash} /></button>
                               </div>
                             </div>
                           ))}

@@ -418,7 +418,9 @@ export type UpdatePatientLogType = {
   ptn_log_id?: string,
   is_inpatient: number,
   auth_user_id: string,
-  action: string
+  action: string,
+  start_datetime?: string,
+  end_datetime?: string | null
 }
 
 export const apiUpdatePatientLog = async(request:UpdatePatientLogType) => {
