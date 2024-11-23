@@ -39,7 +39,7 @@
         0 AS item_lending_price
       FROM
         `dim_med_service`
-      WHERE status <> 'deleted';";
+      WHERE status <> 'deleted'";
     if($sql) {
       $result = $conn->query($sql);
       if ($result) { 
