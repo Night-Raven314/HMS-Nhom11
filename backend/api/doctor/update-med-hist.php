@@ -19,9 +19,11 @@
     $post_action = mysqli_real_escape_string($conn, $data['action']);
     if($post_action === "delete") {
       $post_id = isset($data['med_hist_id']) ? mysqli_real_escape_string($conn, $data['med_hist_id']) : null;
-      $sql = "UPDATE `fact_med_hist` SET
-      `status` = 'deleted' WHERE med_hist_id = '$post_id'";
-      mysqli_query($conn, $sql);
+      $sql_delete_hist = "UPDATE `fact_med_hist` SET `status` = 'deleted' WHERE med_hist_id = '$post_id'";
+      mysqli_query($conn, $sql_delete_hist);
+      
+      $sql_delete_pres = "UPDATE `fact_prescription` SET `status` = 'deleted' WHERE med_hist_id = '$post_id'";
+      mysqli_query($conn, $sql_delete_pres);
     } else {
       $post_blood_press = mysqli_real_escape_string($conn, $data['blood_press']);
       $post_spo2 = mysqli_real_escape_string($conn, $data['spo2']);
