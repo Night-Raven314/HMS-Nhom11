@@ -13,7 +13,7 @@ export type PrescriptionProps = {
 }
 export type PrescriptionList = {
   med_hist_id: string,
-  patiend_id: string,
+  patient_id: string,
   item_name: string,
   amount: string,
   item_unit: string,

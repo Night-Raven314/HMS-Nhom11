@@ -8,6 +8,7 @@ import { DynamicRequestType, ScheduleFormType, ScheduleRequestType } from "../pa
 import { FloorRequestType, RoomAPIRequestType } from "../pages/role-admin/Building";
 import { MedHistRequestType } from "../pages/PatientLog";
 import { CreatePrescriptionRequestType } from "../components/pages/PatientLog/Prescription";
+import { CreateServiceRequestType } from "../components/pages/PatientLog/Service";
 
 export const hmsAxios = Axios.create({
   baseURL: `/HMS-Nhom11/backend/api/`,
@@ -524,6 +525,39 @@ export const aptUpdatePrescription = async(request:CreatePrescriptionRequestType
   try {
     const res = await hmsAxios.post(
       "/doctor/update-prescription.php",
+      JSON.stringify(request)
+    );
+    if(res.data) {
+      data = res.data.data;
+    }
+  } catch (err:any) {
+    error = err.response.data.message;
+  }
+  return { data, error };
+}
+// Service
+export const aptGetService = async(patientLogId:string) => {
+  let error = null;
+  let data = null;
+  try {
+    const res = await hmsAxios.post(
+      "/doctor/get-services.php",
+      JSON.stringify({ptn_log_id: patientLogId})
+    );
+    if(res.data) {
+      data = res.data.data;
+    }
+  } catch (err:any) {
+    error = err.response.data.message;
+  }
+  return { data, error };
+}
+export const aptUpdateService = async(request:CreateServiceRequestType) => {
+  let error = null;
+  let data = null;
+  try {
+    const res = await hmsAxios.post(
+      "/doctor/update-service.php",
       JSON.stringify(request)
     );
     if(res.data) {

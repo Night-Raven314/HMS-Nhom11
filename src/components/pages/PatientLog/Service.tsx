@@ -1,21 +1,35 @@
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { FC, useRef, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import { useToast } from "../../common/CustomToast";
 import { FieldArray, Form, Formik, FormikHelpers, FormikProps } from "formik";
 import { CustomInput, SelectOptionType } from "../../common/CustomInput";
 import { CustomModal, CustomModalHandles } from "../../common/CustomModal";
+import { ItemListType } from "../../../pages/role-admin/Item";
+import { apiGetItem, aptGetService, aptUpdateService } from "../../../helpers/axios";
 
 export type ServiceProps = {
   patientLogId?: string;
 }
+export type ServiceTableType = {
+  fac_asmt_id: string;
+  item_type: string;
+  item_id: string;
+  item_name: string;
+  item_unit: string;
+  amount: string;
+  item_price: string;
+  item_note: string; 
+}
+
 export type ServiceList = {
   med_hist_id: string,
-  patiend_id: string,
+  patient_id: string,
   item_name: string,
   amount: string,
   item_unit: string,
-  item_note: string
+  item_note: string,
+  item_lending_price: string,
 }
 export type ServiceFormType = {
   item_id: string,
@@ -24,25 +38,29 @@ export type ServiceFormType = {
   price: string,
   item_note: string,
   start_time: string,
-  end_time: string | null
+  end_time: string | null,
+  is_lending: string
 }
 type DynamicServiceFormType = {
   services: ServiceFormType[]
 }
 export type CreateServiceRequestType = {
   action: string,
-  ptn_log_id: string,
+  ptn_log_id?: string,
+  fact_asmt_id?: string,
   request?: ServiceFormType[]
 }
 
 export const ServiceTable:FC<ServiceProps> = ({patientLogId}) => {
   const {openToast} = useToast();
-  const [serviceList, setServiceList] = useState<ServiceList[]>([]);
+  const [serviceTable, setServiceTable] = useState<ServiceTableType[]>([]);
+  const [serviceList, setServiceList] = useState<ItemListType[]>([]);
   const [serviceOptions, setServiceOptions] = useState<SelectOptionType[]>([]);
 
   const serviceDeleteModalRef = useRef<CustomModalHandles>(null);
   const serviceCreateModalRef = useRef<CustomModalHandles>(null);
   const serviceCreateFormRef = useRef<FormikProps<DynamicServiceFormType>>(null);
+  const [updateService, setUpdateService] = useState<ServiceTableType | null>(null);
   const [serviceCreateInitialValue, setPresCreateInitialValue] = useState<DynamicServiceFormType>({
     services: [
       {
@@ -52,16 +70,60 @@ export const ServiceTable:FC<ServiceProps> = ({patientLogId}) => {
         price: "",
         item_note: "",
         start_time: "",
-        end_time: ""
+        end_time: "",
+        is_lending: "false"
       }
     ]
   })
 
-  const toggleModal = (action: string) => {
+  const serviceRoomModalRef = useRef<CustomModalHandles>(null);
+
+  const getServiceTable = async() => {
+    if(patientLogId) {
+      const result = await aptGetService(patientLogId);
+      if(result.error) {
+        openToast("error", "Lỗi", "Đã xảy ra lỗi khi lấy thông tin!", 5000);
+      } else if (result.data) {
+        setServiceTable(result.data);
+      }
+    }
+  }
+
+  const getServiceList = async() => {
+    const getItem = await apiGetItem("item");
+    if(getItem.error) {
+      openToast("error", "Lỗi", `Đã xảy ra lỗi khi lấy thông tin!`, 5000);
+    } else if (getItem.data) {
+      setServiceList(getItem.data);
+      const tmpServiceList:ItemListType[] = getItem.data;
+      tmpServiceList.sort((a, b) => {
+        if (a.item_name < b.item_name) return -1;
+        if (a.item_name > b.item_name) return 1;
+        return 0;
+      });
+      
+      let tmpServiceOptions: SelectOptionType[] = [{
+        value: "none",
+        label: "Chọn dịch vụ"
+      }];
+      tmpServiceList.forEach(med => {
+        tmpServiceOptions.push({
+          value: med.item_id,
+          label: `${med.item_name} (${med.item_price}đ/${med.item_unit})`
+        })
+      })
+      setServiceOptions(tmpServiceOptions)
+    }
+  }
+
+  const toggleModal = (action: string, item?:ServiceTableType) => {
     switch (action) {
       case "delete":
-        if(serviceDeleteModalRef.current) {
-          serviceDeleteModalRef.current.openModal();
+        if(item) {
+          setUpdateService(item);
+          if(serviceDeleteModalRef.current) {
+            serviceDeleteModalRef.current.openModal();
+          }
         }
         break;
       case "open":
@@ -79,7 +141,8 @@ export const ServiceTable:FC<ServiceProps> = ({patientLogId}) => {
                 price: "",
                 item_note: "",
                 start_time: "",
-                end_time: ""
+                end_time: "",
+                is_lending: "false"
               }
             ]
           })
@@ -96,15 +159,83 @@ export const ServiceTable:FC<ServiceProps> = ({patientLogId}) => {
           serviceDeleteModalRef.current.closeModal();
         }
         break;
-
+      case "openRoom":
+        if(serviceRoomModalRef.current) {
+          serviceRoomModalRef.current.openModal();
+        }
+        break;
+      case "closeRoom":
+        if(serviceRoomModalRef.current) {
+          serviceRoomModalRef.current.closeModal();
+        }
+        break;
       default:
         break;
     }
   }
 
   const submitService = async(value:DynamicServiceFormType, helpers: FormikHelpers<DynamicServiceFormType>) => {
-
+    let formValid = true;
+    value.services.every(item => {
+      if(!item.amount || !item.start_time || item.item_id === "none") {
+        formValid = false;
+        return false;
+      }
+      return true;
+    })
+    if(formValid && patientLogId) {
+      let tmpRequest:ServiceFormType[] = JSON.parse(JSON.stringify(value.services));
+      tmpRequest.forEach(service => {
+        const findService = serviceList.find(lService => lService.item_id === service.item_id);
+        if(findService) {
+          service.price = findService.item_price;
+          service.item_type = "item";
+          service.is_lending = findService.item_lending_price === "0" ? "false" : "true";
+        } else {
+          service.price = "0";
+          service.item_type = "item";
+        }
+        service.end_time = null;
+      })
+      const result = await aptUpdateService({
+        action: "create",
+        ptn_log_id: patientLogId,
+        request: tmpRequest
+      });
+      if(result.error) {
+        openToast("error", "Lỗi", `Đã xảy ra lỗi khi lưu thông tin!`, 5000);
+      } else if(result.data) {
+        openToast("success", "Thành công", `Dịch vụ đã được thêm!`, 5000);
+        toggleModal("close");
+        getServiceTable();
+      }
+    } else {
+      openToast("error", "Lỗi biểu mẫu", "Một số dịch vụ chưa điền đủ thông tin!", 5000);
+    }
   }
+  const deleteService = async() => {
+    if(updateService) {
+      const result = await aptUpdateService({
+        action: "delete",
+        fact_asmt_id: updateService.fac_asmt_id
+      });
+      if(result.error) {
+        openToast("error", "Lỗi", `Đã xảy ra lỗi khi xoá thông tin!`, 5000);
+      } else if(result.data) {
+        toggleModal("close");
+        getServiceTable();
+      }
+    }
+  }
+
+  useEffect(() => {
+    getServiceList();
+  }, [])
+  useEffect(() => {
+    if(patientLogId) {
+      getServiceTable();
+    }
+  }, [patientLogId])
 
   return (
     <>
@@ -129,15 +260,15 @@ export const ServiceTable:FC<ServiceProps> = ({patientLogId}) => {
               </tr>
             </thead>
             <tbody>
-              {Array.from({ length: 30 }, (_, index) => index).map((item) => (
-                <tr>
-                  <td>Bộ dụng cụ tiêm insulin</td>
-                  <td>bộ</td>
-                  <td>69</td>
-                  <td>Just use it god damn it</td>
+              {serviceTable.map((item) => (
+                <tr key={item.fac_asmt_id}>
+                  <td>{item.item_name}</td>
+                  <td>{item.item_unit}</td>
+                  <td>{item.amount}</td>
+                  <td>{item.item_note}</td>
                   <td>
                     <div className="table-button-list">
-                      <button onClick={() => {}}>
+                      <button onClick={() => {toggleModal("delete", item)}}>
                         <FontAwesomeIcon icon={faTrash} />
                       </button>
                     </div>
@@ -224,7 +355,7 @@ export const ServiceTable:FC<ServiceProps> = ({patientLogId}) => {
                                 placeholder="Nhập ghi chú"
                                 initialValue=""
                                 inputType="text"
-                                isRequired={true}
+                                isRequired={false}
                                 type="input"
                                 disabled={false}
                               />
@@ -256,6 +387,14 @@ export const ServiceTable:FC<ServiceProps> = ({patientLogId}) => {
                             }}
                           >Thêm dịch vụ</button>
                         </div>
+                        <div className="col-md-12">
+                          <button
+                            type="button"
+                            className="btn btn-gradient"
+                            style={{marginTop: "15px"}}
+                            onClick={() => {toggleModal("openRoom")}}
+                          >Thêm phòng</button>
+                        </div>
                       </div>
                     )}
                   </FieldArray>
@@ -270,6 +409,42 @@ export const ServiceTable:FC<ServiceProps> = ({patientLogId}) => {
             )
           }}
         </Formik>
+      </CustomModal>
+
+      {/* Alert xoá dịch vụ */}
+      <CustomModal
+        headerTitle={"Xoá dịch vụ"}
+        size="md"
+        type="alert"
+        ref={serviceDeleteModalRef}
+      >
+        <div className="body-content">
+          Bạn có chắc chắn muốn xoá <b>{updateService?.item_name}</b>?
+        </div>
+        <div className="body-footer">
+          <div className="button-list">
+            <button type="button" className="btn btn-outline" onClick={() => toggleModal("close")}>Không</button>
+            <button type="button" className="btn btn-gradient" onClick={() => deleteService()}>Xoá</button>
+          </div>
+        </div>
+      </CustomModal>
+
+      {/* Modal chọn phòng */}
+      <CustomModal
+        headerTitle={`Chọn phòng`}
+        size="xl"
+        type="modal"
+        ref={serviceRoomModalRef}
+      >
+        <div className="body-content">
+
+        </div>
+        <div className="body-footer">
+          <div className="button-list">
+            <button type="button" className="btn btn-outline" onClick={() => toggleModal("closeRoom")}>Thoát</button>
+            <button type="submit" className="btn btn-gradient">Tạo</button>
+          </div>
+        </div>
       </CustomModal>
     </>
   )

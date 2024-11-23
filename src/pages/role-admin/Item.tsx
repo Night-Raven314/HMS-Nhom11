@@ -20,12 +20,12 @@ export type ItemListType = {
   item_id: string;
   item_name: string;
   item_price: string;
+  item_lending_price: string;
   item_unit: string;
   created_at: string;
-  updated_at: string | null;
+  updated_at: string;
   status: string;
 };
-
 
 export type ItemRequestType = ItemFormType & {
   action: string;

@@ -16,15 +16,22 @@
     $errorMsg = "";
     $sql = "";
     // Access form values
-    $post_id = $data['fact_asmt_id'] ? mysqli_real_escape_string($conn, $data['fact_asmt_id']) : null;
-    $post_ptn_log = mysqli_real_escape_string($conn, $row['ptn_log_id']);
     $post_action = mysqli_real_escape_string($conn, $data['action']);
     if($post_action === "delete") {
+      $post_id = $data['fact_asmt_id'] ? mysqli_real_escape_string($conn, $data['fact_asmt_id']) : null;
       $sql = "UPDATE `fact_facility_asmt` SET
-      `status` = 'deleted' WHERE fact_asmt_id = '$post_id'";
+      `status` = 'deleted' WHERE fac_asmt_id = '$post_id'";
+      $result = mysqli_query($conn, $sql);
+      if ($result) {
+        echo json_encode(["status" => "success", "data" => "success"]);
+      } else {
+        http_response_code(500);
+        echo json_encode(["status" => "error", "message" => "invalidCredential"]);
+      }
     } else if($post_action === "create") {
+      $post_ptn_log = mysqli_real_escape_string($conn, $data['ptn_log_id']);
 
-      foreach ($data as $row) {
+      foreach ($data["request"] as $row) {
         
         $post_item_type = mysqli_real_escape_string($conn, $row['item_type']);
         $post_item_id = mysqli_real_escape_string($conn, $row['item_id']);
@@ -34,7 +41,7 @@
         $post_start_time = mysqli_real_escape_string($conn, $row['start_time']);
         $post_end_time = mysqli_real_escape_string($conn, $row['end_time']);
 
-        $sub_sql_create = "INSERT INTO `fact_facility_asmt` (`ptn_log_id`, `item_type`, `item_id`, `amount`, `price`, `item_note`, `start_datetime`, `end_datetime`)
+        $sub_sql_create = "INSERT INTO `fact_facility_asmt` (`ptn_log_id`, `item_type`, `item_id`, `amount`, `item_price`, `item_note`, `start_datetime`, `end_datetime`)
           VALUES ('$post_ptn_log', '$post_item_type', '$post_item_id', $post_amount, $post_price, '$post_note', '$post_start_time', '$post_end_time')";
         mysqli_query($conn, $sub_sql_create);
 
@@ -48,17 +55,6 @@
 
       }
       echo json_encode(["status" => "success", "data" => "success"]);
-    }
-
-    if($sql) {
-      $result = mysqli_query($conn, $sql);
-
-      if ($result) {
-        echo json_encode(["status" => "success", "data" => "success"]);
-      } else {
-        http_response_code(500);
-        echo json_encode(["status" => "error", "message" => "invalidCredential"]);
-      }
     }
 
 } else {
