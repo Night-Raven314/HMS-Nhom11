@@ -43,7 +43,7 @@
         LEFT JOIN active_room actv
           ON actv.item_id = room.room_id
       WHERE
-        room.status <> 'active'
+        room.status = 'active'
       GROUP BY 1, 2, 3, 4, 5
       ORDER BY room_order DESC
       ";
