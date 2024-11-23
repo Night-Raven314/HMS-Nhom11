@@ -35,7 +35,7 @@
         $post_end_time = mysqli_real_escape_string($conn, $row['end_time']);
 
         $sub_sql_create = "INSERT INTO `fact_facility_asmt` (`ptn_log_id`, `item_type`, `item_id`, `amount`, `price`, `item_note`, `start_datetime`, `end_datetime`)
-          VALUES ('$post_ptn_log', '$post_item_type', '$post_item_id', $post_amount, $post_price, '$post_note', '$post_price', '$post_note')";
+          VALUES ('$post_ptn_log', '$post_item_type', '$post_item_id', $post_amount, $post_price, '$post_note', '$post_start_time', '$post_end_time')";
         mysqli_query($conn, $sub_sql_create);
 
         $post_is_lending = mysqli_real_escape_string($conn, $row['is_lending']);
