@@ -33,7 +33,7 @@
         'room' AS item_type,
         DISTINCT(room_id) AS item_id,
         room_name,
-        'Giường' AS item_unit
+        'Ngày' AS item_unit
         room_size,
         item_price,
         CASE
