@@ -46,7 +46,6 @@
         mysqli_query($conn, $sub_sql_create);
 
         $post_is_lending = mysqli_real_escape_string($conn, $row['is_lending']);
-
         if  ($post_item_type === 'item' && $post_is_lending === 'false') {
           $sub_sql_stock = "INSERT INTO `fact_item_stock` (`item_id`, `change_type`, `amount_changed`) VALUES ('$post_item_id', 'deduction', $post_amount)";
 
