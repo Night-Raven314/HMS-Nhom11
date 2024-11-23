@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { rectSortingStrategy, SortableContext, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { BuildingType, FloorType } from '../../../../pages/role-admin/Building';
@@ -16,9 +16,12 @@ type Props = {
   roomIdBeingDragged? :string | null;
   floorIdBeingDragged? :string | null;
   facultyList: SelectOptionType[];
+  modalSelect?:boolean;
+  selectedRoomId?:string;
+  facultyId?:string;
 };
 
-const DraggableFloor: React.FC<Props> = ({ floor, roomIdBeingDragged, floorIdBeingDragged, sendCreateRoomRequest, sendUpdateRoomRequest, facultyList, sendUpdateFloorRequest }) => {
+const DraggableFloor: React.FC<Props> = ({ floor, roomIdBeingDragged, floorIdBeingDragged, sendCreateRoomRequest, sendUpdateRoomRequest, facultyList, sendUpdateFloorRequest, modalSelect = false, selectedRoomId, facultyId }) => {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({
     id: floor.floor_id,
     disabled: true
@@ -40,12 +43,16 @@ const DraggableFloor: React.FC<Props> = ({ floor, roomIdBeingDragged, floorIdBei
           <div className='floor-name'>{floor.floor_name}</div>
           <div className='floor-note'>{floor.floor_note}</div>
         </div>
-        <div className='floor-icon'>
-          <button className='btn btn-gradient' onClick={() => sendUpdateFloorRequest(floor.floor_id, "update")}><FontAwesomeIcon icon={faPenToSquare} /></button>
-        </div>
-        <div className='floor-icon'>
-          <button className='btn btn-gradient' onClick={() => sendUpdateFloorRequest(floor.floor_id, "delete")}><FontAwesomeIcon icon={faTrash} /></button>
-        </div>
+        {!modalSelect ? (
+          <Fragment>
+            <div className='floor-icon'>
+              <button className='btn btn-gradient' onClick={() => sendUpdateFloorRequest(floor.floor_id, "update")}><FontAwesomeIcon icon={faPenToSquare} /></button>
+            </div>
+            <div className='floor-icon'>
+              <button className='btn btn-gradient' onClick={() => sendUpdateFloorRequest(floor.floor_id, "delete")}><FontAwesomeIcon icon={faTrash} /></button>
+            </div>
+          </Fragment>
+        ) : ""}
       </div>
       <div className="floor-rooms-container">
         <SortableContext
@@ -53,17 +60,19 @@ const DraggableFloor: React.FC<Props> = ({ floor, roomIdBeingDragged, floorIdBei
           strategy={rectSortingStrategy}
         >
           {floor.rooms.map((room) => (
-            <DraggableRoom key={room.room_id} room={room} idBeingDragged={roomIdBeingDragged} sendUpdateRoomRequest={(roomId, action) => sendUpdateRoomRequest(floor, roomId, action)} facultyList={facultyList} />
+            <DraggableRoom key={room.room_id} room={room} idBeingDragged={roomIdBeingDragged} sendUpdateRoomRequest={(roomId, action) => sendUpdateRoomRequest(floor, roomId, action)} facultyList={facultyList} modalSelect={modalSelect} selectedRoomId={selectedRoomId} facultyId={facultyId} />
           ))}
         </SortableContext>
-        <div className={`room-item add-room`}>
-          <div className='item-add-container' onClick={() => sendCreateRoomRequest(floor)}>
-            <div className='add-icon'>
-              <FontAwesomeIcon icon={faAdd} />
+        {!modalSelect ? (
+          <div className={`room-item add-room`} onClick={() => sendCreateRoomRequest(floor)}>
+            <div className='item-add-container'>
+              <div className='add-icon'>
+                <FontAwesomeIcon icon={faAdd} />
+              </div>
+              <div className='add-text'>Tạo phòng</div>
             </div>
-            <div className='add-text'>Tạo phòng</div>
           </div>
-        </div>
+        ) : ""}
       </div>
     </div>
   );

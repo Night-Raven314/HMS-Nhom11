@@ -44,6 +44,8 @@
 
       SELECT
         fac.fac_asmt_id,
+        fac.start_datetime,
+        fac.end_datetime,
         fac.item_type,
         fac.item_id,
         itm.item_name,

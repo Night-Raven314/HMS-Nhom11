@@ -191,7 +191,12 @@ export const DoctorSchedule: FC = () => {
     if(formValid && UserSession) {
       let tmpRequest:ScheduleFormType[] = [];
       value.schedules.forEach(sch => {
-        tmpRequest.push(sch);
+        const tmpSchedule:ScheduleFormType = {
+          ...sch,
+          start_datetime: sch.start_datetime ? new Date(sch.start_datetime).toISOString() : sch.start_datetime,
+          end_datetime: sch.end_datetime ? new Date(sch.end_datetime).toISOString() : sch.end_datetime
+        }
+        tmpRequest.push(tmpSchedule);
       })
       const createResult = await apiCreateDoctorSchedule({
         action: "create",

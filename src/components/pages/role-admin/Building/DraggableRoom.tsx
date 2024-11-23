@@ -11,10 +11,13 @@ type Props = {
   room: RoomType;
   idBeingDragged?: string | null;
   facultyList: SelectOptionType[];
-  sendUpdateRoomRequest: (roomId:string, action: string) => void
+  sendUpdateRoomRequest: (roomId:string, action: string) => void;
+  modalSelect?:boolean;
+  selectedRoomId?:string;
+  facultyId?:string
 };
 
-const DraggableRoom: React.FC<Props> = ({ room, idBeingDragged, sendUpdateRoomRequest, facultyList }) => {
+const DraggableRoom: React.FC<Props> = ({ room, idBeingDragged, sendUpdateRoomRequest, facultyList, modalSelect = false, selectedRoomId, facultyId }) => {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({
     id: room.room_id,
     disabled: true
@@ -36,10 +39,12 @@ const DraggableRoom: React.FC<Props> = ({ room, idBeingDragged, sendUpdateRoomRe
   }
 
   return (
-    <div className={`room-item ${room.status}`} ref={setNodeRef} {...attributes} {...listeners} style={style}>
-      <button className='delete-btn' onClick={() => sendUpdateRoomRequest(room.room_id, "delete")}>
-        <FontAwesomeIcon icon={faXmark} />
-      </button>
+    <div className={`room-item ${room.status} ${facultyId && modalSelect && room.faculty_id && facultyId !== room.faculty_id ? "disabled" : ""} ${selectedRoomId && selectedRoomId === room.room_id ? "selected" : ""}`} ref={setNodeRef} {...attributes} {...listeners} style={style}>
+      {!modalSelect ? (
+        <button className='delete-btn' onClick={() => sendUpdateRoomRequest(room.room_id, "delete")}>
+          <FontAwesomeIcon icon={faXmark} />
+        </button>
+      ) : ""}
       <div className='item-container' onClick={() => sendUpdateRoomRequest(room.room_id, "update")}>
         <div className='room-name'>{room.room_name}</div>
         <div className='room-info'><b>Khoa</b>: {getFacultyName(room.faculty_id)}</div>

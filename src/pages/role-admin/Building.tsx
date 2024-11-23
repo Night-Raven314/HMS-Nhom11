@@ -76,7 +76,7 @@ export const AdminBuilding: FC = () => {
   const navbarRef = useRef<NavbarHandles>(null);
   const [buildingList, setBuildingList] = useState<BuildingType[]>([]);
   const [editMode, setEditMode] = useState<boolean>(false);
-  const [facultyOptions, setFloorOptions] = useState<SelectOptionType[]>([]);
+  const [facultyOptions, setFacultyOptions] = useState<SelectOptionType[]>([]);
 
   // Create/Edit floor states
   const [updateFloorId, setUpdateFloorId] = useState<string | null>(null);
@@ -394,10 +394,10 @@ export const AdminBuilding: FC = () => {
 
   useEffect(() => {
     getBuilding();
-    getFloorList();
+    getFacultyList();
   }, [])
 
-  const getFloorList = async() => {
+  const getFacultyList = async() => {
     const getFloor = await apiGetFaculty();
     if(getFloor.error) {
       openToast("error", "Lỗi", "Đã xảy ra lỗi khi lấy thông tin chuyên khoa!", 5000);
@@ -413,7 +413,7 @@ export const AdminBuilding: FC = () => {
           value: fac.fac_id
         })
       })
-      setFloorOptions(tmpFloorOptions);
+      setFacultyOptions(tmpFloorOptions);
     }
   }
 
@@ -578,7 +578,7 @@ export const AdminBuilding: FC = () => {
                           floor={floor}
                           roomIdBeingDragged={draggingType === 'room' ? activeId : undefined}
                           floorIdBeingDragged={draggingType === 'floor' ? activeId : undefined}
-                          sendCreateRoomRequest={(floor) => toggleRoomModal("open", floor)}
+                          sendCreateRoomRequest={(requestFloor) => toggleRoomModal("open", requestFloor)}
                           sendUpdateRoomRequest={(floor, roomId, action) => {
                             if(action === "update") {
                               toggleRoomModal("open", floor, roomId)

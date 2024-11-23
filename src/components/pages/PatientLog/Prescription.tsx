@@ -1,5 +1,5 @@
 import { FC, Fragment, useEffect, useRef, useState } from "react";
-import { apiGetItem, aptGetPrescription, aptUpdatePrescription } from "../../../helpers/axios";
+import { apiGetItem, apiGetPrescription, apiUpdatePrescription } from "../../../helpers/axios";
 import { useToast } from "../../common/CustomToast";
 import { ItemListType } from "../../../pages/role-admin/Item";
 import { CustomInput, SelectOptionType } from "../../common/CustomInput";
@@ -59,7 +59,7 @@ export const PrescriptionTable:FC<PrescriptionProps> = ({
 
   const getPrescription = async() => {
     if(selectedMedHistId) {
-      const result = await aptGetPrescription(selectedMedHistId);
+      const result = await apiGetPrescription(selectedMedHistId);
       if(result.error) {
         openToast("error", "Lỗi", "Đã xảy ra lỗi khi lấy thông tin!", 5000);
       } else if (result.data) {
@@ -155,7 +155,7 @@ export const PrescriptionTable:FC<PrescriptionProps> = ({
           med.price = "0";
         }
       })
-      const result = await aptUpdatePrescription({
+      const result = await apiUpdatePrescription({
         action: "create",
         med_hist_id: selectedMedHistId,
         request: tmpRequest
@@ -173,7 +173,7 @@ export const PrescriptionTable:FC<PrescriptionProps> = ({
   }
   const deletePres = async() => {
     if(selectedMedHistId) {
-      const result = await aptUpdatePrescription({
+      const result = await apiUpdatePrescription({
         action: "delete",
         med_hist_id: selectedMedHistId
       });

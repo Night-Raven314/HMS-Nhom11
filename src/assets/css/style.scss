@@ -616,6 +616,7 @@ div#popupFormContainer {
       padding: 3px 8px;
       margin-bottom: 0;
       font-size: 11pt;
+      margin-right: 10px;
     }
   }
 }
@@ -670,7 +671,155 @@ div#popupFormContainer {
     margin-top: 10px;
   }
 }
-
+.building-content {
+  background-color: #fff;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border-radius: 10px;
+  margin-top: -37px;
+  padding: 15px;
+  padding-top: calc(37px + 15px);
+  max-height: calc(100dvh - 67.46px - 45px - 38px);
+  overflow-y: auto;
+  .floor-container {
+    display: flex;
+    align-items: center;
+    color: $text-color;
+    gap: 30px;
+    margin-bottom: 30px;
+    background-color: rgba(256, 256, 256, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    .floor-title-container {
+      flex: 0 0 300px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      color: $hms-neutral;
+      padding-left: 15px;
+      .floor-icon {
+        font-size: 18pt;
+        button {
+          font-size: 14pt;
+          padding: 10px;
+          line-height: 1.2;
+        }
+      }
+      .floor-info {
+        flex: 1;
+        .floor-name {
+          font-size: 25pt;
+          font-weight: 700;
+        }
+        .floor-note {
+          font-size: 14pt;
+        }
+      }
+    }
+    .floor-rooms-container {
+      flex: 1;
+      border: 2px solid $hms-neutral;
+      border-radius: 10px;
+      padding: 15px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      min-height: calc(118.77px + 30px);
+    }
+  }
+  .room-item {
+    background-image: $hms-gradient;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 8px;
+    position: relative;
+    .delete-btn {
+      border: none;
+      background-color: $color-red;
+      width: 30px;
+      height: 30px;
+      border-radius: 30px;
+      color: #fff;
+      font-size: 16pt;
+      line-height: 1.2;
+      border: 1px solid #fff;
+      position: absolute;
+      right: -13px;
+      top: -10px;
+      transition: all 200ms ease-in-out;
+      // opacity: 0;
+      // transform: scale(0);
+    }
+    .item-container {
+      .room-name {
+        font-size: 20pt;
+        line-height: 1.2;
+        font-weight: 700;
+      }
+    }
+    &.occupied {
+      background-image: $red-gradient;
+    }
+    &.hidden {
+      opacity: 0!important;
+    }
+    &.add-room {
+      background-image: none;
+      color: $hms-neutral;
+      text-align: center;
+      border: 2px dashed $hms-neutral;
+      display: grid;
+      place-items: center;
+      transition: all 200ms ease-in-out;
+      transform: scale(1);
+      min-height: 118.77px;
+      .item-add-container {
+        display: inline-flex;
+        align-items: center;
+        gap: 15px;
+        .add-icon {
+          font-size: 25pt;
+        }
+        .add-text {
+          font-size: 20pt;
+          font-weight: 700;
+        }
+      }
+    }
+  }
+  &.room-modal {
+    box-shadow: none;
+    margin: 0;
+    padding: 0;
+    max-height: none;
+    overflow: visible;
+    .floor-container {
+      .floor-title-container {
+        flex: 0 0 200px;
+      }
+      .floor-rooms-container {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    .room-item {
+      .item-container {
+        font-size: 12pt;
+        .room-name {
+          font-size: 18pt;
+        }
+      }
+      &.occupied, &.disabled {
+        opacity: 0.5!important;
+        pointer-events: none!important;
+      }
+      &.selected {
+        background-color: #fff;
+        background-image: none;
+        outline: 4px dashed $hms-neutral;
+        color: $hms-neutral
+      }
+    }
+  }
+}
 .hms-building {
   .building-header {
     position: relative;
@@ -698,122 +847,6 @@ div#popupFormContainer {
         margin-bottom: 0;
         background-color: #fff;
         transition: all 200ms ease-in-out;
-      }
-    }
-  }
-  .building-content {
-    background-color: #fff;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    border-radius: 10px;
-    margin-top: -37px;
-    padding: 15px;
-    padding-top: calc(37px + 15px);
-    max-height: calc(100dvh - 67.46px - 45px - 38px);
-    overflow-y: auto;
-    .floor-container {
-      display: flex;
-      align-items: center;
-      color: $text-color;
-      gap: 30px;
-      margin-bottom: 30px;
-      background-color: rgba(256, 256, 256, 0.8);
-      backdrop-filter: blur(10px);
-      border-radius: 10px;
-      .floor-title-container {
-        flex: 0 0 300px;
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        color: $hms-neutral;
-        padding-left: 15px;
-        .floor-icon {
-          font-size: 18pt;
-          button {
-            font-size: 14pt;
-            padding: 10px;
-            line-height: 1.2;
-          }
-        }
-        .floor-info {
-          flex: 1;
-          .floor-name {
-            font-size: 25pt;
-            font-weight: 700;
-          }
-          .floor-note {
-            font-size: 14pt;
-          }
-        }
-      }
-      .floor-rooms-container {
-        flex: 1;
-        border: 2px solid $hms-neutral;
-        border-radius: 10px;
-        padding: 15px;
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 15px;
-        min-height: calc(118.77px + 30px);
-      }
-    }
-    .room-item {
-      background-image: $hms-gradient;
-      color: #fff;
-      padding: 5px 10px;
-      border-radius: 8px;
-      position: relative;
-      .delete-btn {
-        border: none;
-        background-color: $color-red;
-        width: 30px;
-        height: 30px;
-        border-radius: 30px;
-        color: #fff;
-        font-size: 16pt;
-        line-height: 1.2;
-        border: 1px solid #fff;
-        position: absolute;
-        right: -13px;
-        top: -10px;
-        transition: all 200ms ease-in-out;
-        // opacity: 0;
-        // transform: scale(0);
-      }
-      .item-container {
-        .room-name {
-          font-size: 20pt;
-          line-height: 1.2;
-          font-weight: 700;
-        }
-      }
-      &.occupied {
-        background-image: $red-gradient;
-      }
-      &.hidden {
-        opacity: 0!important;
-      }
-      &.add-room {
-        background-image: none;
-        color: $hms-neutral;
-        text-align: center;
-        border: 2px dashed $hms-neutral;
-        display: grid;
-        place-items: center;
-        transition: all 200ms ease-in-out;
-        transform: scale(1);
-        min-height: 118.77px;
-        .item-add-container {
-          display: inline-flex;
-          align-items: center;
-          gap: 15px;
-          .add-icon {
-            font-size: 25pt;
-          }
-          .add-text {
-            font-size: 20pt;
-            font-weight: 700;
-          }
-        }
       }
     }
   }
@@ -1054,7 +1087,7 @@ div#popupFormContainer {
   background-color: $color-red!important;
   color: #fff;
 }
-.delete-btn {
+.form-delete-btn {
   padding: 5px 15px;
   margin-top: 10px;
 }

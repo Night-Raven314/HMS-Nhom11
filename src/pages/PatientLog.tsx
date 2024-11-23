@@ -392,9 +392,11 @@ export const PatientLog:FC = () => {
                   </div>
 
                   <div className="grid-service">
-                    <ServiceTable
-                      patientLogId={patientLogId}
-                    />
+                    {patientLog ? (
+                      <ServiceTable
+                        patientLog={patientLog}
+                      />
+                    ) : ""}
                   </div>
                 </div>
               </div>

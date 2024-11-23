@@ -8,7 +8,7 @@ import { DynamicRequestType, ScheduleFormType, ScheduleRequestType } from "../pa
 import { FloorRequestType, RoomAPIRequestType } from "../pages/role-admin/Building";
 import { MedHistRequestType } from "../pages/PatientLog";
 import { CreatePrescriptionRequestType } from "../components/pages/PatientLog/Prescription";
-import { CreateServiceRequestType } from "../components/pages/PatientLog/Service";
+import { CreateServiceRequestType, RoomUpdateRequestType } from "../components/pages/PatientLog/Service";
 
 export const hmsAxios = Axios.create({
   baseURL: `/HMS-Nhom11/backend/api/`,
@@ -503,7 +503,7 @@ export const apiUpdateMedHist = async(request:MedHistRequestType) => {
 }
 
 // Presription
-export const aptGetPrescription = async(medHistId:string) => {
+export const apiGetPrescription = async(medHistId:string) => {
   let error = null;
   let data = null;
   try {
@@ -519,7 +519,7 @@ export const aptGetPrescription = async(medHistId:string) => {
   }
   return { data, error };
 }
-export const aptUpdatePrescription = async(request:CreatePrescriptionRequestType) => {
+export const apiUpdatePrescription = async(request:CreatePrescriptionRequestType) => {
   let error = null;
   let data = null;
   try {
@@ -536,7 +536,7 @@ export const aptUpdatePrescription = async(request:CreatePrescriptionRequestType
   return { data, error };
 }
 // Service
-export const aptGetService = async(patientLogId:string) => {
+export const apiGetService = async(patientLogId:string) => {
   let error = null;
   let data = null;
   try {
@@ -552,12 +552,28 @@ export const aptGetService = async(patientLogId:string) => {
   }
   return { data, error };
 }
-export const aptUpdateService = async(request:CreateServiceRequestType) => {
+export const apiUpdateService = async(request:CreateServiceRequestType) => {
   let error = null;
   let data = null;
   try {
     const res = await hmsAxios.post(
       "/doctor/update-service.php",
+      JSON.stringify(request)
+    );
+    if(res.data) {
+      data = res.data.data;
+    }
+  } catch (err:any) {
+    error = err.response.data.message;
+  }
+  return { data, error };
+}
+export const apiUpdateRoom = async(request:RoomUpdateRequestType) => {
+  let error = null;
+  let data = null;
+  try {
+    const res = await hmsAxios.post(
+      "/doctor/update-room.php",
       JSON.stringify(request)
     );
     if(res.data) {
