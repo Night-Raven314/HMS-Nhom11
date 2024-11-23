@@ -50,6 +50,7 @@
         itm.item_unit,
         CASE
         	WHEN fac.amount IS NULL THEN timestampdiff(day, STR_TO_DATE(fac.start_datetime, '%Y-%m-%dT%H:%i:%s'), STR_TO_DATE(fac.end_datetime, '%Y-%m-%dT%H:%i:%s')) + 1
+          WHEN fac.end_datetime IS NULL THEN timestampdiff(day, STR_TO_DATE(fac.start_datetime, '%Y-%m-%dT%H:%i:%s'), CURRENT_TIMESTAMP()) + 1
             ELSE fac.amount END AS amount,
         fac.item_price,
         fac.item_note
