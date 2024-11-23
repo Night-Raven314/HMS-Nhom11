@@ -38,7 +38,7 @@
       SELECT
           room_id,
           room_name,
-          'giường' AS room_unit
+          'ngày' AS room_unit
       FROM `dim_room`
       )
 
