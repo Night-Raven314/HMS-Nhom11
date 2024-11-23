@@ -26,27 +26,34 @@
       )
 
       SELECT
-        doc.user_id AS doctor_id,
-        doc.full_name AS doctor_name,
-        ptn.user_id AS patient_id,
-        ptn.full_name AS patient_name,
-        fac.fac_id,
-        fac.fac_name,
-        ptn.contact_no,
-        ptn.gender,
-        hst.med_note
-      FROM `fact_med_hist` hst
-        LEFT JOIN `dim_user` doc
-          ON hst.doctor_id = doc.user_id
-        LEFT JOIN `dim_user` ptn
-          ON hst.patient_id = ptn.user_id
-        LEFT JOIN `dim_faculty` fac
-          ON doc.faculty_id = fac.fac_id
+        *
+      FROM (
+        SELECT
+          ROW_NUMBER() OVER (PARTITION BY ptn.user_id ORDER BY hst.created_at DESC) AS row_num,
+          doc.user_id AS doctor_id,
+          doc.full_name AS doctor_name,
+          ptn.user_id AS patient_id,
+          ptn.full_name AS patient_name,
+          fac.fac_id,
+          fac.fac_name,
+          ptn.contact_no,
+          ptn.gender,
+          hst.med_note
+        FROM `fact_med_hist` hst
+          LEFT JOIN `dim_user` doc
+            ON hst.doctor_id = doc.user_id
+          LEFT JOIN `dim_user` ptn
+            ON hst.patient_id = ptn.user_id
+          LEFT JOIN `dim_faculty` fac
+            ON doc.faculty_id = fac.fac_id
+        WHERE
+          fac.fac_id = (SELECT faculty_id FROM get_fac LIMIT 1)
+          AND ptn.status <> 'deleted'
+        ORDER BY
+          hst.updated_at DESC, hst.created_at DESC
+      ) final
       WHERE
-        fac.fac_id = (SELECT faculty_id FROM get_fac LIMIT 1)
-        AND ptn.status <> 'deleted'
-      ORDER BY
-        hst.updated_at DESC, hst.created_at DESC";
+      row_num = 1";
     if($sql) {
       $result = $conn->query($sql);
       if ($result) { 
