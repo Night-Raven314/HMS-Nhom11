@@ -21,7 +21,7 @@
     $post_action = mysqli_real_escape_string($conn, $data['action']);
     if($post_action === "delete") {
       $sql = "UPDATE `fact_facility_asmt` SET
-      `status` = 'deleted' WHERE fact_asmt_id = '$post_id'";
+      `status` = 'deleted' WHERE fac_asmt_id = '$post_id'";
     } else if($post_action === "create") {
 
       foreach ($data as $row) {
