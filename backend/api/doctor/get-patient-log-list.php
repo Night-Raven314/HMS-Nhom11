@@ -27,7 +27,8 @@
       log.is_inpatient,
       log.med_note,
       log.start_datetime,
-      log.end_datetime
+      log.end_datetime,
+      log.status
     FROM `fact_patient_log` log
       LEFT JOIN `dim_user` ptn
         ON ptn.user_id = log.patient_id

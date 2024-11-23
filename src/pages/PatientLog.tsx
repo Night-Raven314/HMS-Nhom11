@@ -323,7 +323,7 @@ export const PatientLog:FC = () => {
                               </div>
                               <div className="info-text">
                                 <div className="text-title">Trạng thái</div>
-                                <div className="text-desc">Đang điều trị</div>
+                                <div className="text-desc">{patientLog.status === "completed" ? "Đã hoàn thành điều trị" : "Đang điều trị"}</div>
                               </div>
                             </div>
                             {patientLog.med_note ? (

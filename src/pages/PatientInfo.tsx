@@ -137,8 +137,8 @@ export const PatientInfo:FC = () => {
                 </div>
                 <div className="patient-log-list">
                   
-                  {patientLogList.map(log => (
-                    <Link to={`/patient-log/${log.ptn_log_id}`}>
+                  {patientLogList.map((log, index) => (
+                    <Link key={index} to={`/patient-log/${log.ptn_log_id}`}>
                       <div className="log-item">
 
                         <div className="item-info-container">
@@ -185,7 +185,7 @@ export const PatientInfo:FC = () => {
                               </div>
                               <div className="info-text">
                                 <div className="text-title">Trạng thái</div>
-                                <div className="text-desc">Đang điều trị</div>
+                                <div className="text-desc">{log.status === "completed" ? "Đã hoàn thành điều trị" : "Đang điều trị"}</div>
                               </div>
                             </div>
                             {log.med_note ? (
