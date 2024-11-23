@@ -23,9 +23,7 @@
         item_name,
         item_unit,
         item_price,
-        CASE
-          WHEN item_lending_price = 0 THEN item_price
-            ELSE item_lending_price END AS item_lending_price
+        item_lending_price
       FROM
         `dim_item`
       WHERE status <> 'deleted'
@@ -38,7 +36,7 @@
         item_name,
         item_unit,
         item_price,
-        item_price
+        0 AS item_lending_price
       FROM
         `dim_med_service`
       WHERE status <> 'deleted';";
