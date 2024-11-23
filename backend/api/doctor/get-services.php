@@ -15,7 +15,7 @@
   $data = json_decode($input, true);
   if ($data) {
     //$auth_user_id = $data['auth_user_id'] ? mysqli_real_escape_string($conn, $data['auth_user_id']) : null;
-    $ptn_log_id = $data['ptn_log_id'] ? mysqli_real_escape_string($conn, $data['ptn_log_id']) : null;
+    $ptn_log_id = isset($data['ptn_log_id']) ? mysqli_real_escape_string($conn, $data['ptn_log_id']) : null;
     // Process the form data (e.g., save to database, send email, etc.)
     $sql = "WITH
       item_list AS (

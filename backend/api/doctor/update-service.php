@@ -32,7 +32,7 @@
         $post_price = mysqli_real_escape_string($conn, $row['price']);
         $post_note = mysqli_real_escape_string($conn, $row['item_note']);
         $post_start_time = mysqli_real_escape_string($conn, $row['start_time']);
-        $post_end_time = mysqli_real_escape_string($conn, $row['post_end_time']);
+        $post_end_time = mysqli_real_escape_string($conn, $row['end_time']);
 
         $sub_sql_create = "INSERT INTO `fact_facility_asmt` (`ptn_log_id`, `item_type`, `item_id`, `amount`, `price`, `item_note`, `start_datetime`, `end_datetime`)
           VALUES ('$post_ptn_log', '$post_item_type', '$post_item_id', $post_amount, $post_price, '$post_note', '$post_price', '$post_note')";

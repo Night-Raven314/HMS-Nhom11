@@ -15,6 +15,7 @@ import { Formik, FormikProps, Form } from "formik";
 import { CustomInput } from "../components/common/CustomInput";
 import { CustomModal, CustomModalHandles } from "../components/common/CustomModal";
 import { PrescriptionTable } from "../components/pages/PatientLog/Prescription";
+import { ServiceTable } from "../components/pages/PatientLog/Service";
 
 export type MedHistList = {
   med_hist_id: string;
@@ -60,7 +61,7 @@ export const PatientLog:FC = () => {
   const {openToast} = useToast();
   const {patientLogId} = useParams();
 
-  const medHistTableRef = useRef<HTMLDivElement | null>(null);
+  const medHistTableRef = useRef<HTMLTableSectionElement | null>(null);
   const presTableRef = useRef<HTMLDivElement | null>(null);
 
   const [userInfo, setUserInfo] = useState<UserAccountType | null>(null);
@@ -201,6 +202,7 @@ export const PatientLog:FC = () => {
         openToast("error", "Lỗi", "Đã xảy ra lỗi khi xoá thông tin!", 5000);
       } else if (updateResponse.data) {
         openToast("success", "Thành công", "Đã xoá thông tin sức khoẻ", 5000);
+        setSelectedMedHistId(null);
         toggleMedHistModal("close");
         getMedHistList();
       }
@@ -328,7 +330,7 @@ export const PatientLog:FC = () => {
                     </div>
                   ) : ""}
                 </div>
-                <div className="patient-log-grid" ref={medHistTableRef}>
+                <div className="patient-log-grid">
                   <div className="grid-med-hist">
                     <div className="hms-table">
                       <div className="table-header">
@@ -353,7 +355,7 @@ export const PatientLog:FC = () => {
                               <th style={{ width: "50px" }}>Thao tác</th>
                             </tr>
                           </thead>
-                          <tbody>
+                          <tbody ref={medHistTableRef}>
                             {medHistList.map((item) => (
                               <tr
                                 key={item.med_hist_id}
@@ -390,46 +392,9 @@ export const PatientLog:FC = () => {
                   </div>
 
                   <div className="grid-service">
-                    <div className="hms-table">
-                      <div className="table-header">
-                        <div className="header-title">Dịch vụ</div>
-                        <div className="header-button">
-                          <button className="btn btn-outline-primary btn-sm" onClick={() => {}}>
-                            Tạo
-                          </button>
-                        </div>
-                      </div>
-                      <div className="table-body">
-                        <table>
-                          <thead>
-                            <tr>
-                              <th style={{ width: "100px" }}>Tên dịch vụ</th>
-                              <th style={{ width: "45px" }}>Đơn vị</th>
-                              <th style={{ width: "45px" }}>Số lượng</th>
-                              <th style={{ width: "150px" }}>Ghi chú</th>
-                              <th style={{ width: "50px" }}>Thao tác</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {Array.from({ length: 30 }, (_, index) => index).map((item) => (
-                              <tr>
-                                <td>Bộ dụng cụ tiêm insulin</td>
-                                <td>bộ</td>
-                                <td>69</td>
-                                <td>Just use it god damn it</td>
-                                <td>
-                                  <div className="table-button-list">
-                                    <button onClick={() => {}}>
-                                      <FontAwesomeIcon icon={faTrash} />
-                                    </button>
-                                  </div>
-                                </td>
-                              </tr>
-                            ))}
-                          </tbody>
-                        </table>
-                      </div>
-                    </div> 
+                    <ServiceTable
+                      patientLogId={patientLogId}
+                    />
                   </div>
                 </div>
               </div>
