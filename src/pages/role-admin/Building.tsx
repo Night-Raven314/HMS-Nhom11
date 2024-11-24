@@ -75,7 +75,8 @@ export const AdminBuilding: FC = () => {
   const {openToast} = useToast();
   const statusOptions:SelectOptionType[] = [
     {value: "active", label: "Hoạt động"},
-    {value: "maintenance", label: "Bảo trì"}
+    {value: "maintenance", label: "Bảo trì"},
+    {value: "occupied", label: "Hết chỗ"}
   ]
 
   const navbarRef = useRef<NavbarHandles>(null);
