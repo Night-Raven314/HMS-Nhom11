@@ -65,7 +65,8 @@ if ($data) {
         CASE 
           WHEN mhsm.count > 0 THEN 'completed'
           WHEN STR_TO_DATE(appt.appt_datetime, '%Y-%m-%dT%H:%i:%s') >= CURRENT_TIMESTAMP() THEN 'upcoming'
-          ELSE 'missed' END AS appt_status
+          ELSE 'missed' END AS appt_status,
+        pmt.payment_status
       FROM `fact_appointment` appt
       LEFT JOIN doctor_data dct
         ON appt.doctor_id = dct.doctor_id
@@ -73,6 +74,8 @@ if ($data) {
         ON appt.patient_id = ptn.user_id
       LEFT JOIN med_hist_match mhsm
         ON appt.appt_id = mhsm.appt_id
+      LEFT JOIN fact_payment pmt
+      	ON pmt.appt_id = appt.appt_id
       WHERE
         appt.status <> 'deleted'
       AND appt.patient_id = '$auth_user_id'";
