@@ -57,6 +57,7 @@
             ON shift.doctor_id = count.doctor_id
       WHERE
         (count.count < 3 OR count.count IS NULL)";
+    echo $sql;
     if($sql) {
       $result = $conn->query($sql);
       if ($result) { 

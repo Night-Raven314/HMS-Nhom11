@@ -53,7 +53,7 @@ export const SignInPage:FC = () => {
           navigate("/role-nurse/schedule");
           break;
         case "patient":
-          navigate("/role-patient/schedule");
+          navigate("/role-patient/appointment");
           break;
       
         default:

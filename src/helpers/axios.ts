@@ -640,3 +640,21 @@ export const apiGetServiceRoom = async() => {
   }
   return { data, error };
 }
+
+// Patients
+export const apiGetAvailDoctor = async(facultyId:string, datetime:string) => {
+  let error = null;
+  let data = null;
+  try {
+    const res = await hmsAxios.post(
+      "/patient/get-available-doctor.php",
+      JSON.stringify({faculty_id: facultyId, appt_datetime: datetime})
+    );
+    if(res.data) {
+      data = res.data.data;
+    }
+  } catch (err:any) {
+    error = err.response.data.message;
+  }
+  return { data, error };
+}

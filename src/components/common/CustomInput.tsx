@@ -53,6 +53,9 @@ export const CustomInput: FC<CustomInputType> = memo(({
     setValue(e.target.value);
     if (formik) {
       formik.handleChange(e);
+      if(valueChange) {
+        valueChange(e.target.value);
+      }
     } else if(valueChange) {
       clearTimeout(valueChangeDelay);
       valueChangeDelay = setTimeout(() => {
@@ -117,13 +120,15 @@ export const CustomInput: FC<CustomInputType> = memo(({
               as="select"
               name={name || ""}
               id={id}
+              onChange={handleChange}
+              disabled={disabled}
             >
               {selectOptions.map(option => (
                 <option key={option.value} value={option.value}>{option.label}</option>
               ))}
             </Field>
           ) : (
-            <select>
+            <select onChange={handleChange} disabled={disabled}>
               {selectOptions.map(option => (
                 <option key={option.value} value={option.value}>{option.label}</option>
               ))}
