@@ -26,6 +26,7 @@
     $post_address = mysqli_real_escape_string($conn, $data['address']);
     $post_city = mysqli_real_escape_string($conn, $data['city']);
     $post_gender = mysqli_real_escape_string($conn, $data['gender']);
+    $post_birthday = mysqli_real_escape_string($conn, $data['birthday']);
 
     // Process the form data (e.g., save to database, send email, etc.)
     $sql = "UPDATE `dim_user` SET
@@ -33,6 +34,7 @@
         `full_name` = '$post_full_name',
         `contact_no` = $post_contact_no,
         `gender` = '$post_gender',
+        `birthday` = '$post_birthday',
         `email_address` = '$post_email',
         `address` = '$post_address',
         `city` = '$post_city',
