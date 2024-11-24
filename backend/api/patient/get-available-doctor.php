@@ -43,9 +43,9 @@
             ON work.user_id = usr.user_id AND role = 'doctor'
       WHERE
           usr.faculty_id = '$auth_faculty_id' COLLATE utf8mb4_general_ci
-          AND DATE(STR_TO_DATE(work.start_datetime,'%Y-%m-%dT%H:%i:%s')) = DATE(STR_TO_DATE('$auth_appt_datetime' COLLATE utf8mb4_general_ci,'%Y-%m-%dT%H:%i:%s'))
+          AND DATE(STR_TO_DATE(work.start_datetime,'%Y-%m-%dT%H:%i:%s')) >= DATE(STR_TO_DATE('$auth_appt_datetime' COLLATE utf8mb4_general_ci,'%Y-%m-%dT%H:%i:%s'))
           AND HOUR(STR_TO_DATE(work.start_datetime,'%Y-%m-%dT%H:%i:%s')) <= HOUR(STR_TO_DATE('$auth_appt_datetime' COLLATE utf8mb4_general_ci,'%Y-%m-%dT%H:%i:%s'))
-          AND DATE(STR_TO_DATE(work.end_datetime,'%Y-%m-%dT%H:%i:%s')) = DATE(STR_TO_DATE('$auth_appt_datetime' COLLATE utf8mb4_general_ci,'%Y-%m-%dT%H:%i:%s'))
+          AND DATE(STR_TO_DATE(work.end_datetime,'%Y-%m-%dT%H:%i:%s')) <= DATE(STR_TO_DATE('$auth_appt_datetime' COLLATE utf8mb4_general_ci,'%Y-%m-%dT%H:%i:%s'))
           AND HOUR(STR_TO_DATE(work.end_datetime,'%Y-%m-%dT%H:%i:%s')) > HOUR(STR_TO_DATE('$auth_appt_datetime' COLLATE utf8mb4_general_ci,'%Y-%m-%dT%H:%i:%s'))
       )
 
