@@ -21,13 +21,6 @@
     $post_action = mysqli_real_escape_string($conn, $data['action']);
     if($post_action === "delete") {
       $sql = "UPDATE `fact_work_schedule` SET `status` = 'deleted' WHERE work_id = '$post_id'";
-      $result = mysqli_query($conn, $sql);
-      if ($result) {
-        echo json_encode(["status" => "success", "data" => "success"]);
-      } else {
-        http_response_code(500);
-        echo json_encode(["status" => "error", "message" => "invalidCredential"]);
-      }
     } else {
       // Process the form data (e.g., save to database, send email, etc.)
       switch ($post_action) {
