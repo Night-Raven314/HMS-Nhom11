@@ -12,6 +12,7 @@ import { DoctorSidebar } from "../../components/common/DoctorSidebar";
 import { UserSession } from "../../helpers/global";
 import { convertISOToDateTime } from "../../helpers/utils";
 import { format } from "date-fns";
+import { NurseSidebar } from "../../components/common/NurseSidebar";
 
 export type ScheduleFormType = {
   start_datetime?: string,
@@ -283,67 +284,74 @@ export const DoctorSchedule: FC = () => {
         </title>
       </Helmet>
 
-      <div className="main-background">
-        <div className="page-container">
-          <div className="page-sidebar">
-            <DoctorSidebar selectedItem={"schedule"} />
-          </div>
-          <div className="page-content">
-            <PageNavbar
-              navbarTitle={`Quản lý ${pageTerm}`}
-              searchRequest={(keyword) => {setSearchKeyword(keyword)}}
-              ref={navbarRef}
-            />
-            <div className="content">
-              <div className="hms-table">
-                <div className="table-header">
-                  <div className="header-title">Thông tin {pageTerm} trên hệ thống</div>
-                  <div className="header-button">
-                    <button className="btn btn-outline-primary btn-sm" onClick={() => toggleUpdateModal("open")}>
-                      Tạo {pageTerm}
-                    </button>
+      {UserSession ? (
+        <div className="main-background">
+          <div className="page-container">
+            <div className="page-sidebar">
+              {UserSession.auth_user_role === "doctor" ? (
+                <DoctorSidebar selectedItem={"schedule"} />
+              ) : ""}
+              {UserSession.auth_user_role === "nurse" ? (
+                <NurseSidebar selectedItem={"schedule"} />
+              ) : ""}
+            </div>
+            <div className="page-content">
+              <PageNavbar
+                navbarTitle={`Quản lý ${pageTerm}`}
+                searchRequest={(keyword) => {setSearchKeyword(keyword)}}
+                ref={navbarRef}
+              />
+              <div className="content">
+                <div className="hms-table">
+                  <div className="table-header">
+                    <div className="header-title">Thông tin {pageTerm} trên hệ thống</div>
+                    <div className="header-button">
+                      <button className="btn btn-outline-primary btn-sm" onClick={() => toggleUpdateModal("open")}>
+                        Tạo {pageTerm}
+                      </button>
+                    </div>
                   </div>
-                </div>
-                <div className="table-body">
-                  <table>
-                    <thead>
-                      <tr>
-                        <th style={{ width: "100px" }}>Thời gian bắt đầu</th>
-                        <th style={{ width: "100px" }}>Thời gian kết thúc</th>
-                        <th style={{ width: "265px" }}>Ghi chú</th>
-                        <th style={{ width: "140px" }}>Ngày tạo</th>
-                        <th style={{ width: "140px" }}>Ngày chỉnh sửa</th>
-                        <th style={{ width: "100px" }}>Thao tác</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {scheduleListFiltered.map((schedule) => (
-                        <tr key={schedule.work_id}>
-                          <td className="text-color">{convertISOToDateTime(schedule.start_datetime)}</td>
-                          <td className="text-color">{convertISOToDateTime(schedule.end_datetime)}</td>
-                          <td>{schedule.work_note}</td>
-                          <td>{schedule.created_at}</td>
-                          <td>{schedule.updated_at ? schedule.updated_at : ""}</td>
-                          <td>
-                            <div className="table-button-list">
-                              <button onClick={() => toggleUpdateModal("open", schedule.work_id)}>
-                                <FontAwesomeIcon icon={faPenToSquare} />
-                              </button>
-                              <button onClick={() => toggleDeleteAlert("open", schedule.work_id)}>
-                                <FontAwesomeIcon icon={faTrash} />
-                              </button>
-                            </div>
-                          </td>
+                  <div className="table-body">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th style={{ width: "100px" }}>Thời gian bắt đầu</th>
+                          <th style={{ width: "100px" }}>Thời gian kết thúc</th>
+                          <th style={{ width: "265px" }}>Ghi chú</th>
+                          <th style={{ width: "140px" }}>Ngày tạo</th>
+                          <th style={{ width: "140px" }}>Ngày chỉnh sửa</th>
+                          <th style={{ width: "100px" }}>Thao tác</th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                      </thead>
+                      <tbody>
+                        {scheduleListFiltered.map((schedule) => (
+                          <tr key={schedule.work_id}>
+                            <td className="text-color">{convertISOToDateTime(schedule.start_datetime)}</td>
+                            <td className="text-color">{convertISOToDateTime(schedule.end_datetime)}</td>
+                            <td>{schedule.work_note}</td>
+                            <td>{schedule.created_at}</td>
+                            <td>{schedule.updated_at ? schedule.updated_at : ""}</td>
+                            <td>
+                              <div className="table-button-list">
+                                <button onClick={() => toggleUpdateModal("open", schedule.work_id)}>
+                                  <FontAwesomeIcon icon={faPenToSquare} />
+                                </button>
+                                <button onClick={() => toggleDeleteAlert("open", schedule.work_id)}>
+                                  <FontAwesomeIcon icon={faTrash} />
+                                </button>
+                              </div>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      ) : ""}
 
       {/* Form tạo */}
       <CustomModal

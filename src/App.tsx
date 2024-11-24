@@ -122,6 +122,19 @@ export const App:FC = () => {
       path: "/role-doctor/patients",
       element: <DoctorPatients />,
     },
+    // Nurse page
+    {
+      path: "/role-nurse/schedule",
+      element: <DoctorSchedule />,
+    },
+    {
+      path: "/role-nurse/appointment",
+      element: <DoctorAppointment />,
+    },
+    {
+      path: "/role-nurse/patients",
+      element: <DoctorPatients />,
+    },
     // Patient page
     {
       path: "/role-patient/",

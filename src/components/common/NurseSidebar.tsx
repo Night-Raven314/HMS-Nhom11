@@ -30,7 +30,7 @@ export const NurseSidebar:FC<NurseSidebarProps> = ({selectedItem}) => {
           </li>
 
           <li className="nav-item">
-            <Link to="/role-doctor/appointment">
+            <Link to="/role-nurse/appointment">
               <div className={`nav-link text-white ${selectedItem === "appointment" ? "active bg-gradient-primary" : ""}`}>
                 <div className="side-icon">
                   <FontAwesomeIcon icon={faCalendar} />
@@ -41,7 +41,7 @@ export const NurseSidebar:FC<NurseSidebarProps> = ({selectedItem}) => {
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/role-doctor/patients">
+            <Link to="/role-nurse/patients">
               <div className={`nav-link text-white ${selectedItem === "patients" ? "active bg-gradient-primary" : ""}`}>
                 <div className="side-icon">
                   <FontAwesomeIcon icon={faUsers} />
@@ -59,7 +59,7 @@ export const NurseSidebar:FC<NurseSidebarProps> = ({selectedItem}) => {
           </li>
 
           <li className="nav-item">
-            <Link to="/role-doctor/schedule">
+            <Link to="/role-nurse/schedule">
               <div className={`nav-link text-white ${selectedItem === "schedule" ? "active bg-gradient-primary" : ""}`}>
                 <div className="side-icon">
                   <FontAwesomeIcon icon={faClock} />

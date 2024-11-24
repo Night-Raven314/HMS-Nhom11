@@ -49,6 +49,9 @@ export const SignInPage:FC = () => {
         case "doctor":
           navigate("/role-doctor/schedule");
           break;
+        case "nurse":
+          navigate("/role-nurse/schedule");
+          break;
         case "patient":
           navigate("/role-patient/schedule");
           break;
