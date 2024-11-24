@@ -22,7 +22,10 @@
     if($post_action === "delete") {
       $sql = "UPDATE `fact_appointment` SET
       `status` = 'deleted' WHERE appt_id = '$post_id'";
-      mysqli_query($conn, $sql);
+
+      $sql_refund = "UPDATE `fact_payment` SET
+      `payment_status` = 'refund' WHERE appt_id = '$post_id'";
+      mysqli_query($conn, $sql_refund);
     } else {
       $post_doctor_id = mysqli_real_escape_string($conn, $data['doctor_id']);
       $post_faculty_id = mysqli_real_escape_string($conn, $data['faculty_id']);
