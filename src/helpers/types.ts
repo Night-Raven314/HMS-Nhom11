@@ -16,6 +16,7 @@ export type UserAccountType = {
   user_name: string;
   password: string;
   email_address: string;
+  birthday: string;
   contact_no: string;
   full_name: string;
   created_at: string;

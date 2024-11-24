@@ -16,6 +16,7 @@ export type ProfileFormType = {
   password?: string | null,
   gender?: string | null,
   email?: string | null,
+  birthday?: string | null,
   contactNo?: string | null,
   address?: string | null,
   city?: string | null,
@@ -35,6 +36,7 @@ export const CompleteProfile:FC = () => {
     userName: "",
     password: "",
     gender: "",
+    birthday: "",
     email: "",
     contactNo: "",
     address: "",
@@ -59,6 +61,9 @@ export const CompleteProfile:FC = () => {
       errors.password = "Trường này không được bỏ trống!";
     }
     if(!value.gender) {
+      errors.gender = "Hãy lựa chọn giới tính!";
+    }
+    if(!value.birthday) {
       errors.gender = "Hãy lựa chọn giới tính!";
     }
     if(!value.email) {
@@ -107,7 +112,11 @@ export const CompleteProfile:FC = () => {
 
   const handleSubmit = async(value:ProfileFormType) => {
     if(acceptTC) {
-      const updateResponse = await apiCompleteProfile(value);
+      const tmpRequest:ProfileFormType = {
+        ...value,
+        birthday: value.birthday ? new Date(value.birthday).toISOString() : value.birthday
+      }
+      const updateResponse = await apiCompleteProfile(tmpRequest);
       if(updateResponse.error) {
         openToast("error", "Lỗi", "Đã xảy ra lỗi khi cập nhật thông tin!", 5000);
       } else if (updateResponse.data) {
@@ -205,17 +214,33 @@ export const CompleteProfile:FC = () => {
                                 />
                               </div>
                               <div className="col-md-12">
-                                <div className="custom-input">
-                                  <Field as="select" id="gender" name="gender">
-                                    {genderOption.map(option => (
-                                      <option key={option.value} value={option.value}>{option.label}</option>
-                                    ))}
-                                  </Field>
-                                  <label>Giới tính</label>
-                                  <div className="arrow-icon">
-                                    <FontAwesomeIcon icon={faChevronDown} />
-                                  </div>
-                                </div>
+                                <CustomInput
+                                  formik={formikProps}
+                                  id={`gender`}
+                                  name={`gender`}
+                                  label="Giới tính"
+                                  placeholder=""
+                                  initialValue=""
+                                  inputType="text"
+                                  isRequired={true}
+                                  selectOptions={genderOption}
+                                  type="select"
+                                  disabled={false}
+                                />
+                              </div>
+                              <div className="col-md-12">
+                                <CustomInput
+                                  formik={formikProps}
+                                  id="birthday"
+                                  name="birthday"
+                                  label="Ngày sinh"
+                                  placeholder="Chọn ngày sinh"
+                                  initialValue=""
+                                  inputType="date"
+                                  isRequired={true}
+                                  type="input"
+                                  disabled={false}
+                                />
                               </div>
                               <div className="col-md-12">
                                 <CustomInput

@@ -6,9 +6,11 @@ import { AdminSidebar } from "../../components/common/AdminSidebar";
 import { NavbarHandles, PageNavbar } from "../../components/common/PageNavbar";
 import { CustomModal, CustomModalHandles } from "../../components/common/CustomModal";
 import { Form, Formik, FormikProps } from "formik";
-import { CustomInput } from "../../components/common/CustomInput";
-import { apiUpdateUser, apiGetUser } from "../../helpers/axios";
+import { CustomInput, SelectOptionType } from "../../components/common/CustomInput";
+import { apiUpdateUser, apiGetUser, apiGetFaculty } from "../../helpers/axios";
 import { useToast } from "../../components/common/CustomToast";
+import { format } from "date-fns";
+import { FacultyListType } from "./Faculty";
 
 export type UserFormType = {
   fullName?: string,
@@ -19,6 +21,8 @@ export type UserFormType = {
   contactNo?: string,
   address?: string,
   city?: string,
+  birthday?: string,
+  faculty_id?: string | null,
   role?: string
 }
 
@@ -33,7 +37,8 @@ export type UserListType = {
   city: string;
   gender: string;
   role: string;
-  specialty_id: string | null;
+  birthday: string;
+  faculty_id: string | null;
   created_at: string;
   updated_at: string;
   status: string;
@@ -53,6 +58,7 @@ export type AdminGuestProps = {
 
 export const AdminGuest: FC<AdminGuestProps> = ({pageType}) => {
   const {openToast} = useToast();
+  const [facultyOptions, setFacultyOptions] = useState<SelectOptionType[]>([]);
 
   const navbarRef = useRef<NavbarHandles>(null);
 
@@ -64,7 +70,9 @@ export const AdminGuest: FC<AdminGuestProps> = ({pageType}) => {
     fullName: "",
     userName: "",
     gender: "",
+    birthday: "",
     email: "",
+    faculty_id: "",
     contactNo: "",
     address: "",
     city: "",
@@ -102,8 +110,29 @@ export const AdminGuest: FC<AdminGuestProps> = ({pageType}) => {
     }
   }
 
+  const getFacultyList = async() => {
+    const getFloor = await apiGetFaculty();
+    if(getFloor.error) {
+      openToast("error", "Lỗi", "Đã xảy ra lỗi khi lấy thông tin chuyên khoa!", 5000);
+    } else if (getFloor.data) {
+      const faculty:FacultyListType[] = getFloor.data;
+      let tmpFloorOptions:SelectOptionType[] = [{
+        label: "Chọn chuyên khoa",
+        value: ""
+      }];
+      faculty.forEach(fac => {
+        tmpFloorOptions.push({
+          label: fac.fac_name,
+          value: fac.fac_id
+        })
+      })
+      setFacultyOptions(tmpFloorOptions);
+    }
+  }
+
   useEffect(() => {
     getUserList();
+    getFacultyList();
   }, [pageType])
 
   const validate = (value: UserFormType) => {
@@ -116,6 +145,12 @@ export const AdminGuest: FC<AdminGuestProps> = ({pageType}) => {
     }
     if (!value.gender) {
       errors.gender = "Hãy lựa chọn giới tính!";
+    }
+    if(pageType === "employee" && !value.faculty_id) {
+      errors.faculty_id = "Hãy chọn chuyên khoa!";
+    }
+    if(!value.birthday) {
+      errors.birthday = "Trường này không được bỏ trống!";
     }
     if (!value.email) {
       errors.email = "Trường này không được bỏ trống!";
@@ -144,8 +179,10 @@ export const AdminGuest: FC<AdminGuestProps> = ({pageType}) => {
               setInitialValue({
                 fullName: findUser.full_name,
                 userName: findUser.user_name,
+                birthday: findUser.birthday ? format(new Date(findUser.birthday), "yyyy-MM-dd") : "",
                 gender: findUser.gender,
                 email: findUser.email_address,
+                faculty_id: findUser.faculty_id,
                 contactNo: findUser.contact_no,
                 address: findUser.address,
                 city: findUser.city,
@@ -155,8 +192,10 @@ export const AdminGuest: FC<AdminGuestProps> = ({pageType}) => {
               setInitialValue({
                 fullName: "",
                 userName: "",
+                birthday: "",
                 gender: "",
                 email: "",
+                faculty_id: "",
                 contactNo: "",
                 address: "",
                 city: "",
@@ -167,7 +206,9 @@ export const AdminGuest: FC<AdminGuestProps> = ({pageType}) => {
             setInitialValue({
               fullName: "",
               userName: "",
+              birthday: "",
               gender: "",
+              faculty_id: "",
               email: "",
               contactNo: "",
               address: "",
@@ -206,6 +247,7 @@ export const AdminGuest: FC<AdminGuestProps> = ({pageType}) => {
   const submitUpdateUser = async(value:UserFormType, action:string) => {
     const userRequest: UserRequestType = {
       ...value,
+      birthday: value.birthday ? new Date(value.birthday).toISOString() : value.birthday,
       action: action,
       userId: updateUserId
     }
@@ -378,7 +420,7 @@ export const AdminGuest: FC<AdminGuestProps> = ({pageType}) => {
                         disabled={false}
                       />
                     </div>
-                    <div className="col-md-6">
+                    <div className={pageType === "guest" ? "col-md-12" : "col-md-6"}>
                       <CustomInput
                         formik={formikProps}
                         id="email"
@@ -424,6 +466,20 @@ export const AdminGuest: FC<AdminGuestProps> = ({pageType}) => {
                     <div className="col-md-6">
                       <CustomInput
                         formik={formikProps}
+                        id="birthday"
+                        name="birthday"
+                        label="Ngày sinh"
+                        placeholder="Chọn ngày sinh"
+                        initialValue=""
+                        inputType="date"
+                        isRequired={true}
+                        type="input"
+                        disabled={false}
+                      />
+                    </div>
+                    <div className="col-md-6">
+                      <CustomInput
+                        formik={formikProps}
                         id="role"
                         name="role"
                         label="Vị trí"
@@ -436,6 +492,23 @@ export const AdminGuest: FC<AdminGuestProps> = ({pageType}) => {
                         disabled={false}
                       />
                     </div>
+                    {pageType === "employee" ? (
+                      <div className="col-md-6">
+                        <CustomInput
+                          formik={formikProps}
+                          id={`faculty_id`}
+                          name={`faculty_id`}
+                          label="Chuyên khoa"
+                          placeholder=""
+                          initialValue=""
+                          inputType="text"
+                          isRequired={true}
+                          selectOptions={facultyOptions}
+                          type="select"
+                          disabled={false}
+                        />
+                      </div>
+                    ) : ""}
                     <div className="col-md-12">
                       <CustomInput
                         formik={formikProps}

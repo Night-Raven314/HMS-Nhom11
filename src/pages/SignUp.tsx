@@ -24,6 +24,7 @@ export const SignUpPage:FC = () => {
     contactNo: "",
     address: "",
     city: "",
+    birthday: "",
     role: "patient"
   })
   const genderOption = [
@@ -53,6 +54,9 @@ export const SignUpPage:FC = () => {
     if(!value.contactNo) {
       errors.contactNo = "Trường này không được bỏ trống!";
     }
+    if(!value.birthday) {
+      errors.birthday = "Trường này không được bỏ trống!";
+    }
     if(!value.address) {
       errors.address = "Trường này không được bỏ trống!";
     }
@@ -66,6 +70,7 @@ export const SignUpPage:FC = () => {
     if(acceptTC) {
       const userRequest: UserRequestType = {
         ...value,
+        birthday: value.birthday ? new Date(value.birthday).toISOString() : value.birthday,
         action: "create",
         userId: null
       }
@@ -176,17 +181,33 @@ export const SignUpPage:FC = () => {
                                 />
                               </div>
                               <div className="col-md-12">
-                                <div className="custom-input">
-                                  <Field as="select" id="gender" name="gender">
-                                    {genderOption.map(option => (
-                                      <option key={option.value} value={option.value}>{option.label}</option>
-                                    ))}
-                                  </Field>
-                                  <label>Giới tính</label>
-                                  <div className="arrow-icon">
-                                    <FontAwesomeIcon icon={faChevronDown} />
-                                  </div>
-                                </div>
+                                <CustomInput
+                                  formik={formikProps}
+                                  id={`gender`}
+                                  name={`gender`}
+                                  label="Giới tính"
+                                  placeholder=""
+                                  initialValue=""
+                                  inputType="text"
+                                  isRequired={true}
+                                  selectOptions={genderOption}
+                                  type="select"
+                                  disabled={false}
+                                />
+                              </div>
+                              <div className="col-md-12">
+                                <CustomInput
+                                  formik={formikProps}
+                                  id="birthday"
+                                  name="birthday"
+                                  label="Ngày sinh"
+                                  placeholder="Chọn ngày sinh"
+                                  initialValue=""
+                                  inputType="date"
+                                  isRequired={true}
+                                  type="input"
+                                  disabled={false}
+                                />
                               </div>
                               <div className="col-md-12">
                                 <CustomInput

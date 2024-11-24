@@ -15,6 +15,7 @@ import { DoctorSidebar } from "../components/common/DoctorSidebar";
 import { UserFormType, UserRequestType } from "./role-admin/Guest";
 import { CustomModal, CustomModalHandles } from "../components/common/CustomModal";
 import { getRoleName } from "../helpers/utils";
+import { format } from "date-fns";
 
 type DateInfoType = {
   created: string,
@@ -58,6 +59,9 @@ export const ProfilePage:FC = () => {
     if(!value.gender) {
       errors.gender = "Hãy lựa chọn giới tính!";
     }
+    if(!value.birthday) {
+      errors.gender = "Hãy chọn ngày sinh!";
+    }
     if(!value.email) {
       errors.email = "Trường này không được bỏ trống!";
     }
@@ -85,6 +89,7 @@ export const ProfilePage:FC = () => {
           fullName: userData.full_name,
           userName: userData.user_name,
           password: userData.password,
+          birthday: userData.birthday ? format(new Date(userData.birthday), "yyyy-MM-dd") : "",
           gender: userData.gender,
           email: userData.email_address,
           contactNo: userData.contact_no,
@@ -187,6 +192,9 @@ export const ProfilePage:FC = () => {
                           </div>
                         ) : ""}
                         <div className="desc-content">
+                          <b>Ngày sinh: </b>{format(new Date(currentUser.birthday), "dd/MM/yyyy")}
+                        </div>
+                        <div className="desc-content">
                           <b>Số điện thoại: </b>{currentUser.contact_no}
                         </div>
                         <div className="desc-content">
@@ -273,27 +281,29 @@ export const ProfilePage:FC = () => {
                       />
                     </div>
                     <div className="col-md-6">
-                      <div className="custom-input">
-                        <Field as="select" id="gender" name="gender">
-                          {genderOption.map(option => (
-                            <option key={option.value} value={option.value}>{option.label}</option>
-                          ))}
-                        </Field>
-                        <label>Giới tính</label>
-                        <div className="arrow-icon">
-                          <FontAwesomeIcon icon={faChevronDown} />
-                        </div>
-                      </div>
+                      <CustomInput
+                        formik={formikProps}
+                        id={`gender`}
+                        name={`gender`}
+                        label="Giới tính"
+                        placeholder=""
+                        initialValue=""
+                        inputType="text"
+                        isRequired={true}
+                        selectOptions={genderOption}
+                        type="select"
+                        disabled={false}
+                      />
                     </div>
                     <div className="col-md-6">
                       <CustomInput
                         formik={formikProps}
-                        id="email"
-                        name="email"
-                        label="Địa chỉ email"
-                        placeholder="Nhập địa chỉ email"
+                        id="birthday"
+                        name="birthday"
+                        label="Ngày sinh"
+                        placeholder="Chọn ngày sinh"
                         initialValue=""
-                        inputType="text"
+                        inputType="date"
                         isRequired={true}
                         type="input"
                         disabled={false}
@@ -306,6 +316,20 @@ export const ProfilePage:FC = () => {
                         name="contactNo"
                         label="Số điện thoại"
                         placeholder="84xxxxxxxxx"
+                        initialValue=""
+                        inputType="text"
+                        isRequired={true}
+                        type="input"
+                        disabled={false}
+                      />
+                    </div>
+                    <div className="col-md-12">
+                      <CustomInput
+                        formik={formikProps}
+                        id="email"
+                        name="email"
+                        label="Địa chỉ email"
+                        placeholder="Nhập địa chỉ email"
                         initialValue=""
                         inputType="text"
                         isRequired={true}
