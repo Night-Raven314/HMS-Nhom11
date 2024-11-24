@@ -16,66 +16,13 @@ $data = json_decode($input, true);
 if ($data) {
   $auth_user_id = $data['auth_user_id'] ? mysqli_real_escape_string($conn, $data['auth_user_id']) : null;
   // Process the form data (e.g., save to database, send email, etc.)
-  $sql = "WITH
-    doctor_data AS(
-    SELECT
-      dct.user_id AS doctor_id,
-      dct.full_name AS doctor_name,
-      fac.fac_id AS faculty_id,
-      fac.fac_name AS faculty_name
-    FROM `dim_user` dct
-      LEFT JOIN `dim_faculty` fac 
-        ON dct.faculty_id = fac.fac_id
-    ),
-
-    med_hist_match AS(
-      SELECT
-        appt_id,
-        SUM(valid) AS `count`
-      FROM
-        (
-        SELECT
-          appt.appt_id,
-          CASE WHEN TIMESTAMPDIFF(
-              hour,
-              mhst.created_at,
-              STR_TO_DATE(
-                  appt.appt_datetime,
-                  '%Y-%m-%dT%H:%i:%s'
-              )
-            ) BETWEEN 0 AND 2 THEN 1 ELSE 0
-      END AS valid
-    FROM `fact_appointment` appt
-      LEFT JOIN `fact_med_hist` mhst
-        ON appt.patient_id = mhst.patient_id
-    ) subquery_alias -- Alias for the subquery
-    GROUP BY
-        appt_id
-    )
-      SELECT
-        appt.appt_id,
-        appt.doctor_id,
-        dct.doctor_name,
-        appt.patient_id,
-        ptn.full_name AS patient_name,
-        appt.faculty_id,
-        dct.faculty_name,
-        appt.appt_fee,
-        appt.appt_datetime,
-        CASE 
-          WHEN mhsm.count > 0 THEN 'completed'
-          WHEN STR_TO_DATE(appt.appt_datetime, '%Y-%m-%dT%H:%i:%s') >= CURRENT_TIMESTAMP() THEN 'upcoming'
-          ELSE 'missed' END AS appt_status
-      FROM `fact_appointment` appt
-      LEFT JOIN doctor_data dct
-        ON appt.doctor_id = dct.doctor_id
-      LEFT JOIN `dim_user` ptn
-        ON appt.patient_id = ptn.user_id
-      LEFT JOIN med_hist_match mhsm
-        ON appt.appt_id = mhsm.appt_id
-      WHERE
-        appt.status <> 'deleted'
-      AND appt.patient_id = '$auth_user_id'";
+  $sql = "SELECT
+      *
+    FROM fact_appointment
+    WHERE
+      patient_id = '$auth_user_id'
+    ORDER BY created_at DESC
+    LIMIT 1";
   if ($sql) {
     $result = $conn->query($sql);
     if ($result) {
