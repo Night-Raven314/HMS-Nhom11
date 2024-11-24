@@ -17,10 +17,7 @@
     $auth_faculty_id = $data['faculty_id'] ? mysqli_real_escape_string($conn, $data['faculty_id']) : null;
     $auth_appt_datetime = $data['appt_datetime'] ? mysqli_real_escape_string($conn, $data['appt_datetime']) : null;
     // Process the form data (e.g., save to database, send email, etc.)
-    $sql = "SET @faculty_id = '$auth_faculty_id' COLLATE utf8mb4_general_ci;
-      SET @appt_datetime = STR_TO_DATE('$auth_appt_datetime' COLLATE utf8mb4_general_ci,'%Y-%m-%dT%H:%i:%s');
-
-      WITH
+    $sql = "WITH
       appointment_count AS (
       SELECT
           DISTINCT(appt_raw.doctor_id) AS doctor_id,
@@ -30,10 +27,11 @@
               *
           FROM `fact_appointment` appt
           WHERE
-              appt.faculty_id = @faculty_id
-              AND DATE(STR_TO_DATE(appt.appt_datetime,'%Y-%m-%dT%H:%i:%s')) = DATE(@appt_datetime)
-              AND HOUR(STR_TO_DATE(appt.appt_datetime,'%Y-%m-%dT%H:%i:%s')) = HOUR(@appt_datetime)
+              appt.faculty_id = '$auth_faculty_id' COLLATE utf8mb4_general_ci
+              AND DATE(STR_TO_DATE(appt.appt_datetime,'%Y-%m-%dT%H:%i:%s')) = DATE(STR_TO_DATE('$auth_appt_datetime' COLLATE utf8mb4_general_ci,'%Y-%m-%dT%H:%i:%s'))
+              AND HOUR(STR_TO_DATE(appt.appt_datetime,'%Y-%m-%dT%H:%i:%s')) = HOUR(STR_TO_DATE('$auth_appt_datetime' COLLATE utf8mb4_general_ci,'%Y-%m-%dT%H:%i:%s'))
           )appt_raw
+          GROUP BY 1
       ),
 
       doctor_shift AS (
@@ -44,16 +42,16 @@
           LEFT JOIN `dim_user` usr
             ON work.user_id = usr.user_id AND role = 'doctor'
       WHERE
-          usr.faculty_id = @faculty_id
-          AND DATE(STR_TO_DATE(work.start_datetime,'%Y-%m-%dT%H:%i:%s')) = DATE(@appt_datetime)
-          AND HOUR(STR_TO_DATE(work.start_datetime,'%Y-%m-%dT%H:%i:%s')) <= HOUR(@appt_datetime)
-          AND DATE(STR_TO_DATE(work.end_datetime,'%Y-%m-%dT%H:%i:%s')) = DATE(@appt_datetime)
-          AND HOUR(STR_TO_DATE(work.end_datetime,'%Y-%m-%dT%H:%i:%s')) > HOUR(@appt_datetime)
+          usr.faculty_id = '$auth_faculty_id' COLLATE utf8mb4_general_ci
+          AND DATE(STR_TO_DATE(work.start_datetime,'%Y-%m-%dT%H:%i:%s')) = DATE(STR_TO_DATE('$auth_appt_datetime' COLLATE utf8mb4_general_ci,'%Y-%m-%dT%H:%i:%s'))
+          AND HOUR(STR_TO_DATE(work.start_datetime,'%Y-%m-%dT%H:%i:%s')) <= HOUR(STR_TO_DATE('$auth_appt_datetime' COLLATE utf8mb4_general_ci,'%Y-%m-%dT%H:%i:%s'))
+          AND DATE(STR_TO_DATE(work.end_datetime,'%Y-%m-%dT%H:%i:%s')) = DATE(STR_TO_DATE('$auth_appt_datetime' COLLATE utf8mb4_general_ci,'%Y-%m-%dT%H:%i:%s'))
+          AND HOUR(STR_TO_DATE(work.end_datetime,'%Y-%m-%dT%H:%i:%s')) > HOUR(STR_TO_DATE('$auth_appt_datetime' COLLATE utf8mb4_general_ci,'%Y-%m-%dT%H:%i:%s'))
       )
 
       SELECT
         shift.doctor_id,
-          shift.doctor_name
+        shift.doctor_name
       FROM doctor_shift shift
         LEFT JOIN appointment_count count
             ON shift.doctor_id = count.doctor_id
