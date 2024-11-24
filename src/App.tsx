@@ -20,6 +20,7 @@ import { AdminBuilding } from "./pages/role-admin/Building";
 import { PatientInfo } from "./pages/PatientInfo";
 import { PatientLog } from "./pages/PatientLog";
 import { PatientAppointment } from "./pages/role-patient/Appointment";
+import { PatientPaymentLog } from "./pages/role-patient/PaymentLog";
 
 export const App:FC = () => {
   const [checkLogin, setCheckLogin] = useState<boolean>(false);
@@ -140,6 +141,10 @@ export const App:FC = () => {
     {
       path: "/role-patient/appointment",
       element: <PatientAppointment />,
+    },
+    {
+      path: "/role-patient/patient-log",
+      element: <PatientPaymentLog />,
     },
     {
       path: "/role-patient/",
