@@ -28,15 +28,18 @@
       $post_email = mysqli_real_escape_string($conn, $data['email']);
       $post_contact_no = mysqli_real_escape_string($conn, $data['contactNo']);
       $post_address = mysqli_real_escape_string($conn, $data['address']);
+      $post_birthday = mysqli_real_escape_string($conn, $data['birthday']);
       $post_city = mysqli_real_escape_string($conn, $data['city']);
       $post_gender = mysqli_real_escape_string($conn, $data['gender']);
       $post_role = mysqli_real_escape_string($conn, $data['role']);
+      $post_faculty = mysqli_real_escape_string($conn, $data['faculty_id']);
       $default_pwd = isset($data['password']) ? mysqli_real_escape_string($conn, $data['password']) : "P@ss123";
 
       // Process the form data (e.g., save to database, send email, etc.)
       switch ($post_action) {
         case 'create':
-          $sql = "INSERT INTO `dim_user` (`user_name`, `full_name`, `password`, `email_address`, `contact_no`, `role`, `gender`, `address`, `city`) VALUES ('$post_user_name', '$post_full_name', '$default_pwd', '$post_email', $post_contact_no, '$post_role', '$post_gender', '$post_address', '$post_city')";
+          $sql = "INSERT INTO `dim_user` (`user_name`, `full_name`, `password`, `email_address`, `contact_no`, `role`, `gender`, `birthday`, `address`, `city`, `faculty_id`)
+            VALUES ('$post_user_name', '$post_full_name', '$default_pwd', '$post_email', $post_contact_no, '$post_role', '$post_gender', '$post_birthday', '$post_address', '$post_city', '$post_faculty')";
           break;
 
         case 'update':
@@ -46,7 +49,9 @@
           `email_address` = '$post_email',
           `contact_no` = '$post_contact_no',
           `role` = '$post_role',
+          `faculty_id` = '$post_faculty',
           `gender` = '$post_gender',
+          `birthday` = '$post_birthday',
           `address` = '$post_address',
           `city` = '$post_city' 
           WHERE user_id = '$post_id'";
