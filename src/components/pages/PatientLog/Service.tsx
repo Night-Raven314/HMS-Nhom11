@@ -6,7 +6,7 @@ import { FieldArray, Form, Formik, FormikHelpers, FormikProps } from "formik";
 import { CustomInput, SelectOptionType } from "../../common/CustomInput";
 import { CustomModal, CustomModalHandles } from "../../common/CustomModal";
 import { ItemListType } from "../../../pages/role-admin/Item";
-import { apiAdminGetBuilding, apiCompleteTreatment, apiGetItem, apiGetService, apiGetServiceList, apiUpdatePatientLog, apiUpdateRoom, apiUpdateService, UpdatePatientLogType } from "../../../helpers/axios";
+import { apiAdminGetBuilding, apiCompleteTreatment, apiGetItem, apiGetService, apiGetServiceList, apiGetServiceRoom, apiUpdatePatientLog, apiUpdateRoom, apiUpdateService, UpdatePatientLogType } from "../../../helpers/axios";
 import { ServiceRoomModal } from "./ServiceRoom";
 import { BuildingType, FloorType, RoomType } from "../../../pages/role-admin/Building";
 import { convertISOToDateTime } from "../../../helpers/utils";
@@ -93,7 +93,7 @@ export const ServiceTable:FC<ServiceProps> = ({patientLog, requestReload}) => {
   const serviceRoomModalRef = useRef<CustomModalHandles>(null);
 
   const getBuilding = async() => {
-    const getBuilding = await apiAdminGetBuilding();
+    const getBuilding = await apiGetServiceRoom();
     if(getBuilding.error) {
       openToast("error", "Lỗi", "Đã xảy ra lỗi khi lấy danh sách tầng!", 5000);
     } else if (getBuilding.data) {

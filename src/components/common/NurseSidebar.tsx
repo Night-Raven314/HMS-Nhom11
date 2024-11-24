@@ -4,11 +4,11 @@ import { faCalendar, faClipboard } from "@fortawesome/free-regular-svg-icons";
 import { faBookMedical, faClock, faIdBadge, faKitMedical, faMoneyBill, faNotesMedical, faPills, faUserPen, faUsers } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
-export type DoctorSidebarProps = {
+export type NurseSidebarProps = {
   selectedItem: string;
 }
 
-export const DoctorSidebar:FC<DoctorSidebarProps> = ({selectedItem}) => {
+export const NurseSidebar:FC<NurseSidebarProps> = ({selectedItem}) => {
   return (
     <div className="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl bg-gradient-dark">
 

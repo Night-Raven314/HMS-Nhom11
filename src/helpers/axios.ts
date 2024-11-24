@@ -617,3 +617,26 @@ export const apiCompleteTreatment = async(patientLogId:string) => {
   }
   return { data, error };
 }
+export const apiGetServiceRoom = async() => {
+  let error = null;
+  let data = null;
+  try {
+    const [dataFloor, dataRoom] = await Promise.all([
+      hmsAxios.post(
+        "/admin/get-floor.php"
+      ),
+      hmsAxios.post(
+        "/doctor/list-room.php"
+      ),
+    ])
+    if(dataFloor.data && dataRoom.data) {
+      data = {
+        floors: dataFloor.data.data,
+        rooms: dataRoom.data.data
+      };
+    }
+  } catch (err:any) {
+    error = err.response.data.message;
+  }
+  return { data, error };
+}

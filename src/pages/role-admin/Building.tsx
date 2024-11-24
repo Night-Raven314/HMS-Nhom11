@@ -32,8 +32,10 @@ export type RoomType = {
   faculty_id: string;
   room_size: string;
   room_price: string;
-  created_at: string;
-  updated_at: string;
+  created_at?: string;
+  updated_at?: string;
+  item_type?: string;
+  room_unit?: string;
   status: string;
 };
 export type FloorFormType = {
