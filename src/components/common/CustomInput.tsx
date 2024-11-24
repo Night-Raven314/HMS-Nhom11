@@ -23,6 +23,8 @@ export type CustomInputType = {
   selectOptions?: SelectOptionType[],
   valueChange?: (value:string) => void,
   changeDelay?: number
+  minDate?:string,
+  maxDate?:string
 }
 
 export const CustomInput: FC<CustomInputType> = memo(({
@@ -39,6 +41,8 @@ export const CustomInput: FC<CustomInputType> = memo(({
   textareaRow,
   selectOptions,
   valueChange,
+  minDate,
+  maxDate,
   changeDelay = 1000
 }) => {
 
@@ -108,6 +112,8 @@ export const CustomInput: FC<CustomInputType> = memo(({
               formik?.handleBlur(e);
             }}
             onChange={handleChange}
+            min={minDate}
+            max={maxDate}
             value={value}
           />
           <label>{label}{isRequired ? " *" : ""}</label>

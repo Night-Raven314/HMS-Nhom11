@@ -116,11 +116,23 @@ export const PatientAppointment: FC = () => {
     }
   }
   const getAvailDoctor = async(faculty_id:string, datetime: string) => {
-    const getFloor = await apiGetAvailDoctor(faculty_id, new Date(datetime).toISOString());
-    if(getFloor.error) {
+    const getAvail = await apiGetAvailDoctor(faculty_id, new Date(datetime).toISOString());
+    if(getAvail.error) {
       openToast("error", "Lỗi", "Đã xảy ra lỗi khi lấy thông tin bác sỹ!", 5000);
-    } else if (getFloor.data) {
-
+    } else if (getAvail.data) {
+      let tmpAvailDoctor:SelectOptionType[] = [
+        {
+          value: "",
+          label: "Chọn bác sỹ"
+        }
+      ];
+      getAvail.data.forEach((doctor:any) => {
+        tmpAvailDoctor.push({
+          value: doctor.doctor_id,
+          label: doctor.doctor_name
+        })
+      });
+      setAvailableDoctor(tmpAvailDoctor)
     }
   }
 
@@ -271,6 +283,11 @@ export const PatientAppointment: FC = () => {
                         initialValue=""
                         inputType="datetime-local"
                         isRequired={true}
+                        valueChange={(value) => {
+                          if(formikProps.values.faculty_id) {
+                            getAvailDoctor(formikProps.values.faculty_id, value)
+                          }
+                        }}
                         type="input"
                         disabled={false}
                       />
@@ -288,7 +305,9 @@ export const PatientAppointment: FC = () => {
                         selectOptions={facultyOptions}
                         valueChange={(value) => {
                           if(formikProps.values.appt_datetime) {
-                            getAvailDoctor(value, formikProps.values.appt_datetime)
+                            formikProps.setFieldTouched("doctor_id", false);
+                            getAvailDoctor(value, formikProps.values.appt_datetime);
+                            formikProps.setFieldValue("doctor_id", "");
                           }
                         }}
                         type="select"
@@ -307,7 +326,7 @@ export const PatientAppointment: FC = () => {
                         isRequired={true}
                         selectOptions={availableDoctor}
                         type="select"
-                        disabled={availableDoctor.length === 0}
+                        disabled={availableDoctor.length === 1}
                       />
                     </div>
                   </div>

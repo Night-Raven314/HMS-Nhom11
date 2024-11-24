@@ -11,7 +11,7 @@ import { useToast } from "../../components/common/CustomToast";
 import { DoctorSidebar } from "../../components/common/DoctorSidebar";
 import { UserSession } from "../../helpers/global";
 import { convertISOToDateTime } from "../../helpers/utils";
-import { format } from "date-fns";
+import { format, set } from "date-fns";
 import { NurseSidebar } from "../../components/common/NurseSidebar";
 
 export type ScheduleFormType = {
@@ -276,6 +276,11 @@ export const DoctorSchedule: FC = () => {
     searchSchedule();
   }, [scheduleList, searchKeyword])
 
+  const getScheduleMaxDate = (startDate:string) => {
+    let maxDate = set(new Date(startDate), {hours: 23, minutes: 59});
+    return format(maxDate, "yyyy-MM-dd'T'HH:mm");
+  }
+
   return (
     <>
       <Helmet>
@@ -417,7 +422,9 @@ export const DoctorSchedule: FC = () => {
                                 inputType="datetime-local"
                                 isRequired={true}
                                 type="input"
-                                disabled={false}
+                                disabled={!formikProps.values.schedules[index].start_datetime}
+                                minDate={formikProps.values.schedules[index].start_datetime ? formikProps.values.schedules[index].start_datetime : ""}
+                                maxDate={formikProps.values.schedules[index].start_datetime ? getScheduleMaxDate(formikProps.values.schedules[index].start_datetime) : ""}
                               />
                             </div>
                             <div className="col-md-6">
