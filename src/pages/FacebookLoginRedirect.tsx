@@ -15,7 +15,7 @@ export const FacebookLoginRedirect:FC = () => {
           navigate("/role-doctor/schedule");
           break;
         case "patient":
-          navigate("/role-patient/schedule");
+          navigate("/role-patient/appointment");
           break;
       
         default:

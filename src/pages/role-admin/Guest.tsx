@@ -116,17 +116,17 @@ export const AdminGuest: FC<AdminGuestProps> = ({pageType}) => {
       openToast("error", "Lỗi", "Đã xảy ra lỗi khi lấy thông tin chuyên khoa!", 5000);
     } else if (getFloor.data) {
       const faculty:FacultyListType[] = getFloor.data;
-      let tmpFloorOptions:SelectOptionType[] = [{
+      let tmpFacultyOptions:SelectOptionType[] = [{
         label: "Chọn chuyên khoa",
         value: ""
       }];
       faculty.forEach(fac => {
-        tmpFloorOptions.push({
+        tmpFacultyOptions.push({
           label: fac.fac_name,
           value: fac.fac_id
         })
       })
-      setFacultyOptions(tmpFloorOptions);
+      setFacultyOptions(tmpFacultyOptions);
     }
   }
 

@@ -89,7 +89,7 @@ export const SignUpPage:FC = () => {
         } else if (signInResponse.data) {
           window.localStorage.setItem("signedInUser", JSON.stringify(signInResponse.data));
           setUserSession(signInResponse.data);
-          navigate("/role-patient/schedule");
+          navigate("/role-patient/appointment");
         }
       }
     } else {

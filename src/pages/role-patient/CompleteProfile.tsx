@@ -123,7 +123,7 @@ export const CompleteProfile:FC = () => {
         window.localStorage.removeItem("tmpUser");
         window.localStorage.setItem("signedInUser", JSON.stringify(updateResponse.data));
         setUserSession(updateResponse.data);
-        navigate("/role-patient/schedule");
+        navigate("/role-patient/appointment");
       }
     } else {
       openToast("error", "Lỗi", "Hãy đồng ý điều khoản và điều kiện!", 5000);

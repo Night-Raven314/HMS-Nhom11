@@ -9,6 +9,7 @@ import { convertISOToDateTime, getItemTypeName } from "../../helpers/utils";
 import { DoctorSidebar } from "../../components/common/DoctorSidebar";
 import { UserSession } from "../../helpers/global";
 import { useNavigate } from "react-router-dom";
+import { PatientSidebar } from "../../components/common/PatientSidebar";
 
 export type ApptListType = {
   appt_id: string,
@@ -21,8 +22,6 @@ export type ApptListType = {
   appt_fee: string;
   appt_datetime: string;
 };
-
-
 
 export const DoctorAppointment: FC = () => {
   const {openToast} = useToast();
@@ -74,51 +73,58 @@ export const DoctorAppointment: FC = () => {
         </title>
       </Helmet>
 
-      <div className="main-background">
-        <div className="page-container">
-          <div className="page-sidebar">
-            <DoctorSidebar selectedItem={"appointment"} />
-          </div>
-          <div className="page-content">
-            <PageNavbar
-              navbarTitle={`${pageTerm}`}
-              searchRequest={(keyword) => {setSearchKeyword(keyword)}}
-              ref={navbarRef}
-            />
-            <div className="content">
-              <div className="hms-table">
-                <div className="table-header">
-                  <div className="header-title">Thông tin {pageTerm} trên hệ thống</div>
-                </div>
-                <div className="table-body">
-                  <table>
-                    <thead>
-                      <tr>
-                        <th style={{ width: "120px" }}>Bệnh nhân</th>
-                        <th style={{ width: "120px" }}>Bác sỹ</th>
-                        <th style={{ width: "100px" }}>Chuyên khoa</th>
-                        <th style={{ width: "120px" }}>Ngày hẹn</th>
-                        <th style={{ width: "100px" }}>Thành tiền</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {apptListFiltered.map((appt) => (
-                        <tr key={appt.appt_id} style={{cursor: "pointer"}} onClick={() => openPatientInfo(appt.patient_id)}>
-                          <td>{appt.patient_name}</td>
-                          <td>{appt.doctor_name}</td>
-                          <td>{appt.faculty_name}</td>
-                          <td>{convertISOToDateTime(appt.appt_datetime)}</td>
-                          <td>{appt.appt_fee}</td>
+      {UserSession ? (
+        <div className="main-background">
+          <div className="page-container">
+            <div className="page-sidebar">
+              {UserSession.auth_user_role === "doctor" ? (
+                <DoctorSidebar selectedItem={"appointment"} />
+              ) : ""}
+              {UserSession.auth_user_role === "patient" ? (
+                <PatientSidebar selectedItem={"appointment"} />
+              ) : ""}
+            </div>
+            <div className="page-content">
+              <PageNavbar
+                navbarTitle={`${pageTerm}`}
+                searchRequest={(keyword) => {setSearchKeyword(keyword)}}
+                ref={navbarRef}
+              />
+              <div className="content">
+                <div className="hms-table">
+                  <div className="table-header">
+                    <div className="header-title">Thông tin {pageTerm} trên hệ thống</div>
+                  </div>
+                  <div className="table-body">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th style={{ width: "120px" }}>Bệnh nhân</th>
+                          <th style={{ width: "120px" }}>Bác sỹ</th>
+                          <th style={{ width: "100px" }}>Chuyên khoa</th>
+                          <th style={{ width: "120px" }}>Ngày hẹn</th>
+                          <th style={{ width: "100px" }}>Thành tiền</th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                      </thead>
+                      <tbody>
+                        {apptListFiltered.map((appt) => (
+                          <tr key={appt.appt_id} style={{cursor: "pointer"}} onClick={() => openPatientInfo(appt.patient_id)}>
+                            <td>{appt.patient_name}</td>
+                            <td>{appt.doctor_name}</td>
+                            <td>{appt.faculty_name}</td>
+                            <td>{convertISOToDateTime(appt.appt_datetime)}</td>
+                            <td>{appt.appt_fee}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      ) : ""}
 
     </>
   )
