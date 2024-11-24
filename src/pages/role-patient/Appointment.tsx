@@ -1,12 +1,10 @@
 import { FC, useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet";
-import { AdminSidebar } from "../../components/common/AdminSidebar";
 import { NavbarHandles, PageNavbar } from "../../components/common/PageNavbar";
 import { CustomModal, CustomModalHandles } from "../../components/common/CustomModal";
-import { apiGetAvailDoctor, apiGetDoctorAppt, apiGetFaculty } from "../../helpers/axios";
+import { apiGetAvailDoctor, apiGetPatientAppt, apiGetFaculty } from "../../helpers/axios";
 import { useToast } from "../../components/common/CustomToast";
 import { convertISOToDateTime, getItemTypeName } from "../../helpers/utils";
-import { DoctorSidebar } from "../../components/common/DoctorSidebar";
 import { UserSession } from "../../helpers/global";
 import { useNavigate } from "react-router-dom";
 import { PatientSidebar } from "../../components/common/PatientSidebar";
@@ -163,7 +161,7 @@ export const PatientAppointment: FC = () => {
 
   const getApptList = async() => {
     if(UserSession) {
-      const getAppt = await apiGetDoctorAppt(UserSession.auth_user_id);
+      const getAppt = await apiGetPatientAppt(UserSession.auth_user_id);
       if(getAppt.error) {
         openToast("error", "Lỗi", "Đã xảy ra lỗi khi lấy lịch đặt hẹn khám!", 5000);
       } else if (getAppt.data) {

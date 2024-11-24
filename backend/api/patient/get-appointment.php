@@ -57,7 +57,7 @@ if ($data) {
         appt.doctor_id,
         dct.doctor_name,
         appt.patient_id,
-        ptn.patient_name AS patient_name,
+        ptn.full_name AS patient_name,
         appt.faculty_id,
         dct.faculty_name,
         appt.appt_fee,

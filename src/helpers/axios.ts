@@ -658,3 +658,52 @@ export const apiGetAvailDoctor = async(facultyId:string, datetime:string) => {
   }
   return { data, error };
 }
+
+export const apiGetPatientPayment = async() => {
+  let error = null;
+  let data = null;
+  try {
+    const res = await hmsAxios.post(
+      "/patient/get-payment.php"
+    );
+    if(res.data) {
+      data = res.data.data;
+    }
+  } catch (err:any) {
+    error = err.response.data.message;
+  }
+  return { data, error };
+}
+export const apiGetPatientPaymentDetail = async(paymentId:string) => {
+  let error = null;
+  let data = null;
+  try {
+    const res = await hmsAxios.post(
+      "/payment/get-payment-details.php",
+      JSON.stringify({"payment_id": paymentId})
+    );
+    if(res.data) {
+      data = res.data.data;
+    }
+  } catch (err:any) {
+    error = err.response.data.message;
+  }
+  return { data, error };
+}
+
+export const apiGetPatientAppt = async(userId:string) => {
+  let error = null;
+  let data = null;
+  try {
+    const res = await hmsAxios.post(
+      "/patient/get-appointment.php",
+      JSON.stringify({auth_user_id: userId})
+    );
+    if(res.data) {
+      data = res.data.data;
+    }
+  } catch (err:any) {
+    error = err.response.data.message;
+  }
+  return { data, error };
+}
