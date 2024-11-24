@@ -87,11 +87,15 @@
           room.room_name,
           'room slot' AS unit,
           CASE
+            WHEN timestampdiff(day, STR_TO_DATE(fac.start_datetime, '%Y-%m-%dT%H:%i:%s'), STR_TO_DATE(fac.end_datetime, '%Y-%m-%dT%H:%i:%s')) = 0 THEN 1
+            WHEN timestampdiff(day, STR_TO_DATE(fac.start_datetime, '%Y-%m-%dT%H:%i:%s'), CURRENT_TIMESTAMP()) = 0 THEN 1
             WHEN fac.amount IS NULL THEN timestampdiff(day, STR_TO_DATE(fac.start_datetime, '%Y-%m-%dT%H:%i:%s'), STR_TO_DATE(fac.end_datetime, '%Y-%m-%dT%H:%i:%s')) + 1
             WHEN fac.end_datetime IS NULL THEN timestampdiff(day, STR_TO_DATE(fac.start_datetime, '%Y-%m-%dT%H:%i:%s'), CURRENT_TIMESTAMP()) + 1
               ELSE fac.amount END AS amount,
           fac.item_price,
           CASE
+            WHEN timestampdiff(day, STR_TO_DATE(fac.start_datetime, '%Y-%m-%dT%H:%i:%s'), STR_TO_DATE(fac.end_datetime, '%Y-%m-%dT%H:%i:%s')) = 0 THEN 1 * fac.item_price
+            WHEN timestampdiff(day, STR_TO_DATE(fac.start_datetime, '%Y-%m-%dT%H:%i:%s'), CURRENT_TIMESTAMP()) = 0 THEN 1 * fac.item_price
             WHEN fac.amount IS NULL THEN (timestampdiff(day, STR_TO_DATE(fac.start_datetime, '%Y-%m-%dT%H:%i:%s'), STR_TO_DATE(fac.end_datetime, '%Y-%m-%dT%H:%i:%s')) + 1) * fac.item_price
             WHEN fac.end_datetime IS NULL THEN (timestampdiff(day, STR_TO_DATE(fac.start_datetime, '%Y-%m-%dT%H:%i:%s'), CURRENT_TIMESTAMP()) + 1) * fac.item_price
               ELSE fac.amount END AS total_value,
