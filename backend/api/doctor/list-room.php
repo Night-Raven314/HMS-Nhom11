@@ -17,23 +17,25 @@
     // Process the form data (e.g., save to database, send email, etc.)
     $sql = "WITH
       active_room AS (
-          SELECT
+        SELECT
           fac_asmt_id,
           item_id,
           amount
-          FROM `fact_facility_asmt`
-          WHERE
+        FROM `fact_facility_asmt`
+        WHERE
           status <> 'deleted'
       )
 
       SELECT
+        room_id,
         room_order,
         'room' AS item_type,
-        room_id AS item_id,
         room_name,
-        'Ngày' AS item_unit,
+        floor_id,
+        faculty_id,
         room_size,
-        room_price AS item_price,
+        room_price,
+        'Ngày' AS room_unit,
         CASE
           WHEN COUNT(fac_asmt_id) >= room_size THEN 'occupied'
             ELSE room.status END AS `status`
