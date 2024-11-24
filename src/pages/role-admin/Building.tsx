@@ -50,7 +50,7 @@ export type RoomFormType = {
   fac_id?: string | null,
   size?: string,
   price?: string,
-  status?: string
+  status?: string | null
 }
 export type RoomRequestType = RoomFormType & {
   order: string,
@@ -307,7 +307,8 @@ export const AdminBuilding: FC = () => {
                 name: findRoom.room_name,
                 fac_id: findRoom.faculty_id ? findRoom.faculty_id : "none",
                 size: findRoom.room_size,
-                price: findRoom.room_price
+                price: findRoom.room_price,
+                status: findRoom.status
               })
               if(roomUpdateModalRef.current) {
                 roomUpdateModalRef.current.openModal();
