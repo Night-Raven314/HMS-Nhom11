@@ -26,21 +26,10 @@ export const DoctorSidebar:FC<DoctorSidebarProps> = ({selectedItem}) => {
         <ul className="navbar-nav">
 
           <li className="nav-item mt-3">
-            <h6 className="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Tính năng chính
+            <h6 className="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Chức năng chính
             </h6>
           </li>
 
-          <li className="nav-item">
-            <Link to="/role-doctor/schedule">
-              <div className={`nav-link text-white ${selectedItem === "schedule" ? "active bg-gradient-primary" : ""}`}>
-                <div className="side-icon">
-                  <FontAwesomeIcon icon={faClock} />
-                </div>
-
-                <span className="side-text">Quản lý lịch làm việc</span>
-              </div>
-            </Link>
-          </li>
           <li className="nav-item">
             <Link to="/role-doctor/appointment">
               <div className={`nav-link text-white ${selectedItem === "appointment" ? "active bg-gradient-primary" : ""}`}>
@@ -70,6 +59,17 @@ export const DoctorSidebar:FC<DoctorSidebarProps> = ({selectedItem}) => {
             </h6>
           </li>
 
+          <li className="nav-item">
+            <Link to="/role-doctor/schedule">
+              <div className={`nav-link text-white ${selectedItem === "schedule" ? "active bg-gradient-primary" : ""}`}>
+                <div className="side-icon">
+                  <FontAwesomeIcon icon={faClock} />
+                </div>
+
+                <span className="side-text">Quản lý lịch làm việc</span>
+              </div>
+            </Link>
+          </li>
           
         </ul>
       </div>

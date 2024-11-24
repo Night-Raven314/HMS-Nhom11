@@ -26,47 +26,6 @@ export const AdminSidebar:FC<AdminSidebarProps> = ({selectedItem}) => {
         <ul className="navbar-nav">
 
           <li className="nav-item mt-3">
-            <h6 className="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Tính năng chính
-            </h6>
-          </li>
-
-          <li className="nav-item">
-            <a className="nav-link text-white" href="F1-schedule.php">
-
-              <div className="side-icon">
-                <FontAwesomeIcon icon={faCalendar} />
-              </div>
-
-              <span className="side-text">Lịch hẹn kiểm tra</span>
-            </a>
-          </li>
-
-
-          <li className="nav-item">
-            <a className="nav-link text-white" href="F2-user-medhist.php">
-
-              <div className="side-icon">
-                <FontAwesomeIcon icon={faClipboard} />
-              </div>
-
-              <span className="side-text">Hồ sơ sức khoẻ</span>
-            </a>
-          </li>
-
-
-          <li className="nav-item">
-            <a className="nav-link text-white" href="F3-patients.php">
-
-              <div className="side-icon">
-                <FontAwesomeIcon icon={faUsers} />
-              </div>
-
-              <span className="side-text">Danh sách bệnh nhân</span>
-            </a>
-          </li>
-
-
-          <li className="nav-item mt-3">
             <h6 className="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Quản trị
             </h6>
           </li>
