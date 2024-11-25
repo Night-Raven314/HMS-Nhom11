@@ -26,11 +26,12 @@
       $post_fac_name = mysqli_real_escape_string($conn, $data['name']);
       $post_fac_desc = mysqli_real_escape_string($conn, $data['desc']);
       $post_fac_note = mysqli_real_escape_string($conn, $data['note']);
+      $post_fac_pricing = mysqli_real_escape_string($conn, $data['pricing']);
 
       // Process the form data (e.g., save to database, send email, etc.)
       switch ($post_action) {
         case 'create':
-          $sql = "INSERT INTO `dim_faculty` (`fac_name`, `fac_desc`, `fac_note`) VALUES ('$post_fac_name', '$post_fac_desc', '$post_fac_note')";
+          $sql = "INSERT INTO `dim_faculty` (`fac_name`, `fac_desc`, `fac_note`, `fac_pricing`) VALUES ('$post_fac_name', '$post_fac_desc', '$post_fac_note', $post_fac_pricing)";
           break;
 
         case 'update':
