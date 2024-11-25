@@ -52,7 +52,11 @@ if ($data) {
     GROUP BY
         appt_id
     )
+    SELECT
+    	*
+    FROM (
       SELECT
+      	ROW_NUMBER() OVER (PARTITION BY appt.appt_id ORDER BY log.created_at ASC) AS row_num,
         appt.appt_id,
         appt.doctor_id,
         dct.doctor_name,
@@ -62,6 +66,7 @@ if ($data) {
         dct.faculty_name,
         appt.appt_fee,
         appt.appt_datetime,
+        log.ptn_log_id,
         CASE 
           WHEN mhsm.count > 0 THEN 'completed'
           WHEN STR_TO_DATE(appt.appt_datetime, '%Y-%m-%dT%H:%i:%s') >= CURRENT_TIMESTAMP() THEN 'upcoming'
@@ -76,9 +81,15 @@ if ($data) {
         ON appt.appt_id = mhsm.appt_id
       LEFT JOIN fact_payment pmt
       	ON pmt.appt_id = appt.appt_id
+      LEFT JOIN fact_patient_log log
+      	ON log.patient_id = appt.patient_id AND log.created_at > STR_TO_DATE(appt.appt_datetime,'%Y-%m-%dT%H:%i:%s')
       WHERE
         appt.status <> 'deleted'
-      AND appt.patient_id = '$auth_user_id'";
+      AND appt.patient_id = '$auth_user_id'
+        ) raw_data
+       WHERE
+       	row_num = 1
+      ORDER BY 10 DESC";
   if ($sql) {
     $result = $conn->query($sql);
     if ($result) {
