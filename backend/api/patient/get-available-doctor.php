@@ -42,7 +42,7 @@
           LEFT JOIN `dim_user` usr
             ON work.user_id = usr.user_id AND role = 'doctor'
       WHERE
-          usr.faculty_id = '$auth_faculty_id' COLLATE utf8mb4_general_ci
+          usr.faculty_id = ('$auth_faculty_id' COLLATE utf8mb4_general_ci)
           AND DATE(STR_TO_DATE(work.start_datetime,'%Y-%m-%dT%H:%i:%s')) = DATE(STR_TO_DATE('$auth_appt_datetime' COLLATE utf8mb4_general_ci,'%Y-%m-%dT%H:%i:%s'))
           AND HOUR(STR_TO_DATE(work.start_datetime,'%Y-%m-%dT%H:%i:%s')) <= HOUR(STR_TO_DATE('$auth_appt_datetime' COLLATE utf8mb4_general_ci,'%Y-%m-%dT%H:%i:%s'))
           AND DATE(STR_TO_DATE(work.end_datetime,'%Y-%m-%dT%H:%i:%s')) = DATE(STR_TO_DATE('$auth_appt_datetime' COLLATE utf8mb4_general_ci,'%Y-%m-%dT%H:%i:%s'))
@@ -51,10 +51,15 @@
 
       SELECT
         shift.doctor_id,
-        shift.doctor_name
+        shift.doctor_name,
+        fac.fac_pricing
       FROM doctor_shift shift
         LEFT JOIN appointment_count count
-            ON shift.doctor_id = count.doctor_id
+          ON shift.doctor_id = count.doctor_id
+        LEFT JOIN `dim_user` usr
+          ON shift.doctor_id = usr.user_id
+		    LEFT JOIN `dim_faculty` fac
+          ON fac.fac_id = usr.faculty_id
       WHERE
         (count.count < 3 OR count.count IS NULL)";
     if($sql) {

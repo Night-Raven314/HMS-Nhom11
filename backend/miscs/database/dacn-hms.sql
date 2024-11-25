@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 23, 2024 at 05:45 PM
+-- Generation Time: Nov 25, 2024 at 03:17 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -32,6 +32,7 @@ CREATE TABLE `dim_faculty` (
   `fac_name` varchar(255) DEFAULT NULL,
   `fac_desc` varchar(255) DEFAULT NULL,
   `fac_note` varchar(255) DEFAULT NULL,
+  `fac_pricing` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
   `status` varchar(50) DEFAULT 'active'
@@ -41,17 +42,17 @@ CREATE TABLE `dim_faculty` (
 -- Dumping data for table `dim_faculty`
 --
 
-INSERT INTO `dim_faculty` (`fac_id`, `fac_name`, `fac_desc`, `fac_note`, `created_at`, `updated_at`, `status`) VALUES
-('63054655-a115-11ef-95f3-b42e994cb670', 'Khoa Tim mạch', 'Chuyên chẩn đoán, điều trị bệnh mạch vành, tăng huyết áp, suy tim, rối loạn nhịp tim.', '', '2024-10-07 04:36:31', '2024-11-12 16:44:34', 'active'),
-('63115435-a115-11ef-95f3-b42e994cb670', 'Khoa Thần kinh', 'Điều trị các bệnh lý hệ thần kinh trung ương và ngoại vi như đột quỵ, động kinh, tủy sống.', '', '2024-10-07 04:36:31', '2024-11-12 16:44:34', 'active'),
-('6311557a-a115-11ef-95f3-b42e994cb670', 'Khoa Chấn thương chỉnh hình', 'Chăm sóc chấn thương, dị tật, thoái hóa khớp và bệnh lý hệ cơ xương.', '', '2024-10-07 04:36:31', '2024-11-12 16:44:34', 'active'),
-('631155fd-a115-11ef-95f3-b42e994cb670', 'Khoa Nhi', 'Chăm sóc sức khỏe toàn diện cho trẻ sơ sinh, trẻ em, thanh thiếu niên với nhiều bệnh lý trẻ em.', '', '2024-10-07 04:36:31', '2024-11-12 16:44:34', 'active'),
-('63115688-a115-11ef-95f3-b42e994cb670', 'Khoa Ung bướu', 'Chuyên phát hiện và điều trị các loại ung thư như ung thư phổi, vú, máu và khối u.', '', '2024-10-07 04:36:31', '2024-11-12 16:44:34', 'active'),
-('63115701-a115-11ef-95f3-b42e994cb670', 'Khoa Tai mũi họng', 'Điều trị viêm tai, mũi, họng, viêm xoang, đau họng mãn tính và các rối loạn liên quan.', '', '2024-10-07 04:36:31', '2024-11-12 16:44:34', 'active'),
-('63115776-a115-11ef-95f3-b42e994cb670', 'Khoa Hô hấp', 'Chẩn đoán, điều trị các bệnh đường hô hấp như viêm phổi, hen suyễn, COPD, bệnh phổi.', '', '2024-10-07 04:36:31', '2024-11-12 16:44:34', 'active'),
-('631157ed-a115-11ef-95f3-b42e994cb670', 'Khoa Tiêu hóa', 'Điều trị các bệnh đường tiêu hóa như viêm gan, dạ dày, ruột, gan, mật và tuyến tụy.', '', '2024-10-07 04:36:31', '2024-11-12 16:44:34', 'active'),
-('6311585c-a115-11ef-95f3-b42e994cb670', 'Khoa Da liễu', 'Chăm sóc bệnh da như viêm da, dị ứng, mụn trứng cá, sắc tố và nhiễm trùng da.', '', '2024-10-07 04:36:31', '2024-11-12 16:44:34', 'active'),
-('631158d3-a115-11ef-95f3-b42e994cb670', 'Khoa Phụ sản', 'Chăm sóc sức khỏe sinh sản phụ nữ từ thai kỳ, sinh nở đến khám phụ khoa và hậu sản.', '', '2024-10-07 04:36:31', '2024-11-12 16:44:34', 'active');
+INSERT INTO `dim_faculty` (`fac_id`, `fac_name`, `fac_desc`, `fac_note`, `fac_pricing`, `created_at`, `updated_at`, `status`) VALUES
+('63054655-a115-11ef-95f3-b42e994cb670', 'Khoa Tim mạch', 'Chuyên chẩn đoán, điều trị bệnh mạch vành, tăng huyết áp, suy tim, rối loạn nhịp tim.', '', 500000, '2024-10-07 04:36:31', '2024-11-25 14:07:34', 'active'),
+('63115435-a115-11ef-95f3-b42e994cb670', 'Khoa Thần kinh', 'Điều trị các bệnh lý hệ thần kinh trung ương và ngoại vi như đột quỵ, động kinh, tủy sống.', '', 450000, '2024-10-07 04:36:31', '2024-11-25 14:07:34', 'active'),
+('6311557a-a115-11ef-95f3-b42e994cb670', 'Khoa Chấn thương chỉnh hình', 'Chăm sóc chấn thương, dị tật, thoái hóa khớp và bệnh lý hệ cơ xương.', '', 400000, '2024-10-07 04:36:31', '2024-11-25 14:07:34', 'active'),
+('631155fd-a115-11ef-95f3-b42e994cb670', 'Khoa Nhi', 'Chăm sóc sức khỏe toàn diện cho trẻ sơ sinh, trẻ em, thanh thiếu niên với nhiều bệnh lý trẻ em.', '', 350000, '2024-10-07 04:36:31', '2024-11-25 14:07:34', 'active'),
+('63115688-a115-11ef-95f3-b42e994cb670', 'Khoa Ung bướu', 'Chuyên phát hiện và điều trị các loại ung thư như ung thư phổi, vú, máu và khối u.', '', 550000, '2024-10-07 04:36:31', '2024-11-25 14:07:34', 'active'),
+('63115701-a115-11ef-95f3-b42e994cb670', 'Khoa Tai mũi họng', 'Điều trị viêm tai, mũi, họng, viêm xoang, đau họng mãn tính và các rối loạn liên quan.', '', 300000, '2024-10-07 04:36:31', '2024-11-25 14:07:34', 'active'),
+('63115776-a115-11ef-95f3-b42e994cb670', 'Khoa Hô hấp', 'Chẩn đoán, điều trị các bệnh đường hô hấp như viêm phổi, hen suyễn, COPD, bệnh phổi.', '', 400000, '2024-10-07 04:36:31', '2024-11-25 14:07:34', 'active'),
+('631157ed-a115-11ef-95f3-b42e994cb670', 'Khoa Tiêu hóa', 'Điều trị các bệnh đường tiêu hóa như viêm gan, dạ dày, ruột, gan, mật và tuyến tụy.', '', 450000, '2024-10-07 04:36:31', '2024-11-25 14:07:34', 'active'),
+('6311585c-a115-11ef-95f3-b42e994cb670', 'Khoa Da liễu', 'Chăm sóc bệnh da như viêm da, dị ứng, mụn trứng cá, sắc tố và nhiễm trùng da.', '', 350000, '2024-10-07 04:36:31', '2024-11-25 14:07:34', 'active'),
+('631158d3-a115-11ef-95f3-b42e994cb670', 'Khoa Phụ sản', 'Chăm sóc sức khỏe sinh sản phụ nữ từ thai kỳ, sinh nở đến khám phụ khoa và hậu sản.', '', 400000, '2024-10-07 04:36:31', '2024-11-25 14:07:34', 'active');
 
 --
 -- Triggers `dim_faculty`
@@ -85,7 +86,7 @@ INSERT INTO `dim_floor` (`floor_id`, `floor_order`, `floor_name`, `floor_note`, 
 ('05681e2f-a116-11ef-95f3-b42e994cb670', 1, 'Tầng 1', NULL, '2024-11-09 08:07:27', '2024-11-17 03:46:59', 'active'),
 ('0569d3c3-a116-11ef-95f3-b42e994cb670', 2, 'Tầng 2', NULL, '2024-11-09 08:07:33', '2024-11-17 03:47:04', 'active'),
 ('0569d4dc-a116-11ef-95f3-b42e994cb670', 3, 'Tầng 3', NULL, '2024-11-09 08:07:40', '2024-11-17 03:47:09', 'active'),
-('0569d551-a116-11ef-95f3-b42e994cb670', 4, 'Tầng 4', NULL, '2024-11-09 08:07:45', '2024-11-17 03:47:16', 'active'),
+('0569d551-a116-11ef-95f3-b42e994cb670', 4, 'Tầng 4', 'Phòng suýt nữa VIP', '2024-11-09 08:07:45', '2024-11-24 03:56:34', 'active'),
 ('0569d5c3-a116-11ef-95f3-b42e994cb670', 5, 'Tầng 5', 'Phòng VIP', '2024-11-09 08:08:05', '2024-11-17 03:47:21', 'active');
 
 --
@@ -386,7 +387,6 @@ CREATE TABLE `dim_user` (
   `address` varchar(255) DEFAULT NULL,
   `role` varchar(50) DEFAULT NULL,
   `faculty_id` char(36) DEFAULT NULL,
-  `pricing` int(11) DEFAULT NULL,
   `oauth_google` varchar(255) DEFAULT NULL,
   `oauth_facebook` varchar(255) DEFAULT NULL,
   `status` varchar(50) DEFAULT 'active'
@@ -396,46 +396,46 @@ CREATE TABLE `dim_user` (
 -- Dumping data for table `dim_user`
 --
 
-INSERT INTO `dim_user` (`user_id`, `user_name`, `password`, `email_address`, `contact_no`, `full_name`, `birthday`, `created_at`, `updated_at`, `gender`, `city`, `address`, `role`, `faculty_id`, `pricing`, `oauth_google`, `oauth_facebook`, `status`) VALUES
-('68edf2da-a114-11ef-95f3-b42e994cb670', 'huan_patient', 'password123', 'huan.nguyen@example.com', 84912345601, 'Nguyen Nhut Gia Huan', NULL, '2024-10-07 05:36:07', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '1 Mac Dinh Chi', 'patient', NULL, NULL, NULL, NULL, 'active'),
-('68ee02c1-a114-11ef-95f3-b42e994cb670', 'huan_doctor', 'password123', 'huan.nguyen@example.com', 84912345602, 'Nguyen Nhut Gia Huan', NULL, '2024-10-07 05:36:07', '2024-11-12 16:44:31', 'male', 'Ho Chi Minh', '1 Le Duan New', 'doctor', '63115776-a115-11ef-95f3-b42e994cb670', 400000, NULL, NULL, 'active'),
-('68ee03a8-a114-11ef-95f3-b42e994cb670', 'huan_admin', 'password123', 'huan.nguyen@example.com', 84567890123, 'Nguyen Nhut Gia Huan', NULL, '2024-10-07 05:36:07', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '1 Le Duan 14', 'admin', NULL, NULL, NULL, NULL, 'active'),
-('68ee0467-a114-11ef-95f3-b42e994cb670', 'long_patient', 'password123', 'long.nguyen@example.com', 84912345604, 'Nguyen Ba Long', NULL, '2024-10-07 05:36:07', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '2 Tran Hung Dao', 'patient', NULL, NULL, NULL, NULL, 'active'),
-('68ee0505-a114-11ef-95f3-b42e994cb670', 'long_doctor', 'password123', 'long.nguyen@example.com', 84912345605, 'Nguyen Ba Long', NULL, '2024-10-07 05:36:07', '2024-11-12 16:44:31', 'male', 'Ho Chi Minh', '2 Tran Hung Dao', 'doctor', '6311557a-a115-11ef-95f3-b42e994cb670', 450000, NULL, NULL, 'active'),
-('68ee05a8-a114-11ef-95f3-b42e994cb670', 'long_admin', 'password123', 'long.nguyen@example.com', 84912345606, 'Nguyen Ba Long', NULL, '2024-10-07 05:36:07', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '2 Tran Hung Dao', 'admin', NULL, NULL, NULL, NULL, 'active'),
-('68ee0641-a114-11ef-95f3-b42e994cb670', 'khoa_patient', 'password123', 'khoa.tran@example.com', 84912345607, 'Tran Nguyen Dang Khoa', NULL, '2024-10-07 05:36:07', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '3 Nguyen Thi Minh Khai', 'patient', NULL, NULL, NULL, NULL, 'active'),
-('68ee06e2-a114-11ef-95f3-b42e994cb670', 'khoa_doctor', 'password123', 'khoa.tran@example.com', 84912345608, 'Tran Nguyen Dang Khoa', NULL, '2024-10-07 05:36:07', '2024-11-12 16:44:31', 'male', 'Ho Chi Minh', '3 Nguyen Thi Minh Khai', 'doctor', '631158d3-a115-11ef-95f3-b42e994cb670', 500000, NULL, NULL, 'active'),
-('68ee077f-a114-11ef-95f3-b42e994cb670', 'khoa_admin', 'password123', 'khoa.tran@example.com', 84912345609, 'Tran Nguyen Dang Khoa', NULL, '2024-10-07 05:36:07', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '3 Nguyen Thi Minh Khai', 'admin', NULL, NULL, NULL, NULL, 'active'),
-('68ee0818-a114-11ef-95f3-b42e994cb670', 'doctor10', 'password123', 'doctor10@example.com', 84910000010, 'Nguyen Van An', NULL, '2024-10-07 05:44:49', '2024-11-12 16:44:31', 'male', 'Ho Chi Minh', '10 Phan Xich Long', 'doctor', '63054655-a115-11ef-95f3-b42e994cb670', 350000, NULL, NULL, 'active'),
-('68ee08af-a114-11ef-95f3-b42e994cb670', 'doctor11', 'password123', 'doctor11@example.com', 84910000011, 'Tran Thi Bich', NULL, '2024-10-07 05:44:49', '2024-11-12 16:44:31', 'female', 'Ho Chi Minh', '11 Le Van Sy', 'doctor', '63115701-a115-11ef-95f3-b42e994cb670', 370000, NULL, NULL, 'active'),
-('68ee0942-a114-11ef-95f3-b42e994cb670', 'doctor12', 'password123', 'doctor12@example.com', 84910000012, 'Pham Minh Cuong', NULL, '2024-10-07 05:44:49', '2024-11-12 16:44:31', 'male', 'Ho Chi Minh', '12 Nguyen Trai', 'doctor', '631155fd-a115-11ef-95f3-b42e994cb670', 400000, NULL, NULL, 'active'),
-('68ee09de-a114-11ef-95f3-b42e994cb670', 'doctor13', 'password123', 'doctor13@example.com', 84000000013, 'Vo Thi Hoa', NULL, '2024-10-07 05:44:49', '2024-11-12 16:44:31', 'female', 'Ho Chi Minh', '14 Vo Thi Sau', 'doctor', '6311585c-a115-11ef-95f3-b42e994cb670', 450000, NULL, NULL, 'active'),
-('68ee0a6f-a114-11ef-95f3-b42e994cb670', 'doctor14', 'password123', 'doctor14@example.com', 84910000014, 'Tran Van Hai', NULL, '2024-10-07 05:44:49', '2024-11-12 16:44:31', 'male', 'Ho Chi Minh', '14 Hai Ba Trung', 'doctor', '63115435-a115-11ef-95f3-b42e994cb670', 420000, NULL, NULL, 'active'),
-('68ee0b00-a114-11ef-95f3-b42e994cb670', 'doctor15', 'password123', 'doctor15@example.com', 84910000015, 'Pham Van Khoa', NULL, '2024-10-07 05:44:49', '2024-11-12 16:44:31', 'male', 'Ho Chi Minh', '15 Le Lai', 'doctor', '631157ed-a115-11ef-95f3-b42e994cb670', 390000, NULL, NULL, 'active'),
-('68ee0b90-a114-11ef-95f3-b42e994cb670', 'doctor16', 'password123', 'doctor16@example.com', 84910000016, 'Nguyen Thi Lan', NULL, '2024-10-07 05:44:49', '2024-11-12 16:44:31', 'female', 'Ho Chi Minh', '16 Tran Hung Dao', 'doctor', '63115688-a115-11ef-95f3-b42e994cb670', 480000, NULL, NULL, 'active'),
-('68ee0c2a-a114-11ef-95f3-b42e994cb670', 'doctor17', 'password123', 'doctor17@example.com', 84910000017, 'Tran Van Minh', NULL, '2024-10-07 05:44:49', '2024-11-12 16:44:31', 'male', 'Ho Chi Minh', '17 Nguyen Thi Minh Khai', 'doctor', '6311557a-a115-11ef-95f3-b42e994cb670', 460000, NULL, NULL, 'active'),
-('68ee0cc5-a114-11ef-95f3-b42e994cb670', 'doctor18', 'password123', 'doctor18@example.com', 84910000018, 'Pham Thi Nhi', NULL, '2024-10-07 05:44:49', '2024-11-12 16:44:31', 'female', 'Ho Chi Minh', '18 Le Duan', 'doctor', '63115776-a115-11ef-95f3-b42e994cb670', 410000, NULL, NULL, 'active'),
-('68ee0d59-a114-11ef-95f3-b42e994cb670', 'doctor19', 'password123', 'doctor19@example.com', 84910000019, 'Nguyen Van Quan', NULL, '2024-10-07 05:44:49', '2024-11-12 16:44:31', 'male', 'Ho Chi Minh', '19 Dong Khoi', 'doctor', '63054655-a115-11ef-95f3-b42e994cb670', 500000, NULL, NULL, 'active'),
-('68ee0dec-a114-11ef-95f3-b42e994cb670', 'patient20', 'password123', 'patient20@example.com', 84920000020, 'Nguyen Van Tuan', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '20 Nguyen Hue', 'patient', NULL, NULL, NULL, NULL, 'active'),
-('68ee0e7c-a114-11ef-95f3-b42e994cb670', 'patient21', 'password123', 'patient21@example.com', 84920000021, 'Tran Thi Thao', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'female', 'Ho Chi Minh', '21 Le Thanh Ton', 'patient', NULL, NULL, NULL, NULL, 'active'),
-('68ee0f0d-a114-11ef-95f3-b42e994cb670', 'patient22', 'password123', 'patient22@example.com', 84920000022, 'Pham Van Hoang', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '22 Tran Van Kieu', 'patient', NULL, NULL, NULL, NULL, 'active'),
-('68ee0fa2-a114-11ef-95f3-b42e994cb670', 'patient23', 'password123', 'patient23@example.com', 84920000023, 'Nguyen Thi Ly', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'female', 'Ho Chi Minh', '23 Le Loi', 'patient', NULL, NULL, NULL, NULL, 'active'),
-('68ee1040-a114-11ef-95f3-b42e994cb670', 'patient24', 'password123', 'patient24@example.com', 84920000024, 'Tran Van Dat', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '24 Pham Ngoc Thach', 'patient', NULL, NULL, NULL, NULL, 'active'),
-('68ee10d0-a114-11ef-95f3-b42e994cb670', 'patient25', 'password123', 'patient25@example.com', 84920000025, 'Pham Thi Kim', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'female', 'Ho Chi Minh', '25 Vo Van Tan', 'patient', NULL, NULL, NULL, NULL, 'active'),
-('68ee115e-a114-11ef-95f3-b42e994cb670', 'patient26', 'password123', 'patient26@example.com', 84920000026, 'Nguyen Van Phuc', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '26 Nguyen Thi Minh Khai', 'patient', NULL, NULL, NULL, NULL, 'active'),
-('68ee11f5-a114-11ef-95f3-b42e994cb670', 'patient27', 'password123', 'patient27@example.com', 84920000027, 'Tran Thi Mai', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'female', 'Ho Chi Minh', '27 Le Van Sy', 'patient', NULL, NULL, NULL, NULL, 'active'),
-('68ee128e-a114-11ef-95f3-b42e994cb670', 'patient28', 'password123', 'patient28@example.com', 84920000028, 'Pham Van Tinh', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '28 Nguyen Trai', 'patient', NULL, NULL, NULL, NULL, 'active'),
-('68ee131e-a114-11ef-95f3-b42e994cb670', 'patient29', 'password123', 'patient29@example.com', 84920000029, 'Nguyen Thi Hanh', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'female', 'Ho Chi Minh', '29 Hai Ba Trung', 'patient', NULL, NULL, NULL, NULL, 'active'),
-('68ee13ac-a114-11ef-95f3-b42e994cb670', 'patient30', 'password123', 'patient30@example.com', 84920000030, 'Tran Van Quang', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '30 Nguyen Hue', 'patient', NULL, NULL, NULL, NULL, 'active'),
-('68ee143a-a114-11ef-95f3-b42e994cb670', 'patient31', 'password123', 'patient31@example.com', 84920000031, 'Pham Thi Trang', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'female', 'Ho Chi Minh', '31 Le Thanh Ton', 'patient', NULL, NULL, NULL, NULL, 'active'),
-('68ee14cc-a114-11ef-95f3-b42e994cb670', 'patient32', 'password123', 'patient32@example.com', 84920000032, 'Nguyen Van Son', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '32 Tran Van Kieu', 'patient', NULL, NULL, NULL, NULL, 'active'),
-('68ee1560-a114-11ef-95f3-b42e994cb670', 'patient33', 'password123', 'patient33@example.com', 84920000033, 'Tran Thi Hoa', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'female', 'Ho Chi Minh', '33 Le Loi', 'patient', NULL, NULL, NULL, NULL, 'active'),
-('68ee15fd-a114-11ef-95f3-b42e994cb670', 'patient34', 'password123', 'patient34@example.com', 84920000034, 'Pham Van Cuong', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '34 Pham Ngoc Thach', 'patient', NULL, NULL, NULL, NULL, 'active'),
-('68ee1691-a114-11ef-95f3-b42e994cb670', 'patient35', 'password123', 'patient35@example.com', 84920000035, 'Nguyen Thi Ngoc', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'female', 'Ho Chi Minh', '35 Vo Van Tan', 'patient', NULL, NULL, NULL, NULL, 'active'),
-('68ee1724-a114-11ef-95f3-b42e994cb670', 'patient36', 'password123', 'patient36@example.com', 84920000036, 'Tran Van Hieu', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '36 Nguyen Thi Minh Khai', 'patient', NULL, NULL, NULL, NULL, 'active'),
-('68ee17bc-a114-11ef-95f3-b42e994cb670', 'patient37', 'password123', 'patient37@example.com', 84920000037, 'Pham Thi An', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'female', 'Ho Chi Minh', '37 Le Van Sy', 'patient', NULL, NULL, NULL, NULL, 'active'),
-('68ee1857-a114-11ef-95f3-b42e994cb670', 'patient38', 'password123', 'patient38@example.com', 84920000038, 'Nguyen Van Thanh', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '38 Nguyen Trai', 'patient', NULL, NULL, NULL, NULL, 'active'),
-('68ee18ec-a114-11ef-95f3-b42e994cb670', 'patient39', 'password123', 'patient39@example.com', 84920000039, 'Tran Thi Kim', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'female', 'Ho Chi Minh', '39 Hai Ba Trung', 'patient', NULL, NULL, NULL, NULL, 'active');
+INSERT INTO `dim_user` (`user_id`, `user_name`, `password`, `email_address`, `contact_no`, `full_name`, `birthday`, `created_at`, `updated_at`, `gender`, `city`, `address`, `role`, `faculty_id`, `oauth_google`, `oauth_facebook`, `status`) VALUES
+('68edf2da-a114-11ef-95f3-b42e994cb670', 'huan_patient', 'password123', 'huan.nguyen@example.com', 84912345601, 'Nguyen Nhut Gia Huan', NULL, '2024-10-07 05:36:07', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '1 Mac Dinh Chi', 'patient', NULL, NULL, NULL, 'active'),
+('68ee02c1-a114-11ef-95f3-b42e994cb670', 'huan_doctor', 'password123', 'huan.nguyen@example.com', 84912345602, 'Nguyen Nhut Gia Huan', NULL, '2024-10-07 05:36:07', '2024-11-12 16:44:31', 'male', 'Ho Chi Minh', '1 Le Duan New', 'doctor', '63115776-a115-11ef-95f3-b42e994cb670', NULL, NULL, 'active'),
+('68ee03a8-a114-11ef-95f3-b42e994cb670', 'huan_admin', 'password123', 'huan.nguyen@example.com', 84567890123, 'Nguyen Nhut Gia Huan', '1999-10-03', '2024-10-07 05:36:07', '2024-11-24 11:43:43', 'male', 'Ho Chi Minh', '1 Le Duan 14', 'admin', 'NULL', NULL, NULL, 'active'),
+('68ee0467-a114-11ef-95f3-b42e994cb670', 'long_patient', 'password123', 'long.nguyen@example.com', 84912345604, 'Nguyen Ba Long', NULL, '2024-10-07 05:36:07', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '2 Tran Hung Dao', 'patient', NULL, NULL, NULL, 'active'),
+('68ee0505-a114-11ef-95f3-b42e994cb670', 'long_doctor', 'password123', 'long.nguyen@example.com', 84912345605, 'Nguyen Ba Long', NULL, '2024-10-07 05:36:07', '2024-11-12 16:44:31', 'male', 'Ho Chi Minh', '2 Tran Hung Dao', 'doctor', '6311557a-a115-11ef-95f3-b42e994cb670', NULL, NULL, 'active'),
+('68ee05a8-a114-11ef-95f3-b42e994cb670', 'long_admin', 'password123', 'long.nguyen@example.com', 84912345606, 'Nguyen Ba Long', NULL, '2024-10-07 05:36:07', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '2 Tran Hung Dao', 'admin', NULL, NULL, NULL, 'active'),
+('68ee0641-a114-11ef-95f3-b42e994cb670', 'khoa_patient', 'password123', 'khoa.tran@example.com', 84912345607, 'Tran Nguyen Dang Khoa', NULL, '2024-10-07 05:36:07', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '3 Nguyen Thi Minh Khai', 'patient', NULL, NULL, NULL, 'active'),
+('68ee06e2-a114-11ef-95f3-b42e994cb670', 'khoa_doctor', 'password123', 'khoa.tran@example.com', 84912345608, 'Tran Nguyen Dang Khoa', NULL, '2024-10-07 05:36:07', '2024-11-12 16:44:31', 'male', 'Ho Chi Minh', '3 Nguyen Thi Minh Khai', 'doctor', '631158d3-a115-11ef-95f3-b42e994cb670', NULL, NULL, 'active'),
+('68ee077f-a114-11ef-95f3-b42e994cb670', 'khoa_admin', 'password123', 'khoa.tran@example.com', 84912345609, 'Tran Nguyen Dang Khoa', NULL, '2024-10-07 05:36:07', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '3 Nguyen Thi Minh Khai', 'admin', NULL, NULL, NULL, 'active'),
+('68ee0818-a114-11ef-95f3-b42e994cb670', 'doctor10', 'password123', 'doctor10@example.com', 84910000010, 'Nguyen Van An', NULL, '2024-10-07 05:44:49', '2024-11-12 16:44:31', 'male', 'Ho Chi Minh', '10 Phan Xich Long', 'doctor', '63054655-a115-11ef-95f3-b42e994cb670', NULL, NULL, 'active'),
+('68ee08af-a114-11ef-95f3-b42e994cb670', 'doctor11', 'password123', 'doctor11@example.com', 84910000011, 'Tran Thi Bich', NULL, '2024-10-07 05:44:49', '2024-11-12 16:44:31', 'female', 'Ho Chi Minh', '11 Le Van Sy', 'doctor', '63115701-a115-11ef-95f3-b42e994cb670', NULL, NULL, 'active'),
+('68ee0942-a114-11ef-95f3-b42e994cb670', 'doctor12', 'password123', 'doctor12@example.com', 84910000012, 'Pham Minh Cuong', NULL, '2024-10-07 05:44:49', '2024-11-12 16:44:31', 'male', 'Ho Chi Minh', '12 Nguyen Trai', 'doctor', '631155fd-a115-11ef-95f3-b42e994cb670', NULL, NULL, 'active'),
+('68ee09de-a114-11ef-95f3-b42e994cb670', 'doctor13', 'password123', 'doctor13@example.com', 84000000013, 'Vo Thi Hoa', NULL, '2024-10-07 05:44:49', '2024-11-12 16:44:31', 'female', 'Ho Chi Minh', '14 Vo Thi Sau', 'doctor', '6311585c-a115-11ef-95f3-b42e994cb670', NULL, NULL, 'active'),
+('68ee0a6f-a114-11ef-95f3-b42e994cb670', 'doctor14', 'password123', 'doctor14@example.com', 84910000014, 'Tran Van Hai', NULL, '2024-10-07 05:44:49', '2024-11-12 16:44:31', 'male', 'Ho Chi Minh', '14 Hai Ba Trung', 'doctor', '63115435-a115-11ef-95f3-b42e994cb670', NULL, NULL, 'active'),
+('68ee0b00-a114-11ef-95f3-b42e994cb670', 'doctor15', 'password123', 'doctor15@example.com', 84910000015, 'Pham Van Khoa', NULL, '2024-10-07 05:44:49', '2024-11-12 16:44:31', 'male', 'Ho Chi Minh', '15 Le Lai', 'doctor', '631157ed-a115-11ef-95f3-b42e994cb670', NULL, NULL, 'active'),
+('68ee0b90-a114-11ef-95f3-b42e994cb670', 'doctor16', 'password123', 'doctor16@example.com', 84910000016, 'Nguyen Thi Lan', NULL, '2024-10-07 05:44:49', '2024-11-12 16:44:31', 'female', 'Ho Chi Minh', '16 Tran Hung Dao', 'doctor', '63115688-a115-11ef-95f3-b42e994cb670', NULL, NULL, 'active'),
+('68ee0c2a-a114-11ef-95f3-b42e994cb670', 'doctor17', 'password123', 'doctor17@example.com', 84910000017, 'Tran Van Minh', NULL, '2024-10-07 05:44:49', '2024-11-12 16:44:31', 'male', 'Ho Chi Minh', '17 Nguyen Thi Minh Khai', 'doctor', '6311557a-a115-11ef-95f3-b42e994cb670', NULL, NULL, 'active'),
+('68ee0cc5-a114-11ef-95f3-b42e994cb670', 'doctor18', 'password123', 'doctor18@example.com', 84910000018, 'Pham Thi Nhi', NULL, '2024-10-07 05:44:49', '2024-11-12 16:44:31', 'female', 'Ho Chi Minh', '18 Le Duan', 'doctor', '63115776-a115-11ef-95f3-b42e994cb670', NULL, NULL, 'active'),
+('68ee0d59-a114-11ef-95f3-b42e994cb670', 'doctor19', 'password123', 'doctor19@example.com', 84910000019, 'Nguyen Van Quan', NULL, '2024-10-07 05:44:49', '2024-11-12 16:44:31', 'male', 'Ho Chi Minh', '19 Dong Khoi', 'doctor', '63054655-a115-11ef-95f3-b42e994cb670', NULL, NULL, 'active'),
+('68ee0dec-a114-11ef-95f3-b42e994cb670', 'patient20', 'password123', 'patient20@example.com', 84920000020, 'Nguyen Van Tuan', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '20 Nguyen Hue', 'patient', NULL, NULL, NULL, 'active'),
+('68ee0e7c-a114-11ef-95f3-b42e994cb670', 'patient21', 'password123', 'patient21@example.com', 84920000021, 'Tran Thi Thao', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'female', 'Ho Chi Minh', '21 Le Thanh Ton', 'patient', NULL, NULL, NULL, 'active'),
+('68ee0f0d-a114-11ef-95f3-b42e994cb670', 'patient22', 'password123', 'patient22@example.com', 84920000022, 'Pham Van Hoang', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '22 Tran Van Kieu', 'patient', NULL, NULL, NULL, 'active'),
+('68ee0fa2-a114-11ef-95f3-b42e994cb670', 'patient23', 'password123', 'patient23@example.com', 84920000023, 'Nguyen Thi Ly', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'female', 'Ho Chi Minh', '23 Le Loi', 'patient', NULL, NULL, NULL, 'active'),
+('68ee1040-a114-11ef-95f3-b42e994cb670', 'patient24', 'password123', 'patient24@example.com', 84920000024, 'Tran Van Dat', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '24 Pham Ngoc Thach', 'patient', NULL, NULL, NULL, 'active'),
+('68ee10d0-a114-11ef-95f3-b42e994cb670', 'patient25', 'password123', 'patient25@example.com', 84920000025, 'Pham Thi Kim', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'female', 'Ho Chi Minh', '25 Vo Van Tan', 'patient', NULL, NULL, NULL, 'active'),
+('68ee115e-a114-11ef-95f3-b42e994cb670', 'patient26', 'password123', 'patient26@example.com', 84920000026, 'Nguyen Van Phuc', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '26 Nguyen Thi Minh Khai', 'patient', NULL, NULL, NULL, 'active'),
+('68ee11f5-a114-11ef-95f3-b42e994cb670', 'patient27', 'password123', 'patient27@example.com', 84920000027, 'Tran Thi Mai', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'female', 'Ho Chi Minh', '27 Le Van Sy', 'patient', NULL, NULL, NULL, 'active'),
+('68ee128e-a114-11ef-95f3-b42e994cb670', 'patient28', 'password123', 'patient28@example.com', 84920000028, 'Pham Van Tinh', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '28 Nguyen Trai', 'patient', NULL, NULL, NULL, 'active'),
+('68ee131e-a114-11ef-95f3-b42e994cb670', 'patient29', 'password123', 'patient29@example.com', 84920000029, 'Nguyen Thi Hanh', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'female', 'Ho Chi Minh', '29 Hai Ba Trung', 'patient', NULL, NULL, NULL, 'active'),
+('68ee13ac-a114-11ef-95f3-b42e994cb670', 'patient30', 'password123', 'patient30@example.com', 84920000030, 'Tran Van Quang', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '30 Nguyen Hue', 'patient', NULL, NULL, NULL, 'active'),
+('68ee143a-a114-11ef-95f3-b42e994cb670', 'patient31', 'password123', 'patient31@example.com', 84920000031, 'Pham Thi Trang', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'female', 'Ho Chi Minh', '31 Le Thanh Ton', 'patient', NULL, NULL, NULL, 'active'),
+('68ee14cc-a114-11ef-95f3-b42e994cb670', 'patient32', 'password123', 'patient32@example.com', 84920000032, 'Nguyen Van Son', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '32 Tran Van Kieu', 'patient', NULL, NULL, NULL, 'active'),
+('68ee1560-a114-11ef-95f3-b42e994cb670', 'patient33', 'password123', 'patient33@example.com', 84920000033, 'Tran Thi Hoa', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'female', 'Ho Chi Minh', '33 Le Loi', 'patient', NULL, NULL, NULL, 'active'),
+('68ee15fd-a114-11ef-95f3-b42e994cb670', 'patient34', 'password123', 'patient34@example.com', 84920000034, 'Pham Van Cuong', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '34 Pham Ngoc Thach', 'patient', NULL, NULL, NULL, 'active'),
+('68ee1691-a114-11ef-95f3-b42e994cb670', 'patient35', 'password123', 'patient35@example.com', 84920000035, 'Nguyen Thi Ngoc', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'female', 'Ho Chi Minh', '35 Vo Van Tan', 'patient', NULL, NULL, NULL, 'active'),
+('68ee1724-a114-11ef-95f3-b42e994cb670', 'patient36', 'password123', 'patient36@example.com', 84920000036, 'Tran Van Hieu', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '36 Nguyen Thi Minh Khai', 'patient', NULL, NULL, NULL, 'active'),
+('68ee17bc-a114-11ef-95f3-b42e994cb670', 'patient37', 'password123', 'patient37@example.com', 84920000037, 'Pham Thi An', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'female', 'Ho Chi Minh', '37 Le Van Sy', 'patient', NULL, NULL, NULL, 'active'),
+('68ee1857-a114-11ef-95f3-b42e994cb670', 'patient38', 'password123', 'patient38@example.com', 84920000038, 'Nguyen Van Thanh', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '38 Nguyen Trai', 'patient', NULL, NULL, NULL, 'active'),
+('68ee18ec-a114-11ef-95f3-b42e994cb670', 'patient39', 'password123', 'patient39@example.com', 84920000039, 'Tran Thi Kim', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'female', 'Ho Chi Minh', '39 Hai Ba Trung', 'patient', NULL, NULL, NULL, 'active');
 
 --
 -- Triggers `dim_user`
@@ -537,6 +537,14 @@ CREATE TABLE `fact_facility_asmt` (
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
   `status` varchar(50) DEFAULT 'active'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `fact_facility_asmt`
+--
+
+INSERT INTO `fact_facility_asmt` (`fac_asmt_id`, `ptn_log_id`, `item_type`, `item_id`, `amount`, `item_price`, `item_note`, `start_datetime`, `end_datetime`, `created_at`, `updated_at`, `status`) VALUES
+('752198b4-aa46-11ef-96ba-b42e994cb670', '0976620e-a81f-11ef-9842-b42e994cb670', 'room', '796a68a7-a116-11ef-95f3-b42e994cb670', NULL, 780000, '', '2024-11-25T09:28:00.000Z', NULL, '2024-11-24 09:28:26', NULL, 'active'),
+('9f51d309-aa31-11ef-96ba-b42e994cb670', '0976620e-a81f-11ef-9842-b42e994cb670', 'room', '796a6609-a116-11ef-95f3-b42e994cb670', NULL, 780000, '', '2024-11-23T20:00:00.000Z', '2024-11-25T09:28:00.000Z', '2024-11-24 06:59:17', '2024-11-24 09:28:26', 'active');
 
 --
 -- Triggers `fact_facility_asmt`
@@ -707,7 +715,7 @@ CREATE TABLE `fact_patient_log` (
 --
 
 INSERT INTO `fact_patient_log` (`ptn_log_id`, `patient_id`, `doctor_id`, `faculty_id`, `is_inpatient`, `med_note`, `start_datetime`, `end_datetime`, `created_at`, `updated_at`, `status`) VALUES
-('0976620e-a81f-11ef-9842-b42e994cb670', '68ee143a-a114-11ef-95f3-b42e994cb670', '68ee08af-a114-11ef-95f3-b42e994cb670', '63115701-a115-11ef-95f3-b42e994cb670', 0, 'dầdsasdfsfasdf', '2024-11-21T16:41:12+01:00', NULL, '2024-11-21 15:41:12', '2024-11-23 16:35:49', 'active'),
+('0976620e-a81f-11ef-9842-b42e994cb670', '68ee143a-a114-11ef-95f3-b42e994cb670', '68ee08af-a114-11ef-95f3-b42e994cb670', '63115701-a115-11ef-95f3-b42e994cb670', 1, 'dầdsasdfsfasdf', '2024-11-21T16:41:12+01:00', '', '2024-11-21 15:41:12', '2024-11-24 06:59:17', 'active'),
 ('bde4adf5-a68e-11ef-9694-b42e994cb670', '68ee15fd-a114-11ef-95f3-b42e994cb670', '68ee0b00-a114-11ef-95f3-b42e994cb670', '631157ed-a115-11ef-95f3-b42e994cb670', 0, 'Chẩn đoán tiểu đường. Cần theo dõi sức khỏe cẩn thận', '2024-10-08T21:30:00Z', '2024-10-08T21:30:00Z', '2024-11-19 15:55:47', NULL, 'active');
 
 --
@@ -849,6 +857,7 @@ CREATE TABLE `fact_work_schedule` (
 --
 
 INSERT INTO `fact_work_schedule` (`work_id`, `user_id`, `start_datetime`, `end_datetime`, `work_note`, `created_at`, `updated_at`, `status`) VALUES
+('118a9a00-aa32-11ef-96ba-b42e994cb670', '68ee08af-a114-11ef-95f3-b42e994cb670', '2024-11-24T07:02:00.000Z', '2024-11-24T12:02:00.000Z', '', '2024-11-24 07:02:29', '2024-11-24 07:02:33', 'deleted'),
 ('1f2e7c6c-a35d-11ef-961a-b42e994cb670', '68ee0942-a114-11ef-95f3-b42e994cb670', '2024-11-12T08:00:00Z', '2024-11-12T16:00:00Z', NULL, '2024-11-09 09:39:16', '2024-11-15 14:23:02', 'active'),
 ('1f30cb93-a35d-11ef-961a-b42e994cb670', '68ee0b00-a114-11ef-95f3-b42e994cb670', '2024-11-13T07:30:00Z', '2024-11-13T15:30:00Z', 'Bị ốm, tôi nghỉ ca chiều hôm nay', '2024-11-09 09:39:16', '2024-11-15 14:23:02', 'active'),
 ('1f30cce5-a35d-11ef-961a-b42e994cb670', '68ee0a6f-a114-11ef-95f3-b42e994cb670', '2024-11-12T08:30:00Z', '2024-11-12T16:30:00Z', NULL, '2024-11-09 09:39:16', '2024-11-15 14:23:02', 'active'),
@@ -862,7 +871,7 @@ INSERT INTO `fact_work_schedule` (`work_id`, `user_id`, `start_datetime`, `end_d
 ('1f30d221-a35d-11ef-961a-b42e994cb670', '68ee08af-a114-11ef-95f3-b42e994cb670', '2024-11-12T08:00:00Z', '2024-11-12T16:00:00Z', NULL, '2024-11-09 09:39:16', '2024-11-15 14:23:02', 'active'),
 ('1f30d2aa-a35d-11ef-961a-b42e994cb670', '68ee0b00-a114-11ef-95f3-b42e994cb670', '2024-11-11T07:00:00Z', '2024-11-11T13:00:00Z', 'Do lý do cá nhân, tôi chỉ làm việc buổi sáng', '2024-11-09 09:39:16', '2024-11-15 14:23:02', 'active'),
 ('1f30d584-a35d-11ef-961a-b42e994cb670', '68ee09de-a114-11ef-95f3-b42e994cb670', '2024-11-10T09:30:00Z', '2024-11-10T17:30:00Z', NULL, '2024-11-09 09:39:16', '2024-11-15 14:23:02', 'active'),
-('1f30d627-a35d-11ef-961a-b42e994cb670', '68ee08af-a114-11ef-95f3-b42e994cb670', '2024-11-13T09:00:00Z', '2024-11-13T17:00:00Z', NULL, '2024-11-09 09:39:16', '2024-11-15 14:23:02', 'active'),
+('1f30d627-a35d-11ef-961a-b42e994cb670', '68ee08af-a114-11ef-95f3-b42e994cb670', '2024-11-13T04:00', '2024-11-14T00:00', 'New', '2024-11-09 09:39:16', '2024-11-24 07:01:27', 'deleted'),
 ('1f30d6b0-a35d-11ef-961a-b42e994cb670', '68ee0cc5-a114-11ef-95f3-b42e994cb670', '2024-11-14T08:00:00Z', '2024-11-14T16:00:00Z', NULL, '2024-11-09 09:39:16', '2024-11-15 14:23:02', 'active'),
 ('1f30d733-a35d-11ef-961a-b42e994cb670', '68ee0818-a114-11ef-95f3-b42e994cb670', '2024-11-13T08:00:00Z', '2024-11-13T16:00:00Z', NULL, '2024-11-09 09:39:16', '2024-11-15 14:23:02', 'active'),
 ('1f30d7b7-a35d-11ef-961a-b42e994cb670', '68ee0942-a114-11ef-95f3-b42e994cb670', '2024-11-10T10:30:00Z', '2024-11-10T16:30:00Z', 'Công việc hôm nay có chút khó khăn, tôi phải làm ca nửa ngày', '2024-11-09 09:39:16', '2024-11-15 14:23:02', 'active'),
@@ -900,7 +909,8 @@ INSERT INTO `fact_work_schedule` (`work_id`, `user_id`, `start_datetime`, `end_d
 ('1f30ed1a-a35d-11ef-961a-b42e994cb670', '68ee08af-a114-11ef-95f3-b42e994cb670', '2024-11-14T08:00:00Z', '2024-11-14T14:00:00Z', 'Tôi có cuộc họp quan trọng vào chiều nên phải nghỉ làm buổi chiều', '2024-11-09 09:39:16', '2024-11-15 14:23:02', 'active'),
 ('5b10382f-a4b2-11ef-93f7-b42e994cb670', '68ee0a6f-a114-11ef-95f3-b42e994cb670', '2024-11-18T10:00', '2024-11-18T16:00', 'Test', '2024-11-17 07:05:41', NULL, 'active'),
 ('6cd94cae-a412-11ef-94b2-b42e994cb670', '68ee0a6f-a114-11ef-95f3-b42e994cb670', '2024-11-17T07:00', '2024-11-17T19:00', 'Test', '2024-11-16 12:00:51', '2024-11-17 07:05:47', 'deleted'),
-('6e7949c5-a412-11ef-94b2-b42e994cb670', '68ee0a6f-a114-11ef-95f3-b42e994cb670', '2024-11-17T07:00', '2024-11-17T19:00', 'Test', '2024-11-16 12:00:54', NULL, 'active');
+('6e7949c5-a412-11ef-94b2-b42e994cb670', '68ee0a6f-a114-11ef-95f3-b42e994cb670', '2024-11-17T07:00', '2024-11-17T19:00', 'Test', '2024-11-16 12:00:54', NULL, 'active'),
+('e23cf1c3-aa87-11ef-9d3e-b42e994cb670', '68ee02c1-a114-11ef-95f3-b42e994cb670', '2024-11-28T00:00:00.000Z', '2024-11-28T14:00:00.000Z', 'Test', '2024-11-24 17:16:46', NULL, 'active');
 
 --
 -- Triggers `fact_work_schedule`
