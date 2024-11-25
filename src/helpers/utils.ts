@@ -78,6 +78,8 @@ export const getPaymentStatus = (status:string) => {
       return "Chưa thanh toán";
     case "completed":
       return "Đã thanh toán";
+    case "refund":
+      return "Đã hoàn thành";
   
     default:
       return "Không xác định";

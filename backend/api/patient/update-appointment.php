@@ -16,7 +16,6 @@
     $errorMsg = "";
     $sql = "";
     // Access form values
-    $auth_user_id = $data['auth_user_id'] ? mysqli_real_escape_string($conn, $data['auth_user_id']) : null;
     $post_action = mysqli_real_escape_string($conn, $data['action']);
     if($post_action === "delete") {
       $post_id = isset($data['appt_id']) ? mysqli_real_escape_string($conn, $data['appt_id']) : null;
@@ -27,6 +26,7 @@
       `payment_status` = 'refund' WHERE appt_id = '$post_id'";
       mysqli_query($conn, $sql_refund);
     } else {
+      $auth_user_id = $data['auth_user_id'] ? mysqli_real_escape_string($conn, $data['auth_user_id']) : null;
       $post_doctor_id = mysqli_real_escape_string($conn, $data['doctor_id']);
       $post_faculty_id = mysqli_real_escape_string($conn, $data['faculty_id']);
       $post_appt_fee = mysqli_real_escape_string($conn, $data['appt_fee']);

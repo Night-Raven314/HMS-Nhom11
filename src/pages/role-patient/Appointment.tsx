@@ -44,7 +44,10 @@ export const PatientAppointment: FC = () => {
   const [availableDoctor, setAvailableDoctor] = useState<SelectOptionType[]>([]);
 
   const [updateApptId, setUpdateApptId] = useState<string | null>();
+  const deleteApptModalRef = useRef<CustomModalHandles>(null);
   const apptModalRef = useRef<CustomModalHandles>(null);
+  const successNoPaymentApptModalRef = useRef<CustomModalHandles>(null);
+  const successPaymentApptModalRef = useRef<CustomModalHandles>(null);
   const apptFormRef = useRef<FormikProps<ApptFormType>>(null);
   const [initialValue, setInitialValue] = useState<ApptFormType>({
     doctor_id: "",
@@ -75,6 +78,19 @@ export const PatientAppointment: FC = () => {
     }
     if (apptModalRef.current) {
       switch (action) {
+        case "openDelete":
+          setUpdateApptId(apptId ? apptId : null);
+          if(apptId) {
+            deleteApptModalRef.current?.openModal();
+          }
+          break;
+        case "closeDelete":
+          deleteApptModalRef.current?.closeModal();
+          break;
+        case "closeConfirm":
+          successNoPaymentApptModalRef.current?.closeModal();
+          successPaymentApptModalRef.current?.closeModal();
+          break;
         case "open":
           apptFormRef.current?.resetForm();
           setUpdateApptId(apptId ? apptId : null);
@@ -86,6 +102,7 @@ export const PatientAppointment: FC = () => {
                 faculty_id: findAppt.faculty_id,
                 appt_datetime: format(new Date(findAppt.appt_datetime), "yyyy-MM-dd'T'HH:mm")
               })
+              getAvailDoctor(findAppt.faculty_id, findAppt.appt_datetime);
             } else {
               clearForm();
             }
@@ -170,19 +187,50 @@ export const PatientAppointment: FC = () => {
   }
   const submitAppt = async(value:ApptFormType, action:string) => {
     if(UserSession) {
-      const request: ApptRequestType = {
+      let request: ApptRequestType = {
         ...value,
         action: action,
         appt_datetime: value.appt_datetime ? new Date(value.appt_datetime).toISOString() : "",
         appt_fee: "45000",
         auth_user_id: UserSession.auth_user_id
       }
+      if(updateApptId) {
+        request.appt_id = updateApptId
+      }
+      if(availableDoctor.length > 1) {
+        const updateResponse = await apiUpdatePatientAppt(request);
+        if(updateResponse.error) {
+          openToast("error", "Lỗi", "Đã xảy ra lỗi khi cập nhật thông tin!", 5000);
+        } else if (updateResponse.data) {
+          toggleModal("close");
+          openToast("success", "Thành công", updateApptId ? "Lịch hẹn đã được cập nhật" : "Đã đặt hẹn thành công!", 5000);
+          getApptList();
+        }
+      }
+    }
+  }
+  const deleteAppt = async() => {
+    if(updateApptId) {
+      let request: ApptRequestType = {
+        action: "delete",
+        appt_id: updateApptId
+      }
+      if(updateApptId) {
+        request.appt_id = updateApptId
+      }
       const updateResponse = await apiUpdatePatientAppt(request);
       if(updateResponse.error) {
         openToast("error", "Lỗi", "Đã xảy ra lỗi khi cập nhật thông tin!", 5000);
       } else if (updateResponse.data) {
-        openToast("success", "Thành công", updateApptId ? "Lịch hẹn đã được cập nhật" : "Đã đặt hẹn thành công!", 5000);
-        toggleModal("close");
+        toggleModal("closeDelete");
+        const findAppt = apptList.find(appt => appt.appt_id === updateApptId);
+        if(findAppt) {
+          if(findAppt.payment_status === "completed") {
+            successPaymentApptModalRef.current?.openModal();
+          } else {
+            successNoPaymentApptModalRef.current?.openModal();
+          }
+        }
         getApptList();
       }
     }
@@ -240,20 +288,17 @@ export const PatientAppointment: FC = () => {
                       </thead>
                       <tbody>
                         {apptListFiltered.map((appt) => (
-                          <tr key={appt.appt_id} style={{cursor: "pointer"}} onClick={() => openPatientInfo(appt.patient_id)}>
-                            <td>{appt.doctor_name}</td>
-                            <td>{appt.faculty_name}</td>
+                          <tr key={appt.appt_id} style={{cursor: "pointer"}}>
+                            <td onClick={() => openPatientInfo(appt.patient_id)}>{appt.doctor_name}</td>
+                            <td onClick={() => openPatientInfo(appt.patient_id)}>{appt.faculty_name}</td>
                             <td>{convertISOToDateTime(appt.appt_datetime)}</td>
                             <td>{appt.appt_fee}</td>
                             <td>{getApptStatus(appt.appt_status ? appt.appt_status : "")}</td>
                             <td>
                               <div className={`${appt.payment_status}-color`}>{getPaymentStatus(appt.payment_status ? appt.payment_status : "")}</div>
-                              <div className="table-button-list">
-                                <button onClick={() => toggleModal("open", appt.appt_id)}>
-                                  <FontAwesomeIcon icon={faPenToSquare} />
-                                </button>
-                                <button onClick={() => toggleModal("openDelete", appt.appt_id)}>
-                                  <FontAwesomeIcon icon={faTrash} />
+                              <div className="table-button-list full">
+                                <button onClick={() => {}}>
+                                  Thanh toán
                                 </button>
                               </div>
                             </td>
@@ -339,7 +384,7 @@ export const PatientAppointment: FC = () => {
                           }
                         }}
                         type="select"
-                        disabled={!formikProps.values.appt_datetime ? true : false}
+                        disabled={!formikProps.values.appt_datetime || updateApptId ? true : false}
                       />
                     </div>
                     <div className="col-md-4">
@@ -354,7 +399,7 @@ export const PatientAppointment: FC = () => {
                         isRequired={true}
                         selectOptions={availableDoctor}
                         type="select"
-                        disabled={availableDoctor.length === 1}
+                        disabled={(availableDoctor.length === 1) ? true : false}
                       />
                     </div>
                   </div>
@@ -371,6 +416,55 @@ export const PatientAppointment: FC = () => {
         </Formik>
       </CustomModal>
 
+      {/* Alert xoá appt */}
+      <CustomModal
+        headerTitle={"Huỷ đặt hẹn"}
+        size="md"
+        type="alert"
+        ref={deleteApptModalRef}
+      >
+        <div className="body-content">
+          Bạn có chắc chắn muốn huỷ lịch hẹn này?
+        </div>
+        <div className="body-footer">
+          <div className="button-list">
+            <button type="button" className="btn btn-outline" onClick={() => toggleModal("closeDelete")}>Không</button>
+            <button type="button" className="btn btn-gradient" onClick={() => deleteAppt()}>Chắc chắn</button>
+          </div>
+        </div>
+      </CustomModal>
+
+      {/* Alert success */}
+      <CustomModal
+        headerTitle={"Thành công"}
+        size="md"
+        type="alert"
+        ref={successNoPaymentApptModalRef}
+      >
+        <div className="body-content">
+          Lịch đặt hẹn đã được huỷ thành công
+        </div>
+        <div className="body-footer">
+          <div className="button-list">
+            <button type="button" className="btn btn-outline" onClick={() => toggleModal("closeConfirm")}>Đóng</button>
+          </div>
+        </div>
+      </CustomModal>
+      <CustomModal
+        headerTitle={"Thành công"}
+        size="md"
+        type="alert"
+        ref={successPaymentApptModalRef}
+      >
+        <div className="body-content">
+          Lịch đặt hẹn đã được huỷ thành công và chúng tôi sẽ hoàn tiền trong 2 ngày làm việc
+        </div>
+        <div className="body-footer">
+          <div className="button-list">
+            <button type="button" className="btn btn-outline" onClick={() => toggleModal("closeConfirm")}>Đóng</button>
+          </div>
+        </div>
+      </CustomModal>
     </>
   )
 }
