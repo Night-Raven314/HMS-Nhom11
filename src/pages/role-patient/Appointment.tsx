@@ -3,9 +3,9 @@ import { Helmet } from "react-helmet";
 import { AdminSidebar } from "../../components/common/AdminSidebar";
 import { NavbarHandles, PageNavbar } from "../../components/common/PageNavbar";
 import { CustomModal, CustomModalHandles } from "../../components/common/CustomModal";
-import { apiGetAvailDoctor, apiGetPatientAppt, apiGetFaculty } from "../../helpers/axios";
+import { apiGetAvailDoctor, apiGetPatientAppt, apiGetFaculty, apiUpdatePatientAppt } from "../../helpers/axios";
 import { useToast } from "../../components/common/CustomToast";
-import { convertISOToDateTime, getItemTypeName } from "../../helpers/utils";
+import { convertISOToDateTime, getApptStatus, getItemTypeName, getPaymentStatus } from "../../helpers/utils";
 import { DoctorSidebar } from "../../components/common/DoctorSidebar";
 import { UserSession } from "../../helpers/global";
 import { useNavigate } from "react-router-dom";
@@ -14,18 +14,9 @@ import { Form, Formik, FormikProps } from "formik";
 import { CustomInput, SelectOptionType } from "../../components/common/CustomInput";
 import { format } from "date-fns";
 import { FacultyListType } from "../role-admin/Faculty";
-
-export type ApptListType = {
-  appt_id: string,
-  doctor_id: string;
-  doctor_name: string;
-  patient_id: string;
-  patient_name: string;
-  faculty_id: string;
-  faculty_name: string;
-  appt_fee: string;
-  appt_datetime: string;
-};
+import { ApptListType } from "../role-doctor/Appointment";
+import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export type ApptFormType = {
   doctor_id?: string,
@@ -37,9 +28,6 @@ export type ApptRequestType = ApptFormType & {
   appt_id?: string,
   appt_fee?: string
   auth_user_id?: string
-}
-export type ApptDoctorAvailType = {
-
 }
 
 export const PatientAppointment: FC = () => {
@@ -180,6 +168,25 @@ export const PatientAppointment: FC = () => {
       setApptListFiltered(apptList);
     }
   }
+  const submitAppt = async(value:ApptFormType, action:string) => {
+    if(UserSession) {
+      const request: ApptRequestType = {
+        ...value,
+        action: action,
+        appt_datetime: value.appt_datetime ? new Date(value.appt_datetime).toISOString() : "",
+        appt_fee: "45000",
+        auth_user_id: UserSession.auth_user_id
+      }
+      const updateResponse = await apiUpdatePatientAppt(request);
+      if(updateResponse.error) {
+        openToast("error", "Lỗi", "Đã xảy ra lỗi khi cập nhật thông tin!", 5000);
+      } else if (updateResponse.data) {
+        openToast("success", "Thành công", updateApptId ? "Lịch hẹn đã được cập nhật" : "Đã đặt hẹn thành công!", 5000);
+        toggleModal("close");
+        getApptList();
+      }
+    }
+  }
   useEffect(() => {
     searchAppt();
   }, [apptList, searchKeyword]);
@@ -226,6 +233,8 @@ export const PatientAppointment: FC = () => {
                           <th style={{ width: "150px" }}>Chuyên khoa</th>
                           <th style={{ width: "120px" }}>Ngày hẹn</th>
                           <th style={{ width: "100px" }}>Thành tiền</th>
+                          <th style={{ width: "100px" }}>Trạng thái</th>
+                          <th style={{ width: "100px" }}>Thanh toán</th>
                           <th style={{ width: "100px" }}>Thao tác</th>
                         </tr>
                       </thead>
@@ -236,8 +245,27 @@ export const PatientAppointment: FC = () => {
                             <td>{appt.faculty_name}</td>
                             <td>{convertISOToDateTime(appt.appt_datetime)}</td>
                             <td>{appt.appt_fee}</td>
+                            <td>{getApptStatus(appt.appt_status ? appt.appt_status : "")}</td>
                             <td>
-                              
+                              <div className={`${appt.payment_status}-color`}>{getPaymentStatus(appt.payment_status ? appt.payment_status : "")}</div>
+                              <div className="table-button-list">
+                                <button onClick={() => toggleModal("open", appt.appt_id)}>
+                                  <FontAwesomeIcon icon={faPenToSquare} />
+                                </button>
+                                <button onClick={() => toggleModal("openDelete", appt.appt_id)}>
+                                  <FontAwesomeIcon icon={faTrash} />
+                                </button>
+                              </div>
+                            </td>
+                            <td>
+                              <div className="table-button-list">
+                                <button onClick={() => toggleModal("open", appt.appt_id)}>
+                                  <FontAwesomeIcon icon={faPenToSquare} />
+                                </button>
+                                <button onClick={() => toggleModal("openDelete", appt.appt_id)}>
+                                  <FontAwesomeIcon icon={faTrash} />
+                                </button>
+                              </div>
                             </td>
                           </tr>
                         ))}
@@ -265,7 +293,7 @@ export const PatientAppointment: FC = () => {
           validate={validate}
           innerRef={apptFormRef}
           onSubmit={(values) => {
-            // submitUpdateFaculty(values, updateApptId ? "update" : "create")
+            submitAppt(values, updateApptId ? "update" : "create")
           }}
         >
           {(formikProps) => {

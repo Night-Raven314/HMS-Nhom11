@@ -16,10 +16,10 @@
     $errorMsg = "";
     $sql = "";
     // Access form values
-    $post_id = $data['appt_id'] ? mysqli_real_escape_string($conn, $data['appt_id']) : null;
     $auth_user_id = $data['auth_user_id'] ? mysqli_real_escape_string($conn, $data['auth_user_id']) : null;
     $post_action = mysqli_real_escape_string($conn, $data['action']);
     if($post_action === "delete") {
+      $post_id = isset($data['appt_id']) ? mysqli_real_escape_string($conn, $data['appt_id']) : null;
       $sql = "UPDATE `fact_appointment` SET
       `status` = 'deleted' WHERE appt_id = '$post_id'";
 
@@ -40,6 +40,7 @@
           break;
 
         case 'update':
+          $post_id = isset($data['appt_id']) ? mysqli_real_escape_string($conn, $data['appt_id']) : null;
           $sql = "UPDATE `fact_appointment` SET `doctor_id` = '$post_doctor_id', `patient_id` = '$auth_user_id', `faculty_id` = '$post_faculty_id', `appt_fee` = '$post_appt_fee', `appt_datetime` = '$post_appt_datetime' WHERE appt_id = '$post_id'";
 
           break;

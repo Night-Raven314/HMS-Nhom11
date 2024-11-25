@@ -21,6 +21,8 @@ export type ApptListType = {
   faculty_name: string;
   appt_fee: string;
   appt_datetime: string;
+  appt_status?:string;
+  payment_status?:string;
 };
 
 export const DoctorAppointment: FC = () => {

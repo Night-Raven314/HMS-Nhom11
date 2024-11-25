@@ -61,6 +61,28 @@ export const getRoomStatus = (status:string) => {
       return "Không xác định";
   }
 }
+export const getApptStatus = (status:string) => {
+  switch (status) {
+    case "active":
+      return "Đang điều trị";
+    case "upcoming":
+      return "Đã đặt hẹn";
+  
+    default:
+      return "Không xác định";
+  }
+}
+export const getPaymentStatus = (status:string) => {
+  switch (status) {
+    case "pending":
+      return "Chưa thanh toán";
+    case "completed":
+      return "Đã thanh toán";
+  
+    default:
+      return "Không xác định";
+  }
+}
 
 export const convertISOToDateTime = (date:string) => {
   return format(new Date(date), "dd/MM/yyyy - HH:mm");

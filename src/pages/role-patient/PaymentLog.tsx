@@ -3,9 +3,10 @@ import { Helmet } from "react-helmet";
 import { PatientSidebar } from "../../components/common/PatientSidebar";
 import { NavbarHandles, PageNavbar } from "../../components/common/PageNavbar";
 import { CustomModal, CustomModalHandles } from "../../components/common/CustomModal";
-import { apiGetPatientPayment, apiGetPatientPaymentDetail } from "../../helpers/axios";
+import { apiGetPatientPaymentLog, apiGetPatientPaymentDetail } from "../../helpers/axios";
 import { useToast } from "../../components/common/CustomToast";
 import { getItemTypeName } from "../../helpers/utils";
+import { UserSession } from "../../helpers/global";
 
 export type PaymentListType = {
   payment_id: string;
@@ -99,11 +100,13 @@ export const PatientPaymentLog: FC = () => {
   }
 
   const getPaymentList = async() => {
-    const getPayment = await apiGetPatientPayment();
-    if(getPayment.error) {
-      openToast("error", "Lỗi", "Đã xảy ra lỗi khi lấy lịch sử giao dịch!", 5000);
-    } else if (getPayment.data) {
-      setPaymentList(getPayment.data);
+    if(UserSession) {
+      const getPayment = await apiGetPatientPaymentLog(UserSession.auth_user_id);
+      if(getPayment.error) {
+        openToast("error", "Lỗi", "Đã xảy ra lỗi khi lấy lịch sử giao dịch!", 5000);
+      } else if (getPayment.data) {
+        setPaymentList(getPayment.data);
+      }
     }
   }
   const searchPayment = () => {
