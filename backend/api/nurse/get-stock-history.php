@@ -14,8 +14,9 @@
   // Get data sent from FE
   $data = json_decode($input, true);
   if ($data) {
+    $post_id = $data['item_id'] ? mysqli_real_escape_string($conn, $data['item_id']) : null;
     // Process the form data (e.g., save to database, send email, etc.)
-    $sql = "SELECT * FROM fact_item_stock WHERE (timestampdiff(day, created_at, CURRENT_TIMESTAMP()) <= 30 OR status = 'active')";
+    $sql = "SELECT * FROM fact_item_stock WHERE (timestampdiff(day, created_at, CURRENT_TIMESTAMP()) <= 30 OR status = 'active') AND `item_id` = $post_id";
     if($sql) {
       $result = $conn->query($sql);
       if ($result) { 
