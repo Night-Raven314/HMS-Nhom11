@@ -8,7 +8,17 @@
   header("Content-Type: application/json");
   header("Access-Control-Allow-Methods: POST");
   
-  $sql = "SELECT stock_id, item_id, amount_final FROM fact_item_stock WHERE status = 'active'";
+  $sql = "SELECT
+      usr.full_name AS updated_by,
+      stock.stock_id,
+      stock.item_id,
+      stock.amount_final,
+      stock.created_at
+    FROM `fact_item_stock` stock
+      LEFT JOIN `dim_user` usr
+        ON stock.updated_by = usr.user_id
+    WHERE
+      stock.status = 'active'";
   if($sql) {
     $result = $conn->query($sql);
     if ($result) { 

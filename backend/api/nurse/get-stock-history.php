@@ -16,7 +16,15 @@
   if ($data) {
     $post_id = $data['item_id'] ? mysqli_real_escape_string($conn, $data['item_id']) : null;
     // Process the form data (e.g., save to database, send email, etc.)
-    $sql = "SELECT * FROM fact_item_stock WHERE (timestampdiff(day, created_at, CURRENT_TIMESTAMP()) <= 30 OR status = 'active') AND `item_id` = $post_id";
+    $sql = "SELECT
+        usr.full_name AS updated_by,
+        stock.*
+      FROM `fact_item_stock` stock
+        LEFT JOIN `dim_user` usr
+          ON stock.updated_by = usr.user_id
+      WHERE
+        (timestampdiff(day, created_at, CURRENT_TIMESTAMP()) <= 30 OR status = 'active')
+        AND `item_id` = $post_id";
     if($sql) {
       $result = $conn->query($sql);
       if ($result) { 

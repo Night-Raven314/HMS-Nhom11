@@ -15,6 +15,8 @@
   if ($data) {
     $errorMsg = "";
     $sql = "";
+
+    $auth_user_id = $data['auth_user_id'] ? mysqli_real_escape_string($conn, $data['auth_user_id']) : null;
     // Access form values
     foreach ($data["request"] as $row) {
       $post_item_id = mysqli_real_escape_string($conn, $row['item_id']);
@@ -25,7 +27,7 @@
       $sub_sql_delete = "UPDATE `fact_item_stock` SET `status` = 'deleted' WHERE item_id = '$post_item_id'";
       mysqli_query($conn, $sub_sql_delete);
 
-      $sub_sql_create = "INSERT INTO `fact_item_stock` (`item_id`, `change_type`, `amount_changed`, `stock_note`) VALUES ('$post_item_id', '$post_action', '$post_amount', '$post_stock_note')";
+      $sub_sql_create = "INSERT INTO `fact_item_stock` (`updated_by`, `item_id`, `change_type`, `amount_changed`, `stock_note`) VALUES ('$auth_user_id', '$post_item_id', '$post_action', '$post_amount', '$post_stock_note')";
       mysqli_query($conn, $sub_sql_create);
 
     }
