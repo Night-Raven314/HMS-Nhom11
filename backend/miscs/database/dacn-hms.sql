@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 25, 2024 at 03:17 PM
+-- Generation Time: Nov 26, 2024 at 06:05 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -397,6 +397,7 @@ CREATE TABLE `dim_user` (
 --
 
 INSERT INTO `dim_user` (`user_id`, `user_name`, `password`, `email_address`, `contact_no`, `full_name`, `birthday`, `created_at`, `updated_at`, `gender`, `city`, `address`, `role`, `faculty_id`, `oauth_google`, `oauth_facebook`, `status`) VALUES
+('5c950e93-ac16-11ef-982c-b42e994cb670', 'nurse40', 'password123', 'nurse40@example.com', 842131423432, 'Nguyen Thi Ly', '1983-06-15T00:00:00.000Z', '2024-11-26 16:49:11', NULL, 'female', 'Ho Chi Minh', '35 Vo Van Tan', 'nurse', '63115776-a115-11ef-95f3-b42e994cb670', NULL, NULL, 'active'),
 ('68edf2da-a114-11ef-95f3-b42e994cb670', 'huan_patient', 'password123', 'huan.nguyen@example.com', 84912345601, 'Nguyen Nhut Gia Huan', NULL, '2024-10-07 05:36:07', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '1 Mac Dinh Chi', 'patient', NULL, NULL, NULL, 'active'),
 ('68ee02c1-a114-11ef-95f3-b42e994cb670', 'huan_doctor', 'password123', 'huan.nguyen@example.com', 84912345602, 'Nguyen Nhut Gia Huan', NULL, '2024-10-07 05:36:07', '2024-11-12 16:44:31', 'male', 'Ho Chi Minh', '1 Le Duan New', 'doctor', '63115776-a115-11ef-95f3-b42e994cb670', NULL, NULL, 'active'),
 ('68ee03a8-a114-11ef-95f3-b42e994cb670', 'huan_admin', 'password123', 'huan.nguyen@example.com', 84567890123, 'Nguyen Nhut Gia Huan', '1999-10-03', '2024-10-07 05:36:07', '2024-11-24 11:43:43', 'male', 'Ho Chi Minh', '1 Le Duan 14', 'admin', 'NULL', NULL, NULL, 'active'),
@@ -507,7 +508,7 @@ INSERT INTO `fact_appointment` (`appt_id`, `doctor_id`, `patient_id`, `faculty_i
 ('b0e82d52-a1e2-11ef-968e-b42e994cb670', '68ee0818-a114-11ef-95f3-b42e994cb670', '68ee131e-a114-11ef-95f3-b42e994cb670', '63054655-a115-11ef-95f3-b42e994cb670', 350000, '2024-12-04T09:15:00Z', '2024-10-10 15:40:44', '2024-11-13 17:14:10', 'active'),
 ('b0e82d92-a1e2-11ef-968e-b42e994cb670', '68ee0cc5-a114-11ef-95f3-b42e994cb670', '68ee17bc-a114-11ef-95f3-b42e994cb670', '6311585c-a115-11ef-95f3-b42e994cb670', 410000, '2024-12-05T11:30:00Z', '2024-10-10 15:40:44', '2024-11-13 17:14:10', 'active'),
 ('b0e82e8e-a1e2-11ef-968e-b42e994cb670', '68ee0d59-a114-11ef-95f3-b42e994cb670', '68ee10d0-a114-11ef-95f3-b42e994cb670', '631158d3-a115-11ef-95f3-b42e994cb670', 500000, '2024-12-06T15:00:00Z', '2024-10-10 15:40:44', '2024-11-13 17:14:10', 'active'),
-('b0e82ee5-a1e2-11ef-968e-b42e994cb670', '68ee0c2a-a114-11ef-95f3-b42e994cb670', '68ee0dec-a114-11ef-95f3-b42e994cb670', '631157ed-a115-11ef-95f3-b42e994cb670', 460000, '2024-12-07T10:15:00Z', '2024-10-10 15:40:44', '2024-11-13 17:14:10', 'active');
+('b0e82ee5-a1e2-11ef-968e-b42e994cb670', '68ee0c2a-a114-11ef-95f3-b42e994cb670', '68ee0dec-a114-11ef-95f3-b42e994cb670', '631157ed-a115-11ef-95f3-b42e994cb670', 460000, '2024-12-07T10:15:00Z', '2024-10-10 15:40:44', '2024-11-25 17:31:29', 'deleted');
 
 --
 -- Triggers `fact_appointment`
@@ -562,6 +563,7 @@ DELIMITER ;
 
 CREATE TABLE `fact_item_stock` (
   `stock_id` char(36) NOT NULL,
+  `updated_by` char(36) DEFAULT NULL,
   `item_id` char(36) NOT NULL,
   `change_type` varchar(50) NOT NULL,
   `amount_changed` int(11) NOT NULL,
@@ -571,6 +573,16 @@ CREATE TABLE `fact_item_stock` (
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
   `status` varchar(50) DEFAULT 'active'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `fact_item_stock`
+--
+
+INSERT INTO `fact_item_stock` (`stock_id`, `updated_by`, `item_id`, `change_type`, `amount_changed`, `amount_final`, `stock_note`, `created_at`, `updated_at`, `status`) VALUES
+('177495c0-ac17-11ef-982c-b42e994cb670', NULL, 'b7f3c784-a115-11ef-95f3-b42e994cb670', 'addition', 20, 50, '', '2024-11-26 16:54:24', '2024-11-26 16:54:57', 'deleted'),
+('2aa9ec13-ac17-11ef-982c-b42e994cb670', NULL, 'b7f3c784-a115-11ef-95f3-b42e994cb670', 'addition', 20, 70, '', '2024-11-26 16:54:57', NULL, 'active'),
+('78b2628b-ac16-11ef-982c-b42e994cb670', NULL, 'b7f3c784-a115-11ef-95f3-b42e994cb670', 'addition', 50, 50, '', '2024-11-26 16:49:58', '2024-11-26 16:54:24', 'deleted'),
+('7d55de7e-ac16-11ef-982c-b42e994cb670', NULL, 'b7f3c784-a115-11ef-95f3-b42e994cb670', 'deduction', 20, 30, '', '2024-11-26 16:50:06', '2024-11-26 16:54:24', 'deleted');
 
 --
 -- Triggers `fact_item_stock`
