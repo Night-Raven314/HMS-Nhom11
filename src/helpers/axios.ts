@@ -785,3 +785,19 @@ export const apiUpdateNurseStock = async(request:StockRequestType) => {
   }
   return { data, error };
 }
+export const apiGetNurseStockInfo = async(itemId:string) => {
+  let error = null;
+  let data = null;
+  try {
+    const res = await hmsAxios.post(
+      "/nurse/get-stock-history.php",
+      JSON.stringify({item_id: itemId})
+    );
+    if(res.data) {
+      data = res.data.data;
+    }
+  } catch (err:any) {
+    error = err.response.data.message;
+  }
+  return { data, error };
+}

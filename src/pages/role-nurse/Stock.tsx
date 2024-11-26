@@ -10,8 +10,9 @@ import { CustomModal, CustomModalHandles } from "../../components/common/CustomM
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { CustomInput, SelectOptionType } from "../../components/common/CustomInput";
-import { apiGetAllItem, apiGetNurseStock, apiUpdateNurseStock } from "../../helpers/axios";
+import { apiGetAllItem, apiGetNurseStock, apiGetNurseStockInfo, apiUpdateNurseStock } from "../../helpers/axios";
 import { ItemListType } from "../role-admin/Item";
+import { convertISOToDateTime } from "../../helpers/utils";
 
 export type StockFullListType = {
   stock_id: string;
@@ -26,9 +27,11 @@ export type StockFullListType = {
 }
 export type StockListType = {
   stock_id: string;
+  updated_by: string;
   item_id: string;
   item_name: string;
   amount_final: number;
+  created_at: string
 }
 export type StockFormType = {
   item_id: string;
@@ -40,7 +43,11 @@ export type DynamicStockFormType = {
   stocks: StockFormType[]
 }
 export type StockRequestType = {
+  auth_user_id: string;
   request: StockFormType[];
+}
+export type StockInfoType = {
+
 }
 
 export const NurseStock:FC = () => {
@@ -54,6 +61,8 @@ export const NurseStock:FC = () => {
   const [itemOptions, setItemOptions] = useState<SelectOptionType[]>([]);
   const [stockList, setStockList] = useState<StockListType[]>([]);
 
+  const [viewInfo, setViewInfo] = useState<StockInfoType[]>([]);
+  const infoModalRef = useRef<CustomModalHandles>(null);
   const stockModalRef = useRef<CustomModalHandles>(null);
   const stockFormRef = useRef<FormikProps<DynamicStockFormType>>(null);
   const [initialValue, setInitialValue] = useState<DynamicStockFormType>({
@@ -80,7 +89,16 @@ export const NurseStock:FC = () => {
     }
   ]
 
-  const toggleModal = (action: string) => {
+  const getStockInfo = async(itemId:string) => {
+    const getItem = await apiGetNurseStockInfo(itemId);
+    if(getItem.error) {
+      openToast("error", "Lỗi", "Đã xảy ra lỗi khi lấy danh sách tầng!", 5000);
+    } else if (getItem.data) {
+
+    }
+  }
+
+  const toggleModal = (action: string, itemId?:string) => {
     const clearForm = () => {
       setInitialValue({
         stocks: []
@@ -96,20 +114,27 @@ export const NurseStock:FC = () => {
         })
       }, 0);
     }
-    if (stockModalRef.current) {
-      switch (action) {
-        case "open":
-          stockFormRef.current?.resetForm();
-          clearForm();
-          stockModalRef.current.openModal();
-          break;
-        case "close":
-          stockModalRef.current.closeModal();
-          break;
+    switch (action) {
+      case "openInfo":
+        if(itemId) {
+          getStockInfo(itemId);
+          infoModalRef.current?.openModal();
+        }
+        break;
+      case "closeInfo":
+        infoModalRef.current?.closeModal();
+        break;
+      case "open":
+        stockFormRef.current?.resetForm();
+        clearForm();
+        stockModalRef.current?.openModal();
+        break;
+      case "close":
+        stockModalRef.current?.closeModal();
+        break;
 
-        default:
-          break;
-      }
+      default:
+        break;
     }
   }
 
@@ -122,8 +147,9 @@ export const NurseStock:FC = () => {
       }
       return true;
     })
-    if(formValid) {
+    if(formValid && UserSession) {
       const result = await apiUpdateNurseStock({
+        auth_user_id: UserSession.auth_user_id,
         request: value.stocks
       });
       if(result.error) {
@@ -149,6 +175,8 @@ export const NurseStock:FC = () => {
         if(findProduct) {
           tmpStockList.push({
             stock_id: item.stock_id,
+            updated_by: item.updated_by,
+            created_at: convertISOToDateTime(item.created_at),
             item_id: item.item_id,
             item_name: findProduct.item_name,
             amount_final: item.amount_final
@@ -231,16 +259,19 @@ export const NurseStock:FC = () => {
                     <table>
                       <thead>
                         <tr>
-                          <th style={{ width: "300px" }}>Tên sản phẩm</th>
+                          <th style={{ width: "200px" }}>Người cập nhật</th>
+                          <th style={{ width: "200px" }}>Tên sản phẩm</th>
                           <th style={{ width: "100px" }}>Số lượng</th>
-                          <th></th>
+                          <th style={{ width: "200px" }}>Lần cập nhật cuối</th>
                         </tr>
                       </thead>
                       <tbody>
                         {stockList.map((item) => (
-                          <tr key={item.stock_id}>
+                          <tr key={item.stock_id} onClick={() => toggleModal("openInfo", item.item_id)} style={{cursor: "pointer"}}>
+                            <td>{item.updated_by}</td>
                             <td>{item.item_name}</td>
                             <td>{item.amount_final}</td>
+                            <td>{item.created_at}</td>
                           </tr>
                         ))}
                       </tbody>
@@ -374,6 +405,55 @@ export const NurseStock:FC = () => {
             )
           }}
         </Formik>
+      </CustomModal>
+
+      <CustomModal
+        headerTitle={"Thông tin cập nhật sản phẩm"}
+        size="xl"
+        type="modal"
+        ref={infoModalRef}
+      >
+        {/* <div className="body-content">
+          {viewInfo.length ? (
+            <>
+              <div className="hms-table no-header full-height" style={{marginBottom: "30px"}}>
+                <div className="table-body">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th style={{ width: "150px" }}>Tên sản phẩm</th>
+                        <th style={{ width: "140px" }}>Đơn vị</th>
+                        <th style={{ width: "50px" }}>Số lượng</th>
+                        <th style={{ width: "100px" }}>Đơn giá</th>
+                        <th style={{ width: "100px" }}>Tổng</th>
+                        <th style={{ width: "140px" }}>Ghi chú</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {viewInfo.map((payment, index) => (
+                        <tr key={index}>
+                          <td>{payment.full_name}</td>
+                          <td>{payment.fac_name}</td>
+                          <td>{payment.amount}</td>
+                          <td>{payment.appt_fee}</td>
+                          <td>{payment.total_value}</td>
+                          <td>{payment.item_note}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </>
+          ) : (
+            <div>Không có dữ liệu</div>
+          )}
+        </div> */}
+        <div className="body-footer">
+          <div className="button-list">
+            <button type="button" className="btn btn-outline" onClick={() => toggleModal("closeInfo")}>Đóng</button>
+          </div>
+        </div>
       </CustomModal>
 
     </>
