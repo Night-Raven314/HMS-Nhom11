@@ -361,3 +361,19 @@ VALUES
 ('Room 505', 5, 1, 780000, 'active', NULL),
 ('Room 506', 5, 1, 780000, 'active', NULL),
 ('Room 507', 5, 1, 780000, 'occupied', NULL); -- Set to occupied
+
+
+INSERT INTO users (
+    user_name, password, email_address, contact_no, full_name, birthday, 
+    gender, city, address, role
+) VALUES
+('nurse41', 'password123', 'nurse41@example.com', 9123456781, 'Nguyễn Thị Minh Anh', '1990-01-15T00:00:00Z', 'female', 'Ho Chi Minh', '123 Đường Láng Hạ', 'nurse'),
+('nurse42', 'password123', 'nurse42@example.com', 9123456782, 'Trần Thị Hồng', '1988-05-20T00:00:00Z', 'female', 'Ho Chi Minh', '45 Nguyễn Văn Cừ', 'nurse'),
+('nurse43', 'password123', 'nurse43@example.com', 9123456783, 'Lê Văn Tú', '1992-03-10T00:00:00Z', 'male', 'Ho Chi Minh', '67 Hải Phòng', 'nurse'),
+('nurse44', 'password123', 'nurse44@example.com', 9123456784, 'Phạm Thị Lan', '1994-07-25T00:00:00Z', 'female', 'Ho Chi Minh', '89 Đường Mậu Thân', 'nurse'),
+('nurse45', 'password123', 'nurse45@example.com', 9123456785, 'Hoàng Minh Đức', '1996-09-14T00:00:00Z', 'male', 'Ho Chi Minh', '12 Lê Hồng Phong', 'nurse'),
+('nurse46', 'password123', 'nurse46@example.com', 9123456786, 'Võ Thị Thanh', '1985-12-08T00:00:00Z', 'female', 'Ho Chi Minh', '34 Hoàng Hoa Thám', 'nurse'),
+('nurse47', 'password123', 'nurse47@example.com', 9123456787, 'Nguyễn Văn Hòa', '1993-04-18T00:00:00Z', 'male', 'Ho Chi Minh', '78 Cách Mạng Tháng 8', 'nurse'),
+('nurse48', 'password123', 'nurse48@example.com', 9123456788, 'Đặng Thị Hương', '1991-11-11T00:00:00Z', 'female', 'Ho Chi Minh', '56 Nguyễn Trãi', 'nurse'),
+('nurse49', 'password123', 'nurse49@example.com', 9123456789, 'Lý Văn Khánh', '1989-02-22T00:00:00Z', 'male', 'Ho Chi Minh', '90 Điện Biên Phủ', 'nurse'),
+('nurse50', 'password123', 'nurse50@example.com', 9123456790, 'Phan Thị Nga', '1995-06-30T00:00:00Z', 'female', 'Ho Chi Minh', '23 Võ Thị Sáu', 'nurse',);

@@ -19,10 +19,10 @@
     $sql = "";
     switch ($page_type) {
       case 'guest':
-        $sql = "SELECT * FROM `dim_user` WHERE `role` = 'patient' AND status <> 'deleted'";
+        $sql = "SELECT * FROM `dim_user` WHERE `role` = 'patient' AND status <> 'deleted' ORDER BY full_name DESC";
         break;
       case 'employee':
-        $sql = "SELECT * FROM `dim_user` WHERE `role` <> 'patient' AND status <> 'deleted'";
+        $sql = "SELECT * FROM `dim_user` WHERE `role` <> 'patient' AND status <> 'deleted' ORDER BY full_name DESC";
         break;
       
       default:

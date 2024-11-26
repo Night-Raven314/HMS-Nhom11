@@ -24,7 +24,9 @@
           ON stock.updated_by = usr.user_id
       WHERE
         (timestampdiff(day, stock.created_at, CURRENT_TIMESTAMP()) <= 30 OR stock.status = 'active')
-        AND `item_id` = '$post_id'";
+        AND `item_id` = '$post_id'
+      ORDER BY
+        stock.created_at DESC";
     if($sql) {
       $result = $conn->query($sql);
       if ($result) { 

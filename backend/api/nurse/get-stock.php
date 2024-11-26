@@ -18,7 +18,9 @@
       LEFT JOIN `dim_user` usr
         ON stock.updated_by = usr.user_id
     WHERE
-      stock.status = 'active'";
+      stock.status = 'active'
+    ORDER BY
+      stock.created_at DESC";
   if($sql) {
     $result = $conn->query($sql);
     if ($result) { 

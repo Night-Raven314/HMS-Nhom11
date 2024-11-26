@@ -16,7 +16,7 @@
   if ($data) {
     $page_type = mysqli_real_escape_string($conn, $data['pageType']);
     // Process the form data (e.g., save to database, send email, etc.)
-    $sql = "SELECT * FROM `dim_" . $page_type . "` WHERE status <> 'deleted'";
+    $sql = "SELECT * FROM `dim_" . $page_type . "` WHERE status <> 'deleted' ORDER BY item_name DESC";
     if($sql) {
       $result = $conn->query($sql);
       if ($result) { 

@@ -75,7 +75,9 @@ if ($data) {
         ON appt.appt_id = mhsm.appt_id
       WHERE
         appt.status <> 'deleted'
-      AND appt.faculty_id = '$post_id'";
+      AND appt.faculty_id = '$post_id'
+      ORDER BY
+        appt.appt_datetime DESC";
   if ($sql) {
     $result = $conn->query($sql);
     if ($result) {

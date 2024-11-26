@@ -63,7 +63,9 @@
             ON fac.item_id = itm.item_id
       WHERE
         fac.ptn_log_id = '$ptn_log_id'
-        AND fac.status <> 'deleted'";
+        AND fac.status <> 'deleted'
+      ORDER BY
+        fac.created_at DESC";
     if($sql) {
       $result = $conn->query($sql);
       if ($result) { 

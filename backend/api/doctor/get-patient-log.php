@@ -38,7 +38,9 @@
         ON fac.fac_id = log.faculty_id
     WHERE
       ptn_log_id = '$post_id'
-      AND log.status <> 'deleted'";
+      AND log.status <> 'deleted'
+    ORDER BY
+      log.created_at DESC";
     if($sql) {
       $result = $conn->query($sql);
       if ($result) { 
