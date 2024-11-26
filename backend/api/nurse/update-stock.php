@@ -22,6 +22,9 @@
       $post_amount = mysqli_real_escape_string($conn, $row['amount']);
       $post_stock_note = mysqli_real_escape_string($conn, $row['note']);
 
+      $sub_sql_delete = "UPDATE `fact_item_stock` SET `status` = 'deleted' WHERE item_id = '$post_item_id'";
+      mysqli_query($conn, $sub_sql_delete);
+
       $sub_sql_create = "INSERT INTO `fact_item_stock` (`item_id`, `change_type`, `amount_changed`, `stock_note`) VALUES ('$post_item_id', '$post_action', '$post_amount', '$post_stock_note')";
       mysqli_query($conn, $sub_sql_create);
 
