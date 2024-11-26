@@ -23,8 +23,8 @@
         LEFT JOIN `dim_user` usr
           ON stock.updated_by = usr.user_id
       WHERE
-        (timestampdiff(day, created_at, CURRENT_TIMESTAMP()) <= 30 OR status = 'active')
-        AND `item_id` = $post_id";
+        (timestampdiff(day, stock.created_at, CURRENT_TIMESTAMP()) <= 30 OR stock.status = 'active')
+        AND `item_id` = '$post_id'";
     if($sql) {
       $result = $conn->query($sql);
       if ($result) { 
