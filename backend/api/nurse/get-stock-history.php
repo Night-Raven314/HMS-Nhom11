@@ -17,7 +17,7 @@
     $post_id = $data['item_id'] ? mysqli_real_escape_string($conn, $data['item_id']) : null;
     // Process the form data (e.g., save to database, send email, etc.)
     $sql = "SELECT
-        usr.full_name AS updated_by,
+        usr.full_name AS updated_by_user,
         stock.*
       FROM `fact_item_stock` stock
         LEFT JOIN `dim_user` usr
