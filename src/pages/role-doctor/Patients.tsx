@@ -8,6 +8,7 @@ import { convertISOToDateTime, getGenderName, getItemTypeName } from "../../help
 import { DoctorSidebar } from "../../components/common/DoctorSidebar";
 import { UserSession } from "../../helpers/global";
 import { useNavigate } from "react-router-dom";
+import { NurseSidebar } from "../../components/common/NurseSidebar";
 
 export type PatientListType = {
   doctor_id: string;
@@ -78,53 +79,60 @@ export const DoctorPatients: FC = () => {
         </title>
       </Helmet>
 
-      <div className="main-background">
-        <div className="page-container">
-          <div className="page-sidebar">
-            <DoctorSidebar selectedItem={"patients"} />
-          </div>
-          <div className="page-content">
-            <PageNavbar
-              navbarTitle={`${pageTerm}`}
-              searchRequest={(keyword) => {setSearchKeyword(keyword)}}
-              ref={navbarRef}
-            />
-            <div className="content">
-              <div className="hms-table">
-                <div className="table-header">
-                  <div className="header-title">Danh sách bệnh nhân đã khám trên khoa</div>
-                </div>
-                <div className="table-body">
-                  <table>
-                    <thead>
-                      <tr>
-                        <th style={{ width: "120px" }}>Bệnh nhân</th>
-                        <th style={{ width: "120px" }}>Số điện thoại</th>
-                        <th style={{ width: "50px" }}>Giới tính</th>
-                        <th style={{ width: "120px" }}>Bác sỹ khám lần cuối</th>
-                        <th style={{ width: "100px" }}>Chuyên khoa</th>
-                        <th style={{ width: "200px" }}>Ghi chú</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {patientListFiltered.map((patient, index) => (
-                        <tr key={index} style={{cursor: "pointer"}} onClick={() => openPatientInfo(patient.patient_id)}>
-                          <td>{patient.patient_name}</td>
-                          <td>{patient.contact_no}</td>
-                          <td>{getGenderName(patient.gender)}</td>
-                          <td>{patient.doctor_name}</td>
-                          <td>{patient.fac_name}</td>
-                          <td>{patient.med_note}</td>
+      {UserSession ? (
+        <div className="main-background">
+          <div className="page-container">
+            <div className="page-sidebar">
+              {UserSession.auth_user_role === "doctor" ? (
+                <DoctorSidebar selectedItem={"patients"} />
+              ) : ""}
+              {UserSession.auth_user_role === "nurse" ? (
+                <NurseSidebar selectedItem={"patients"} />
+              ) : ""}
+            </div>
+            <div className="page-content">
+              <PageNavbar
+                navbarTitle={`${pageTerm}`}
+                searchRequest={(keyword) => {setSearchKeyword(keyword)}}
+                ref={navbarRef}
+              />
+              <div className="content">
+                <div className="hms-table">
+                  <div className="table-header">
+                    <div className="header-title">Danh sách bệnh nhân đã khám trên khoa</div>
+                  </div>
+                  <div className="table-body">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th style={{ width: "120px" }}>Bệnh nhân</th>
+                          <th style={{ width: "120px" }}>Số điện thoại</th>
+                          <th style={{ width: "50px" }}>Giới tính</th>
+                          <th style={{ width: "120px" }}>Bác sỹ khám lần cuối</th>
+                          <th style={{ width: "100px" }}>Chuyên khoa</th>
+                          <th style={{ width: "200px" }}>Ghi chú</th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                      </thead>
+                      <tbody>
+                        {patientListFiltered.map((patient, index) => (
+                          <tr key={index} style={{cursor: "pointer"}} onClick={() => openPatientInfo(patient.patient_id)}>
+                            <td>{patient.patient_name}</td>
+                            <td>{patient.contact_no}</td>
+                            <td>{getGenderName(patient.gender)}</td>
+                            <td>{patient.doctor_name}</td>
+                            <td>{patient.fac_name}</td>
+                            <td>{patient.med_note}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      ) : ""}
 
     </>
   )

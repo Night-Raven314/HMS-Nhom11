@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FC } from "react";
 import { faCalendar, faClipboard } from "@fortawesome/free-regular-svg-icons";
-import { faBookMedical, faClock, faIdBadge, faKitMedical, faMoneyBill, faNotesMedical, faPills, faUserPen, faUsers } from "@fortawesome/free-solid-svg-icons";
+import { faBookMedical, faClock, faIdBadge, faKitMedical, faMoneyBill, faNotesMedical, faPills, faUserPen, faUsers, faWarehouse } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 export type NurseSidebarProps = {
@@ -66,6 +66,18 @@ export const NurseSidebar:FC<NurseSidebarProps> = ({selectedItem}) => {
                 </div>
 
                 <span className="side-text">Quản lý lịch làm việc</span>
+              </div>
+            </Link>
+          </li>
+
+          <li className="nav-item">
+            <Link to="/role-nurse/stock">
+              <div className={`nav-link text-white ${selectedItem === "stock" ? "active bg-gradient-primary" : ""}`}>
+                <div className="side-icon">
+                  <FontAwesomeIcon icon={faWarehouse} />
+                </div>
+
+                <span className="side-text">Quản lý kho hàng</span>
               </div>
             </Link>
           </li>

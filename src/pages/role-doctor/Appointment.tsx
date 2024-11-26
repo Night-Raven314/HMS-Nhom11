@@ -10,6 +10,7 @@ import { DoctorSidebar } from "../../components/common/DoctorSidebar";
 import { UserSession } from "../../helpers/global";
 import { useNavigate } from "react-router-dom";
 import { PatientSidebar } from "../../components/common/PatientSidebar";
+import { NurseSidebar } from "../../components/common/NurseSidebar";
 
 export type ApptListType = {
   appt_id: string,
@@ -81,6 +82,9 @@ export const DoctorAppointment: FC = () => {
             <div className="page-sidebar">
               {UserSession.auth_user_role === "doctor" ? (
                 <DoctorSidebar selectedItem={"appointment"} />
+              ) : ""}
+              {UserSession.auth_user_role === "nurse" ? (
+                <NurseSidebar selectedItem={"appointment"} />
               ) : ""}
               {UserSession.auth_user_role === "patient" ? (
                 <PatientSidebar selectedItem={"appointment"} />

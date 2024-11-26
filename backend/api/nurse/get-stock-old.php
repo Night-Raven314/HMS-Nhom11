@@ -15,7 +15,7 @@
   $data = json_decode($input, true);
   if ($data) {
     // Process the form data (e.g., save to database, send email, etc.)
-    $sql = "SELECT item_id, amount_final FROM fact_item_stock WHERE status = 'active'";
+    $sql = "SELECT * FROM fact_item_stock WHERE (timestampdiff(day, created_at, CURRENT_TIMESTAMP()) <= 30 OR status = 'active')";
     if($sql) {
       $result = $conn->query($sql);
       if ($result) { 
