@@ -320,7 +320,7 @@ export const PrescriptionTable:FC<PrescriptionProps> = ({
                               {formikProps.values.meds.length > 1 ? (
                                 <button
                                   type="button"
-                                  className="btn btn-gradient delete-btn"
+                                  className="btn btn-gradient form-delete-btn"
                                   onClick={() => {
                                     remove(index)
                                   }}

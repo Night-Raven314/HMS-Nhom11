@@ -10,6 +10,7 @@ import { MedHistRequestType } from "../pages/PatientLog";
 import { CreatePrescriptionRequestType } from "../components/pages/PatientLog/Prescription";
 import { CreateServiceRequestType, RoomUpdateRequestType } from "../components/pages/PatientLog/Service";
 import { ApptRequestType } from "../pages/role-patient/Appointment";
+import { StockRequestType } from "../pages/role-nurse/Stock";
 
 export const hmsAxios = Axios.create({
   baseURL: `/HMS-Nhom11/backend/api/`,
@@ -256,6 +257,32 @@ export const apiGetItem = async(pageType:string) => {
     );
     if(res.data) {
       data = res.data.data;
+    }
+  } catch (err:any) {
+    error = err.response.data.message;
+  }
+  return { data, error };
+}
+
+export const apiGetAllItem = async() => {
+  let error = null;
+  let data = null;
+  try {
+    const [dataMeds, dataItem] = await Promise.all([
+      hmsAxios.post(
+        "/admin/get-item.php",
+        JSON.stringify({pageType: "meds"})
+      ),
+      hmsAxios.post(
+        "/admin/get-item.php",
+        JSON.stringify({pageType: "item"})
+      ),
+    ])
+    if(dataMeds.data && dataItem.data) {
+      data = {
+        meds: dataMeds.data.data,
+        item: dataItem.data.data
+      };
     }
   } catch (err:any) {
     error = err.response.data.message;
@@ -715,6 +742,39 @@ export const apiUpdatePatientAppt = async(request:ApptRequestType) => {
   try {
     const res = await hmsAxios.post(
       "/patient/update-appointment.php",
+      JSON.stringify(request)
+    );
+    if(res.data) {
+      data = res.data.data;
+    }
+  } catch (err:any) {
+    error = err.response.data.message;
+  }
+  return { data, error };
+}
+
+// Stocks
+export const apiGetNurseStock = async() => {
+  let error = null;
+  let data = null;
+  try {
+    const res = await hmsAxios.post(
+      "/nurse/get-stock.php"
+    );
+    if(res.data) {
+      data = res.data.data;
+    }
+  } catch (err:any) {
+    error = err.response.data.message;
+  }
+  return { data, error };
+}
+export const apiUpdateNurseStock = async(request:StockRequestType) => {
+  let error = null;
+  let data = null;
+  try {
+    const res = await hmsAxios.post(
+      "/nurse/update-stock.php",
       JSON.stringify(request)
     );
     if(res.data) {

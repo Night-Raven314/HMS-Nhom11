@@ -16,27 +16,18 @@
     $errorMsg = "";
     $sql = "";
     // Access form values
-    $post_action = mysqli_real_escape_string($conn, $data['action']); //addition or deduction
-    foreach ($data as $row) {
+    foreach ($data["request"] as $row) {
       $post_item_id = mysqli_real_escape_string($conn, $row['item_id']);
+      $post_action = mysqli_real_escape_string($conn, $row['action']); //addition or deduction
       $post_amount = mysqli_real_escape_string($conn, $row['amount']);
       $post_stock_note = mysqli_real_escape_string($conn, $row['note']);
 
-      $sub_sql_addition = "INSERT INTO `fact_item_stock` (`item_id`, `change_type`, `amount_changed`, `stock_note`) VALUES ('$post_item_id', '$post_action', '$post_amount', '$post_stock_note')";
+      $sub_sql_create = "INSERT INTO `fact_item_stock` (`item_id`, `change_type`, `amount_changed`, `stock_note`) VALUES ('$post_item_id', '$post_action', '$post_amount', '$post_stock_note')";
       mysqli_query($conn, $sub_sql_create);
 
     }
     
-    if($sql) {
-      $result = mysqli_query($conn, $sql);
-
-      if ($result) {
-        echo json_encode(["status" => "success", "data" => "success"]);
-      } else {
-        http_response_code(500);
-        echo json_encode(["status" => "error", "message" => "invalidCredential"]);
-      }
-    }
+    echo json_encode(["status" => "success", "data" => "success"]);
 
 } else {
     // Handle error if no data or missing expected values
