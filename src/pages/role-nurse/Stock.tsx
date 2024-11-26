@@ -12,7 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { CustomInput, SelectOptionType } from "../../components/common/CustomInput";
 import { apiGetAllItem, apiGetNurseStock, apiGetNurseStockInfo, apiUpdateNurseStock } from "../../helpers/axios";
 import { ItemListType } from "../role-admin/Item";
-import { convertISOToDateTime } from "../../helpers/utils";
+import { convertISOToDateTime, stockChangeName } from "../../helpers/utils";
 
 export type StockFullListType = {
   stock_id: string;
@@ -47,8 +47,19 @@ export type StockRequestType = {
   request: StockFormType[];
 }
 export type StockInfoType = {
-
+  updated_by: string;
+  updated_by_user: string;
+  stock_id: string;
+  item_id: string;
+  change_type: string;
+  amount_changed: string;
+  amount_final: string;
+  stock_note: string;
+  created_at: string;
+  updated_at: string | null;
+  status: string;
 }
+
 
 export const NurseStock:FC = () => {
   const {openToast} = useToast();
@@ -94,7 +105,7 @@ export const NurseStock:FC = () => {
     if(getItem.error) {
       openToast("error", "Lỗi", "Đã xảy ra lỗi khi lấy danh sách tầng!", 5000);
     } else if (getItem.data) {
-
+      setViewInfo(getItem.data)
     }
   }
 
@@ -413,31 +424,31 @@ export const NurseStock:FC = () => {
         type="modal"
         ref={infoModalRef}
       >
-        {/* <div className="body-content">
+        <div className="body-content">
           {viewInfo.length ? (
             <>
-              <div className="hms-table no-header full-height" style={{marginBottom: "30px"}}>
+              <div className="hms-table no-header full-height">
                 <div className="table-body">
                   <table>
                     <thead>
                       <tr>
-                        <th style={{ width: "150px" }}>Tên sản phẩm</th>
-                        <th style={{ width: "140px" }}>Đơn vị</th>
-                        <th style={{ width: "50px" }}>Số lượng</th>
-                        <th style={{ width: "100px" }}>Đơn giá</th>
-                        <th style={{ width: "100px" }}>Tổng</th>
-                        <th style={{ width: "140px" }}>Ghi chú</th>
+                        <th style={{ width: "150px" }}>Người cập nhật</th>
+                        <th style={{ width: "100px" }}>Thay đổi</th>
+                        <th style={{ width: "100px" }}>Số lượng thay đổi</th>
+                        <th style={{ width: "100px" }}>Số lượng cuối cùng</th>
+                        <th style={{ width: "200px" }}>Ghi chú</th>
+                        <th style={{ width: "200px" }}>Thời gian cập nhật</th>
                       </tr>
                     </thead>
                     <tbody>
                       {viewInfo.map((payment, index) => (
                         <tr key={index}>
-                          <td>{payment.full_name}</td>
-                          <td>{payment.fac_name}</td>
-                          <td>{payment.amount}</td>
-                          <td>{payment.appt_fee}</td>
-                          <td>{payment.total_value}</td>
-                          <td>{payment.item_note}</td>
+                          <td>{payment.updated_by_user}</td>
+                          <td>{stockChangeName(payment.change_type)}</td>
+                          <td>{payment.amount_changed}</td>
+                          <td>{payment.amount_final}</td>
+                          <td>{payment.stock_note}</td>
+                          <td>{convertISOToDateTime(payment.created_at)}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -448,7 +459,7 @@ export const NurseStock:FC = () => {
           ) : (
             <div>Không có dữ liệu</div>
           )}
-        </div> */}
+        </div>
         <div className="body-footer">
           <div className="button-list">
             <button type="button" className="btn btn-outline" onClick={() => toggleModal("closeInfo")}>Đóng</button>

@@ -85,6 +85,17 @@ export const getPaymentStatus = (status:string) => {
       return "Không xác định";
   }
 }
+export const stockChangeName = (name:string) => {
+  switch (name) {
+    case "addition":
+      return "Thêm"
+    case "deduction":
+      return "Giảm"
+  
+    default:
+      break;
+  }
+}
 
 export const convertISOToDateTime = (date:string) => {
   return format(new Date(date), "dd/MM/yyyy - HH:mm");
