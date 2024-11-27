@@ -22,6 +22,7 @@ import { PatientLog } from "./pages/PatientLog";
 import { PatientAppointment } from "./pages/role-patient/Appointment";
 import { PatientPaymentLog } from "./pages/role-patient/PaymentLog";
 import { NurseStock } from "./pages/role-nurse/Stock";
+import { PaymentPage } from "./pages/Payment";
 
 export const App:FC = () => {
   const [checkLogin, setCheckLogin] = useState<boolean>(false);
@@ -151,9 +152,10 @@ export const App:FC = () => {
       path: "/role-patient/payment-log",
       element: <PatientPaymentLog />,
     },
+    // Payment
     {
-      path: "/role-patient/",
-      element: <div>To be added</div>,
+      path: "/payment/:type/:id",
+      element: <PaymentPage />,
     },
   ]);
   return (

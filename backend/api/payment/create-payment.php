@@ -30,7 +30,7 @@
         $sql = "INSERT INTO `fact_payment` (`payment_type`, `appt_id`, `amount`, `payment_desc`, `payment_status`) VALUES ('prepaid', '$post_id', $post_total_amount, '$post_payment_desc', 'pending')";
         break;
 
-      case 'service':
+      case 'patient-log':
 
         $sql = "INSERT INTO `fact_payment` (`payment_type`, `ptn_log_id`, `amount`, `payment_desc`, `payment_status`) VALUES ('postpaid', '$post_id', $post_total_amount, '$post_payment_desc', 'pending')";
         break;
