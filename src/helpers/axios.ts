@@ -6,7 +6,7 @@ import { ItemRequestType } from "../pages/role-admin/Item";
 import { FacultyRequestType } from "../pages/role-admin/Faculty";
 import { DynamicRequestType, ScheduleFormType, ScheduleRequestType } from "../pages/role-doctor/Schedule";
 import { FloorRequestType, RoomAPIRequestType } from "../pages/role-admin/Building";
-import { MedHistRequestType } from "../pages/PatientLog";
+import { CreatePaymentRequestType, MedHistRequestType } from "../pages/PatientLog";
 import { CreatePrescriptionRequestType } from "../components/pages/PatientLog/Prescription";
 import { CreateServiceRequestType, RoomUpdateRequestType } from "../components/pages/PatientLog/Service";
 import { ApptRequestType } from "../pages/role-patient/Appointment";
@@ -808,6 +808,40 @@ export const apiGetNurseStockInfo = async(itemId:string) => {
     const res = await hmsAxios.post(
       "/nurse/get-stock-history.php",
       JSON.stringify({item_id: itemId})
+    );
+    if(res.data) {
+      data = res.data.data;
+    }
+  } catch (err:any) {
+    error = err.response.data.message;
+  }
+  return { data, error };
+}
+// Payment
+export const apiGetPaymentDetailsPtnLog = async(patientLogId:string) => {
+  let error = null;
+  let data = null;
+  try {
+    const res = await hmsAxios.post(
+      "/payment/get-payment-details-ptnlog.php",
+      JSON.stringify({ptn_log_id: patientLogId})
+    );
+    if(res.data) {
+      data = res.data.data;
+    }
+  } catch (err:any) {
+    error = err.response.data.message;
+  }
+  return { data, error };
+}
+
+export const apiCreatePayment = async(request:CreatePaymentRequestType) => {
+  let error = null;
+  let data = null;
+  try {
+    const res = await hmsAxios.post(
+      "/payment/create-payment.php",
+      JSON.stringify(request)
     );
     if(res.data) {
       data = res.data.data;

@@ -7,7 +7,7 @@ import { UserAccountType } from "../helpers/types";
 import { useParams } from "react-router-dom";
 import { useToast } from "../components/common/CustomToast";
 import { PatientLogType } from "./PatientInfo";
-import { apiCompleteTreatment, apiGetMedHistList, apiGetPatientLog, apiGetUserAccount, apiUpdateMedHist } from "../helpers/axios";
+import { apiCompleteTreatment, apiCreatePayment, apiGetMedHistList, apiGetPatientLog, apiGetPaymentDetailsPtnLog, apiGetUserAccount, apiUpdateMedHist } from "../helpers/axios";
 import { faCalendar, faNotesMedical, faUserDoctor, faHospital, faArrowsRotate, faNoteSticky, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { calculateAge, convertISOToDateTime } from "../helpers/utils";
@@ -18,6 +18,7 @@ import { PrescriptionTable } from "../components/pages/PatientLog/Prescription";
 import { ServiceTable } from "../components/pages/PatientLog/Service";
 import { NurseSidebar } from "../components/common/NurseSidebar";
 import { PatientSidebar } from "../components/common/PatientSidebar";
+import { format } from "date-fns";
 
 export type MedHistList = {
   med_hist_id: string;
@@ -57,6 +58,13 @@ export type MedHistRequestType = MedHistForm & {
   ptn_log_id?: string,
   doctor_id?:string,
   patient_id?:string
+}
+
+export type CreatePaymentRequestType = {
+  action: string,
+  post_id: string,
+  total_amount: number,
+  payment_desc: string
 }
 
 export const PatientLog:FC = () => {
@@ -221,7 +229,33 @@ export const PatientLog:FC = () => {
         openToast("error", "Lỗi", "Đã xảy ra lỗi đánh dấu hoàn thành!", 5000);
       } else if (result.data) {
         getPatientLog();
+        createPayment();
         confirmCompleteModalRef.current?.closeModal();
+      }
+    }
+  }
+  const createPayment = async() => {
+    if(patientLog) {
+      const result = await apiGetPaymentDetailsPtnLog(patientLog.ptn_log_id);
+      if(result.error) {
+        openToast("error", "Lỗi", "Đã xảy ra lỗi xử lý!", 5000);
+      } else if (result.data) {
+        let tmpTotalAmount = 0;
+        result.data.forEach((item:any) => {
+          tmpTotalAmount += Number(item.total_value);
+        })
+        const request:CreatePaymentRequestType = {
+          action: "patient-log",
+          post_id: patientLog.ptn_log_id,
+          total_amount: tmpTotalAmount,
+          payment_desc: `Thanh toán viện phí ngày ${format(new Date(), "dd/MM/yyyy HH:mm")}`
+        }
+        const create = await apiCreatePayment(request);
+        if(create.error) {
+          openToast("error", "Lỗi", "Đã xảy ra lỗi xử lý!", 5000);
+        } else if (create.data) {
+          
+        }
       }
     }
   }
@@ -285,6 +319,7 @@ export const PatientLog:FC = () => {
                       {userRole === "doctor" ? (
                         <div className="user-action">
                           <button className="btn btn-gradient" disabled={patientLog && patientLog.status === "completed" ? true : false} onClick={() => {confirmCompleteModalRef.current?.openModal()}}>{patientLog && patientLog.status === "completed" ? "Đã hoàn thành" : "Hoàn thành"} điều trị</button>
+                          <button onClick={() => createPayment()}>Test</button>
                         </div>
                       ) : ""}
                     </div>
@@ -594,7 +629,7 @@ export const PatientLog:FC = () => {
         </div>
         <div className="body-footer">
           <div className="button-list">
-            <button type="button" className="btn btn-outline" onClick={() => toggleMedHistModal("close")}>Không</button>
+            <button type="button" className="btn btn-outline" onClick={() => confirmCompleteModalRef.current?.closeModal()}>Không</button>
             <button type="button" className="btn btn-gradient" onClick={() => completeTreatment()}>Chắc chắn</button>
           </div>
         </div>

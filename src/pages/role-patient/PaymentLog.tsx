@@ -5,7 +5,7 @@ import { NavbarHandles, PageNavbar } from "../../components/common/PageNavbar";
 import { CustomModal, CustomModalHandles } from "../../components/common/CustomModal";
 import { apiGetPatientPaymentLog, apiGetPatientPaymentDetail } from "../../helpers/axios";
 import { useToast } from "../../components/common/CustomToast";
-import { getItemTypeName } from "../../helpers/utils";
+import { getItemTypeName, getPaymentStatus } from "../../helpers/utils";
 import { UserSession } from "../../helpers/global";
 
 export type PaymentListType = {
@@ -156,17 +156,28 @@ export const PatientPaymentLog: FC = () => {
                         <th style={{ width: "120px" }}>Loại giao dịch</th>
                         <th style={{ width: "100px" }}>Mã tham chiếu</th>
                         <th style={{ width: "100px" }}>Giá trị</th>
+                        <th style={{ width: "100px" }}>Thanh toán</th>
                       </tr>
                     </thead>
                     <tbody>
                       {paymentListFiltered.map((payment) => (
-                        <tr key={payment.payment_id} onClick={() => toggleViewModal("open", payment.payment_id)} style={{cursor: "pointer"}}>
-                          <td className="text-color">{payment.payment_id}</td>
-                          <td>{payment.created_at}</td>
-                          <td>{payment.updated_at ? payment.updated_at : ""}</td>
+                        <tr key={payment.payment_id} style={{cursor: "pointer"}}>
+                          <td className="text-color" onClick={() => toggleViewModal("open", payment.payment_id)}>{payment.payment_id}</td>
+                          <td onClick={() => toggleViewModal("open", payment.payment_id)}>{payment.created_at}</td>
+                          <td onClick={() => toggleViewModal("open", payment.payment_id)}>{payment.updated_at ? payment.updated_at : ""}</td>
                           <td>{getItemTypeName(payment.payment_type)}</td>
                           <td>{payment.bank_trans_code}</td>
                           <td>{payment.amount}</td>
+                          <td>
+                            <div className={`${payment.payment_status}-color`}>{getPaymentStatus(payment.payment_status ? payment.payment_status : "")}</div>
+                            {payment.payment_status === "pending" || payment.payment_status === "failed" ? (
+                              <div className="table-button-list full">
+                                <button onClick={() => {}}>
+                                  Thanh toán
+                                </button>
+                              </div>
+                            ) : ""}
+                          </td>
                         </tr>
                       ))}
                     </tbody>
