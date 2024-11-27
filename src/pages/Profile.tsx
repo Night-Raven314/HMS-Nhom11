@@ -16,6 +16,8 @@ import { UserFormType, UserRequestType } from "./role-admin/Guest";
 import { CustomModal, CustomModalHandles } from "../components/common/CustomModal";
 import { getRoleName } from "../helpers/utils";
 import { format } from "date-fns";
+import { NurseSidebar } from "../components/common/NurseSidebar";
+import { PatientSidebar } from "../components/common/PatientSidebar";
 
 type DateInfoType = {
   created: string,
@@ -157,6 +159,12 @@ export const ProfilePage:FC = () => {
               ) : ""}
               {currentUser.role === "doctor" ? (
                 <DoctorSidebar selectedItem="" />
+              ) : ""}
+              {currentUser.role === "nurse" ? (
+                <NurseSidebar selectedItem="" />
+              ) : ""}
+              {currentUser.role === "patient" ? (
+                <PatientSidebar selectedItem="" />
               ) : ""}
             </div>
             <div className="page-content">

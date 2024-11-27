@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { DoctorSidebar } from "../components/common/DoctorSidebar";
 import { PageNavbar } from "../components/common/PageNavbar";
-import { convertISOToDateTime } from "../helpers/utils";
+import { calculateAge, convertISOToDateTime } from "../helpers/utils";
 import { UserSession } from "../helpers/global";
 import { CustomInput } from "../components/common/CustomInput";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,6 +12,8 @@ import { UserAccountType } from "../helpers/types";
 import { apiGetFaculty, apiGetPatientLogList, apiGetUserAccount, apiUpdatePatientLog, UpdatePatientLogType } from "../helpers/axios";
 import { useToast } from "../components/common/CustomToast";
 import { FacultyListType } from "./role-admin/Faculty";
+import { NurseSidebar } from "../components/common/NurseSidebar";
+import { PatientSidebar } from "../components/common/PatientSidebar";
 
 export type PatientLogType = {
   ptn_log_id: string;
@@ -93,6 +95,12 @@ export const PatientInfo:FC = () => {
             {UserSession?.auth_user_role === "doctor" ? (
               <DoctorSidebar selectedItem={""} />
             ) : ""}
+            {UserSession?.auth_user_role === "nurse" ? (
+              <NurseSidebar selectedItem={""} />
+            ) : ""}
+            {UserSession?.auth_user_role === "patient" ? (
+              <PatientSidebar selectedItem={"patientlog"} />
+            ) : ""}
           </div>
           <div className="page-content">
             <PageNavbar
@@ -102,18 +110,20 @@ export const PatientInfo:FC = () => {
             />
             <div className="content">
               <div className="hms-page">
-                {userInfo ? (
+                {userInfo && UserSession ? (
                   <div className="profile-user-container">
                     <div className="user-avatar">
                       <img src="/image/default-avatar.png" />
                     </div>
                     <div className="user-info">
                       <div className="info-name">{userInfo.full_name}</div>
-                      {/* <div className="info-desc">69 tuổi</div> */}
+                      <div className="info-desc">{calculateAge(userInfo.birthday)} tuổi</div>
                     </div>
-                    <div className="user-action">
-                      <button className="btn btn-gradient" onClick={() => {createPatientLog()}}>Tạo hồ sơ khám</button>
-                    </div>
+                    {["doctor", "nurse"].includes(UserSession.auth_user_role) ? (
+                      <div className="user-action">
+                        <button className="btn btn-gradient" onClick={() => {createPatientLog()}}>Tạo hồ sơ khám</button>
+                      </div>
+                    ) : ""}
                   </div>
                 ) : ""}
                 <div className="title-container-with-action">
