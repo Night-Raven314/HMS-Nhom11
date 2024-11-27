@@ -60,6 +60,7 @@
           ON fac.item_id = item.item_id AND fac.item_type = 'item'
       WHERE
         fac.status = 'completed'
+        AND item.item_name IS NOT NULL
 
       UNION ALL
 
@@ -77,6 +78,7 @@
           ON fac.item_id = svcs.item_id AND fac.item_type = 'service'
       WHERE
         fac.status = 'completed'
+        AND svcs.item_name IS NOT NULL
 
       UNION ALL
 
@@ -104,6 +106,7 @@
           ON fac.item_id = room.room_id AND fac.item_type = 'room'
       WHERE
         fac.status = 'completed'
+        AND room.room_name IS NOT NULL
       )
       SELECT
       *
