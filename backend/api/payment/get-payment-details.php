@@ -87,7 +87,7 @@
       SELECT
           fac.ptn_log_id,
           room.room_name,
-          'room slot' AS unit,
+          'Ngày' AS unit,
           CASE
             WHEN timestampdiff(day, STR_TO_DATE(fac.start_datetime, '%Y-%m-%dT%H:%i:%s'), STR_TO_DATE(fac.end_datetime, '%Y-%m-%dT%H:%i:%s')) = 0 THEN 1
             WHEN timestampdiff(day, STR_TO_DATE(fac.start_datetime, '%Y-%m-%dT%H:%i:%s'), CURRENT_TIMESTAMP()) = 0 THEN 1
