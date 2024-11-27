@@ -14,6 +14,7 @@ import { PatientLogType } from "../../../pages/PatientInfo";
 
 export type ServiceProps = {
   patientLog: PatientLogType;
+  userRole: string;
   requestReload: () => void;
 }
 export type ServiceTableType = {
@@ -68,7 +69,7 @@ export type RoomUpdateRequestType = {
   end_time: string
 }
 
-export const ServiceTable:FC<ServiceProps> = ({patientLog, requestReload}) => {
+export const ServiceTable:FC<ServiceProps> = ({patientLog, requestReload, userRole}) => {
   const {openToast} = useToast();
   const [serviceTable, setServiceTable] = useState<ServiceTableType[]>([]);
   const [serviceList, setServiceList] = useState<ItemListType[]>([]);
@@ -380,7 +381,7 @@ export const ServiceTable:FC<ServiceProps> = ({patientLog, requestReload}) => {
         <div className="table-header">
           <div className="header-title">Dịch vụ</div>
           <div className="header-button">
-            {patientLog.status !== "completed" ? (
+            {patientLog.status !== "completed" && ["doctor", "nurse"].includes(userRole) ? (
               <button className="btn btn-outline-primary btn-sm" onClick={() => {toggleModal("open")}}>
                 Thêm dịch vụ
               </button>
@@ -395,7 +396,7 @@ export const ServiceTable:FC<ServiceProps> = ({patientLog, requestReload}) => {
                 <th style={{ width: "55px" }}>Đơn vị</th>
                 <th style={{ width: "45px" }}>Số lượng</th>
                 <th style={{ width: "150px" }}>Ghi chú</th>
-                {patientLog.status !== "completed" ? (
+                {patientLog.status !== "completed" && ["doctor", "nurse"].includes(userRole) ? (
                   <th style={{ width: "50px" }}>Thao tác</th>
                 ) : ""}
               </tr>
@@ -407,7 +408,7 @@ export const ServiceTable:FC<ServiceProps> = ({patientLog, requestReload}) => {
                   <td>{item.item_unit}</td>
                   <td>{item.amount}</td>
                   <td>{item.item_note}</td>
-                  {patientLog.status !== "completed" ? (
+                  {patientLog.status !== "completed" && ["doctor", "nurse"].includes(userRole) ? (
                     <td>
                       {!item.end_datetime ? (
                         <div className="table-button-list">

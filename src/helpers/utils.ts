@@ -1,5 +1,24 @@
 import { format } from "date-fns";
 
+export const calculateAge = (birthday: string): number => {
+  const birthDate = new Date(birthday);
+  const today = new Date();
+
+  // Calculate the year difference
+  let age = today.getFullYear() - birthDate.getFullYear();
+  // Check if the birthday has occurred this year
+  const monthDifference = today.getMonth() - birthDate.getMonth();
+  const dayDifference = today.getDate() - birthDate.getDate();
+
+  // Adjust if the birthday hasn't occurred yet this year
+  if (monthDifference < 0 || (monthDifference === 0 && dayDifference < 0)) {
+    age--;
+  }
+
+  return age;
+}
+
+
 export const getItemTypeName = (type:string) => {
   switch (type) {
     case "appointment":

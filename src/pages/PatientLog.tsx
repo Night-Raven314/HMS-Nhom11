@@ -10,12 +10,14 @@ import { PatientLogType } from "./PatientInfo";
 import { apiCompleteTreatment, apiGetMedHistList, apiGetPatientLog, apiGetUserAccount, apiUpdateMedHist } from "../helpers/axios";
 import { faCalendar, faNotesMedical, faUserDoctor, faHospital, faArrowsRotate, faNoteSticky, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { convertISOToDateTime } from "../helpers/utils";
+import { calculateAge, convertISOToDateTime } from "../helpers/utils";
 import { Formik, FormikProps, Form } from "formik";
 import { CustomInput } from "../components/common/CustomInput";
 import { CustomModal, CustomModalHandles } from "../components/common/CustomModal";
 import { PrescriptionTable } from "../components/pages/PatientLog/Prescription";
 import { ServiceTable } from "../components/pages/PatientLog/Service";
+import { NurseSidebar } from "../components/common/NurseSidebar";
+import { PatientSidebar } from "../components/common/PatientSidebar";
 
 export type MedHistList = {
   med_hist_id: string;
@@ -60,6 +62,7 @@ export type MedHistRequestType = MedHistForm & {
 export const PatientLog:FC = () => {
   const {openToast} = useToast();
   const {patientLogId} = useParams();
+  const [userRole, setUserRole] = useState<string | null>(null);
 
   const confirmCompleteModalRef = useRef<CustomModalHandles>(null);
   const medHistTableRef = useRef<HTMLTableSectionElement | null>(null);
@@ -226,6 +229,9 @@ export const PatientLog:FC = () => {
   useEffect(() => {
     getPatientLog();
     getMedHistList();
+    if(UserSession) {
+      setUserRole(UserSession.auth_user_role);
+    }
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
@@ -251,6 +257,12 @@ export const PatientLog:FC = () => {
             {UserSession?.auth_user_role === "doctor" ? (
               <DoctorSidebar selectedItem={""} />
             ) : ""}
+            {UserSession?.auth_user_role === "nurse" ? (
+              <NurseSidebar selectedItem={""} />
+            ) : ""}
+            {UserSession?.auth_user_role === "patient" ? (
+              <PatientSidebar selectedItem={""} />
+            ) : ""}
           </div>
           <div className="page-content">
             <PageNavbar
@@ -268,11 +280,13 @@ export const PatientLog:FC = () => {
                       </div>
                       <div className="user-info">
                         <div className="info-name">{userInfo.full_name}</div>
-                        {/* <div className="info-desc">69 tuổi</div> */}
+                        <div className="info-desc">{calculateAge(userInfo.birthday)} tuổi</div>
                       </div>
-                      <div className="user-action">
-                        <button className="btn btn-gradient" disabled={patientLog && patientLog.status === "completed" ? true : false} onClick={() => {confirmCompleteModalRef.current?.openModal()}}>{patientLog && patientLog.status === "completed" ? "Đã hoàn thành" : "Hoàn thành"} điều trị</button>
-                      </div>
+                      {userRole === "doctor" ? (
+                        <div className="user-action">
+                          <button className="btn btn-gradient" disabled={patientLog && patientLog.status === "completed" ? true : false} onClick={() => {confirmCompleteModalRef.current?.openModal()}}>{patientLog && patientLog.status === "completed" ? "Đã hoàn thành" : "Hoàn thành"} điều trị</button>
+                        </div>
+                      ) : ""}
                     </div>
                   ) : ""}
                   {patientLog ? (
@@ -350,7 +364,7 @@ export const PatientLog:FC = () => {
                       <div className="table-header">
                         <div className="header-title">Lịch sử kiểm tra sức khoẻ</div>
                         <div className="header-button">
-                          {patientLog && patientLog.status !== "completed" ? (
+                          {patientLog && patientLog.status !== "completed" && userRole && ["doctor", "nurse"].includes(userRole) ? (
                             <button className="btn btn-outline-primary btn-sm" onClick={() => toggleMedHistModal("open")}>
                             Tạo
                           </button>
@@ -368,7 +382,7 @@ export const PatientLog:FC = () => {
                               <th style={{ width: "75px" }}>SpO2</th>
                               <th style={{ width: "140px" }}>Ngày kiểm tra</th>
                               <th style={{ width: "200px" }}>Ghi chú</th>
-                              {patientLog && patientLog.status !== "completed" ? (
+                              {patientLog && patientLog.status !== "completed" && userRole === "doctor" ? (
                                 <th style={{ width: "50px" }}>Thao tác</th>
                               ) : ""}
                             </tr>
@@ -388,7 +402,7 @@ export const PatientLog:FC = () => {
                                 <td>{item.spo2}%</td>
                                 <td>{convertISOToDateTime(item.created_at)}</td>
                                 <td>{item.med_note}</td>
-                                {patientLog && patientLog.status !== "completed" ? (
+                                {patientLog && patientLog.status !== "completed" && userRole === "doctor" ? (
                                   <td>
                                     <div className="table-button-list">
                                       <button onClick={() => {toggleMedHistModal("openDelete", item.med_hist_id)}}>
@@ -407,6 +421,7 @@ export const PatientLog:FC = () => {
 
                   <div className="grid-pres" ref={presTableRef}>
                     <PrescriptionTable
+                      userRole={userRole}
                       selectedMedHistId={selectedMedHistId}
                       treatmentCompleted={patientLog && patientLog.status === "completed" ? true : false}
                     />
@@ -415,6 +430,7 @@ export const PatientLog:FC = () => {
                   <div className="grid-service">
                     {patientLog ? (
                       <ServiceTable
+                        userRole={userRole ? userRole : ""}
                         patientLog={patientLog}
                         requestReload={() => getPatientLog()}
                       />

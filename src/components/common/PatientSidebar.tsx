@@ -3,6 +3,7 @@ import { FC } from "react";
 import { faCalendar, faClipboard } from "@fortawesome/free-regular-svg-icons";
 import { faBookMedical, faClock, faIdBadge, faKitMedical, faMoneyBill, faNotesMedical, faPills, faUserPen, faUsers } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import { UserSession } from "../../helpers/global";
 
 export type PatientSidebarProps = {
   selectedItem: string;
@@ -41,17 +42,19 @@ export const PatientSidebar:FC<PatientSidebarProps> = ({selectedItem}) => {
             </Link>
           </li>
 
-          <li className="nav-item">
-            <Link to="/role-patient/patient-log">
-              <div className={`nav-link text-white ${selectedItem === "patientlog" ? "active bg-gradient-primary" : ""}`}>
-                <div className="side-icon">
-                  <FontAwesomeIcon icon={faKitMedical} />
-                </div>
+          {UserSession ? (
+            <li className="nav-item">
+              <Link to={"/patient-info/" + UserSession.auth_user_id}>
+                <div className={`nav-link text-white ${selectedItem === "patientlog" ? "active bg-gradient-primary" : ""}`}>
+                  <div className="side-icon">
+                    <FontAwesomeIcon icon={faKitMedical} />
+                  </div>
 
-                <span className="side-text">Lịch sử khám bệnh</span>
-              </div>
-            </Link>
-          </li>
+                  <span className="side-text">Lịch sử khám bệnh</span>
+                </div>
+              </Link>
+            </li>
+          ) : ""}
 
           <li className="nav-item">
             <Link to="/role-patient/payment-log">
