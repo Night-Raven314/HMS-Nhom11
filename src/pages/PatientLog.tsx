@@ -240,10 +240,7 @@ export const PatientLog:FC = () => {
       if(result.error) {
         openToast("error", "Lỗi", "Đã xảy ra lỗi xử lý!", 5000);
       } else if (result.data) {
-        let tmpTotalAmount = 0;
-        result.data.forEach((item:any) => {
-          tmpTotalAmount += Number(item.total_value);
-        })
+        let tmpTotalAmount = Number(result.data[0].total_value);
         const request:CreatePaymentRequestType = {
           action: "patient-log",
           post_id: patientLog.ptn_log_id,

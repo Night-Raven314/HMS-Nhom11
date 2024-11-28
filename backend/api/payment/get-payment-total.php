@@ -128,7 +128,7 @@
       )
 
       SELECT
-        SUM(CAST(total_value AS INT)) AS total_value
+        SUM(total_value) AS total_value
       FROM payment_details
       ";
     if($sql) {
