@@ -196,27 +196,30 @@ export const PatientAppointment: FC = () => {
   }
   const submitAppt = async(value:ApptFormType, action:string) => {
     if(UserSession) {
-      let request: ApptRequestType = {
-        ...value,
-        action: action,
-        appt_datetime: value.appt_datetime ? new Date(value.appt_datetime).toISOString() : "",
-        appt_fee: "45000",
-        auth_user_id: UserSession.auth_user_id
-      }
-      if(updateApptId) {
-        request.appt_id = updateApptId
-      }
-      if(availableDoctor.length > 1) {
-        const updateResponse = await apiUpdatePatientAppt(request);
-        if(updateResponse.error) {
-          openToast("error", "Lỗi", "Đã xảy ra lỗi khi cập nhật thông tin!", 5000);
-        } else if (updateResponse.data) {
-          toggleModal("close");
-          openToast("success", "Thành công", updateApptId ? "Lịch hẹn đã được cập nhật" : "Đã đặt hẹn thành công!", 5000);
-          getApptList();
-          const getApptId = await apiGetLastApptId(UserSession.auth_user_id);
-          if(getApptId.data) {
-            createPayment(getApptId.data[0].appt_id, value);
+      const findSelectedDoctor = availableDoctorList.find(doc => doc.doctor_id === value.doctor_id);
+      if(findSelectedDoctor) {
+        let request: ApptRequestType = {
+          ...value,
+          action: action,
+          appt_datetime: value.appt_datetime ? new Date(value.appt_datetime).toISOString() : "",
+          appt_fee: findSelectedDoctor.fac_pricing,
+          auth_user_id: UserSession.auth_user_id
+        }
+        if(updateApptId) {
+          request.appt_id = updateApptId
+        }
+        if(availableDoctor.length > 1) {
+          const updateResponse = await apiUpdatePatientAppt(request);
+          if(updateResponse.error) {
+            openToast("error", "Lỗi", "Đã xảy ra lỗi khi cập nhật thông tin!", 5000);
+          } else if (updateResponse.data) {
+            toggleModal("close");
+            openToast("success", "Thành công", updateApptId ? "Lịch hẹn đã được cập nhật" : "Đã đặt hẹn thành công!", 5000);
+            getApptList();
+            const getApptId = await apiGetLastApptId(UserSession.auth_user_id);
+            if(getApptId.data) {
+              createPayment(getApptId.data[0].appt_id, value);
+            }
           }
         }
       }
@@ -224,7 +227,6 @@ export const PatientAppointment: FC = () => {
   }
   const createPayment = async(apptId:string, value:ApptFormType) => {
     const findSelectedDoctor = availableDoctorList.find(doc => doc.doctor_id === value.doctor_id);
-    console.log(availableDoctorList, value)
     if(findSelectedDoctor && value.appt_datetime && UserSession) {
       let tmpTotalAmount = Number(findSelectedDoctor.fac_pricing);
       const request:CreatePaymentRequestType = {
