@@ -242,6 +242,9 @@ export const PatientAppointment: FC = () => {
   const openPatientInfo = (userId:string) => {
     navigate(`/patient-info/${userId}`);
   }
+  const openPaymentPage = (paymentId:string | undefined) => {
+    navigate(`/payment/appointment/${paymentId}`);
+  }
 
   return (
     <>
@@ -296,11 +299,13 @@ export const PatientAppointment: FC = () => {
                             <td>{getApptStatus(appt.appt_status ? appt.appt_status : "")}</td>
                             <td>
                               <div className={`${appt.payment_status}-color`}>{getPaymentStatus(appt.payment_status ? appt.payment_status : "")}</div>
-                              <div className="table-button-list full">
-                                <button onClick={() => {}}>
-                                  Thanh toán
-                                </button>
-                              </div>
+                              {(appt.payment_status === "pending" || appt.payment_status === "failed") && appt.payment_id ? (
+                                <div className="table-button-list full">
+                                  <button onClick={() => {openPaymentPage(appt.payment_id)}}>
+                                    Thanh toán
+                                  </button>
+                                </div>
+                              ) : ""}
                             </td>
                             <td>
                               <div className="table-button-list">

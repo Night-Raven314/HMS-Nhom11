@@ -867,3 +867,50 @@ export const apiGetFinalPaymentDetails = async(paymentId:string) => {
   }
   return { data, error };
 }
+export const apiGetFinalPaymentInfo = async(paymentId:string) => {
+  let error = null;
+  let data = null;
+  try {
+    const res = await hmsAxios.post(
+      "/payment/get-payment-info.php",
+      JSON.stringify({payment_id: paymentId})
+    );
+    if(res.data) {
+      data = res.data.data;
+    }
+  } catch (err:any) {
+    error = err.response.data.message;
+  }
+  return { data, error };
+}
+export const apiGetPaymentUrl = async(paymentId:string) => {
+  let error = null;
+  let data = null;
+  try {
+    const res = await hmsAxios.post(
+      "/payment/process-payment.php",
+      JSON.stringify({payment_id: paymentId})
+    );
+    if(res.data) {
+      data = res.data.data;
+    }
+  } catch (err:any) {
+    error = err.response.data.message;
+  }
+  return { data, error };
+}
+export const apiProcessPaymentRedirect = async(param:string) => {
+  let error = null;
+  let data = null;
+  try {
+    const res = await hmsAxios.post(
+      `/payment/vnpay_payment_auth.php${param}`
+    );
+    if(res.data) {
+      data = res.data.data;
+    }
+  } catch (err:any) {
+    error = err.response.data.message;
+  }
+  return { data, error };
+}

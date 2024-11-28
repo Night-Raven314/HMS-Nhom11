@@ -21,7 +21,7 @@ define('facebook_oauth_version', 'v18.0');
 define('vnpay_terminal_id', 'ZZWFS6LR');
 define('vnpay_secret_key', 'CKVJO0UP8GK1TIRCNHV0S8R3R6R3RY6I');
 define('vnpay_payment_url', 'https://sandbox.vnpayment.vn/paymentv2/vpcpay.html');
-define('vnpay_payment_callback_url', 'https://localhost/HMS-Nhom11/backend/assets/include/payment/vnpay_payment_auth.php');
+define('vnpay_payment_callback_url', 'https://localhost/payment-redirect');
 // Địa chỉ: https://sandbox.vnpayment.vn/merchantv2/
 // Tên đăng nhập: tdangkhoa1606@gmail.com
 // Mặt khẩu: 1508152508@Bin

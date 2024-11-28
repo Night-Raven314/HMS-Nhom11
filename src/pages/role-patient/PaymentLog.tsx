@@ -22,7 +22,7 @@ export type PaymentListType = {
   created_at: string;
   updated_at: string;
 };
-type PaymentDetailsType = {
+export type PaymentDetailsType = {
   payment_id: string;
   payment_type: string;
   payment_desc: string;
@@ -35,7 +35,7 @@ type PaymentDetailsType = {
   item_type: string;
   item_note: string;
 };
-type PaymentDetailsTableType = {
+export type PaymentDetailsTableType = {
   tableType: string;
   tableDetails: PaymentDetailsType[]
 }
@@ -65,7 +65,6 @@ export const PatientPaymentLog: FC = () => {
         case "open":
           if(paymentId) {
             const getPaymentDetails = await apiGetPatientPaymentDetail(paymentId);
-            console.log(getPaymentDetails)
             if(getPaymentDetails.error) {
               openToast("error", "Lỗi", "Đã xảy ra lỗi khi lấy lịch sử giao dịch này!", 5000);
             } else if(getPaymentDetails.data) {
@@ -161,7 +160,7 @@ export const PatientPaymentLog: FC = () => {
                         <th style={{ width: "120px" }}>Loại giao dịch</th>
                         <th style={{ width: "100px" }}>Mã tham chiếu</th>
                         <th style={{ width: "100px" }}>Giá trị</th>
-                        <th style={{ width: "100px" }}>Thanh toán</th>
+                        <th style={{ width: "100px" }}>Trạng thái</th>
                       </tr>
                     </thead>
                     <tbody>

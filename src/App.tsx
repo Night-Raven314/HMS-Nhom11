@@ -23,6 +23,7 @@ import { PatientAppointment } from "./pages/role-patient/Appointment";
 import { PatientPaymentLog } from "./pages/role-patient/PaymentLog";
 import { NurseStock } from "./pages/role-nurse/Stock";
 import { PaymentPage } from "./pages/Payment";
+import { PaymentRedirect } from "./pages/PaymentRedirect";
 
 export const App:FC = () => {
   const [checkLogin, setCheckLogin] = useState<boolean>(false);
@@ -79,6 +80,10 @@ export const App:FC = () => {
     {
       path: "/role-patient/complete-profile",
       element: <CompleteProfile />,
+    },
+    {
+      path: "/payment-redirect",
+      element: <PaymentRedirect />,
     },
     // Admin page
     {

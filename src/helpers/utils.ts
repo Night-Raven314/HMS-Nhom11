@@ -25,6 +25,10 @@ export const getItemTypeName = (type:string) => {
       return "Đặt hẹn khám bệnh"
     case "patient-log":
       return "Khám chữa bệnh"
+    case "facility":
+      return "Dịch vụ";
+    case "prescription":
+      return "Đơn thuốc";
   
     default:
       return "Không xác định"
@@ -93,6 +97,8 @@ export const getPaymentStatus = (status:string) => {
   switch (status) {
     case "pending":
       return "Chưa thanh toán";
+    case "failed":
+      return "Không thành công";
     case "completed":
       return "Đã thanh toán";
     case "refund":

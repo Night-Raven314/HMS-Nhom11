@@ -1133,6 +1133,7 @@ div#popupFormContainer {
     .payment-title {
       font-size: 40pt;
       font-weight: 600;
+      color: $hms-neutral
     }
     .hms-table {
       .table-body {
@@ -1142,9 +1143,9 @@ div#popupFormContainer {
     .centered-content {
       background-color: #fff;
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-      border-radius: 10px;
-      padding: 15px;
-      width: 600px;
+      border-radius: 20px;
+      padding: 40px;
+      width: 700px;
       margin: 0 auto;
       margin-bottom: 15px;
     }
@@ -1162,6 +1163,7 @@ div#popupFormContainer {
         text-align: left;
       }
       .container-right {
+        flex: 0 0 400px;
         font-weight: 600;
         text-align: right;
       }
@@ -1170,4 +1172,13 @@ div#popupFormContainer {
       }
     }
   }
+}
+.pending-color {
+  color: orange;
+}
+.failed-color {
+  color: $color-red
+}
+.completed-color {
+  color: $color-green
 }

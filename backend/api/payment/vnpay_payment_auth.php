@@ -31,7 +31,6 @@ foreach ($inputData as $key => $value) {
 }
 
 $payment_id = $_GET['vnp_TxnRef'];
-echo "<script>console.log('$payment_id');</script>";
 $payment_ref = $_GET['vnp_TransactionNo'];
 
 $secureHash = hash_hmac('sha512', $hashData, $vnp_HashSecret);

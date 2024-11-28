@@ -245,7 +245,7 @@ export const PatientLog:FC = () => {
           action: "patient-log",
           post_id: patientLog.ptn_log_id,
           total_amount: tmpTotalAmount,
-          payment_desc: `Thanh toán viện phí ngày ${format(new Date(), "dd/MM/yyyy HH:mm")}`
+          payment_desc: `Thanh toán viện phí ngày ${format(new Date(), "dd/MM/yyyy")}`
         }
         const create = await apiCreatePayment(request);
         if(create.error) {
