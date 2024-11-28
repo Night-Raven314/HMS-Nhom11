@@ -87,17 +87,17 @@
         room.room_name,
         'ngày' AS unit,
         CASE
-          WHEN (fac.amount IS NULL AND fac.end_datetime IS NULL) THEN timestampdiff(day, CONVERT_TZ(STR_TO_DATE(fac.start_datetime, '%Y-%m-%dT%H:%i:%s'), '+00:00', '+07:00'), CURRENT_TIMESTAMP())
-          WHEN (fac.amount IS NULL AND fac.end_datetime IS NOT NULL) THEN timestampdiff(day, STR_TO_DATE(fac.start_datetime, '%Y-%m-%dT%H:%i:%s'), STR_TO_DATE(fac.end_datetime, '%Y-%m-%dT%H:%i:%s'))
           WHEN timestampdiff(day, STR_TO_DATE(fac.start_datetime, '%Y-%m-%dT%H:%i:%s'), STR_TO_DATE(fac.end_datetime, '%Y-%m-%dT%H:%i:%s')) = 0 THEN 1
           WHEN timestampdiff(day, CONVERT_TZ(STR_TO_DATE(fac.start_datetime, '%Y-%m-%dT%H:%i:%s'), '+00:00', '+07:00'), CURRENT_TIMESTAMP()) = 0 THEN 1
+          WHEN (fac.amount IS NULL AND fac.end_datetime IS NULL) THEN timestampdiff(day, CONVERT_TZ(STR_TO_DATE(fac.start_datetime, '%Y-%m-%dT%H:%i:%s'), '+00:00', '+07:00'), CURRENT_TIMESTAMP())
+          WHEN (fac.amount IS NULL AND fac.end_datetime IS NOT NULL) THEN timestampdiff(day, STR_TO_DATE(fac.start_datetime, '%Y-%m-%dT%H:%i:%s'), STR_TO_DATE(fac.end_datetime, '%Y-%m-%dT%H:%i:%s'))
             ELSE fac.amount END AS amount,
         fac.item_price,
         CASE
-          WHEN (fac.amount IS NULL AND fac.end_datetime IS NULL) THEN timestampdiff(day, CONVERT_TZ(STR_TO_DATE(fac.start_datetime, '%Y-%m-%dT%H:%i:%s'), '+00:00', '+07:00'), CURRENT_TIMESTAMP()) * fac.item_price
-          WHEN (fac.amount IS NULL AND fac.end_datetime IS NOT NULL) THEN timestampdiff(day, STR_TO_DATE(fac.start_datetime, '%Y-%m-%dT%H:%i:%s'), STR_TO_DATE(fac.end_datetime, '%Y-%m-%dT%H:%i:%s')) * fac.item_price
           WHEN timestampdiff(day, STR_TO_DATE(fac.start_datetime, '%Y-%m-%dT%H:%i:%s'), STR_TO_DATE(fac.end_datetime, '%Y-%m-%dT%H:%i:%s')) = 0 THEN 1 * fac.item_price
           WHEN timestampdiff(day, CONVERT_TZ(STR_TO_DATE(fac.start_datetime, '%Y-%m-%dT%H:%i:%s'), '+00:00', '+07:00'), CURRENT_TIMESTAMP()) = 0 THEN 1 * fac.item_price
+          WHEN (fac.amount IS NULL AND fac.end_datetime IS NULL) THEN timestampdiff(day, CONVERT_TZ(STR_TO_DATE(fac.start_datetime, '%Y-%m-%dT%H:%i:%s'), '+00:00', '+07:00'), CURRENT_TIMESTAMP()) * fac.item_price
+          WHEN (fac.amount IS NULL AND fac.end_datetime IS NOT NULL) THEN timestampdiff(day, STR_TO_DATE(fac.start_datetime, '%Y-%m-%dT%H:%i:%s'), STR_TO_DATE(fac.end_datetime, '%Y-%m-%dT%H:%i:%s')) * fac.item_price
             ELSE fac.amount END AS total_value,
         '' AS item_note,
         'facility' AS item_type
@@ -107,21 +107,30 @@
       WHERE
         fac.status = 'completed'
         AND room.room_name IS NOT NULL
+      ),
+
+      payment_details AS (
+        SELECT
+        *
+        FROM (
+          SELECT
+            pres.*
+          FROM `pres_data` pres
+
+          UNION ALL
+
+          SELECT
+            fac.*
+          FROM `facility_data` fac
+        ) AS unioned_data
+        WHERE unioned_data.ptn_log_id = '$ptn_log_id'
+        AND amount IS NOT NULL
       )
+
       SELECT
-      *
-      FROM (
-        SELECT
-          pres.*
-        FROM `pres_data` pres
-
-        UNION ALL
-
-        SELECT
-          fac.*
-        FROM `facility_data` fac
-      ) AS unioned_data
-      WHERE unioned_data.ptn_log_id = '$ptn_log_id' AND amount IS NOT NULL";
+        SUM(CAST(total_value AS INT)) AS total_value
+      FROM payment_details
+      ";
     if($sql) {
       $result = $conn->query($sql);
       if ($result) { 
