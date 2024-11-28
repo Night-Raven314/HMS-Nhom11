@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 26, 2024 at 06:05 PM
+-- Generation Time: Nov 28, 2024 at 05:07 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -377,7 +377,7 @@ CREATE TABLE `dim_user` (
   `user_name` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `email_address` varchar(255) DEFAULT NULL,
-  `contact_no` bigint(11) DEFAULT NULL,
+  `contact_no` bigint(20) DEFAULT NULL,
   `full_name` varchar(255) DEFAULT NULL,
   `birthday` varchar(50) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
@@ -421,7 +421,7 @@ INSERT INTO `dim_user` (`user_id`, `user_name`, `password`, `email_address`, `co
 ('68ee0e7c-a114-11ef-95f3-b42e994cb670', 'patient21', 'password123', 'patient21@example.com', 84920000021, 'Tran Thi Thao', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'female', 'Ho Chi Minh', '21 Le Thanh Ton', 'patient', NULL, NULL, NULL, 'active'),
 ('68ee0f0d-a114-11ef-95f3-b42e994cb670', 'patient22', 'password123', 'patient22@example.com', 84920000022, 'Pham Van Hoang', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '22 Tran Van Kieu', 'patient', NULL, NULL, NULL, 'active'),
 ('68ee0fa2-a114-11ef-95f3-b42e994cb670', 'patient23', 'password123', 'patient23@example.com', 84920000023, 'Nguyen Thi Ly', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'female', 'Ho Chi Minh', '23 Le Loi', 'patient', NULL, NULL, NULL, 'active'),
-('68ee1040-a114-11ef-95f3-b42e994cb670', 'patient24', 'password123', 'patient24@example.com', 84920000024, 'Tran Van Dat', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '24 Pham Ngoc Thach', 'patient', NULL, NULL, NULL, 'active'),
+('68ee1040-a114-11ef-95f3-b42e994cb670', 'patient24', 'password123', 'patient24@example.com', 84920000024, 'Tran Van Dat', '1989-07-27', '2024-10-07 05:44:59', '2024-11-27 14:40:25', 'male', 'Ho Chi Minh', '24 Pham Ngoc Thach', 'patient', 'NULL', NULL, NULL, 'active'),
 ('68ee10d0-a114-11ef-95f3-b42e994cb670', 'patient25', 'password123', 'patient25@example.com', 84920000025, 'Pham Thi Kim', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'female', 'Ho Chi Minh', '25 Vo Van Tan', 'patient', NULL, NULL, NULL, 'active'),
 ('68ee115e-a114-11ef-95f3-b42e994cb670', 'patient26', 'password123', 'patient26@example.com', 84920000026, 'Nguyen Van Phuc', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '26 Nguyen Thi Minh Khai', 'patient', NULL, NULL, NULL, 'active'),
 ('68ee11f5-a114-11ef-95f3-b42e994cb670', 'patient27', 'password123', 'patient27@example.com', 84920000027, 'Tran Thi Mai', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'female', 'Ho Chi Minh', '27 Le Van Sy', 'patient', NULL, NULL, NULL, 'active'),
@@ -508,7 +508,8 @@ INSERT INTO `fact_appointment` (`appt_id`, `doctor_id`, `patient_id`, `faculty_i
 ('b0e82d52-a1e2-11ef-968e-b42e994cb670', '68ee0818-a114-11ef-95f3-b42e994cb670', '68ee131e-a114-11ef-95f3-b42e994cb670', '63054655-a115-11ef-95f3-b42e994cb670', 350000, '2024-12-04T09:15:00Z', '2024-10-10 15:40:44', '2024-11-13 17:14:10', 'active'),
 ('b0e82d92-a1e2-11ef-968e-b42e994cb670', '68ee0cc5-a114-11ef-95f3-b42e994cb670', '68ee17bc-a114-11ef-95f3-b42e994cb670', '6311585c-a115-11ef-95f3-b42e994cb670', 410000, '2024-12-05T11:30:00Z', '2024-10-10 15:40:44', '2024-11-13 17:14:10', 'active'),
 ('b0e82e8e-a1e2-11ef-968e-b42e994cb670', '68ee0d59-a114-11ef-95f3-b42e994cb670', '68ee10d0-a114-11ef-95f3-b42e994cb670', '631158d3-a115-11ef-95f3-b42e994cb670', 500000, '2024-12-06T15:00:00Z', '2024-10-10 15:40:44', '2024-11-13 17:14:10', 'active'),
-('b0e82ee5-a1e2-11ef-968e-b42e994cb670', '68ee0c2a-a114-11ef-95f3-b42e994cb670', '68ee0dec-a114-11ef-95f3-b42e994cb670', '631157ed-a115-11ef-95f3-b42e994cb670', 460000, '2024-12-07T10:15:00Z', '2024-10-10 15:40:44', '2024-11-25 17:31:29', 'deleted');
+('b0e82ee5-a1e2-11ef-968e-b42e994cb670', '68ee0c2a-a114-11ef-95f3-b42e994cb670', '68ee0dec-a114-11ef-95f3-b42e994cb670', '631157ed-a115-11ef-95f3-b42e994cb670', 460000, '2024-12-07T10:15:00Z', '2024-10-10 15:40:44', '2024-11-25 17:31:29', 'deleted'),
+('d87df18a-acdf-11ef-b431-55d6306d9398', '68ee08af-a114-11ef-95f3-b42e994cb670', '68ee1040-a114-11ef-95f3-b42e994cb670', '63115701-a115-11ef-95f3-b42e994cb670', 45000, '2024-11-30T02:00:00.000Z', '2024-11-27 16:51:28', NULL, 'active');
 
 --
 -- Triggers `fact_appointment`
@@ -544,8 +545,17 @@ CREATE TABLE `fact_facility_asmt` (
 --
 
 INSERT INTO `fact_facility_asmt` (`fac_asmt_id`, `ptn_log_id`, `item_type`, `item_id`, `amount`, `item_price`, `item_note`, `start_datetime`, `end_datetime`, `created_at`, `updated_at`, `status`) VALUES
-('752198b4-aa46-11ef-96ba-b42e994cb670', '0976620e-a81f-11ef-9842-b42e994cb670', 'room', '796a68a7-a116-11ef-95f3-b42e994cb670', NULL, 780000, '', '2024-11-25T09:28:00.000Z', NULL, '2024-11-24 09:28:26', NULL, 'active'),
-('9f51d309-aa31-11ef-96ba-b42e994cb670', '0976620e-a81f-11ef-9842-b42e994cb670', 'room', '796a6609-a116-11ef-95f3-b42e994cb670', NULL, 780000, '', '2024-11-23T20:00:00.000Z', '2024-11-25T09:28:00.000Z', '2024-11-24 06:59:17', '2024-11-24 09:28:26', 'active');
+('19f14d84-acd0-11ef-b431-55d6306d9398', '925148dc-ac1d-11ef-b431-55d6306d9398', 'item', 'b7f3cda1-a115-11ef-95f3-b42e994cb670', 1, 1000000, 'oxy', '2024-11-27T14:58:45.970Z', NULL, '2024-11-27 14:58:46', '2024-11-27 16:59:10', 'completed'),
+('19f199ce-acd0-11ef-b431-55d6306d9398', '925148dc-ac1d-11ef-b431-55d6306d9398', 'room', '796a596e-a116-11ef-95f3-b42e994cb670', NULL, 370000, 'some note', '2024-11-28T14:58:00.000Z', NULL, '2024-11-27 14:58:46', '2024-11-27 16:59:10', 'completed'),
+('63fe45d0-ad8e-11ef-962c-b42e994cb670', '44514c6f-ad8e-11ef-962c-b42e994cb670', 'room', '796a62d5-a116-11ef-95f3-b42e994cb670', NULL, 760000, '', '2024-11-28T12:40:00.000Z', NULL, '2024-11-28 13:40:54', NULL, 'active'),
+('752198b4-aa46-11ef-96ba-b42e994cb670', '0976620e-a81f-11ef-9842-b42e994cb670', 'room', '796a68a7-a116-11ef-95f3-b42e994cb670', NULL, 780000, '', '2024-11-25T09:28:00.000Z', NULL, '2024-11-24 09:28:26', '2024-11-28 13:47:07', 'completed'),
+('80bf3e5c-ace1-11ef-b431-55d6306d9398', '692260ee-ace1-11ef-b431-55d6306d9398', 'item', 'b7f3cda1-a115-11ef-95f3-b42e994cb670', 1, 1000000, 'oxy', '2024-11-27T17:03:19.914Z', NULL, '2024-11-27 17:03:19', '2024-11-27 17:03:25', 'completed'),
+('80c01548-ace1-11ef-b431-55d6306d9398', '692260ee-ace1-11ef-b431-55d6306d9398', 'room', '796a6253-a116-11ef-95f3-b42e994cb670', NULL, 410000, 'êrererererer', '2024-11-29T17:03:00.000Z', NULL, '2024-11-27 17:03:19', '2024-11-27 17:03:25', 'completed'),
+('8c7bd278-ad90-11ef-962c-b42e994cb670', '7ec6c7fe-ad90-11ef-962c-b42e994cb670', 'item', 'b7f3d57d-a115-11ef-95f3-b42e994cb670', 1, 5000, '', '2024-11-28T13:56:21.456Z', '2024-11-28T15:53:23+00:00', '2024-11-28 13:56:21', '2024-11-28 15:53:23', 'completed'),
+('8c991c02-ad90-11ef-962c-b42e994cb670', '7ec6c7fe-ad90-11ef-962c-b42e994cb670', 'room', '796a6253-a116-11ef-95f3-b42e994cb670', NULL, 410000, '', '2024-11-27T12:56:00.000Z', '2024-11-28T15:53:23+00:00', '2024-11-28 13:56:21', '2024-11-28 15:53:23', 'completed'),
+('9f51d309-aa31-11ef-96ba-b42e994cb670', '0976620e-a81f-11ef-9842-b42e994cb670', 'room', '796a6609-a116-11ef-95f3-b42e994cb670', NULL, 780000, '', '2024-11-23T20:00:00.000Z', '2024-11-25T09:28:00.000Z', '2024-11-24 06:59:17', '2024-11-28 13:47:07', 'completed'),
+('bd72d971-ada2-11ef-962c-b42e994cb670', '937f7d45-ada2-11ef-962c-b42e994cb670', 'service', 'c96749ca-a115-11ef-95f3-b42e994cb670', 1, 300000, 'adsfdsf', '2024-11-28T16:06:34.542Z', '2024-11-28T16:06:40+00:00', '2024-11-28 16:06:34', '2024-11-28 16:06:40', 'completed'),
+('bd7839c9-ada2-11ef-962c-b42e994cb670', '937f7d45-ada2-11ef-962c-b42e994cb670', 'room', '796a651e-a116-11ef-95f3-b42e994cb670', NULL, 410000, '', '2024-11-28T16:00:00.000Z', '2024-11-28T16:06:40+00:00', '2024-11-28 16:06:34', '2024-11-28 16:06:40', 'completed');
 
 --
 -- Triggers `fact_facility_asmt`
@@ -579,10 +589,28 @@ CREATE TABLE `fact_item_stock` (
 --
 
 INSERT INTO `fact_item_stock` (`stock_id`, `updated_by`, `item_id`, `change_type`, `amount_changed`, `amount_final`, `stock_note`, `created_at`, `updated_at`, `status`) VALUES
-('177495c0-ac17-11ef-982c-b42e994cb670', NULL, 'b7f3c784-a115-11ef-95f3-b42e994cb670', 'addition', 20, 50, '', '2024-11-26 16:54:24', '2024-11-26 16:54:57', 'deleted'),
-('2aa9ec13-ac17-11ef-982c-b42e994cb670', NULL, 'b7f3c784-a115-11ef-95f3-b42e994cb670', 'addition', 20, 70, '', '2024-11-26 16:54:57', NULL, 'active'),
-('78b2628b-ac16-11ef-982c-b42e994cb670', NULL, 'b7f3c784-a115-11ef-95f3-b42e994cb670', 'addition', 50, 50, '', '2024-11-26 16:49:58', '2024-11-26 16:54:24', 'deleted'),
-('7d55de7e-ac16-11ef-982c-b42e994cb670', NULL, 'b7f3c784-a115-11ef-95f3-b42e994cb670', 'deduction', 20, 30, '', '2024-11-26 16:50:06', '2024-11-26 16:54:24', 'deleted');
+('0cfa1afa-ac19-11ef-b431-55d6306d9398', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3c784-a115-11ef-95f3-b42e994cb670', 'deduction', 15, 40, '', '2024-11-26 17:08:26', NULL, 'active'),
+('177495c0-ac17-11ef-982c-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3c784-a115-11ef-95f3-b42e994cb670', 'addition', 20, 50, '', '2024-11-26 16:54:24', '2024-11-26 17:28:45', 'deleted'),
+('19f16ecc-acd0-11ef-b431-55d6306d9398', NULL, 'b7f3cda1-a115-11ef-95f3-b42e994cb670', 'deduction', 1, -1, NULL, '2024-11-27 14:58:46', NULL, 'active'),
+('2aa9ec13-ac17-11ef-982c-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3c784-a115-11ef-95f3-b42e994cb670', 'addition', 20, 70, '', '2024-11-26 16:54:57', '2024-11-26 17:28:47', 'deleted'),
+('560d44a1-ad8e-11ef-962c-b42e994cb670', NULL, 'a5af47c1-a115-11ef-95f3-b42e994cb670', 'deduction', 324, -327, NULL, '2024-11-28 13:40:31', NULL, 'active'),
+('562fba92-ad8e-11ef-962c-b42e994cb670', NULL, 'a5af4cfe-a115-11ef-95f3-b42e994cb670', 'deduction', 234, -234, NULL, '2024-11-28 13:40:31', NULL, 'active'),
+('563d4ce3-ad8e-11ef-962c-b42e994cb670', NULL, 'a5af4c44-a115-11ef-95f3-b42e994cb670', 'deduction', 23, -23, NULL, '2024-11-28 13:40:31', NULL, 'active'),
+('6f6ede7a-ac1c-11ef-b431-55d6306d9398', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3c989-a115-11ef-95f3-b42e994cb670', 'addition', 12, 12, 'fuck mask', '2024-11-26 17:32:40', NULL, 'active'),
+('71d7b6b2-ac19-11ef-b431-55d6306d9398', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3c8ec-a115-11ef-95f3-b42e994cb670', 'addition', 2, 2, 'fuck mask', '2024-11-26 17:11:15', NULL, 'active'),
+('75a8b1d8-ace1-11ef-b431-55d6306d9398', NULL, 'a5af5b29-a115-11ef-95f3-b42e994cb670', 'deduction', 2, -2, NULL, '2024-11-27 17:03:01', NULL, 'active'),
+('75a8f42c-ace1-11ef-b431-55d6306d9398', NULL, 'a5af47c1-a115-11ef-95f3-b42e994cb670', 'deduction', 2, -3, NULL, '2024-11-27 17:03:01', NULL, 'active'),
+('78b2628b-ac16-11ef-982c-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3c784-a115-11ef-95f3-b42e994cb670', 'addition', 50, 50, '', '2024-11-26 16:49:58', '2024-11-26 17:28:48', 'deleted'),
+('7d55de7e-ac16-11ef-982c-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3c784-a115-11ef-95f3-b42e994cb670', 'deduction', 20, 30, '', '2024-11-26 16:50:06', '2024-11-26 17:28:50', 'deleted'),
+('80bfb008-ace1-11ef-b431-55d6306d9398', NULL, 'b7f3cda1-a115-11ef-95f3-b42e994cb670', 'deduction', 1, -2, NULL, '2024-11-27 17:03:19', NULL, 'active'),
+('8c87e470-ad90-11ef-962c-b42e994cb670', NULL, 'b7f3d57d-a115-11ef-95f3-b42e994cb670', 'deduction', 1, -1, NULL, '2024-11-28 13:56:21', NULL, 'active'),
+('93b7f295-ad90-11ef-962c-b42e994cb670', NULL, 'a5af5b29-a115-11ef-95f3-b42e994cb670', 'deduction', 23, -25, NULL, '2024-11-28 13:56:33', NULL, 'active'),
+('a34b4840-ada2-11ef-962c-b42e994cb670', NULL, 'a5af47c1-a115-11ef-95f3-b42e994cb670', 'deduction', 21, -348, NULL, '2024-11-28 16:05:50', NULL, 'active'),
+('a369ca7e-ada2-11ef-962c-b42e994cb670', NULL, 'a5af4687-a115-11ef-95f3-b42e994cb670', 'deduction', 2314, -2314, NULL, '2024-11-28 16:05:50', NULL, 'active'),
+('a37c3329-ada2-11ef-962c-b42e994cb670', NULL, 'a5af4687-a115-11ef-95f3-b42e994cb670', 'deduction', 1432, -3746, NULL, '2024-11-28 16:05:51', NULL, 'active'),
+('d34f7d88-accf-11ef-b431-55d6306d9398', NULL, 'a5af4df1-a115-11ef-95f3-b42e994cb670', 'deduction', 2, -2, NULL, '2024-11-27 14:56:47', NULL, 'active'),
+('d34fb5fa-accf-11ef-b431-55d6306d9398', NULL, 'a5af47c1-a115-11ef-95f3-b42e994cb670', 'deduction', 1, -1, NULL, '2024-11-27 14:56:47', NULL, 'active'),
+('ec26d728-ac18-11ef-b431-55d6306d9398', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3c784-a115-11ef-95f3-b42e994cb670', 'deduction', 15, 55, '', '2024-11-26 17:07:31', '2024-11-26 17:28:51', 'deleted');
 
 --
 -- Triggers `fact_item_stock`
@@ -691,8 +719,14 @@ INSERT INTO `fact_med_hist` (`med_hist_id`, `ptn_log_id`, `doctor_id`, `patient_
 ('27edf539-a113-11ef-95f3-b42e994cb670', '', '68ee0cc5-a114-11ef-95f3-b42e994cb670', '68ee1040-a114-11ef-95f3-b42e994cb670', '130/85', '5.9', NULL, '79', NULL, '37.6', 'Huyết áp và đường huyết đều trong mức bình thường.', '2024-10-08 14:49:09', '2024-11-14 16:55:23', 'active'),
 ('27edf5c7-a113-11ef-95f3-b42e994cb670', '', '68ee0818-a114-11ef-95f3-b42e994cb670', '68ee18ec-a114-11ef-95f3-b42e994cb670', '120/80', '5.5', NULL, '60', NULL, '36.5', 'Kiểm tra sức khỏe bình thường.', '2024-10-08 14:49:09', '2024-11-14 16:55:23', 'active'),
 ('27edf657-a113-11ef-95f3-b42e994cb670', '', '68ee0a6f-a114-11ef-95f3-b42e994cb670', '68ee17bc-a114-11ef-95f3-b42e994cb670', '115/75', '5.0', NULL, '58', NULL, '36.2', 'Kiểm tra sức khỏe bình thường. Tất cả các chỉ số đều ổn định.', '2024-10-08 14:49:09', '2024-11-14 16:55:23', 'active'),
-('e0bdfc9c-a835-11ef-9842-b42e994cb670', '0976620e-a81f-11ef-9842-b42e994cb670', '68ee08af-a114-11ef-95f3-b42e994cb670', '68ee143a-a114-11ef-95f3-b42e994cb670', '45/90', NULL, '99', '45', '165', '36.5', 'Test', '2024-11-21 18:24:42', NULL, 'active'),
-('ff7f9ee3-a9b8-11ef-9872-b42e994cb670', '0976620e-a81f-11ef-9842-b42e994cb670', '68ee08af-a114-11ef-95f3-b42e994cb670', '68ee143a-a114-11ef-95f3-b42e994cb670', '3241', NULL, '1234', '234', '134', '1234', 'dầdsasdfsfasdf', '2024-11-23 16:35:49', NULL, 'active');
+('4b155a8d-ad8e-11ef-962c-b42e994cb670', '44514c6f-ad8e-11ef-962c-b42e994cb670', '68ee08af-a114-11ef-95f3-b42e994cb670', '68ee0dec-a114-11ef-95f3-b42e994cb670', '3124', NULL, '134', '341', '1234', '213', 'àdaSDF', '2024-11-28 13:40:12', NULL, 'active'),
+('618c10b2-accf-11ef-b431-55d6306d9398', '925148dc-ac1d-11ef-b431-55d6306d9398', '5c950e93-ac16-11ef-982c-b42e994cb670', '68ee1040-a114-11ef-95f3-b42e994cb670', '111/22', NULL, '99', '200', '123', '40', 'fucked as hell', '2024-11-27 14:53:36', '2024-11-27 16:59:10', 'completed'),
+('700af330-ace1-11ef-b431-55d6306d9398', '692260ee-ace1-11ef-b431-55d6306d9398', '68ee08af-a114-11ef-95f3-b42e994cb670', '68ee1040-a114-11ef-95f3-b42e994cb670', '111/22', NULL, '99', '200', '180', '40', 'sfdfgdfgfg', '2024-11-27 17:02:51', '2024-11-27 17:03:25', 'completed'),
+('90498fe3-ad90-11ef-962c-b42e994cb670', '7ec6c7fe-ad90-11ef-962c-b42e994cb670', '68ee08af-a114-11ef-95f3-b42e994cb670', '68ee143a-a114-11ef-95f3-b42e994cb670', '3241', NULL, '231432', '1324', '2314', '41234', 'safcsdf', '2024-11-28 13:56:27', '2024-11-28 13:58:26', 'completed'),
+('984748b8-ada2-11ef-962c-b42e994cb670', '937f7d45-ada2-11ef-962c-b42e994cb670', '68ee08af-a114-11ef-95f3-b42e994cb670', '68ee143a-a114-11ef-95f3-b42e994cb670', '12343', NULL, '3124', '34132', '321432', '234123', 'dsafsdfds', '2024-11-28 16:05:32', '2024-11-28 16:06:40', 'completed'),
+('dd24bae4-accf-11ef-b431-55d6306d9398', '925148dc-ac1d-11ef-b431-55d6306d9398', '5c950e93-ac16-11ef-982c-b42e994cb670', '68ee1040-a114-11ef-95f3-b42e994cb670', '111/222', NULL, '99', '200', '123', '40', 'sfdfdf', '2024-11-27 14:57:04', '2024-11-27 16:59:10', 'completed'),
+('e0bdfc9c-a835-11ef-9842-b42e994cb670', '0976620e-a81f-11ef-9842-b42e994cb670', '68ee08af-a114-11ef-95f3-b42e994cb670', '68ee143a-a114-11ef-95f3-b42e994cb670', '45/90', NULL, '99', '45', '165', '36.5', 'Test', '2024-11-21 18:24:42', '2024-11-28 13:47:07', 'completed'),
+('ff7f9ee3-a9b8-11ef-9872-b42e994cb670', '0976620e-a81f-11ef-9842-b42e994cb670', '68ee08af-a114-11ef-95f3-b42e994cb670', '68ee143a-a114-11ef-95f3-b42e994cb670', '3241', NULL, '1234', '234', '134', '1234', 'dầdsasdfsfasdf', '2024-11-23 16:35:49', '2024-11-28 13:47:07', 'completed');
 
 --
 -- Triggers `fact_med_hist`
@@ -727,7 +761,13 @@ CREATE TABLE `fact_patient_log` (
 --
 
 INSERT INTO `fact_patient_log` (`ptn_log_id`, `patient_id`, `doctor_id`, `faculty_id`, `is_inpatient`, `med_note`, `start_datetime`, `end_datetime`, `created_at`, `updated_at`, `status`) VALUES
-('0976620e-a81f-11ef-9842-b42e994cb670', '68ee143a-a114-11ef-95f3-b42e994cb670', '68ee08af-a114-11ef-95f3-b42e994cb670', '63115701-a115-11ef-95f3-b42e994cb670', 1, 'dầdsasdfsfasdf', '2024-11-21T16:41:12+01:00', '', '2024-11-21 15:41:12', '2024-11-24 06:59:17', 'active'),
+('0976620e-a81f-11ef-9842-b42e994cb670', '68ee143a-a114-11ef-95f3-b42e994cb670', '68ee08af-a114-11ef-95f3-b42e994cb670', '63115701-a115-11ef-95f3-b42e994cb670', 1, 'dầdsasdfsfasdf', '2024-11-21T16:41:12+01:00', '', '2024-11-21 15:41:12', '2024-11-28 13:47:07', 'completed'),
+('44514c6f-ad8e-11ef-962c-b42e994cb670', '68ee0dec-a114-11ef-95f3-b42e994cb670', '68ee08af-a114-11ef-95f3-b42e994cb670', '63115701-a115-11ef-95f3-b42e994cb670', 1, 'àdaSDF', '2024-11-28T14:40:01+01:00', '', '2024-11-28 13:40:01', '2024-11-28 13:40:54', 'active'),
+('692260ee-ace1-11ef-b431-55d6306d9398', '68ee1040-a114-11ef-95f3-b42e994cb670', '68ee08af-a114-11ef-95f3-b42e994cb670', '63115701-a115-11ef-95f3-b42e994cb670', 1, 'sfdfgdfgfg', '2024-11-27T17:02:40+00:00', '', '2024-11-27 17:02:40', '2024-11-27 17:03:25', 'completed'),
+('79c9d5f2-ad90-11ef-962c-b42e994cb670', '68ee143a-a114-11ef-95f3-b42e994cb670', '68ee08af-a114-11ef-95f3-b42e994cb670', '63115701-a115-11ef-95f3-b42e994cb670', 0, NULL, '2024-11-28T14:55:50+01:00', NULL, '2024-11-28 13:55:50', NULL, 'active'),
+('7ec6c7fe-ad90-11ef-962c-b42e994cb670', '68ee143a-a114-11ef-95f3-b42e994cb670', '68ee08af-a114-11ef-95f3-b42e994cb670', '63115701-a115-11ef-95f3-b42e994cb670', 1, 'safcsdf', '2024-11-28T14:55:58+01:00', '2024-11-28T15:53:23+00:00', '2024-11-28 13:55:58', '2024-11-28 15:53:23', 'completed'),
+('925148dc-ac1d-11ef-b431-55d6306d9398', '68ee1040-a114-11ef-95f3-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', '63115776-a115-11ef-95f3-b42e994cb670', 1, 'sfdfdf', '2024-11-26T17:40:48+00:00', '', '2024-11-26 17:40:48', '2024-11-27 16:59:10', 'completed'),
+('937f7d45-ada2-11ef-962c-b42e994cb670', '68ee143a-a114-11ef-95f3-b42e994cb670', '68ee08af-a114-11ef-95f3-b42e994cb670', '63115701-a115-11ef-95f3-b42e994cb670', 1, 'dsafsdfds', '2024-11-28T17:05:24+01:00', '2024-11-28T16:06:40+00:00', '2024-11-28 16:05:24', '2024-11-28 16:06:40', 'completed'),
 ('bde4adf5-a68e-11ef-9694-b42e994cb670', '68ee15fd-a114-11ef-95f3-b42e994cb670', '68ee0b00-a114-11ef-95f3-b42e994cb670', '631157ed-a115-11ef-95f3-b42e994cb670', 0, 'Chẩn đoán tiểu đường. Cần theo dõi sức khỏe cẩn thận', '2024-10-08T21:30:00Z', '2024-10-08T21:30:00Z', '2024-11-19 15:55:47', NULL, 'active');
 
 --
@@ -762,7 +802,14 @@ CREATE TABLE `fact_payment` (
 --
 
 INSERT INTO `fact_payment` (`payment_id`, `payment_type`, `appt_id`, `ptn_log_id`, `amount`, `payment_desc`, `payment_status`, `bank_trans_code`, `created_at`, `updated_at`) VALUES
+('1dd4f59e-ad92-11ef-962c-b42e994cb670', 'postpaid', NULL, '7ec6c7fe-ad90-11ef-962c-b42e994cb670', 645000, 'Thanh toán viện phí ngày 28/11/2024 21:07', 'pending', NULL, '2024-11-28 14:07:34', NULL),
+('21490306-ad8f-11ef-962c-b42e994cb670', 'postpaid', NULL, '0976620e-a81f-11ef-9842-b42e994cb670', 0, 'Thanh toán viện phí ngày 28/11/2024 20:46', 'pending', NULL, '2024-11-28 13:46:12', NULL),
+('3cd013d8-ad8f-11ef-962c-b42e994cb670', 'postpaid', NULL, '0976620e-a81f-11ef-9842-b42e994cb670', 0, 'Thanh toán viện phí ngày 28/11/2024 20:46', 'pending', NULL, '2024-11-28 13:46:58', NULL),
+('429480c2-ad8f-11ef-962c-b42e994cb670', 'postpaid', NULL, '0976620e-a81f-11ef-9842-b42e994cb670', 3120000, 'Thanh toán viện phí ngày 28/11/2024 20:47', 'pending', NULL, '2024-11-28 13:47:08', NULL),
+('50721d51-ad9f-11ef-962c-b42e994cb670', 'postpaid', NULL, '7ec6c7fe-ad90-11ef-962c-b42e994cb670', 645000, 'Thanh toán viện phí ngày 28/11/2024 22:42', 'pending', NULL, '2024-11-28 15:42:03', NULL),
 ('89b14399-a692-11ef-9694-b42e994cb670', 'prepaid', 'b0e82166-a1e2-11ef-968e-b42e994cb670', NULL, 390000, 'Query Test', 'pending', NULL, '2024-11-19 16:22:57', NULL),
+('93fdaf9a-ad91-11ef-962c-b42e994cb670', 'postpaid', NULL, '7ec6c7fe-ad90-11ef-962c-b42e994cb670', 645000, 'Thanh toán viện phí ngày 28/11/2024 21:03', 'pending', NULL, '2024-11-28 14:03:43', NULL),
+('c0dfca45-ada2-11ef-962c-b42e994cb670', 'patient-log', NULL, '937f7d45-ada2-11ef-962c-b42e994cb670', 12473000, 'Thanh toán viện phí ngày 28/11/2024 23:06', 'pending', NULL, '2024-11-28 16:06:40', NULL),
 ('c2315ca7-a0f8-11ef-95f3-b42e994cb670', 'prescription', 'b0e8245c-a1e2-11ef-968e-b42e994cb670', NULL, 120000, 'Test Pay 4', 'completed', '14641914', '2024-11-06 17:00:00', '2024-11-13 17:14:08'),
 ('c2316cca-a0f8-11ef-95f3-b42e994cb670', 'prescription', 'b0e8259a-a1e2-11ef-968e-b42e994cb670', NULL, 120000, 'Pay test 5', 'pending', NULL, '2024-11-06 17:00:00', '2024-11-13 17:14:08'),
 ('c2316d97-a0f8-11ef-95f3-b42e994cb670', 'prescription', 'b0e8259a-a1e2-11ef-968e-b42e994cb670', NULL, 120000, 'Pay test 5', 'pending', NULL, '2024-11-06 17:00:00', '2024-11-13 17:14:08'),
@@ -778,7 +825,8 @@ INSERT INTO `fact_payment` (`payment_id`, `payment_type`, `appt_id`, `ptn_log_id
 ('c2317354-a0f8-11ef-95f3-b42e994cb670', 'appointment', 'b0e82166-a1e2-11ef-968e-b42e994cb670', NULL, 345000, 'Test Pay 1', 'pending', NULL, '2024-11-06 17:00:00', '2024-11-13 17:14:08'),
 ('c23173d9-a0f8-11ef-95f3-b42e994cb670', 'appointment', 'b0e82166-a1e2-11ef-968e-b42e994cb670', NULL, 345000, 'Test Pay 1', 'pending', NULL, '2024-11-06 17:00:00', '2024-11-13 17:14:08'),
 ('c2317461-a0f8-11ef-95f3-b42e994cb670', 'appointment', 'b0e82231-a1e2-11ef-968e-b42e994cb670', NULL, 345000, 'Test Pay 2', 'pending', NULL, '2024-11-06 17:00:00', '2024-11-13 17:14:08'),
-('c23174eb-a0f8-11ef-95f3-b42e994cb670', 'appointment', 'b0e822a8-a1e2-11ef-968e-b42e994cb670', NULL, 123000, 'Test pay 3', 'completed', '14641906', '2024-11-06 17:00:00', '2024-11-13 17:14:08');
+('c23174eb-a0f8-11ef-95f3-b42e994cb670', 'appointment', 'b0e822a8-a1e2-11ef-968e-b42e994cb670', NULL, 123000, 'Test pay 3', 'completed', '14641906', '2024-11-06 17:00:00', '2024-11-13 17:14:08'),
+('e6148fd3-ada0-11ef-962c-b42e994cb670', 'postpaid', NULL, '7ec6c7fe-ad90-11ef-962c-b42e994cb670', 645000, 'Thanh toán viện phí ngày 28/11/2024 22:53', 'pending', NULL, '2024-11-28 15:53:23', NULL);
 
 --
 -- Triggers `fact_payment`
@@ -798,8 +846,8 @@ CREATE TABLE `fact_prescription` (
   `pres_id` char(36) NOT NULL,
   `med_hist_id` char(36) DEFAULT NULL,
   `item_id` char(36) DEFAULT NULL,
-  `amount` int(10) DEFAULT NULL,
-  `price` int(10) DEFAULT NULL,
+  `amount` int(11) DEFAULT NULL,
+  `price` int(11) DEFAULT NULL,
   `item_note` mediumtext DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `status` varchar(50) NOT NULL DEFAULT 'active'
@@ -837,7 +885,18 @@ INSERT INTO `fact_prescription` (`pres_id`, `med_hist_id`, `item_id`, `amount`, 
 ('443c7270-a35d-11ef-961a-b42e994cb670', '27ede07a-a113-11ef-95f3-b42e994cb670', 'a5af4687-a115-11ef-95f3-b42e994cb670', 1, 3000, 'Uống 1 viên trước khi ngủ', '2024-10-08 14:50:10', 'active'),
 ('443c72f5-a35d-11ef-961a-b42e994cb670', '27ede117-a113-11ef-95f3-b42e994cb670', 'a5af4ad7-a115-11ef-95f3-b42e994cb670', 1, 2000, 'Uống 1 viên buổi tối trước khi ngủ', '2024-10-08 14:50:10', 'active'),
 ('443c7382-a35d-11ef-961a-b42e994cb670', '27ede236-a113-11ef-95f3-b42e994cb670', 'a5af48e2-a115-11ef-95f3-b42e994cb670', 1, 1500, 'Uống 1 viên trước khi ăn', '2024-10-08 14:50:10', 'active'),
-('443c74b4-a35d-11ef-961a-b42e994cb670', '27ede2c5-a113-11ef-95f3-b42e994cb670', 'a5af4961-a115-11ef-95f3-b42e994cb670', 2, 12000, 'Uống 1 viên vào buổi tối', '2024-10-08 14:50:10', 'active');
+('443c74b4-a35d-11ef-961a-b42e994cb670', '27ede2c5-a113-11ef-95f3-b42e994cb670', 'a5af4961-a115-11ef-95f3-b42e994cb670', 2, 12000, 'Uống 1 viên vào buổi tối', '2024-10-08 14:50:10', 'active'),
+('55fbc69b-ad8e-11ef-962c-b42e994cb670', '4b155a8d-ad8e-11ef-962c-b42e994cb670', 'a5af47c1-a115-11ef-95f3-b42e994cb670', 324, 25000, 'dsafsd', '2024-11-28 13:40:31', 'active'),
+('561e6275-ad8e-11ef-962c-b42e994cb670', '4b155a8d-ad8e-11ef-962c-b42e994cb670', 'a5af4cfe-a115-11ef-95f3-b42e994cb670', 234, 30000, 'adsf', '2024-11-28 13:40:31', 'active'),
+('563874c6-ad8e-11ef-962c-b42e994cb670', '4b155a8d-ad8e-11ef-962c-b42e994cb670', 'a5af4c44-a115-11ef-95f3-b42e994cb670', 23, 12000, 'ádf', '2024-11-28 13:40:31', 'active'),
+('75a8691c-ace1-11ef-b431-55d6306d9398', '700af330-ace1-11ef-b431-55d6306d9398', 'a5af5b29-a115-11ef-95f3-b42e994cb670', 2, 10000, 'dfgsdfsd', '2024-11-27 17:03:01', 'completed'),
+('75a8e2a2-ace1-11ef-b431-55d6306d9398', '700af330-ace1-11ef-b431-55d6306d9398', 'a5af47c1-a115-11ef-95f3-b42e994cb670', 2, 25000, 'dfdsgfsdgdfssgsfg', '2024-11-27 17:03:01', 'completed'),
+('93ae6e3b-ad90-11ef-962c-b42e994cb670', '90498fe3-ad90-11ef-962c-b42e994cb670', 'a5af5b29-a115-11ef-95f3-b42e994cb670', 23, 10000, 'asdcs', '2024-11-28 13:56:33', 'completed'),
+('a3394a38-ada2-11ef-962c-b42e994cb670', '984748b8-ada2-11ef-962c-b42e994cb670', 'a5af47c1-a115-11ef-95f3-b42e994cb670', 21, 25000, 'afdsf', '2024-11-28 16:05:50', 'completed'),
+('a362c2c5-ada2-11ef-962c-b42e994cb670', '984748b8-ada2-11ef-962c-b42e994cb670', 'a5af4687-a115-11ef-95f3-b42e994cb670', 2314, 3000, 'adsfds', '2024-11-28 16:05:50', 'completed'),
+('a370534a-ada2-11ef-962c-b42e994cb670', '984748b8-ada2-11ef-962c-b42e994cb670', 'a5af4687-a115-11ef-95f3-b42e994cb670', 1432, 3000, 'asdfs', '2024-11-28 16:05:51', 'completed'),
+('d34eb0ce-accf-11ef-b431-55d6306d9398', '618c10b2-accf-11ef-b431-55d6306d9398', 'a5af4df1-a115-11ef-95f3-b42e994cb670', 2, 15000, 'fuck ', '2024-11-27 14:56:47', 'completed'),
+('d34fa376-accf-11ef-b431-55d6306d9398', '618c10b2-accf-11ef-b431-55d6306d9398', 'a5af47c1-a115-11ef-95f3-b42e994cb670', 1, 25000, 'just do it', '2024-11-27 14:56:47', 'completed');
 
 --
 -- Triggers `fact_prescription`
@@ -922,7 +981,8 @@ INSERT INTO `fact_work_schedule` (`work_id`, `user_id`, `start_datetime`, `end_d
 ('5b10382f-a4b2-11ef-93f7-b42e994cb670', '68ee0a6f-a114-11ef-95f3-b42e994cb670', '2024-11-18T10:00', '2024-11-18T16:00', 'Test', '2024-11-17 07:05:41', NULL, 'active'),
 ('6cd94cae-a412-11ef-94b2-b42e994cb670', '68ee0a6f-a114-11ef-95f3-b42e994cb670', '2024-11-17T07:00', '2024-11-17T19:00', 'Test', '2024-11-16 12:00:51', '2024-11-17 07:05:47', 'deleted'),
 ('6e7949c5-a412-11ef-94b2-b42e994cb670', '68ee0a6f-a114-11ef-95f3-b42e994cb670', '2024-11-17T07:00', '2024-11-17T19:00', 'Test', '2024-11-16 12:00:54', NULL, 'active'),
-('e23cf1c3-aa87-11ef-9d3e-b42e994cb670', '68ee02c1-a114-11ef-95f3-b42e994cb670', '2024-11-28T00:00:00.000Z', '2024-11-28T14:00:00.000Z', 'Test', '2024-11-24 17:16:46', NULL, 'active');
+('e23cf1c3-aa87-11ef-9d3e-b42e994cb670', '68ee02c1-a114-11ef-95f3-b42e994cb670', '2024-11-28T00:00:00.000Z', '2024-11-28T14:00:00.000Z', 'Test', '2024-11-24 17:16:46', NULL, 'active'),
+('f6fd7bec-acd7-11ef-b431-55d6306d9398', '68ee08af-a114-11ef-95f3-b42e994cb670', '2024-11-30T02:00:00.000Z', '2024-11-30T14:00:00.000Z', '', '2024-11-27 15:55:03', NULL, 'active');
 
 --
 -- Triggers `fact_work_schedule`
