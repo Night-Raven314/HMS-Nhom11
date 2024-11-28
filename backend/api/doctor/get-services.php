@@ -51,10 +51,10 @@
         itm.item_name,
         itm.item_unit,
         CASE
-          WHEN (fac.amount IS NULL AND fac.end_datetime IS NULL) THEN timestampdiff(day, CONVERT_TZ(STR_TO_DATE(fac.start_datetime, '%Y-%m-%dT%H:%i:%s'), '+00:00', '+07:00'), CURRENT_TIMESTAMP())
-          WHEN (fac.amount IS NULL AND fac.end_datetime IS NOT NULL) THEN timestampdiff(day, STR_TO_DATE(fac.start_datetime, '%Y-%m-%dT%H:%i:%s'), STR_TO_DATE(fac.end_datetime, '%Y-%m-%dT%H:%i:%s'))
           WHEN timestampdiff(day, STR_TO_DATE(fac.start_datetime, '%Y-%m-%dT%H:%i:%s'), STR_TO_DATE(fac.end_datetime, '%Y-%m-%dT%H:%i:%s')) = 0 THEN 1
           WHEN timestampdiff(day, CONVERT_TZ(STR_TO_DATE(fac.start_datetime, '%Y-%m-%dT%H:%i:%s'), '+00:00', '+07:00'), CURRENT_TIMESTAMP()) = 0 THEN 1
+          WHEN (fac.amount IS NULL AND fac.end_datetime IS NULL) THEN timestampdiff(day, CONVERT_TZ(STR_TO_DATE(fac.start_datetime, '%Y-%m-%dT%H:%i:%s'), '+00:00', '+07:00'), CURRENT_TIMESTAMP())
+          WHEN (fac.amount IS NULL AND fac.end_datetime IS NOT NULL) THEN timestampdiff(day, STR_TO_DATE(fac.start_datetime, '%Y-%m-%dT%H:%i:%s'), STR_TO_DATE(fac.end_datetime, '%Y-%m-%dT%H:%i:%s'))
             ELSE fac.amount END AS amount,
         fac.item_price,
         fac.item_note

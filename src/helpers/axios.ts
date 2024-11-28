@@ -823,7 +823,7 @@ export const apiGetPaymentDetailsPtnLog = async(patientLogId:string) => {
   let data = null;
   try {
     const res = await hmsAxios.post(
-      "/payment/get-payment-details-ptnlog.php",
+      "/payment/get-payment-total.php",
       JSON.stringify({ptn_log_id: patientLogId})
     );
     if(res.data) {
