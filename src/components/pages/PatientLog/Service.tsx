@@ -11,6 +11,7 @@ import { ServiceRoomModal } from "./ServiceRoom";
 import { BuildingType, FloorType, RoomType } from "../../../pages/role-admin/Building";
 import { convertISOToDateTime } from "../../../helpers/utils";
 import { PatientLogType } from "../../../pages/PatientInfo";
+import { format, set } from "date-fns";
 
 export type ServiceProps = {
   patientLog: PatientLogType;
@@ -92,6 +93,11 @@ export const ServiceTable:FC<ServiceProps> = ({patientLog, requestReload, userRo
   const [roomNote, setRoomNote] = useState<string>("");
 
   const serviceRoomModalRef = useRef<CustomModalHandles>(null);
+
+  const getRoomMaxDate = () => {
+    let maxDate = set(new Date(), {hours: 23, minutes: 59});
+    return format(maxDate, "yyyy-MM-dd'T'HH:mm");
+  }
 
   const getBuilding = async() => {
     const getBuilding = await apiGetServiceRoom();
@@ -559,6 +565,7 @@ export const ServiceTable:FC<ServiceProps> = ({patientLog, requestReload, userRo
                               isRequired={true}
                               type="input"
                               disabled={false}
+                              maxDate={getRoomMaxDate()}
                               changeDelay={0}
                               valueChange={(value) => setRoomStartDate(value)}
                             />
@@ -753,6 +760,7 @@ export const ServiceTable:FC<ServiceProps> = ({patientLog, requestReload, userRo
                                           type="input"
                                           disabled={false}
                                           changeDelay={0}
+                                          maxDate={getRoomMaxDate()}
                                           valueChange={(value) => setRoomStartDate(value)}
                                         />
                                       </div>

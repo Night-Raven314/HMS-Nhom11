@@ -7,6 +7,7 @@ import { apiGetPatientPaymentLog, apiGetPatientPaymentDetail } from "../../helpe
 import { useToast } from "../../components/common/CustomToast";
 import { getItemTypeName, getPaymentStatus } from "../../helpers/utils";
 import { UserSession } from "../../helpers/global";
+import { useNavigate } from "react-router-dom";
 
 export type PaymentListType = {
   payment_id: string;
@@ -43,6 +44,7 @@ type PaymentDetailsTableType = {
 
 export const PatientPaymentLog: FC = () => {
   const {openToast} = useToast();
+  const navigate = useNavigate();
 
   const navbarRef = useRef<NavbarHandles>(null);
   const infoModalRef = useRef<CustomModalHandles>(null);
@@ -109,6 +111,9 @@ export const PatientPaymentLog: FC = () => {
       }
     }
   }
+  const openPaymentPage = (paymentType:string, paymentId:string) => {
+    navigate(`/payment/${paymentType}/${paymentId}`);
+  }
   const searchPayment = () => {
     if(searchKeyword) {
       const searchKeywordLower = searchKeyword.toLowerCase();
@@ -172,7 +177,7 @@ export const PatientPaymentLog: FC = () => {
                             <div className={`${payment.payment_status}-color`}>{getPaymentStatus(payment.payment_status ? payment.payment_status : "")}</div>
                             {payment.payment_status === "pending" || payment.payment_status === "failed" ? (
                               <div className="table-button-list full">
-                                <button onClick={() => {}}>
+                                <button onClick={() => {openPaymentPage(payment.payment_type, payment.payment_id)}}>
                                   Thanh toán
                                 </button>
                               </div>

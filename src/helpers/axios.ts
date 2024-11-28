@@ -851,3 +851,19 @@ export const apiCreatePayment = async(request:CreatePaymentRequestType) => {
   }
   return { data, error };
 }
+export const apiGetFinalPaymentDetails = async(paymentId:string) => {
+  let error = null;
+  let data = null;
+  try {
+    const res = await hmsAxios.post(
+      "/payment/get-payment-details.php",
+      JSON.stringify({payment_id: paymentId})
+    );
+    if(res.data) {
+      data = res.data.data;
+    }
+  } catch (err:any) {
+    error = err.response.data.message;
+  }
+  return { data, error };
+}

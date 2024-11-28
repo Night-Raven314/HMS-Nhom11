@@ -1112,7 +1112,8 @@ div#popupFormContainer {
   place-items: center;
   color: $text-color;
   .payment-container {
-    width: 1600px;
+    width: 100%;
+    max-width: 1600px;
     padding: 15px;
     text-align: center;
     .logo-container {

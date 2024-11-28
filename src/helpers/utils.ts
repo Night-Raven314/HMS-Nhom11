@@ -23,13 +23,11 @@ export const getItemTypeName = (type:string) => {
   switch (type) {
     case "appointment":
       return "Đặt hẹn khám bệnh"
-    case "prescription":
-      return "Đơn thuốc"
-    case "facility":
-      return "Dịch vụ"
+    case "patient-log":
+      return "Khám chữa bệnh"
   
     default:
-      break;
+      return "Không xác định"
   }
 }
 export const getRoleName = (role:string) => {
