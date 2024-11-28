@@ -16,6 +16,7 @@
     $errorMsg = "";
     // Access form values
     $post_id = isset($data['ptn_log_id']) ? mysqli_real_escape_string($conn, $data['ptn_log_id']) : null;
+    $iso8601 = (new DateTime())->format(DateTime::ATOM); // Same as ISO 8601
 
     $sql_update_pres = "UPDATE `fact_prescription`
         SET `status` = 'completed'
@@ -29,7 +30,7 @@
     mysqli_query($conn, $sql_update_hist);
 
     $sql_update_asmt = "UPDATE `fact_facility_asmt`
-        SET `status` = 'completed'
+        SET `status` = 'completed', 'end_datetime' = '$iso8601'
         WHERE `ptn_log_id` = '$post_id'";
     mysqli_query($conn, $sql_update_asmt);
 
