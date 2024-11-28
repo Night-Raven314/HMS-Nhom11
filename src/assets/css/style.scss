@@ -1139,6 +1139,10 @@ div#popupFormContainer {
       .table-body {
         max-height: calc(100dvh - 500px);
       }
+      &.appt {
+        width: 700px;
+        margin: 0 auto;
+      }
     }
     .centered-content {
       background-color: #fff;

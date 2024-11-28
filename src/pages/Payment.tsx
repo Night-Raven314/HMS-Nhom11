@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, Fragment, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { useParams } from "react-router-dom";
 import { apiGetFinalPaymentDetails, apiGetFinalPaymentInfo, apiGetPaymentUrl } from "../helpers/axios";
@@ -108,39 +108,77 @@ export const PaymentPage:FC = () => {
           </div>
           <div className="row">
             {viewPayment.map((type, typeIndex) => (
-              <div className="col-md-6" key={typeIndex}>
-                <div className="hms-table" style={{marginBottom: "30px"}}>
-                  <div className="table-header">
-                    <div className="header-title">{getItemTypeName(type.tableType)}</div>
+              <Fragment>
+                {type.tableType === "appointment" ? (
+                  <div className="col-md-12" key={typeIndex}>
+                    <div className="hms-table appt" style={{marginBottom: "30px"}}>
+                      <div className="table-header">
+                        <div className="header-title">{getItemTypeName(type.tableType)}</div>
+                      </div>
+                      <div className="table-body">
+                        <table>
+                          <thead>
+                            <tr>
+                              <th style={{ width: "150px" }}>Tên sản phẩm</th>
+                              <th style={{ width: "140px" }}>Đơn vị</th>
+                              <th style={{ width: "50px" }}>Số lượng</th>
+                              <th style={{ width: "100px" }}>Đơn giá</th>
+                              <th style={{ width: "100px" }}>Tổng</th>
+                              <th style={{ width: "140px" }}>Ghi chú</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {type.tableDetails.map((payment,index) => (
+                              <tr key={index}>
+                                <td>{payment.full_name}</td>
+                                <td>{payment.fac_name}</td>
+                                <td>{payment.amount}</td>
+                                <td>{payment.appt_fee}</td>
+                                <td>{payment.total_value}</td>
+                                <td>{payment.item_note}</td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
                   </div>
-                  <div className="table-body">
-                    <table>
-                      <thead>
-                        <tr>
-                          <th style={{ width: "150px" }}>Tên sản phẩm</th>
-                          <th style={{ width: "140px" }}>Đơn vị</th>
-                          <th style={{ width: "50px" }}>Số lượng</th>
-                          <th style={{ width: "100px" }}>Đơn giá</th>
-                          <th style={{ width: "100px" }}>Tổng</th>
-                          <th style={{ width: "140px" }}>Ghi chú</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {type.tableDetails.map((payment,index) => (
-                          <tr key={index}>
-                            <td>{payment.full_name}</td>
-                            <td>{payment.fac_name}</td>
-                            <td>{payment.amount}</td>
-                            <td>{payment.appt_fee}</td>
-                            <td>{payment.total_value}</td>
-                            <td>{payment.item_note}</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
+                ) : (
+                  <div className="col-md-6" key={typeIndex}>
+                    <div className="hms-table" style={{marginBottom: "30px"}}>
+                      <div className="table-header">
+                        <div className="header-title">{getItemTypeName(type.tableType)}</div>
+                      </div>
+                      <div className="table-body">
+                        <table>
+                          <thead>
+                            <tr>
+                              <th style={{ width: "150px" }}>Tên sản phẩm</th>
+                              <th style={{ width: "140px" }}>Đơn vị</th>
+                              <th style={{ width: "50px" }}>Số lượng</th>
+                              <th style={{ width: "100px" }}>Đơn giá</th>
+                              <th style={{ width: "100px" }}>Tổng</th>
+                              <th style={{ width: "140px" }}>Ghi chú</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {type.tableDetails.map((payment,index) => (
+                              <tr key={index}>
+                                <td>{payment.full_name}</td>
+                                <td>{payment.fac_name}</td>
+                                <td>{payment.amount}</td>
+                                <td>{payment.appt_fee}</td>
+                                <td>{payment.total_value}</td>
+                                <td>{payment.item_note}</td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
+                )}
+              </Fragment>
             ))}
           </div>
         </div>

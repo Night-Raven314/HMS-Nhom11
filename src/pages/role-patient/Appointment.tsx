@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 import { AdminSidebar } from "../../components/common/AdminSidebar";
 import { NavbarHandles, PageNavbar } from "../../components/common/PageNavbar";
 import { CustomModal, CustomModalHandles } from "../../components/common/CustomModal";
-import { apiGetAvailDoctor, apiGetPatientAppt, apiGetFaculty, apiUpdatePatientAppt } from "../../helpers/axios";
+import { apiGetAvailDoctor, apiGetPatientAppt, apiGetFaculty, apiUpdatePatientAppt, apiCreatePayment, apiGetLastApptId } from "../../helpers/axios";
 import { useToast } from "../../components/common/CustomToast";
 import { convertISOToDateTime, getApptStatus, getItemTypeName, getPaymentStatus } from "../../helpers/utils";
 import { DoctorSidebar } from "../../components/common/DoctorSidebar";
@@ -17,6 +17,7 @@ import { FacultyListType } from "../role-admin/Faculty";
 import { ApptListType } from "../role-doctor/Appointment";
 import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { CreatePaymentRequestType } from "../PatientLog";
 
 export type ApptFormType = {
   doctor_id?: string,
@@ -28,6 +29,11 @@ export type ApptRequestType = ApptFormType & {
   appt_id?: string,
   appt_fee?: string
   auth_user_id?: string
+}
+type AvailDoctorType = {
+  doctor_id: string;
+  doctor_name: string;
+  fac_pricing: string;
 }
 
 export const PatientAppointment: FC = () => {
@@ -42,6 +48,7 @@ export const PatientAppointment: FC = () => {
 
   // Handle faculty/doctor selection
   const [availableDoctor, setAvailableDoctor] = useState<SelectOptionType[]>([]);
+  const [availableDoctorList, setAvailableDoctorList] = useState<AvailDoctorType[]>([]);
 
   const [updateApptId, setUpdateApptId] = useState<string | null>();
   const deleteApptModalRef = useRef<CustomModalHandles>(null);
@@ -70,6 +77,7 @@ export const PatientAppointment: FC = () => {
   const toggleModal = (action: string, apptId?:string) => {
     const clearForm = () => {
       setAvailableDoctor([]);
+      setAvailableDoctorList([]);
       setInitialValue({
         doctor_id: "",
         faculty_id: "",
@@ -125,6 +133,7 @@ export const PatientAppointment: FC = () => {
     if(getAvail.error) {
       openToast("error", "Lỗi", "Đã xảy ra lỗi khi lấy thông tin bác sỹ!", 5000);
     } else if (getAvail.data) {
+      setAvailableDoctorList(getAvail.data);
       let tmpAvailDoctor:SelectOptionType[] = [
         {
           value: "",
@@ -205,6 +214,32 @@ export const PatientAppointment: FC = () => {
           toggleModal("close");
           openToast("success", "Thành công", updateApptId ? "Lịch hẹn đã được cập nhật" : "Đã đặt hẹn thành công!", 5000);
           getApptList();
+          const getApptId = await apiGetLastApptId(UserSession.auth_user_id);
+          if(getApptId.data) {
+            createPayment(getApptId.data[0].appt_id, value);
+          }
+        }
+      }
+    }
+  }
+  const createPayment = async(apptId:string, value:ApptFormType) => {
+    const findSelectedDoctor = availableDoctorList.find(doc => doc.doctor_id === value.doctor_id);
+    console.log(availableDoctorList, value)
+    if(findSelectedDoctor && value.appt_datetime && UserSession) {
+      let tmpTotalAmount = Number(findSelectedDoctor.fac_pricing);
+      const request:CreatePaymentRequestType = {
+        action: "appointment",
+        post_id: apptId,
+        total_amount: tmpTotalAmount,
+        payment_desc: `Thanh toán đặt hẹn ngày ${format(new Date(value.appt_datetime), "dd/MM/yyyy")}`
+      }
+      const create = await apiCreatePayment(request);
+      if(create.error) {
+        openToast("error", "Lỗi", "Đã xảy ra lỗi xử lý!", 5000);
+      } else if (create.data) {
+        const getAppt = await apiGetLastApptId(UserSession.auth_user_id);
+        if(getAppt.data) {
+          openPaymentPage(getAppt.data[0].payment_id);
         }
       }
     }

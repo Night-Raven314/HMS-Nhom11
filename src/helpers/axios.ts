@@ -914,3 +914,20 @@ export const apiProcessPaymentRedirect = async(param:string) => {
   }
   return { data, error };
 }
+
+export const apiGetLastApptId = async(userId:string) => {
+  let error = null;
+  let data = null;
+  try {
+    const res = await hmsAxios.post(
+      "/patient/get-last-appointment.php",
+      JSON.stringify({auth_user_id: userId})
+    );
+    if(res.data) {
+      data = res.data.data;
+    }
+  } catch (err:any) {
+    error = err.response.data.message;
+  }
+  return { data, error };
+}
