@@ -316,7 +316,6 @@ export const PatientLog:FC = () => {
                       {userRole === "doctor" ? (
                         <div className="user-action">
                           <button className="btn btn-gradient" disabled={patientLog && patientLog.status === "completed" ? true : false} onClick={() => {confirmCompleteModalRef.current?.openModal()}}>{patientLog && patientLog.status === "completed" ? "Đã hoàn thành" : "Hoàn thành"} điều trị</button>
-                          <button onClick={() => createPayment()}>Test</button>
                         </div>
                       ) : ""}
                     </div>
