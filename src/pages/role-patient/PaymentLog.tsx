@@ -161,6 +161,7 @@ export const PatientPaymentLog: FC = () => {
                         <th style={{ width: "100px" }}>Mã tham chiếu</th>
                         <th style={{ width: "100px" }}>Giá trị</th>
                         <th style={{ width: "100px" }}>Trạng thái</th>
+                        <th style={{ width: "100px" }}>Thao tác</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -174,6 +175,8 @@ export const PatientPaymentLog: FC = () => {
                           <td>{payment.amount}</td>
                           <td>
                             <div className={`${payment.payment_status}-color`}>{getPaymentStatus(payment.payment_status ? payment.payment_status : "")}</div>
+                          </td>
+                          <td>
                             {payment.payment_status === "pending" || payment.payment_status === "failed" ? (
                               <div className="table-button-list full">
                                 <button onClick={() => {openPaymentPage(payment.payment_type, payment.payment_id)}}>
