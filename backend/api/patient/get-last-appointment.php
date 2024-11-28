@@ -17,8 +17,11 @@ if ($data) {
   $auth_user_id = $data['auth_user_id'] ? mysqli_real_escape_string($conn, $data['auth_user_id']) : null;
   // Process the form data (e.g., save to database, send email, etc.)
   $sql = "SELECT
-      *
-    FROM fact_appointment
+      appt.*,
+      pmt.payment_id
+    FROM `fact_appointment` appt
+      LEFT JOIN `fact_payment` pmt
+        ON appt.appt_id = pmt.appt_id
     WHERE
       patient_id = '$auth_user_id'
     ORDER BY created_at DESC
