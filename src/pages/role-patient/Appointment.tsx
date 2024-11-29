@@ -335,7 +335,9 @@ export const PatientAppointment: FC = () => {
                             <td>{appt.appt_fee}</td>
                             <td>{getApptStatus(appt.appt_status ? appt.appt_status : "")}</td>
                             <td>
-                              <div className={`${appt.payment_status}-color`}>{getPaymentStatus(appt.payment_status ? appt.payment_status : "")}</div>
+                              {(appt.payment_status !== "pending" && appt.payment_status !== "failed") ? (
+                                <div className={`${appt.payment_status}-color`}>{getPaymentStatus(appt.payment_status ? appt.payment_status : "")}</div>
+                              ) : ""}
                               {(appt.payment_status === "pending" || appt.payment_status === "failed") && appt.payment_id ? (
                                 <div className="table-button-list full">
                                   <button onClick={() => {openPaymentPage(appt.payment_id)}}>
