@@ -100,14 +100,30 @@ export const PatientLog:FC = () => {
     if (!value.weight) {
       errors.weight = " ";
     }
+    if (parseInt(value.weight) > 150 || parseInt(value.weight) < 0) {
+      errors.weight = "Không hợp lệ";
+      openToast("error", "Không hợp lệ", "Vui lòng điền cân nặng trong khoảng 0 - 150kg", 2000);
+    }
     if (!value.height) {
       errors.height = " ";
+    }
+    if (parseInt(value.height) > 250 || parseInt(value.height) < 0) {
+      errors.height = "Không hợp lệ";
+      openToast("error", "Không hợp lệ", "Vui lòng điền chiều cao trong khoảng 0 - 250cm", 2000);
     }
     if (!value.spo2) {
       errors.spo2 = " ";
     }
+    if (parseInt(value.spo2) > 100 || parseInt(value.spo2) < 0) {
+      errors.spo2 = "Không hợp lệ";
+      openToast("error", "Không hợp lệ", "Vui lòng điền tỷ lệ spO2 trong khoảng 0 - 100%", 2000);
+    }
     if (!value.temp) {
       errors.temp = " ";
+    }
+    if (parseInt(value.temp) > 50 || parseInt(value.temp) < 0) {
+      errors.temp = "Không hợp lệ";
+      openToast("error", "Không hợp lệ", "Vui lòng điền nhiệt độ trong khoảng 0 - 50°C", 2000);
     }
     if (!value.blood_press) {
       errors.blood_press = " ";

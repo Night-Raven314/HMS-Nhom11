@@ -357,7 +357,7 @@ export const NurseStock:FC = () => {
                                 label="Số lượng"
                                 placeholder="Nhập số lượng"
                                 initialValue=""
-                                inputType="text"
+                                inputType="number"
                                 isRequired={true}
                                 type="input"
                                 disabled={false}
