@@ -17,6 +17,7 @@ export type CustomInputType = {
   disabled: boolean,
   type: string,
   placeholder: string,
+  instruction?: string,
   textareaRow?: number,
   formik?: FormikProps<any>,
   name?: string,
@@ -43,6 +44,7 @@ export const CustomInput: FC<CustomInputType> = memo(({
   valueChange,
   minDate,
   maxDate,
+  instruction,
   changeDelay = 1000
 }) => {
 
@@ -50,6 +52,7 @@ export const CustomInput: FC<CustomInputType> = memo(({
   const inputError: any = formik ? formik.errors[id] : false;
   const isError = inputTouched && inputError ? true : false;
   const [value, setValue] = useState<string>(initialValue || "");
+  const [showInstruction, setShowInstruction] = useState<boolean>(false);
 
   let valueChangeDelay:any = null;
 
@@ -83,6 +86,11 @@ export const CustomInput: FC<CustomInputType> = memo(({
 
   return (
     <div className={`custom-input ${type} ${isError ? "error-input" : ""}`}>
+      {instruction ? (
+        <div className={`input-instruction ${showInstruction ? "show" : ""}`}>
+          {instruction}
+        </div>
+      ) : ""}
       {type === "textarea" ? (
         <Fragment>
           <textarea
@@ -93,6 +101,14 @@ export const CustomInput: FC<CustomInputType> = memo(({
             disabled={disabled}
             onBlur={(e) => {
               formik?.handleBlur(e);
+              if(instruction) {
+                setShowInstruction(false);
+              }
+            }}
+            onFocus={() => {
+              if(instruction) {
+                setShowInstruction(true);
+              }
             }}
             onChange={handleChange}
             value={value}
@@ -110,6 +126,14 @@ export const CustomInput: FC<CustomInputType> = memo(({
             disabled={disabled}
             onBlur={(e) => {
               formik?.handleBlur(e);
+              if(instruction) {
+                setShowInstruction(false);
+              }
+            }}
+            onFocus={() => {
+              if(instruction) {
+                setShowInstruction(true);
+              }
             }}
             onChange={handleChange}
             min={minDate}

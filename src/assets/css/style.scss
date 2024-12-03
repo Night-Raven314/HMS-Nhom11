@@ -1,3 +1,5 @@
+@import "./variables";
+
 $hms-light: #44857D;
 $hms-neutral: #167070;
 $hms-dark: #003D59;
@@ -256,6 +258,26 @@ div#popupFormContainer {
   }
   select {
     all: unset
+  }
+  .input-instruction {
+    background-color: #fff;
+    border: 1px solid $hms-neutral;
+    position: fixed;
+    z-index: 200;
+    font-size: 12pt;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-top: -50px;
+    transition: all 400ms $ios-transition;
+    transform: scale(0.3) translateY(100px);
+    transform-origin: 20% bottom;
+    opacity: 0;
+    pointer-events: none;
+    @include floating-shadow();
+    &.show {
+      transform: none;
+      opacity: 1;
+    }
   }
   input, select, textarea {
     transition: all 200ms ease-in-out;

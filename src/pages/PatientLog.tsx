@@ -98,35 +98,31 @@ export const PatientLog:FC = () => {
   const medHistValidate = (value: MedHistForm) => {
     let errors: MedHistForm = {};
     if (!value.weight) {
-      errors.weight = " ";
+      errors.weight = "Bắt buộc";
     }
-    if (parseInt(value.weight) > 150 || parseInt(value.weight) < 0) {
+    if (value.weight && (Number(value.weight) > 150 || Number(value.weight) < 0)) {
       errors.weight = "Không hợp lệ";
-      openToast("error", "Không hợp lệ", "Vui lòng điền cân nặng trong khoảng 0 - 150kg", 2000);
     }
     if (!value.height) {
-      errors.height = " ";
+      errors.height = "Bắt buộc";
     }
-    if (parseInt(value.height) > 250 || parseInt(value.height) < 0) {
+    if (value.height && (Number(value.height) > 250 || Number(value.height) < 0)) {
       errors.height = "Không hợp lệ";
-      openToast("error", "Không hợp lệ", "Vui lòng điền chiều cao trong khoảng 0 - 250cm", 2000);
     }
     if (!value.spo2) {
-      errors.spo2 = " ";
+      errors.spo2 = "Bắt buộc";
     }
-    if (parseInt(value.spo2) > 100 || parseInt(value.spo2) < 0) {
+    if (value.spo2 && (Number(value.spo2) > 100 || Number(value.spo2) < 0)) {
       errors.spo2 = "Không hợp lệ";
-      openToast("error", "Không hợp lệ", "Vui lòng điền tỷ lệ spO2 trong khoảng 0 - 100%", 2000);
     }
     if (!value.temp) {
-      errors.temp = " ";
+      errors.temp = "Bắt buộc";
     }
-    if (parseInt(value.temp) > 50 || parseInt(value.temp) < 0) {
+    if (value.temp && (Number(value.temp) > 50 || Number(value.temp) < 0)) {
       errors.temp = "Không hợp lệ";
-      openToast("error", "Không hợp lệ", "Vui lòng điền nhiệt độ trong khoảng 0 - 50°C", 2000);
     }
     if (!value.blood_press) {
-      errors.blood_press = " ";
+      errors.blood_press = "Bắt buộc";
     }
     return errors;
   }
@@ -511,6 +507,9 @@ export const PatientLog:FC = () => {
             return (
               <Form>
                 <div className="body-content">
+                  <div className="title-with-btn" style={{marginTop: "5px", marginBottom: 0}}>
+                    <div className="title-text">Nhập thông tin sức khoẻ</div>
+                  </div>
                   <div className="row">
                     <div className="col-md-2">
                       <CustomInput
@@ -519,6 +518,7 @@ export const PatientLog:FC = () => {
                         name="weight"
                         label="Cân nặng"
                         placeholder="Nhập cân nặng"
+                        instruction="Nhập trong khoảng 0 - 150kg"
                         initialValue=""
                         inputType="text"
                         isRequired={true}
@@ -533,6 +533,7 @@ export const PatientLog:FC = () => {
                         name="height"
                         label="Chiều cao"
                         placeholder="Nhập chiều cao"
+                        instruction="Nhập trong khoảng 0 - 250cm"
                         initialValue=""
                         inputType="text"
                         isRequired={true}
@@ -547,6 +548,7 @@ export const PatientLog:FC = () => {
                         name="spo2"
                         label="SpO2"
                         placeholder="Nhập SpO2"
+                        instruction="Nhập tỷ lệ spO2 trong khoảng 0 - 100%"
                         initialValue=""
                         inputType="text"
                         isRequired={true}
@@ -561,6 +563,7 @@ export const PatientLog:FC = () => {
                         name="temp"
                         label="Nhiệt độ"
                         placeholder="Nhập nhiệt độ"
+                        instruction="Nhập nhiệt độ trong khoảng 0 - 50°C"
                         initialValue=""
                         inputType="text"
                         isRequired={true}
