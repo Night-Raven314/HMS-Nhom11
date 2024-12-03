@@ -77,7 +77,7 @@ if ($data) {
       WHERE
         appt.status <> 'deleted'
       	AND appt.created_at BETWEEN DATE(STR_TO_DATE('$start_date' COLLATE utf8mb4_general_ci,'%Y-%m-%dT%H:%i:%s'))
-        	AND DATE(STR_TO_DATE('$start_date' COLLATE utf8mb4_general_ci,'%Y-%m-%dT%H:%i:%s'))
+        	AND DATE(STR_TO_DATE('$end_date' COLLATE utf8mb4_general_ci,'%Y-%m-%dT%H:%i:%s'))
       ORDER BY
         appt.created_at DESC, appt.appt_datetime DESC";
   if ($sql) {

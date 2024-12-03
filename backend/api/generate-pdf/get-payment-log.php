@@ -189,7 +189,7 @@
       WHERE	
       	amount IS NOT NULL
         AND created_at BETWEEN DATE(STR_TO_DATE('$start_date' COLLATE utf8mb4_general_ci,'%Y-%m-%dT%H:%i:%s'))
-        	AND DATE(STR_TO_DATE('$start_date' COLLATE utf8mb4_general_ci,'%Y-%m-%dT%H:%i:%s'))
+        	AND DATE(STR_TO_DATE('$end_date' COLLATE utf8mb4_general_ci,'%Y-%m-%dT%H:%i:%s'))
       ORDER BY
       	created_at DESC,
         updated_at DESC,
