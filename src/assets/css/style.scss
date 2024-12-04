@@ -1097,7 +1097,7 @@ div#popupFormContainer {
 .btn-gradient {
   background-image: $hms-gradient;
   color: #fff!important;
-  &:hover, &:active {
+  a, &:hover, &:active {
     color: #fff!important;
   }
 }
@@ -1176,6 +1176,9 @@ div#popupFormContainer {
       margin-bottom: 15px;
     }
     .box-button {
+      button {
+        margin: 0 10px;
+      }
       margin-top: 10px;
     }
     .box-container {

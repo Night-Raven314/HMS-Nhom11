@@ -123,3 +123,7 @@ export const stockChangeName = (name:string) => {
 export const convertISOToDateTime = (date:string) => {
   return format(new Date(date), "dd/MM/yyyy - HH:mm");
 }
+
+export const formatPrice = (value: string): string => {
+  return value.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}

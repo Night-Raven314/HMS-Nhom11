@@ -4,7 +4,9 @@ import { useParams } from "react-router-dom";
 import { apiGetFinalPaymentDetails, apiGetFinalPaymentInfo, apiGetPaymentUrl } from "../helpers/axios";
 import { useToast } from "../components/common/CustomToast";
 import { PaymentDetailsTableType, PaymentDetailsType } from "./role-patient/PaymentLog";
-import { getItemTypeName } from "../helpers/utils";
+import { formatPrice, getItemTypeName } from "../helpers/utils";
+import { PaymentReceipt } from "../components/pdf/PaymentReceipt";
+import { PDFDownloadLink } from "@react-pdf/renderer";
 
 export const PaymentPage:FC = () => {
   const {openToast} = useToast();
@@ -89,7 +91,7 @@ export const PaymentPage:FC = () => {
                     Thành tiền
                   </div>
                   <div className="container-right">
-                    {totalInfo.amount}đ
+                    {formatPrice(totalInfo.amount)}đ
                   </div>
                 </div>
                 <div className="box-container">
@@ -102,6 +104,13 @@ export const PaymentPage:FC = () => {
                 </div>
                 <div className="box-button">
                   <button className="btn btn-gradient" onClick={() => startPayment()}>Thanh toán</button>
+                  {totalInfo && viewPayment.length ? (
+                    <div className="btn btn-gradient">
+                      <PDFDownloadLink document={<PaymentReceipt totalInfo={totalInfo} viewPayment={viewPayment} />} fileName="Phieu-thanh-toan.pdf">
+                        Tải về PDF
+                      </PDFDownloadLink>
+                    </div>
+                  ) : ""}
                 </div>
               </div>
             ) : ""}
@@ -133,8 +142,8 @@ export const PaymentPage:FC = () => {
                                 <td>{payment.full_name}</td>
                                 <td>{payment.fac_name}</td>
                                 <td>{payment.amount}</td>
-                                <td>{payment.appt_fee}</td>
-                                <td>{payment.total_value}</td>
+                                <td>{formatPrice(payment.appt_fee)}</td>
+                                <td>{formatPrice(payment.total_value)}</td>
                                 <td>{payment.item_note}</td>
                               </tr>
                             ))}
@@ -167,8 +176,8 @@ export const PaymentPage:FC = () => {
                                 <td>{payment.full_name}</td>
                                 <td>{payment.fac_name}</td>
                                 <td>{payment.amount}</td>
-                                <td>{payment.appt_fee}</td>
-                                <td>{payment.total_value}</td>
+                                <td>{formatPrice(payment.appt_fee)}</td>
+                                <td>{formatPrice(payment.total_value)}</td>
                                 <td>{payment.item_note}</td>
                               </tr>
                             ))}
