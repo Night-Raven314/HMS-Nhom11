@@ -103,7 +103,7 @@ export const NurseStock:FC = () => {
   const getStockInfo = async(itemId:string) => {
     const getItem = await apiGetNurseStockInfo(itemId);
     if(getItem.error) {
-      openToast("error", "Lỗi", "Đã xảy ra lỗi khi lấy danh sách tầng!", 5000);
+      openToast("error", "Lỗi", "Đã xảy ra lỗi khi lấy danh sách vật tư!", 5000);
     } else if (getItem.data) {
       setViewInfo(getItem.data)
     }
@@ -178,7 +178,7 @@ export const NurseStock:FC = () => {
   const getStock = async() => {
     const getItem = await apiGetNurseStock();
     if(getItem.error) {
-      openToast("error", "Lỗi", "Đã xảy ra lỗi khi lấy danh sách tầng!", 5000);
+      openToast("error", "Lỗi", "Đã xảy ra lỗi khi lấy danh sách vật tư!", 5000);
     } else if (getItem.data) {
       let tmpStockList:StockListType[] = [];
       getItem.data.forEach((item:StockListType) => {
@@ -201,7 +201,7 @@ export const NurseStock:FC = () => {
   const getAllItem = async() => {
     const getAllItem = await apiGetAllItem();
     if(getAllItem.error) {
-      openToast("error", "Lỗi", "Đã xảy ra lỗi khi lấy danh sách tầng!", 5000);
+      openToast("error", "Lỗi", "Đã xảy ra lỗi khi lấy danh sách vật tư!", 5000);
     } else if (getAllItem.data) {
       let tmpItemList:ItemListType[] = [];
       getAllItem.data.item.forEach((item:ItemListType) => {
