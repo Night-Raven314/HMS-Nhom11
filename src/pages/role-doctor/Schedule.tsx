@@ -303,7 +303,8 @@ export const DoctorSchedule: FC = () => {
             <div className="page-content">
               <PageNavbar
                 navbarTitle={`Quản lý ${pageTerm}`}
-                searchRequest={(keyword) => {setSearchKeyword(keyword)}}
+                searchRequest={() => {}}
+                hideSearch={true}
                 ref={navbarRef}
               />
               <div className="content">

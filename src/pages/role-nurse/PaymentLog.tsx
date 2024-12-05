@@ -102,8 +102,8 @@ export const NursePaymentLog: FC = () => {
   }
 
   const getPaymentList = async() => {
-    if(UserSession) {
-      const getPayment = await apiGetPatientPaymentLog(UserSession.auth_user_id);
+    if(UserSession && UserSession.faculty_id) {
+      const getPayment = await apiGetPatientPaymentLog(UserSession.faculty_id);
       if(getPayment.error) {
         openToast("error", "Lỗi", "Đã xảy ra lỗi khi lấy lịch sử giao dịch!", 5000);
       } else if (getPayment.data) {
