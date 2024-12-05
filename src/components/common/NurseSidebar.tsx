@@ -81,6 +81,18 @@ export const NurseSidebar:FC<NurseSidebarProps> = ({selectedItem}) => {
               </div>
             </Link>
           </li>
+
+          <li className="nav-item">
+            <Link to="/role-nurse/payment-log">
+              <div className={`nav-link text-white ${selectedItem === "payment-log" ? "active bg-gradient-primary" : ""}`}>
+                <div className="side-icon">
+                  <FontAwesomeIcon icon={faMoneyBill} />
+                </div>
+
+                <span className="side-text">Lịch sử thanh toán</span>
+              </div>
+            </Link>
+          </li>
           
         </ul>
       </div>
