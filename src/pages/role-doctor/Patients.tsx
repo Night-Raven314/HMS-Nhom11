@@ -57,7 +57,7 @@ export const DoctorPatients: FC = () => {
   const searchPatient = () => {
     if(searchKeyword) {
       const searchKeywordLower = searchKeyword.toLowerCase();
-      const filterList = patientList.filter(patient => patient.patient_id.toLowerCase().includes(searchKeywordLower));
+      const filterList = patientList.filter(patient => patient.patient_name.toLowerCase().includes(searchKeywordLower));
       setPatientListFiltered(filterList);
     } else {
       setPatientListFiltered(patientList);

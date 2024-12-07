@@ -61,7 +61,7 @@ export const DoctorAppointment: FC = () => {
   const searchAppt = () => {
     if(searchKeyword) {
       const searchKeywordLower = searchKeyword.toLowerCase();
-      const filterList = apptList.filter(appt => appt.appt_id.toLowerCase().includes(searchKeywordLower));
+      const filterList = apptList.filter(appt => appt.patient_name.toLowerCase().includes(searchKeywordLower));
       setApptListFiltered(filterList);
     } else { 
       setApptListFiltered(apptList);

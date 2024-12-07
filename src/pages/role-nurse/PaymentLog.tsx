@@ -43,7 +43,7 @@ export type PaymentDetailsTableType = {
 
 
 
-export const PatientPaymentLog: FC = () => {
+export const NursePaymentLog: FC = () => {
   const {openToast} = useToast();
   const navigate = useNavigate();
 
@@ -102,8 +102,8 @@ export const PatientPaymentLog: FC = () => {
   }
 
   const getPaymentList = async() => {
-    if(UserSession) {
-      const getPayment = await apiGetPatientPaymentLog(UserSession.auth_user_id);
+    if(UserSession && UserSession.faculty_id) {
+      const getPayment = await apiGetPatientPaymentLog(UserSession.faculty_id);
       if(getPayment.error) {
         openToast("error", "Lỗi", "Đã xảy ra lỗi khi lấy lịch sử giao dịch!", 5000);
       } else if (getPayment.data) {
@@ -139,12 +139,7 @@ export const PatientPaymentLog: FC = () => {
         <div className="main-background">
           <div className="page-container">
             <div className="page-sidebar">
-              {UserSession.auth_user_role === "patient" ? (
-                <PatientSidebar selectedItem={"payment-log"} />
-              ) : ""}
-              {UserSession.auth_user_role === "nurse" ? (
-                <NurseSidebar selectedItem={"payment-log"} />
-              ) : ""}
+              <NurseSidebar selectedItem={"payment-log"} />
             </div>
             <div className="page-content">
               <PageNavbar

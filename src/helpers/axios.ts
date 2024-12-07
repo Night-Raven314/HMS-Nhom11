@@ -931,3 +931,20 @@ export const apiGetLastApptId = async(userId:string) => {
   }
   return { data, error };
 }
+
+export const apiGetNursePaymentLog = async(facultyId:string) => {
+  let error = null;
+  let data = null;
+  try {
+    const res = await hmsAxios.post(
+      "/patient/get-payment.php",
+      JSON.stringify({faculty_id: facultyId})
+    );
+    if(res.data) {
+      data = res.data.data;
+    }
+  } catch (err:any) {
+    error = err.response.data.message;
+  }
+  return { data, error };
+}
