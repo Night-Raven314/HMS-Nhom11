@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 28, 2024 at 05:07 PM
+-- Generation Time: Dec 07, 2024 at 05:50 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -397,6 +397,7 @@ CREATE TABLE `dim_user` (
 --
 
 INSERT INTO `dim_user` (`user_id`, `user_name`, `password`, `email_address`, `contact_no`, `full_name`, `birthday`, `created_at`, `updated_at`, `gender`, `city`, `address`, `role`, `faculty_id`, `oauth_google`, `oauth_facebook`, `status`) VALUES
+('0eef0c41-b24e-11ef-9657-b42e994cb670', 'demo_patient_2', 'pass123', 'demo_patient_2@example.com', 84345678912, 'Nguyen Van Hung', '1989-02-23T00:00:00.000Z', '2024-12-04 14:42:59', NULL, 'male', 'Ho Chi Minh', '16 Le Hong Phong', 'patient', '', NULL, NULL, 'active'),
 ('5c950e93-ac16-11ef-982c-b42e994cb670', 'nurse40', 'password123', 'nurse40@example.com', 842131423432, 'Nguyen Thi Ly', '1983-06-15T00:00:00.000Z', '2024-11-26 16:49:11', NULL, 'female', 'Ho Chi Minh', '35 Vo Van Tan', 'nurse', '63115776-a115-11ef-95f3-b42e994cb670', NULL, NULL, 'active'),
 ('68edf2da-a114-11ef-95f3-b42e994cb670', 'huan_patient', 'password123', 'huan.nguyen@example.com', 84912345601, 'Nguyen Nhut Gia Huan', NULL, '2024-10-07 05:36:07', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '1 Mac Dinh Chi', 'patient', NULL, NULL, NULL, 'active'),
 ('68ee02c1-a114-11ef-95f3-b42e994cb670', 'huan_doctor', 'password123', 'huan.nguyen@example.com', 84912345602, 'Nguyen Nhut Gia Huan', NULL, '2024-10-07 05:36:07', '2024-11-12 16:44:31', 'male', 'Ho Chi Minh', '1 Le Duan New', 'doctor', '63115776-a115-11ef-95f3-b42e994cb670', NULL, NULL, 'active'),
@@ -436,7 +437,9 @@ INSERT INTO `dim_user` (`user_id`, `user_name`, `password`, `email_address`, `co
 ('68ee1724-a114-11ef-95f3-b42e994cb670', 'patient36', 'password123', 'patient36@example.com', 84920000036, 'Tran Van Hieu', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '36 Nguyen Thi Minh Khai', 'patient', NULL, NULL, NULL, 'active'),
 ('68ee17bc-a114-11ef-95f3-b42e994cb670', 'patient37', 'password123', 'patient37@example.com', 84920000037, 'Pham Thi An', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'female', 'Ho Chi Minh', '37 Le Van Sy', 'patient', NULL, NULL, NULL, 'active'),
 ('68ee1857-a114-11ef-95f3-b42e994cb670', 'patient38', 'password123', 'patient38@example.com', 84920000038, 'Nguyen Van Thanh', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '38 Nguyen Trai', 'patient', NULL, NULL, NULL, 'active'),
-('68ee18ec-a114-11ef-95f3-b42e994cb670', 'patient39', 'password123', 'patient39@example.com', 84920000039, 'Tran Thi Kim', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'female', 'Ho Chi Minh', '39 Hai Ba Trung', 'patient', NULL, NULL, NULL, 'active');
+('68ee18ec-a114-11ef-95f3-b42e994cb670', 'patient39', 'password123', 'patient39@example.com', 84920000039, 'Tran Thi Kim', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'female', 'Ho Chi Minh', '39 Hai Ba Trung', 'patient', NULL, NULL, NULL, 'active'),
+('b181a736-b24b-11ef-9657-b42e994cb670', 'demo_doctor', 'pass123', 'demo_doctor@example.com', 84123456789, 'Nguyen Tran Thanh Tu', '1980-06-18T00:00:00.000Z', '2024-12-04 14:26:04', NULL, 'male', 'Ho Chi Minh', '14 Le Hong Phong', 'doctor', '63115701-a115-11ef-95f3-b42e994cb670', NULL, NULL, 'active'),
+('f1696fd4-b24d-11ef-9657-b42e994cb670', 'demo_patient_1', 'pass123', 'demo_patient_1@example.com', 84234567891, 'Chu Thi Huyen Trang', '1984-08-13T00:00:00.000Z', '2024-12-04 14:42:10', NULL, 'female', 'Ho Chi Minh', '35 Pho Quang', 'patient', '', NULL, NULL, 'active');
 
 --
 -- Triggers `dim_user`
@@ -469,6 +472,9 @@ CREATE TABLE `fact_appointment` (
 --
 
 INSERT INTO `fact_appointment` (`appt_id`, `doctor_id`, `patient_id`, `faculty_id`, `appt_fee`, `appt_datetime`, `created_at`, `updated_at`, `status`) VALUES
+('5a995a0b-adb5-11ef-962c-b42e994cb670', '68ee02c1-a114-11ef-95f3-b42e994cb670', '68ee143a-a114-11ef-95f3-b42e994cb670', '63115776-a115-11ef-95f3-b42e994cb670', 45000, '2024-11-28T01:19:00.000Z', '2024-11-28 18:19:49', NULL, 'active'),
+('73dbefd8-b24e-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', 'f1696fd4-b24d-11ef-9657-b42e994cb670', '63115701-a115-11ef-95f3-b42e994cb670', 300000, '2024-12-12T07:59:00.000Z', '2024-12-04 14:45:49', NULL, 'active'),
+('942df348-ae62-11ef-95cd-b42e994cb670', '68ee02c1-a114-11ef-95f3-b42e994cb670', '68ee143a-a114-11ef-95f3-b42e994cb670', '63115776-a115-11ef-95f3-b42e994cb670', 400000, '2024-11-28T10:59:00.000Z', '2024-11-29 14:59:48', NULL, 'active'),
 ('b0e80d3a-a1e2-11ef-968e-b42e994cb670', '68ee09de-a114-11ef-95f3-b42e994cb670', '68ee10d0-a114-11ef-95f3-b42e994cb670', '631155fd-a115-11ef-95f3-b42e994cb670', 450000, '2024-10-08T21:30:00Z', '2024-10-10 15:40:44', '2024-11-16 17:28:23', 'active'),
 ('b0e81f9e-a1e2-11ef-968e-b42e994cb670', '68ee0b90-a114-11ef-95f3-b42e994cb670', '68ee128e-a114-11ef-95f3-b42e994cb670', '63115776-a115-11ef-95f3-b42e994cb670', 480000, '2024-10-17T14:00:00Z', '2024-10-10 15:40:44', '2024-11-13 17:14:10', 'active'),
 ('b0e820f0-a1e2-11ef-968e-b42e994cb670', '68ee0942-a114-11ef-95f3-b42e994cb670', '68ee0dec-a114-11ef-95f3-b42e994cb670', '6311557a-a115-11ef-95f3-b42e994cb670', 400000, '2024-10-20T09:45:00Z', '2024-10-10 15:40:44', '2024-11-13 17:14:10', 'active'),
@@ -555,7 +561,8 @@ INSERT INTO `fact_facility_asmt` (`fac_asmt_id`, `ptn_log_id`, `item_type`, `ite
 ('8c991c02-ad90-11ef-962c-b42e994cb670', '7ec6c7fe-ad90-11ef-962c-b42e994cb670', 'room', '796a6253-a116-11ef-95f3-b42e994cb670', NULL, 410000, '', '2024-11-27T12:56:00.000Z', '2024-11-28T15:53:23+00:00', '2024-11-28 13:56:21', '2024-11-28 15:53:23', 'completed'),
 ('9f51d309-aa31-11ef-96ba-b42e994cb670', '0976620e-a81f-11ef-9842-b42e994cb670', 'room', '796a6609-a116-11ef-95f3-b42e994cb670', NULL, 780000, '', '2024-11-23T20:00:00.000Z', '2024-11-25T09:28:00.000Z', '2024-11-24 06:59:17', '2024-11-28 13:47:07', 'completed'),
 ('bd72d971-ada2-11ef-962c-b42e994cb670', '937f7d45-ada2-11ef-962c-b42e994cb670', 'service', 'c96749ca-a115-11ef-95f3-b42e994cb670', 1, 300000, 'adsfdsf', '2024-11-28T16:06:34.542Z', '2024-11-28T16:06:40+00:00', '2024-11-28 16:06:34', '2024-11-28 16:06:40', 'completed'),
-('bd7839c9-ada2-11ef-962c-b42e994cb670', '937f7d45-ada2-11ef-962c-b42e994cb670', 'room', '796a651e-a116-11ef-95f3-b42e994cb670', NULL, 410000, '', '2024-11-28T16:00:00.000Z', '2024-11-28T16:06:40+00:00', '2024-11-28 16:06:34', '2024-11-28 16:06:40', 'completed');
+('bd7839c9-ada2-11ef-962c-b42e994cb670', '937f7d45-ada2-11ef-962c-b42e994cb670', 'room', '796a651e-a116-11ef-95f3-b42e994cb670', NULL, 410000, '', '2024-11-28T16:00:00.000Z', '2024-11-28T16:06:40+00:00', '2024-11-28 16:06:34', '2024-11-28 16:06:40', 'completed'),
+('fb21fd89-adb5-11ef-962c-b42e994cb670', 'c2122dbc-adb5-11ef-962c-b42e994cb670', 'item', 'b7f3d20b-a115-11ef-95f3-b42e994cb670', 3, 150000, '', '2024-11-28T18:24:18.540Z', '2024-11-28T18:24:44+00:00', '2024-11-28 18:24:18', '2024-11-28 18:24:45', 'completed');
 
 --
 -- Triggers `fact_facility_asmt`
@@ -596,7 +603,7 @@ INSERT INTO `fact_item_stock` (`stock_id`, `updated_by`, `item_id`, `change_type
 ('560d44a1-ad8e-11ef-962c-b42e994cb670', NULL, 'a5af47c1-a115-11ef-95f3-b42e994cb670', 'deduction', 324, -327, NULL, '2024-11-28 13:40:31', NULL, 'active'),
 ('562fba92-ad8e-11ef-962c-b42e994cb670', NULL, 'a5af4cfe-a115-11ef-95f3-b42e994cb670', 'deduction', 234, -234, NULL, '2024-11-28 13:40:31', NULL, 'active'),
 ('563d4ce3-ad8e-11ef-962c-b42e994cb670', NULL, 'a5af4c44-a115-11ef-95f3-b42e994cb670', 'deduction', 23, -23, NULL, '2024-11-28 13:40:31', NULL, 'active'),
-('6f6ede7a-ac1c-11ef-b431-55d6306d9398', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3c989-a115-11ef-95f3-b42e994cb670', 'addition', 12, 12, 'fuck mask', '2024-11-26 17:32:40', NULL, 'active'),
+('6f6ede7a-ac1c-11ef-b431-55d6306d9398', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3c989-a115-11ef-95f3-b42e994cb670', 'addition', 12, 12, 'fuck mask', '2024-11-26 17:32:40', '2024-12-01 08:33:19', 'deleted'),
 ('71d7b6b2-ac19-11ef-b431-55d6306d9398', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3c8ec-a115-11ef-95f3-b42e994cb670', 'addition', 2, 2, 'fuck mask', '2024-11-26 17:11:15', NULL, 'active'),
 ('75a8b1d8-ace1-11ef-b431-55d6306d9398', NULL, 'a5af5b29-a115-11ef-95f3-b42e994cb670', 'deduction', 2, -2, NULL, '2024-11-27 17:03:01', NULL, 'active'),
 ('75a8f42c-ace1-11ef-b431-55d6306d9398', NULL, 'a5af47c1-a115-11ef-95f3-b42e994cb670', 'deduction', 2, -3, NULL, '2024-11-27 17:03:01', NULL, 'active'),
@@ -608,9 +615,62 @@ INSERT INTO `fact_item_stock` (`stock_id`, `updated_by`, `item_id`, `change_type
 ('a34b4840-ada2-11ef-962c-b42e994cb670', NULL, 'a5af47c1-a115-11ef-95f3-b42e994cb670', 'deduction', 21, -348, NULL, '2024-11-28 16:05:50', NULL, 'active'),
 ('a369ca7e-ada2-11ef-962c-b42e994cb670', NULL, 'a5af4687-a115-11ef-95f3-b42e994cb670', 'deduction', 2314, -2314, NULL, '2024-11-28 16:05:50', NULL, 'active'),
 ('a37c3329-ada2-11ef-962c-b42e994cb670', NULL, 'a5af4687-a115-11ef-95f3-b42e994cb670', 'deduction', 1432, -3746, NULL, '2024-11-28 16:05:51', NULL, 'active'),
+('ca863407-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3cf23-a115-11ef-95f3-b42e994cb670', 'addition', 50, 50, '', '2024-12-01 08:32:24', NULL, 'active'),
 ('d34f7d88-accf-11ef-b431-55d6306d9398', NULL, 'a5af4df1-a115-11ef-95f3-b42e994cb670', 'deduction', 2, -2, NULL, '2024-11-27 14:56:47', NULL, 'active'),
 ('d34fb5fa-accf-11ef-b431-55d6306d9398', NULL, 'a5af47c1-a115-11ef-95f3-b42e994cb670', 'deduction', 1, -1, NULL, '2024-11-27 14:56:47', NULL, 'active'),
-('ec26d728-ac18-11ef-b431-55d6306d9398', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3c784-a115-11ef-95f3-b42e994cb670', 'deduction', 15, 55, '', '2024-11-26 17:07:31', '2024-11-26 17:28:51', 'deleted');
+('eaeb41b5-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3cbab-a115-11ef-95f3-b42e994cb670', 'addition', 5000, 5000, '', '2024-12-01 08:33:19', '2024-12-01 08:33:21', 'deleted'),
+('eb0cc383-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3d431-a115-11ef-95f3-b42e994cb670', 'addition', 20, 20, '', '2024-12-01 08:33:19', '2024-12-01 08:33:22', 'deleted'),
+('eb245954-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3c989-a115-11ef-95f3-b42e994cb670', 'addition', 5000, 5012, '', '2024-12-01 08:33:19', '2024-12-01 08:33:22', 'deleted'),
+('eb635ec9-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3cea3-a115-11ef-95f3-b42e994cb670', 'addition', 50, 50, '', '2024-12-01 08:33:19', '2024-12-01 08:33:22', 'deleted'),
+('eb6bab09-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3cc27-a115-11ef-95f3-b42e994cb670', 'addition', 50, 50, '', '2024-12-01 08:33:19', '2024-12-01 08:33:22', 'deleted'),
+('ec26d728-ac18-11ef-b431-55d6306d9398', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3c784-a115-11ef-95f3-b42e994cb670', 'deduction', 15, 55, '', '2024-11-26 17:07:31', '2024-11-26 17:28:51', 'deleted'),
+('ec9eb7f6-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3cbab-a115-11ef-95f3-b42e994cb670', 'addition', 5000, 10000, '', '2024-12-01 08:33:21', '2024-12-01 08:33:30', 'deleted'),
+('ecafaf79-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3d431-a115-11ef-95f3-b42e994cb670', 'addition', 20, 40, '', '2024-12-01 08:33:22', '2024-12-01 08:33:30', 'deleted'),
+('ecd198df-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3c989-a115-11ef-95f3-b42e994cb670', 'addition', 5000, 10012, '', '2024-12-01 08:33:22', '2024-12-01 08:33:30', 'deleted'),
+('ecdd7ac0-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3cea3-a115-11ef-95f3-b42e994cb670', 'addition', 50, 100, '', '2024-12-01 08:33:22', '2024-12-01 08:33:30', 'deleted'),
+('ececc4ab-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3cc27-a115-11ef-95f3-b42e994cb670', 'addition', 50, 100, '', '2024-12-01 08:33:22', '2024-12-01 08:33:31', 'deleted'),
+('f1a776df-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3cbab-a115-11ef-95f3-b42e994cb670', 'addition', 5000, 15000, '', '2024-12-01 08:33:30', '2024-12-01 08:33:30', 'deleted'),
+('f1b6b94b-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3d431-a115-11ef-95f3-b42e994cb670', 'addition', 20, 60, '', '2024-12-01 08:33:30', '2024-12-01 08:33:30', 'deleted'),
+('f1c5fdc8-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3cbab-a115-11ef-95f3-b42e994cb670', 'addition', 5000, 20000, '', '2024-12-01 08:33:30', '2024-12-01 08:33:30', 'deleted'),
+('f1ce5565-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3c989-a115-11ef-95f3-b42e994cb670', 'addition', 5000, 15012, '', '2024-12-01 08:33:30', '2024-12-01 08:33:31', 'deleted'),
+('f1e67eb0-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3cbab-a115-11ef-95f3-b42e994cb670', 'addition', 5000, 20000, '', '2024-12-01 08:33:30', '2024-12-01 08:33:30', 'deleted'),
+('f1ece1fb-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3d431-a115-11ef-95f3-b42e994cb670', 'addition', 20, 80, '', '2024-12-01 08:33:30', '2024-12-01 08:33:30', 'deleted'),
+('f1f5c1c8-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3cea3-a115-11ef-95f3-b42e994cb670', 'addition', 50, 150, '', '2024-12-01 08:33:30', '2024-12-01 08:33:31', 'deleted'),
+('f1fc1f51-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3cbab-a115-11ef-95f3-b42e994cb670', 'addition', 5000, 20000, '', '2024-12-01 08:33:30', '2024-12-01 08:33:32', 'deleted'),
+('f22eee2b-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3d431-a115-11ef-95f3-b42e994cb670', 'addition', 20, 80, '', '2024-12-01 08:33:31', '2024-12-01 08:33:31', 'deleted'),
+('f23633f0-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3cc27-a115-11ef-95f3-b42e994cb670', 'addition', 50, 150, '', '2024-12-01 08:33:31', '2024-12-01 08:33:31', 'deleted'),
+('f23633fc-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3c989-a115-11ef-95f3-b42e994cb670', 'addition', 5000, 20012, '', '2024-12-01 08:33:31', '2024-12-01 08:33:31', 'deleted'),
+('f24727b3-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3d431-a115-11ef-95f3-b42e994cb670', 'addition', 20, 100, '', '2024-12-01 08:33:31', '2024-12-01 08:33:32', 'deleted'),
+('f26c8073-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3c989-a115-11ef-95f3-b42e994cb670', 'addition', 5000, 25012, '', '2024-12-01 08:33:31', '2024-12-01 08:33:31', 'deleted'),
+('f27b3d58-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3cea3-a115-11ef-95f3-b42e994cb670', 'addition', 50, 200, '', '2024-12-01 08:33:31', '2024-12-01 08:33:31', 'deleted'),
+('f2988e31-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3cea3-a115-11ef-95f3-b42e994cb670', 'addition', 50, 250, '', '2024-12-01 08:33:32', '2024-12-01 08:33:32', 'deleted'),
+('f2988e34-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3c989-a115-11ef-95f3-b42e994cb670', 'addition', 5000, 25012, '', '2024-12-01 08:33:32', '2024-12-01 08:33:32', 'deleted'),
+('f29edc9d-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3cc27-a115-11ef-95f3-b42e994cb670', 'addition', 50, 200, '', '2024-12-01 08:33:32', '2024-12-01 08:33:32', 'deleted'),
+('f2cfe24c-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3cea3-a115-11ef-95f3-b42e994cb670', 'addition', 50, 300, '', '2024-12-01 08:33:32', '2024-12-01 08:33:32', 'deleted'),
+('f2cfe24d-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3cc27-a115-11ef-95f3-b42e994cb670', 'addition', 50, 250, '', '2024-12-01 08:33:32', '2024-12-01 08:33:32', 'deleted'),
+('f2e0f617-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3cbab-a115-11ef-95f3-b42e994cb670', 'addition', 5000, 20000, '', '2024-12-01 08:33:32', '2024-12-01 08:33:33', 'deleted'),
+('f2eeb0e1-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3cbab-a115-11ef-95f3-b42e994cb670', 'addition', 5000, 25000, '', '2024-12-01 08:33:32', '2024-12-01 08:33:33', 'deleted'),
+('f2f8a68d-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3d431-a115-11ef-95f3-b42e994cb670', 'addition', 20, 120, '', '2024-12-01 08:33:32', '2024-12-01 08:33:33', 'deleted'),
+('f2ffa492-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3cc27-a115-11ef-95f3-b42e994cb670', 'addition', 50, 300, '', '2024-12-01 08:33:32', NULL, 'active'),
+('f2ffa505-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3d431-a115-11ef-95f3-b42e994cb670', 'addition', 20, 140, '', '2024-12-01 08:33:32', '2024-12-01 08:33:33', 'deleted'),
+('f30efc09-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3c989-a115-11ef-95f3-b42e994cb670', 'addition', 5000, 30012, '', '2024-12-01 08:33:32', '2024-12-01 08:33:33', 'deleted'),
+('f31728c6-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3c989-a115-11ef-95f3-b42e994cb670', 'addition', 5000, 35012, '', '2024-12-01 08:33:32', '2024-12-01 08:33:33', 'deleted'),
+('f3267469-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3cea3-a115-11ef-95f3-b42e994cb670', 'addition', 50, 300, '', '2024-12-01 08:33:32', NULL, 'active'),
+('f32d7138-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3cea3-a115-11ef-95f3-b42e994cb670', 'addition', 50, 300, '', '2024-12-01 08:33:32', NULL, 'active'),
+('f38dd9c0-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3cbab-a115-11ef-95f3-b42e994cb670', 'addition', 5000, 30000, '', '2024-12-01 08:33:33', '2024-12-01 08:33:33', 'deleted'),
+('f39d19a6-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3d431-a115-11ef-95f3-b42e994cb670', 'addition', 20, 140, '', '2024-12-01 08:33:33', '2024-12-01 08:33:33', 'deleted'),
+('f3aabc62-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3cbab-a115-11ef-95f3-b42e994cb670', 'addition', 5000, 35000, '', '2024-12-01 08:33:33', '2024-12-01 08:33:34', 'deleted'),
+('f3b36b72-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3c989-a115-11ef-95f3-b42e994cb670', 'addition', 5000, 40012, '', '2024-12-01 08:33:33', '2024-12-01 08:33:34', 'deleted'),
+('f3d00881-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3d431-a115-11ef-95f3-b42e994cb670', 'addition', 20, 160, '', '2024-12-01 08:33:34', '2024-12-01 08:33:35', 'deleted'),
+('f3df43e4-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3c989-a115-11ef-95f3-b42e994cb670', 'addition', 5000, 45012, '', '2024-12-01 08:33:34', NULL, 'active'),
+('f45e76fe-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3cbab-a115-11ef-95f3-b42e994cb670', 'addition', 5000, 35000, '', '2024-12-01 08:33:34', '2024-12-01 08:33:35', 'deleted'),
+('f46c0287-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3d431-a115-11ef-95f3-b42e994cb670', 'addition', 20, 180, '', '2024-12-01 08:33:35', '2024-12-01 08:33:35', 'deleted'),
+('f47f2bfa-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3cbab-a115-11ef-95f3-b42e994cb670', 'addition', 5000, 40000, '', '2024-12-01 08:33:35', '2024-12-01 08:33:36', 'deleted'),
+('f49dbb03-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3d431-a115-11ef-95f3-b42e994cb670', 'addition', 20, 200, '', '2024-12-01 08:33:35', NULL, 'active'),
+('f50f4e0d-afbe-11ef-9655-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', 'b7f3cbab-a115-11ef-95f3-b42e994cb670', 'addition', 5000, 45000, '', '2024-12-01 08:33:36', NULL, 'active'),
+('f78699a1-adb5-11ef-962c-b42e994cb670', NULL, 'a5af4687-a115-11ef-95f3-b42e994cb670', 'deduction', 21, -3767, NULL, '2024-11-28 18:24:12', NULL, 'active'),
+('f7a36860-adb5-11ef-962c-b42e994cb670', NULL, 'a5af4d7d-a115-11ef-95f3-b42e994cb670', 'deduction', 34, -34, NULL, '2024-11-28 18:24:12', NULL, 'active'),
+('fb2b3155-adb5-11ef-962c-b42e994cb670', NULL, 'b7f3d20b-a115-11ef-95f3-b42e994cb670', 'deduction', 3, -3, NULL, '2024-11-28 18:24:18', NULL, 'active');
 
 --
 -- Triggers `fact_item_stock`
@@ -726,6 +786,7 @@ INSERT INTO `fact_med_hist` (`med_hist_id`, `ptn_log_id`, `doctor_id`, `patient_
 ('984748b8-ada2-11ef-962c-b42e994cb670', '937f7d45-ada2-11ef-962c-b42e994cb670', '68ee08af-a114-11ef-95f3-b42e994cb670', '68ee143a-a114-11ef-95f3-b42e994cb670', '12343', NULL, '3124', '34132', '321432', '234123', 'dsafsdfds', '2024-11-28 16:05:32', '2024-11-28 16:06:40', 'completed'),
 ('dd24bae4-accf-11ef-b431-55d6306d9398', '925148dc-ac1d-11ef-b431-55d6306d9398', '5c950e93-ac16-11ef-982c-b42e994cb670', '68ee1040-a114-11ef-95f3-b42e994cb670', '111/222', NULL, '99', '200', '123', '40', 'sfdfdf', '2024-11-27 14:57:04', '2024-11-27 16:59:10', 'completed'),
 ('e0bdfc9c-a835-11ef-9842-b42e994cb670', '0976620e-a81f-11ef-9842-b42e994cb670', '68ee08af-a114-11ef-95f3-b42e994cb670', '68ee143a-a114-11ef-95f3-b42e994cb670', '45/90', NULL, '99', '45', '165', '36.5', 'Test', '2024-11-21 18:24:42', '2024-11-28 13:47:07', 'completed'),
+('ed4c3303-adb5-11ef-962c-b42e994cb670', 'c2122dbc-adb5-11ef-962c-b42e994cb670', '68ee02c1-a114-11ef-95f3-b42e994cb670', '68ee143a-a114-11ef-95f3-b42e994cb670', '123', NULL, '123', '123', '123', '312', 'dsafdsfds', '2024-11-28 18:23:55', '2024-11-28 18:24:44', 'completed'),
 ('ff7f9ee3-a9b8-11ef-9872-b42e994cb670', '0976620e-a81f-11ef-9842-b42e994cb670', '68ee08af-a114-11ef-95f3-b42e994cb670', '68ee143a-a114-11ef-95f3-b42e994cb670', '3241', NULL, '1234', '234', '134', '1234', 'dầdsasdfsfasdf', '2024-11-23 16:35:49', '2024-11-28 13:47:07', 'completed');
 
 --
@@ -768,7 +829,8 @@ INSERT INTO `fact_patient_log` (`ptn_log_id`, `patient_id`, `doctor_id`, `facult
 ('7ec6c7fe-ad90-11ef-962c-b42e994cb670', '68ee143a-a114-11ef-95f3-b42e994cb670', '68ee08af-a114-11ef-95f3-b42e994cb670', '63115701-a115-11ef-95f3-b42e994cb670', 1, 'safcsdf', '2024-11-28T14:55:58+01:00', '2024-11-28T15:53:23+00:00', '2024-11-28 13:55:58', '2024-11-28 15:53:23', 'completed'),
 ('925148dc-ac1d-11ef-b431-55d6306d9398', '68ee1040-a114-11ef-95f3-b42e994cb670', '5c950e93-ac16-11ef-982c-b42e994cb670', '63115776-a115-11ef-95f3-b42e994cb670', 1, 'sfdfdf', '2024-11-26T17:40:48+00:00', '', '2024-11-26 17:40:48', '2024-11-27 16:59:10', 'completed'),
 ('937f7d45-ada2-11ef-962c-b42e994cb670', '68ee143a-a114-11ef-95f3-b42e994cb670', '68ee08af-a114-11ef-95f3-b42e994cb670', '63115701-a115-11ef-95f3-b42e994cb670', 1, 'dsafsdfds', '2024-11-28T17:05:24+01:00', '2024-11-28T16:06:40+00:00', '2024-11-28 16:05:24', '2024-11-28 16:06:40', 'completed'),
-('bde4adf5-a68e-11ef-9694-b42e994cb670', '68ee15fd-a114-11ef-95f3-b42e994cb670', '68ee0b00-a114-11ef-95f3-b42e994cb670', '631157ed-a115-11ef-95f3-b42e994cb670', 0, 'Chẩn đoán tiểu đường. Cần theo dõi sức khỏe cẩn thận', '2024-10-08T21:30:00Z', '2024-10-08T21:30:00Z', '2024-11-19 15:55:47', NULL, 'active');
+('bde4adf5-a68e-11ef-9694-b42e994cb670', '68ee15fd-a114-11ef-95f3-b42e994cb670', '68ee0b00-a114-11ef-95f3-b42e994cb670', '631157ed-a115-11ef-95f3-b42e994cb670', 0, 'Chẩn đoán tiểu đường. Cần theo dõi sức khỏe cẩn thận', '2024-10-08T21:30:00Z', '2024-10-08T21:30:00Z', '2024-11-19 15:55:47', NULL, 'active'),
+('c2122dbc-adb5-11ef-962c-b42e994cb670', '68ee143a-a114-11ef-95f3-b42e994cb670', '68ee02c1-a114-11ef-95f3-b42e994cb670', '63115776-a115-11ef-95f3-b42e994cb670', 0, 'dsafdsfds', '2024-11-28T19:22:42+01:00', '2024-11-28T18:24:44+00:00', '2024-11-28 01:22:42', '2024-11-28 18:24:45', 'completed');
 
 --
 -- Triggers `fact_patient_log`
@@ -802,13 +864,17 @@ CREATE TABLE `fact_payment` (
 --
 
 INSERT INTO `fact_payment` (`payment_id`, `payment_type`, `appt_id`, `ptn_log_id`, `amount`, `payment_desc`, `payment_status`, `bank_trans_code`, `created_at`, `updated_at`) VALUES
+('0b0fde3c-adb6-11ef-962c-b42e994cb670', 'patient-log', NULL, 'c2122dbc-adb5-11ef-962c-b42e994cb670', 1363000, 'Thanh toán viện phí ngày 29/11/2024', 'pending', NULL, '2024-11-28 18:24:45', NULL),
 ('1dd4f59e-ad92-11ef-962c-b42e994cb670', 'postpaid', NULL, '7ec6c7fe-ad90-11ef-962c-b42e994cb670', 645000, 'Thanh toán viện phí ngày 28/11/2024 21:07', 'pending', NULL, '2024-11-28 14:07:34', NULL),
 ('21490306-ad8f-11ef-962c-b42e994cb670', 'postpaid', NULL, '0976620e-a81f-11ef-9842-b42e994cb670', 0, 'Thanh toán viện phí ngày 28/11/2024 20:46', 'pending', NULL, '2024-11-28 13:46:12', NULL),
 ('3cd013d8-ad8f-11ef-962c-b42e994cb670', 'postpaid', NULL, '0976620e-a81f-11ef-9842-b42e994cb670', 0, 'Thanh toán viện phí ngày 28/11/2024 20:46', 'pending', NULL, '2024-11-28 13:46:58', NULL),
 ('429480c2-ad8f-11ef-962c-b42e994cb670', 'postpaid', NULL, '0976620e-a81f-11ef-9842-b42e994cb670', 3120000, 'Thanh toán viện phí ngày 28/11/2024 20:47', 'pending', NULL, '2024-11-28 13:47:08', NULL),
 ('50721d51-ad9f-11ef-962c-b42e994cb670', 'postpaid', NULL, '7ec6c7fe-ad90-11ef-962c-b42e994cb670', 645000, 'Thanh toán viện phí ngày 28/11/2024 22:42', 'pending', NULL, '2024-11-28 15:42:03', NULL),
+('5aaa637d-adb5-11ef-962c-b42e994cb670', 'appointment', '5a995a0b-adb5-11ef-962c-b42e994cb670', NULL, 400000, 'Thanh toán đặt hẹn ngày 28/11/2024', 'completed', '14705828', '2024-11-28 18:19:49', '2024-11-28 18:20:30'),
+('73f7572e-b24e-11ef-9657-b42e994cb670', 'appointment', '73dbefd8-b24e-11ef-9657-b42e994cb670', NULL, 300000, 'Thanh toán đặt hẹn ngày 12/12/2024', 'pending', NULL, '2024-12-04 14:45:49', NULL),
 ('89b14399-a692-11ef-9694-b42e994cb670', 'prepaid', 'b0e82166-a1e2-11ef-968e-b42e994cb670', NULL, 390000, 'Query Test', 'pending', NULL, '2024-11-19 16:22:57', NULL),
 ('93fdaf9a-ad91-11ef-962c-b42e994cb670', 'postpaid', NULL, '7ec6c7fe-ad90-11ef-962c-b42e994cb670', 645000, 'Thanh toán viện phí ngày 28/11/2024 21:03', 'pending', NULL, '2024-11-28 14:03:43', NULL),
+('94469fae-ae62-11ef-95cd-b42e994cb670', 'appointment', '942df348-ae62-11ef-95cd-b42e994cb670', NULL, 400000, 'Thanh toán đặt hẹn ngày 28/11/2024', 'pending', NULL, '2024-11-29 14:59:48', NULL),
 ('c0dfca45-ada2-11ef-962c-b42e994cb670', 'patient-log', NULL, '937f7d45-ada2-11ef-962c-b42e994cb670', 12473000, 'Thanh toán viện phí ngày 28/11/2024 23:06', 'pending', NULL, '2024-11-28 16:06:40', NULL),
 ('c2315ca7-a0f8-11ef-95f3-b42e994cb670', 'prescription', 'b0e8245c-a1e2-11ef-968e-b42e994cb670', NULL, 120000, 'Test Pay 4', 'completed', '14641914', '2024-11-06 17:00:00', '2024-11-13 17:14:08'),
 ('c2316cca-a0f8-11ef-95f3-b42e994cb670', 'prescription', 'b0e8259a-a1e2-11ef-968e-b42e994cb670', NULL, 120000, 'Pay test 5', 'pending', NULL, '2024-11-06 17:00:00', '2024-11-13 17:14:08'),
@@ -896,7 +962,9 @@ INSERT INTO `fact_prescription` (`pres_id`, `med_hist_id`, `item_id`, `amount`, 
 ('a362c2c5-ada2-11ef-962c-b42e994cb670', '984748b8-ada2-11ef-962c-b42e994cb670', 'a5af4687-a115-11ef-95f3-b42e994cb670', 2314, 3000, 'adsfds', '2024-11-28 16:05:50', 'completed'),
 ('a370534a-ada2-11ef-962c-b42e994cb670', '984748b8-ada2-11ef-962c-b42e994cb670', 'a5af4687-a115-11ef-95f3-b42e994cb670', 1432, 3000, 'asdfs', '2024-11-28 16:05:51', 'completed'),
 ('d34eb0ce-accf-11ef-b431-55d6306d9398', '618c10b2-accf-11ef-b431-55d6306d9398', 'a5af4df1-a115-11ef-95f3-b42e994cb670', 2, 15000, 'fuck ', '2024-11-27 14:56:47', 'completed'),
-('d34fa376-accf-11ef-b431-55d6306d9398', '618c10b2-accf-11ef-b431-55d6306d9398', 'a5af47c1-a115-11ef-95f3-b42e994cb670', 1, 25000, 'just do it', '2024-11-27 14:56:47', 'completed');
+('d34fa376-accf-11ef-b431-55d6306d9398', '618c10b2-accf-11ef-b431-55d6306d9398', 'a5af47c1-a115-11ef-95f3-b42e994cb670', 1, 25000, 'just do it', '2024-11-27 14:56:47', 'completed'),
+('f7775d06-adb5-11ef-962c-b42e994cb670', 'ed4c3303-adb5-11ef-962c-b42e994cb670', 'a5af4687-a115-11ef-95f3-b42e994cb670', 21, 3000, 'dfsadsf', '2024-11-28 18:24:12', 'completed'),
+('f79c642c-adb5-11ef-962c-b42e994cb670', 'ed4c3303-adb5-11ef-962c-b42e994cb670', 'a5af4d7d-a115-11ef-95f3-b42e994cb670', 34, 25000, 'asdfads', '2024-11-28 18:24:12', 'completed');
 
 --
 -- Triggers `fact_prescription`
@@ -979,6 +1047,64 @@ INSERT INTO `fact_work_schedule` (`work_id`, `user_id`, `start_datetime`, `end_d
 ('1f30ec80-a35d-11ef-961a-b42e994cb670', '68ee0d59-a114-11ef-95f3-b42e994cb670', '2024-11-10T10:00:00Z', '2024-11-10T18:00:00Z', NULL, '2024-11-09 09:39:16', '2024-11-15 14:23:02', 'active'),
 ('1f30ed1a-a35d-11ef-961a-b42e994cb670', '68ee08af-a114-11ef-95f3-b42e994cb670', '2024-11-14T08:00:00Z', '2024-11-14T14:00:00Z', 'Tôi có cuộc họp quan trọng vào chiều nên phải nghỉ làm buổi chiều', '2024-11-09 09:39:16', '2024-11-15 14:23:02', 'active'),
 ('5b10382f-a4b2-11ef-93f7-b42e994cb670', '68ee0a6f-a114-11ef-95f3-b42e994cb670', '2024-11-18T10:00', '2024-11-18T16:00', 'Test', '2024-11-17 07:05:41', NULL, 'active'),
+('6695f87d-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2024-12-05T09:00:00', '2024-12-05T15:00:00', 'Worked 2 hours less than usual due to left early.', '2024-12-04 14:38:17', NULL, 'active'),
+('6699b41c-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2024-12-06T07:00:00', '2024-12-06T15:00:00', NULL, '2024-12-04 14:38:17', NULL, 'active'),
+('6699b4f5-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2024-12-07T08:00:00', '2024-12-07T16:00:00', NULL, '2024-12-04 14:38:17', NULL, 'active'),
+('6699b53f-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2024-12-08T11:00:00', '2024-12-08T19:00:00', NULL, '2024-12-04 14:38:17', NULL, 'active'),
+('6699b586-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2024-12-09T08:00:00', '2024-12-09T16:00:00', NULL, '2024-12-04 14:38:17', NULL, 'active'),
+('6699b5ca-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2024-12-10T10:00:00', '2024-12-10T18:00:00', NULL, '2024-12-04 14:38:17', NULL, 'active'),
+('6699b609-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2024-12-11T09:00:00', '2024-12-11T15:00:00', 'Worked 2 hours less than usual due to left early.', '2024-12-04 14:38:17', NULL, 'active'),
+('6699b64c-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2024-12-12T07:00:00', '2024-12-12T15:00:00', NULL, '2024-12-04 14:38:17', NULL, 'active'),
+('6699b6c9-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2024-12-13T12:00:00', '2024-12-13T20:00:00', NULL, '2024-12-04 14:38:17', NULL, 'active'),
+('6699b70d-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2024-12-14T08:00:00', '2024-12-14T16:00:00', NULL, '2024-12-04 14:38:17', NULL, 'active'),
+('6699b747-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2024-12-15T13:00:00', '2024-12-15T21:00:00', NULL, '2024-12-04 14:38:17', NULL, 'active'),
+('6699b783-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2024-12-16T07:00:00', '2024-12-16T15:00:00', NULL, '2024-12-04 14:38:17', NULL, 'active'),
+('6699b7bf-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2024-12-17T10:00:00', '2024-12-17T18:00:00', NULL, '2024-12-04 14:38:17', NULL, 'active'),
+('6699b7f9-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2024-12-18T08:00:00', '2024-12-18T14:00:00', 'Worked 2 hours less than usual due to left early.', '2024-12-04 14:38:17', NULL, 'active'),
+('6699b833-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2024-12-19T07:00:00', '2024-12-19T15:00:00', NULL, '2024-12-04 14:38:17', NULL, 'active'),
+('669b0a53-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2024-12-20T12:00:00', '2024-12-20T20:00:00', NULL, '2024-12-04 14:38:17', NULL, 'active'),
+('669b0b4f-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2024-12-21T07:00:00', '2024-12-21T15:00:00', NULL, '2024-12-04 14:38:17', NULL, 'active'),
+('669b0ba0-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2024-12-22T11:00:00', '2024-12-22T19:00:00', NULL, '2024-12-04 14:38:17', NULL, 'active'),
+('669b0be4-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2024-12-23T10:00:00', '2024-12-23T18:00:00', NULL, '2024-12-04 14:38:17', NULL, 'active'),
+('669b0c25-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2024-12-24T07:00:00', '2024-12-24T15:00:00', NULL, '2024-12-04 14:38:17', NULL, 'active'),
+('669b0c66-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2024-12-25T09:00:00', '2024-12-25T15:00:00', 'Worked 2 hours less than usual due to left early.', '2024-12-04 14:38:17', NULL, 'active'),
+('669b0cab-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2024-12-26T07:00:00', '2024-12-26T15:00:00', NULL, '2024-12-04 14:38:17', NULL, 'active'),
+('669b0cee-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2024-12-27T08:00:00', '2024-12-27T14:00:00', 'Worked 2 hours less than usual due to left early.', '2024-12-04 14:38:17', NULL, 'active'),
+('669b0d2b-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2024-12-28T07:00:00', '2024-12-28T15:00:00', NULL, '2024-12-04 14:38:17', NULL, 'active'),
+('669b0d68-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2024-12-29T13:00:00', '2024-12-29T21:00:00', NULL, '2024-12-04 14:38:17', NULL, 'active'),
+('669b0da2-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2024-12-30T07:00:00', '2024-12-30T15:00:00', NULL, '2024-12-04 14:38:17', NULL, 'active'),
+('669b0ddc-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2024-12-31T09:00:00', '2024-12-31T17:00:00', NULL, '2024-12-04 14:38:17', NULL, 'active'),
+('669b0e15-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2025-01-01T07:00:00', '2025-01-01T15:00:00', NULL, '2024-12-04 14:38:17', NULL, 'active'),
+('669b0e4f-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2025-01-02T07:00:00', '2025-01-02T15:00:00', NULL, '2024-12-04 14:38:17', NULL, 'active'),
+('669b0e98-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2025-01-03T08:00:00', '2025-01-03T16:00:00', NULL, '2024-12-04 14:38:17', NULL, 'active'),
+('669b0ed0-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2025-01-04T12:00:00', '2025-01-04T20:00:00', NULL, '2024-12-04 14:38:17', NULL, 'active'),
+('669b0f0e-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2025-01-05T09:00:00', '2025-01-05T15:00:00', 'Worked 2 hours less than usual due to left early.', '2024-12-04 14:38:17', NULL, 'active'),
+('669b0f4c-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2025-01-06T07:00:00', '2025-01-06T15:00:00', NULL, '2024-12-04 14:38:17', NULL, 'active'),
+('669b0f8c-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2025-01-07T07:00:00', '2025-01-07T15:00:00', NULL, '2024-12-04 14:38:17', NULL, 'active'),
+('669b0fde-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2025-01-08T10:00:00', '2025-01-08T18:00:00', NULL, '2024-12-04 14:38:17', NULL, 'active'),
+('669b1018-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2025-01-09T09:00:00', '2025-01-09T15:00:00', 'Worked 2 hours less than usual due to left early.', '2024-12-04 14:38:17', NULL, 'active'),
+('669b1052-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2025-01-10T07:00:00', '2025-01-10T15:00:00', NULL, '2024-12-04 14:38:17', NULL, 'active'),
+('669b108a-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2025-01-11T11:00:00', '2025-01-11T19:00:00', NULL, '2024-12-04 14:38:17', NULL, 'active'),
+('669b10c5-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2025-01-12T07:00:00', '2025-01-12T15:00:00', NULL, '2024-12-04 14:38:17', NULL, 'active'),
+('669b10ff-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2025-01-13T09:00:00', '2025-01-13T17:00:00', NULL, '2024-12-04 14:38:17', NULL, 'active'),
+('669b164b-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2025-01-14T08:00:00', '2025-01-14T14:00:00', 'Worked 2 hours less than usual due to left early.', '2024-12-04 14:38:17', NULL, 'active'),
+('669b16c5-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2025-01-15T07:00:00', '2025-01-15T15:00:00', NULL, '2024-12-04 14:38:17', NULL, 'active'),
+('669b170c-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2025-01-16T13:00:00', '2025-01-16T21:00:00', NULL, '2024-12-04 14:38:17', NULL, 'active'),
+('669b174d-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2025-01-17T07:00:00', '2025-01-17T15:00:00', NULL, '2024-12-04 14:38:17', NULL, 'active'),
+('669b178e-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2025-01-18T09:00:00', '2025-01-18T17:00:00', NULL, '2024-12-04 14:38:17', NULL, 'active'),
+('669b17ca-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2025-01-19T07:00:00', '2025-01-19T15:00:00', NULL, '2024-12-04 14:38:17', NULL, 'active'),
+('669b1806-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2025-01-20T09:00:00', '2025-01-20T15:00:00', 'Worked 2 hours less than usual due to left early.', '2024-12-04 14:38:17', NULL, 'active'),
+('669b1843-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2025-01-21T08:00:00', '2025-01-21T16:00:00', NULL, '2024-12-04 14:38:17', NULL, 'active'),
+('669b1882-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2025-01-22T11:00:00', '2025-01-22T19:00:00', NULL, '2024-12-04 14:38:17', NULL, 'active'),
+('669b18bf-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2025-01-23T07:00:00', '2025-01-23T15:00:00', NULL, '2024-12-04 14:38:17', NULL, 'active'),
+('669b18fb-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2025-01-24T09:00:00', '2025-01-24T17:00:00', NULL, '2024-12-04 14:38:17', NULL, 'active'),
+('669b1935-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2025-01-25T07:00:00', '2025-01-25T15:00:00', NULL, '2024-12-04 14:38:17', NULL, 'active'),
+('669b1972-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2025-01-26T12:00:00', '2025-01-26T20:00:00', NULL, '2024-12-04 14:38:17', NULL, 'active'),
+('669b19ae-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2025-01-27T09:00:00', '2025-01-27T15:00:00', 'Worked 2 hours less than usual due to left early.', '2024-12-04 14:38:17', NULL, 'active'),
+('669b19ec-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2025-01-28T07:00:00', '2025-01-28T15:00:00', NULL, '2024-12-04 14:38:17', NULL, 'active'),
+('669b1a2a-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2025-01-29T07:00:00', '2025-01-29T15:00:00', NULL, '2024-12-04 14:38:17', NULL, 'active'),
+('669b1a66-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2025-01-30T07:00:00', '2025-01-30T15:00:00', NULL, '2024-12-04 14:38:17', NULL, 'active'),
+('669b1aa4-b24d-11ef-9657-b42e994cb670', 'b181a736-b24b-11ef-9657-b42e994cb670', '2025-01-31T09:00:00', '2025-01-31T17:00:00', 'Worked 2 hours more than usual due to overtime.', '2024-12-04 14:38:17', NULL, 'active'),
 ('6cd94cae-a412-11ef-94b2-b42e994cb670', '68ee0a6f-a114-11ef-95f3-b42e994cb670', '2024-11-17T07:00', '2024-11-17T19:00', 'Test', '2024-11-16 12:00:51', '2024-11-17 07:05:47', 'deleted'),
 ('6e7949c5-a412-11ef-94b2-b42e994cb670', '68ee0a6f-a114-11ef-95f3-b42e994cb670', '2024-11-17T07:00', '2024-11-17T19:00', 'Test', '2024-11-16 12:00:54', NULL, 'active'),
 ('e23cf1c3-aa87-11ef-9d3e-b42e994cb670', '68ee02c1-a114-11ef-95f3-b42e994cb670', '2024-11-28T00:00:00.000Z', '2024-11-28T14:00:00.000Z', 'Test', '2024-11-24 17:16:46', NULL, 'active'),
