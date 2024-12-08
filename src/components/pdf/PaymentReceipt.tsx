@@ -1,5 +1,6 @@
-import React, { FC } from 'react';
+import React, { FC, RefObject, useEffect } from 'react';
 import {
+  BlobProvider,
   Document,
   Font,
   Page,
@@ -59,7 +60,7 @@ type ReceiptProp = {
 }
 
 // PDF Document Component
-export const PaymentReceipt:FC<ReceiptProp> = ({totalInfo, viewPayment}) => (
+const PDFContent:FC<ReceiptProp> = ({totalInfo, viewPayment}) => (
   <Document>
     <Page size="A4" style={styles.page}>
       {/* Text outside table */}
@@ -76,7 +77,7 @@ export const PaymentReceipt:FC<ReceiptProp> = ({totalInfo, viewPayment}) => (
           <View style={styles.table}>
             <View style={[styles.tableRow, { borderBottom: '1 solid black' }]}>
               <Text style={[styles.tableCellHeader, { flex: 2 }]}>Tên sản phẩm</Text>
-              <Text style={[styles.tableCellHeader, { flex: 1 }]}>Đơn vị</Text>
+              <Text style={[styles.tableCellHeader, { flex: 1 }]}>{type.tableType === "appointment" ? "Chuyên khoa" : "Đơn vị"}</Text>
               <Text style={[styles.tableCellHeader, { flex: 1 }]}>Số lượng</Text>
               <Text style={[styles.tableCellHeader, { flex: 1 }]}>Đơn giá</Text>
               <Text style={[styles.tableCellHeader, { flex: 1 }]}>Tổng</Text>
@@ -103,3 +104,21 @@ export const PaymentReceipt:FC<ReceiptProp> = ({totalInfo, viewPayment}) => (
     </Page>
   </Document>
 );
+export const PaymentReceipt:FC<ReceiptProp> = ({
+  totalInfo,
+  viewPayment
+}) => {
+  return (
+    <BlobProvider document={<PDFContent viewPayment={viewPayment} totalInfo={totalInfo} />}>
+      {({ url }) => {
+        if (url) {
+          const link = document.createElement('a');
+          link.href = url;
+          link.download = 'Phieu-thanh-toan.pdf';
+          link.click();
+        }
+        return null;
+      }}
+    </BlobProvider>
+  );
+}

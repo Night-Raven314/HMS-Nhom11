@@ -13,6 +13,14 @@ export const PaymentPage:FC = () => {
   const {type, id} = useParams();
   const [viewPayment, setViewPayment] = useState<PaymentDetailsTableType[]>([]);
   const [totalInfo, setTotalInfo] = useState<PaymentDetailsType>();
+  const [generatePDF, setGeneratePDF] = useState<boolean>(false);
+
+  const downloadPDF = () => {
+    setGeneratePDF(true);
+    setTimeout(() => {
+      setGeneratePDF(false);
+    }, 1000);
+  };
 
   const getPaymentDetails = async() => {
     if(id) {
@@ -104,12 +112,9 @@ export const PaymentPage:FC = () => {
                 </div>
                 <div className="box-button">
                   <button className="btn btn-gradient" onClick={() => startPayment()}>Thanh toán</button>
-                  {totalInfo && viewPayment.length ? (
-                    <div className="btn btn-gradient">
-                      <PDFDownloadLink document={<PaymentReceipt totalInfo={totalInfo} viewPayment={viewPayment} />} fileName="Phieu-thanh-toan.pdf">
-                        Tải về PDF
-                      </PDFDownloadLink>
-                    </div>
+                  <button className="btn btn-gradient" onClick={() => downloadPDF()}>Tải về PDF</button>
+                  {totalInfo && viewPayment.length && generatePDF ? (
+                    <PaymentReceipt totalInfo={totalInfo} viewPayment={viewPayment} />
                   ) : ""}
                 </div>
               </div>
@@ -163,7 +168,7 @@ export const PaymentPage:FC = () => {
                           <thead>
                             <tr>
                               <th style={{ width: "150px" }}>Tên sản phẩm</th>
-                              <th style={{ width: "140px" }}>Đơn vị</th>
+                              <th style={{ width: "140px" }}>Chuyên khoa</th>
                               <th style={{ width: "50px" }}>Số lượng</th>
                               <th style={{ width: "100px" }}>Đơn giá</th>
                               <th style={{ width: "100px" }}>Tổng</th>
