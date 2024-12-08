@@ -151,7 +151,7 @@ export const App:FC = () => {
     },
     {
       path: "/role-nurse/payment-log",
-      element: <NursePaymentLog />,
+      element: <PatientPaymentLog />,
     },
     // Patient page
     {

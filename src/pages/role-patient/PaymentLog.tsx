@@ -3,12 +3,13 @@ import { Helmet } from "react-helmet";
 import { PatientSidebar } from "../../components/common/PatientSidebar";
 import { NavbarHandles, PageNavbar } from "../../components/common/PageNavbar";
 import { CustomModal, CustomModalHandles } from "../../components/common/CustomModal";
-import { apiGetPatientPaymentLog, apiGetPatientPaymentDetail } from "../../helpers/axios";
+import { apiGetPatientPaymentLog, apiGetPatientPaymentDetail, apiGetNursePaymentLog } from "../../helpers/axios";
 import { useToast } from "../../components/common/CustomToast";
 import { getItemTypeName, getPaymentStatus } from "../../helpers/utils";
 import { UserSession } from "../../helpers/global";
 import { useNavigate } from "react-router-dom";
 import { NurseSidebar } from "../../components/common/NurseSidebar";
+import { PaymentReceipt } from "../../components/pdf/PaymentReceipt";
 
 export type PaymentListType = {
   payment_id: string;
@@ -53,6 +54,7 @@ export const PatientPaymentLog: FC = () => {
   const [searchKeyword, setSearchKeyword] = useState<string>("");
   const [paymentList, setPaymentList] = useState<PaymentListType[]>([]);
   const [paymentListFiltered, setPaymentListFiltered] = useState<PaymentListType[]>([]);
+  const [paymentIdForExport, setPaymentIdForExport] = useState<string | null>(null)
 
   const pageTerm = "Lịch sử giao dịch";
 
@@ -103,7 +105,7 @@ export const PatientPaymentLog: FC = () => {
 
   const getPaymentList = async() => {
     if(UserSession) {
-      const getPayment = await apiGetPatientPaymentLog(UserSession.auth_user_id);
+      const getPayment = UserSession.auth_user_role === "nurse" && UserSession.faculty_id ? await apiGetNursePaymentLog(UserSession.faculty_id) : await apiGetPatientPaymentLog(UserSession.auth_user_id);
       if(getPayment.error) {
         openToast("error", "Lỗi", "Đã xảy ra lỗi khi lấy lịch sử giao dịch!", 5000);
       } else if (getPayment.data) {
@@ -122,6 +124,12 @@ export const PatientPaymentLog: FC = () => {
     } else { 
       setPaymentListFiltered(paymentList);
     }
+  }
+  const downloadPayment = (paymentId:string) => {
+    setPaymentIdForExport(paymentId);
+    setTimeout(() => {
+      setPaymentIdForExport(null);
+    }, 1000);
   }
   useEffect(() => {
     searchPayment();
@@ -168,7 +176,7 @@ export const PatientPaymentLog: FC = () => {
                           <th style={{ width: "100px" }}>Mã tham chiếu</th>
                           <th style={{ width: "100px" }}>Giá trị</th>
                           <th style={{ width: "100px" }}>Trạng thái</th>
-                          <th style={{ width: "100px" }}>Thao tác</th>
+                          <th style={{ width: "110px" }}>Thao tác</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -184,13 +192,18 @@ export const PatientPaymentLog: FC = () => {
                               <div className={`${payment.payment_status}-color`}>{getPaymentStatus(payment.payment_status ? payment.payment_status : "")}</div>
                             </td>
                             <td>
-                              {payment.payment_status === "pending" || payment.payment_status === "failed" ? (
-                                <div className="table-button-list full">
-                                  <button onClick={() => {openPaymentPage(payment.payment_type, payment.payment_id)}}>
-                                    Thanh toán
+                              <div className="table-button-row">
+                                <div style={{flex:1}}>
+                                  {(payment.payment_status === "pending" || payment.payment_status === "failed") && UserSession && UserSession.auth_user_role === "patient" ? (
+                                    <button onClick={() => {openPaymentPage(payment.payment_type, payment.payment_id)}}>
+                                      Thanh toán
+                                    </button>
+                                  ) : ""}
+                                  <button onClick={() => {downloadPayment(payment.payment_id)}}>
+                                    Tải về PDF
                                   </button>
                                 </div>
-                              ) : ""}
+                              </div>
                             </td>
                           </tr>
                         ))}
@@ -202,6 +215,10 @@ export const PatientPaymentLog: FC = () => {
             </div>
           </div>
         </div>
+      ) : ""}
+
+      {paymentIdForExport ? (
+        <PaymentReceipt paymentId={paymentIdForExport} />
       ) : ""}
 
       {/* Modal xem giao dịch */}

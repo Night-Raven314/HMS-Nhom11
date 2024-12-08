@@ -937,7 +937,7 @@ export const apiGetNursePaymentLog = async(facultyId:string) => {
   let data = null;
   try {
     const res = await hmsAxios.post(
-      "/patient/get-payment.php",
+      "/nurse/get-payment.php",
       JSON.stringify({faculty_id: facultyId})
     );
     if(res.data) {

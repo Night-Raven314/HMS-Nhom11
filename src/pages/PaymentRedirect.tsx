@@ -3,12 +3,15 @@ import { apiGetFinalPaymentInfo, apiProcessPaymentRedirect } from "../helpers/ax
 import { useToast } from "../components/common/CustomToast";
 import { PaymentDetailsType } from "./role-patient/PaymentLog";
 import { Link, useNavigate } from "react-router-dom";
+import { PaymentReceipt } from "../components/pdf/PaymentReceipt";
 
 export const PaymentRedirect:FC = () => {
   const {openToast} = useToast();
   const navigate = useNavigate();
   const [totalInfo, setTotalInfo] = useState<PaymentDetailsType>();
   const [status, setStatus] = useState<string>("pending")
+  const [paymentId, setPaymentId] = useState<string | null>(null);
+  const [downloadPDF, setDownloadPDF] = useState<boolean>(false);
 
   useEffect(() => {
     const processSignIn = async(param:string) => {
@@ -16,6 +19,7 @@ export const PaymentRedirect:FC = () => {
       if(response.data) {
         if(response.data.status !== "pending") {
           setStatus(response.data.status);
+          setPaymentId(response.data.payment_id);
           const result = await apiGetFinalPaymentInfo(response.data.payment_id);
           if(result.error) {
             openToast("error", "Lỗi", "Đã xảy ra lỗi khi lấy thông tin!", 5000);
@@ -31,6 +35,12 @@ export const PaymentRedirect:FC = () => {
       processSignIn(getParam);
     }
   }, [])
+  const downloadPayment = () => {
+    setDownloadPDF(true);
+    setTimeout(() => {
+      setDownloadPDF(false);
+    }, 1000);
+  }
 
   return (
     <div className="center-fixed-container">
@@ -69,11 +79,15 @@ export const PaymentRedirect:FC = () => {
                     navigate("/role-patient/payment-log");
                   }
                 }}>Quay lại</button>
+                <button className="btn btn-gradient" onClick={() => downloadPayment()}>Tải hoá đơn PDF</button>
               </div>
             </div>
           ) : ""}
         </div>
       </div>
+      {downloadPDF && paymentId ? (
+        <PaymentReceipt paymentId={paymentId} />
+      ) : ""}
     </div>
   )
 }

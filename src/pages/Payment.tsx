@@ -122,7 +122,7 @@ export const PaymentPage:FC = () => {
           </div>
           <div className="row">
             {viewPayment.map((type, typeIndex) => (
-              <Fragment>
+              <Fragment key={typeIndex}>
                 {type.tableType === "appointment" ? (
                   <div className="col-md-12" key={typeIndex}>
                     <div className="hms-table appt" style={{marginBottom: "30px"}}>

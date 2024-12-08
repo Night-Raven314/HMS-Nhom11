@@ -611,6 +611,24 @@ div#popupFormContainer {
         }
       }
     }
+    .table-button-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-align: center;
+      button {
+        display: inline-block;
+        margin: 2px;
+        padding: 0 5px;
+        border: none;
+        background-color: $hms-neutral;
+        color: #fff;
+        font-size: 10pt;
+        font-weight: 600;
+        height: 25px;
+        border-radius: 5px;
+      }
+    }
   }
   &.no-header {
     .table-body {

@@ -112,6 +112,7 @@ type ReceiptDownloadProps = {
 export const PaymentReceipt:FC<ReceiptDownloadProps> = ({
   paymentId
 }) => {
+  const [downloadStarted, setDownloadStarted] = useState<boolean>(false);
   const [viewPayment, setViewPayment] = useState<PaymentDetailsTableType[]>([]);
   const [totalInfo, setTotalInfo] = useState<PaymentDetailsType>();
   const getPaymentInfo = async(id:string) => {
@@ -152,14 +153,15 @@ export const PaymentReceipt:FC<ReceiptDownloadProps> = ({
   }, [])
   return (
     <>
-      {viewPayment && totalInfo ? (
+      {viewPayment.length && totalInfo ? (
         <BlobProvider document={<PDFContent viewPayment={viewPayment} totalInfo={totalInfo} />}>
           {({ url }) => {
-            if (url) {
+            if (url && !downloadStarted) {
               const link = document.createElement('a');
               link.href = url;
               link.download = 'Phieu-thanh-toan.pdf';
               link.click();
+              setDownloadStarted(true);
             }
             return null;
           }}
