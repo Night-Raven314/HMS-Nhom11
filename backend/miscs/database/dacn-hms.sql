@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Dec 07, 2024 at 05:50 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Host: localhost:8889
+-- Generation Time: Dec 08, 2024 at 05:40 AM
+-- Server version: 8.0.35
+-- PHP Version: 8.2.20
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,14 +28,14 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `dim_faculty` (
-  `fac_id` char(36) NOT NULL,
-  `fac_name` varchar(255) DEFAULT NULL,
-  `fac_desc` varchar(255) DEFAULT NULL,
-  `fac_note` varchar(255) DEFAULT NULL,
-  `fac_pricing` int(11) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
-  `status` varchar(50) DEFAULT 'active'
+  `fac_id` char(36) COLLATE utf8mb4_general_ci NOT NULL,
+  `fac_name` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `fac_desc` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `fac_note` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `fac_pricing` int DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `status` varchar(50) COLLATE utf8mb4_general_ci DEFAULT 'active'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -69,13 +69,13 @@ DELIMITER ;
 --
 
 CREATE TABLE `dim_floor` (
-  `floor_id` char(36) NOT NULL,
-  `floor_order` int(11) DEFAULT NULL,
-  `floor_name` varchar(255) DEFAULT NULL,
-  `floor_note` varchar(255) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
-  `status` varchar(50) DEFAULT 'active'
+  `floor_id` char(36) COLLATE utf8mb4_general_ci NOT NULL,
+  `floor_order` int DEFAULT NULL,
+  `floor_name` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `floor_note` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `status` varchar(50) COLLATE utf8mb4_general_ci DEFAULT 'active'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -104,14 +104,14 @@ DELIMITER ;
 --
 
 CREATE TABLE `dim_item` (
-  `item_id` char(36) NOT NULL,
-  `item_name` varchar(255) DEFAULT NULL,
-  `item_price` int(11) DEFAULT NULL,
-  `item_lending_price` int(11) DEFAULT 0,
-  `item_unit` varchar(255) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
-  `status` varchar(50) DEFAULT 'active'
+  `item_id` char(36) COLLATE utf8mb4_general_ci NOT NULL,
+  `item_name` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_price` int DEFAULT NULL,
+  `item_lending_price` int DEFAULT '0',
+  `item_unit` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `status` varchar(50) COLLATE utf8mb4_general_ci DEFAULT 'active'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -165,13 +165,13 @@ DELIMITER ;
 --
 
 CREATE TABLE `dim_meds` (
-  `item_id` char(36) NOT NULL,
-  `item_name` varchar(255) DEFAULT NULL,
-  `item_price` int(11) DEFAULT NULL,
-  `item_unit` varchar(50) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
-  `status` varchar(50) DEFAULT 'active'
+  `item_id` char(36) COLLATE utf8mb4_general_ci NOT NULL,
+  `item_name` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_price` int DEFAULT NULL,
+  `item_unit` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `status` varchar(50) COLLATE utf8mb4_general_ci DEFAULT 'active'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -247,13 +247,13 @@ DELIMITER ;
 --
 
 CREATE TABLE `dim_med_service` (
-  `item_id` char(36) NOT NULL,
-  `item_name` varchar(255) DEFAULT NULL,
-  `item_price` int(11) DEFAULT NULL,
-  `item_unit` varchar(50) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
-  `status` varchar(50) DEFAULT 'active'
+  `item_id` char(36) COLLATE utf8mb4_general_ci NOT NULL,
+  `item_name` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_price` int DEFAULT NULL,
+  `item_unit` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `status` varchar(50) COLLATE utf8mb4_general_ci DEFAULT 'active'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -297,16 +297,16 @@ DELIMITER ;
 --
 
 CREATE TABLE `dim_room` (
-  `room_id` char(36) NOT NULL,
-  `room_order` varchar(20) DEFAULT NULL,
-  `room_name` varchar(255) DEFAULT NULL,
-  `floor_id` char(36) DEFAULT NULL,
-  `faculty_id` char(36) DEFAULT NULL,
-  `room_size` int(11) DEFAULT NULL,
-  `room_price` int(11) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
-  `status` varchar(50) DEFAULT NULL
+  `room_id` char(36) COLLATE utf8mb4_general_ci NOT NULL,
+  `room_order` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `room_name` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `floor_id` char(36) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `faculty_id` char(36) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `room_size` int DEFAULT NULL,
+  `room_price` int DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `status` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -373,23 +373,23 @@ DELIMITER ;
 --
 
 CREATE TABLE `dim_user` (
-  `user_id` char(36) NOT NULL,
-  `user_name` varchar(255) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  `email_address` varchar(255) DEFAULT NULL,
-  `contact_no` bigint(20) DEFAULT NULL,
-  `full_name` varchar(255) DEFAULT NULL,
-  `birthday` varchar(50) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
-  `gender` varchar(25) DEFAULT NULL,
-  `city` varchar(255) DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `role` varchar(50) DEFAULT NULL,
-  `faculty_id` char(36) DEFAULT NULL,
-  `oauth_google` varchar(255) DEFAULT NULL,
-  `oauth_facebook` varchar(255) DEFAULT NULL,
-  `status` varchar(50) DEFAULT 'active'
+  `user_id` char(36) COLLATE utf8mb4_general_ci NOT NULL,
+  `user_name` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `email_address` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `contact_no` bigint DEFAULT NULL,
+  `full_name` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `birthday` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `gender` varchar(25) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `city` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `address` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `role` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `faculty_id` char(36) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `oauth_google` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `oauth_facebook` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `status` varchar(50) COLLATE utf8mb4_general_ci DEFAULT 'active'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -398,7 +398,7 @@ CREATE TABLE `dim_user` (
 
 INSERT INTO `dim_user` (`user_id`, `user_name`, `password`, `email_address`, `contact_no`, `full_name`, `birthday`, `created_at`, `updated_at`, `gender`, `city`, `address`, `role`, `faculty_id`, `oauth_google`, `oauth_facebook`, `status`) VALUES
 ('0eef0c41-b24e-11ef-9657-b42e994cb670', 'demo_patient_2', 'pass123', 'demo_patient_2@example.com', 84345678912, 'Nguyen Van Hung', '1989-02-23T00:00:00.000Z', '2024-12-04 14:42:59', NULL, 'male', 'Ho Chi Minh', '16 Le Hong Phong', 'patient', '', NULL, NULL, 'active'),
-('5c950e93-ac16-11ef-982c-b42e994cb670', 'nurse40', 'password123', 'nurse40@example.com', 842131423432, 'Nguyen Thi Ly', '1983-06-15T00:00:00.000Z', '2024-11-26 16:49:11', NULL, 'female', 'Ho Chi Minh', '35 Vo Van Tan', 'nurse', '63115776-a115-11ef-95f3-b42e994cb670', NULL, NULL, 'active'),
+('5c950e93-ac16-11ef-982c-b42e994cb670', 'nurse40', 'password123', 'nurse40@example.com', 842131423432, 'Nguyen Thi Ly', '1983-06-15T00:00:00.000Z', '2024-11-26 16:49:11', NULL, 'female', 'Ho Chi Minh', '35 Vo Van Tan', 'nurse', '63115701-a115-11ef-95f3-b42e994cb670', NULL, NULL, 'active'),
 ('68edf2da-a114-11ef-95f3-b42e994cb670', 'huan_patient', 'password123', 'huan.nguyen@example.com', 84912345601, 'Nguyen Nhut Gia Huan', NULL, '2024-10-07 05:36:07', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '1 Mac Dinh Chi', 'patient', NULL, NULL, NULL, 'active'),
 ('68ee02c1-a114-11ef-95f3-b42e994cb670', 'huan_doctor', 'password123', 'huan.nguyen@example.com', 84912345602, 'Nguyen Nhut Gia Huan', NULL, '2024-10-07 05:36:07', '2024-11-12 16:44:31', 'male', 'Ho Chi Minh', '1 Le Duan New', 'doctor', '63115776-a115-11ef-95f3-b42e994cb670', NULL, NULL, 'active'),
 ('68ee03a8-a114-11ef-95f3-b42e994cb670', 'huan_admin', 'password123', 'huan.nguyen@example.com', 84567890123, 'Nguyen Nhut Gia Huan', '1999-10-03', '2024-10-07 05:36:07', '2024-11-24 11:43:43', 'male', 'Ho Chi Minh', '1 Le Duan 14', 'admin', 'NULL', NULL, NULL, 'active'),
@@ -439,6 +439,7 @@ INSERT INTO `dim_user` (`user_id`, `user_name`, `password`, `email_address`, `co
 ('68ee1857-a114-11ef-95f3-b42e994cb670', 'patient38', 'password123', 'patient38@example.com', 84920000038, 'Nguyen Van Thanh', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'male', 'Ho Chi Minh', '38 Nguyen Trai', 'patient', NULL, NULL, NULL, 'active'),
 ('68ee18ec-a114-11ef-95f3-b42e994cb670', 'patient39', 'password123', 'patient39@example.com', 84920000039, 'Tran Thi Kim', NULL, '2024-10-07 05:44:59', '2024-11-12 16:38:16', 'female', 'Ho Chi Minh', '39 Hai Ba Trung', 'patient', NULL, NULL, NULL, 'active'),
 ('b181a736-b24b-11ef-9657-b42e994cb670', 'demo_doctor', 'pass123', 'demo_doctor@example.com', 84123456789, 'Nguyen Tran Thanh Tu', '1980-06-18T00:00:00.000Z', '2024-12-04 14:26:04', NULL, 'male', 'Ho Chi Minh', '14 Le Hong Phong', 'doctor', '63115701-a115-11ef-95f3-b42e994cb670', NULL, NULL, 'active'),
+('b4f3dfc4-b4c1-11ef-942d-d5f755c4d6e3', 'demo_nurse', 'pass123', 'demo_nurse@example.com', 84567891234, 'Nguyen Thi Huong', '1995-05-24T00:00:00.000Z', '2024-12-05 14:42:10', NULL, 'female', 'Ho Chi Minh', '29 Ly Tu Trong', 'nurse', '63115701-a115-11ef-95f3-b42e994cb670', NULL, NULL, 'active'),
 ('f1696fd4-b24d-11ef-9657-b42e994cb670', 'demo_patient_1', 'pass123', 'demo_patient_1@example.com', 84234567891, 'Chu Thi Huyen Trang', '1984-08-13T00:00:00.000Z', '2024-12-04 14:42:10', NULL, 'female', 'Ho Chi Minh', '35 Pho Quang', 'patient', '', NULL, NULL, 'active');
 
 --
@@ -456,15 +457,15 @@ DELIMITER ;
 --
 
 CREATE TABLE `fact_appointment` (
-  `appt_id` char(36) NOT NULL,
-  `doctor_id` char(36) DEFAULT NULL,
-  `patient_id` char(36) DEFAULT NULL,
-  `faculty_id` char(36) DEFAULT NULL,
-  `appt_fee` int(11) DEFAULT NULL,
-  `appt_datetime` varchar(50) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
-  `status` varchar(50) NOT NULL DEFAULT 'active'
+  `appt_id` char(36) COLLATE utf8mb4_general_ci NOT NULL,
+  `doctor_id` char(36) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `patient_id` char(36) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `faculty_id` char(36) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `appt_fee` int DEFAULT NULL,
+  `appt_datetime` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `status` varchar(50) COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'active'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -532,18 +533,18 @@ DELIMITER ;
 --
 
 CREATE TABLE `fact_facility_asmt` (
-  `fac_asmt_id` char(36) NOT NULL,
-  `ptn_log_id` char(36) DEFAULT NULL,
-  `item_type` varchar(50) DEFAULT NULL,
-  `item_id` char(36) DEFAULT NULL,
-  `amount` int(11) DEFAULT NULL,
-  `item_price` int(11) DEFAULT NULL,
-  `item_note` mediumtext DEFAULT NULL,
-  `start_datetime` varchar(50) DEFAULT NULL,
-  `end_datetime` varchar(50) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
-  `status` varchar(50) DEFAULT 'active'
+  `fac_asmt_id` char(36) COLLATE utf8mb4_general_ci NOT NULL,
+  `ptn_log_id` char(36) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_type` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_id` char(36) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `amount` int DEFAULT NULL,
+  `item_price` int DEFAULT NULL,
+  `item_note` mediumtext COLLATE utf8mb4_general_ci,
+  `start_datetime` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `end_datetime` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `status` varchar(50) COLLATE utf8mb4_general_ci DEFAULT 'active'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -579,16 +580,16 @@ DELIMITER ;
 --
 
 CREATE TABLE `fact_item_stock` (
-  `stock_id` char(36) NOT NULL,
-  `updated_by` char(36) DEFAULT NULL,
-  `item_id` char(36) NOT NULL,
-  `change_type` varchar(50) NOT NULL,
-  `amount_changed` int(11) NOT NULL,
-  `amount_final` int(11) NOT NULL,
-  `stock_note` varchar(255) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
-  `status` varchar(50) DEFAULT 'active'
+  `stock_id` char(36) COLLATE utf8mb4_general_ci NOT NULL,
+  `updated_by` char(36) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_id` char(36) COLLATE utf8mb4_general_ci NOT NULL,
+  `change_type` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `amount_changed` int NOT NULL,
+  `amount_final` int NOT NULL,
+  `stock_note` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `status` varchar(50) COLLATE utf8mb4_general_ci DEFAULT 'active'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -711,20 +712,20 @@ DELIMITER ;
 --
 
 CREATE TABLE `fact_med_hist` (
-  `med_hist_id` char(36) NOT NULL,
-  `ptn_log_id` char(36) NOT NULL,
-  `doctor_id` varchar(36) NOT NULL,
-  `patient_id` char(36) DEFAULT NULL,
-  `blood_press` varchar(50) DEFAULT NULL,
-  `blood_sugar` varchar(50) DEFAULT NULL,
-  `spo2` varchar(50) DEFAULT NULL,
-  `weight` varchar(50) DEFAULT NULL,
-  `height` varchar(50) DEFAULT NULL,
-  `temp` varchar(50) DEFAULT NULL,
-  `med_note` mediumtext DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
-  `status` varchar(50) NOT NULL DEFAULT 'active'
+  `med_hist_id` char(36) COLLATE utf8mb4_general_ci NOT NULL,
+  `ptn_log_id` char(36) COLLATE utf8mb4_general_ci NOT NULL,
+  `doctor_id` varchar(36) COLLATE utf8mb4_general_ci NOT NULL,
+  `patient_id` char(36) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `blood_press` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `blood_sugar` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `spo2` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `weight` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `height` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `temp` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `med_note` mediumtext COLLATE utf8mb4_general_ci,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `status` varchar(50) COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'active'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -804,17 +805,17 @@ DELIMITER ;
 --
 
 CREATE TABLE `fact_patient_log` (
-  `ptn_log_id` char(36) NOT NULL,
-  `patient_id` char(36) DEFAULT NULL,
-  `doctor_id` char(36) DEFAULT NULL,
-  `faculty_id` varchar(36) DEFAULT NULL,
-  `is_inpatient` tinyint(1) NOT NULL DEFAULT 0,
-  `med_note` mediumtext DEFAULT NULL,
-  `start_datetime` varchar(50) DEFAULT NULL,
-  `end_datetime` varchar(50) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
-  `status` varchar(50) DEFAULT 'active'
+  `ptn_log_id` char(36) COLLATE utf8mb4_general_ci NOT NULL,
+  `patient_id` char(36) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `doctor_id` char(36) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `faculty_id` varchar(36) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `is_inpatient` tinyint(1) NOT NULL DEFAULT '0',
+  `med_note` mediumtext COLLATE utf8mb4_general_ci,
+  `start_datetime` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `end_datetime` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `status` varchar(50) COLLATE utf8mb4_general_ci DEFAULT 'active'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -847,16 +848,16 @@ DELIMITER ;
 --
 
 CREATE TABLE `fact_payment` (
-  `payment_id` char(36) NOT NULL,
-  `payment_type` varchar(100) NOT NULL,
-  `appt_id` char(36) DEFAULT NULL,
-  `ptn_log_id` char(36) DEFAULT NULL,
-  `amount` int(11) NOT NULL,
-  `payment_desc` varchar(255) DEFAULT NULL,
-  `payment_status` varchar(100) DEFAULT NULL,
-  `bank_trans_code` varchar(255) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
+  `payment_id` char(36) COLLATE utf8mb4_general_ci NOT NULL,
+  `payment_type` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `appt_id` char(36) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `ptn_log_id` char(36) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `amount` int NOT NULL,
+  `payment_desc` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `payment_status` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `bank_trans_code` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -909,14 +910,14 @@ DELIMITER ;
 --
 
 CREATE TABLE `fact_prescription` (
-  `pres_id` char(36) NOT NULL,
-  `med_hist_id` char(36) DEFAULT NULL,
-  `item_id` char(36) DEFAULT NULL,
-  `amount` int(11) DEFAULT NULL,
-  `price` int(11) DEFAULT NULL,
-  `item_note` mediumtext DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `status` varchar(50) NOT NULL DEFAULT 'active'
+  `pres_id` char(36) COLLATE utf8mb4_general_ci NOT NULL,
+  `med_hist_id` char(36) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `item_id` char(36) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `amount` int DEFAULT NULL,
+  `price` int DEFAULT NULL,
+  `item_note` mediumtext COLLATE utf8mb4_general_ci,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` varchar(50) COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'active'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -981,14 +982,14 @@ DELIMITER ;
 --
 
 CREATE TABLE `fact_work_schedule` (
-  `work_id` char(36) NOT NULL,
-  `user_id` char(36) DEFAULT NULL,
-  `start_datetime` varchar(50) DEFAULT NULL,
-  `end_datetime` varchar(50) DEFAULT NULL,
-  `work_note` varchar(255) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
-  `status` varchar(50) NOT NULL DEFAULT 'active'
+  `work_id` char(36) COLLATE utf8mb4_general_ci NOT NULL,
+  `user_id` char(36) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `start_datetime` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `end_datetime` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `work_note` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `status` varchar(50) COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'active'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
