@@ -14,7 +14,7 @@ $input = file_get_contents("php://input");
 // Get data sent from FE
 $data = json_decode($input, true);
 if ($data) {
-  $auth_user_id = $data['faculty_id'] ? mysqli_real_escape_string($conn, $data['faculty_id']) : null;
+  $faculty_id = $data['faculty_id'] ? mysqli_real_escape_string($conn, $data['faculty_id']) : null;
   // Process the form data (e.g., save to database, send email, etc.)
   $sql = "SELECT
         pmt.*
@@ -24,7 +24,7 @@ if ($data) {
       LEFT JOIN `fact_patient_log` log
         ON log.ptn_log_id = pmt.ptn_log_id
     WHERE
-      (appt.patient_id = '$auth_user_id' OR log.patient_id = '$auth_user_id')
+      (appt.faculty_id = '$faculty_id' OR log.faculty_id = '$faculty_id')
     ORDER BY
       `created_at` DESC,
       `updated_at` DESC";
