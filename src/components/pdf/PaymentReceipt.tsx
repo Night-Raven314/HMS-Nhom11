@@ -1,4 +1,4 @@
-import React, { FC, RefObject, useEffect } from 'react';
+import React, { FC, RefObject, useEffect, useState } from 'react';
 import {
   BlobProvider,
   Document,
@@ -10,6 +10,8 @@ import {
 } from '@react-pdf/renderer';
 import { PaymentDetailsTableType, PaymentDetailsType } from '../../pages/role-patient/PaymentLog';
 import { formatPrice, getItemTypeName } from '../../helpers/utils';
+import { id } from 'date-fns/locale';
+import { apiGetFinalPaymentDetails, apiGetFinalPaymentInfo } from '../../helpers/axios';
 Font.register({
   family: 'Roboto',
   fonts: [
@@ -104,21 +106,65 @@ const PDFContent:FC<ReceiptProp> = ({totalInfo, viewPayment}) => (
     </Page>
   </Document>
 );
-export const PaymentReceipt:FC<ReceiptProp> = ({
-  totalInfo,
-  viewPayment
+type ReceiptDownloadProps = {
+  paymentId:string | undefined
+}
+export const PaymentReceipt:FC<ReceiptDownloadProps> = ({
+  paymentId
 }) => {
+  const [viewPayment, setViewPayment] = useState<PaymentDetailsTableType[]>([]);
+  const [totalInfo, setTotalInfo] = useState<PaymentDetailsType>();
+  const getPaymentInfo = async(id:string) => {
+    if(id) {
+      const result = await apiGetFinalPaymentInfo(id);
+      if(result.data) {
+        setTotalInfo(result.data[0])
+      }
+    }
+  }
+
+  const setupPaymentDetail = async(id:string) => {
+    if(id) {
+      const result = await apiGetFinalPaymentDetails(id);
+      if(result.data) {
+        let uniqueType:string[] = [];
+        result.data.forEach((item:any) => {
+          if(!uniqueType.includes(item.item_type) && item.item_type !== null) {
+            uniqueType.push(item.item_type);
+          }
+        });
+        let tmpDetailsTable:PaymentDetailsTableType[] = []
+        uniqueType.forEach(type => {
+          tmpDetailsTable.push({
+            tableType: type,
+            tableDetails: result.data.filter((item:any) => item.item_type === type)
+          })
+        })
+        setViewPayment(tmpDetailsTable);
+      }
+    }
+  }
+  useEffect(() => {
+    if(paymentId) {
+      setupPaymentDetail(paymentId);
+      getPaymentInfo(paymentId);
+    }
+  }, [])
   return (
-    <BlobProvider document={<PDFContent viewPayment={viewPayment} totalInfo={totalInfo} />}>
-      {({ url }) => {
-        if (url) {
-          const link = document.createElement('a');
-          link.href = url;
-          link.download = 'Phieu-thanh-toan.pdf';
-          link.click();
-        }
-        return null;
-      }}
-    </BlobProvider>
+    <>
+      {viewPayment && totalInfo ? (
+        <BlobProvider document={<PDFContent viewPayment={viewPayment} totalInfo={totalInfo} />}>
+          {({ url }) => {
+            if (url) {
+              const link = document.createElement('a');
+              link.href = url;
+              link.download = 'Phieu-thanh-toan.pdf';
+              link.click();
+            }
+            return null;
+          }}
+        </BlobProvider>
+      ) : ""}
+    </>
   );
 }

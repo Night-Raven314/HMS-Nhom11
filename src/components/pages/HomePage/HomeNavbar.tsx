@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 export const HomeNavbar: FC = () => {
   const navigate = useNavigate();
   return (
-    <nav className="navbar navbar-main navbar-expand-lg px-0 mx-4 border-radius-xl shadow-none position-sticky blur shadow-blur mt-4 left-auto top-1 z-index-sticky"
+    <nav className="home-navbar navbar navbar-main navbar-expand-lg"
       id="navbarBlur" data-scroll="true">
       <div className="container-fluid py-1 px-3">
         <nav aria-label="breadcrumb">
