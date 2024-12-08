@@ -113,8 +113,8 @@ export const PaymentPage:FC = () => {
                 <div className="box-button">
                   <button className="btn btn-gradient" onClick={() => startPayment()}>Thanh toán</button>
                   <button className="btn btn-gradient" onClick={() => downloadPDF()}>Tải về PDF</button>
-                  {totalInfo && viewPayment.length && generatePDF ? (
-                    <PaymentReceipt totalInfo={totalInfo} viewPayment={viewPayment} />
+                  {generatePDF ? (
+                    <PaymentReceipt paymentId={id} />
                   ) : ""}
                 </div>
               </div>
