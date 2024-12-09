@@ -31,18 +31,6 @@ export const AdminSidebar:FC<AdminSidebarProps> = ({selectedItem}) => {
           </li>
 
           <li className="nav-item">
-            <Link to="/role-admin/building">
-              <div className={`nav-link text-white ${selectedItem === "building" ? "active bg-gradient-primary" : ""}`}>
-                <div className="side-icon">
-                  <FontAwesomeIcon icon={faBuilding} />
-                </div>
-
-                <span className="side-text">Quản lý khu nội trú</span>
-              </div>
-            </Link>
-          </li>
-
-          <li className="nav-item">
             <Link to="/role-admin/guest">
               <div className={`nav-link text-white ${selectedItem === "guest" ? "active bg-gradient-primary" : ""}`}>
                 <div className="side-icon">
@@ -95,6 +83,18 @@ export const AdminSidebar:FC<AdminSidebarProps> = ({selectedItem}) => {
                   <FontAwesomeIcon icon={faBookMedical} />
                 </div>
                 <span className="side-text">Quản lý dịch vụ y tế</span>
+              </div>
+            </Link>
+          </li>
+
+          <li className="nav-item">
+            <Link to="/role-admin/building">
+              <div className={`nav-link text-white ${selectedItem === "building" ? "active bg-gradient-primary" : ""}`}>
+                <div className="side-icon">
+                  <FontAwesomeIcon icon={faBuilding} />
+                </div>
+
+                <span className="side-text">Quản lý khu nội trú</span>
               </div>
             </Link>
           </li>
