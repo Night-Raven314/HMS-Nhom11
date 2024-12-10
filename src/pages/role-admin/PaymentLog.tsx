@@ -6,6 +6,7 @@ import { CustomModal, CustomModalHandles } from "../../components/common/CustomM
 import { apiGetPayment, apiGetPaymentDetail } from "../../helpers/axios";
 import { useToast } from "../../components/common/CustomToast";
 import { getItemTypeName } from "../../helpers/utils";
+import { PaymentReceipt } from "../../components/pdf/PaymentReceipt";
 
 export type PaymentListType = {
   payment_id: string;
@@ -49,6 +50,7 @@ export const AdminPaymentLog: FC = () => {
   const [searchKeyword, setSearchKeyword] = useState<string>("");
   const [paymentList, setPaymentList] = useState<PaymentListType[]>([]);
   const [paymentListFiltered, setPaymentListFiltered] = useState<PaymentListType[]>([]);
+  const [paymentIdForExport, setPaymentIdForExport] = useState<string | null>(null)
 
   const pageTerm = "Lịch sử giao dịch";
 
@@ -62,7 +64,6 @@ export const AdminPaymentLog: FC = () => {
         case "open":
           if(paymentId) {
             const getPaymentDetails = await apiGetPaymentDetail(paymentId);
-            console.log(getPaymentDetails)
             if(getPaymentDetails.error) {
               openToast("error", "Lỗi", "Đã xảy ra lỗi khi lấy lịch sử giao dịch này!", 5000);
             } else if(getPaymentDetails.data) {
@@ -115,6 +116,12 @@ export const AdminPaymentLog: FC = () => {
       setPaymentListFiltered(paymentList);
     }
   }
+  const downloadPayment = (paymentId:string) => {
+    setPaymentIdForExport(paymentId);
+    setTimeout(() => {
+      setPaymentIdForExport(null);
+    }, 1000);
+  }
   useEffect(() => {
     searchPayment();
   }, [paymentList, searchKeyword])
@@ -153,17 +160,27 @@ export const AdminPaymentLog: FC = () => {
                         <th style={{ width: "120px" }}>Loại giao dịch</th>
                         <th style={{ width: "100px" }}>Mã tham chiếu</th>
                         <th style={{ width: "100px" }}>Giá trị</th>
+                        <th style={{ width: "110px" }}>Thao tác</th>
                       </tr>
                     </thead>
                     <tbody>
                       {paymentListFiltered.map((payment) => (
-                        <tr key={payment.payment_id} onClick={() => toggleViewModal("open", payment.payment_id)} style={{cursor: "pointer"}}>
-                          <td className="text-color">{payment.payment_id}</td>
-                          <td>{payment.created_at}</td>
-                          <td>{payment.updated_at ? payment.updated_at : ""}</td>
+                        <tr key={payment.payment_id} style={{cursor: "pointer"}}>
+                          <td className="text-color" onClick={() => toggleViewModal("open", payment.payment_id)}>{payment.payment_id}</td>
+                          <td onClick={() => toggleViewModal("open", payment.payment_id)}>{payment.created_at}</td>
+                          <td onClick={() => toggleViewModal("open", payment.payment_id)}>{payment.updated_at ? payment.updated_at : ""}</td>
                           <td>{getItemTypeName(payment.payment_type)}</td>
                           <td>{payment.bank_trans_code}</td>
                           <td>{payment.amount}</td>
+                          <td>
+                            <div className="table-button-row">
+                              <div style={{flex:1}}>
+                                <button onClick={() => {downloadPayment(payment.payment_id)}}>
+                                  Tải về PDF
+                                </button>
+                              </div>
+                            </div>
+                          </td>
                         </tr>
                       ))}
                     </tbody>
@@ -174,6 +191,10 @@ export const AdminPaymentLog: FC = () => {
           </div>
         </div>
       </div>
+
+      {paymentIdForExport ? (
+        <PaymentReceipt paymentId={paymentIdForExport} />
+      ) : ""}
 
       {/* Modal xem giao dịch */}
       <CustomModal

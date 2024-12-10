@@ -64,7 +64,7 @@ export const CompleteProfile:FC = () => {
       errors.gender = "Hãy lựa chọn giới tính!";
     }
     if(!value.birthday) {
-      errors.gender = "Hãy lựa chọn giới tính!";
+      errors.birthday = "Hãy chọn ngày sinh!";
     }
     if(!value.email) {
       errors.email = "Trường này không được bỏ trống!";
@@ -216,8 +216,8 @@ export const CompleteProfile:FC = () => {
                               <div className="col-md-12">
                                 <CustomInput
                                   formik={formikProps}
-                                  id={`gender`}
-                                  name={`gender`}
+                                  id="gender"
+                                  name="gender"
                                   label="Giới tính"
                                   placeholder=""
                                   initialValue=""

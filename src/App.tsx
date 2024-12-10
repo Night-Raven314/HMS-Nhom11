@@ -25,6 +25,7 @@ import { NurseStock } from "./pages/role-nurse/Stock";
 import { PaymentPage } from "./pages/Payment";
 import { PaymentRedirect } from "./pages/PaymentRedirect";
 import { NursePaymentLog } from "./pages/role-nurse/PaymentLog";
+import { AdminDownloadReports } from "./pages/role-admin/DownloadReports";
 
 export const App:FC = () => {
   const [checkLogin, setCheckLogin] = useState<boolean>(false);
@@ -118,6 +119,10 @@ export const App:FC = () => {
     {
       path: "/role-admin/med-service",
       element: <AdminItem pageType="med_service" />,
+    },
+    {
+      path: "/role-admin/download-reports",
+      element: <AdminDownloadReports />,
     },
     // Doctor page
     {

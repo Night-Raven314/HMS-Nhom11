@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FC } from "react";
 import { faCalendar, faClipboard } from "@fortawesome/free-regular-svg-icons";
-import { faBookMedical, faBuilding, faIdBadge, faKitMedical, faMoneyBill, faNotesMedical, faPills, faUserPen, faUsers } from "@fortawesome/free-solid-svg-icons";
+import { faBookMedical, faBuilding, faFileArrowDown, faIdBadge, faKitMedical, faMoneyBill, faNotesMedical, faPills, faUserPen, faUsers } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 export type AdminSidebarProps = {
@@ -117,6 +117,17 @@ export const AdminSidebar:FC<AdminSidebarProps> = ({selectedItem}) => {
                   <FontAwesomeIcon icon={faMoneyBill} />
                 </div>
                 <span className="side-text">Lịch sử giao dịch</span>
+              </div>
+            </Link>
+          </li>
+
+          <li className="nav-item">
+            <Link to="/role-admin/download-reports">
+              <div className={`nav-link text-white ${selectedItem === "download-reports" ? "active bg-gradient-primary" : ""}`}>
+                <div className="side-icon">
+                  <FontAwesomeIcon icon={faFileArrowDown} />
+                </div>
+                <span className="side-text">Tải về báo cáo</span>
               </div>
             </Link>
           </li>
