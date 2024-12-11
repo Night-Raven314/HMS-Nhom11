@@ -964,6 +964,14 @@ div#popupFormContainer {
       flex: 0 0 200px;
     }
   }
+  .title-only {
+    border-bottom: 1px solid $table-border;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-size: 25pt;
+    color: $hms-neutral;
+    font-weight: 600;
+  }
 }
 .hms-log-container {
   height: calc(100dvh - 67.45px - 45px);
