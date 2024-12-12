@@ -119,6 +119,21 @@ export const stockChangeName = (name:string) => {
       break;
   }
 }
+export const apptStatusName = (name:string) => {
+  switch (name) {
+    case "upcoming":
+      return "Sắp tới"
+    case "missed":
+      return "Lỡ hẹn"
+    case "completed":
+      return "Hoàn thành"
+    case "deleted":
+      return "Đã xoá"
+  
+    default:
+      break;
+  }
+}
 
 export const convertISOToDateTime = (date:string) => {
   return format(new Date(date), "dd/MM/yyyy - HH:mm");

@@ -11,7 +11,7 @@ import { CreatePrescriptionRequestType } from "../components/pages/PatientLog/Pr
 import { CreateServiceRequestType, RoomUpdateRequestType } from "../components/pages/PatientLog/Service";
 import { ApptRequestType } from "../pages/role-patient/Appointment";
 import { StockRequestType } from "../pages/role-nurse/Stock";
-import { DownloadPaymentLogFormType } from "../pages/role-admin/DownloadReports";
+import { DownloadReportFormType } from "../pages/role-admin/DownloadReports";
 
 export const hmsAxios = Axios.create({
   baseURL: `/HMS-Nhom11/backend/api/`,
@@ -951,12 +951,28 @@ export const apiGetNursePaymentLog = async(facultyId:string) => {
 }
 
 // Export
-export const apiExportPaymentLog = async(request:DownloadPaymentLogFormType) => {
+export const apiExportPaymentLog = async(request:DownloadReportFormType) => {
   let error = null;
   let data = null;
   try {
     const res = await hmsAxios.post(
       "/generate-pdf/get-payment-log.php",
+      JSON.stringify(request)
+    );
+    if(res.data) {
+      data = res.data.data;
+    }
+  } catch (err:any) {
+    error = err.response.data.message;
+  }
+  return { data, error };
+}
+export const apiExportAppointment = async(request:DownloadReportFormType) => {
+  let error = null;
+  let data = null;
+  try {
+    const res = await hmsAxios.post(
+      "/generate-pdf/get-appointment.php",
       JSON.stringify(request)
     );
     if(res.data) {

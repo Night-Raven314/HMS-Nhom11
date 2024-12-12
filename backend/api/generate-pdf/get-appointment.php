@@ -15,7 +15,7 @@ $input = file_get_contents("php://input");
 $data = json_decode($input, true);
 if ($data) {
   $start_date = mysqli_real_escape_string($conn, $data['start_date']);
-    $end_date = mysqli_real_escape_string($conn, $data['end_date']);
+  $end_date = mysqli_real_escape_string($conn, $data['end_date']);
   // Process the form data (e.g., save to database, send email, etc.)
   $sql = "WITH
     doctor_data AS(
