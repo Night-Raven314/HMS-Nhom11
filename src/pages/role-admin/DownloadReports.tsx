@@ -46,11 +46,12 @@ export const AdminDownloadReports:FC = () => {
       openToast("error", "Lỗi", "Đã xảy ra lỗi khi lấy dữ liệu!", 5000);
     } else if(getData.data && values.start_date && values.end_date) {
       const result:PaymentLogReportType[] = getData.data;
-      let csvRows:[string[]] = [
-        ["Mã thanh toán", "Tên sản phẩm", "Đơn vị", "Số lượng", "Đơn giá", "Thành tiền", "Loại sản phẩm", "Ghi chú sản phẩm", "Loại thanh toán", "Nội dung thanh toán", "Trạng thái thanh toán", "Ngày tạo", "Lần cuối cập nhật"]
-      ]
+      const headers = ["Mã thanh toán", "Tên sản phẩm", "Đơn vị", "Số lượng", "Đơn giá", "Thành tiền", "Loại sản phẩm", "Ghi chú sản phẩm", "Loại thanh toán", "Nội dung thanh toán", "Trạng thái thanh toán", "Ngày tạo", "Lần cuối cập nhật"];
+      let csvRows:string[] = [];
+      csvRows.push(headers.map((header) => `${header}`).join(";"));
       result.forEach(item => {
-        csvRows.push([ item.payment_id || "", item.full_name || "", item.fac_name || "", item.amount || "", item.appt_fee ? formatPrice(item.appt_fee) : "", item.total_value ? formatPrice(item.total_value) : "", item.item_type ? getItemTypeName(item.item_type) : "", item.item_note || "", item.payment_type ? getItemTypeName(item.payment_type) : "", item.payment_desc || "", item.payment_status ? getPaymentStatus(item.payment_status) : "", item.created_at || "", item.updated_at || ""])
+        const value = [ item.payment_id || "", item.full_name || "", item.fac_name || "", item.amount || "", item.appt_fee ? formatPrice(item.appt_fee) : "", item.total_value ? formatPrice(item.total_value) : "", item.item_type ? getItemTypeName(item.item_type) : "", item.item_note || "", item.payment_type ? getItemTypeName(item.payment_type) : "", item.payment_desc || "", item.payment_status ? getPaymentStatus(item.payment_status) : "", item.created_at || "", item.updated_at || ""];
+        csvRows.push(value.join(";"))
       })
       // Create CSV string
       const csvString: string = "\uFEFF" + csvRows.join("\n");
