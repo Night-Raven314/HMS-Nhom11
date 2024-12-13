@@ -983,3 +983,35 @@ export const apiExportAppointment = async(request:DownloadReportFormType) => {
   }
   return { data, error };
 }
+export const apiExportItemSale = async(request:DownloadReportFormType) => {
+  let error = null;
+  let data = null;
+  try {
+    const res = await hmsAxios.post(
+      "/generate-pdf/get-item-sale.php",
+      JSON.stringify(request)
+    );
+    if(res.data) {
+      data = res.data.data;
+    }
+  } catch (err:any) {
+    error = err.response.data.message;
+  }
+  return { data, error };
+}
+export const apiExportServiceSale = async(request:DownloadReportFormType) => {
+  let error = null;
+  let data = null;
+  try {
+    const res = await hmsAxios.post(
+      "/generate-pdf/get-service-sale.php",
+      JSON.stringify(request)
+    );
+    if(res.data) {
+      data = res.data.data;
+    }
+  } catch (err:any) {
+    error = err.response.data.message;
+  }
+  return { data, error };
+}

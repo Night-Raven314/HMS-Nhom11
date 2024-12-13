@@ -22,6 +22,7 @@
       FROM (
         SELECT
           fac.created_at,
+          usr.user_id,
           usr.full_name,
           itm.item_name,
           itm.item_unit,
@@ -40,7 +41,7 @@
           fac.status IN ('Active', 'Completed')
           AND log.status IN ('Active', 'Completed')
           AND itm.item_name IS NOT NULL
-      )
+      ) UNION_DATA
       WHERE
         created_at BETWEEN DATE(STR_TO_DATE('$start_date' COLLATE utf8mb4_general_ci,'%Y-%m-%dT%H:%i:%s'))
         	AND DATE(STR_TO_DATE('$end_date' COLLATE utf8mb4_general_ci,'%Y-%m-%dT%H:%i:%s'))
