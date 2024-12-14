@@ -61,7 +61,7 @@
 		    LEFT JOIN `dim_faculty` fac
           ON fac.fac_id = usr.faculty_id
       WHERE
-        (count.count < 3 OR count.count IS NULL)";
+        (count.count < 2 OR count.count IS NULL)";
     if($sql) {
       $result = $conn->query($sql);
       if ($result) { 
