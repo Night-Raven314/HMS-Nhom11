@@ -71,6 +71,7 @@ export const NurseStock:FC = () => {
   const [itemList, setItemList] = useState<ItemListType[]>([]);
   const [itemOptions, setItemOptions] = useState<SelectOptionType[]>([]);
   const [stockList, setStockList] = useState<StockListType[]>([]);
+  const [stockListFiltered, setStockListFiltered] = useState<StockListType[]>([]);
 
   const [viewInfo, setViewInfo] = useState<StockInfoType[]>([]);
   const infoModalRef = useRef<CustomModalHandles>(null);
@@ -99,6 +100,19 @@ export const NurseStock:FC = () => {
       label: "Giảm"
     }
   ]
+
+  const searchItem = () => {
+    if(searchKeyword) {
+      const searchKeywordLower = searchKeyword.toLowerCase();
+      const filterList = stockList.filter(item => (item.item_name && item.item_name.toLowerCase().includes(searchKeywordLower)) || (item.updated_by && item.updated_by.toLowerCase().includes(searchKeywordLower)));
+      setStockListFiltered(filterList);
+    } else { 
+      setStockListFiltered(stockList);
+    }
+  }
+  useEffect(() => {
+    searchItem();
+  }, [stockList, searchKeyword]);
 
   const getStockInfo = async(itemId:string) => {
     const getItem = await apiGetNurseStockInfo(itemId);
@@ -277,7 +291,7 @@ export const NurseStock:FC = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        {stockList.map((item) => (
+                        {stockListFiltered.map((item) => (
                           <tr key={item.stock_id} onClick={() => toggleModal("openInfo", item.item_id)} style={{cursor: "pointer"}}>
                             <td>{item.updated_by}</td>
                             <td>{item.item_name}</td>
