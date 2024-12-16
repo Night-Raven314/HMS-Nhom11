@@ -1,7 +1,27 @@
 import { Helmet } from "react-helmet";
 import { HomeNavbar } from "../components/pages/HomePage/HomeNavbar";
+import { useToast } from "../components/common/CustomToast";
+import { useEffect, useState } from "react";
+import { apiGetFaculty } from "../helpers/axios";
+import { FacultyListType } from "./role-admin/Faculty";
 
 export const HomePage = () => {
+  const {openToast} = useToast();
+
+  const [facultyList, setFacultyList] = useState<FacultyListType[]>([]);
+
+  const getFacultyList = async() => {
+    const getFaculty = await apiGetFaculty();
+    if(getFaculty.error) {
+      openToast("error", "Lỗi", "Đã xảy ra lỗi khi lấy thông tin chuyên khoa!", 5000);
+    } else if (getFaculty.data) {
+      setFacultyList(getFaculty.data);
+    }
+  }
+
+  useEffect(() => {
+    getFacultyList();
+  }, [])
 
   return (
     <div className="bg-gray-300">
@@ -46,28 +66,15 @@ export const HomePage = () => {
           </div>
 
           <div className="row">
-            {/* <?php
-
-            $sql = "SELECT * FROM `dim_specialties`";
-
-            $specialties = mysqli_query($conn, $sql);
-
-            while ($row = mysqli_fetch_assoc($specialties)) {
-
-              $specialties_name = $row["specialty_name"];
-            $description = $row["description"];
-
-              ?>
-            <div className="col-lg-4 col-md-6">
-              <div className="single-key">
-                <i className="fas fa-heart"></i>
-                <h5><?php echo $specialties_name; ?></h5>
-                <p><?php echo $description; ?></p>
+            {facultyList.map(fac => (
+              <div className="col-lg-4 col-md-6">
+                <div className="single-key">
+                  <i className="fas fa-heart"></i>
+                  <h5>{fac.fac_name}</h5>
+                  <p>{fac.fac_desc}</p>
+                </div>
               </div>
-            </div>
-
-            <?php
-                  }?> */}
+            ))}
 
           </div>
         </div>
