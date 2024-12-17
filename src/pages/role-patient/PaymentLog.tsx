@@ -119,7 +119,7 @@ export const PatientPaymentLog: FC = () => {
   const searchPayment = () => {
     if(searchKeyword) {
       const searchKeywordLower = searchKeyword.toLowerCase();
-      const filterList = paymentList.filter(payment => payment.payment_id.toLowerCase().includes(searchKeywordLower));
+      const filterList = paymentList.filter(payment => payment.payment_id.toLowerCase().includes(searchKeywordLower) || payment.bank_trans_code?.includes(searchKeywordLower));
       setPaymentListFiltered(filterList);
     } else { 
       setPaymentListFiltered(paymentList);

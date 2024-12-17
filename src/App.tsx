@@ -24,7 +24,6 @@ import { PatientPaymentLog } from "./pages/role-patient/PaymentLog";
 import { NurseStock } from "./pages/role-nurse/Stock";
 import { PaymentPage } from "./pages/Payment";
 import { PaymentRedirect } from "./pages/PaymentRedirect";
-import { NursePaymentLog } from "./pages/role-nurse/PaymentLog";
 import { AdminDownloadReports } from "./pages/role-admin/DownloadReports";
 
 export const App:FC = () => {
