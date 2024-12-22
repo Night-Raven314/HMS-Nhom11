@@ -43,7 +43,7 @@ if ($data) {
                   appt.appt_datetime,
                   '%Y-%m-%dT%H:%i:%s'
               )
-            ) BETWEEN 0 AND 2 THEN 1 ELSE 0
+            ) > 0 THEN 1 ELSE 0
       END AS valid
     FROM `fact_appointment` appt
       LEFT JOIN `fact_med_hist` mhst
