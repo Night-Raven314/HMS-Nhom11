@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Dec 14, 2024 at 03:31 PM
+-- Generation Time: Dec 19, 2024 at 10:16 AM
 -- Server version: 8.0.35
 -- PHP Version: 8.2.20
 
@@ -516,6 +516,10 @@ INSERT INTO `fact_item_stock` (`stock_id`, `updated_by`, `item_id`, `change_type
 ('b125b67e-b944-11ef-971e-f1693ceffb1e', NULL, 'a5af4d7d-a115-11ef-95f3-b42e994cb670', 'deduction', 1, -1, NULL, '2024-12-13 11:23:35', NULL, 'active'),
 ('b1260818-b944-11ef-971e-f1693ceffb1e', NULL, 'a5af5ed8-a115-11ef-95f3-b42e994cb670', 'deduction', 1, -1, NULL, '2024-12-13 11:23:35', NULL, 'active'),
 ('cb3517e4-b944-11ef-971e-f1693ceffb1e', NULL, 'a5af4961-a115-11ef-95f3-b42e994cb670', 'deduction', 5, -5, NULL, '2024-12-13 11:24:18', NULL, 'active'),
+('e30f37ba-bc9f-11ef-ba63-ebf60e62c09d', 'b4f3dfc4-b4c1-11ef-942d-d5f755c4d6e3', 'a5af4858-a115-11ef-95f3-b42e994cb670', 'addition', 1000, 1000, '', '2024-12-17 17:53:56', NULL, 'active'),
+('e310481c-bc9f-11ef-ba63-ebf60e62c09d', 'b4f3dfc4-b4c1-11ef-942d-d5f755c4d6e3', 'a5abc0d8-a115-11ef-95f3-b42e994cb670', 'addition', 500, 500, '', '2024-12-17 17:53:56', NULL, 'active'),
+('e31064d2-bc9f-11ef-ba63-ebf60e62c09d', 'b4f3dfc4-b4c1-11ef-942d-d5f755c4d6e3', 'a5af49dd-a115-11ef-95f3-b42e994cb670', 'addition', 500, 500, '', '2024-12-17 17:53:56', NULL, 'active'),
+('e310873c-bc9f-11ef-ba63-ebf60e62c09d', 'b4f3dfc4-b4c1-11ef-942d-d5f755c4d6e3', 'a5af4687-a115-11ef-95f3-b42e994cb670', 'addition', 300, 300, '', '2024-12-17 17:53:56', NULL, 'active'),
 ('e9a5e3ba-b945-11ef-971e-f1693ceffb1e', 'b4f3dfc4-b4c1-11ef-942d-d5f755c4d6e3', 'ae6b188a-b943-11ef-971e-f1693ceffb1e', 'addition', 15, 15, 'Nhập máy', '2024-12-13 11:32:19', '2024-12-13 11:32:45', 'deleted'),
 ('f9589366-b945-11ef-971e-f1693ceffb1e', 'b4f3dfc4-b4c1-11ef-942d-d5f755c4d6e3', 'ae6b188a-b943-11ef-971e-f1693ceffb1e', 'deduction', 1, 14, 'Hỏng 1 máy', '2024-12-13 11:32:45', NULL, 'active');
 
