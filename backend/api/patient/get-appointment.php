@@ -33,14 +33,13 @@ if ($data) {
         appt_id,
         SUM(valid) AS `count`
       FROM
-        (
-        SELECT
+        (SELECT
           appt.appt_id,
-          CASE WHEN TIMESTAMPDIFF(hour, mhst.created_at, DATE_ADD(STR_TO_DATE(appt.appt_datetime, '%Y-%m-%dT%H:%i:%s'), INTERVAL 7 HOUR)) BETWEEN 0 AND 2 THEN 1 ELSE 0
+          CASE WHEN TIMESTAMPDIFF(hour, DATE_ADD(STR_TO_DATE(appt.appt_datetime, '%Y-%m-%dT%H:%i:%s'), INTERVAL 7 HOUR), log.created_at ) BETWEEN 0 AND 2 THEN 1 ELSE 0
       END AS valid
     FROM `fact_appointment` appt
-      LEFT JOIN `fact_med_hist` mhst
-        ON appt.patient_id = mhst.patient_id
+      LEFT JOIN `fact_patient_log` log
+        ON appt.patient_id = log.patient_id
     ) subquery_alias -- Alias for the subquery
     GROUP BY
         appt_id

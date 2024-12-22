@@ -333,7 +333,8 @@ export const PatientAppointment: FC = () => {
                             <td onClick={() => openPatientInfo(appt.patient_id)}>{appt.faculty_name}</td>
                             <td>{convertISOToDateTime(appt.appt_datetime)}</td>
                             <td>{appt.appt_fee}</td>
-                            <td>{apptStatusName(appt.appt_status ? appt.appt_status : "")}</td>
+                            <td><div className={`${appt.appt_status}-color`}>{apptStatusName(appt.appt_status ? appt.appt_status : "")}</div>
+                            </td>
                             <td>
                               {(appt.payment_status !== "pending" && appt.payment_status !== "failed") ? (
                                 <div className={`${appt.payment_status}-color`}>{getPaymentStatus(appt.payment_status ? appt.payment_status : "")}</div>
