@@ -122,9 +122,9 @@ export const stockChangeName = (name:string) => {
 export const apptStatusName = (name:string) => {
   switch (name) {
     case "upcoming":
-      return "Sắp tới"
+      return "Sắp đến"
     case "missed":
-      return "Lỡ hẹn"
+      return "Đã bỏ qua"
     case "completed":
       return "Hoàn thành"
     case "deleted":
