@@ -36,14 +36,7 @@ if ($data) {
         (
         SELECT
           appt.appt_id,
-          CASE WHEN TIMESTAMPDIFF(
-              hour,
-              mhst.created_at,
-              STR_TO_DATE(
-                  appt.appt_datetime,
-                  '%Y-%m-%dT%H:%i:%s'
-              )
-            ) > 0 THEN 1 ELSE 0
+          CASE WHEN TIMESTAMPDIFF(hour, mhst.created_at, DATE_ADD(STR_TO_DATE(appt.appt_datetime, '%Y-%m-%dT%H:%i:%s'), INTERVAL 7 HOUR)) BETWEEN 0 AND 2 THEN 1 ELSE 0
       END AS valid
     FROM `fact_appointment` appt
       LEFT JOIN `fact_med_hist` mhst
